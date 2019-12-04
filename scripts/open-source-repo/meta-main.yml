@@ -1,0 +1,51 @@
+galaxy_info:
+  author: nalsaber, manojmeda, mross22
+  description: OCI modules provides an easy way to create and provision
+               resources in Oracle Cloud Infrastructure through Ansible.
+  company: Oracle
+
+  license: GNU General Public License v3.0+ or Apache License v2.0
+
+  min_ansible_version: "2.5.0"
+
+  # Optionally specify the branch Galaxy will use when accessing the GitHub
+  # repo for this role. During role install, if no tags are available,
+  # Galaxy will use this branch. During import Galaxy will access files on
+  # this branch. If Travis integration is configured, only notifications for this
+  # branch will be accepted. Otherwise, in all cases, the repo's default branch
+  # (usually master) will be used.
+  github_branch: https://github.com/oracle/oci-ansible-modules
+
+  galaxy_tags:
+    - oracle
+    - cloud
+    - system
+    - development
+    - networking
+    - compute
+    - storage
+    - oci
+
+  platforms:
+    - name: GenericLinux
+      versions:
+        - any
+    - name: Ubuntu
+      versions:
+      - all
+    - name: macOS
+      versions:
+        - Sierra
+    - name: MacOSX
+      versions:
+        - 10.7
+        - 10.8
+        - 10.9
+        - "10.10"
+        - 10.11
+        - 10.12
+
+  cloud_platforms:
+    - Oracle Cloud Infrastructure
+
+dependencies: []

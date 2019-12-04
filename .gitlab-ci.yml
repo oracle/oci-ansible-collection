@@ -1,0 +1,908 @@
+stages:
+  - quickcheck
+  #- test
+  #- deploy
+  #- candidate_release
+  #- pre_release_tests
+  #- final_release
+  #- candidate_release_for_stage_repo
+  #- pre_release_tests_for_stage_repo
+  #- release_stage_repo
+
+variables:
+#  PROXY_HOST: "www-proxy-hqdc.us.oracle.com"
+#  HTTP_PROXY: "http://www-proxy-hqdc.us.oracle.com:80"
+#  HTTPS_PROXY: "http://www-proxy-hqdc.us.oracle.com:80"
+#  NO_PROXY: "localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,.us.oracle.com,.oraclecorp.com,.grungy.us,.oracle.com"
+#  CI_DEBUG_TRACE: "true"
+
+# assumes python environments and tools are installed. See `setup-gitlab-runner-oel.sh` for instructions.
+before_script:
+  - echo "Running jobs for $CI_COMMIT_REF_NAME in $(pwd)"
+
+  - uname -a
+  - export
+
+  # create and setup virtual environments for the various python versions
+  # we must support
+  - WKSP=$(pwd) scripts/setup-venvs.sh
+
+
+  # Ensure oci config is setup correctly
+  # extract key file from secret variable
+  # see https://medium.com/@michalkalita/export-secret-file-to-gitlab-pipeline-75789eee35bd
+  - env | grep CI
+  - mkdir -p ~/.oci
+  # user siva's private key
+  - echo "$CI_OCI_API_KEY_FILE_BASE64" | base64 -di > .oci/oci_api_key.pem
+  # user ansible-user's private key
+  - echo "$CI_OCI_API_KEY_FILE_ANSIBLE_USER_BASE64" | base64 -di > .oci/oci_api_key_ansible_user.pem
+  # all other variables in OCI SDK config is stored as Gitlab secret variables
+  # and referenced in the .oci/config file
+  - cat .oci/config | while read line; do echo $line | envsubst; done > ~/.oci/config
+  - cat ~/.oci/config
+  - cp .oci/*.pem ~/.oci/
+  - sed -i '/CI_PROJECT_DIR/d' "$CI_PROJECT_DIR"/ansible/test/integration/integration_config.yml
+  - 'echo "PROJECT_ROOT: $CI_PROJECT_DIR" >> $CI_PROJECT_DIR/ansible/test/integration/integration_config.yml'
+  - export dev_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep -v non_parallel | grep -v lengthy | grep -v manual | sort)
+  - export non_parallel_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep non_parallel | grep -v lengthy | grep -v manual | sort)
+  - export all_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep -v lengthy | grep -v manual | grep -v waas | sort)
+  - export lengthy_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci*" | grep lengthy | grep -v manual | sort -r)
+
+after_script:
+    - echo "Not cleaning up configuration artifacts in ~/.oci"
+
+
+#############################################################################
+# `quickcheck` stage jobs
+#############################################################################
+
+validation_tests:
+  stage: quickcheck
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - export INSTALLDIR="/scratch/python-installs"
+    - export "PATH=$INSTALLDIR/bin:$PATH"
+    - export LD_LIBRARY_PATH="$INSTALLDIR/lib:$LD_LIBRARY_PATH"
+    - echo "PATH = $PATH"
+    - echo "LD_LIBRARY_PATH = $LD_LIBRARY_PATH"
+    - export VENVDIR="/scratch/python-venvs"
+    - echo "VENVDIR= $VENVDIR, CI_COMMIT_REF_NAME=$CI_COMMIT_REF_NAME"
+
+    - env | grep CI
+    # activate the 3.6 virtualenv. Changed this from 2.7 to 3.6 after error in
+    # https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/jobs/499142
+    - source $VENVDIR/my-3.6-venv-$CI_COMMIT_REF_NAME/bin/activate
+    - which python
+    - pip -V
+    - pip freeze
+    - pwd
+
+    # setup dev environment to run ansible-test
+    - cd ansible; source hacking/env-setup
+    - ansible --version
+    - cd ..
+    - cd ansible
+    - ansible-test sanity --color -v --junit ${COVERAGE:+"$COVERAGE"} ${CHANGED:+"$CHANGED"} --docker --docker-keep-git
+      --skip-test pylint --skip-test ansible-doc --skip-test docs-build --skip-test integration-aliases --skip-test botmeta
+    - ansible-test sanity --color -v --junit ${COVERAGE:+"$COVERAGE"} ${CHANGED:+"$CHANGED"} --docker --docker-keep-git
+      --test ansible-doc 
+    - ansible-test sanity --color -v --junit ${COVERAGE:+"$COVERAGE"} ${CHANGED:+"$CHANGED"} --docker --docker-keep-git
+      --test pylint --exclude test/units/
+    - ansible-test sanity --color -v --junit ${COVERAGE:+"$COVERAGE"} ${CHANGED:+"$CHANGED"} --docker --docker-keep-git
+      --test pylint
+    # check copyright year in our python source files
+    - cd -
+#    - ./scripts/copyright-check.sh $(git diff --name-only origin/master | grep 'ansible/lib/ansible/modules/cloud/oracle/.*py\|ansible/lib/ansible/module_utils/oracle/.*py\|ansible/contrib/inventory/oci.*py\|ansible/test/units/modules/cloud/oracle/test.*py\|^scripts/.*py$')
+    # check copyright year in our sample YAML files
+#    - ./scripts/copyright-check.sh $(git diff --name-only origin/master | grep '^samples.*ya\?ml')
+
+flake8:
+  stage: quickcheck
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - scripts/run-flake8.sh
+    - scripts/test-black-formatted.sh
+
+
+#############################################################################
+# `test` stage jobs
+#############################################################################
+
+unit_tests:
+  stage: test
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  artifacts:
+    paths:
+      - htmlcov/
+    expire_in: 1 week
+  script:
+    - rm -rf htmlcov/ || true
+    - scripts/run-unit-tests.sh
+
+# XXX: get tox based integration test execution working
+#- ansible-test integration --tox --python 2.7 -v oci_object_storage
+#- ansible-test integration --tox --python 3.6 -v oci_object_storage
+
+.integration_tests_job_template: &integration_tests_job_def
+  stage: test
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  except:
+    - tags
+  artifacts:
+      paths:
+          - ansible/test/integration/ansible.log
+          - ansible/test/results/reports/coverage/
+      expire_in: 1 week
+  script:
+    # update test executor of ITs to publish task profiling
+    # information
+    #- sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='dense',@g" ansible/test/runner/lib/executor.py
+    # Replace the line above with this if you want more detailed output
+    # during IT playbooks execution
+    #- sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    # Use the value of variable whose name is stored in 'targets'.
+    - echo "All targets ${!targets}"
+    - echo "Set no ${set_no}"
+    - echo "Total number of sets ${total_target_sets}"
+    - scripts/run-integration-tests.sh "${!targets}" "$set_no" "$total_target_sets"
+  retry: 2
+
+# Run all Integration tests against a dev environment
+# Run the dev jobs in sets.
+integration_tests_dev_set_1:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 0
+    targets: "dev_targets"
+    total_target_sets: 5
+
+integration_tests_dev_set_2:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 1
+    targets: "dev_targets"
+    total_target_sets: 5
+
+integration_tests_dev_set_3:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 2
+    targets: "dev_targets"
+    total_target_sets: 5
+
+integration_tests_dev_set_4:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 3
+    targets: "dev_targets"
+    total_target_sets: 5
+
+integration_tests_dev_set_5:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 4
+    targets: "dev_targets"
+    total_target_sets: 5
+
+non_parallel_integration_tests_dev_set_1:
+  <<: *integration_tests_job_def
+  tags:
+    - non_parallel_set_1
+  variables:
+    set_no: 0
+    targets: "non_parallel_targets"
+    total_target_sets: 2
+
+non_parallel_integration_tests_dev_set_2:
+  <<: *integration_tests_job_def
+  tags:
+    - non_parallel_set_2
+  variables:
+    set_no: 1
+    targets: "non_parallel_targets"
+    total_target_sets: 2
+
+lengthy_integration_tests_set_1:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 0
+    targets: "lengthy_targets"
+    total_target_sets: 3
+  only:
+    - triggers
+    - schedules
+
+lengthy_integration_tests_set_2:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 1
+    targets: "lengthy_targets"
+    total_target_sets: 3
+  only:
+    - triggers
+    - schedules
+
+lengthy_integration_tests_set_3:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 2
+    targets: "lengthy_targets"
+    total_target_sets: 3
+  only:
+    - triggers
+    - schedules
+
+samples:
+  stage: test
+  tags:
+    - oel
+    - ansible
+    - samples
+    - oci
+    - compute
+  only:
+    - master
+    - schedules
+  script:
+    - export INSTALLDIR="/scratch/python-installs"
+    - export VENVDIR="/scratch/python-venvs"
+    - export LD_LIBRARY_PATH="$INSTALLDIR/lib:$LD_LIBRARY_PATH"
+
+    # activate the 2.7 virtualenv
+    - source $VENVDIR/my-2.7-venv-$CI_COMMIT_REF_NAME/bin/activate
+
+    # setup dev environment to run ansible-test
+    - cd ansible; source hacking/env-setup
+    - ansible --version
+    - cd ..
+
+    # run the samples under the `samples` directory
+    - export SAMPLE_COMPARTMENT_OCID="ocid1.compartment.oc1..aaaaaaaa7tlbhw5sjnbf7u7eyonsfjt737773ptgj66nlnsyr3teglev2bla"
+    - export SAMPLE_IMAGE_OCID="ocid1.image.oc1.iad.aaaaaaaaridg44za3hfzaciqjrsk6dm6daiq4k3xuv2bcjyjb7kuka3worsq"
+    - export SAMPLE_APP_CATALOG_LISTING_ID="ocid1.appcataloglisting.oc1..aaaaaaaamfkymkaswbyqdn32ckslmespcaqgda6et7juetbtuz3h7nwtamdq"
+    # - export SAMPLE_DBSYSTEM_OCID="ocid1.dbsystem.oc1.iad.abuwcljsvo4oru75rhmruvty6p75isl7wzqhavmdm5762tgeqaqc3nxqvhtq"
+    - export SAMPLE_TENANCY_OCID="ocid1.tenancy.oc1..aaaaaaaayqotwvxvy4t433xh3b5ccj4z3w6ke4t4m2sjlib32lyio244pucq"
+    - export SAMPLE_OBJECT_NS_NAME="bmcs-dex-us-ashburn-1"
+    - export SAMPLE_REGION="us-ashburn-1"
+    - export SAMPLE_AD_NAME="IwGV:US-ASHBURN-AD-1"
+    - export SAMPLE_INSTANCE_SHAPE="VM.Standard1.1"
+    - export HOST_RANDOM_SUFFIX=$(python -c "import random, socket; random.seed(socket.gethostname()); print(random.randint(0,1023))")
+    - export EXTRA_VARS_FOR_SAMPLES="alice_name=Alice_$HOST_RANDOM_SUFFIX bob_name=Bob_$HOST_RANDOM_SUFFIX object_readers_group_name=object_readers_$HOST_RANDOM_SUFFIX object_writers_group_name=object_writers_$HOST_RANDOM_SUFFIX object_writers_policy_name=object_writers_policy_$HOST_RANDOM_SUFFIX object_readers_policy_name=object_readers_policy_$HOST_RANDOM_SUFFIX"
+    - export SAMPLE_CPU_CORE_COUNT=1
+    - export SAMPLE_ADMIN_PASSWORD="BEstr0ng_#11"
+    # since ATP and ADW names cannot be reused for 60 days as per https://docs.cloud.oracle.com/iaas/Content/Database/Tasks/atpcreating.htm#console, using
+    # %m%d%H%M as a suffix in SAMPLE_DBW_NAME and SAMPLE_DB_NAME for uniqueness
+    - export SAMPLE_DBW_DISPLAY_NAME="autonomous-data-warehouse"
+    - export SAMPLE_DBW_NAME="adwsa$(date +%m%d%H%M)"
+    - export SAMPLE_DB_DISPLAY_NAME="autonomous-database"
+    - export SAMPLE_DB_NAME="atpsa$(date +%m%d%H%M)"
+    - export SAMPLE_DATA_STORAGE_SIZE_IN_TBS=1
+    - export SAMPLE_LICENSE_MODEL='LICENSE_INCLUDED'
+    # Export env variables for MongoDB demo-sample.
+    - export SAMPLE_AD1_NAME="IwGV:US-ASHBURN-AD-1"
+    - export SAMPLE_AD2_NAME="IwGV:US-ASHBURN-AD-2"
+    - export SAMPLE_AD3_NAME="IwGV:US-ASHBURN-AD-3"
+    - export KUBECONFIG_PATH="/tmp/kubeconfig_${CI_JOB_ID}"
+    - export SAMPLE_OL_IMAGE_OCID="ocid1.image.oc1.iad.aaaaaaaa6ybn2lkqp2ejhijhehf5i65spqh3igt53iyvncyjmo7uhm5235ca"
+    - export SAMPLE_CPE_IP_ADDRESS="143.19.23.16"
+    - export SAMPLE_STATIC_ROUTE="0.0.0.0/0"
+    # DB system sample requires a working DB System. Since this may not
+    # always be available, as it is expensive, we are not running that
+    # sample alone as part of our CI 'samples' job.
+    # ToDo: Include OKE sample once the proxy issue is resolved.
+    - for s in $(find $(pwd)/samples -name sample.yaml -type f | grep -vE "db_node_ip_from_db_system|secure-mongodb|container_engine"); do cd $(dirname $s); echo "Running sample under $(pwd)"; ansible-playbook --extra-vars "$EXTRA_VARS_FOR_SAMPLES" sample.yaml; done
+
+    - cd "$CI_PROJECT_DIR"/samples/solutions/secure-mongodb-deployment
+    - $CI_PROJECT_DIR/scripts/secure_mongodb_demo_integration_suite.sh
+
+# Run malware analysis tool against the workspace
+malware_analysis:
+  stage: test
+  tags:
+    - python
+    - oel
+    - ansible
+  only:
+      - master
+      - schedules
+  artifacts:
+      paths:
+          - report.txt
+      expire_in: 1 week
+  script:
+    - scripts/run-malware-analysis.sh
+
+# Run SDK fidelity tests. Checks for gaps between the SDK and current OCI
+# ansible modules
+#check_sdk_fidelity:
+#  stage: test
+#  tags:
+#    - oel
+#    - ansible
+#    - oci
+#    - compute
+#  only:
+#    - schedules
+#  artifacts:
+#    paths:
+#      - sdk-fidelity-check-report.md
+#    expire_in: 1 year
+#  script:
+#    # clear oci ansible module metadata cache, as the gitlab runner may
+#    # run different branches.
+#    - rm /tmp/oci-ansible-metadata.cache || true
+#    - scripts/run-sdk-fidelity-checks.sh
+
+doc_generation:
+  stage: test
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  except:
+    - tags
+  script:
+    - export INSTALLDIR="/scratch/python-installs"
+    - export VENVDIR="/scratch/python-venvs"
+    - export LD_LIBRARY_PATH="$INSTALLDIR/lib:$LD_LIBRARY_PATH"
+
+    # activate the 2.7 virtualenv
+    - source $VENVDIR/my-2.7-venv-$CI_COMMIT_REF_NAME/bin/activate
+
+    # setup dev environment to run make
+    - cd ansible; source hacking/env-setup
+    - ansible --version
+    # install docsite requirements
+    - pip install -r docsite_requirements.txt
+    # Generate webdocs only for OCI modules
+    - MODULES="$(python -c 'import os,re; print(",".join({re.sub(r"\..*", "", f) for f in os.listdir("lib/ansible/modules/cloud/oracle")}))')" make webdocs
+    - ls docs/docsite/rst/modules/ | grep oci
+    - deactivate
+
+stage_repo_candidate_release:
+  stage: candidate_release_for_stage_repo
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  only:
+    - tags
+  script:
+    - scripts/role-stage-candidate-release.sh
+
+install_tests:
+  stage: test
+  tags:
+  - oel
+  - ansible
+  - oci
+  - compute
+#  only:
+#  - master
+#  - schedules
+#  - tags
+  script:
+  - source scripts/common-vars.sh
+  - scripts/run-install-scripts.sh
+
+.script_based_installation_tests_job_template: &script_based_installation_tests_job_def
+  stage: pre_release_tests_for_stage_repo
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  only:
+    - tags
+  script:
+    - source scripts/common-vars.sh
+    - export ANSIBLE_VERSION=${MIN_ANSIBLE_RELEASE_SUPPORTED}
+    - export OCI_VERSION=${MIN_OCI_PYTHON_SDK_RELEASE_SUPPORTED}
+    - REPO_NAME="oci-ansible-role-stage"
+    - echo "Set no ${set_no}"
+    - echo "All targets ${!targets}"
+    - echo "Number of sets ${total_target_sets}"
+    - scripts/test_script_based_installation.sh gitlab-odx.oracledx.com/oci/oci-ansible-role-stage.git ${REPO_NAME} "${!targets}" "$set_no" "$total_target_sets"
+  retry: 2
+
+script_based_installation_dev_tests_set1:
+  <<: *script_based_installation_tests_job_def
+  variables:
+    targets: "dev_targets"
+    set_no: 0
+    total_target_sets: 3
+
+script_based_installation_dev_tests_set2:
+  <<: *script_based_installation_tests_job_def
+  variables:
+    targets: "dev_targets"
+    set_no: 1
+    total_target_sets: 3
+
+script_based_installation_dev_tests_set3:
+  <<: *script_based_installation_tests_job_def
+  variables:
+    targets: "dev_targets"
+    set_no: 2
+    total_target_sets: 3
+
+non_parallel_script_based_installation_dev_tests_set1:
+  <<: *script_based_installation_tests_job_def
+  tags:
+    - non_parallel_set_1
+  variables:
+    targets: "non_parallel_targets"
+    set_no: 0
+    total_target_sets: 2
+
+non_parallel_script_based_installation_dev_tests_set2:
+  <<: *script_based_installation_tests_job_def
+  tags:
+    - non_parallel_set_2
+  variables:
+    targets: "non_parallel_targets"
+    set_no: 1
+    total_target_sets: 2
+
+script_based_installation_lengthy_tests_set1:
+  <<: *script_based_installation_tests_job_def
+  variables:
+    targets: "lengthy_targets"
+    set_no: 0
+    total_target_sets: 3
+
+script_based_installation_lengthy_tests_set2:
+  <<: *script_based_installation_tests_job_def
+  variables:
+    targets: "lengthy_targets"
+    set_no: 1
+    total_target_sets: 3
+
+script_based_installation_lengthy_tests_set3:
+  <<: *script_based_installation_tests_job_def
+  variables:
+    targets: "lengthy_targets"
+    set_no: 2
+    total_target_sets: 3
+
+.galaxy_based_installation_tests_job_template: &galaxy_based_installation_tests_job_def
+  stage: pre_release_tests_for_stage_repo
+  tags:
+    - oel
+    - ansible
+    - galaxy
+    - oci
+    - compute
+  only:
+    - tags
+  script:
+    - TAG_NAME=${CI_COMMIT_TAG}_${CI_PIPELINE_ID}_candidate
+    - scripts/test_galaxy_based_installation.sh gitlab-odx.oracledx.com/oci/oci-ansible-role-stage.git ${TAG_NAME} oci-ansible-role-stage "${!targets}" "$set_no" "$total_target_sets"
+  retry: 2
+
+galaxy_based_installation_dev_tests_set1:
+  <<: *galaxy_based_installation_tests_job_def
+  variables:
+    targets: "dev_targets"
+    set_no: 0
+    total_target_sets: 3
+
+galaxy_based_installation_dev_tests_set2:
+  <<: *galaxy_based_installation_tests_job_def
+  variables:
+    targets: "dev_targets"
+    set_no: 1
+    total_target_sets: 3
+
+galaxy_based_installation_dev_tests_set3:
+  <<: *galaxy_based_installation_tests_job_def
+  variables:
+    targets: "dev_targets"
+    set_no: 2
+    total_target_sets: 3
+
+non_parallel_galaxy_based_installation_dev_tests_set1:
+  <<: *galaxy_based_installation_tests_job_def
+  tags:
+    - non_parallel_set_1
+  variables:
+    targets: "non_parallel_targets"
+    set_no: 0
+    total_target_sets: 2
+
+non_parallel_galaxy_based_installation_dev_tests_set2:
+  <<: *galaxy_based_installation_tests_job_def
+  tags:
+    - non_parallel_set_2
+  variables:
+    targets: "non_parallel_targets"
+    set_no: 1
+    total_target_sets: 2
+
+push_to_stage_repo:
+  stage: release_stage_repo
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  only:
+    - tags
+  script:
+    - scripts/push-to-role-stage.sh
+
+
+# XXX run all manual ITs only when  triggered explicitly
+#These tests are mostly for DBCS related modules. For DB System, the tests should be run in following order
+# 1. Create DB System
+# 2. Update DB System other than version
+# 3. Patch Precheck
+# 4. Patch Apply
+# 5. Delete DB System
+manual_db_system_create_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-create-integration-tests.sh
+
+# XXX run all manual ITs only when triggered explicitly
+manual_db_system_update_list_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-update-list-integration-tests.sh
+
+manual_db_system_update_version_precheck_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-update-version-precheck-integration-tests.sh
+
+manual_db_system_update_version_apply_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-update-version-apply-integration-tests.sh
+
+# XXX run all length ITs only when scheduled or triggered explicitly
+manual_db_system_delete_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-delete-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_db_home_create_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-home-create-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_db_home_create_from_backup_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-home-create-from-backup-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_db_home_list_delete_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-home-list-delete-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_db_home_patch_precheck_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-home-patch-precheck-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_db_home_patch_apply_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-home-patch-apply-integration-tests.sh
+
+# XXX run all manual ITs only when triggered explicitly
+manual_database_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-database-integration-tests.sh
+
+manual_db_node_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-node-integration-tests.sh
+
+
+# XXX run all manual ITs only when triggered explicitly
+manual_backup_create_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-backup-create-integration-tests.sh
+    
+# XXX run all manual ITs only when triggered explicitly
+manual_db_system_create_from_backup_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-create-from-backup-integration-tests.sh
+
+# XXX run all manual ITs only when triggered explicitly
+manual_backup_delete_list_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-backup-delete-list-integration-tests.sh
+
+# XXX run all manual ITs only when triggered explicitly
+manual_db_patch_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-patch-integration-tests.sh
+
+# XXX run all manual ITs only when triggered explicitly
+manual_db_system_shape_version_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-system-shape-version-integration-tests.sh
+
+manual_db_patch_history_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-db-patch-history-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_data_guard_association_db_system_create_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-data-guard-association-db-system-create-integration-tests.sh
+
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_data_guard_association_create_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-data-guard-association-create-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_waas_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-waas-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_data_guard_association_operations_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-data-guard-association-operations-integration-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_idp_operations_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-idp-tests.sh
+
+# XXX run all manual ITs only when  triggered explicitly
+manual_adw_backup_operations_integration_tests:
+  stage: test
+  only:
+    - triggers
+  tags:
+    - oel
+    - ansible
+    - oci
+    - compute
+  script:
+    - sed -i.bak "s@ANSIBLE_CALLBACK_WHITELIST='junit',@ANSIBLE_CALLBACK_WHITELIST='junit, profile_tasks', ANSIBLE_STDOUT_CALLBACK='debug',@g" ansible/test/runner/lib/executor.py
+    - scripts/run-manual-adw-backup-tests.sh
+
+#pages:
+#  stage: deploy
+#  dependencies:
+#    - unit_tests
+#  script:
+#    - ls htmlcov
+#    - mv htmlcov/* public/
+#  artifacts:
+#    paths:
+#      - public
+#    expire_in: 30 days
+#  only:
+#    - master

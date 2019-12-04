@@ -1,0 +1,7 @@
+---
+original_retention_period_days: 90
+updated_retention_period_days: 120
+# current time - one week
+audit_events_start_time: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) - 604800 ) }}"
+# start_time + 5 seconds
+audit_events_end_time: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) - 604795 ) }}"

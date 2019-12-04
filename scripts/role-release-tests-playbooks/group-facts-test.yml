@@ -1,0 +1,12 @@
+---
+- name : List all groups in tenancy
+  connection: local
+  hosts: localhost
+  tasks:
+    - name: List group facts
+      oci_group_facts:
+      register: result
+    - name: Dump result
+      debug:
+        msg: '{{result}}'
+

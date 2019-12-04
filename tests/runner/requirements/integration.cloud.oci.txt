@@ -1,0 +1,12 @@
+oci
+pytest-cov
+tox
+flake8
+pyOpenSSL==17.4.0
+# Tie pylint to a version not greater than 2.1.1 as with Pylint 2.2.0 we face error ImportError: cannot import name 'parse_format_# method_string' and Pylint > 2 only works on Python 3. 
+pylint<=2.1.1
+# new astroid 2.1.0 causes the error at
+# https://github.com/PyCQA/astroid/blame/8101be99c6da6cdd5ada6e5396ae095cf7042111/astroid/scoped_nodes.py#L2779
+# to be thrown. For now, tieing to a version not greater than 2.0.4 as that works well with Pylint 2.1.1
+astroid<=2.0.4
+idna==2.7

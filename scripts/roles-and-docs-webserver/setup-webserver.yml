@@ -1,0 +1,26 @@
+---
+# This playbook has to be run as "root", and so must be run manually in the 
+# webserver. Change "hosts" to point to the node that you want the webserver to
+# run in.
+
+- name: Install and configure nginx
+  hosts: localhost
+  gather_facts: no
+  vars:
+    webserver_root: "/scratch/ansible-role-docs"
+  become: True
+  tasks:
+    - name: create webserver_root
+      file:
+        path: "{{ webserver_root }}"
+        state: directory
+        mode: 0777 # setting to 0777 so that gitlab runner can write to this dir.
+
+    - name: install nginx
+      yum: name=nginx update_cache=yes
+
+    - name: copy nginx config file
+      template: src=files/nginx.conf.j2 dest=/etc/nginx/conf.d/ansible-role-docs.conf mode=0644
+
+    - name: restart nginx
+      service: name=nginx state=restarted
