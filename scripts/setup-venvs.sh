@@ -32,9 +32,9 @@ function install_ansible_dev_requirements {
   cd "$CI_PROJECT_DIR/ansible"
   pip install requirements.txt
 
-  cd test/runner/requirements
+  cd tests/runner/requirements
   pip install -U -r integration.cloud.oci.txt
-  pip install -r units.txt -r sanity.txt -r ansible-test.txt -r integration.txt
+  ##pip install -r units.txt -r sanity.txt -r ansible-test.txt -r integration.txt
 
   # install general requirements
   cd "$CI_PROJECT_DIR"
@@ -42,6 +42,12 @@ function install_ansible_dev_requirements {
   pip install tox
   pip install jinja2
   pip install -U flake8
+  # tests requirements
+  pip install paramiko 
+  pip install setuptools
+  pip install cryptography
+  pip install junit-xml
+  pip install pyyaml
 }
 
 # activates a virtualenv, installs minimum customer pre-reqs, and deactivates the venv
@@ -59,7 +65,8 @@ function install_customer_prereqs_in_current_venv {
 # modules from a customer PoV
 function install_customer_prereqs {
   # install all ansible and ansible-test requirements
-  cd "$CI_PROJECT_DIR/ansible"
+  #cd "$CI_PROJECT_DIR/ansible"
+  cd "$CI_PROJECT_DIR"
 
   # Use pip to install a particular version of our customer pre-reqs (oci and ansible)
   pip install oci=="$OCI_VERSION"
@@ -70,7 +77,7 @@ function install_customer_prereqs {
   # Unfortunately this increases test execution time.
 
   # since we run integration tests, we need integration test dependencies too
-  cd test/runner/requirements
+  cd tests/runner/requirements
   pip install -r integration.txt
 }
 

@@ -26,6 +26,7 @@ before_script:
   # extract key file from secret variable
   # see https://medium.com/@michalkalita/export-secret-file-to-gitlab-pipeline-75789eee35bd
   - env | grep CI
+  - cat ~/.oci/config
   - mkdir -p ~/.oci
   - mkdir -p .oci
   # user siva's private key
