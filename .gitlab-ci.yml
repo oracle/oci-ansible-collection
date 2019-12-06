@@ -70,6 +70,8 @@ validation_tests:
     # https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/jobs/499142
     - source $VENVDIR/my-3.6-venv-$CI_COMMIT_REF_NAME/bin/activate
     - which python
+    - pip install ansible
+    - pip install oci 
     - pip -V
     - pip freeze
     - pwd
@@ -77,8 +79,8 @@ validation_tests:
     # setup dev environment to run ansible-test
  #   - cd ansible; source hacking/env-setup
     - ansible --version
-    - cd ..
-    - cd ansible
+    #- cd ..
+    #- cd ansible
     - ansible-test sanity --color -v --junit ${COVERAGE:+"$COVERAGE"} ${CHANGED:+"$CHANGED"} --docker --docker-keep-git
       --skip-test pylint --skip-test ansible-doc --skip-test docs-build --skip-test integration-aliases --skip-test botmeta
     - ansible-test sanity --color -v --junit ${COVERAGE:+"$COVERAGE"} ${CHANGED:+"$CHANGED"} --docker --docker-keep-git
