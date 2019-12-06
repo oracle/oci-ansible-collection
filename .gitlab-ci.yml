@@ -26,9 +26,7 @@ before_script:
   # extract key file from secret variable
   # see https://medium.com/@michalkalita/export-secret-file-to-gitlab-pipeline-75789eee35bd
   - env | grep CI
-  - cat ~/.oci/config
   - mkdir -p ~/.oci
-  - mkdir -p .oci
   # user siva's private key
   - echo "$CI_OCI_API_KEY_FILE_BASE64" | base64 -di > .oci/oci_api_key.pem
   # user ansible-user's private key

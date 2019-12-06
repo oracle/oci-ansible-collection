@@ -29,9 +29,10 @@ function install_requirements_in_current_venv {
 
 function install_ansible_dev_requirements {
   # install all ansible and ansible-test requirements
-  cd "$CI_PROJECT_DIR/ansible"
-  pip install requirements.txt
+  #cd "$CI_PROJECT_DIR/ansible"
+  #pip install requirements.txt
 
+  cd "$CI_PROJECT_DIR"
   cd tests/runner/requirements
   pip install -U -r integration.cloud.oci.txt
   ##pip install -r units.txt -r sanity.txt -r ansible-test.txt -r integration.txt
