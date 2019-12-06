@@ -36,12 +36,12 @@ before_script:
   - cat .oci/config | while read line; do echo $line | envsubst; done > ~/.oci/config
   - cat ~/.oci/config
   - cp .oci/*.pem ~/.oci/
-  - sed -i '/CI_PROJECT_DIR/d' "$CI_PROJECT_DIR"/ansible/test/integration/integration_config.yml
-  - 'echo "PROJECT_ROOT: $CI_PROJECT_DIR" >> $CI_PROJECT_DIR/ansible/test/integration/integration_config.yml'
-  - export dev_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep -v non_parallel | grep -v lengthy | grep -v manual | sort)
-  - export non_parallel_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep non_parallel | grep -v lengthy | grep -v manual | sort)
-  - export all_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep -v lengthy | grep -v manual | grep -v waas | sort)
-  - export lengthy_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci*" | grep lengthy | grep -v manual | sort -r)
+#  - sed -i '/CI_PROJECT_DIR/d' "$CI_PROJECT_DIR"/ansible/test/integration/integration_config.yml
+#  - 'echo "PROJECT_ROOT: $CI_PROJECT_DIR" >> $CI_PROJECT_DIR/ansible/test/integration/integration_config.yml'
+#  - export dev_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep -v non_parallel | grep -v lengthy | grep -v manual | sort)
+#  - export non_parallel_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep non_parallel | grep -v lengthy | grep -v manual | sort)
+#  - export all_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci_*" | grep -v lengthy | grep -v manual | grep -v waas | sort)
+# - export lengthy_targets=$(find "$CI_PROJECT_DIR"/ansible/test/integration/targets/ -type d -name "oci*" | grep lengthy | grep -v manual | sort -r)
 
 
 
@@ -75,7 +75,7 @@ validation_tests:
     - pwd
 
     # setup dev environment to run ansible-test
-    - cd ansible; source hacking/env-setup
+ #   - cd ansible; source hacking/env-setup
     - ansible --version
     - cd ..
     - cd ansible
