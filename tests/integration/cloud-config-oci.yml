@@ -1,6 +1,0 @@
-OCI_USER_ID: @user
-OCI_USER_FINGERPRINT: @fingerprint
-OCI_USER_KEY_FILE: /tmp/.oci/oci_api_key.pem
-OCI_TENANCY: @tenancy
-OCI_REGION: @region
-OCI_USER_KEY_PASS_PHRASE: @pass_phrase

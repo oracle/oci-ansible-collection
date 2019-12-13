@@ -1,0 +1,1 @@
+- debug: msg="Using random_suffix_250 {{random_suffix_250 }} and random_suffix_1024 {{random_suffix_1024}}"

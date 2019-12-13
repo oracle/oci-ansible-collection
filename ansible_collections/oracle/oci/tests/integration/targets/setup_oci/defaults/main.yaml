@@ -1,0 +1,11 @@
+# Global overrides for generated tests
+test_default_defined_tags:
+     ansible_tag_namespace_integration_test_1:
+            ansible_tag_1: 'initial'
+test_default_updated_defined_tags:
+     ansible_tag_namespace_integration_test_1:
+            ansible_tag_1: 'updated'
+test_default_freeform_tags:
+     Department: 'Operations'
+test_default_updated_freeform_tags:
+     Department: 'updated'

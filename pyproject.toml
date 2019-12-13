@@ -1,0 +1,20 @@
+[tool.black]
+line-length = 88
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.eggs
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | .*subdir.*
+  | reports
+)/
+'''
+include = 'oci_.*.py|oracle.*py'
+

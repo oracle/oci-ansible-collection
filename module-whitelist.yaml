@@ -1,0 +1,51 @@
+# empty whitelist means generate all modules
+moduleWhitelist:
+  - oci_network_vcn
+  - oci_network_vcn_facts
+modulePathOverrides:
+  # backwards compatibility
+  /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
+  /autoScalingConfigurations/{autoScalingConfigurationId}/policies/{autoScalingPolicyId}: auto_scaling_configuration_policy
+  /budgets/{budgetId}/alertRules: budget_alert_rule
+  /budgets/{budgetId}/alertRules/{alertRuleId}: budget_alert_rule
+  /identityProviders/{identityProviderId}/actions/resetScimClient/: identity_provider
+  /n/{namespaceName}: namespace_metadata
+  /n/{namespaceName}/b/{bucketName}/actions/copyObject: bucket
+  /n/{namespaceName}/b/{bucketName}/actions/restoreObjects: bucket
+  /n/{namespaceName}/b/{bucketName}/actions/renameObject: bucket
+pluralizationOverrides:
+  # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
+  # this will be replaced soon when we make a decision about how we are going to handle facts modules
+  # for resources with GET and no LIST
+  configuration: configuration
+  # backwards compatibility with existing module
+  namespace_metadata: namespace_metadatas
+forcePluralizedFactsModules:
+  # these maintain backwards compatibility with existing facts modules which only have a GET operation, but return a LIST
+  - oci_audit_configuration_facts
+  - oci_namespace_metadata_facts
+  - oci_object_storage_object_lifecycle_policy_facts
+operationIdBlacklist:
+  # UpdateDbHomeDetails.version (type=PatchDetails) conflicts with CreateDbHome.version (type=string)
+  # so currently we can't support both operations. We choose to prefer supporting CreateDbHome for now
+  - update_db_home
+  # actions which update an attribute so we want to expose those to the user as a traditional
+  # update instead of a separate action
+  - bulk_add_virtual_circuit_public_prefixes
+  - bulk_delete_virtual_circuit_public_prefixes
+  # these are exceptional cases becaues their path implies they are '/actions/' but should 
+  # really be facts modules
+  - get_public_ip_by_ip_address
+  - get_public_ip_by_private_ip_id
+  - list_metrics
+  - summarize_metrics_data
+  # multipart object storage operations don't make sense for ansible users
+  - list_multipart_uploads
+  - create_multipart_upload
+  - commit_multipart_upload
+  - abort_multipart_upload
+  - list_multipart_upload_parts
+  - upload_part
+  # not supported server side
+  - create_auto_scaling_policy
+  - delete_auto_scaling_policy
