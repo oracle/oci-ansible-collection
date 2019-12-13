@@ -9,4 +9,4 @@ source "$WKSP"/scripts/common-vars.sh
 cd "$COLLECTION_DIR"
 ansible-galaxy collection build --output-path "$TEMP_DIR" --force
 
-ansible-galaxy collection install "$TEMP_DIR"/oracle-oci_modules-2.0.0.tar.gz --force-with-deps
+ansible-galaxy collection install "$TEMP_DIR"/oracle-oci-2.0.0.tar.gz --force-with-deps
