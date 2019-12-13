@@ -1,1 +1,7 @@
 - include: oci_network_vcn_tests.yaml
+- include: oci_network_internet_gateway_tests.yaml
+- include: oci_network_nat_gateway_tests.yaml
+- include: oci_network_service_tests.yaml
+- include: oci_network_service_gateway_tests.yaml
+- include: oci_network_cpe_tests.yaml
+- include: oci_network_drg_tests.yaml

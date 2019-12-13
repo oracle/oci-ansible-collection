@@ -1,1 +1,10 @@
-- debug: msg="Using random_suffix_250 {{random_suffix_250 }} and random_suffix_1024 {{random_suffix_1024}}"
+- debug:
+    msg="Using random_suffix_250 {{random_suffix_250 }} and random_suffix_1024 {{random_suffix_1024}}"
+
+- name: Get all services
+  oci_network_service_facts:
+  register: result
+
+- set_fact:
+    service_resource_id: "{{ result.services[0].id }}"
+    dependency_service_id: "{{ result.services[0].id }}"

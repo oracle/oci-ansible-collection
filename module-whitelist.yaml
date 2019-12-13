@@ -2,6 +2,17 @@
 moduleWhitelist:
   - oci_network_vcn
   - oci_network_vcn_facts
+  - oci_network_internet_gateway
+  - oci_network_internet_gateway_facts
+  - oci_network_nat_gateway
+  - oci_network_nat_gateway_facts
+  - oci_network_service_facts
+  - oci_network_service_gateway
+  - oci_network_service_gateway_facts
+  - oci_network_cpe
+  - oci_network_cpe_facts
+  - oci_network_drg
+  - oci_network_drg_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

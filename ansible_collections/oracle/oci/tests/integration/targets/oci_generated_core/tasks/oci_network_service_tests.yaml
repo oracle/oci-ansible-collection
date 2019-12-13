@@ -1,0 +1,65 @@
+---
+- block:
+  - name: List services
+    oci_network_service_facts:
+    register: result
+    when: skip_service_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.services | length > 0
+    when: skip_service_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.cidr_block is defined
+        - item.description is defined
+        - item.id is defined
+        - item.name is defined
+    with_items: "{{ result.services }}"
+    when: skip_service_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ service_list_custom_assertions }}"
+    when: service_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get service
+    oci_network_service_facts:
+      service_id: "{{ service_resource_id | oracle.oci.override(test_service_get_service_id, omit) }}"
+    register: result
+    when: skip_service_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.services | length == 1
+    when: skip_service_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.cidr_block is defined
+        - item.description is defined
+        - item.id is defined
+        - item.name is defined
+    with_items: "{{ result.services }}"
+    when: skip_service_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ service_get_custom_assertions }}"
+    when: service_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."
