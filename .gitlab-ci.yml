@@ -24,6 +24,8 @@ before_script:
   - cat .oci/config | while read line; do echo $line | envsubst; done > ~/.oci/config
   - cat ~/.oci/config
   - cp .oci/*.pem ~/.oci/
+  - source scripts/common-vars.sh
+  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | sort)
 
 after_script:
     # clean up all configuration artifacts so that the next run starts with a clean
@@ -40,21 +42,28 @@ after_script:
 quickchecks:
   stage: quickcheck
   tags:
-    - oel
-    - ansible
-    - oci
-    - compute
+    - quickchecks
   script:
-    - source scripts/common-vars.sh
     - tox
 
-integration_tests:
+.integration_tests_job_template: &integration_tests_job_def
   stage: integration_tests
   tags:
-    - oel
-    - ansible
-    - oci
-    - compute
+    - integration
+  except:
+    - tags
   script:
-    - source scripts/common-vars.sh
-    - tox -e integration
+    - echo "All targets ${!targets}"
+    - echo "Set no ${set_no}"
+    - echo "Total number of sets ${total_target_sets}"
+    - tox -e integration_tests -- "${!targets}" "$set_no" "$total_target_sets"
+  retry: 2
+
+# gitlab does not support dynamic job creation. So we will have to manually divide the integration tests
+# into multiple jobs so that they can be run in parallel.
+integration_tests_set_1:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 0
+    targets: "integration_test_targets"
+    total_target_sets: 1
