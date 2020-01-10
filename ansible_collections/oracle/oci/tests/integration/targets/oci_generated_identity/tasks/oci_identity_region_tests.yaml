@@ -1,0 +1,24 @@
+---
+- block:
+  - name: List regions
+    oci_identity_region_facts:
+    register: result
+    when: skip_region_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.regions | length > 0
+    when: skip_region_list_test is not defined
+
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ region_list_custom_assertions }}"
+    when: region_list_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

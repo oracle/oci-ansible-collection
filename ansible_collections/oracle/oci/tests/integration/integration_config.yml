@@ -1,2 +1,17 @@
 tenancy_ocid: "ocid1.tenancy.oc1..aaaaaaaayqotwvxvy4t433xh3b5ccj4z3w6ke4t4m2sjlib32lyio244pucq"
 test_compartment_ocid: "ocid1.compartment.oc1..aaaaaaaa7tlbhw5sjnbf7u7eyonsfjt737773ptgj66nlnsyr3teglev2bla"
+
+test_tag_default_tests_compartment_ocid: "ocid1.compartment.oc1..aaaaaaaaztglfq7tna6sygij2aoqxwkjvc4xnqtefqt5d4m4p3wpv6glmkwq"
+# Tag namespace for tag default tests. This is in a different compartment to avoid test resources having tags
+# by default when they are created. Having default tags is creating idempotence issues.
+test_tag_default_namespace_ocid: "ocid1.tagnamespace.oc1..aaaaaaaay2rgupmot64q73sa5wpopat6vxgqdhnng2vixgk5fbjjwj5luydq"
+
+# Since we do not have an oci_identity_provider module to dynamically create identity providers, the following ID is
+# for a test Identity Provider that has been manually created. The name of this Identity Provider is TEST_IDENTITY_PROVIDER.
+test_identity_provider_id: "ocid1.saml2idp.oc1..aaaaaaaaifksnyueumkzf2unksnqc5mtguvjvvsglanu4q7xrgvceosctsna"
+
+# A test tag namespace named "{{test_tag_namespace_name}}" created under {{test_compartment_ocid}}
+# that is used for compute and other tests that needs a tag namespace.
+# This tag namespace would not be retired during a test execution and
+# hence can be referenced by any tests.
+test_tag_namespace_ocid: "ocid1.tagnamespace.oc1..aaaaaaaalmu7jk5o3ps3e4ksv2k5kjpqhnougumqll2osiupremmyyyqw3sa"

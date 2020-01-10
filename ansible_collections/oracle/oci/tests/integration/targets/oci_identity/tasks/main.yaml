@@ -1,0 +1,4 @@
+---
+- include: oci_regions_tests.yaml
+- include: oci_dynamic_group_tests.yaml
+- include: oci_idp_group_mapping_tests.yaml

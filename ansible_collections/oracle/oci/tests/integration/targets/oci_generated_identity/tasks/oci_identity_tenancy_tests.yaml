@@ -1,0 +1,25 @@
+---
+- block:
+  - name: Get tenancy
+    oci_identity_tenancy_facts:
+      tenancy_id: "{{ tenancy_resource_id | oracle.oci.override(test_tenancy_get_tenancy_id, omit) }}"
+    register: result
+    when: skip_tenancy_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.tenancy is defined
+        - result.tenancy != None
+    when: skip_tenancy_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tenancy_get_custom_assertions }}"
+    when: tenancy_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

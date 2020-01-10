@@ -1,0 +1,65 @@
+# tests for `oci_identity_region_facts` and `oci_identity_region_subscription_facts`
+- name: Get regions in OCI
+  oci_identity_region_facts:
+  register: result
+- name: Assert that region details are retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.regions | length >= 3 # There are atleast three regions as of writing this test
+
+- name: Get regions in OCI filtered by name
+  oci_identity_region_facts:
+      name: us-phoenix-1
+  register: result
+- name: Assert the correct region is returned (and only that region)
+  assert:
+    that:
+        - result.changed == False
+        - result.regions | length == 1 #
+        - result.regions[0].key == "PHX"
+
+- name: Get region subscriptions for the test tenancy
+  oci_identity_region_subscription_facts:
+    tenancy_id: "{{ tenancy_ocid }}"
+  register: result
+- name: Assert that the region subscriptions of the test tenancy were retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.region_subscriptions | length > 0
+- set_fact:
+    test_home_region_key: "{{ item.region_key }}"
+  when: (item.is_home_region)
+  with_items: "{{ result.region_subscriptions }}"
+- name: Assert that atleast one region is marked as a home region key
+  assert:
+    that:
+        - test_home_region_key is defined
+
+
+# tests for overriding `config_profile_name`
+- name: Get regions in OCI using a non-existent OCI configuration profile override as a module option
+  oci_identity_region_facts:
+    config_profile_name: "NONEXISTENT"
+  register: override_config_using_module_option_result
+  ignore_errors: yes
+- debug: msg="{{override_config_using_module_option_result}}"
+- name: Assert that the non-existent OCI config profile override failed
+  assert:
+    that:
+      - override_config_using_module_option_result.failed == True
+      - override_config_using_module_option_result.changed == False
+
+- name: Get regions in OCI using a non-existent OCI configuration profile override as an env variable
+  oci_identity_region_facts:
+  environment:
+    OCI_CONFIG_PROFILE: "NONEXISTENT"
+  register: override_config_using_env_variable_result
+  ignore_errors: yes
+- debug: msg="{{override_config_using_env_variable_result}}"
+- name: Assert that the non-existent OCI config profile override failed
+  assert:
+    that:
+      - override_config_using_env_variable_result.failed == True
+      - override_config_using_env_variable_result.changed == False

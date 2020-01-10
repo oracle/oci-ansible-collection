@@ -1,0 +1,415 @@
+---
+- block:
+  # dependency resource identity_provider has no Create operation
+
+  - name: Create dependency group with required parameters
+    oci_identity_group:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_idp_group_mapping_create_dependency_group_compartment_id, omit) }}"
+      name: "{{ ('NetworkAdmins' + random_suffix_1024) | oracle.oci.override(test_idp_group_mapping_create_dependency_group_name, omit) }}"
+      description: "{{ 'Group for network administrators' | oracle.oci.override(test_idp_group_mapping_create_dependency_group_description, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_create_dependency_group_test is not defined and skip_idp_group_mapping_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_idp_group_mapping_create_dependency_group_test is not defined and skip_idp_group_mapping_dependencies is not defined
+  - set_fact:
+      dependency_group_id: "{{ result.group.id }}"
+    when: skip_idp_group_mapping_create_dependency_group_test is not defined and skip_idp_group_mapping_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_create_dependency_group_custom_assertions }}"
+    when: idp_group_mapping_create_dependency_group_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create idp_group_mapping (check mode)
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ 'idp_group_name_example' | oracle.oci.override(test_idp_group_mapping_create_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_create_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_create_required_identity_provider_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_idp_group_mapping_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_idp_group_mapping_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_create_check_mode_custom_assertions }}"
+    when: idp_group_mapping_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create idp_group_mapping with required parameters
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ 'idp_group_name_example' | oracle.oci.override(test_idp_group_mapping_create_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_create_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_create_required_identity_provider_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_idp_group_mapping_create_required_original_test is not defined
+
+  - set_fact:
+      idp_group_mapping_resource_id: "{{ result.idp_group_mapping.id }}"
+    when: skip_idp_group_mapping_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_create_required_original_custom_assertions }}"
+    when: idp_group_mapping_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create idp_group_mapping with required parameters(idempotency)
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ 'idp_group_name_example' | oracle.oci.override(test_idp_group_mapping_create_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_create_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_create_required_identity_provider_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_idp_group_mapping_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_create_required_idempotency_custom_assertions }}"
+    when: idp_group_mapping_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete idp_group_mapping
+    oci_identity_idp_group_mapping:
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_delete_required_identity_provider_id, omit) }}"
+      mapping_id: "{{ idp_group_mapping_resource_id | oracle.oci.override(test_idp_group_mapping_delete_required_mapping_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_idp_group_mapping_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_idp_group_mapping_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_delete_required_custom_assertions }}"
+    when: idp_group_mapping_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete idp_group_mapping (idempotency)
+    oci_identity_idp_group_mapping:
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_delete_required_identity_provider_id, omit) }}"
+      mapping_id: "{{ idp_group_mapping_resource_id | oracle.oci.override(test_idp_group_mapping_delete_required_mapping_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_idp_group_mapping_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_idp_group_mapping_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_delete_required_idempotency_custom_assertions }}"
+    when: idp_group_mapping_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create idp_group_mapping with optional + required parameters
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ 'idp_group_name_example' | oracle.oci.override(test_idp_group_mapping_create_optional_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_create_optional_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_create_optional_required_identity_provider_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_idp_group_mapping_create_optional_required_original_test is not defined
+
+  - set_fact:
+      idp_group_mapping_resource_id: "{{ result.idp_group_mapping.id }}"
+    when: skip_idp_group_mapping_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_create_optional_required_original_custom_assertions }}"
+    when: idp_group_mapping_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create idp_group_mapping with optional + required parameters (idempotence)
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ 'idp_group_name_example' | oracle.oci.override(test_idp_group_mapping_create_optional_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_create_optional_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_create_optional_required_identity_provider_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_idp_group_mapping_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_create_optional_required_idempotence_custom_assertions }}"
+    when: idp_group_mapping_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update idp_group_mapping with optional + required parameters
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ ('idp_group_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_idp_group_mapping_update_optional_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_update_optional_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_update_optional_required_identity_provider_id, omit) }}"
+      mapping_id: "{{ idp_group_mapping_resource_id | oracle.oci.override(test_idp_group_mapping_update_optional_required_mapping_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_idp_group_mapping_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_update_optional_required_custom_assertions }}"
+    when: idp_group_mapping_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update idp_group_mapping with optional + required parameters (idempotence)
+    oci_identity_idp_group_mapping:
+      idp_group_name: "{{ ('idp_group_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_idp_group_mapping_update_optional_required_idp_group_name, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_idp_group_mapping_update_optional_required_group_id, omit) }}"
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_update_optional_required_identity_provider_id, omit) }}"
+      mapping_id: "{{ idp_group_mapping_resource_id | oracle.oci.override(test_idp_group_mapping_update_optional_required_mapping_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_idp_group_mapping_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.idp_group_mapping.id is defined
+        - result.idp_group_mapping.idp_id is defined
+        - result.idp_group_mapping.idp_group_name is defined
+        - result.idp_group_mapping.group_id is defined
+        - result.idp_group_mapping.compartment_id is defined
+        - result.idp_group_mapping.time_created is defined
+        - result.idp_group_mapping.lifecycle_state is defined
+    when: skip_idp_group_mapping_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_update_optional_required_idempotence_custom_assertions }}"
+    when: idp_group_mapping_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List idp_group_mappings
+    oci_identity_idp_group_mapping_facts:
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_list_identity_provider_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.idp_group_mappings | length > 0
+    when: skip_idp_group_mapping_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.idp_id is defined
+        - item.idp_group_name is defined
+        - item.group_id is defined
+        - item.compartment_id is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.idp_group_mappings }}"
+    when: skip_idp_group_mapping_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_list_custom_assertions }}"
+    when: idp_group_mapping_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get idp_group_mapping
+    oci_identity_idp_group_mapping_facts:
+      identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_get_identity_provider_id, omit) }}"
+      mapping_id: "{{ idp_group_mapping_resource_id | oracle.oci.override(test_idp_group_mapping_get_mapping_id, omit) }}"
+    register: result
+    when: skip_idp_group_mapping_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.idp_group_mappings | length == 1
+    when: skip_idp_group_mapping_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.idp_id is defined
+        - item.idp_group_name is defined
+        - item.group_id is defined
+        - item.compartment_id is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.idp_group_mappings }}"
+    when: skip_idp_group_mapping_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ idp_group_mapping_get_custom_assertions }}"
+    when: idp_group_mapping_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete idp_group_mapping
+      oci_identity_idp_group_mapping:
+        identity_provider_id: "{{ dependency_identity_provider_id | oracle.oci.override(test_idp_group_mapping_delete_rescue_identity_provider_id, omit) }}"
+        mapping_id: "{{ idp_group_mapping_resource_id | oracle.oci.override(test_idp_group_mapping_delete_rescue_mapping_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: idp_group_mapping_resource_id is defined
+
+    - name: Delete dependency group
+      oci_identity_group:
+        group_id: "{{ dependency_group_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_idp_group_mapping_delete_dependency_group_test is not defined and skip_idp_group_mapping_dependencies is not defined and dependency_group_id is defined

@@ -1,0 +1,25 @@
+## dynamic groups
+test_dynamic_group_create_required_compartment_id: "{{ tenancy_ocid }}"
+test_dynamic_group_update_using_name_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_dynamic_group_delete_required_compartment_id: "{{ tenancy_ocid }}"
+test_dynamic_group_create_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_dynamic_group_list_compartment_id: "{{ tenancy_ocid }}"
+
+## idp group mappings
+test_idp_group_mapping_create_dependency_group_compartment_id: "{{ tenancy_ocid }}"
+dependency_identity_provider_id: "{{ test_identity_provider_id }}"
+
+## groups
+test_group_create_required_compartment_id: "{{ tenancy_ocid }}"
+test_group_update_using_name_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_group_delete_required_compartment_id: "{{ tenancy_ocid }}"
+test_group_create_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_group_list_compartment_id: "{{ tenancy_ocid }}"
+
+## tag namespaces
+# right now we only have the facts module, so instead of creating a tag namespace
+# use an existing one for the GET / LIST tests
+tag_namespace_resource_id: "{{ test_tag_namespace_ocid }}"
+
+## tenancy
+tenancy_resource_id: "{{ tenancy_ocid }}"

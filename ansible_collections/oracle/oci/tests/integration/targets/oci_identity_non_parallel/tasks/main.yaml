@@ -1,0 +1,2 @@
+---
+- import_tasks: oci_tag_default_tests.yaml

@@ -13,6 +13,20 @@ moduleWhitelist:
   - oci_network_cpe_facts
   - oci_network_drg
   - oci_network_drg_facts
+  - oci_identity_dynamic_group
+  - oci_identity_dynamic_group_facts
+  - oci_identity_region_facts
+  - oci_identity_tag_default
+  - oci_identity_tag_default_facts
+  - oci_identity_region_subscription_facts
+  - oci_identity_availability_domain_facts
+  - oci_identity_fault_domain_facts
+  - oci_identity_tag_namespace_facts
+  - oci_identity_idp_group_mapping
+  - oci_identity_idp_group_mapping_facts
+  - oci_identity_group
+  - oci_identity_group_facts
+  - oci_identity_tenancy_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

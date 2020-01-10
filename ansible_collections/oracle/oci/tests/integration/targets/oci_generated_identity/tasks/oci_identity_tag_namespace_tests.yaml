@@ -1,0 +1,70 @@
+---
+- block:
+  - name: List tag_namespaces
+    oci_identity_tag_namespace_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_namespace_list_compartment_id, omit) }}"
+    register: result
+    when: skip_tag_namespace_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.tag_namespaces | length > 0
+    when: skip_tag_namespace_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.is_retired is defined
+        - item.time_created is defined
+    with_items: "{{ result.tag_namespaces }}"
+    when: skip_tag_namespace_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_namespace_list_custom_assertions }}"
+    when: tag_namespace_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get tag_namespace
+    oci_identity_tag_namespace_facts:
+      tag_namespace_id: "{{ tag_namespace_resource_id | oracle.oci.override(test_tag_namespace_get_tag_namespace_id, omit) }}"
+    register: result
+    when: skip_tag_namespace_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.tag_namespaces | length == 1
+    when: skip_tag_namespace_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.is_retired is defined
+        - item.time_created is defined
+    with_items: "{{ result.tag_namespaces }}"
+    when: skip_tag_namespace_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_namespace_get_custom_assertions }}"
+    when: tag_namespace_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

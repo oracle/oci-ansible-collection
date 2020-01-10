@@ -1,0 +1,10 @@
+---
+- include: oci_identity_region_tests.yaml
+- include: oci_identity_dynamic_group_tests.yaml
+- include: oci_identity_region_subscription_tests.yaml
+- include: oci_identity_fault_domain_tests.yaml
+- include: oci_identity_availability_domain_tests.yaml
+- include: oci_identity_group_tests.yaml
+- include: oci_identity_idp_group_mapping_tests.yaml
+- include: oci_identity_tag_namespace_tests.yaml
+- include: oci_identity_tenancy_tests.yaml

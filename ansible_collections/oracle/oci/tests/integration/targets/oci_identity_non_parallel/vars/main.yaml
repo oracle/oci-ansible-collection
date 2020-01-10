@@ -1,0 +1,8 @@
+# tag default variables
+test_tag_default_value: "test_tag_default_value_{{ random_suffix_1024 }}"
+updated_test_tag_default_value: "updated_test_tag_default_value_{{ random_suffix_1024 }}"
+
+# previously this was retrieved using oci_tag_facts and the tag_name below but the generated tag_facts module is not
+# yet released so we are now using the OCID instead
+test_tag_default_tag_name: "ansible_tag_default_tag_1"
+test_tag_default_tag_ocid: "ocid1.tagdefinition.oc1..aaaaaaaap56awyvpp4guxvmumdhkql62a2ec3qm7xh3qfvhjsu3ofijnkvca"

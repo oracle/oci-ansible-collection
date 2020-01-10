@@ -1,0 +1,13 @@
+## dynamic groups
+dynamic_group_name: "DynamicGroup{{random_suffix_1024}}"
+
+dynamic_group_description: "Test dynamic group {{random_suffix_1024}} in {{ansible_nodename}}"
+updated_dynamic_group_description: "All instances in {{ test_compartment_ocid }} by {{random_suffix_1024}} in {{ansible_nodename}}"
+
+dynamic_group_matching_rule: "instance.compartment.id = '{{ test_compartment_ocid }}'"
+updated_dynamic_group_matching_rule: "Any {instance.compartment.id = '{{ test_compartment_ocid }}'}"
+
+## idp group mappings
+identity_user_group_name: "my_test_group_{{random_suffix_1024}}"
+test_idp_group_name: "idp_group_name_{{random_suffix_1024}}"
+test_idp_group_name_updated: "idp_group_name_updated_{{random_suffix_1024}}"
