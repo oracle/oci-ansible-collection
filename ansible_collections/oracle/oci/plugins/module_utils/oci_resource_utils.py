@@ -259,9 +259,9 @@ class OCIResourceHelperBase:
         existing_resources = [
             existing_resource
             for existing_resource in self.list_resources()
-            if hasattr(existing_resource, "display_name")
-            and getattr(existing_resource, "display_name")
-            == self.module.params.get("display_name")
+            if hasattr(existing_resource, name_parameter)
+            and getattr(existing_resource, name_parameter)
+            == self.module.params.get(name_parameter)
         ]
         if len(existing_resources) > 1:
             self.module.fail_json(
