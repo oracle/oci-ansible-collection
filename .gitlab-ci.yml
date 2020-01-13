@@ -66,4 +66,11 @@ integration_tests_set_1:
   variables:
     set_no: 0
     targets: "integration_test_targets"
-    total_target_sets: 1
+    total_target_sets: 2
+
+integration_tests_set_2:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 1
+    targets: "integration_test_targets"
+    total_target_sets: 2
