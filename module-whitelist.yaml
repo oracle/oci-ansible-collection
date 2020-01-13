@@ -27,6 +27,10 @@ moduleWhitelist:
   - oci_identity_group
   - oci_identity_group_facts
   - oci_identity_tenancy_facts
+  - oci_identity_user
+  - oci_identity_user_facts
+  - oci_identity_user_group_membership
+  - oci_identity_user_group_membership_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -74,3 +78,6 @@ operationIdBlacklist:
   # not supported server side
   - create_auto_scaling_policy
   - delete_auto_scaling_policy
+  # conflict in current codegen with update_user
+  - update_user_capabilities
+  - update_user_state

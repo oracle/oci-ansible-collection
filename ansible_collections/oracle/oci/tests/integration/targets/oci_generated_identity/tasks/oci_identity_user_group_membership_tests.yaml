@@ -1,0 +1,361 @@
+---
+- block:
+  - name: Create dependency user with required parameters
+    oci_identity_user:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_dependency_user_compartment_id, omit) }}"
+      name: "{{ ('JohnSmith@example.com' + random_suffix_1024) | oracle.oci.override(test_user_group_membership_create_dependency_user_name, omit) }}"
+      description: "{{ 'John Smith' | oracle.oci.override(test_user_group_membership_create_dependency_user_description, omit) }}"
+    register: result
+    when: skip_user_group_membership_create_dependency_user_test is not defined and skip_user_group_membership_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_user_group_membership_create_dependency_user_test is not defined and skip_user_group_membership_dependencies is not defined
+  - set_fact:
+      dependency_user_id: "{{ result.user.id }}"
+    when: skip_user_group_membership_create_dependency_user_test is not defined and skip_user_group_membership_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_dependency_user_custom_assertions }}"
+    when: user_group_membership_create_dependency_user_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency group with required parameters
+    oci_identity_group:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_dependency_group_compartment_id, omit) }}"
+      name: "{{ ('NetworkAdmins' + random_suffix_1024) | oracle.oci.override(test_user_group_membership_create_dependency_group_name, omit) }}"
+      description: "{{ 'Group for network administrators' | oracle.oci.override(test_user_group_membership_create_dependency_group_description, omit) }}"
+    register: result
+    when: skip_user_group_membership_create_dependency_group_test is not defined and skip_user_group_membership_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_user_group_membership_create_dependency_group_test is not defined and skip_user_group_membership_dependencies is not defined
+  - set_fact:
+      dependency_group_id: "{{ result.group.id }}"
+    when: skip_user_group_membership_create_dependency_group_test is not defined and skip_user_group_membership_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_dependency_group_custom_assertions }}"
+    when: user_group_membership_create_dependency_group_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create user_group_membership (check mode)
+    oci_identity_user_group_membership:
+      user_id: "{{ dependency_user_id | oracle.oci.override(test_user_group_membership_create_required_user_id, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_user_group_membership_create_required_group_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_required_compartment_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_user_group_membership_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_user_group_membership_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_check_mode_custom_assertions }}"
+    when: user_group_membership_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create user_group_membership with required parameters
+    oci_identity_user_group_membership:
+      user_id: "{{ dependency_user_id | oracle.oci.override(test_user_group_membership_create_required_user_id, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_user_group_membership_create_required_group_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_user_group_membership_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_user_group_membership_create_required_original_test is not defined
+
+  - set_fact:
+      user_group_membership_resource_id: "{{ result.user_group_membership.id }}"
+    when: skip_user_group_membership_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.user_group_membership.id is defined
+        - result.user_group_membership.compartment_id is defined
+        - result.user_group_membership.group_id is defined
+        - result.user_group_membership.user_id is defined
+        - result.user_group_membership.time_created is defined
+        - result.user_group_membership.lifecycle_state is defined
+    when: skip_user_group_membership_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_required_original_custom_assertions }}"
+    when: user_group_membership_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create user_group_membership with required parameters(idempotency)
+    oci_identity_user_group_membership:
+      user_id: "{{ dependency_user_id | oracle.oci.override(test_user_group_membership_create_required_user_id, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_user_group_membership_create_required_group_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_user_group_membership_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_user_group_membership_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.user_group_membership.id is defined
+        - result.user_group_membership.compartment_id is defined
+        - result.user_group_membership.group_id is defined
+        - result.user_group_membership.user_id is defined
+        - result.user_group_membership.time_created is defined
+        - result.user_group_membership.lifecycle_state is defined
+    when: skip_user_group_membership_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_required_idempotency_custom_assertions }}"
+    when: user_group_membership_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete user_group_membership
+    oci_identity_user_group_membership:
+      user_group_membership_id: "{{ user_group_membership_resource_id | oracle.oci.override(test_user_group_membership_delete_required_user_group_membership_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_user_group_membership_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_user_group_membership_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.user_group_membership.id is defined
+        - result.user_group_membership.compartment_id is defined
+        - result.user_group_membership.group_id is defined
+        - result.user_group_membership.user_id is defined
+        - result.user_group_membership.time_created is defined
+        - result.user_group_membership.lifecycle_state is defined
+    when: skip_user_group_membership_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_delete_required_custom_assertions }}"
+    when: user_group_membership_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete user_group_membership (idempotency)
+    oci_identity_user_group_membership:
+      user_group_membership_id: "{{ user_group_membership_resource_id | oracle.oci.override(test_user_group_membership_delete_required_user_group_membership_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_user_group_membership_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_user_group_membership_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_delete_required_idempotency_custom_assertions }}"
+    when: user_group_membership_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create user_group_membership with optional + required parameters
+    oci_identity_user_group_membership:
+      user_id: "{{ dependency_user_id | oracle.oci.override(test_user_group_membership_create_optional_required_user_id, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_user_group_membership_create_optional_required_group_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_user_group_membership_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_user_group_membership_create_optional_required_original_test is not defined
+
+  - set_fact:
+      user_group_membership_resource_id: "{{ result.user_group_membership.id }}"
+    when: skip_user_group_membership_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.user_group_membership.id is defined
+        - result.user_group_membership.compartment_id is defined
+        - result.user_group_membership.group_id is defined
+        - result.user_group_membership.user_id is defined
+        - result.user_group_membership.time_created is defined
+        - result.user_group_membership.lifecycle_state is defined
+    when: skip_user_group_membership_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_optional_required_original_custom_assertions }}"
+    when: user_group_membership_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create user_group_membership with optional + required parameters (idempotence)
+    oci_identity_user_group_membership:
+      user_id: "{{ dependency_user_id | oracle.oci.override(test_user_group_membership_create_optional_required_user_id, omit) }}"
+      group_id: "{{ dependency_group_id | oracle.oci.override(test_user_group_membership_create_optional_required_group_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_user_group_membership_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_user_group_membership_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.user_group_membership.id is defined
+        - result.user_group_membership.compartment_id is defined
+        - result.user_group_membership.group_id is defined
+        - result.user_group_membership.user_id is defined
+        - result.user_group_membership.time_created is defined
+        - result.user_group_membership.lifecycle_state is defined
+    when: skip_user_group_membership_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_create_optional_required_idempotence_custom_assertions }}"
+    when: user_group_membership_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List user_group_memberships
+    oci_identity_user_group_membership_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_user_group_membership_list_compartment_id, omit) }}"
+    register: result
+    when: skip_user_group_membership_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.user_group_memberships | length > 0
+    when: skip_user_group_membership_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.group_id is defined
+        - item.user_id is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.user_group_memberships }}"
+    when: skip_user_group_membership_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_list_custom_assertions }}"
+    when: user_group_membership_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get user_group_membership
+    oci_identity_user_group_membership_facts:
+      user_group_membership_id: "{{ user_group_membership_resource_id | oracle.oci.override(test_user_group_membership_get_user_group_membership_id, omit) }}"
+    register: result
+    when: skip_user_group_membership_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.user_group_memberships | length == 1
+    when: skip_user_group_membership_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.group_id is defined
+        - item.user_id is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.user_group_memberships }}"
+    when: skip_user_group_membership_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ user_group_membership_get_custom_assertions }}"
+    when: user_group_membership_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete user_group_membership
+      oci_identity_user_group_membership:
+        user_group_membership_id: "{{ user_group_membership_resource_id | oracle.oci.override(test_user_group_membership_delete_rescue_user_group_membership_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: user_group_membership_resource_id is defined
+
+    - name: Delete dependency group
+      oci_identity_group:
+        group_id: "{{ dependency_group_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_user_group_membership_delete_dependency_group_test is not defined and skip_user_group_membership_dependencies is not defined and dependency_group_id is defined
+
+    - name: Delete dependency user
+      oci_identity_user:
+        user_id: "{{ dependency_user_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_user_group_membership_delete_dependency_user_test is not defined and skip_user_group_membership_dependencies is not defined and dependency_user_id is defined

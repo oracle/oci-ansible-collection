@@ -8,3 +8,5 @@
 - include: oci_identity_idp_group_mapping_tests.yaml
 - include: oci_identity_tag_namespace_tests.yaml
 - include: oci_identity_tenancy_tests.yaml
+- include: oci_identity_user_tests.yaml
+- include: oci_identity_user_group_membership_tests.yaml

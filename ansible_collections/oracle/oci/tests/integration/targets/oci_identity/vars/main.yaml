@@ -8,6 +8,42 @@ dynamic_group_matching_rule: "instance.compartment.id = '{{ test_compartment_oci
 updated_dynamic_group_matching_rule: "Any {instance.compartment.id = '{{ test_compartment_ocid }}'}"
 
 ## idp group mappings
-identity_user_group_name: "my_test_group_{{random_suffix_1024}}"
 test_idp_group_name: "idp_group_name_{{random_suffix_1024}}"
 test_idp_group_name_updated: "idp_group_name_updated_{{random_suffix_1024}}"
+
+## users
+test_user_name: "ansible_user_{{random_suffix_1024}}"
+test_user_description: "Ansible Test User created in {{ansible_nodename}}"
+additional_test_user_name: "additional_ansible_user_{{random_suffix_1024}}"
+user_freeform_tags: 
+       user_type: 'student'
+user_defined_tags:
+      ansible_tag_namespace_integration_test_1:
+                     ansible_tag_1: 'school'
+updated_user_freeform_tags: 
+       user_type: 'employee'
+updated_user_defined_tags:
+      ansible_tag_namespace_integration_test_1:
+                     ansible_tag_1: 'office'
+
+## groups
+user_groups: ["{{identity_user_group_name}}"]
+identity_user_group_name: "my_test_group_{{random_suffix_1024}}"
+identity_updated_group_description: "Updated Group for Testing Ansible Module {{identity_user_group_name}} in {{ansible_nodename}}. Do not delete."
+
+group_freeform_tags:
+  member_type: 'CA'
+group_defined_tags:
+  ansible_tag_namespace_integration_test_1:
+    ansible_tag_1: 'finance'
+updated_group_freeform_tags:
+       member_type: 'developer'
+updated_group_defined_tags:
+      ansible_tag_namespace_integration_test_1:
+                     ansible_tag_1: 'engineering'
+
+# Tags
+tag_defn_freeform_tags:
+       test_tag_class: 'test_tag_value'
+tag_defn_freeform_tags_updated:
+       test_tag_class: 'test_tag_value_updated'
