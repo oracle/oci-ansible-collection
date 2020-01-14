@@ -25,7 +25,8 @@ before_script:
   - cat ~/.oci/config
   - cp .oci/*.pem ~/.oci/
   - source scripts/common-vars.sh
-  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | sort)
+  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | sort)
+  - export non_parallel_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep non_parallel | sort)
 
 after_script:
     # clean up all configuration artifacts so that the next run starts with a clean
@@ -74,3 +75,16 @@ integration_tests_set_2:
     set_no: 1
     targets: "integration_test_targets"
     total_target_sets: 2
+
+# There are some integration tests that cannot be run in parallel due to various constraints like tests which update
+# a global resource, limit issues etc. So we separate these tests and run them in a single runner so that they cannot
+# run in parallel. The non parallel integration test targets should contain non_parallel in the target name.
+# For ex: oci_identity_non_parallel
+non_parallel_integration_tests_dev_set_1:
+  <<: *integration_tests_job_def
+  tags:
+    - non_parallel
+  variables:
+    set_no: 0
+    targets: "non_parallel_integration_test_targets"
+    total_target_sets: 1
