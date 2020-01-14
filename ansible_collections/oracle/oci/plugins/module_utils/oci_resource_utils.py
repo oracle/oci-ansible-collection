@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Oracle and/or its affiliates.
+# Copyright (c) 2020 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -11,18 +11,13 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
     oci_common_utils,
+    oci_custom_fact_helpers,
+    oci_custom_resource_helpers,
+    oci_custom_action_helpers,
 )
 from ansible.module_utils import six
 import sys
 import re
-
-# from ansible_collections.oracle.oci.plugins.module_utils import (
-#     resourcehelpers,
-#     facthelpers,
-#     actionhelpers,
-# )
-
-import pkgutil
 import inspect
 import os
 
@@ -676,54 +671,37 @@ def camelize(to_camelize, uppercase_first_letter=False):
         )
 
 
-def import_module(pkg, module_name):
-    full_module_name = pkg.__name__ + "." + module_name
-    toplevel_module = __import__(full_module_name)
-    module = toplevel_module
-    for attr in full_module_name.split(".")[1:]:
-        module = getattr(module, attr)
-    return module
-
-
-def get_custom_class_mapping(pkgs):
+def get_custom_class_mapping(modules):
+    """Find the custom classes in the given modules and return a mapping with class name as key and class as value"""
     custom_class_mapping = {}
-    for pkg in pkgs:
-        for dummy, name, ispkg in pkgutil.walk_packages(path=pkg.__path__):
-            if ispkg:
+    for module in modules:
+        for obj_name in dir(module):
+            if not obj_name.endswith("Custom"):
                 continue
-            module = import_module(pkg, name)
-            for obj_name in dir(module):
-                if not obj_name.endswith("Custom"):
-                    continue
-                obj = getattr(module, obj_name)
-                if inspect.isclass(obj):
-                    custom_class_mapping[obj_name] = obj
-
-    load_hardcoded_custom_class_mappings(custom_class_mapping)
-
+            obj = getattr(module, obj_name)
+            if inspect.isclass(obj):
+                custom_class_mapping[obj_name] = obj
     return custom_class_mapping
 
 
-def load_hardcoded_custom_class_mappings(custom_helper_mapping):
-    # TODO: need to load these dynamically but for now we can explicity import to allow progress
-    from ansible_collections.oracle.oci.plugins.module_utils.resourcehelpers import (
-        oci_ui_password_helper,
-    )  # noqa
-
-    custom_helper_mapping[
-        "UiPasswordHelperCustom"
-    ] = oci_ui_password_helper.UiPasswordHelperCustom
-
-
-custom_helper_mapping = get_custom_class_mapping([])
+# Due to the generalisations made about the resource APIs or because of the ease of use enhancements, the generated
+# modules might not always be perfect. The custom behaviour is handled by having a custom class which is used to
+# override the generated behaviour. Create a mapping of those custom classes so that we can dynamically override
+# the behaviour.
+custom_helper_mapping = get_custom_class_mapping(
+    [oci_custom_fact_helpers, oci_custom_resource_helpers, oci_custom_action_helpers]
+)
 
 
 class DefaultHelperCustom:
+    """Default class with no customizations"""
+
     pass
 
 
-def get_custom_class(resource_type):
-    custom_class = custom_helper_mapping.get(resource_type)
+def get_custom_class(custom_class_name):
+    """Return the custom class from mapping using the given name if exists, else return the default custom class."""
+    custom_class = custom_helper_mapping.get(custom_class_name)
     if not custom_class:
         return DefaultHelperCustom
     return custom_class
