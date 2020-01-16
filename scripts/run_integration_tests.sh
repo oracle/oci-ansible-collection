@@ -40,9 +40,9 @@ last_index=0
 # into a given number of sets (third parameter to the script) and sets the first and last indices of the
 # specific set (second parameter to the script).
 function set_first_and_last_index {
-    oci_targets=$1
+    oci_targets=($1)
     set_no="$2"
-    total_target_sets=$3
+    total_target_sets="$3"
     echo "All targets: ${oci_targets[@]}"
 
     total_targets=${#oci_targets[@]}
@@ -63,10 +63,16 @@ function set_first_and_last_index {
 }
 
 # Find the integration tests that need to be run in this set
-set_first_and_last_index $targets $set_no $total_target_sets
+set_first_and_last_index "$targets" $set_no $total_target_sets
+targets_array=($targets)
+echo "Targets being executed in this set:"
 for (( i=$first_index; i<=$last_index; i++ ))
 do
-    $SCRIPTS_DIR/run_integration_test.sh "$(basename "${targets[$i]}")"
+    echo "${targets_array[$i]}"
+done
+for (( i=$first_index; i<=$last_index; i++ ))
+do
+    $SCRIPTS_DIR/run_integration_test.sh "$(basename "${targets_array[$i]}")"
 done
 
 
