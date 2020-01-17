@@ -78,10 +78,10 @@
       <groupId>com.oracle.pic.lb</groupId>
       <artifactId>oralb-api-spec</artifactId>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>com.oracle.pic.dbaas</groupId>
       <artifactId>dbaas-api-spec</artifactId>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>com.oracle.pic.ffsw</groupId>
       <artifactId>fss-api-spec</artifactId>
@@ -268,7 +268,7 @@
               </artifactItems>
             </configuration>
           </execution>
-          <execution>
+          <!-- <execution>
             <id>unpack-dbaas-api-spec</id>
             <phase>initialize</phase>
             <goals>
@@ -285,7 +285,7 @@
                 </artifactItem>
               </artifactItems>
             </configuration>
-          </execution>
+          </execution> -->
           <execution>
             <id>unpack-fss-api-spec</id>
             <phase>initialize</phase>
@@ -797,7 +797,7 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
-          <execution>
+          <!-- <execution>
             <id>spec-conditionals-prefer-dbaas-api-spec</id>
             <phase>initialize</phase>
             <goals>
@@ -810,8 +810,8 @@
               </inputFiles>
               <outputFile>${preferred-temp-dir}/dbaas-api-spec/${dbaas-api-spec-spec-file}</outputFile>
             </configuration>
-          </execution>
-          <execution>
+          </execution> -->
+          <!-- <execution>
             <id>spec-conditionals-preprocess-dbaas-api-spec</id>
             <phase>initialize</phase>
             <goals>
@@ -823,7 +823,7 @@
               
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
-          </execution>
+          </execution> -->
           <execution>
             <id>spec-conditionals-prefer-fss-api-spec</id>
             <phase>initialize</phase>
@@ -1516,7 +1516,7 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
-          <execution>
+          <!-- <execution>
             <id>ansible-modules-dbaas-api-spec</id>
             <phase>compile</phase>
             <goals>
@@ -1536,7 +1536,7 @@
               <isTestGenerationEnabled>false</isTestGenerationEnabled>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
-          </execution>
+          </execution> -->
           <execution>
             <id>ansible-modules-fss-api-spec</id>
             <phase>compile</phase>
@@ -2104,11 +2104,11 @@
         <artifactId>oralb-api-spec</artifactId>
         <version>2.0.2</version>
       </dependency>
-      <dependency>
+      <!-- <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
         <version>0.1.98</version>
-      </dependency>
+      </dependency> -->
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>
         <artifactId>hemlock-spec</artifactId>

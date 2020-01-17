@@ -41,7 +41,7 @@ class BaseWaiter(Waiter):
         self.wait_for_states = wait_for_states
         self.resource_helper = resource_helper
 
-    def get_initial_response(self):
+    def get_fetch_func(self):
         raise NotImplementedError(
             "Expected to be implemented by the specific waiter classes."
         )
@@ -54,14 +54,19 @@ class BaseWaiter(Waiter):
     def wait(self):
         if not self.resource_helper.module.params.get("wait"):
             return self.operation_response
+
+        fetch_func = self.get_fetch_func()
+        initial_response = fetch_func()
         wait_response = oci.wait_until(
             self.client,
-            self.get_initial_response(),
+            initial_response,
             evaluate_response=self.get_evaluate_response_lambda(),
             max_wait_seconds=self.resource_helper.module.params.get(
                 "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
             ),
+            fetch_func=fetch_func,
         )
+
         return self.get_resource_from_wait_response(wait_response)
 
     def get_resource_from_wait_response(self, wait_response):
@@ -79,8 +84,8 @@ class LifecycleStateWaiterBase(BaseWaiter):
         self.wait_for_states = wait_for_states
         self.resource_helper = resource_helper
 
-    def get_initial_response(self):
-        return self.resource_helper.get_resource()
+    def get_fetch_func(self):
+        return lambda **kwargs: self.resource_helper.get_resource()
 
     def get_evaluate_response_lambda(self):
         lowered_wait_for_states = [state.lower() for state in self.wait_for_states]
@@ -110,7 +115,7 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
             client, resource_helper, operation_response, wait_for_states
         )
 
-    def get_initial_response(self):
+    def get_fetch_func(self):
         identifier = self.operation_response.data.id
         if not identifier:
             self.resource_helper.module.fail_json(
@@ -121,15 +126,42 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
                 self.resource_helper.get_module_resource_id_param()
             ]
         except NotImplementedError:
-            return self.resource_helper.get_resource()
-        self.resource_helper.module.params[
-            self.resource_helper.get_module_resource_id_param()
-        ] = identifier
-        get_response = self.resource_helper.get_resource()
-        self.resource_helper.module.params[
-            self.resource_helper.get_module_resource_id_param()
-        ] = id_orig
-        return get_response
+            return lambda **kwargs: self.resource_helper.get_resource()
+
+        def fetch_func(**kwargs):
+            self.resource_helper.module.params[
+                self.resource_helper.get_module_resource_id_param()
+            ] = identifier
+            get_response = self.resource_helper.get_resource()
+            self.resource_helper.module.params[
+                self.resource_helper.get_module_resource_id_param()
+            ] = id_orig
+            return get_response
+
+        return fetch_func
+
+
+class CreateOperationWithCreateOnlyFieldsLifecycleStateWaiter(
+    CreateOperationLifecycleStateWaiter
+):
+    """
+    Waiter which waits on the lifecycle state of the resource, for resources where the
+    CREATE operation returns important fields not returned by GET or LIST.
+
+    Examples: CreateAuthToken, CreateCustomerSecretKey CreatePreauthendticatedRequest
+    """
+
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateOperationWithCreateOnlyFieldsLifecycleStateWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    def get_resource_from_wait_response(self, wait_response):
+        # since the initial create response may not have returned an active state,
+        # we override lifecycle_state here with the lifecycle_state when we finished waiting
+        create_response = self.operation_response.data
+        create_response.lifecycle_state = wait_response.data.lifecycle_state
+        return create_response
 
 
 class WorkRequestWaiter(BaseWaiter):
@@ -141,8 +173,8 @@ class WorkRequestWaiter(BaseWaiter):
         self.operation_response = operation_response
         self.wait_for_states = wait_for_states
 
-    def get_initial_response(self):
-        return self.client.get_work_request(
+    def get_fetch_func(self):
+        return lambda **kwargs: self.client.get_work_request(
             self.operation_response.headers["opc-work-request-id"]
         )
 
@@ -221,7 +253,36 @@ class AuditConfigurationLifecycleStateWaiter(LifecycleStateWaiter):
 _WAITER_OVERRIDE_MAP = {
     # The audit update operation currently returns a work request id but the AuditClient currently does not support
     # waiting for the work request. So inject NoneWaiter and customize it to manually wait on the update condition.
-    ("audit", "configuration", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter
+    ("audit", "configuration", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
+    # # auth_token only returns 'token' field on create
+    (
+        "identity",
+        "auth_token",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateOperationWithCreateOnlyFieldsLifecycleStateWaiter,
+    # # customer_secret_key only returns 'key' field on create
+    (
+        "identity",
+        "customer_secret_key",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateOperationWithCreateOnlyFieldsLifecycleStateWaiter,
+    # TODO: currently waiter is only generated for DELETE operations with a single path parameter
+    # so we need to manually override these
+    (
+        "identity",
+        "customer_secret_key",
+        oci_common_utils.DELETE_OPERATION_KEY,
+    ): LifecycleStateWaiter,
+    (
+        "identity",
+        "auth_token",
+        oci_common_utils.DELETE_OPERATION_KEY,
+    ): LifecycleStateWaiter,
+    (
+        "identity",
+        "smtp_credential",
+        oci_common_utils.DELETE_OPERATION_KEY,
+    ): LifecycleStateWaiter,
 }
 
 

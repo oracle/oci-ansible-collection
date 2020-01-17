@@ -27,10 +27,17 @@ moduleWhitelist:
   - oci_identity_group
   - oci_identity_group_facts
   - oci_identity_tenancy_facts
-  - oci_identity_user
-  - oci_identity_user_facts
   - oci_identity_user_group_membership
   - oci_identity_user_group_membership_facts
+  - oci_identity_auth_token
+  - oci_identity_auth_token_facts
+  - oci_identity_smtp_credential
+  - oci_identity_smtp_credential_facts
+  - oci_identity_customer_secret_key
+  - oci_identity_customer_secret_key_facts
+  - oci_identity_user
+  - oci_identity_user_facts
+  - oci_identity_ui_password
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

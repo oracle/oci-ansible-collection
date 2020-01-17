@@ -43,3 +43,24 @@ test_user_group_membership_list_compartment_id: "{{ tenancy_ocid }}"
 # one of group_id or user_id params is required for list but generated test doesn't know
 # this so it fails
 skip_user_group_membership_list_test: True
+
+## oci_identity_ui_password
+test_ui_password_create_dependency_user_compartment_id: "{{ tenancy_ocid }}"
+ui_password_create_required_original_custom_assertions:
+  - result.ui_password.password != ""
+
+# operation has no concept of idempotence, action is always executed
+skip_ui_password_create_required_idempotency_test: True
+skip_ui_password_create_optional_required_idempotence_test: True
+
+## auth token
+test_auth_token_create_dependency_user_compartment_id: "{{ tenancy_ocid }}"
+
+## customer secret key
+test_customer_secret_key_create_dependency_user_compartment_id: "{{ tenancy_ocid }}"
+# the only updateable field is display_name, and you can't update that using name so skip this test
+skip_customer_secret_key_update_using_name_optional_required_test: True
+skip_customer_secret_key_update_using_name_optional_required_idempotence_test: True
+
+## smtp credential
+test_smtp_credential_create_dependency_user_compartment_id: "{{ tenancy_ocid }}"

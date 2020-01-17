@@ -21,6 +21,7 @@ import re
 #     facthelpers,
 #     actionhelpers,
 # )
+
 import pkgutil
 import inspect
 import os
@@ -477,7 +478,9 @@ class OCIResourceHelperBase:
             if deleted_resource:
                 resource = to_dict(deleted_resource)
             return oci_common_utils.get_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.resource_type,
+                resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
             )
 
     def set_required_ids_in_module_when_name_is_identifier(self, resource):
@@ -695,7 +698,21 @@ def get_custom_class_mapping(pkgs):
                 obj = getattr(module, obj_name)
                 if inspect.isclass(obj):
                     custom_class_mapping[obj_name] = obj
+
+    load_hardcoded_custom_class_mappings(custom_class_mapping)
+
     return custom_class_mapping
+
+
+def load_hardcoded_custom_class_mappings(custom_helper_mapping):
+    # TODO: need to load these dynamically but for now we can explicity import to allow progress
+    from ansible_collections.oracle.oci.plugins.module_utils.resourcehelpers import (
+        oci_ui_password_helper,
+    )  # noqa
+
+    custom_helper_mapping[
+        "UiPasswordHelperCustom"
+    ] = oci_ui_password_helper.UiPasswordHelperCustom
 
 
 custom_helper_mapping = get_custom_class_mapping([])
