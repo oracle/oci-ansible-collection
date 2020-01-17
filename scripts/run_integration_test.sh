@@ -21,4 +21,4 @@ else
     echo "Running the integration test target $target"
 fi
 
-ansible-test integration $target
+ansible-test integration "$@"

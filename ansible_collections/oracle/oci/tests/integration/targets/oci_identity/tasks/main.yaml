@@ -1,9 +1,9 @@
 ---
-- include: oci_regions_tests.yaml
-- include: oci_dynamic_group_tests.yaml
-- include: oci_idp_group_mapping_tests.yaml
-- include: oci_user_group_membership_tests.yaml
-- include: oci_group_tests.yaml
-- include: oci_auth_token_tests.yaml
-- include: oci_customer_secret_keys_tests.yaml
-- include: oci_smtp_credential_tests.yaml
+- import_tasks: oci_regions_tests.yaml
+- import_tasks: oci_dynamic_group_tests.yaml
+- import_tasks: oci_idp_group_mapping_tests.yaml
+- import_tasks: oci_user_group_membership_tests.yaml
+- import_tasks: oci_group_tests.yaml
+- import_tasks: oci_auth_token_tests.yaml
+- import_tasks: oci_customer_secret_keys_tests.yaml
+- import_tasks: oci_smtp_credential_tests.yaml

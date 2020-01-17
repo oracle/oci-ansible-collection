@@ -1,7 +1,21 @@
-- include: oci_network_vcn_tests.yaml
-- include: oci_network_internet_gateway_tests.yaml
-- include: oci_network_nat_gateway_tests.yaml
-- include: oci_network_service_tests.yaml
-- include: oci_network_service_gateway_tests.yaml
-- include: oci_network_cpe_tests.yaml
-- include: oci_network_drg_tests.yaml
+- import_tasks: oci_network_vcn_tests.yaml
+  tags:
+    - vcn
+- import_tasks: oci_network_internet_gateway_tests.yaml
+  tags:
+    - internet_gateway
+- import_tasks: oci_network_nat_gateway_tests.yaml
+  tags:
+    - nat_gateway
+- import_tasks: oci_network_service_tests.yaml
+  tags:
+    - service
+- import_tasks: oci_network_service_gateway_tests.yaml
+  tags:
+    - service_gateway
+- import_tasks: oci_network_cpe_tests.yaml
+  tags:
+    - cpe
+- import_tasks: oci_network_drg_tests.yaml
+  tags:
+    - drg
