@@ -1,0 +1,114 @@
+---
+- block:
+  - name: Create dependency user with required parameters
+    oci_identity_user:
+      name: "{{ test_user_name }}"
+      description: "{{ test_user_description }}"
+      compartment_id: "{{ tenancy_ocid }}"
+    register: result
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+
+  - set_fact:
+      mfa_totp_test_user_ocid: "{{ result.user.id }}"
+
+# ==================================================================================================== #
+
+  - name: Create mfa_totp_device with required parameters
+    oci_identity_mfa_totp_device:
+      user_id: "{{ mfa_totp_test_user_ocid }}"
+    register: result
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+
+  - set_fact:
+      mfa_totp_device_resource_id: "{{ result.mfa_totp_device.id }}"
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.mfa_totp_device.id is defined
+        - result.mfa_totp_device.user_id is defined
+        - result.mfa_totp_device.time_created is defined
+        - result.mfa_totp_device.lifecycle_state is defined
+        - result.mfa_totp_device.is_activated is defined
+
+# ==================================================================================================== #
+
+  - name: Generate seed for mfa_totp_device
+    oci_identity_mfa_totp_device_actions:
+      user_id: "{{ mfa_totp_test_user_ocid }}"
+      mfa_totp_device_id: "{{ mfa_totp_device_resource_id }}"
+      action: "generate_totp_seed"
+    register: result
+
+  - name: Assert seed was generated
+    assert:
+      that:
+        - result.changed == True
+
+  - set_fact:
+      mfa_totp_device_seed: "{{ result.mfa_totp_device.seed }}"
+
+# ==================================================================================================== #
+
+  - name: Generate seed for mfa_totp_device (confirm action is always re-executed)
+    oci_identity_mfa_totp_device_actions:
+      user_id: "{{ mfa_totp_test_user_ocid }}"
+      mfa_totp_device_id: "{{ mfa_totp_device_resource_id }}"
+      action: "generate_totp_seed"
+    register: result
+
+  - name: Assert seed was generated again
+    assert:
+      that:
+        - result.changed == True
+
+  - set_fact:
+      mfa_totp_device_seed: "{{ result.mfa_totp_device.seed }}"
+
+# ==================================================================================================== #
+
+  - name: Activate mfa_totp_device for user
+    oci_identity_mfa_totp_device_actions:
+      user_id: "{{mfa_totp_test_user_ocid}}"
+      mfa_totp_device_id: "{{ mfa_totp_device_resource_id }}"
+      totp_token: "123456"
+      action: "activate"
+    register: result
+    ignore_errors: yes
+
+  # it is complicated to actually generate a correct token from the seed
+  # since we would need to pull in additional dependencies
+  # instead we simply validate that we can call the service and get a
+  # response indicating the request was recieved and the token was invalid
+  - name: Assert seed was generated
+    assert:
+      that:
+        - result is failed
+        - "\"multi-factor authentication can only be enabled by the user\" in (result.msg | lower)"
+
+# ==================================================================================================== #
+
+  always:
+    # delete operations are already tested in generated test so it is okay
+    # that we ignore errors here
+    - name: Delete mfa_totp_device
+      oci_identity_mfa_totp_device:
+        user_id: "{{ mfa_totp_test_user_ocid }}"
+        mfa_totp_device_id: "{{ mfa_totp_device_resource_id }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete dependency user
+      oci_identity_user:
+        user_id: "{{ mfa_totp_test_user_ocid }}"
+        state: absent
+      ignore_errors: yes

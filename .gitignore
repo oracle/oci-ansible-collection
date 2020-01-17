@@ -125,3 +125,5 @@ ansible/lib/ansible/modules/cloud/oracle/.swagger-codegen-ignore
 
 # temp files
 .tmp/
+
+ansible_collections/oracle/oci/tests/integration/integration.cfg

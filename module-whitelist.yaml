@@ -42,6 +42,11 @@ moduleWhitelist:
   - oci_identity_tag
   - oci_identity_tag_facts
   - oci_identity_cost_tracking_tag_facts
+  - oci_identity_mfa_totp_device
+  - oci_identity_mfa_totp_device_facts
+  - oci_identity_mfa_totp_device_actions
+  - oci_identity_policy
+  - oci_identity_policy_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

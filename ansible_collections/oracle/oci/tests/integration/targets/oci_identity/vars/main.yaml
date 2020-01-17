@@ -62,3 +62,7 @@ smtp_credential_updated_description: "My updated smtp credential description {{r
 
 # tag namespace variables
 test_tag_namespace_name: "test_tag_namespace_{{ random_suffix_1024 }}"
+
+# Policies
+test_policy_name: "Policy_{{random_suffix_1024}}"
+test_policy_description: "Policy for {{random_suffix_1024}}. Used in {{ansible_nodename}}"

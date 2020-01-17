@@ -64,3 +64,17 @@ skip_customer_secret_key_update_using_name_optional_required_idempotence_test: T
 
 ## smtp credential
 test_smtp_credential_create_dependency_user_compartment_id: "{{ tenancy_ocid }}"
+
+## mfa device
+test_mfa_totp_device_create_dependency_user_compartment_id: "{{ tenancy_ocid }}"
+
+## policy
+test_policy_create_required_statements: [ 'Allow group Administrators to manage instance-family in compartment {{test_compartment_name}}' ]
+test_policy_update_using_name_optional_required_statements: [ 'Allow group Administrators to manage volume-family in compartment {{test_compartment_name}}' ]
+test_policy_update_using_name_optional_required_version_date: "2020-01-17"
+test_policy_create_optional_required_statements: "{{test_policy_create_required_statements}}"
+test_policy_create_optional_required_version_date: "2020-01-17"
+test_policy_update_optional_required_version_date: "2020-01-17"
+test_policy_update_optional_required_statements: "{{test_policy_update_using_name_optional_required_statements}}"
+
+skip_policy_update_using_name_optional_required_idempotence_test: True

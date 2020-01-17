@@ -1,0 +1,481 @@
+---
+- block:
+  - name: Create policy (check mode)
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_create_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_create_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_create_required_statements, omit) }}"
+      description: "{{ 'Policy for users who need to launch instances, attach volumes, manage images' | oracle.oci.override(test_policy_create_required_description, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_policy_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_policy_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_create_check_mode_custom_assertions }}"
+    when: policy_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create policy with required parameters
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_create_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_create_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_create_required_statements, omit) }}"
+      description: "{{ 'Policy for users who need to launch instances, attach volumes, manage images' | oracle.oci.override(test_policy_create_required_description, omit) }}"
+    register: result
+    when: skip_policy_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_policy_create_required_original_test is not defined
+
+  - set_fact:
+      policy_resource_id: "{{ result.policy.id }}"
+    when: skip_policy_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_create_required_original_custom_assertions }}"
+    when: policy_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create policy with required parameters(idempotency)
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_create_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_create_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_create_required_statements, omit) }}"
+      description: "{{ 'Policy for users who need to launch instances, attach volumes, manage images' | oracle.oci.override(test_policy_create_required_description, omit) }}"
+    register: result
+    when: skip_policy_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_policy_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_create_required_idempotency_custom_assertions }}"
+    when: policy_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update policy using name with optional + required parameters
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_update_using_name_optional_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_update_using_name_optional_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_update_using_name_optional_required_statements, omit) }}"
+      description: "{{ ('Policy for users who need to launch instances, attach volumes, manage imagesupdated' + random_suffix_1024) | oracle.oci.override(test_policy_update_using_name_optional_required_description, omit) }}"
+      version_date: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_policy_update_using_name_optional_required_version_date, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_policy_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_policy_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_policy_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_policy_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_update_using_name_optional_required_custom_assertions }}"
+    when: policy_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update policy using name with optional + required parameters (idempotence)
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_update_using_name_optional_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_update_using_name_optional_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_update_using_name_optional_required_statements, omit) }}"
+      description: "{{ ('Policy for users who need to launch instances, attach volumes, manage imagesupdated' + random_suffix_1024) | oracle.oci.override(test_policy_update_using_name_optional_required_description, omit) }}"
+      version_date: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_policy_update_using_name_optional_required_version_date, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_policy_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_policy_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_policy_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_policy_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: policy_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete policy
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_delete_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_policy_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_policy_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_delete_required_custom_assertions }}"
+    when: policy_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete policy (idempotency)
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_delete_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_policy_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_policy_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_delete_required_idempotency_custom_assertions }}"
+    when: policy_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create policy with optional + required parameters
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_create_optional_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_create_optional_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_create_optional_required_statements, omit) }}"
+      description: "{{ 'Policy for users who need to launch instances, attach volumes, manage images' | oracle.oci.override(test_policy_create_optional_required_description, omit) }}"
+      version_date: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_policy_create_optional_required_version_date, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_policy_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_policy_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_policy_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_policy_create_optional_required_original_test is not defined
+
+  - set_fact:
+      policy_resource_id: "{{ result.policy.id }}"
+    when: skip_policy_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_create_optional_required_original_custom_assertions }}"
+    when: policy_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create policy with optional + required parameters (idempotence)
+    oci_identity_policy:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_create_optional_required_compartment_id, omit) }}"
+      name: "{{ ('LaunchInstances' + random_suffix_1024) | oracle.oci.override(test_policy_create_optional_required_name, omit) }}"
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_create_optional_required_statements, omit) }}"
+      description: "{{ 'Policy for users who need to launch instances, attach volumes, manage images' | oracle.oci.override(test_policy_create_optional_required_description, omit) }}"
+      version_date: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_policy_create_optional_required_version_date, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_policy_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_policy_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_policy_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_policy_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_create_optional_required_idempotence_custom_assertions }}"
+    when: policy_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update policy with optional + required parameters
+    oci_identity_policy:
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_update_optional_required_statements, omit) }}"
+      description: "{{ ('Policy for users who need to launch instances, attach volumes, manage imagesupdated' + random_suffix_1024) | oracle.oci.override(test_policy_update_optional_required_description, omit) }}"
+      version_date: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_policy_update_optional_required_version_date, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_policy_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_policy_update_optional_required_defined_tags, omit) }}"
+      policy_id: "{{ policy_resource_id | oracle.oci.override(test_policy_update_optional_required_policy_id, omit) }}"
+    register: result
+    when: skip_policy_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_policy_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_update_optional_required_custom_assertions }}"
+    when: policy_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update policy with optional + required parameters (idempotence)
+    oci_identity_policy:
+      statements: "{{ [ 'Allow group InstanceLaunchers to manage instance-family in compartment ABC' ] | oracle.oci.override(test_policy_update_optional_required_statements, omit) }}"
+      description: "{{ ('Policy for users who need to launch instances, attach volumes, manage imagesupdated' + random_suffix_1024) | oracle.oci.override(test_policy_update_optional_required_description, omit) }}"
+      version_date: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_policy_update_optional_required_version_date, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_policy_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_policy_update_optional_required_defined_tags, omit) }}"
+      policy_id: "{{ policy_resource_id | oracle.oci.override(test_policy_update_optional_required_policy_id, omit) }}"
+    register: result
+    when: skip_policy_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_policy_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.policy.id is defined
+        - result.policy.compartment_id is defined
+        - result.policy.name is defined
+        - result.policy.statements is defined
+        - result.policy.description is defined
+        - result.policy.time_created is defined
+        - result.policy.lifecycle_state is defined
+    when: skip_policy_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_update_optional_required_idempotence_custom_assertions }}"
+    when: policy_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List policies
+    oci_identity_policy_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_policy_list_compartment_id, omit) }}"
+    register: result
+    when: skip_policy_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.policies | length > 0
+    when: skip_policy_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.statements is defined
+        - item.description is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.policies }}"
+    when: skip_policy_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_list_custom_assertions }}"
+    when: policy_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get policy
+    oci_identity_policy_facts:
+      policy_id: "{{ policy_resource_id | oracle.oci.override(test_policy_get_policy_id, omit) }}"
+    register: result
+    when: skip_policy_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.policies | length == 1
+    when: skip_policy_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.statements is defined
+        - item.description is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.policies }}"
+    when: skip_policy_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ policy_get_custom_assertions }}"
+    when: policy_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete policy
+      oci_identity_policy:
+        policy_id: "{{ policy_resource_id | oracle.oci.override(test_policy_delete_rescue_policy_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: policy_resource_id is defined

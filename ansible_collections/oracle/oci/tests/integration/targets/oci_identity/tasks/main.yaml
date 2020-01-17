@@ -29,3 +29,9 @@
 - import_tasks: oci_tag_namespace_tests.yaml
   tags:
     - tag_namespace
+- import_tasks: oci_mfa_totp_device_tests.yaml
+  tags:
+    - mfa_totp_device
+- import_tasks: oci_policy_tests.yaml
+  tags:
+    - policy

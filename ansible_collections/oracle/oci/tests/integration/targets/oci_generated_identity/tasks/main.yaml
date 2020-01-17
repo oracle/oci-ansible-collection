@@ -47,3 +47,9 @@
 - import_tasks: oci_identity_cost_tracking_tag_tests.yaml
   tags:
       - cost_tracking_tag
+- import_tasks: oci_identity_mfa_totp_device_tests.yaml
+  tags:
+    - mfa_totp_device
+- import_tasks: oci_identity_policy_tests.yaml
+  tags:
+    - policy

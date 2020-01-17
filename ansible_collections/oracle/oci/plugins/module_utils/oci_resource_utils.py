@@ -105,6 +105,99 @@ class OCIResourceFactsHelperBase:
         return to_dict(resources)
 
 
+class OCIActionsHelperBase:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.module = module
+        self.resource_type = resource_type
+        self.service_client_class = service_client_class
+        self.client = oci_config_utils.create_service_client(
+            self.module, self.service_client_class
+        )
+        self.namespace = namespace
+        self.check_mode = self.module.check_mode
+
+    def get_module_resource_id_param(self):
+        """Expected to be generated inside the module."""
+        pass
+
+    def get_module_resource_id(self):
+        """Expected to be generated inside the module."""
+        pass
+
+    def get_get_fn(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError("get not supported by {0}".format(self.resource_type))
+
+    def get_resource(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError("get not supported by {0}".format(self.resource_type))
+
+    def get_action_fn(self, action):
+        action_fn = getattr(self, action, None)
+        if not (action_fn and callable(action_fn)):
+            return None
+        return action_fn
+
+    def is_action_necessary(self, action):
+        if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
+            return True
+        resource = self.get_resource().data
+        if hasattr(
+            resource, "lifecycle_state"
+        ) and resource.lifecycle_state in self.get_action_idempotent_states(action):
+            return False
+        return True
+
+    def get_action_idempotent_states(self, action):
+        return oci_common_utils.ACTION_IDEMPOTENT_STATES.get(action.upper(), [])
+
+    def get_action_desired_states(self, action):
+        return oci_common_utils.ACTION_DESIRED_STATES.get(
+            action.upper(), oci_common_utils.DEFAULT_READY_STATES
+        )
+
+    def perform_action(self, action):
+
+        action_fn = self.get_action_fn(action)
+        if not action_fn:
+            self.module.fail_json(msg="{0} not supported by the module.".format(action))
+
+        try:
+            get_response = self.get_resource()
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: {0}".format(se.message)
+            )
+        else:
+            resource = to_dict(get_response.data)
+
+        is_action_necessary = self.is_action_necessary(action)
+        if not is_action_necessary:
+            return oci_common_utils.get_result(
+                changed=False, resource_type=self.resource_type, resource=resource
+            )
+
+        if self.check_mode:
+            return oci_common_utils.get_result(
+                changed=True, resource_type=self.resource_type, resource=resource
+            )
+
+        try:
+            actioned_resource = action_fn()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return oci_common_utils.get_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(actioned_resource),
+            )
+
+
 class OCIResourceHelperBase:
     NAME_PARAMETERS = ["display_name", "name"]
     USE_NAME_AS_IDENTIFIER_ENV_VAR_KEY = "OCI_USE_NAME_AS_IDENTIFIER"
@@ -168,6 +261,15 @@ class OCIResourceHelperBase:
         pass
 
     def get_update_model_class(self):
+        """Expected to be generated inside the module."""
+        pass
+
+    # some values are computed by the server based on user input
+    # this function allows us to normalize user input values only for
+    # the purposes of comparison to existing values
+    # e.g. we can convert input: "foo" to input: "foo{service_added_suffix"}
+    # to allow matching the appropriate resource
+    def convert_request_model_fields_to_computed_server_values(self, model):
         """Expected to be generated inside the module."""
         pass
 
@@ -311,6 +413,7 @@ class OCIResourceHelperBase:
     def get_matching_resource(self):
 
         create_model = self.get_create_model()
+        self.convert_request_model_fields_to_computed_server_values(create_model)
         attributes_to_consider = (
             [
                 parameter
@@ -370,6 +473,7 @@ class OCIResourceHelperBase:
     def is_update_necessary(self):
         current_resource_dict = to_dict(self.get_resource().data)
         update_model = self.get_update_model()
+        self.convert_request_model_fields_to_computed_server_values(update_model)
         update_model_dict = to_dict(update_model)
         return not oci_common_utils.are_dicts_equal(
             update_model_dict, current_resource_dict, update_model.attribute_map

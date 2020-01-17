@@ -290,6 +290,14 @@ _WAITER_OVERRIDE_MAP = {
     ("identity", "tag", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
     # update_tag_namespace has the same issue as update_tag
     ("identity", "tag_namespace", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
+    # mfa_totp_device.seed is only returned on the "generate" call
+    # so we need to disable waiting / polling such that we get
+    # this field in the response
+    (
+        "identity",
+        "mfa_totp_device",
+        "{0}_{1}".format("GENERATE_TOTP_SEED", oci_common_utils.ACTION_OPERATION_KEY),
+    ): NoneWaiter,
 }
 
 
