@@ -11,9 +11,12 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
     oci_common_utils,
-    oci_custom_fact_helpers,
-    oci_custom_resource_helpers,
-    oci_custom_action_helpers,
+)
+
+# import the customisation files.
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_identity_custom_helpers,
+    oci_network_custom_helpers,
 )
 from ansible.module_utils import six
 import sys
@@ -689,14 +692,12 @@ def get_custom_class_mapping(modules):
 # override the generated behaviour. Create a mapping of those custom classes so that we can dynamically override
 # the behaviour.
 custom_helper_mapping = get_custom_class_mapping(
-    [oci_custom_fact_helpers, oci_custom_resource_helpers, oci_custom_action_helpers]
+    [oci_identity_custom_helpers, oci_network_custom_helpers]
 )
 
 
 class DefaultHelperCustom:
     """Default class with no customizations"""
-
-    pass
 
 
 def get_custom_class(custom_class_name):
