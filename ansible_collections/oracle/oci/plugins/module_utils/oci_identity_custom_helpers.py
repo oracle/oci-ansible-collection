@@ -9,3 +9,14 @@
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
+
+
+class UiPasswordHelperCustom:
+
+    # there is no concept of idempotency for this module
+    # it re-executes create / reset password every time module is invoked
+    def get_matching_resource(self):
+        return None
+
+    def get_module_resource_id(self):
+        return None
