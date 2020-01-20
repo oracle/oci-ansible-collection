@@ -1,21 +1,24 @@
-- debug:
-    msg="Using random_suffix_250 {{random_suffix_250 }} and random_suffix_1024 {{random_suffix_1024}}"
+- block:
+  - debug:
+      msg="Using random_suffix_250 {{random_suffix_250 }} and random_suffix_1024 {{random_suffix_1024}}"
 
-- name: Get all services
-  oci_network_service_facts:
-  register: result
+  - name: Get all services
+    oci_network_service_facts:
+    register: result
 
-- set_fact:
-    service_resource_id: "{{ result.services[0].id }}"
-    dependency_service_id: "{{ result.services[0].id }}"
+  - set_fact:
+      service_resource_id: "{{ result.services[0].id }}"
+      dependency_service_id: "{{ result.services[0].id }}"
 
-# Compute the AD to create compute instances in
-- oci_identity_availability_domain_facts:
-    compartment_id: "{{test_compartment_ocid}}"
-  register: oci_ads
-- set_fact:
-    test_availability_domain: "{{oci_ads.availability_domains[0].name}}"
-    test_availability_domain_2: "{{oci_ads.availability_domains[1].name}}"
-    test_availability_domain_3: "{{oci_ads.availability_domains[2].name}}"
-- debug: msg="First AD within the ashburn region {{test_availability_domain}}"
-- debug: msg="Second AD within the ashburn region {{test_availability_domain_2}}"
+  # Compute the AD to create compute instances in
+  - oci_identity_availability_domain_facts:
+      compartment_id: "{{test_compartment_ocid}}"
+    register: oci_ads
+  - set_fact:
+      test_availability_domain: "{{oci_ads.availability_domains[0].name}}"
+      test_availability_domain_2: "{{oci_ads.availability_domains[1].name}}"
+      test_availability_domain_3: "{{oci_ads.availability_domains[2].name}}"
+  - debug: msg="First AD within the ashburn region {{test_availability_domain}}"
+  - debug: msg="Second AD within the ashburn region {{test_availability_domain_2}}"
+  tags:
+    - always
