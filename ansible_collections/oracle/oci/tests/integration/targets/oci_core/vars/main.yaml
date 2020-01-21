@@ -28,3 +28,4 @@ bulk_deletable_public_vc_public_prefixes:
   - cidr_block: '206.209.22.0/24'
   - cidr_block: '206.209.23.0/24'
   - cidr_block: '206.209.24.0/24'
+test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config_customer_bgp_asn: null
