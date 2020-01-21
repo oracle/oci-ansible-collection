@@ -38,6 +38,10 @@ moduleWhitelist:
   - oci_identity_user
   - oci_identity_user_facts
   - oci_identity_ui_password
+  - oci_identity_tag_namespace
+  - oci_identity_tag
+  - oci_identity_tag_facts
+  - oci_identity_cost_tracking_tag_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -49,6 +53,7 @@ modulePathOverrides:
   /n/{namespaceName}/b/{bucketName}/actions/copyObject: bucket
   /n/{namespaceName}/b/{bucketName}/actions/restoreObjects: bucket
   /n/{namespaceName}/b/{bucketName}/actions/renameObject: bucket
+  /tagNamespaces/actions/listCostTrackingTags: cost_tracking_tag
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules

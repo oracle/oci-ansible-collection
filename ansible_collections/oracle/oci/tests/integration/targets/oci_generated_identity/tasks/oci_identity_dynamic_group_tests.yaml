@@ -4,7 +4,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_create_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_create_required_name, omit) }}"
-      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq' | oracle.oci.override(test_dynamic_group_create_required_matching_rule, omit) }}"
+      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID' | oracle.oci.override(test_dynamic_group_create_required_matching_rule, omit) }}"
       description: "{{ 'Instance group for dev compartment' | oracle.oci.override(test_dynamic_group_create_required_description, omit) }}"
     register: result
     check_mode: yes
@@ -29,7 +29,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_create_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_create_required_name, omit) }}"
-      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq' | oracle.oci.override(test_dynamic_group_create_required_matching_rule, omit) }}"
+      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID' | oracle.oci.override(test_dynamic_group_create_required_matching_rule, omit) }}"
       description: "{{ 'Instance group for dev compartment' | oracle.oci.override(test_dynamic_group_create_required_description, omit) }}"
     register: result
     when: skip_dynamic_group_create_required_original_test is not defined
@@ -69,7 +69,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_create_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_create_required_name, omit) }}"
-      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq' | oracle.oci.override(test_dynamic_group_create_required_matching_rule, omit) }}"
+      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID' | oracle.oci.override(test_dynamic_group_create_required_matching_rule, omit) }}"
       description: "{{ 'Instance group for dev compartment' | oracle.oci.override(test_dynamic_group_create_required_description, omit) }}"
     register: result
     when: skip_dynamic_group_create_required_idempotency_test is not defined
@@ -105,7 +105,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_name, omit) }}"
-      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnqupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_matching_rule, omit) }}"
+      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueIDupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_matching_rule, omit) }}"
       description: "{{ ('Instance group for dev compartmentupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_description, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_defined_tags, omit) }}"
@@ -145,7 +145,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_name, omit) }}"
-      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnqupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_matching_rule, omit) }}"
+      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueIDupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_matching_rule, omit) }}"
       description: "{{ ('Instance group for dev compartmentupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_description, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dynamic_group_update_using_name_optional_required_defined_tags, omit) }}"
@@ -247,7 +247,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_create_optional_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_create_optional_required_name, omit) }}"
-      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq' | oracle.oci.override(test_dynamic_group_create_optional_required_matching_rule, omit) }}"
+      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID' | oracle.oci.override(test_dynamic_group_create_optional_required_matching_rule, omit) }}"
       description: "{{ 'Instance group for dev compartment' | oracle.oci.override(test_dynamic_group_create_optional_required_description, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_dynamic_group_create_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_dynamic_group_create_optional_required_defined_tags, omit) }}"
@@ -289,7 +289,7 @@
     oci_identity_dynamic_group:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dynamic_group_create_optional_required_compartment_id, omit) }}"
       name: "{{ ('DevCompartmentDynamicGroup' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_create_optional_required_name, omit) }}"
-      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq' | oracle.oci.override(test_dynamic_group_create_optional_required_matching_rule, omit) }}"
+      matching_rule: "{{ 'instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID' | oracle.oci.override(test_dynamic_group_create_optional_required_matching_rule, omit) }}"
       description: "{{ 'Instance group for dev compartment' | oracle.oci.override(test_dynamic_group_create_optional_required_description, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_dynamic_group_create_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_dynamic_group_create_optional_required_defined_tags, omit) }}"
@@ -325,7 +325,7 @@
 
   - name: Update dynamic_group with optional + required parameters
     oci_identity_dynamic_group:
-      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnqupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_optional_required_matching_rule, omit) }}"
+      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueIDupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_optional_required_matching_rule, omit) }}"
       description: "{{ ('Instance group for dev compartmentupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_optional_required_description, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dynamic_group_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dynamic_group_update_optional_required_defined_tags, omit) }}"
@@ -362,7 +362,7 @@
 
   - name: Update dynamic_group with optional + required parameters (idempotence)
     oci_identity_dynamic_group:
-      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnqupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_optional_required_matching_rule, omit) }}"
+      matching_rule: "{{ ('instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueIDupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_optional_required_matching_rule, omit) }}"
       description: "{{ ('Instance group for dev compartmentupdated' + random_suffix_1024) | oracle.oci.override(test_dynamic_group_update_optional_required_description, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dynamic_group_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dynamic_group_update_optional_required_defined_tags, omit) }}"

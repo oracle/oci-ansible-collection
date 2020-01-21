@@ -1,0 +1,434 @@
+---
+- block:
+  - name: Create dependency tag_namespace with required parameters
+    oci_identity_tag_namespace:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_create_dependency_tag_namespace_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_tag_create_dependency_tag_namespace_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_tag_create_dependency_tag_namespace_description, omit) }}"
+    register: result
+    when: skip_tag_create_dependency_tag_namespace_test is not defined and skip_tag_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_tag_create_dependency_tag_namespace_test is not defined and skip_tag_dependencies is not defined
+  - set_fact:
+      dependency_tag_namespace_id: "{{ result.tag_namespace.id }}"
+    when: skip_tag_create_dependency_tag_namespace_test is not defined and skip_tag_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_create_dependency_tag_namespace_custom_assertions }}"
+    when: tag_create_dependency_tag_namespace_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create tag (check mode)
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_create_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_create_required_name, omit) }}"
+      description: "{{ 'This tag will show the cost center that will be used for billing of associated resources.' | oracle.oci.override(test_tag_create_required_description, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_tag_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_tag_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_create_check_mode_custom_assertions }}"
+    when: tag_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create tag with required parameters
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_create_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_create_required_name, omit) }}"
+      description: "{{ 'This tag will show the cost center that will be used for billing of associated resources.' | oracle.oci.override(test_tag_create_required_description, omit) }}"
+    register: result
+    when: skip_tag_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_tag_create_required_original_test is not defined
+
+  - set_fact:
+      tag_resource_id: "{{ result.tag.id }}"
+    when: skip_tag_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_create_required_original_custom_assertions }}"
+    when: tag_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create tag with required parameters(idempotency)
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_create_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_create_required_name, omit) }}"
+      description: "{{ 'This tag will show the cost center that will be used for billing of associated resources.' | oracle.oci.override(test_tag_create_required_description, omit) }}"
+    register: result
+    when: skip_tag_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_tag_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_create_required_idempotency_custom_assertions }}"
+    when: tag_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete tag
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_delete_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_delete_required_name, omit) }}"
+      state: absent
+    register: result
+    when: skip_tag_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_tag_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_delete_required_custom_assertions }}"
+    when: tag_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete tag (idempotency)
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_delete_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_delete_required_name, omit) }}"
+      state: absent
+    register: result
+    when: skip_tag_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_tag_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_delete_required_idempotency_custom_assertions }}"
+    when: tag_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create tag with optional + required parameters
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_create_optional_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_create_optional_required_name, omit) }}"
+      description: "{{ 'This tag will show the cost center that will be used for billing of associated resources.' | oracle.oci.override(test_tag_create_optional_required_description, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_tag_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_tag_create_optional_required_defined_tags, omit) }}"
+      is_cost_tracking: "{{ true | oracle.oci.override(test_tag_create_optional_required_is_cost_tracking, omit) }}"
+    register: result
+    when: skip_tag_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_tag_create_optional_required_original_test is not defined
+
+  - set_fact:
+      tag_resource_id: "{{ result.tag.id }}"
+    when: skip_tag_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_create_optional_required_original_custom_assertions }}"
+    when: tag_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create tag with optional + required parameters (idempotence)
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_create_optional_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_create_optional_required_name, omit) }}"
+      description: "{{ 'This tag will show the cost center that will be used for billing of associated resources.' | oracle.oci.override(test_tag_create_optional_required_description, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_tag_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_tag_create_optional_required_defined_tags, omit) }}"
+      is_cost_tracking: "{{ true | oracle.oci.override(test_tag_create_optional_required_is_cost_tracking, omit) }}"
+    register: result
+    when: skip_tag_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_tag_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_create_optional_required_idempotence_custom_assertions }}"
+    when: tag_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update tag with optional + required parameters
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_update_optional_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenterupdated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_name, omit) }}"
+      description: "{{ ('This tag will show the cost center that will be used for billing of associated resources.updated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_description, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_tag_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_tag_update_optional_required_defined_tags, omit) }}"
+      is_cost_tracking: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_cost_tracking, omit) }}"
+      is_retired: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_retired, omit) }}"
+    register: result
+    when: skip_tag_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_tag_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_update_optional_required_custom_assertions }}"
+    when: tag_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update tag with optional + required parameters (idempotence)
+    oci_identity_tag:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_update_optional_required_tag_namespace_id, omit) }}"
+      name: "{{ ('CostCenterupdated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_name, omit) }}"
+      description: "{{ ('This tag will show the cost center that will be used for billing of associated resources.updated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_description, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_tag_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_tag_update_optional_required_defined_tags, omit) }}"
+      is_cost_tracking: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_cost_tracking, omit) }}"
+      is_retired: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_retired, omit) }}"
+    register: result
+    when: skip_tag_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_tag_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.tag.compartment_id is defined
+        - result.tag.tag_namespace_id is defined
+        - result.tag.tag_namespace_name is defined
+        - result.tag.id is defined
+        - result.tag.name is defined
+        - result.tag.description is defined
+        - result.tag.is_retired is defined
+        - result.tag.time_created is defined
+    when: skip_tag_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_update_optional_required_idempotence_custom_assertions }}"
+    when: tag_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List tags
+    oci_identity_tag_facts:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_list_tag_namespace_id, omit) }}"
+    register: result
+    when: skip_tag_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.tags | length > 0
+    when: skip_tag_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.tag_namespace_id is defined
+        - item.tag_namespace_name is defined
+        - item.id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.is_retired is defined
+        - item.time_created is defined
+    with_items: "{{ result.tags }}"
+    when: skip_tag_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_list_custom_assertions }}"
+    when: tag_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get tag
+    oci_identity_tag_facts:
+      tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_get_tag_namespace_id, omit) }}"
+      tag_name: "{{ tag_resource_id | oracle.oci.override(test_tag_get_tag_name, omit) }}"
+    register: result
+    when: skip_tag_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.tags | length == 1
+    when: skip_tag_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.tag_namespace_id is defined
+        - item.tag_namespace_name is defined
+        - item.id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.is_retired is defined
+        - item.time_created is defined
+    with_items: "{{ result.tags }}"
+    when: skip_tag_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ tag_get_custom_assertions }}"
+    when: tag_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete tag
+      oci_identity_tag:
+        tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_delete_rescue_tag_namespace_id, omit) }}"
+        name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_delete_rescue_name, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: tag_resource_id is defined
+
+    - name: Delete dependency tag_namespace
+      oci_identity_tag_namespace:
+        tag_namespace_id: "{{ dependency_tag_namespace_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_tag_delete_dependency_tag_namespace_test is not defined and skip_tag_dependencies is not defined and dependency_tag_namespace_id is defined

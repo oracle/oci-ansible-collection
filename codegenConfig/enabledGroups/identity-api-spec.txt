@@ -9,3 +9,10 @@
 # GROUP1 # comment
 # GROUP2 # comment
 ID-3489
+UDX-1464
+
+# delete tag namespace
+UDX-1786
+
+# dynamic group tagging
+UDX-1789

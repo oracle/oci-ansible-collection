@@ -1,0 +1,2 @@
+---
+- include: oci_tag_lengthy_tests.yaml

@@ -1,0 +1,76 @@
+---
+# TODO: re-enable once we have a mechanism to run lengthy tests ONLY on master test runs
+# deleting a tag can take ~20 minutes so we don't want to slow down merge pipeline
+- name: Delete this this tag if it already exists
+  oci_identity_tag:
+    tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+    name: "{{ test_unique_tag_name }}"
+    state: absent
+  register: result
+  ignore_errors: yes
+
+- block:
+  - name: Create a test tag definition
+    oci_identity_tag:
+      tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+      name: "{{ test_unique_tag_name }}"
+      description: "{{ test_tag_description }}"
+    register: result
+
+  - name: Assert that tag definition was created
+    assert:
+      that:
+          - result.changed == True
+          - result.tag.is_retired == False
+  
+  - set_fact:
+      test_tag_ocid: "{{result.tag.id}}"
+
+  - name: Retire the tag definition before deleting
+    oci_identity_tag:
+      tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+      name: "{{ test_unique_tag_name }}"
+      is_retired: "yes"
+    register: result
+  - debug:
+      msg: "{{ result }}"
+  - name: Assert that tag definition was retired
+    assert:
+      that:
+          - result.changed == True
+          - result.tag.is_retired == True
+          - result.tag.id == test_tag_ocid
+
+  - name: Delete tag definition
+    oci_identity_tag:
+      tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+      name: "{{ test_unique_tag_name }}"
+      state: absent
+    register: result
+  - debug:
+      msg: "{{ result }}"
+  - name: Assert that tag definition was retired
+    assert:
+      that:
+          - result.changed == True
+          - result.tag.lifecycle_state == "DELETED"
+
+  rescue:
+    - name: Retire the tag definition before deleting
+      oci_identity_tag:
+        tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+        name: "{{ test_unique_tag_name }}"
+        is_retired: "yes"
+      register: result
+      ignore_errors: yes
+  
+    - name: Delete tag definition
+      oci_identity_tag:
+        tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+        name: "{{ test_unique_tag_name }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

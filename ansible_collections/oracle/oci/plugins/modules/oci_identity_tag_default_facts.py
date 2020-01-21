@@ -23,13 +23,13 @@ module: oci_identity_tag_default_facts
 short_description: Fetches details about one or multiple TagDefault resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple TagDefault resources in Oracle Cloud Infrastructure
-    - Lists the Tag Defaults for Tag Definitions in the specified Compartment.
+    - Lists the tag defaults for tag definitions in the specified compartment.
     - If I(tag_default_id) is specified, the details of a single TagDefault will be returned.
 version_added: "2.5"
 options:
     tag_default_id:
         description:
-            - The OCID of the Tag Default.
+            - The OCID of the tag default.
             - Required to get a specific tag_default.
         type: str
         aliases: ["id"]
@@ -43,7 +43,7 @@ options:
         type: str
     tag_definition_id:
         description:
-            - The OCID of the Tag Definition.
+            - The OCID of the tag definition.
         type: str
     lifecycle_state:
         description:
@@ -78,37 +78,38 @@ tag_defaults:
     contains:
         id:
             description:
-                - The OCID of the Tag Default.
+                - The OCID of the tag default.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         compartment_id:
             description:
-                - The OCID of the Compartment. The Tag Default will apply to any resource contained in this Compartment.
+                - The OCID of the compartment. The tag default applies to all new resources that get created in the
+                  compartment. Resources that existed before the tag default was created are not tagged.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         tag_namespace_id:
             description:
-                - The OCID of the Tag Namespace that contains the Tag Definition.
+                - The OCID of the tag namespace that contains the tag definition.
             returned: on success
             type: string
             sample: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
         tag_definition_id:
             description:
-                - The OCID of the Tag Definition. The Tag Default will always assign a default value for this Tag Definition.
+                - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             returned: on success
             type: string
             sample: ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx
         tag_definition_name:
             description:
-                - The name used in the Tag Definition. This field is informational in the context of the Tag Default.
+                - The name used in the tag definition. This field is informational in the context of the tag default.
             returned: on success
             type: string
             sample: tag_definition_name_example
         value:
             description:
-                - The default value for the Tag Definition. This will be applied to all resources created in the Compartment.
+                - The default value for the tag definition. This will be applied to all resources created in the compartment.
             returned: on success
             type: string
             sample: value_example
@@ -121,7 +122,7 @@ tag_defaults:
             sample: 2016-08-25T21:10:29.600Z
         lifecycle_state:
             description:
-                - The tag default's current state. After creating a tagdefault, make sure its `lifecycleState` is ACTIVE before using it.
+                - The tag default's current state. After creating a `TagDefault`, make sure its `lifecycleState` is ACTIVE before using it.
             returned: on success
             type: string
             sample: ACTIVE

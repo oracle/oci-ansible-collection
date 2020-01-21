@@ -4,7 +4,7 @@
     oci_identity_tag_default:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_default_create_required_compartment_id, omit) }}"
       tag_definition_id: "{{ dependency_tag_definition_id | oracle.oci.override(test_tag_default_create_required_tag_definition_id, omit) }}"
-      value: "{{ 'such-default-wow' | oracle.oci.override(test_tag_default_create_required_value, omit) }}"
+      value: "{{ 'W123' | oracle.oci.override(test_tag_default_create_required_value, omit) }}"
     register: result
     check_mode: yes
     when: skip_tag_default_create_check_mode_test is not defined
@@ -28,7 +28,7 @@
     oci_identity_tag_default:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_default_create_required_compartment_id, omit) }}"
       tag_definition_id: "{{ dependency_tag_definition_id | oracle.oci.override(test_tag_default_create_required_tag_definition_id, omit) }}"
-      value: "{{ 'such-default-wow' | oracle.oci.override(test_tag_default_create_required_value, omit) }}"
+      value: "{{ 'W123' | oracle.oci.override(test_tag_default_create_required_value, omit) }}"
     register: result
     when: skip_tag_default_create_required_original_test is not defined
 
@@ -67,7 +67,7 @@
     oci_identity_tag_default:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_default_create_required_compartment_id, omit) }}"
       tag_definition_id: "{{ dependency_tag_definition_id | oracle.oci.override(test_tag_default_create_required_tag_definition_id, omit) }}"
-      value: "{{ 'such-default-wow' | oracle.oci.override(test_tag_default_create_required_value, omit) }}"
+      value: "{{ 'W123' | oracle.oci.override(test_tag_default_create_required_value, omit) }}"
     register: result
     when: skip_tag_default_create_required_idempotency_test is not defined
 
@@ -158,7 +158,7 @@
     oci_identity_tag_default:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_default_create_optional_required_compartment_id, omit) }}"
       tag_definition_id: "{{ dependency_tag_definition_id | oracle.oci.override(test_tag_default_create_optional_required_tag_definition_id, omit) }}"
-      value: "{{ 'such-default-wow' | oracle.oci.override(test_tag_default_create_optional_required_value, omit) }}"
+      value: "{{ 'W123' | oracle.oci.override(test_tag_default_create_optional_required_value, omit) }}"
     register: result
     when: skip_tag_default_create_optional_required_original_test is not defined
 
@@ -197,7 +197,7 @@
     oci_identity_tag_default:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_tag_default_create_optional_required_compartment_id, omit) }}"
       tag_definition_id: "{{ dependency_tag_definition_id | oracle.oci.override(test_tag_default_create_optional_required_tag_definition_id, omit) }}"
-      value: "{{ 'such-default-wow' | oracle.oci.override(test_tag_default_create_optional_required_value, omit) }}"
+      value: "{{ 'W123' | oracle.oci.override(test_tag_default_create_optional_required_value, omit) }}"
     register: result
     when: skip_tag_default_create_optional_required_idempotence_test is not defined
 
@@ -230,7 +230,7 @@
 
   - name: Update tag_default with optional + required parameters
     oci_identity_tag_default:
-      value: "{{ ('such-default-wowupdated' + random_suffix_1024) | oracle.oci.override(test_tag_default_update_optional_required_value, omit) }}"
+      value: "{{ ('W123updated' + random_suffix_1024) | oracle.oci.override(test_tag_default_update_optional_required_value, omit) }}"
       tag_default_id: "{{ tag_default_resource_id | oracle.oci.override(test_tag_default_update_optional_required_tag_default_id, omit) }}"
     register: result
     when: skip_tag_default_update_optional_required_test is not defined
@@ -264,7 +264,7 @@
 
   - name: Update tag_default with optional + required parameters (idempotence)
     oci_identity_tag_default:
-      value: "{{ ('such-default-wowupdated' + random_suffix_1024) | oracle.oci.override(test_tag_default_update_optional_required_value, omit) }}"
+      value: "{{ ('W123updated' + random_suffix_1024) | oracle.oci.override(test_tag_default_update_optional_required_value, omit) }}"
       tag_default_id: "{{ tag_default_resource_id | oracle.oci.override(test_tag_default_update_optional_required_tag_default_id, omit) }}"
     register: result
     when: skip_tag_default_update_optional_required_idempotence_test is not defined

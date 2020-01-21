@@ -23,27 +23,27 @@ module: oci_identity_tag_default
 short_description: Manage a TagDefault resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a TagDefault resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Tag Default in the specified Compartment for the specified Tag Definition.
+    - For I(state=present), creates a new tag default in the specified compartment for the specified tag definition.
 version_added: "2.5"
 options:
     compartment_id:
         description:
-            - The OCID of the Compartment. The Tag Default will apply to any resource contained in this Compartment.
+            - The OCID of the compartment. The tag default will be applied to all new resources created in this compartment.
             - Required for create using I(state=present).
         type: str
     tag_definition_id:
         description:
-            - The OCID of the Tag Definition. The Tag Default will always assign a default value for this Tag Definition.
+            - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             - Required for create using I(state=present).
         type: str
     value:
         description:
-            - The default value for the Tag Definition. This will be applied to all resources created in the Compartment.
+            - The default value for the tag definition. This will be applied to all new resources created in the compartment.
             - Required for create using I(state=present), update using I(state=present) with tag_default_id present.
         type: str
     tag_default_id:
         description:
-            - The OCID of the Tag Default.
+            - The OCID of the tag default.
             - Required for update using I(state=present).
             - Required for delete using I(state=absent).
         type: str
@@ -67,13 +67,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create tag_default
   oci_identity_tag_default:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaamnuh3osn3n77vx2ofkx5zwpaqae5rox2zfoscd7z3uvnhpqf5f7q
-    tag_definition_id: ocid1.tagdefinition.oc1..aaaaaaaash5swxlw2ppo2rjqy5cwknrggb3ogpdzmsk6f4kdjfcwwkys3zga
-    value: such-default-wow
+    compartment_id: ocid1.compartment.oc1..aaaaaaaaexampleuniqueID
+    tag_definition_id: ocid1.tagdefinition.oc1..aaaaaaaaexampleuniqueID
+    value: W123
 
 - name: Update tag_default
   oci_identity_tag_default:
-    value: so-tagging
+    value: W123
     tag_default_id: ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete tag_default
@@ -92,37 +92,38 @@ tag_default:
     contains:
         id:
             description:
-                - The OCID of the Tag Default.
+                - The OCID of the tag default.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         compartment_id:
             description:
-                - The OCID of the Compartment. The Tag Default will apply to any resource contained in this Compartment.
+                - The OCID of the compartment. The tag default applies to all new resources that get created in the
+                  compartment. Resources that existed before the tag default was created are not tagged.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         tag_namespace_id:
             description:
-                - The OCID of the Tag Namespace that contains the Tag Definition.
+                - The OCID of the tag namespace that contains the tag definition.
             returned: on success
             type: string
             sample: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
         tag_definition_id:
             description:
-                - The OCID of the Tag Definition. The Tag Default will always assign a default value for this Tag Definition.
+                - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             returned: on success
             type: string
             sample: ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx
         tag_definition_name:
             description:
-                - The name used in the Tag Definition. This field is informational in the context of the Tag Default.
+                - The name used in the tag definition. This field is informational in the context of the tag default.
             returned: on success
             type: string
             sample: tag_definition_name_example
         value:
             description:
-                - The default value for the Tag Definition. This will be applied to all resources created in the Compartment.
+                - The default value for the tag definition. This will be applied to all resources created in the compartment.
             returned: on success
             type: string
             sample: value_example
@@ -135,7 +136,7 @@ tag_default:
             sample: 2016-08-25T21:10:29.600Z
         lifecycle_state:
             description:
-                - The tag default's current state. After creating a tagdefault, make sure its `lifecycleState` is ACTIVE before using it.
+                - The tag default's current state. After creating a `TagDefault`, make sure its `lifecycleState` is ACTIVE before using it.
             returned: on success
             type: string
             sample: ACTIVE

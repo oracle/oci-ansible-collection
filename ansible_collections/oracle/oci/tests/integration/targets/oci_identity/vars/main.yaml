@@ -42,7 +42,7 @@ updated_group_defined_tags:
       ansible_tag_namespace_integration_test_1:
                      ansible_tag_1: 'engineering'
 
-# Tags
+# tags
 tag_defn_freeform_tags:
        test_tag_class: 'test_tag_value'
 tag_defn_freeform_tags_updated:
@@ -59,3 +59,6 @@ customer_secret_key_1_updated_name: "My updated customer secret key description 
 # Smtp credentials
 smtp_credential_description: "My first smtp credential description {{random_suffix_1024}} in {{ansible_nodename}}"
 smtp_credential_updated_description: "My updated smtp credential description {{random_suffix_1024}} in {{ansible_nodename}}"
+
+# tag namespace variables
+test_tag_namespace_name: "test_tag_namespace_{{ random_suffix_1024 }}"

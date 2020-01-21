@@ -59,7 +59,10 @@ region_subscriptions:
                   - `PHX`
                   - `IAD`
                   - `FRA`
-                  - `LHR`"
+                  - `LHR`
+                  - `YYZ`
+                  - `NRT`
+                  - `ICN`"
             returned: on success
             type: string
             sample: region_key_example
@@ -67,10 +70,13 @@ region_subscriptions:
             description:
                 - The region's name.
                 - "Allowed values are:
-                  - `us-phoenix-1`
-                  - `us-ashburn-1`
+                  - `ap-seoul-1`
+                  - `ap-tokyo-1`
+                  - `ca-toronto-1`
                   - `eu-frankurt-1`
-                  - `uk-london-1`"
+                  - `uk-london-1`
+                  - `us-ashburn-1`
+                  - `us-phoenix-1`"
             returned: on success
             type: string
             sample: region_name_example

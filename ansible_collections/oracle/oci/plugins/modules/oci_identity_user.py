@@ -115,13 +115,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create user
   oci_identity_user:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
     description: John Smith
     name: JohnSmith@example.com
 
 - name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
     name: JohnSmith@example.com
     description: John Smith
     email: email_example
@@ -141,7 +141,7 @@ EXAMPLES = """
 
 - name: Delete user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
     name: JohnSmith@example.com
     state: absent
 
@@ -181,8 +181,8 @@ user:
             sample: description_example
         email:
             description:
-                - The email you assign to the user during creation.
-                  The name must be unique across all users in the tenancy.
+                - The email address you assign to the user.
+                  The email address must be unique across all users in the tenancy.
             returned: on success
             type: string
             sample: email_example
@@ -224,9 +224,9 @@ user:
             sample: 56
         freeform_tags:
             description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

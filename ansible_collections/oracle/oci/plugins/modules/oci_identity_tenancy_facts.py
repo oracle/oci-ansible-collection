@@ -79,7 +79,10 @@ tenancy:
                   - `IAD`
                   - `PHX`
                   - `FRA`
-                  - `LHR`"
+                  - `LHR`
+                  - `ICN`
+                  - `YYZ`
+                  - `NRT`"
             returned: on success
             type: string
             sample: home_region_key_example

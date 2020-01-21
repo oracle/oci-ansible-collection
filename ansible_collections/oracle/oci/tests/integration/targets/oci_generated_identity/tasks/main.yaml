@@ -1,16 +1,49 @@
 ---
 - import_tasks: oci_identity_region_tests.yaml
+  tags:
+    - region
 - import_tasks: oci_identity_dynamic_group_tests.yaml
+  tags:
+      - dynamic_group
 - import_tasks: oci_identity_region_subscription_tests.yaml
+  tags:
+      - region_subscription
 - import_tasks: oci_identity_fault_domain_tests.yaml
+  tags:
+      - fault_domain
 - import_tasks: oci_identity_availability_domain_tests.yaml
+  tags:
+      - availability_domain
 - import_tasks: oci_identity_group_tests.yaml
+  tags:
+      - group
 - import_tasks: oci_identity_idp_group_mapping_tests.yaml
+  tags:
+      - idp_group_mapping
 - import_tasks: oci_identity_tag_namespace_tests.yaml
+  tags:
+      - tag_namespace
 - import_tasks: oci_identity_tenancy_tests.yaml
+  tags:
+      - tenancy
 - import_tasks: oci_identity_user_tests.yaml
+  tags:
+      - user
 - import_tasks: oci_identity_user_group_membership_tests.yaml
+  tags:
+      - user_group_membership
 - import_tasks: oci_identity_ui_password_tests.yaml
+  tags:
+      - ui_password
 - import_tasks: oci_identity_auth_token_tests.yaml
+  tags:
+      - auth_token
 - import_tasks: oci_identity_customer_secret_key_tests.yaml
+  tags:
+      - customer_secret_key
 - import_tasks: oci_identity_smtp_credential_tests.yaml
+  tags:
+      - smtp_credential
+- import_tasks: oci_identity_cost_tracking_tag_tests.yaml
+  tags:
+      - cost_tracking_tag

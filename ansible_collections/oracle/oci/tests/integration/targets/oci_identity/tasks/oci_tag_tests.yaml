@@ -1,0 +1,285 @@
+---
+# tests for `oci_tag` and `oci_tag_facts`
+
+- set_fact:
+    tag_ns_1_ocid: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+
+# Deleting a tag take a long time (10-20 minutes) and only one tag can be
+# in DELETING at a time, so CreateTag + DeleteTag tests are handled separately
+# in a non_parallel, lengthy suite
+
+- name: Set original description and freeform tags of tag definition
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    description: "{{ test_tag_description }}"
+    freeform_tags: "{{ tag_defn_freeform_tags }}"
+    is_retired: "no"
+    is_cost_tracking: "no"
+    state: "present"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- set_fact:
+    test_tag_ocid: "{{ result.tag.id }}"
+- name: Assert that tag definition was updated with new description and is active
+  assert:
+    that:
+        - result.tag.description == test_tag_description
+        - result.tag.is_retired == False
+
+- name: Set original description of tag definition - idempotent test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    description: "{{ test_tag_description }}"
+    is_retired: "no"
+    is_cost_tracking: "no"
+    state: "present"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that changed is false, and the old tag definition is returned
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.description == test_tag_description
+        - result.tag.is_retired == False
+
+- name: Get details of a specific tag definition
+  oci_identity_tag_facts:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    tag_name: "{{ test_tag_name }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag definition's facts were retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.tags[0].is_retired == False
+        - result.tags[0].id == test_tag_ocid
+
+- name: Get all tag definitions associated in a tag namespace
+  oci_identity_tag_facts:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag definitions facts were retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.tags | length > 0
+
+- name: Update description of tag definition
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    description: "{{ test_tag_mod_description }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag definition was updated with new description and remains active
+  assert:
+    that:
+        - result.changed == True
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+
+- name: Update description of tag definition, idempotency test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    description: "{{ test_tag_mod_description }}"
+  register: result
+- name: Assert that tag definition was not changed
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+
+- name: Update freeform tags of a tag definition
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    freeform_tags: "{{ tag_defn_freeform_tags_updated }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag definition was updated with a new freeform tag
+  assert:
+    that:
+        - result.changed == True
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+        - result.tag.freeform_tags == tag_defn_freeform_tags_updated
+
+- name: Update freeform tags of tag definition, idempotency test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    freeform_tags: "{{ tag_defn_freeform_tags_updated }}"
+  register: result
+- name: Assert that tag definition was not changed
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+        - result.tag.freeform_tags == tag_defn_freeform_tags_updated
+
+- name: Get all cost-tracking tags before introducing a new cost-tracking tag
+  oci_identity_cost_tracking_tag_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+  register: result
+- debug: msg="{{result}}"
+- set_fact:
+    orig_count_of_cost_tracking_tags: "{{result.cost_tracking_tags | length }}"
+
+
+- name: Enable tag definition for cost-tracking
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_cost_tracking: "yes"
+  register: result
+- name: Assert that tag definition was enabled for cost-tracking
+  assert:
+    that:
+        - result.changed == True
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+        - result.tag.is_cost_tracking == True
+
+- name: Enable tag definition for cost-tracking, idempotency test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_cost_tracking: "yes"
+  register: result
+- name: Assert that tag definition was not changed
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+        - result.tag.is_cost_tracking == True
+
+- name: Get all cost-tracking tags after enable
+  oci_identity_cost_tracking_tag_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+  register: result
+- debug: msg="{{result}}"
+- set_fact:
+    current_orig_count_of_cost_tracking_tags: "{{result.cost_tracking_tags | length }}"
+    expected_count: "{{orig_count_of_cost_tracking_tags|int + 1}}"
+- assert:
+    that:
+      # The current count of cost-tracking tags may not be exactly equal to expected_count if there are parallel tests
+      - current_orig_count_of_cost_tracking_tags >= expected_count
+      # When multiple oci_tag_tests run in parallel, this check may not work
+
+- name: Disable tag definition for cost-tracking
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_cost_tracking: "no"
+  register: result
+- name: Assert that tag definition was enabled for cost-tracking
+  assert:
+    that:
+        - result.changed == True
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+        - result.tag.is_cost_tracking == False
+
+- name: Disable tag definition for cost-tracking, idempotency test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_cost_tracking: "no"
+  register: result
+- name: Assert that tag definition was not changed
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.is_retired == False
+        - result.tag.description == test_tag_mod_description
+        - result.tag.id == test_tag_ocid
+        - result.tag.is_cost_tracking == False
+
+- name: Get all cost-tracking tags after disable
+  oci_identity_cost_tracking_tag_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+  register: result
+- assert:
+    that:
+      # The current count of cost-tracking tags may not be exactly equal to expected_count if there are parallel tests
+      - result.cost_tracking_tags|length >= orig_count_of_cost_tracking_tags|int
+
+- name: Retire the tag definition
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_retired: "yes"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag definition was retired
+  assert:
+    that:
+        - result.changed == True
+        - result.tag.is_retired == True
+        - result.tag.id == test_tag_ocid
+
+- name: Retire the tag definition - idempotency test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_retired: "yes"
+  register: result
+- name: Assert that tag definition was retired
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.is_retired == True
+        - result.tag.id == test_tag_ocid
+
+- name: Reactivate the tag definition
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_retired: "no"
+    state: "present"
+  register: result
+- name: Assert that tag definition was reactivated
+  assert:
+    that:
+        - result.changed == True
+        - result.tag.is_retired == False
+        - result.tag.id == test_tag_ocid
+
+- name: Reactivate the tag definition - idempotency test
+  oci_identity_tag:
+    tag_namespace_id: "{{ tag_ns_1_ocid }}"
+    name: "{{ test_tag_name }}"
+    is_retired: "no"
+    state: "present"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag definition was reactivated
+  assert:
+    that:
+        - result.changed == False
+        - result.tag.is_retired == False
+        - result.tag.id == test_tag_ocid

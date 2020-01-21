@@ -283,6 +283,13 @@ _WAITER_OVERRIDE_MAP = {
         "smtp_credential",
         oci_common_utils.DELETE_OPERATION_KEY,
     ): LifecycleStateWaiter,
+    # update_tag can move a tag into ACTIVE or INACTIVE (based on is_retired flag) so we can't wait for active states
+    # like usual or it will never complete when retiring a tag.
+    # there is no other state we can reliably wait on to determine the update has completed and in all currently
+    # known examples the UPDATE completes synchronously
+    ("identity", "tag", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
+    # update_tag_namespace has the same issue as update_tag
+    ("identity", "tag_namespace", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
 }
 
 

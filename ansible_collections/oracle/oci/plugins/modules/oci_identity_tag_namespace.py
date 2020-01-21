@@ -19,71 +19,70 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_identity_group
-short_description: Manage a Group resource in Oracle Cloud Infrastructure
+module: oci_identity_tag_namespace
+short_description: Manage a TagNamespace resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create, update and delete a Group resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new group in your tenancy.
-    - You must specify your tenancy's OCID as the compartment ID in the request object (remember that the tenancy
-      is simply the root compartment). Notice that IAM resources (users, groups, compartments, and some policies)
-      reside within the tenancy itself, unlike cloud resources such as compute instances, which typically
-      reside within compartments inside the tenancy. For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-    - "You must also specify a *name* for the group, which must be unique across all groups in your tenancy and
-      cannot be changed. You can use this name or the OCID when writing policies that apply to the group. For more
-      information about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
-    - "You must also specify a *description* for the group (although it can be an empty string). It does not
-      have to be unique, and you can change it anytime with L(UpdateGroup,https://docs.cloud.oracle.com/#/en/identity/20160918/Group/UpdateGroup)."
-    - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
-      object, first make sure its `lifecycleState` has changed to ACTIVE.
-    - After creating the group, you need to put users in it and write policies for it.
-      See L(AddUserToGroup,https://docs.cloud.oracle.com/#/en/identity/20160918/UserGroupMembership/AddUserToGroup) and
-      L(CreatePolicy,https://docs.cloud.oracle.com/#/en/identity/20160918/Policy/CreatePolicy).
+    - This module allows the user to create, update and delete a TagNamespace resource in Oracle Cloud Infrastructure
+    - For I(state=present), creates a new tag namespace in the specified compartment.
+    - You must specify the compartment ID in the request object (remember that the tenancy is simply the root
+      compartment).
+    - "You must also specify a *name* for the namespace, which must be unique across all namespaces in your tenancy
+      and cannot be changed. The name can contain any ASCII character except the space (_) or period (.).
+      Names are case insensitive. That means, for example, \\"myNamespace\\" and \\"mynamespace\\" are not allowed
+      in the same tenancy. Once you created a namespace, you cannot change the name.
+      If you specify a name that's already in use in the tenancy, a 409 error is returned."
+    - "You must also specify a *description* for the namespace.
+      It does not have to be unique, and you can change it with
+      L(UpdateTagNamespace,https://docs.cloud.oracle.com/#/en/identity/latest/TagNamespace/UpdateTagNamespace)."
 version_added: "2.5"
 options:
     compartment_id:
         description:
-            - The OCID of the tenancy containing the group.
+            - The OCID of the tenancy containing the tag namespace.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     name:
         description:
-            - The name you assign to the group during creation. The name must be unique across all groups
-              in the tenancy and cannot be changed.
+            - The name you assign to the tag namespace during creation. It must be unique across all tag namespaces in the tenancy and cannot be changed.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     description:
         description:
-            - The description you assign to the group during creation. Does not have to be unique, and it's changeable.
+            - The description you assign to the tag namespace during creation.
             - Required for create using I(state=present).
         type: str
     freeform_tags:
         description:
-            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Department\\": \\"Finance\\"}`"
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
         type: dict
     defined_tags:
         description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
         type: dict
-    group_id:
+    tag_namespace_id:
         description:
-            - The OCID of the group.
+            - The OCID of the tag namespace.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    is_retired:
+        description:
+            - Whether the tag namespace is retired.
+              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+        type: bool
     state:
         description:
-            - The state of the Group.
-            - Use I(state=present) to create or update a Group.
-            - Use I(state=absent) to delete a Group.
+            - The state of the TagNamespace.
+            - Use I(state=present) to create or update a TagNamespace.
+            - Use I(state=absent) to delete a TagNamespace.
         type: str
         required: false
         default: 'present'
@@ -96,91 +95,71 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create group
-  oci_identity_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
-    description: Group for network administrators
-    name: NetworkAdmins
+- name: Create tag_namespace
+  oci_identity_tag_namespace:
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    name: name_example
+    description: description_example
 
-- name: Update group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
-    name: NetworkAdmins
-    description: Group for network administrators
+- name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_tag_namespace:
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    name: name_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_retired: true
 
-- name: Update group
-  oci_identity_group:
-    description: Group for network administrators
+- name: Update tag_namespace
+  oci_identity_tag_namespace:
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
-    group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
 
-- name: Delete group
-  oci_identity_group:
-    group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+- name: Delete tag_namespace
+  oci_identity_tag_namespace:
+    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
     state: absent
 
-- name: Delete group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-  oci_identity_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
-    name: NetworkAdmins
+- name: Delete tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_identity_tag_namespace:
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    name: name_example
     state: absent
 
 """
 
 RETURN = """
-group:
+tag_namespace:
     description:
-        - Details of the Group resource acted upon by the current operation
+        - Details of the TagNamespace resource acted upon by the current operation
     returned: on success
     type: complex
     contains:
         id:
             description:
-                - The OCID of the group.
+                - The OCID of the tag namespace.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         compartment_id:
             description:
-                - The OCID of the tenancy containing the group.
+                - The OCID of the compartment that contains the tag namespace.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         name:
             description:
-                - The name you assign to the group during creation. The name must be unique across all groups in
-                  the tenancy and cannot be changed.
+                - The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.
             returned: on success
             type: string
             sample: name_example
         description:
             description:
-                - The description you assign to the group. Does not have to be unique, and it's changeable.
+                - The description you assign to the tag namespace.
             returned: on success
             type: string
             sample: description_example
-        time_created:
-            description:
-                - Date and time the group was created, in the format defined by RFC3339.
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
-        lifecycle_state:
-            description:
-                - The group's current state. After creating a group, make sure its `lifecycleState` changes from CREATING to
-                  ACTIVE before using it.
-            returned: on success
-            type: string
-            sample: CREATING
-        inactive_status:
-            description:
-                - The detailed status of INACTIVE lifecycleState.
-            returned: on success
-            type: int
-            sample: 56
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -197,16 +176,38 @@ group:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        is_retired:
+            description:
+                - Whether the tag namespace is retired.
+                  See L(Retiring Key Definitions and Namespace
+                  Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+            returned: on success
+            type: bool
+            sample: true
+        lifecycle_state:
+            description:
+                - The tagnamespace's current state. After creating a tagnamespace, make sure its `lifecycleState` is ACTIVE before using it. After retiring a
+                  tagnamespace, make sure its `lifecycleState` is INACTIVE before using it.
+            returned: on success
+            type: string
+            sample: ACTIVE
+        time_created:
+            description:
+                - "Date and time the tagNamespace was created, in the format defined by RFC3339.
+                  Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "lifecycle_state": "CREATING",
-        "inactive_status": 56,
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "is_retired": true,
+        "lifecycle_state": "ACTIVE",
+        "time_created": "2016-08-25T21:10:29.600Z"
     }
 """
 
@@ -222,29 +223,30 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.identity import IdentityClient
-    from oci.identity.models import CreateGroupDetails
-    from oci.identity.models import UpdateGroupDetails
+    from oci.identity.models import CreateTagNamespaceDetails
+    from oci.identity.models import UpdateTagNamespaceDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class GroupHelperGen(OCIResourceHelperBase):
+class TagNamespaceHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_module_resource_id_param(self):
-        return "group_id"
+        return "tag_namespace_id"
 
     def get_module_resource_id(self):
-        return self.module.params.get("group_id")
+        return self.module.params.get("tag_namespace_id")
 
     def get_get_fn(self):
-        return self.client.get_group
+        return self.client.get_tag_namespace
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
-            self.client.get_group, group_id=self.module.params.get("group_id"),
+            self.client.get_tag_namespace,
+            tag_namespace_id=self.module.params.get("tag_namespace_id"),
         )
 
     def list_resources(self):
@@ -270,17 +272,19 @@ class GroupHelperGen(OCIResourceHelperBase):
 
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
 
-        return oci_common_utils.list_all_resources(self.client.list_groups, **kwargs)
+        return oci_common_utils.list_all_resources(
+            self.client.list_tag_namespaces, **kwargs
+        )
 
     def get_create_model_class(self):
-        return CreateGroupDetails
+        return CreateTagNamespaceDetails
 
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
-            call_fn=self.client.create_group,
+            call_fn=self.client.create_tag_namespace,
             call_fn_args=(),
-            call_fn_kwargs=dict(create_group_details=create_details,),
+            call_fn_kwargs=dict(create_tag_namespace_details=create_details,),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.client,
@@ -290,16 +294,16 @@ class GroupHelperGen(OCIResourceHelperBase):
         )
 
     def get_update_model_class(self):
-        return UpdateGroupDetails
+        return UpdateTagNamespaceDetails
 
     def update_resource(self):
         update_details = self.get_update_model()
         return oci_wait_utils.call_and_wait(
-            call_fn=self.client.update_group,
+            call_fn=self.client.update_tag_namespace,
             call_fn_args=(),
             call_fn_kwargs=dict(
-                group_id=self.module.params.get("group_id"),
-                update_group_details=update_details,
+                tag_namespace_id=self.module.params.get("tag_namespace_id"),
+                update_tag_namespace_details=update_details,
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -311,9 +315,11 @@ class GroupHelperGen(OCIResourceHelperBase):
 
     def delete_resource(self):
         return oci_wait_utils.call_and_wait(
-            call_fn=self.client.delete_group,
+            call_fn=self.client.delete_tag_namespace,
             call_fn_args=(),
-            call_fn_kwargs=dict(group_id=self.module.params.get("group_id"),),
+            call_fn_kwargs=dict(
+                tag_namespace_id=self.module.params.get("tag_namespace_id"),
+            ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.client,
@@ -323,10 +329,10 @@ class GroupHelperGen(OCIResourceHelperBase):
         )
 
 
-GroupHelperCustom = get_custom_class("GroupHelperCustom")
+TagNamespaceHelperCustom = get_custom_class("TagNamespaceHelperCustom")
 
 
-class ResourceHelper(GroupHelperCustom, GroupHelperGen):
+class ResourceHelper(TagNamespaceHelperCustom, TagNamespaceHelperGen):
     pass
 
 
@@ -341,7 +347,8 @@ def main():
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            group_id=dict(aliases=["id"], type="str"),
+            tag_namespace_id=dict(aliases=["id"], type="str"),
+            is_retired=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )
@@ -353,7 +360,7 @@ def main():
 
     resource_helper = ResourceHelper(
         module=module,
-        resource_type="group",
+        resource_type="tag_namespace",
         service_client_class=IdentityClient,
         namespace="identity",
     )

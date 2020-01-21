@@ -100,8 +100,8 @@ users:
             sample: description_example
         email:
             description:
-                - The email you assign to the user during creation.
-                  The name must be unique across all users in the tenancy.
+                - The email address you assign to the user.
+                  The email address must be unique across all users in the tenancy.
             returned: on success
             type: string
             sample: email_example
@@ -143,9 +143,9 @@ users:
             sample: 56
         freeform_tags:
             description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}

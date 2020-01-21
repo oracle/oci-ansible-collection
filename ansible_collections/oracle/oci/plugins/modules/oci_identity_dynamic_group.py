@@ -30,7 +30,7 @@ description:
       reside within compartments inside the tenancy. For information about OCIDs, see
       L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "You must also specify a *name* for the dynamic group, which must be unique across all dynamic groups in your
-      tenancy, and cannot be changed. Note that this name has to be also unique accross all groups in your tenancy.
+      tenancy, and cannot be changed. Note that this name has to be also unique across all groups in your tenancy.
       You can use this name or the OCID when writing policies that apply to the dynamic group. For more information
       about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
     - "You must also specify a *description* for the dynamic group (although it can be an empty string). It does not
@@ -103,23 +103,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create dynamic_group
   oci_identity_dynamic_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
     description: Instance group for dev compartment
     name: DevCompartmentDynamicGroup
-    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq
+    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
 
 - name: Update dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_dynamic_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
     name: DevCompartmentDynamicGroup
-    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq
+    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
     description: Instance group for dev compartment
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update dynamic_group
   oci_identity_dynamic_group:
-    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6inozhadasiiaqmttsgqanpxd6ads5tvo6g27ujaygksvivrnq
+    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
     description: Instance group for dev compartment
     dynamic_group_id: ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx
 
@@ -130,7 +130,7 @@ EXAMPLES = """
 
 - name: Delete dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_dynamic_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
     name: DevCompartmentDynamicGroup
     state: absent
 

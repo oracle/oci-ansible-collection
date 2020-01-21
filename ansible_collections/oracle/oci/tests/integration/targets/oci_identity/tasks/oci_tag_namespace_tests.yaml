@@ -1,0 +1,209 @@
+---
+# tests for `oci_tag_namespace` and `oci_tag_namespace_facts`
+
+# Tag namespaces cannot be deleted, only retired and there is a fixed limit
+# of tag namespaces. So "create tag namespace" is not tested. Instead
+# we test retire, reactivate and update description usecases using
+# a pre-created tag namespace
+# - name: Create a tag namespace
+#   oci_identity_tag_namespace:
+#     compartment_id: "{{ test_compartment_ocid }}"
+#     name: "{{ test_tag_namespace_name }}"
+#     description: "{{ test_tag_namespace_description }}"
+#   register: result
+# - set_fact:
+#     tag_ns_1_ocid: "{{ result.tag_namespace.id }}"
+
+# - name: Assert that tag namespace was created and is not retired
+#   assert:
+#     that:
+#         - result.changed == True
+#         - result.tag_namespace.is_retired == False
+#         - result.tag_namespace.time_created is defined
+
+- set_fact:
+    tag_ns_1_ocid: "{{ test_tag_namespace_ocid_for_iam_tests }}"
+
+- name: Set original description of tag namespace
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    description: "{{ test_tag_namespace_description }}"
+    is_retired: "no"
+    state: "present"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag namespace was updated with new description
+  assert:
+    that:
+        - result.tag_namespace.description == test_tag_namespace_description
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Get details of a specific tag namespace
+  oci_identity_tag_namespace_facts:
+    id: "{{ tag_ns_1_ocid }}"
+  register: result
+- debug:
+    msg: "Tag namespace details {{ result }}"
+- name: Assert that tag namespace's facts were retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespaces[0].is_retired == False
+        - result.tag_namespaces[0].id == tag_ns_1_ocid
+
+# This will test ability to retrieve a resource using `name` when the list call by sdk doesn't support filtering based on name.
+- name: Get details of a specific tag namespace using name, list_tag_namespace doesn't explicitly filter using name
+  oci_identity_tag_namespace_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+    name: "{{ test_tag_namespace_name_for_iam }}"
+  register: result
+- debug:
+    msg: "Tag namespace details {{ result }}"
+- name: Assert that tag namespace's facts were retrieved
+  assert:
+    that:
+        - result.tag_namespaces[0].id == tag_ns_1_ocid
+        - result.tag_namespaces[0].name == test_tag_namespace_name_for_iam
+
+
+- name: Get all tag namespaces associated in a compartment
+  oci_identity_tag_namespace_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: result
+- debug:
+    msg: "Tag namespaces within compartment {{ result }}"
+- name: Assert that tag namespaces facts were retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespaces | length > 0
+
+- name: Get all tag namespaces associated in a compartment including subcompartments
+  oci_identity_tag_namespace_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+    include_subcompartments: True
+  register: result
+- debug:
+    msg: "Tag namespaces within compartment {{ result }}"
+- name: Assert that tag namespaces facts were retrieved
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespaces | length > 0
+
+- name: Update description of tag namespace
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    description: "{{ test_tag_namespace_mod_description }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag namespace was updated with new description and remains active
+  assert:
+    that:
+        - result.changed == True
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.description == test_tag_namespace_mod_description
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Update description of tag namespace, idempotency test
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    description: "{{ test_tag_namespace_mod_description }}"
+  register: result
+- name: Assert that tag namespace was not changed
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.description == test_tag_namespace_mod_description
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+
+- name: Update description of tag namespace using name as identifier
+  oci_identity_tag_namespace:
+    compartment_id: "{{ test_compartment_ocid }}"
+    name: "{{ test_tag_namespace_name_for_iam }}"
+    description: "{{ test_tag_namespace_mod_description_2 }}"
+  environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag namespace was updated with new description and remains active
+  assert:
+    that:
+        - result.changed == True
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.description == test_tag_namespace_mod_description_2
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Update description of tag namespace using name as identifier, idempotency test
+  oci_identity_tag_namespace:
+    compartment_id: "{{ test_compartment_ocid }}"
+    name: "{{ test_tag_namespace_name_for_iam }}"
+    description: "{{ test_tag_namespace_mod_description_2 }}"
+  environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+- name: Assert that tag namespace was not changed
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.description == test_tag_namespace_mod_description_2
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Retire the tag namespace
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    is_retired: "yes"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- name: Assert that tag namespace was retired
+  assert:
+    that:
+        - result.changed == True
+        - result.tag_namespace.is_retired == True
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Retire the tag namespace - idempotency test
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    is_retired: "yes"
+  register: result
+- name: Assert that tag namespace was retired
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespace.is_retired == True
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Reactivate the tag namespace
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    is_retired: "no"
+    state: "present"
+  register: result
+- name: Assert that tag namespace was reactivated
+  assert:
+    that:
+        - result.changed == True
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.id == tag_ns_1_ocid
+
+- name: Reactivate the tag namespace - idempotency test
+  oci_identity_tag_namespace:
+    id: "{{ tag_ns_1_ocid }}"
+    is_retired: "no"
+    state: "present"
+  register: result
+- name: Assert that tag namespace was reactivated
+  assert:
+    that:
+        - result.changed == False
+        - result.tag_namespace.is_retired == False
+        - result.tag_namespace.id == tag_ns_1_ocid

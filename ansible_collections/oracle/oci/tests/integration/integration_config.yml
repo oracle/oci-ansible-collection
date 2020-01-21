@@ -15,3 +15,21 @@ test_identity_provider_id: "ocid1.saml2idp.oc1..aaaaaaaaifksnyueumkzf2unksnqc5mt
 # This tag namespace would not be retired during a test execution and
 # hence can be referenced by any tests.
 test_tag_namespace_ocid: "ocid1.tagnamespace.oc1..aaaaaaaalmu7jk5o3ps3e4ksv2k5kjpqhnougumqll2osiupremmyyyqw3sa"
+
+# Another test tag namespace named "{{test_tag_namespace_name_for_iam_tests}}" created
+# under {{test_compartment_ocid}} that is used for IAM tag and tag
+# namespace tests. This tag namespace can be retired during a test
+# execution
+test_tag_namespace_ocid_for_iam_tests: "ocid1.tagnamespace.oc1..aaaaaaaaz24j6vih6gf5ouxkk4f7xvjzdlesj2iwnsm4eq3ad2iehm4rwiya"
+
+# Tag key definitions
+test_tag_name: "ansible_tag_1"
+test_tag_description: "{{test_tag_name}} description"
+test_tag_mod_description: "{{test_tag_name}} modified description"
+
+# Tag namespaces
+test_tag_namespace_name: "ansible_tag_namespace_integration_test_1"
+test_tag_namespace_name_for_iam: "ansible_tag_namespace_integration_test_for_iam_1"
+test_tag_namespace_description: "{{test_tag_namespace_name}} description"
+test_tag_namespace_mod_description: "{{test_tag_namespace_name}} modified description"
+test_tag_namespace_mod_description_2: "{{test_tag_namespace_name}} modified description 2"

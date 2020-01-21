@@ -53,7 +53,10 @@ regions:
                   - `PHX`
                   - `IAD`
                   - `FRA`
-                  - `LHR`"
+                  - `LHR`
+                  - `YYZ`
+                  - `NRT`
+                  - `ICN`"
             returned: on success
             type: string
             sample: key_example
@@ -61,10 +64,13 @@ regions:
             description:
                 - The name of the region.
                 - "Allowed values are:
-                  - `us-phoenix-1`
+                  - `ap-seoul-1`
+                  - `ap-tokyo-1`
+                  - `ca-toronto-1`
+                  - `eu-frankurt-1`
+                  - `uk-london-1`
                   - `us-ashburn-1`
-                  - `eu-frankfurt-1`
-                  - `uk-london-1`"
+                  - `us-phoenix-1`"
             returned: on success
             type: string
             sample: name_example

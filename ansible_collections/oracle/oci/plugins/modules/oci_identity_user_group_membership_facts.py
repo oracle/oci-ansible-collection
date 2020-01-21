@@ -31,7 +31,7 @@ description:
       - Similarly, you can limit the results to just the memberships for a given group by specifying a `groupId`.
       - You can set both the `userId` and `groupId` to determine if the specified user is in the specified group.
       If the answer is no, the response is an empty list.
-      - Although`userId` and `groupId` are not indvidually required, you must set one of them."
+      - Although`userId` and `groupId` are not individually required, you must set one of them."
     - If I(user_group_membership_id) is specified, the details of a single UserGroupMembership will be returned.
 version_added: "2.5"
 options:
