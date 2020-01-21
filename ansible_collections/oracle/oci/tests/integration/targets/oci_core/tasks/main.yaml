@@ -13,3 +13,6 @@
 - import_tasks: oci_network_virtual_circuit_actions_tests.yaml
   tags:
     - virtual_circuit_actions
+- import_tasks: oci_network_ip_sec_connection_tests.yaml
+  tags:
+    - ip_sec_connection

@@ -1,0 +1,34 @@
+---
+- block:
+  - name: Get ip_sec_connection_device_config
+    oci_network_ip_sec_connection_device_config_facts:
+      ipsc_id: "{{ ip_sec_connection_device_config_resource_id | oracle.oci.override(test_ip_sec_connection_device_config_get_ipsc_id, omit) }}"
+    register: result
+    when: skip_ip_sec_connection_device_config_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.ip_sec_connection_device_config is defined
+        - result.ip_sec_connection_device_config != None
+    when: skip_ip_sec_connection_device_config_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.id is defined
+    with_items:
+      - "{{ result.ip_sec_connection_device_config }}"
+    when: skip_ip_sec_connection_device_config_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ip_sec_connection_device_config_get_custom_assertions }}"
+    when: ip_sec_connection_device_config_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

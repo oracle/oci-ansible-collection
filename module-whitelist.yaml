@@ -49,6 +49,16 @@ moduleWhitelist:
   - oci_network_virtual_circuit_bandwidth_shape_facts
   - oci_network_virtual_circuit_facts
   - oci_network_virtual_circuit_public_prefix_facts
+  - oci_network_drg_attachment
+  - oci_network_drg_attachment_facts
+  - oci_network_ip_sec_connection
+  - oci_network_ip_sec_connection_facts
+  - oci_network_ip_sec_connection_device_config_facts
+  - oci_network_ip_sec_connection_device_status_facts
+  - oci_network_ip_sec_connection_tunnel
+  - oci_network_ip_sec_connection_tunnel_facts
+  - oci_network_ip_sec_connection_tunnel_shared_secret
+  - oci_network_ip_sec_connection_tunnel_shared_secret_facts
   - oci_identity_dynamic_group
   - oci_identity_dynamic_group_facts
   - oci_identity_region_facts

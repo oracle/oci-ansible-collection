@@ -1,0 +1,506 @@
+---
+- block:
+  - name: Create dependency vcn with required parameters
+    oci_network_vcn:
+      cidr_block: "{{ '10.0.0.0/16' | oracle.oci.override(test_drg_attachment_create_dependency_vcn_cidr_block, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_dependency_vcn_compartment_id, omit) }}"
+      display_name: "{{ ('MyVcn' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_dependency_vcn_display_name, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_dependency_vcn_test is not defined and skip_drg_attachment_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_create_dependency_vcn_test is not defined and skip_drg_attachment_dependencies is not defined
+  - set_fact:
+      dependency_vcn: "{{ result.vcn }}"
+      dependency_vcn_id: "{{ result.vcn.id }}"
+    when: skip_drg_attachment_create_dependency_vcn_test is not defined and skip_drg_attachment_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_dependency_vcn_custom_assertions }}"
+    when: drg_attachment_create_dependency_vcn_custom_assertions is defined
+  # dependency resource route_table has no Create operation
+
+
+# ==================================================================================================== #
+
+  - name: Create dependency drg with required parameters
+    oci_network_drg:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_dependency_drg_compartment_id, omit) }}"
+      display_name: "{{ ('MyDrg' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_dependency_drg_display_name, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_dependency_drg_test is not defined and skip_drg_attachment_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_create_dependency_drg_test is not defined and skip_drg_attachment_dependencies is not defined
+  - set_fact:
+      dependency_drg: "{{ result.drg }}"
+      dependency_drg_id: "{{ result.drg.id }}"
+    when: skip_drg_attachment_create_dependency_drg_test is not defined and skip_drg_attachment_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_dependency_drg_custom_assertions }}"
+    when: drg_attachment_create_dependency_drg_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create drg_attachment (check mode)
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_drg_attachment_create_required_drg_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_drg_attachment_create_required_vcn_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_required_compartment_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_drg_attachment_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_check_mode_custom_assertions }}"
+    when: drg_attachment_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create drg_attachment with required parameters
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_drg_attachment_create_required_drg_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_drg_attachment_create_required_vcn_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_create_required_original_test is not defined
+
+  - set_fact:
+      drg_attachment_resource_id: "{{ result.drg_attachment.id }}"
+    when: skip_drg_attachment_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_required_original_custom_assertions }}"
+    when: drg_attachment_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create drg_attachment with required parameters(idempotency)
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_drg_attachment_create_required_drg_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_drg_attachment_create_required_vcn_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_drg_attachment_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_required_idempotency_custom_assertions }}"
+    when: drg_attachment_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update drg_attachment using name with optional + required parameters
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_update_using_name_optional_required_display_name, omit) }}"
+      route_table_id: "{{ dependency_route_table_id | oracle.oci.override(test_drg_attachment_update_using_name_optional_required_route_table_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_update_using_name_optional_required_compartment_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_drg_attachment_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_update_using_name_optional_required_custom_assertions }}"
+    when: drg_attachment_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update drg_attachment using name with optional + required parameters (idempotence)
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_update_using_name_optional_required_display_name, omit) }}"
+      route_table_id: "{{ dependency_route_table_id | oracle.oci.override(test_drg_attachment_update_using_name_optional_required_route_table_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_update_using_name_optional_required_compartment_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_drg_attachment_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_drg_attachment_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: drg_attachment_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete drg_attachment
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_delete_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_drg_attachment_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_delete_required_custom_assertions }}"
+    when: drg_attachment_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete drg_attachment (idempotency)
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_delete_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_drg_attachment_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_drg_attachment_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_delete_required_idempotency_custom_assertions }}"
+    when: drg_attachment_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create drg_attachment with optional + required parameters
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_optional_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_drg_attachment_create_optional_required_drg_id, omit) }}"
+      route_table_id: "{{ dependency_route_table_id | oracle.oci.override(test_drg_attachment_create_optional_required_route_table_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_drg_attachment_create_optional_required_vcn_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_create_optional_required_original_test is not defined
+
+  - set_fact:
+      drg_attachment_resource_id: "{{ result.drg_attachment.id }}"
+    when: skip_drg_attachment_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_optional_required_original_custom_assertions }}"
+    when: drg_attachment_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create drg_attachment with optional + required parameters (idempotence)
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_optional_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_drg_attachment_create_optional_required_drg_id, omit) }}"
+      route_table_id: "{{ dependency_route_table_id | oracle.oci.override(test_drg_attachment_create_optional_required_route_table_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_drg_attachment_create_optional_required_vcn_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_drg_attachment_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_optional_required_idempotence_custom_assertions }}"
+    when: drg_attachment_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update drg_attachment with optional + required parameters
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_update_optional_required_display_name, omit) }}"
+      route_table_id: "{{ dependency_route_table_id | oracle.oci.override(test_drg_attachment_update_optional_required_route_table_id, omit) }}"
+      drg_attachment_id: "{{ drg_attachment_resource_id | oracle.oci.override(test_drg_attachment_update_optional_required_drg_attachment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_update_optional_required_custom_assertions }}"
+    when: drg_attachment_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update drg_attachment with optional + required parameters (idempotence)
+    oci_network_drg_attachment:
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_update_optional_required_display_name, omit) }}"
+      route_table_id: "{{ dependency_route_table_id | oracle.oci.override(test_drg_attachment_update_optional_required_route_table_id, omit) }}"
+      drg_attachment_id: "{{ drg_attachment_resource_id | oracle.oci.override(test_drg_attachment_update_optional_required_drg_attachment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_drg_attachment_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.drg_id is defined
+        - result.drg_attachment.id is defined
+        - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.vcn_id is defined
+    when: skip_drg_attachment_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_update_optional_required_idempotence_custom_assertions }}"
+    when: drg_attachment_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List drg_attachments
+    oci_network_drg_attachment_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_list_compartment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.drg_attachments | length > 0
+    when: skip_drg_attachment_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.drg_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.vcn_id is defined
+    with_items: "{{ result.drg_attachments }}"
+    when: skip_drg_attachment_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_list_custom_assertions }}"
+    when: drg_attachment_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get drg_attachment
+    oci_network_drg_attachment_facts:
+      drg_attachment_id: "{{ drg_attachment_resource_id | oracle.oci.override(test_drg_attachment_get_drg_attachment_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.drg_attachments | length == 1
+    when: skip_drg_attachment_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.drg_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.vcn_id is defined
+    with_items: "{{ result.drg_attachments }}"
+    when: skip_drg_attachment_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_get_custom_assertions }}"
+    when: drg_attachment_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete drg_attachment
+      oci_network_drg_attachment:
+        drg_attachment_id: "{{ drg_attachment_resource_id | oracle.oci.override(test_drg_attachment_delete_rescue_drg_attachment_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: drg_attachment_resource_id is defined
+
+    - name: Delete dependency drg
+      oci_network_drg:
+        drg_id: "{{ dependency_drg_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_drg_attachment_delete_dependency_drg_test is not defined and skip_drg_attachment_dependencies is not defined and dependency_drg_id is defined
+
+    - name: Delete dependency vcn
+      oci_network_vcn:
+        vcn_id: "{{ dependency_vcn_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_drg_attachment_delete_dependency_vcn_test is not defined and skip_drg_attachment_dependencies is not defined and dependency_vcn_id is defined

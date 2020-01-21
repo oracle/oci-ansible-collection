@@ -141,3 +141,7 @@ test_virtual_circuit_public_prefix_list_virtual_circuit_id: "{{ public_colocated
 
 # variables for oci_network_virtual_circuit_bandwidth_shape_tests.yaml
 test_virtual_circuit_bandwidth_shape_list_compartment_id: "{{ temp_test_compartment_ocid }}"
+
+test_drg_attachment_update_using_name_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
+test_drg_attachment_create_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
+test_drg_attachment_update_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"

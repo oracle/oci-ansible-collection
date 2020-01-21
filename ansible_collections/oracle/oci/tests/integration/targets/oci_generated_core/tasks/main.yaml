@@ -62,6 +62,9 @@
   tags:
     - fast_connect
     - fast_connect_provider_service_virtual_circuit_bandwidth_shape
+- import_tasks: oci_network_drg_attachment_tests.yaml
+  tags:
+    - drg_attachment
 - import_tasks: oci_network_cross_connect_group_tests.yaml
   tags:
     - cross_connect_group
