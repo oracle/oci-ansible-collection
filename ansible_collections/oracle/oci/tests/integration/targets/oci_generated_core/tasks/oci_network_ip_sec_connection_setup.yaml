@@ -1,0 +1,30 @@
+- name: Create drg for ip sec connection
+  oci_network_drg:
+    compartment_id: "{{ test_compartment_ocid }}"
+    display_name: "{{ ('MyDrg' + random_suffix_1024) }}"
+  register: result
+
+- set_fact:
+    ip_sec_connection_drg_id: "{{ result.drg.id }}"
+
+- name: Create cpe for ip sec connection
+  oci_network_cpe:
+    compartment_id: "{{ test_compartment_ocid }}"
+    display_name: "{{ ('MyCpe' + random_suffix_1024) }}"
+    ip_address: "{{ '189.44.2.135' }}"
+  register: result
+
+- set_fact:
+    ip_sec_connection_cpe_id: "{{ result.cpe.id }}"
+
+- name: Create ip_sec_connection
+  oci_network_ip_sec_connection:
+    compartment_id: "{{ test_compartment_ocid }}"
+    cpe_id: "{{ ip_sec_connection_cpe_id }}"
+    display_name: "{{ ('MyIPSecConnection' + random_suffix_1024) }}"
+    drg_id: "{{ ip_sec_connection_drg_id }}"
+    static_routes: "{{ [ '172.16.10.0/24' ] }}"
+  register: result
+
+- set_fact:
+    setup_ipsc_id: "{{ result.ip_sec_connection.id }}"

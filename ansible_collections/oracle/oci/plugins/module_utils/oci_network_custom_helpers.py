@@ -373,3 +373,22 @@ class VirtualCircuitActionsHelperCustom:
             self.client.list_virtual_circuit_public_prefixes,
             virtual_circuit_id=self.module.params.get("virtual_circuit_id"),
         )
+
+
+class IpSecConnectionTunnelHelperCustom:
+    def is_update_necessary(self):
+        # The bgp config param in update model is bgp_session_config. But in the get model,
+        # the bgp info is available in bgp_session_info. Since the key names are different,
+        # the idempotence logic fails. So change the key and compare.
+        key_mapping = (
+            lambda key: "bgp_session_info" if key == "bgp_session_config" else key
+        )
+        current_resource_dict = to_dict(self.get_resource().data)
+        update_model = self.get_update_model()
+        update_model_dict = to_dict(update_model)
+        update_model_dict = dict(
+            (key_mapping(key), update_model_dict.get(key)) for key in update_model_dict
+        )
+        return not oci_common_utils.are_dicts_equal(
+            update_model_dict, current_resource_dict, update_model.attribute_map
+        )

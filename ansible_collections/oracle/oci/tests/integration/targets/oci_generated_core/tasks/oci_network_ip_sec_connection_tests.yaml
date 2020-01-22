@@ -306,7 +306,7 @@
       drg_id: "{{ dependency_drg_id | oracle.oci.override(test_ip_sec_connection_create_optional_required_drg_id, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_ip_sec_connection_create_optional_required_freeform_tags, omit) }}"
       static_routes: "{{ [ '172.16.10.0/24' ] | oracle.oci.override(test_ip_sec_connection_create_optional_required_static_routes, omit) }}"
-      tunnel_configuration: "{{ test_ip_sec_connection_create_optional_required_tunnel_configuration | default(omit) }}"
+      tunnel_configuration: "{{ '[]' | oracle.oci.override(test_ip_sec_connection_create_optional_required_tunnel_configuration, omit) }}"
     register: result
     when: skip_ip_sec_connection_create_optional_required_original_test is not defined
 
@@ -349,7 +349,7 @@
       drg_id: "{{ dependency_drg_id | oracle.oci.override(test_ip_sec_connection_create_optional_required_drg_id, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_ip_sec_connection_create_optional_required_freeform_tags, omit) }}"
       static_routes: "{{ [ '172.16.10.0/24' ] | oracle.oci.override(test_ip_sec_connection_create_optional_required_static_routes, omit) }}"
-      tunnel_configuration: "{{ test_ip_sec_connection_create_optional_required_tunnel_configuration | default(omit) }}"
+      tunnel_configuration: "{{ '[]' | oracle.oci.override(test_ip_sec_connection_create_optional_required_tunnel_configuration, omit) }}"
     register: result
     when: skip_ip_sec_connection_create_optional_required_idempotence_test is not defined
 

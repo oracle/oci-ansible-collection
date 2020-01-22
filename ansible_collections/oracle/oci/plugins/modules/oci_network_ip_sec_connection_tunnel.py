@@ -33,9 +33,9 @@ options:
     tunnel_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-        required: true
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
@@ -110,7 +110,6 @@ EXAMPLES = """
 - name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection_tunnel:
     ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-    tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
     display_name: display_name_example
     routing: BGP
 
@@ -352,7 +351,7 @@ class IpSecConnectionTunnelHelperGen(OCIResourceHelperBase):
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_resource_active_states(),
+            or self.get_resource_active_states(),
         )
 
 
@@ -372,7 +371,7 @@ def main():
     module_args.update(
         dict(
             ipsc_id=dict(type="str", required=True),
-            tunnel_id=dict(aliases=["id"], type="str", required=True),
+            tunnel_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             routing=dict(type="str", choices=["BGP", "STATIC"]),
             bgp_session_config=dict(

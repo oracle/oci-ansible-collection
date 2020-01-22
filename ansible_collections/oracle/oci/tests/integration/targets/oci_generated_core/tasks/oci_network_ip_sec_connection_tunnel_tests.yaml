@@ -12,7 +12,7 @@
       ipsc_id: "{{ dependency_ipsc_id | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_ipsc_id, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_display_name, omit) }}"
       routing: "{{ 'STATIC' | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_routing, omit) }}"
-      bgp_session_config: "{{ test_ip_sec_connection_tunnel_update_using_name_optional_required_bgp_session_config | default(omit) }}"
+      bgp_session_config: "{{ '{}' | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_bgp_session_config, omit) }}"
     environment:
       OCI_USE_NAME_AS_IDENTIFIER: 1
     register: result
@@ -46,7 +46,7 @@
       ipsc_id: "{{ dependency_ipsc_id | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_ipsc_id, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_display_name, omit) }}"
       routing: "{{ 'STATIC' | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_routing, omit) }}"
-      bgp_session_config: "{{ test_ip_sec_connection_tunnel_update_using_name_optional_required_bgp_session_config | default(omit) }}"
+      bgp_session_config: "{{ '{}' | oracle.oci.override(test_ip_sec_connection_tunnel_update_using_name_optional_required_bgp_session_config, omit) }}"
     environment:
       OCI_USE_NAME_AS_IDENTIFIER: 1
     register: result
@@ -88,7 +88,7 @@
       tunnel_id: "{{ ip_sec_connection_tunnel_resource_id | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_tunnel_id, omit) }}"
       display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_display_name, omit) }}"
       routing: "{{ 'STATIC' | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_routing, omit) }}"
-      bgp_session_config: "{{ test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config | default(omit) }}"
+      bgp_session_config: "{{ '{}' | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config, omit) }}"
     register: result
     when: skip_ip_sec_connection_tunnel_update_optional_required_test is not defined
 
@@ -121,7 +121,7 @@
       tunnel_id: "{{ ip_sec_connection_tunnel_resource_id | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_tunnel_id, omit) }}"
       display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_display_name, omit) }}"
       routing: "{{ 'STATIC' | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_routing, omit) }}"
-      bgp_session_config: "{{ test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config | default(omit) }}"
+      bgp_session_config: "{{ '{}' | oracle.oci.override(test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config, omit) }}"
     register: result
     when: skip_ip_sec_connection_tunnel_update_optional_required_idempotence_test is not defined
 

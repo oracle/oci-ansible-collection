@@ -1,0 +1,17 @@
+- name: Delete ip_sec_connection
+  oci_network_ip_sec_connection:
+    ipsc_id: "{{ setup_ipsc_id }}"
+    state: absent
+  register: result
+
+- name: Delete drg created for ip sec connection
+  oci_network_drg:
+    drg_id: "{{ ip_sec_connection_drg_id }}"
+    state: absent
+  register: result
+
+- name: Delete cpe created for ip sec connection
+  oci_network_cpe:
+    cpe_id: "{{ ip_sec_connection_cpe_id }}"
+    state: absent
+  register: result

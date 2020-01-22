@@ -104,3 +104,37 @@
         - virtuil_circuit_bandwidth_shape
   tags:
     - virtual_circuit_full
+- block:
+  - import_tasks: oci_network_ip_sec_connection_tests.yaml
+    tags:
+      - ip_sec_connection
+  - block:
+      - import_tasks: oci_network_ip_sec_connection_setup.yaml
+        tags:
+          - ip_sec_connection_setup
+          - ip_sec_connection_device_config
+          - ip_sec_connection_device_status
+          - ip_sec_connection_tunnel
+          - ip_sec_connection_tunnel_shared_secret
+      - import_tasks: oci_network_ip_sec_connection_device_config_tests.yaml
+        tags:
+          - ip_sec_connection_device_config
+      - import_tasks: oci_network_ip_sec_connection_device_status_tests.yaml
+        tags:
+          - ip_sec_connection_device_status
+      - import_tasks: oci_network_ip_sec_connection_tunnel_tests.yaml
+        tags:
+          - ip_sec_connection_tunnel
+      - import_tasks: oci_network_ip_sec_connection_tunnel_shared_secret_tests.yaml
+        tags:
+          - ip_sec_connection_tunnel_shared_secret
+    always:
+      - import_tasks: oci_network_ip_sec_connection_teardown.yaml
+        tags:
+          - ip_sec_connection_teardown
+          - ip_sec_connection_device_config
+          - ip_sec_connection_device_status
+          - ip_sec_connection_tunnel
+          - ip_sec_connection_tunnel_shared_secret
+  tags:
+    - ip_sec_connection_full

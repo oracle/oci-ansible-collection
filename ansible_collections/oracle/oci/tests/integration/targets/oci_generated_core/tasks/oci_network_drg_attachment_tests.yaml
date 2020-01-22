@@ -22,8 +22,6 @@
         - "{{ item }}"
     with_items: "{{ drg_attachment_create_dependency_vcn_custom_assertions }}"
     when: drg_attachment_create_dependency_vcn_custom_assertions is defined
-  # dependency resource route_table has no Create operation
-
 
 # ==================================================================================================== #
 
@@ -48,6 +46,40 @@
         - "{{ item }}"
     with_items: "{{ drg_attachment_create_dependency_drg_custom_assertions }}"
     when: drg_attachment_create_dependency_drg_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_drg_attachment_create_dependency_route_table_route_rules:
+      - cidr_block: "{{ '0.0.0.0/0' | oracle.oci.override(test_drg_attachment_create_dependency_route_table_route_rules_cidr_block, omit) }}"
+        destination: "{{ 'destination_example' | oracle.oci.override(test_drg_attachment_create_dependency_route_table_route_rules_destination, omit) }}"
+        destination_type: "{{ 'CIDR_BLOCK' | oracle.oci.override(test_drg_attachment_create_dependency_route_table_route_rules_destination_type, omit) }}"
+        network_entity_id: "{{ 'ocid1.internetgateway.oc1.phx.aaaaaaaaxtfqb2srw7hoi5cmdum4n6ow2xm2zhrzqqypmlteiiebtmvl75ya' | oracle.oci.override(test_drg_attachment_create_dependency_route_table_route_rules_network_entity_id, omit) }}"
+    when: test_drg_attachment_create_dependency_route_table_route_rules is not defined
+
+  - name: Create dependency route_table with required parameters
+    oci_network_route_table:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_drg_attachment_create_dependency_route_table_compartment_id, omit) }}"
+      display_name: "{{ ('MyRouteTable' + random_suffix_1024) | oracle.oci.override(test_drg_attachment_create_dependency_route_table_display_name, omit) }}"
+      route_rules: "{{ '[]' | oracle.oci.override(test_drg_attachment_create_dependency_route_table_route_rules, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_drg_attachment_create_dependency_route_table_vcn_id, omit) }}"
+    register: result
+    when: skip_drg_attachment_create_dependency_route_table_test is not defined and skip_drg_attachment_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_drg_attachment_create_dependency_route_table_test is not defined and skip_drg_attachment_dependencies is not defined
+  - set_fact:
+      dependency_route_table: "{{ result.route_table }}"
+      dependency_route_table_id: "{{ result.route_table.id }}"
+    when: skip_drg_attachment_create_dependency_route_table_test is not defined and skip_drg_attachment_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ drg_attachment_create_dependency_route_table_custom_assertions }}"
+    when: drg_attachment_create_dependency_route_table_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -490,6 +522,13 @@
       register: result
       ignore_errors: yes
       when: drg_attachment_resource_id is defined
+
+    - name: Delete dependency route_table
+      oci_network_route_table:
+        rt_id: "{{ dependency_route_table_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_drg_attachment_delete_dependency_route_table_test is not defined and skip_drg_attachment_dependencies is not defined and dependency_route_table_id is defined
 
     - name: Delete dependency drg
       oci_network_drg:
