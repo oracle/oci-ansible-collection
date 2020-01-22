@@ -76,5 +76,15 @@
   - set_fact:
       sg_for_common_vcn: "{{ sg_for_common_vcn_create_result.service_gateway }}"
       sg_for_common_vcn_id: "{{ sg_for_common_vcn_create_result.service_gateway.id }}"
+
+  # Get and set the fast connect provider details so that the tests which it as a dependency work
+  - name: List fast_connect_provider_services
+    oci_network_fast_connect_provider_service_facts:
+      compartment_id: "{{ test_compartment_ocid }}"
+    register: result
+
+  - set_fact:
+      dependency_provider_service_id: "{{ result.fast_connect_provider_services[0].id }}"
+
   tags:
     - always

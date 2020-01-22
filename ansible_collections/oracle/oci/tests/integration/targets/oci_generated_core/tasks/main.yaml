@@ -46,3 +46,19 @@
   tags:
     - peer_region_for_remote_peering
     - peering
+- import_tasks: oci_network_fast_connect_provider_service_tests.yaml
+  tags:
+    - fast_connect
+    - fast_connect_provider_service
+# oci_network_fast_connect_provider_service_key_tests.yaml tests won't work because we do not have a valid
+# provider service key which we get only when we set up a virtual circuit connection from the provider to OCI.
+# So ignoring the failures for now.
+# TODO: Check if we have a test provider with key available and enable the tests
+#- import_tasks: oci_network_fast_connect_provider_service_key_tests.yaml
+#  tags:
+#    - fast_connect
+#    - fast_connect_provider_service_key
+- import_tasks: oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_tests.yaml
+  tags:
+    - fast_connect
+    - fast_connect_provider_service_virtual_circuit_bandwidth_shape

@@ -33,6 +33,9 @@ moduleWhitelist:
   - oci_network_remote_peering_connection
   - oci_network_remote_peering_connection_actions
   - oci_network_remote_peering_connection_facts
+  - oci_network_fast_connect_provider_service_facts
+  - oci_network_fast_connect_provider_service_key_facts
+  - oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_facts
   - oci_identity_dynamic_group
   - oci_identity_dynamic_group_facts
   - oci_identity_region_facts
@@ -85,6 +88,8 @@ modulePathOverrides:
   /n/{namespaceName}/b/{bucketName}/actions/restoreObjects: bucket
   /n/{namespaceName}/b/{bucketName}/actions/renameObject: bucket
   /tagNamespaces/actions/listCostTrackingTags: cost_tracking_tag
+  # to avoid collision with the fast_connect_provider_service resource because of x-related-resource
+  /fastConnectProviderServices/{providerServiceId}/virtualCircuitBandwidthShapes: fast_connect_provider_service_virtual_circuit_bandwidth_shape
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules

@@ -66,3 +66,7 @@ skip_local_peering_gateway_create_dependency_route_table_test: yes
 test_local_peering_gateway_update_using_name_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
 test_local_peering_gateway_create_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
 test_local_peering_gateway_update_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
+
+# variables for oci_fast_connect_provider_service_tests.yaml
+test_fast_connect_provider_service_get_provider_service_id: "{{ result.fast_connect_provider_services[0].id }}"
+test_fast_connect_provider_service_key_get_provider_service_key_name: testkey
