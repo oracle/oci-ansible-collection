@@ -62,3 +62,42 @@
   tags:
     - fast_connect
     - fast_connect_provider_service_virtual_circuit_bandwidth_shape
+- import_tasks: oci_network_cross_connect_group_tests.yaml
+  tags:
+    - cross_connect_group
+- import_tasks: oci_network_cross_connect_location_tests.yaml
+  tags:
+    - cross_connect_location
+- import_tasks: oci_network_cross_connect_port_speed_shape_tests.yaml
+  tags:
+    - cross_connect_port_speed_shape
+- import_tasks: oci_network_cross_connect_status_tests.yaml
+  tags:
+    - cross_connect_status
+- block:
+
+  - import_tasks: oci_network_virtual_circuit_setup.yaml
+    tags:
+      - virtual_circuit_setup
+      - virtual_circuit
+      - virtual_circuit_public_prefix
+      - virtuil_circuit_bandwidth_shape
+  - import_tasks: oci_network_virtual_circuit_tests.yaml
+    tags:
+      - virtual_circuit
+  - import_tasks: oci_network_virtual_circuit_public_prefix_tests.yaml
+    tags:
+      - virtual_circuit_public_prefix
+  - import_tasks: oci_network_virtual_circuit_bandwidth_shape_tests.yaml
+    tags:
+      - virtuil_circuit_bandwidth_shape
+
+  always:
+    - import_tasks: oci_network_virtual_circuit_teardown.yaml
+      tags:
+        - virtual_circuit_teardown
+        - virtual_circuit
+        - virtual_circuit_public_prefix
+        - virtuil_circuit_bandwidth_shape
+  tags:
+    - virtual_circuit_full

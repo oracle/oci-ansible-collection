@@ -17,6 +17,8 @@ try:
     from oci.core.models import (
         AddedNetworkSecurityGroupSecurityRules,
         UpdatedNetworkSecurityGroupSecurityRules,
+        BulkAddVirtualCircuitPublicPrefixesDetails,
+        BulkDeleteVirtualCircuitPublicPrefixesDetails,
     )
 
     HAS_OCI_PY_SDK = True
@@ -241,3 +243,133 @@ class RemotePeeringConnectionActionsHelperCustom:
         ):
             return False
         return True
+
+
+class CrossConnectGroupHelperCustom:
+    # The cross connect group does not come to an active state. So override the end states for create operation.
+    def get_resource_active_states(self):
+        return ["INACTIVE", "PROVISIONED"]
+
+
+class CrossConnectHelperCustom:
+    def get_resource_active_states(self):
+        return ["PENDING_CUSTOMER", "PENDING_PROVIDER", "PROVISIONED"]
+
+
+class VirtualCircuitHelperCustom:
+    def get_exclude_attributes(self):
+        return super(VirtualCircuitHelperCustom, self).get_exclude_attributes() + [
+            "public_prefixes",
+        ]
+
+
+class VirtualCircuitActionsHelperCustom:
+    def _bulk_add_virtual_circuit_public_prefixes_idempotency_check(self):
+        existing_public_prefixes = self.list_public_prefixes()
+        existing_public_prefix_cidrs = [
+            existing_public_prefix.cidr_block
+            for existing_public_prefix in existing_public_prefixes
+        ]
+        provided_public_prefixes = self.module.params.get("public_prefixes", [])
+        public_prefixes_to_add = [
+            public_prefix
+            for public_prefix in provided_public_prefixes
+            if public_prefix.get("cidr_block") not in existing_public_prefix_cidrs
+        ]
+
+        if len(public_prefixes_to_add) == 0:
+            return oci_common_utils.get_result(
+                changed=False,
+                resource_type=self.resource_type,
+                resource=to_dict(existing_public_prefixes),
+            )
+        else:
+            self.module.params["public_prefixes"] = public_prefixes_to_add
+
+    def _bulk_delete_virtual_circuit_public_prefixes_idempotency_check(self):
+        existing_public_prefixes = self.list_public_prefixes()
+        existing_public_prefix_cidrs = [
+            existing_public_prefix.cidr_block
+            for existing_public_prefix in existing_public_prefixes
+        ]
+        provided_public_prefixes = self.module.params.get("public_prefixes", [])
+        public_prefixes_to_delete = [
+            public_prefix
+            for public_prefix in provided_public_prefixes
+            if public_prefix.get("cidr_block") in existing_public_prefix_cidrs
+        ]
+
+        if len(public_prefixes_to_delete) == 0:
+            return oci_common_utils.get_result(
+                changed=False,
+                resource_type=self.resource_type,
+                resource=to_dict(existing_public_prefixes),
+            )
+        else:
+            self.module.params["public_prefixes"] = public_prefixes_to_delete
+
+    def perform_action(self, action):
+
+        action_fn = self.get_action_fn(action)
+        if not action_fn:
+            self.module.fail_json(msg="{0} not supported by the module.".format(action))
+
+        # the idempotency checks for these actions are custom since we aren't doing the regular
+        # check for existence, we are checking if a requested resource is present within a list
+        if action == "bulk_add_virtual_circuit_public_prefixes":
+            action_idempotency_checks_fn = (
+                self._bulk_add_virtual_circuit_public_prefixes_idempotency_check
+            )
+            check_mode_response_resource = to_dict(
+                BulkAddVirtualCircuitPublicPrefixesDetails(public_prefixes=[])
+            )
+        elif action == "bulk_delete_virtual_circuit_public_prefixes":
+            action_idempotency_checks_fn = (
+                self._bulk_delete_virtual_circuit_public_prefixes_idempotency_check
+            )
+            check_mode_response_resource = to_dict(
+                BulkDeleteVirtualCircuitPublicPrefixesDetails(public_prefixes=[])
+            )
+        else:
+            self.module.fail_json(
+                msg="Performing action failed for unrecognized action: {0}".format(
+                    action
+                )
+            )
+
+        result = action_idempotency_checks_fn()
+        if result:
+            return result
+
+        if self.check_mode:
+            return oci_common_utils.get_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=check_mode_response_resource,
+            )
+
+        try:
+            action_fn()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            # the individual action operations return None. So get the final list of public prefixes
+            # and return them.
+            resource = BulkAddVirtualCircuitPublicPrefixesDetails(
+                public_prefixes=self.list_public_prefixes()
+            )
+            return oci_common_utils.get_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(resource),
+            )
+
+    def list_public_prefixes(self):
+        return oci_common_utils.list_all_resources(
+            self.client.list_virtual_circuit_public_prefixes,
+            virtual_circuit_id=self.module.params.get("virtual_circuit_id"),
+        )

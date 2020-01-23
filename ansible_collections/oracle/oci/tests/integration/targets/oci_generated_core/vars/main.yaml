@@ -70,3 +70,74 @@ test_local_peering_gateway_update_optional_required_route_table_id: "{{ dependen
 # variables for oci_fast_connect_provider_service_tests.yaml
 test_fast_connect_provider_service_get_provider_service_id: "{{ result.fast_connect_provider_services[0].id }}"
 test_fast_connect_provider_service_key_get_provider_service_key_name: testkey
+
+# variables for oci_cross_connect_status_tests.yaml
+skip_cross_connect_status_create_dependency_cross_connect_test: yes
+test_cross_connect_status_get_cross_connect_id: "{{ temp_cross_connect_id }}"
+
+# variables for oci_network_virtual_circuit_setup.yaml
+drg_display_name: "vc_gen_drg_{{random_suffix_1024}}"
+public_vc_display_name: 'gen-public-virtual-circuit-{{random_suffix_1024}}'
+public_vc_cross_connect_mappings:
+  - cross_connect_or_cross_connect_group_id: '{{ temp_cross_connect_group_id }}'
+    vlan: "{{ random_suffix_vlan_1 }}"
+public_vc_customer_bgp_asn: 5
+public_vc_type: 'PUBLIC'
+public_vc_public_prefixes:
+  - cidr_block: '206.209.22.0/24'
+
+# variables for oci_network_virtual_circuit_tests.yaml
+skip_virtual_circuit_create_check_mode_test: yes
+skip_virtual_circuit_create_required_original_test: yes
+skip_virtual_circuit_create_required_idempotency_test: yes
+test_virtual_circuit_update_using_name_optional_required_display_name: "{{ public_vc_display_name }}"
+test_virtual_circuit_update_using_name_optional_required_compartment_id: "{{ temp_test_compartment_ocid }}"
+test_virtual_circuit_update_using_name_optional_required_customer_bgp_asn: 10
+test_virtual_circuit_update_using_name_optional_required_gateway_id: null
+test_virtual_circuit_update_using_name_optional_required_cross_connect_mappings: null
+test_virtual_circuit_update_using_name_optional_required_provider_service_key_name: null
+test_virtual_circuit_update_using_name_optional_required_provider_state: null
+test_virtual_circuit_update_using_name_optional_required_reference_comment: null
+skip_virtual_circuit_delete_required_test: yes
+test_virtual_circuit_create_optional_required_compartment_id: "{{ temp_test_compartment_ocid }}"
+private_vc_display_name: 'gen-private-virtual-circuit-{{random_suffix_1024}}'
+updated_private_vc_display_name: 'updated-gen-private-virtual-circuit-{{random_suffix_1024}}'
+private_vc_cross_connect_mappings:
+  - cross_connect_or_cross_connect_group_id: '{{ temp_cross_connect_group_id }}'
+    customer_bgp_peering_ip: '10.0.0.18/31'
+    oracle_bgp_peering_ip: '10.0.0.19/31'
+    vlan: "{{ random_suffix_vlan_2 }}"
+updated_private_vc_cross_connect_mappings:
+  - cross_connect_or_cross_connect_group_id: '{{ temp_cross_connect_group_id }}'
+    customer_bgp_peering_ip: '10.0.0.20/31'
+    oracle_bgp_peering_ip: '10.0.0.21/31'
+    vlan: "{{ random_suffix_vlan_2 }}"
+private_vc_type: 'PRIVATE'
+private_vc_customer_bgp_asn: 10
+test_virtual_circuit_create_optional_required_type: "{{ private_vc_type }}"
+test_virtual_circuit_create_optional_required_gateway_id: "{{ virtual_circuit_drg_id }}"
+test_virtual_circuit_create_optional_required_display_name: "{{ private_vc_display_name }}"
+test_virtual_circuit_create_optional_required_cross_connect_mappings: "{{ private_vc_cross_connect_mappings }}"
+test_virtual_circuit_create_optional_required_customer_bgp_asn: 10
+test_virtual_circuit_create_optional_required_public_prefixes: null
+test_virtual_circuit_create_optional_required_provider_name: null
+test_virtual_circuit_create_optional_required_provider_service_id: null
+test_virtual_circuit_create_optional_required_provider_service_key_name: null
+test_virtual_circuit_create_optional_required_provider_service_name: null
+test_virtual_circuit_create_optional_required_region: null
+test_virtual_circuit_update_optional_required_display_name: "{{ updated_private_vc_display_name }}"
+test_virtual_circuit_update_optional_required_cross_connect_mappings: "{{ updated_private_vc_cross_connect_mappings }}"
+test_virtual_circuit_update_optional_required_provider_service_key_name: null
+test_virtual_circuit_update_optional_required_provider_state: null
+test_virtual_circuit_update_optional_required_gateway_id: null
+test_virtual_circuit_update_optional_required_bandwidth_shape_name: null
+test_virtual_circuit_update_optional_required_reference_comment: null
+test_virtual_circuit_update_optional_required_customer_bgp_asn: null
+test_virtual_circuit_list_compartment_id: "{{ temp_test_compartment_ocid }}"
+
+# variables for oci_network_virtual_circuit_public_prefix_tests.yaml
+skip_virtual_circuit_public_prefix_create_dependency_virtual_circuit_test: yes
+test_virtual_circuit_public_prefix_list_virtual_circuit_id: "{{ public_colocated_virtual_circuit_id }}"
+
+# variables for oci_network_virtual_circuit_bandwidth_shape_tests.yaml
+test_virtual_circuit_bandwidth_shape_list_compartment_id: "{{ temp_test_compartment_ocid }}"

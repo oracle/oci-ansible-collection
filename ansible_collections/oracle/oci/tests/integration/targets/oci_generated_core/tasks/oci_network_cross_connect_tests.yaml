@@ -1,0 +1,382 @@
+---
+- block:
+  - name: Create dependency cross_connect_group with required parameters
+    oci_network_cross_connect_group:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_create_dependency_cross_connect_group_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_create_dependency_cross_connect_group_display_name, omit) }}"
+    register: result
+    when: skip_cross_connect_create_dependency_cross_connect_group_test is not defined and skip_cross_connect_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_create_dependency_cross_connect_group_test is not defined and skip_cross_connect_dependencies is not defined
+  - set_fact:
+      dependency_cross_connect_group: "{{ result.cross_connect_group }}"
+      dependency_cross_connect_group_id: "{{ result.cross_connect_group.id }}"
+    when: skip_cross_connect_create_dependency_cross_connect_group_test is not defined and skip_cross_connect_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_create_dependency_cross_connect_group_custom_assertions }}"
+    when: cross_connect_create_dependency_cross_connect_group_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create cross_connect (check mode)
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_create_required_display_name, omit) }}"
+      location_name: "{{ 'CyrusOne, Chandler, AZ' | oracle.oci.override(test_cross_connect_create_required_location_name, omit) }}"
+      port_speed_shape_name: "{{ '10 Gbps' | oracle.oci.override(test_cross_connect_create_required_port_speed_shape_name, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_cross_connect_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_create_check_mode_custom_assertions }}"
+    when: cross_connect_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create cross_connect with required parameters
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_create_required_display_name, omit) }}"
+      location_name: "{{ 'CyrusOne, Chandler, AZ' | oracle.oci.override(test_cross_connect_create_required_location_name, omit) }}"
+      port_speed_shape_name: "{{ '10 Gbps' | oracle.oci.override(test_cross_connect_create_required_port_speed_shape_name, omit) }}"
+    register: result
+    when: skip_cross_connect_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_create_required_original_test is not defined
+
+  - set_fact:
+      cross_connect_resource_id: "{{ result.cross_connect.id }}"
+    when: skip_cross_connect_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_create_required_original_custom_assertions }}"
+    when: cross_connect_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create cross_connect with required parameters(idempotency)
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_create_required_display_name, omit) }}"
+      location_name: "{{ 'CyrusOne, Chandler, AZ' | oracle.oci.override(test_cross_connect_create_required_location_name, omit) }}"
+      port_speed_shape_name: "{{ '10 Gbps' | oracle.oci.override(test_cross_connect_create_required_port_speed_shape_name, omit) }}"
+    register: result
+    when: skip_cross_connect_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cross_connect_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_create_required_idempotency_custom_assertions }}"
+    when: cross_connect_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cross_connect using name with optional + required parameters
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cross_connect_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cross_connect_update_using_name_optional_required_freeform_tags, omit) }}"
+      customer_reference_name: "{{ ('customer_reference_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_using_name_optional_required_customer_reference_name, omit) }}"
+      is_active: "{{ true | oracle.oci.override(test_cross_connect_update_using_name_optional_required_is_active, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cross_connect_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_update_using_name_optional_required_custom_assertions }}"
+    when: cross_connect_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cross_connect using name with optional + required parameters (idempotence)
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cross_connect_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cross_connect_update_using_name_optional_required_freeform_tags, omit) }}"
+      customer_reference_name: "{{ ('customer_reference_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_using_name_optional_required_customer_reference_name, omit) }}"
+      is_active: "{{ true | oracle.oci.override(test_cross_connect_update_using_name_optional_required_is_active, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cross_connect_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cross_connect_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: cross_connect_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete cross_connect
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cross_connect_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_delete_required_custom_assertions }}"
+    when: cross_connect_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete cross_connect (idempotency)
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cross_connect_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cross_connect_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_delete_required_idempotency_custom_assertions }}"
+    when: cross_connect_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create cross_connect with optional + required parameters
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_create_optional_required_compartment_id, omit) }}"
+      cross_connect_group_id: "{{ dependency_cross_connect_group_id | oracle.oci.override(test_cross_connect_create_optional_required_cross_connect_group_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_cross_connect_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_create_optional_required_display_name, omit) }}"
+      far_cross_connect_or_cross_connect_group_id: "{{ dependency_far_cross_connect_or_cross_connect_group_id | oracle.oci.override(test_cross_connect_create_optional_required_far_cross_connect_or_cross_connect_group_id, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_cross_connect_create_optional_required_freeform_tags, omit) }}"
+      location_name: "{{ 'CyrusOne, Chandler, AZ' | oracle.oci.override(test_cross_connect_create_optional_required_location_name, omit) }}"
+      near_cross_connect_or_cross_connect_group_id: "{{ dependency_near_cross_connect_or_cross_connect_group_id | oracle.oci.override(test_cross_connect_create_optional_required_near_cross_connect_or_cross_connect_group_id, omit) }}"
+      port_speed_shape_name: "{{ '10 Gbps' | oracle.oci.override(test_cross_connect_create_optional_required_port_speed_shape_name, omit) }}"
+      customer_reference_name: "{{ 'customer_reference_name_example' | oracle.oci.override(test_cross_connect_create_optional_required_customer_reference_name, omit) }}"
+    register: result
+    when: skip_cross_connect_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_create_optional_required_original_test is not defined
+
+  - set_fact:
+      cross_connect_resource_id: "{{ result.cross_connect.id }}"
+    when: skip_cross_connect_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_create_optional_required_original_custom_assertions }}"
+    when: cross_connect_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create cross_connect with optional + required parameters (idempotence)
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_create_optional_required_compartment_id, omit) }}"
+      cross_connect_group_id: "{{ dependency_cross_connect_group_id | oracle.oci.override(test_cross_connect_create_optional_required_cross_connect_group_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_cross_connect_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_create_optional_required_display_name, omit) }}"
+      far_cross_connect_or_cross_connect_group_id: "{{ dependency_far_cross_connect_or_cross_connect_group_id | oracle.oci.override(test_cross_connect_create_optional_required_far_cross_connect_or_cross_connect_group_id, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_cross_connect_create_optional_required_freeform_tags, omit) }}"
+      location_name: "{{ 'CyrusOne, Chandler, AZ' | oracle.oci.override(test_cross_connect_create_optional_required_location_name, omit) }}"
+      near_cross_connect_or_cross_connect_group_id: "{{ dependency_near_cross_connect_or_cross_connect_group_id | oracle.oci.override(test_cross_connect_create_optional_required_near_cross_connect_or_cross_connect_group_id, omit) }}"
+      port_speed_shape_name: "{{ '10 Gbps' | oracle.oci.override(test_cross_connect_create_optional_required_port_speed_shape_name, omit) }}"
+      customer_reference_name: "{{ 'customer_reference_name_example' | oracle.oci.override(test_cross_connect_create_optional_required_customer_reference_name, omit) }}"
+    register: result
+    when: skip_cross_connect_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cross_connect_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_create_optional_required_idempotence_custom_assertions }}"
+    when: cross_connect_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cross_connect with optional + required parameters
+    oci_network_cross_connect:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cross_connect_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cross_connect_update_optional_required_freeform_tags, omit) }}"
+      customer_reference_name: "{{ ('customer_reference_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_optional_required_customer_reference_name, omit) }}"
+      cross_connect_id: "{{ cross_connect_resource_id | oracle.oci.override(test_cross_connect_update_optional_required_cross_connect_id, omit) }}"
+      is_active: "{{ true | oracle.oci.override(test_cross_connect_update_optional_required_is_active, omit) }}"
+    register: result
+    when: skip_cross_connect_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_update_optional_required_custom_assertions }}"
+    when: cross_connect_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cross_connect with optional + required parameters (idempotence)
+    oci_network_cross_connect:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cross_connect_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cross_connect_update_optional_required_freeform_tags, omit) }}"
+      customer_reference_name: "{{ ('customer_reference_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_cross_connect_update_optional_required_customer_reference_name, omit) }}"
+      cross_connect_id: "{{ cross_connect_resource_id | oracle.oci.override(test_cross_connect_update_optional_required_cross_connect_id, omit) }}"
+      is_active: "{{ true | oracle.oci.override(test_cross_connect_update_optional_required_is_active, omit) }}"
+    register: result
+    when: skip_cross_connect_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cross_connect_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_update_optional_required_idempotence_custom_assertions }}"
+    when: cross_connect_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List cross_connects
+    oci_network_cross_connect_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_list_compartment_id, omit) }}"
+    register: result
+    when: skip_cross_connect_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.cross_connects | length > 0
+    when: skip_cross_connect_list_test is not defined
+
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_list_custom_assertions }}"
+    when: cross_connect_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get cross_connect
+    oci_network_cross_connect_facts:
+      cross_connect_id: "{{ cross_connect_resource_id | oracle.oci.override(test_cross_connect_get_cross_connect_id, omit) }}"
+    register: result
+    when: skip_cross_connect_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.cross_connects | length == 1
+    when: skip_cross_connect_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_get_custom_assertions }}"
+    when: cross_connect_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete cross_connect
+      oci_network_cross_connect:
+        cross_connect_id: "{{ cross_connect_resource_id | oracle.oci.override(test_cross_connect_delete_rescue_cross_connect_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: cross_connect_resource_id is defined
+
+    - name: Delete dependency cross_connect_group
+      oci_network_cross_connect_group:
+        cross_connect_group_id: "{{ dependency_cross_connect_group_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_cross_connect_delete_dependency_cross_connect_group_test is not defined and skip_cross_connect_dependencies is not defined and dependency_cross_connect_group_id is defined

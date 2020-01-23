@@ -31,3 +31,10 @@ test_tag_namespace_name_for_iam: "ansible_tag_namespace_integration_test_for_iam
 test_tag_namespace_description: "{{test_tag_namespace_name}} description"
 test_tag_namespace_mod_description: "{{test_tag_namespace_name}} modified description"
 test_tag_namespace_mod_description_2: "{{test_tag_namespace_name}} modified description 2"
+
+# Since creating cross connect is not possible as part of dynamic integration test due to quota problem,
+# all cross connect related tests should use the below mentioned cross connect group with a cross connect.
+# This has to be created in case the tenant is changed.
+temp_cross_connect_group_id: 'ocid1.crossconnectgroup.oc1.iad.aaaaaaaar6wcwiz3olu66ptoqnepdauopl7olyjy65ebphrgjhhdwdtibhha'
+temp_test_compartment_ocid: 'ocid1.compartment.oc1..aaaaaaaaztglfq7tna6sygij2aoqxwkjvc4xnqtefqt5d4m4p3wpv6glmkwq'
+temp_cross_connect_id: "ocid1.crossconnect.oc1.iad.aaaaaaaaoxhthjvzpefiemcuk3svbohd37xlpdgruvkt43yqkw2oqbwaw64q"

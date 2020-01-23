@@ -1,0 +1,23 @@
+- name: Delete virtual_circuit
+  oci_network_virtual_circuit:
+    compartment_id: "{{ temp_test_compartment_ocid }}"
+    display_name: "{{ public_vc_display_name }}"
+    state: absent
+  environment:
+    OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+
+- name: Delete Colocated Public Virtual Circuit
+  oci_network_virtual_circuit:
+    virtual_circuit_id: "{{ public_colocated_virtual_circuit_id }}"
+    state: absent
+  register: result
+
+- debug:
+    msg: "{{ result }}"
+
+- name: Delete DRG
+  oci_network_drg:
+    drg_id: "{{ virtual_circuit_drg_id }}"
+    state: absent
+  register: result

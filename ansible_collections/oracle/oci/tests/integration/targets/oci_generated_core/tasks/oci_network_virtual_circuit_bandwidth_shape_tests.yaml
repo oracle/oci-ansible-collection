@@ -1,0 +1,32 @@
+---
+- block:
+  - name: List virtual_circuit_bandwidth_shapes
+    oci_network_virtual_circuit_bandwidth_shape_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_virtual_circuit_bandwidth_shape_list_compartment_id, omit) }}"
+    register: result
+    when: skip_virtual_circuit_bandwidth_shape_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.virtual_circuit_bandwidth_shapes | length > 0
+    when: skip_virtual_circuit_bandwidth_shape_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.name is defined
+    with_items: "{{ result.virtual_circuit_bandwidth_shapes }}"
+    when: skip_virtual_circuit_bandwidth_shape_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ virtual_circuit_bandwidth_shape_list_custom_assertions }}"
+    when: virtual_circuit_bandwidth_shape_list_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

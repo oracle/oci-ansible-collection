@@ -1,0 +1,25 @@
+- name: Create a DRG for creating Private Virtual Circuit
+  oci_network_drg:
+    compartment_id: '{{ temp_test_compartment_ocid }}'
+    display_name: '{{ drg_display_name }}'
+  register: result
+
+- set_fact:
+    virtual_circuit_drg_id: "{{result.drg.id}}"
+
+- name: Create Colocated Public Virtual Circuit
+  oci_network_virtual_circuit:
+    compartment_id: '{{ temp_test_compartment_ocid }}'
+    display_name: '{{ public_vc_display_name }}'
+    type: '{{ public_vc_type }}'
+    cross_connect_mappings: '{{ public_vc_cross_connect_mappings }}'
+    customer_bgp_asn: '{{ public_vc_customer_bgp_asn }}'
+    public_prefixes: '{{ public_vc_public_prefixes }}'
+    state: 'present'
+  register: result
+
+- debug:
+    msg: "{{ result }}"
+
+- set_fact:
+    public_colocated_virtual_circuit_id: "{{result.virtual_circuit.id}}"

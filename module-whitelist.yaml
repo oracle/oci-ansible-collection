@@ -36,6 +36,19 @@ moduleWhitelist:
   - oci_network_fast_connect_provider_service_facts
   - oci_network_fast_connect_provider_service_key_facts
   - oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_facts
+  - oci_network_cross_connect
+  - oci_network_cross_connect_facts
+  - oci_network_cross_connect_group
+  - oci_network_cross_connect_group_facts
+  - oci_network_cross_connect_location_facts
+  - oci_network_cross_connect_port_speed_shape_facts
+  - oci_network_cross_connect_status_facts
+  - oci_network_letter_of_authority_facts
+  - oci_network_virtual_circuit
+  - oci_network_virtual_circuit_actions
+  - oci_network_virtual_circuit_bandwidth_shape_facts
+  - oci_network_virtual_circuit_facts
+  - oci_network_virtual_circuit_public_prefix_facts
   - oci_identity_dynamic_group
   - oci_identity_dynamic_group_facts
   - oci_identity_region_facts
@@ -90,6 +103,8 @@ modulePathOverrides:
   /tagNamespaces/actions/listCostTrackingTags: cost_tracking_tag
   # to avoid collision with the fast_connect_provider_service resource because of x-related-resource
   /fastConnectProviderServices/{providerServiceId}/virtualCircuitBandwidthShapes: fast_connect_provider_service_virtual_circuit_bandwidth_shape
+  /virtualCircuits/{virtualCircuitId}/actions/bulkAddPublicPrefixes: virtual_circuit
+  /virtualCircuits/{virtualCircuitId}/actions/bulkDeletePublicPrefixes: virtual_circuit
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules
@@ -106,10 +121,6 @@ operationIdBlacklist:
   # UpdateDbHomeDetails.version (type=PatchDetails) conflicts with CreateDbHome.version (type=string)
   # so currently we can't support both operations. We choose to prefer supporting CreateDbHome for now
   - update_db_home
-  # actions which update an attribute so we want to expose those to the user as a traditional
-  # update instead of a separate action
-  - bulk_add_virtual_circuit_public_prefixes
-  - bulk_delete_virtual_circuit_public_prefixes
   # these are exceptional cases becaues their path implies they are '/actions/' but should 
   # really be facts modules
   - get_public_ip_by_ip_address

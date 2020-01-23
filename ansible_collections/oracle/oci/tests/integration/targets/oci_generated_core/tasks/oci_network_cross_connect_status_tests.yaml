@@ -1,0 +1,64 @@
+---
+- block:
+  - name: Create dependency cross_connect with required parameters
+    oci_network_cross_connect:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cross_connect_status_create_dependency_cross_connect_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cross_connect_status_create_dependency_cross_connect_display_name, omit) }}"
+      location_name: "{{ 'CyrusOne, Chandler, AZ' | oracle.oci.override(test_cross_connect_status_create_dependency_cross_connect_location_name, omit) }}"
+      port_speed_shape_name: "{{ '10 Gbps' | oracle.oci.override(test_cross_connect_status_create_dependency_cross_connect_port_speed_shape_name, omit) }}"
+    register: result
+    when: skip_cross_connect_status_create_dependency_cross_connect_test is not defined and skip_cross_connect_status_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cross_connect_status_create_dependency_cross_connect_test is not defined and skip_cross_connect_status_dependencies is not defined
+  - set_fact:
+      dependency_cross_connect: "{{ result.cross_connect }}"
+      dependency_cross_connect_id: "{{ result.cross_connect.id }}"
+    when: skip_cross_connect_status_create_dependency_cross_connect_test is not defined and skip_cross_connect_status_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_status_create_dependency_cross_connect_custom_assertions }}"
+    when: cross_connect_status_create_dependency_cross_connect_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get cross_connect_status
+    oci_network_cross_connect_status_facts:
+      cross_connect_id: "{{ cross_connect_status_resource_id | oracle.oci.override(test_cross_connect_status_get_cross_connect_id, omit) }}"
+    register: result
+    when: skip_cross_connect_status_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.cross_connect_status is defined
+        - result.cross_connect_status != None
+    when: skip_cross_connect_status_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.cross_connect_id is defined
+    with_items:
+      - "{{ result.cross_connect_status }}"
+    when: skip_cross_connect_status_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cross_connect_status_get_custom_assertions }}"
+    when: cross_connect_status_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete dependency cross_connect
+      oci_network_cross_connect:
+        cross_connect_id: "{{ dependency_cross_connect_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_cross_connect_status_delete_dependency_cross_connect_test is not defined and skip_cross_connect_status_dependencies is not defined and dependency_cross_connect_id is defined

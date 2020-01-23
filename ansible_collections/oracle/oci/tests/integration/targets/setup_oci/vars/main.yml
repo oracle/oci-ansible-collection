@@ -11,3 +11,7 @@ random_suffix_1024: "{{1024 |random(seed=ansible_nodename)}}"
 # addresses that are created by adding to the primary IP, will not result in
 # conflicts across machines
 random_suffix_250: "{{ 250 | random(seed=ansible_nodename, step=10) }}"
+
+# For virtual circuit vlan to avoid conflicts
+random_suffix_vlan_1: "{{ 2000 | random(start=100, seed=ansible_nodename) }}"
+random_suffix_vlan_2: "{{ 4094 | random(start=2001, seed=ansible_nodename) }}"

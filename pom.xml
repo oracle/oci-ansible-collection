@@ -2056,6 +2056,8 @@
               </includes>
               <excludes>
                 <include>oci_generated*/tasks/main.yaml</include>
+                <include>oci_generated*/tasks/*_setup.yaml</include>
+                <include>oci_generated*/tasks/*_teardown.yaml</include>
                 <include>oci_generated*/vars/main.yaml</include>
               </excludes>
             </fileset>
