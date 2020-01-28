@@ -13,6 +13,29 @@
      test_group_id: "{{result.group.id}}"
 - block:
 # ============================================================
+  - name: Create an identity provider
+    oci_identity_provider:
+      compartment_id: "{{ tenancy_ocid }}"
+      description: "{{ test_identity_provider_description }}"
+      freeform_attributes: "{{ test_identity_provider_freeform_attributes }}"
+      freeform_tags: "{{ test_identity_provider_freeform_tags }}"
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+      name: "{{ test_identity_provider_name }}"
+      product_type: "{{ test_identity_provider_product_type }}"
+      protocol: "{{ test_identity_provider_protocol }}"
+    register: create_identity_provider_result
+
+  - name: Assert that the identity provider is created
+    assert:
+      that:
+        - create_identity_provider_result.changed == True
+        - create_identity_provider_result.identity_provider.compartment_id == tenancy_ocid
+
+  - set_fact:
+      test_identity_provider_id: "{{ create_identity_provider_result.identity_provider.id }}"
+
+# ============================================================
+
   - name: Create IdP group mapping
     oci_identity_idp_group_mapping:
       identity_provider_id: "{{test_identity_provider_id}}"
@@ -97,6 +120,18 @@
           - result.idp_group_mapping.compartment_id == tenancy_ocid
   - debug: msg="{{result}}"
 # ============================================================
+  - name: Delete IdP
+    oci_identity_provider:
+      identity_provider_id: "{{test_identity_provider_id}}"
+      state: absent
+    register: result
+  - name: Assert that idp is deleted
+    assert:
+      that:
+          - result.changed == True
+          - result.identity_provider.compartment_id == tenancy_ocid
+  - debug: msg="{{result}}"
+# ============================================================
   rescue:
     - name: Delete IdP group mapping
       oci_identity_idp_group_mapping:
@@ -104,6 +139,12 @@
         mapping_id: "{{test_idp_group_mapping_id}}"
         state: absent
       register: result
+      ignore_errors: yes
+
+    - name: Delete IdP
+      oci_identity_provider:
+        identity_provider_id: "{{test_identity_provider_id}}"
+        state: absent
       ignore_errors: yes
     
     - fail:

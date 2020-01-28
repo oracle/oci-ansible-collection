@@ -1,2 +1,7 @@
 ---
 - import_tasks: oci_tag_default_tests.yaml
+  tags:
+    - tag_default
+- import_tasks: oci_authentication_policy_tests.yaml
+  tags:
+    - authentication_policy

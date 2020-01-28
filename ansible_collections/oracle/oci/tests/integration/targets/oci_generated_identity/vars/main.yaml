@@ -7,7 +7,9 @@ test_dynamic_group_list_compartment_id: "{{ tenancy_ocid }}"
 
 ## IDP GROUP MAPPING
 test_idp_group_mapping_create_dependency_group_compartment_id: "{{ tenancy_ocid }}"
-dependency_identity_provider_id: "{{ test_identity_provider_id }}"
+test_idp_group_mapping_create_dependency_identity_provider_compartment_id: "{{ tenancy_ocid }}"
+test_idp_group_mapping_create_dependency_identity_provider_metadata_url: null
+test_idp_group_mapping_create_dependency_identity_provider_metadata: "{{ lookup('file', test_identity_provider_metadata_xml_2_file) }}"
 
 ## GROUPS
 test_group_create_required_compartment_id: "{{ tenancy_ocid }}"
@@ -78,3 +80,39 @@ test_policy_update_optional_required_version_date: "2020-01-17"
 test_policy_update_optional_required_statements: "{{test_policy_update_using_name_optional_required_statements}}"
 
 skip_policy_update_using_name_optional_required_idempotence_test: True
+## identity provider
+test_identity_provider_create_required_compartment_id: "{{ tenancy_ocid }}"
+test_identity_provider_update_using_name_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_identity_provider_delete_required_compartment_id: "{{ tenancy_ocid }}"
+test_identity_provider_create_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_identity_provider_list_compartment_id: "{{ tenancy_ocid }}"
+
+# note we do not test metadata url because we don't have a valid one
+test_identity_provider_metadata_xml_file: "files/idp_metadata.xml"
+test_identity_provider_metadata_xml_2_file: "files/idp_metadata_updated.xml"
+test_identity_provider_freeform_attributes:
+  type: ADFS
+
+test_identity_provider_create_required_metadata_url: null
+test_identity_provider_create_required_metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+
+test_identity_provider_update_using_name_optional_required_metadata_url: null
+test_identity_provider_update_using_name_optional_required_metadata: null
+test_identity_provider_update_using_name_optional_required_freeform_attributes: "{{ test_identity_provider_freeform_attributes }}"
+
+# identity provider has a bug where it returns 'DELETED' before you are actually
+# allowed to create another IdP with the same name
+# thus, the second IdP we provision has to have a different 'name' and 'metadata'
+test_identity_provider_create_optional_required_name: "{{ 'name_example_2_' + random_suffix_1024 }}"
+test_identity_provider_create_optional_required_metadata_url: null
+test_identity_provider_create_optional_required_metadata: "{{ lookup('file', test_identity_provider_metadata_xml_2_file) }}"
+test_identity_provider_create_optional_required_freeform_attributes: "{{ test_identity_provider_freeform_attributes }}"
+
+test_identity_provider_update_optional_required_metadata_url: null
+test_identity_provider_update_optional_required_metadata: null
+test_identity_provider_update_optional_required_freeform_attributes: "{{ test_identity_provider_freeform_attributes }}"
+
+## identity provider group
+test_identity_provider_group_create_dependency_identity_provider_compartment_id: "{{ tenancy_ocid }}"
+test_identity_provider_group_create_dependency_identity_provider_metadata_url: null
+test_identity_provider_group_create_dependency_identity_provider_metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"

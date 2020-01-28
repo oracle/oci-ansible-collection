@@ -1,0 +1,284 @@
+# tests for `oci_identity_provider_facts` and `oci_identity_provider`
+
+# cleanup before execution
+# ===========================================================================================
+- name: get all the identity providers
+  oci_identity_provider_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+    protocol: SAML2
+  register: list_for_delete_identity_providers_result
+
+- name: delete the identity providers
+  oci_identity_provider:
+    identity_provider_id: "{{ item.id }}"
+    state: absent
+  when: item.name is search(random_suffix_1024)
+  loop: "{{ list_for_delete_identity_providers_result.identity_providers }}"
+  ignore_errors: yes
+
+# this was an issue with the existing tests but they were manually triggered
+# so we rarely hit it
+- name: Wait for identity provider deletion to propagate
+  pause:
+    seconds: 3
+
+# ===========================================================================================
+# Tests
+- block:
+  - name: create an identity provider
+    oci_identity_provider:
+      compartment_id: "{{ tenancy_ocid }}"
+      description: "{{ test_identity_provider_description }}"
+      freeform_attributes: "{{ test_identity_provider_freeform_attributes }}"
+      freeform_tags: "{{ test_identity_provider_freeform_tags }}"
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+      name: "{{ test_identity_provider_name }}"
+      product_type: "{{ test_identity_provider_product_type }}"
+      protocol: "{{ test_identity_provider_protocol }}"
+    register: create_identity_provider_result
+
+  - name: Assert that the identity provider is created
+    assert:
+      that:
+        - create_identity_provider_result.changed == True
+        - create_identity_provider_result.identity_provider.compartment_id == tenancy_ocid
+
+  - set_fact:
+      test_idp_id: "{{ create_identity_provider_result.identity_provider.id }}"
+  # ===========================================================================================
+  - name: check idempotency of create identity provider operation
+    oci_identity_provider:
+      compartment_id: "{{ tenancy_ocid }}"
+      description: "{{ test_identity_provider_description }}"
+      freeform_attributes: "{{ test_identity_provider_freeform_attributes }}"
+      freeform_tags: "{{ test_identity_provider_freeform_tags }}"
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+      name: "{{ test_identity_provider_name }}"
+      product_type: "{{ test_identity_provider_product_type }}"
+      protocol: "{{ test_identity_provider_protocol }}"
+    register: idempotency_create_identity_provider_result
+
+  - name: Assert that the identity provider is not created
+    assert:
+      that:
+        - idempotency_create_identity_provider_result.changed == False
+        - idempotency_create_identity_provider_result.identity_provider.compartment_id == tenancy_ocid
+        - idempotency_create_identity_provider_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: check listing IDP groups
+    oci_identity_provider_group_facts:
+      identity_provider_id: "{{ test_idp_id }}"
+    register: idp_groups_result
+
+  - name: Assert response was returned
+    assert:
+      that:
+        - idp_groups_result.identity_provider_groups is defined
+        # it is a fake IDP so there aren't any groups
+        - idp_groups_result.identity_provider_groups | length == 0
+  # ===========================================================================================
+  - name: Perform action reset_idp_scim_client on the identity provider
+    oci_identity_provider_actions:
+      identity_provider_id: "{{ test_idp_id }}"
+      action: reset_idp_scim_client
+    register: reset_idp_scim_client_result
+
+  - name: Assert that the action is performed
+    assert:
+      that:
+        - reset_idp_scim_client_result.changed == True
+        - reset_idp_scim_client_result.identity_provider.client_id is defined
+        - reset_idp_scim_client_result.identity_provider.client_secret is defined
+  # ===========================================================================================
+  - name: update description of the identity provider (check mode)
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      description: "{{ updated_test_identity_provider_description }}"
+    register: update_description_result
+    check_mode: yes
+
+  - name: Assert that description is updated
+    assert:
+      that:
+        - update_description_result.changed == True
+  # ===========================================================================================
+  - name: update description of the identity provider
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      description: "{{ updated_test_identity_provider_description }}"
+    register: update_description_result
+
+  - name: Assert that description is updated
+    assert:
+      that:
+        - update_description_result.changed == True
+        - update_description_result.identity_provider.description == updated_test_identity_provider_description
+        - update_description_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: check idempotency of update description of the identity provider
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      description: "{{ updated_test_identity_provider_description }}"
+    register: idempotency_update_description_result
+
+  - name: Assert that changed is false
+    assert:
+      that:
+        - idempotency_update_description_result.changed == False
+        - idempotency_update_description_result.identity_provider.description == updated_test_identity_provider_description
+        - idempotency_update_description_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: update freeform_tags of the identity provider
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      freeform_tags: "{{ updated_test_identity_provider_freeform_tags }}"
+    register: update_freeform_tags_result
+
+  - name: Assert that freeform_tags is updated
+    assert:
+      that:
+        - update_freeform_tags_result.changed == True
+        - update_freeform_tags_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: check idempotency of update freeform_tags of the identity provider
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      freeform_tags: "{{ updated_test_identity_provider_freeform_tags }}"
+    register: idempotency_update_freeform_tags_result
+
+  - name: Assert that changed is false
+    assert:
+      that:
+        - idempotency_update_freeform_tags_result.changed == False
+        - idempotency_update_freeform_tags_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: update metadata of the identity provider
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+    register: update_metadata_result
+
+  - name: Assert that metadata is updated
+    assert:
+      that:
+        - update_metadata_result.changed == True
+        - update_metadata_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: check idempotency of update metadata of the identity provider (check mode)
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+    register: idempotency_update_metadata_check_mode_result
+    check_mode: yes
+
+  - name: Assert that changed is True
+    assert:
+      that:
+        - idempotency_update_metadata_check_mode_result.changed == True
+
+  - name: check idempotency of update metadata of the identity provider (is not idempotent)
+    oci_identity_provider:
+      protocol: SAML2
+      identity_provider_id: "{{ test_idp_id }}"
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+    register: idempotency_update_metadata_result
+
+  # This is a special case because 'metadata field is not returned on a GET response.
+  # There is no way to know if the `metadata' specified by the user is identical
+  # to the metadata value on the resource server side. Thus in the case where the user
+  # is explicitly supplying a value for 'metadata', we ALWAYS execute an update call.
+  # The alternative is to ignore 'metadata', but then a user has no way to update metadata
+  # if that is what they want to do.
+  # We are erring on the side of guaranteeing that the resource on the server matches
+  # what they have provided, by explicitly updating the metadata
+  - name: Assert that changed is True
+    assert:
+      that:
+        - idempotency_update_metadata_result.changed == True
+        - idempotency_update_metadata_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  - name: check idempotency of update metadata of the identity provider using name (check mode)
+    oci_identity_provider:
+      compartment_id: "{{ tenancy_ocid }}"
+      name: "{{ test_identity_provider_name }}"
+      protocol: SAML2
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+    register: idempotency_update_metadata_check_mode_result
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    check_mode: yes
+
+  - name: Assert that changed is True
+    assert:
+      that:
+        - idempotency_update_metadata_check_mode_result.changed == True
+  
+  - name: check idempotency of update metadata of the identity provider using name (is not idempotent)
+    oci_identity_provider:
+      compartment_id: "{{ tenancy_ocid }}"
+      name: "{{ test_identity_provider_name }}"
+      protocol: SAML2
+      metadata: "{{ lookup('file', test_identity_provider_metadata_xml_file) }}"
+    environment:
+        OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: idempotency_update_metadata_result
+
+  # See similar detailed explanation above
+  # The special part about this case is with OCI_USE_NAME_AS_IDENTIFIER we no longer
+  # have an explicit designation in the playbook about whether this is an UPDATE or CREATE
+  # When we required ID for update, the playbook was explicit, if a user had id AND metadata
+  # they clearly wanted to update resource and update 'metadata'
+  # Now w/ update via name, create + update are one block, so playbooks will likely have
+  # 'metadata' populated for the create case and therefore it will be there when running as an
+  # update
+  # This doesn't signal an explict desire to update the metadata, its just a product of create
+  # and update being bundled
+  # To be safe, when OCI_USE_NAME_AS_IDENTIFIER is true and metadata is present we will ALWAYS
+  # update the resource
+  # The alternative is to ignore 'metadata' in this case which is worse because then the user
+  # may assume the server resource has the newly specified metadata when in reality it does not
+  - name: Assert that changed is True
+    assert:
+      that:
+        - idempotency_update_metadata_result.changed == True
+        - idempotency_update_metadata_result.identity_provider.id == test_idp_id
+  # ===========================================================================================
+  # cleanup after tests
+  - name: delete the identity provider created in this test
+    oci_identity_provider:
+      identity_provider_id: "{{ test_idp_id }}"
+      state: absent
+    register: delete_identity_provider_result
+
+  - name: assert that the identity provider is deleted
+    assert:
+      that:
+        - delete_identity_provider_result.changed == True
+  # ===========================================================================================
+  - name: check idempotency of identity provider deletion
+    oci_identity_provider:
+      identity_provider_id: "{{ test_idp_id }}"
+      state: absent
+    register: idempotency_delete_identity_provider_result
+
+  - name: assert that the identity provider is deleted
+    assert:
+      that:
+        - idempotency_delete_identity_provider_result.changed == False
+  # ===========================================================================================
+  rescue:
+    - name: delete the identity provider created in this test
+      oci_identity_provider:
+        identity_provider_id: "{{ test_idp_id }}"
+        state: absent
+      ignore_errors: yes
+    
+    - fail:
+        msg: "{{ ansible_failed_result }}"

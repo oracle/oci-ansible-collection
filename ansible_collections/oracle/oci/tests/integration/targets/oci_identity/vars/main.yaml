@@ -66,3 +66,18 @@ test_tag_namespace_name: "test_tag_namespace_{{ random_suffix_1024 }}"
 # Policies
 test_policy_name: "Policy_{{random_suffix_1024}}"
 test_policy_description: "Policy for {{random_suffix_1024}}. Used in {{ansible_nodename}}"
+
+# identity provider
+test_identity_provider_name: "test_idp_{{random_suffix_1024}}"
+test_identity_provider_description: "test identity provider {{random_suffix_1024}}"
+test_identity_provider_freeform_attributes:
+  type: ADFS
+test_identity_provider_freeform_tags:
+  action: create
+test_identity_provider_metadata_xml_file: "files/idp_metadata.xml"
+test_identity_provider_product_type: "ADFS"
+test_identity_provider_protocol: "SAML2"
+# updated values
+updated_test_identity_provider_description: "updated_test identity provider {{random_suffix_1024}}"
+updated_test_identity_provider_freeform_tags:
+  action: update

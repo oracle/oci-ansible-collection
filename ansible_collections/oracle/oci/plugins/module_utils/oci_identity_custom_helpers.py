@@ -47,6 +47,18 @@ class PolicyHelperCustom:
             )
 
 
+class IdentityProviderHelperCustom:
+
+    # metadata is not returned by GET or LIST so we should not try
+    # to match using it
+    def get_exclude_attributes(self):
+        global_exclude_attribtes = super(
+            IdentityProviderHelperCustom, self
+        ).get_exclude_attributes()[:]
+        global_exclude_attribtes.append("metadata")
+        return global_exclude_attribtes
+
+
 class TagHelperCustom:
     def __init__(self, module, resource_type, service_client_class, namespace):
         if "name" in module.params:

@@ -426,6 +426,7 @@ class OCIResourceHelperBase:
         for resource in self.list_resources():
             if not self._is_resource_active(resource):
                 continue
+
             resource_dict = to_dict(resource)
             if oci_common_utils.is_dict_subset(
                 source_dict=to_dict(create_model),
@@ -475,7 +476,7 @@ class OCIResourceHelperBase:
         update_model = self.get_update_model()
         self.convert_request_model_fields_to_computed_server_values(update_model)
         update_model_dict = to_dict(update_model)
-        return not oci_common_utils.are_dicts_equal(
+        return not oci_common_utils.is_dict_subset(
             update_model_dict, current_resource_dict, update_model.attribute_map
         )
 

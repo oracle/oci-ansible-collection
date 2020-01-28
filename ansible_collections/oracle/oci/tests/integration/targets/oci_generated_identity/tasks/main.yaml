@@ -53,3 +53,6 @@
 - import_tasks: oci_identity_policy_tests.yaml
   tags:
     - policy
+- import_tasks: oci_identity_provider_tests.yaml
+  tags:
+      - identity_provider

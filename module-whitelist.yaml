@@ -47,6 +47,12 @@ moduleWhitelist:
   - oci_identity_mfa_totp_device_actions
   - oci_identity_policy
   - oci_identity_policy_facts
+  - oci_identity_provider_group_facts
+  - oci_identity_provider
+  - oci_identity_provider_facts
+  - oci_identity_provider_actions
+  - oci_identity_authentication_policy
+  - oci_identity_authentication_policy_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

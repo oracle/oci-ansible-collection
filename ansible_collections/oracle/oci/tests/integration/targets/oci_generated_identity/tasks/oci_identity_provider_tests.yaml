@@ -1,0 +1,518 @@
+---
+- block:
+  - name: Create identity_provider (check mode)
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_create_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_create_required_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_identity_provider_create_required_description, omit) }}"
+      product_type: "{{ 'IDCS' | oracle.oci.override(test_identity_provider_create_required_product_type, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_create_required_protocol, omit) }}"
+      metadata_url: "{{ 'metadata_url_example' | oracle.oci.override(test_identity_provider_create_required_metadata_url, omit) }}"
+      metadata: "{{ 'metadata_example' | oracle.oci.override(test_identity_provider_create_required_metadata, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_identity_provider_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_identity_provider_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_create_check_mode_custom_assertions }}"
+    when: identity_provider_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create identity_provider with required parameters
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_create_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_create_required_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_identity_provider_create_required_description, omit) }}"
+      product_type: "{{ 'IDCS' | oracle.oci.override(test_identity_provider_create_required_product_type, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_create_required_protocol, omit) }}"
+      metadata_url: "{{ 'metadata_url_example' | oracle.oci.override(test_identity_provider_create_required_metadata_url, omit) }}"
+      metadata: "{{ 'metadata_example' | oracle.oci.override(test_identity_provider_create_required_metadata, omit) }}"
+    register: result
+    when: skip_identity_provider_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_identity_provider_create_required_original_test is not defined
+
+  - set_fact:
+      identity_provider_resource_id: "{{ result.identity_provider.id }}"
+    when: skip_identity_provider_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_create_required_original_custom_assertions }}"
+    when: identity_provider_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create identity_provider with required parameters(idempotency)
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_create_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_create_required_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_identity_provider_create_required_description, omit) }}"
+      product_type: "{{ 'IDCS' | oracle.oci.override(test_identity_provider_create_required_product_type, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_create_required_protocol, omit) }}"
+      metadata_url: "{{ 'metadata_url_example' | oracle.oci.override(test_identity_provider_create_required_metadata_url, omit) }}"
+      metadata: "{{ 'metadata_example' | oracle.oci.override(test_identity_provider_create_required_metadata, omit) }}"
+    register: result
+    when: skip_identity_provider_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_identity_provider_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_create_required_idempotency_custom_assertions }}"
+    when: identity_provider_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update identity_provider using name with optional + required parameters
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_update_using_name_optional_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_name, omit) }}"
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_description, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_update_using_name_optional_required_protocol, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_identity_provider_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_identity_provider_update_using_name_optional_required_defined_tags, omit) }}"
+      metadata_url: "{{ ('metadata_url_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_metadata_url, omit) }}"
+      metadata: "{{ ('metadata_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_metadata, omit) }}"
+      freeform_attributes: "{{ null | oracle.oci.override(test_identity_provider_update_using_name_optional_required_freeform_attributes, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_identity_provider_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_identity_provider_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_update_using_name_optional_required_custom_assertions }}"
+    when: identity_provider_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update identity_provider using name with optional + required parameters (idempotence)
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_update_using_name_optional_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_name, omit) }}"
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_description, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_update_using_name_optional_required_protocol, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_identity_provider_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_identity_provider_update_using_name_optional_required_defined_tags, omit) }}"
+      metadata_url: "{{ ('metadata_url_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_metadata_url, omit) }}"
+      metadata: "{{ ('metadata_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_using_name_optional_required_metadata, omit) }}"
+      freeform_attributes: "{{ null | oracle.oci.override(test_identity_provider_update_using_name_optional_required_freeform_attributes, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_identity_provider_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_identity_provider_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: identity_provider_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete identity_provider
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_delete_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_delete_required_name, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_delete_required_protocol, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_identity_provider_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_identity_provider_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_delete_required_custom_assertions }}"
+    when: identity_provider_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete identity_provider (idempotency)
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_delete_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_delete_required_name, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_delete_required_protocol, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_identity_provider_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_identity_provider_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_delete_required_idempotency_custom_assertions }}"
+    when: identity_provider_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create identity_provider with optional + required parameters
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_create_optional_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_create_optional_required_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_identity_provider_create_optional_required_description, omit) }}"
+      product_type: "{{ 'IDCS' | oracle.oci.override(test_identity_provider_create_optional_required_product_type, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_create_optional_required_protocol, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_identity_provider_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_identity_provider_create_optional_required_defined_tags, omit) }}"
+      metadata_url: "{{ 'metadata_url_example' | oracle.oci.override(test_identity_provider_create_optional_required_metadata_url, omit) }}"
+      metadata: "{{ 'metadata_example' | oracle.oci.override(test_identity_provider_create_optional_required_metadata, omit) }}"
+      freeform_attributes: "{{ null | oracle.oci.override(test_identity_provider_create_optional_required_freeform_attributes, omit) }}"
+    register: result
+    when: skip_identity_provider_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_identity_provider_create_optional_required_original_test is not defined
+
+  - set_fact:
+      identity_provider_resource_id: "{{ result.identity_provider.id }}"
+    when: skip_identity_provider_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_create_optional_required_original_custom_assertions }}"
+    when: identity_provider_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create identity_provider with optional + required parameters (idempotence)
+    oci_identity_provider:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_create_optional_required_compartment_id, omit) }}"
+      name: "{{ ('name_example' + random_suffix_1024) | oracle.oci.override(test_identity_provider_create_optional_required_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_identity_provider_create_optional_required_description, omit) }}"
+      product_type: "{{ 'IDCS' | oracle.oci.override(test_identity_provider_create_optional_required_product_type, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_create_optional_required_protocol, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_identity_provider_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_identity_provider_create_optional_required_defined_tags, omit) }}"
+      metadata_url: "{{ 'metadata_url_example' | oracle.oci.override(test_identity_provider_create_optional_required_metadata_url, omit) }}"
+      metadata: "{{ 'metadata_example' | oracle.oci.override(test_identity_provider_create_optional_required_metadata, omit) }}"
+      freeform_attributes: "{{ null | oracle.oci.override(test_identity_provider_create_optional_required_freeform_attributes, omit) }}"
+    register: result
+    when: skip_identity_provider_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_identity_provider_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_create_optional_required_idempotence_custom_assertions }}"
+    when: identity_provider_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update identity_provider with optional + required parameters
+    oci_identity_provider:
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_optional_required_description, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_update_optional_required_protocol, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_identity_provider_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_identity_provider_update_optional_required_defined_tags, omit) }}"
+      metadata_url: "{{ ('metadata_url_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_optional_required_metadata_url, omit) }}"
+      metadata: "{{ ('metadata_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_optional_required_metadata, omit) }}"
+      freeform_attributes: "{{ null | oracle.oci.override(test_identity_provider_update_optional_required_freeform_attributes, omit) }}"
+      identity_provider_id: "{{ identity_provider_resource_id | oracle.oci.override(test_identity_provider_update_optional_required_identity_provider_id, omit) }}"
+    register: result
+    when: skip_identity_provider_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_identity_provider_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_update_optional_required_custom_assertions }}"
+    when: identity_provider_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update identity_provider with optional + required parameters (idempotence)
+    oci_identity_provider:
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_optional_required_description, omit) }}"
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_update_optional_required_protocol, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_identity_provider_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_identity_provider_update_optional_required_defined_tags, omit) }}"
+      metadata_url: "{{ ('metadata_url_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_optional_required_metadata_url, omit) }}"
+      metadata: "{{ ('metadata_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_identity_provider_update_optional_required_metadata, omit) }}"
+      freeform_attributes: "{{ null | oracle.oci.override(test_identity_provider_update_optional_required_freeform_attributes, omit) }}"
+      identity_provider_id: "{{ identity_provider_resource_id | oracle.oci.override(test_identity_provider_update_optional_required_identity_provider_id, omit) }}"
+    register: result
+    when: skip_identity_provider_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_identity_provider_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.identity_provider.id is defined
+        - result.identity_provider.compartment_id is defined
+        - result.identity_provider.name is defined
+        - result.identity_provider.description is defined
+        - result.identity_provider.product_type is defined
+        - result.identity_provider.time_created is defined
+        - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.protocol is defined
+    when: skip_identity_provider_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_update_optional_required_idempotence_custom_assertions }}"
+    when: identity_provider_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List identity_providers
+    oci_identity_provider_facts:
+      protocol: "{{ 'SAML2' | oracle.oci.override(test_identity_provider_list_protocol, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_identity_provider_list_compartment_id, omit) }}"
+    register: result
+    when: skip_identity_provider_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.identity_providers | length > 0
+    when: skip_identity_provider_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.product_type is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+        - item.protocol is defined
+    with_items: "{{ result.identity_providers }}"
+    when: skip_identity_provider_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_list_custom_assertions }}"
+    when: identity_provider_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get identity_provider
+    oci_identity_provider_facts:
+      identity_provider_id: "{{ identity_provider_resource_id | oracle.oci.override(test_identity_provider_get_identity_provider_id, omit) }}"
+    register: result
+    when: skip_identity_provider_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.identity_providers | length == 1
+    when: skip_identity_provider_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.product_type is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+        - item.protocol is defined
+    with_items: "{{ result.identity_providers }}"
+    when: skip_identity_provider_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ identity_provider_get_custom_assertions }}"
+    when: identity_provider_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete identity_provider
+      oci_identity_provider:
+        identity_provider_id: "{{ identity_provider_resource_id | oracle.oci.override(test_identity_provider_delete_rescue_identity_provider_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: identity_provider_resource_id is defined

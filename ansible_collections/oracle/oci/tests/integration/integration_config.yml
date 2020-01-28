@@ -8,10 +8,6 @@ test_tag_default_tests_compartment_ocid: "ocid1.compartment.oc1..aaaaaaaaztglfq7
 # by default when they are created. Having default tags is creating idempotence issues.
 test_tag_default_namespace_ocid: "ocid1.tagnamespace.oc1..aaaaaaaay2rgupmot64q73sa5wpopat6vxgqdhnng2vixgk5fbjjwj5luydq"
 
-# Since we do not have an oci_identity_provider module to dynamically create identity providers, the following ID is
-# for a test Identity Provider that has been manually created. The name of this Identity Provider is TEST_IDENTITY_PROVIDER.
-test_identity_provider_id: "ocid1.saml2idp.oc1..aaaaaaaaifksnyueumkzf2unksnqc5mtguvjvvsglanu4q7xrgvceosctsna"
-
 # A test tag namespace named "{{test_tag_namespace_name}}" created under {{test_compartment_ocid}}
 # that is used for compute and other tests that needs a tag namespace.
 # This tag namespace would not be retired during a test execution and
