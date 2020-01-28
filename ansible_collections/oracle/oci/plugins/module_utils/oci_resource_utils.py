@@ -273,6 +273,12 @@ class OCIResourceHelperBase:
         """Expected to be generated inside the module."""
         pass
 
+    def get_resource_active_states(self):
+        return oci_common_utils.DEFAULT_READY_STATES
+
+    def get_resource_terminated_states(self):
+        return oci_common_utils.DEFAULT_TERMINATED_STATES
+
     def _has_name_parameter(self):
         if any(
             [

@@ -17,6 +17,7 @@
         - result.changed == True
     when: skip_idp_group_mapping_create_dependency_identity_provider_test is not defined and skip_idp_group_mapping_dependencies is not defined
   - set_fact:
+      dependency_identity_provider: "{{ result.identity_provider }}"
       dependency_identity_provider_id: "{{ result.identity_provider.id }}"
     when: skip_idp_group_mapping_create_dependency_identity_provider_test is not defined and skip_idp_group_mapping_dependencies is not defined
   - name: Assert custom assertions
@@ -41,6 +42,7 @@
         - result.changed == True
     when: skip_idp_group_mapping_create_dependency_group_test is not defined and skip_idp_group_mapping_dependencies is not defined
   - set_fact:
+      dependency_group: "{{ result.group }}"
       dependency_group_id: "{{ result.group.id }}"
     when: skip_idp_group_mapping_create_dependency_group_test is not defined and skip_idp_group_mapping_dependencies is not defined
   - name: Assert custom assertions

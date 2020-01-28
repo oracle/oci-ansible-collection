@@ -13,6 +13,7 @@
         - result.changed == True
     when: skip_tag_create_dependency_tag_namespace_test is not defined and skip_tag_dependencies is not defined
   - set_fact:
+      dependency_tag_namespace: "{{ result.tag_namespace }}"
       dependency_tag_namespace_id: "{{ result.tag_namespace.id }}"
     when: skip_tag_create_dependency_tag_namespace_test is not defined and skip_tag_dependencies is not defined
   - name: Assert custom assertions

@@ -107,7 +107,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create policy
   oci_identity_policy:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID
     description: Policy for users who need to launch instances, attach volumes, manage images
     name: LaunchInstances
     statements:
@@ -117,7 +117,7 @@ EXAMPLES = """
 
 - name: Update policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID
     name: LaunchInstances
     statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
     description: Policy for users who need to launch instances, attach volumes, manage images
@@ -138,7 +138,7 @@ EXAMPLES = """
 
 - name: Delete policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID
     name: LaunchInstances
     state: absent
 
@@ -317,7 +317,7 @@ class PolicyHelperGen(OCIResourceHelperBase):
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_resource_active_states(),
+            or self.get_resource_active_states(),
         )
 
     def get_update_model_class(self):
@@ -337,7 +337,7 @@ class PolicyHelperGen(OCIResourceHelperBase):
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_resource_active_states(),
+            or self.get_resource_active_states(),
         )
 
     def delete_resource(self):
@@ -350,7 +350,7 @@ class PolicyHelperGen(OCIResourceHelperBase):
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_resource_terminated_states(),
+            or self.get_resource_terminated_states(),
         )
 
 

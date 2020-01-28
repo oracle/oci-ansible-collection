@@ -13,6 +13,7 @@
         - result.changed == True
     when: skip_user_group_membership_create_dependency_user_test is not defined and skip_user_group_membership_dependencies is not defined
   - set_fact:
+      dependency_user: "{{ result.user }}"
       dependency_user_id: "{{ result.user.id }}"
     when: skip_user_group_membership_create_dependency_user_test is not defined and skip_user_group_membership_dependencies is not defined
   - name: Assert custom assertions
@@ -37,6 +38,7 @@
         - result.changed == True
     when: skip_user_group_membership_create_dependency_group_test is not defined and skip_user_group_membership_dependencies is not defined
   - set_fact:
+      dependency_group: "{{ result.group }}"
       dependency_group_id: "{{ result.group.id }}"
     when: skip_user_group_membership_create_dependency_group_test is not defined and skip_user_group_membership_dependencies is not defined
   - name: Assert custom assertions

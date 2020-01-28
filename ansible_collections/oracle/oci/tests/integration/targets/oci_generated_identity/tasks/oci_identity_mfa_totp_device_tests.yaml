@@ -13,6 +13,7 @@
         - result.changed == True
     when: skip_mfa_totp_device_create_dependency_user_test is not defined and skip_mfa_totp_device_dependencies is not defined
   - set_fact:
+      dependency_user: "{{ result.user }}"
       dependency_user_id: "{{ result.user.id }}"
     when: skip_mfa_totp_device_create_dependency_user_test is not defined and skip_mfa_totp_device_dependencies is not defined
   - name: Assert custom assertions

@@ -13,7 +13,7 @@
   - name: Update authentication_policy with optional + required parameters
     oci_identity_authentication_policy:
       compartment_id: "{{ authentication_policy_resource_id | oracle.oci.override(test_authentication_policy_update_optional_required_compartment_id, omit) }}"
-      password_policy: "{{ test_authentication_policy_update_optional_required_password_policy | default(omit, true) }}"
+      password_policy: "{{ '{}' | oracle.oci.override(test_authentication_policy_update_optional_required_password_policy, omit) }}"
     register: result
     when: skip_authentication_policy_update_optional_required_test is not defined
 
@@ -35,7 +35,7 @@
   - name: Update authentication_policy with optional + required parameters (idempotence)
     oci_identity_authentication_policy:
       compartment_id: "{{ authentication_policy_resource_id | oracle.oci.override(test_authentication_policy_update_optional_required_compartment_id, omit) }}"
-      password_policy: "{{ test_authentication_policy_update_optional_required_password_policy | default(omit, true) }}"
+      password_policy: "{{ '{}' | oracle.oci.override(test_authentication_policy_update_optional_required_password_policy, omit) }}"
     register: result
     when: skip_authentication_policy_update_optional_required_idempotence_test is not defined
 

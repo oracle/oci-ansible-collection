@@ -13,6 +13,7 @@
         - result.changed == True
     when: skip_nat_gateway_create_dependency_vcn_test is not defined and skip_nat_gateway_dependencies is not defined
   - set_fact:
+      dependency_vcn: "{{ result.vcn }}"
       dependency_vcn_id: "{{ result.vcn.id }}"
     when: skip_nat_gateway_create_dependency_vcn_test is not defined and skip_nat_gateway_dependencies is not defined
   - name: Assert custom assertions

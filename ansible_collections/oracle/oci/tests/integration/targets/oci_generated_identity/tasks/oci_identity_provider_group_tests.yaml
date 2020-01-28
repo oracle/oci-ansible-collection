@@ -17,6 +17,7 @@
         - result.changed == True
     when: skip_identity_provider_group_create_dependency_identity_provider_test is not defined and skip_identity_provider_group_dependencies is not defined
   - set_fact:
+      dependency_identity_provider: "{{ result.identity_provider }}"
       dependency_identity_provider_id: "{{ result.identity_provider.id }}"
     when: skip_identity_provider_group_create_dependency_identity_provider_test is not defined and skip_identity_provider_group_dependencies is not defined
   - name: Assert custom assertions

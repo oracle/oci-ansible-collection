@@ -285,7 +285,7 @@ class TagHelperGen(OCIResourceHelperBase):
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_resource_active_states(),
+            or self.get_resource_active_states(),
         )
 
     def get_update_model_class(self):
@@ -306,7 +306,7 @@ class TagHelperGen(OCIResourceHelperBase):
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_resource_active_states(),
+            or self.get_resource_active_states(),
         )
 
     def delete_resource(self):

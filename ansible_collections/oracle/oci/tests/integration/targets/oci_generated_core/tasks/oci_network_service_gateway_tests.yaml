@@ -13,6 +13,7 @@
         - result.changed == True
     when: skip_service_gateway_create_dependency_vcn_test is not defined and skip_service_gateway_dependencies is not defined
   - set_fact:
+      dependency_vcn: "{{ result.vcn }}"
       dependency_vcn_id: "{{ result.vcn.id }}"
     when: skip_service_gateway_create_dependency_vcn_test is not defined and skip_service_gateway_dependencies is not defined
   - name: Assert custom assertions
@@ -35,7 +36,7 @@
     oci_network_service_gateway:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_service_gateway_create_required_compartment_id, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_create_required_display_name, omit) }}"
-      services: "{{ test_service_gateway_create_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_create_required_services, omit) }}"
       vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_service_gateway_create_required_vcn_id, omit) }}"
     register: result
     check_mode: yes
@@ -60,7 +61,7 @@
     oci_network_service_gateway:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_service_gateway_create_required_compartment_id, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_create_required_display_name, omit) }}"
-      services: "{{ test_service_gateway_create_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_create_required_services, omit) }}"
       vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_service_gateway_create_required_vcn_id, omit) }}"
     register: result
     when: skip_service_gateway_create_required_original_test is not defined
@@ -99,7 +100,7 @@
     oci_network_service_gateway:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_service_gateway_create_required_compartment_id, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_create_required_display_name, omit) }}"
-      services: "{{ test_service_gateway_create_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_create_required_services, omit) }}"
       vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_service_gateway_create_required_vcn_id, omit) }}"
     register: result
     when: skip_service_gateway_create_required_idempotency_test is not defined
@@ -141,7 +142,7 @@
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_service_gateway_update_using_name_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_update_using_name_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_service_gateway_update_using_name_optional_required_freeform_tags, omit) }}"
-      services: "{{ test_service_gateway_update_using_name_optional_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_update_using_name_optional_required_services, omit) }}"
       block_traffic: "{{ true | oracle.oci.override(test_service_gateway_update_using_name_optional_required_block_traffic, omit) }}"
     environment:
       OCI_USE_NAME_AS_IDENTIFIER: 1
@@ -180,7 +181,7 @@
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_service_gateway_update_using_name_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_update_using_name_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_service_gateway_update_using_name_optional_required_freeform_tags, omit) }}"
-      services: "{{ test_service_gateway_update_using_name_optional_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_update_using_name_optional_required_services, omit) }}"
       block_traffic: "{{ true | oracle.oci.override(test_service_gateway_update_using_name_optional_required_block_traffic, omit) }}"
     environment:
       OCI_USE_NAME_AS_IDENTIFIER: 1
@@ -285,7 +286,7 @@
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_service_gateway_create_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_create_optional_required_display_name, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_service_gateway_create_optional_required_freeform_tags, omit) }}"
-      services: "{{ test_service_gateway_create_optional_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_create_optional_required_services, omit) }}"
       vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_service_gateway_create_optional_required_vcn_id, omit) }}"
     register: result
     when: skip_service_gateway_create_optional_required_original_test is not defined
@@ -326,7 +327,7 @@
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_service_gateway_create_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_service_gateway_create_optional_required_display_name, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_service_gateway_create_optional_required_freeform_tags, omit) }}"
-      services: "{{ test_service_gateway_create_optional_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_create_optional_required_services, omit) }}"
       vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_service_gateway_create_optional_required_vcn_id, omit) }}"
     register: result
     when: skip_service_gateway_create_optional_required_idempotence_test is not defined
@@ -367,7 +368,7 @@
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_service_gateway_update_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_service_gateway_update_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_service_gateway_update_optional_required_freeform_tags, omit) }}"
-      services: "{{ test_service_gateway_update_optional_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_update_optional_required_services, omit) }}"
       service_gateway_id: "{{ service_gateway_resource_id | oracle.oci.override(test_service_gateway_update_optional_required_service_gateway_id, omit) }}"
       block_traffic: "{{ true | oracle.oci.override(test_service_gateway_update_optional_required_block_traffic, omit) }}"
     register: result
@@ -404,7 +405,7 @@
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_service_gateway_update_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_service_gateway_update_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_service_gateway_update_optional_required_freeform_tags, omit) }}"
-      services: "{{ test_service_gateway_update_optional_required_services | default(omit, true) }}"
+      services: "{{ '[]' | oracle.oci.override(test_service_gateway_update_optional_required_services, omit) }}"
       service_gateway_id: "{{ service_gateway_resource_id | oracle.oci.override(test_service_gateway_update_optional_required_service_gateway_id, omit) }}"
       block_traffic: "{{ true | oracle.oci.override(test_service_gateway_update_optional_required_block_traffic, omit) }}"
     register: result

@@ -474,14 +474,6 @@ def get_entity_type(resource_type):
     return resource_type.strip().replace("_", "")
 
 
-def get_resource_active_states():
-    return DEFAULT_READY_STATES
-
-
-def get_resource_terminated_states():
-    return DEFAULT_TERMINATED_STATES
-
-
 def get_work_request_completed_states():
     return WORK_REQUEST_COMPLETED_STATES
 
