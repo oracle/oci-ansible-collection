@@ -1,0 +1,62 @@
+# variables for oci_network_dhcp_options_tests.yaml
+test_dhcp_options_update_using_name_optional_required_options:
+  - type: 'DomainNameServer'
+    server_type: 'VcnLocalPlusInternet'
+    custom_dns_servers: []
+  - type: 'SearchDomain'
+    search_domain_names: ['ansibletestvcn.oraclevcn.com']
+test_dhcp_options_update_optional_required_options: "{{ test_dhcp_options_update_using_name_optional_required_options }}"
+
+# variables for oci_network_route_table_tests.yaml
+test_route_table_create_required_vcn_id: "{{ common_vcn_id }}"
+test_route_table_create_optional_required_vcn_id: "{{ common_vcn_id }}"
+test_route_table_update_using_name_optional_required_vcn_id: "{{ common_vcn_id }}"
+test_route_table_delete_required_vcn_id: "{{ common_vcn_id }}"
+test_route_table_list_vcn_id: "{{ common_vcn_id }}"
+test_route_table_create_required_route_rules:
+  - destination: '0.0.0.0/0'
+    destination_type: 'CIDR_BLOCK'
+    network_entity_id: "{{ ig_for_common_vcn_id }}"
+test_route_table_update_using_name_optional_required_route_rules:
+  - destination: '0.0.0.0/0'
+    destination_type: 'CIDR_BLOCK'
+    network_entity_id: "{{ ig_for_common_vcn_id }}"
+  - destination: 'oci-iad-objectstorage'
+    destination_type: 'SERVICE_CIDR_BLOCK'
+    network_entity_id: "{{ sg_for_common_vcn_id }}"
+test_route_table_create_optional_required_route_rules: "{{ test_route_table_create_required_route_rules }}"
+test_route_table_update_optional_required_route_rules: "{{ test_route_table_create_required_route_rules }}"
+
+# variables for oci_network_security_list_tests.yaml
+test_security_list_create_required_egress_security_rules: []
+test_security_list_create_required_ingress_security_rules: []
+test_security_list_update_using_name_optional_required_ingress_security_rules:
+  - source: '0.0.0.0/0'
+    source_type: "CIDR_BLOCK"
+    is_stateless: False
+    protocol: '6'
+    tcp_options:
+      destination_port_range:
+        min: 22
+        max: 22
+test_security_list_update_optional_required_ingress_security_rules: "{{ test_security_list_update_using_name_optional_required_ingress_security_rules }}"
+test_security_list_create_optional_required_ingress_security_rules: "{{ test_security_list_update_using_name_optional_required_ingress_security_rules }}"
+
+test_security_list_update_using_name_optional_required_egress_security_rules:
+  - destination: '0.0.0.0/0'
+    protocol: 'all'
+    destination_type: "CIDR_BLOCK"
+    is_stateless: False
+test_security_list_update_optional_required_egress_security_rules: "{{ test_security_list_update_using_name_optional_required_egress_security_rules }}"
+test_security_list_create_optional_required_egress_security_rules: "{{ test_security_list_update_using_name_optional_required_egress_security_rules }}"
+
+# variables for oci_network_subnet_tests.yaml
+test_subnet_create_dependency_route_table_route_rules: []
+skip_subnet_create_dependency_dhcp_options_test: yes
+test_subnet_update_using_name_optional_required_dhcp_options_id: null
+test_subnet_create_optional_required_dhcp_options_id: null
+test_subnet_update_optional_required_dhcp_options_id: null
+test_subnet_update_using_name_optional_required_security_list_ids: null
+test_subnet_create_optional_required_security_list_ids: null
+test_subnet_update_optional_required_security_list_ids: null
+test_subnet_create_optional_required_dns_label: null

@@ -19,3 +19,18 @@
 - import_tasks: oci_network_drg_tests.yaml
   tags:
     - drg
+- import_tasks: oci_network_dhcp_options_tests.yaml
+  tags:
+    - dhcp_options
+- import_tasks: oci_network_security_group_tests.yaml
+  tags:
+    - security_group
+- import_tasks: oci_network_route_table_tests.yaml
+  tags:
+    - route_table
+- import_tasks: oci_network_security_list_tests.yaml
+  tags:
+    - security_list
+- import_tasks: oci_network_subnet_tests.yaml
+  tags:
+    - subnet

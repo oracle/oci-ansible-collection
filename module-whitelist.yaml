@@ -13,6 +13,19 @@ moduleWhitelist:
   - oci_network_cpe_facts
   - oci_network_drg
   - oci_network_drg_facts
+  - oci_network_dhcp_options
+  - oci_network_dhcp_options_facts
+  - oci_network_route_table
+  - oci_network_route_table_facts
+  - oci_network_security_group
+  - oci_network_security_group_facts
+  - oci_network_security_list
+  - oci_network_security_list_facts
+  - oci_network_security_rule_actions
+  - oci_network_security_rule_facts
+  - oci_network_service_gateway_actions
+  - oci_network_subnet
+  - oci_network_subnet_facts
   - oci_identity_dynamic_group
   - oci_identity_dynamic_group_facts
   - oci_identity_region_facts

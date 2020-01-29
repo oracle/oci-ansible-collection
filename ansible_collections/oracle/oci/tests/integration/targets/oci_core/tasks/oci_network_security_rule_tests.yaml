@@ -1,0 +1,310 @@
+---
+# Cleanup all network_security_groups with display name having {{random_suffix_1024}}
+- oci_network_security_group_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: test_nsgs
+
+- oci_network_security_group:
+    id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ test_nsgs.network_security_groups }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  ignore_errors: yes
+
+- block:
+    - name: Create dependency network_security_group
+      oci_network_security_group:
+        compartment_id: "{{ test_compartment_ocid }}"
+        vcn_id: "{{ common_vcn_id }}"
+        display_name: "my_nsg_{{random_suffix_1024}}"
+      register: result
+
+    - set_fact:
+        nsg_id: "{{ result.network_security_group.id }}"
+
+    - name: Validate that new NSG was created
+      assert:
+        that:
+          - result.changed == True
+
+    - name: List all security rules in NSG (should be empty)
+      oci_network_security_rule_facts:
+        network_security_group_id: "{{ nsg_id }}"
+      register: result
+
+    - name: Validate that new NSG has no rules
+      assert:
+        that:
+          - result.security_rules | length == 0
+
+    ## TEST ADD RULES
+
+    - name: Add rules
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: add_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/16
+            direction: INGRESS
+            protocol: all
+          - description: "Test egress security rule"
+            destination_type: CIDR_BLOCK
+            destination: 10.0.0.0/16
+            direction: EGRESS
+            protocol: all
+      register: result
+
+    - name: Validate rules were added
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 2
+
+    - name: Add rules - idempotency check
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: add_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/16
+            direction: INGRESS
+            protocol: all
+          - description: "Test egress security rule"
+            destination_type: CIDR_BLOCK
+            destination: 10.0.0.0/16
+            direction: EGRESS
+            protocol: all
+      register: result
+
+    - name: Validate rules were not updated
+      assert:
+        that:
+          - result.changed == False
+          - result.security_rule.security_rules | length == 2
+
+    - name: Add additional rule - check mode
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: add_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/16
+            direction: INGRESS
+            protocol: all
+          - description: "Test extra ingress security rule"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/24
+            direction: INGRESS
+            protocol: all
+          - description: "Test egress security rule"
+            destination_type: CIDR_BLOCK
+            destination: 10.0.0.0/16
+            direction: EGRESS
+            protocol: all
+      check_mode: True
+      register: result
+
+    - name: Validate changed would be true
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 0
+
+    - name: Add rules confirm that only additional rule is added
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: add_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/16
+            direction: INGRESS
+            protocol: all
+          - description: "Test extra ingress security rule"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/24
+            direction: INGRESS
+            protocol: all
+          - description: "Test egress security rule"
+            destination_type: CIDR_BLOCK
+            destination: 10.0.0.0/16
+            direction: EGRESS
+            protocol: all
+      register: result
+
+    - name: Validate only single rule was added
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 3
+
+    - name: List all security rules in NSG
+      oci_network_security_rule_facts:
+        network_security_group_id: "{{ nsg_id }}"
+      register: result
+
+    - name: Validate that only 3 rules are present
+      assert:
+        that:
+          - result.security_rules | length == 3
+
+    - set_fact:
+        first_security_rule_id: "{{ result.security_rules[0].id }}"
+
+    ## TEST UPDATE RULES
+
+    - name: Update first rule - check mode
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: update_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule - updated"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/32
+            direction: INGRESS
+            protocol: all
+            id: "{{ first_security_rule_id }}"
+      check_mode: True
+      register: result
+
+    - name: Validate changed would be true
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 0
+
+    - name: Update first rule
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: update_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule - updated"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/32
+            direction: INGRESS
+            protocol: all
+            id: "{{ first_security_rule_id }}"
+      register: result
+
+    - name: Validate there are still only 3 rules
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 3
+
+    - name: List all security rules in NSG
+      oci_network_security_rule_facts:
+        network_security_group_id: "{{ nsg_id }}"
+      register: result
+
+    - set_fact:
+        first_security_rule: "{{ result.security_rules[0] }}"
+
+    - name: Validate that rule was updated
+      assert:
+        that:
+          - first_security_rule.id == first_security_rule_id
+          - first_security_rule.source == "10.0.0.0/32"
+
+    - name: Update first rule - idempotency check
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: update_network_security_group_security_rules
+        security_rules:
+          - description: "Test ingress security rule - updated"
+            source_type: CIDR_BLOCK
+            source: 10.0.0.0/32
+            direction: INGRESS
+            protocol: all
+            id: "{{ first_security_rule_id }}"
+      register: result
+
+    - name: Validate nothing was updated
+      assert:
+        that:
+          - result.changed == False
+          - result.security_rule.security_rules | length == 3
+
+    ## TEST REMOVE RULES
+
+    - name: Remove a security rule by ID - check mode
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: remove_network_security_group_security_rules
+        security_rule_ids:
+          - "{{ first_security_rule_id }}"
+      check_mode: True
+      register: result
+
+    - name: Validate that rule would be removed
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 0
+
+    - name: Remove a security rule by ID
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: remove_network_security_group_security_rules
+        security_rule_ids:
+          - "{{ first_security_rule_id }}"
+      register: result
+
+    - name: Validate that rule was removed
+      assert:
+        that:
+          - result.changed == True
+          - result.security_rule.security_rules | length == 2
+
+    - name: List all security rules in NSG
+      oci_network_security_rule_facts:
+        network_security_group_id: "{{ nsg_id }}"
+      register: result
+
+    - name: Validate that rule was removed and there is one fewer now
+      assert:
+        that:
+          - result.security_rules | length == 2
+          - result.security_rules[0].id != first_security_rule_id
+          - result.security_rules[1].id != first_security_rule_id
+
+    - name: Remove a security rule by ID - idempotency check
+      oci_network_security_rule_actions:
+        network_security_group_id: "{{ nsg_id }}"
+        action: remove_network_security_group_security_rules
+        security_rule_ids:
+          - "{{ first_security_rule_id }}"
+      register: result
+
+    - name: Validate that no action was taken
+      assert:
+        that:
+          - result.changed == False
+          - result.security_rule.security_rules | length == 2
+
+    ## clean up
+    - name: Delete NSG
+      oci_network_security_group:
+        network_security_group_id: "{{ nsg_id }}"
+        state: absent
+      register: result
+
+    - name: Validate NSG was deleted
+      assert:
+        that:
+          - result.changed == True
+          - result.network_security_group.lifecycle_state == "DELETED"
+
+  rescue:
+    - name: Delete NSG
+      oci_network_security_group:
+        network_security_group_id: "{{ nsg_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

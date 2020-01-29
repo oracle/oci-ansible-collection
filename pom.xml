@@ -13,6 +13,7 @@
     <feature-id-dir>${project.basedir}/codegenConfig/featureIds</feature-id-dir>
     <module-whitelist-file>${project.basedir}/module-whitelist.yaml</module-whitelist-file>
     <module-rename-file>${project.basedir}/module-rename-config.yaml</module-rename-file>
+    <supplemental-examples-file>${project.basedir}/module-supplemental-x-examples.yaml</supplemental-examples-file>
     <inceptionYear>2016</inceptionYear>
     <collection-base-dir>ansible_collections/oracle/oci</collection-base-dir>
     <modules-output-directory>${collection-base-dir}/plugins/modules</modules-output-directory>
@@ -1430,6 +1431,7 @@
           <additionalProperties>
             <moduleWhitelistPath>${module-whitelist-file}</moduleWhitelistPath>
             <moduleRenameConfigPath>${module-rename-file}</moduleRenameConfigPath>
+            <supplementalExamplesConfigPath>${supplemental-examples-file}</supplementalExamplesConfigPath>
           </additionalProperties>
         </configuration>
         <executions>

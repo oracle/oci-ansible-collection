@@ -1,0 +1,63 @@
+core:
+  AddNetworkSecurityGroupSecurityRules: |
+      Example I: Add network security group security rules
+      POST /networkSecurityGroups/{networkSecurityGroupId}/actions/addSecurityRules
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "networkSecurityGroupId" : "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "securityRules" : [
+          {
+            "description": "Example ingress security rule",
+            "sourceType": "CIDR_BLOCK",
+            "source": "10.0.0.0/16",
+            "direction": "INGRESS",
+            "protocol": "all"
+          },
+          {
+            "description": "Example egress security rule",
+            "destinationType": "CIDR_BLOCK",
+            "destination": "10.0.0.0/16",
+            "direction": "EGRESS",
+            "protocol": "all"
+          }
+        ]
+      }
+  UpdateNetworkSecurityGroupSecurityRules: |
+      Example I: Update network security group security rules
+      POST /networkSecurityGroups/{networkSecurityGroupId}/actions/updateSecurityRules
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "networkSecurityGroupId" : "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "securityRules" : [
+          {
+            "description": "Example ingress security rule - updated",
+            "id": "203597",
+            "sourceType": "CIDR_BLOCK",
+            "source": "10.0.0.0/24",
+            "direction": "INGRESS",
+            "protocol": "all"
+          },
+          {
+            "description": "Example egress security rule - updated",
+            "destinationType": "CIDR_BLOCK",
+            "destination": "10.0.0.0/24",
+            "direction": "EGRESS",
+            "id": "880233",
+            "protocol": "all"
+          }
+        ]
+      }
+  RemoveNetworkSecurityGroupSecurityRules: |
+      Example I: Remove network security group security rules
+      POST /networkSecurityGroups/{networkSecurityGroupId}/actions/removeSecurityRules
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "networkSecurityGroupId" : "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "securityRuleIds" : [
+          "880233",
+          "203597"
+        ]
+      }
