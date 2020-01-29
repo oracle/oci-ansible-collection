@@ -1,0 +1,506 @@
+---
+- block:
+  - name: Create dependency drg with required parameters
+    oci_network_drg:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_create_dependency_drg_compartment_id, omit) }}"
+      display_name: "{{ ('MyDrg' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_create_dependency_drg_display_name, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_create_dependency_drg_test is not defined and skip_remote_peering_connection_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_create_dependency_drg_test is not defined and skip_remote_peering_connection_dependencies is not defined
+  - set_fact:
+      dependency_drg: "{{ result.drg }}"
+      dependency_drg_id: "{{ result.drg.id }}"
+    when: skip_remote_peering_connection_create_dependency_drg_test is not defined and skip_remote_peering_connection_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_create_dependency_drg_custom_assertions }}"
+    when: remote_peering_connection_create_dependency_drg_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create remote_peering_connection (check mode)
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_create_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_remote_peering_connection_create_required_drg_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_remote_peering_connection_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_create_check_mode_custom_assertions }}"
+    when: remote_peering_connection_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create remote_peering_connection with required parameters
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_create_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_remote_peering_connection_create_required_drg_id, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_create_required_original_test is not defined
+
+  - set_fact:
+      remote_peering_connection_resource_id: "{{ result.remote_peering_connection.id }}"
+    when: skip_remote_peering_connection_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_create_required_original_custom_assertions }}"
+    when: remote_peering_connection_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create remote_peering_connection with required parameters(idempotency)
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_create_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_remote_peering_connection_create_required_drg_id, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_remote_peering_connection_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_create_required_idempotency_custom_assertions }}"
+    when: remote_peering_connection_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update remote_peering_connection using name with optional + required parameters
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_remote_peering_connection_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_update_using_name_optional_required_custom_assertions }}"
+    when: remote_peering_connection_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update remote_peering_connection using name with optional + required parameters (idempotence)
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_remote_peering_connection_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_remote_peering_connection_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_remote_peering_connection_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: remote_peering_connection_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete remote_peering_connection
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_remote_peering_connection_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_delete_required_custom_assertions }}"
+    when: remote_peering_connection_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete remote_peering_connection (idempotency)
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_remote_peering_connection_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_remote_peering_connection_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_delete_required_idempotency_custom_assertions }}"
+    when: remote_peering_connection_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create remote_peering_connection with optional + required parameters
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_remote_peering_connection_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_create_optional_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_remote_peering_connection_create_optional_required_drg_id, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_remote_peering_connection_create_optional_required_freeform_tags, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_create_optional_required_original_test is not defined
+
+  - set_fact:
+      remote_peering_connection_resource_id: "{{ result.remote_peering_connection.id }}"
+    when: skip_remote_peering_connection_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_create_optional_required_original_custom_assertions }}"
+    when: remote_peering_connection_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create remote_peering_connection with optional + required parameters (idempotence)
+    oci_network_remote_peering_connection:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_remote_peering_connection_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_create_optional_required_display_name, omit) }}"
+      drg_id: "{{ dependency_drg_id | oracle.oci.override(test_remote_peering_connection_create_optional_required_drg_id, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_remote_peering_connection_create_optional_required_freeform_tags, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_remote_peering_connection_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_create_optional_required_idempotence_custom_assertions }}"
+    when: remote_peering_connection_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update remote_peering_connection with optional + required parameters
+    oci_network_remote_peering_connection:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_remote_peering_connection_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_remote_peering_connection_update_optional_required_freeform_tags, omit) }}"
+      remote_peering_connection_id: "{{ remote_peering_connection_resource_id | oracle.oci.override(test_remote_peering_connection_update_optional_required_remote_peering_connection_id, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_remote_peering_connection_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_update_optional_required_custom_assertions }}"
+    when: remote_peering_connection_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update remote_peering_connection with optional + required parameters (idempotence)
+    oci_network_remote_peering_connection:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_remote_peering_connection_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_remote_peering_connection_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_remote_peering_connection_update_optional_required_freeform_tags, omit) }}"
+      remote_peering_connection_id: "{{ remote_peering_connection_resource_id | oracle.oci.override(test_remote_peering_connection_update_optional_required_remote_peering_connection_id, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_remote_peering_connection_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.display_name is defined
+        - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.id is defined
+        - result.remote_peering_connection.is_cross_tenancy_peering is defined
+        - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peering_status is defined
+        - result.remote_peering_connection.time_created is defined
+    when: skip_remote_peering_connection_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_update_optional_required_idempotence_custom_assertions }}"
+    when: remote_peering_connection_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List remote_peering_connections
+    oci_network_remote_peering_connection_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_remote_peering_connection_list_compartment_id, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.remote_peering_connections | length > 0
+    when: skip_remote_peering_connection_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.drg_id is defined
+        - item.id is defined
+        - item.is_cross_tenancy_peering is defined
+        - item.lifecycle_state is defined
+        - item.peering_status is defined
+        - item.time_created is defined
+    with_items: "{{ result.remote_peering_connections }}"
+    when: skip_remote_peering_connection_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_list_custom_assertions }}"
+    when: remote_peering_connection_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get remote_peering_connection
+    oci_network_remote_peering_connection_facts:
+      remote_peering_connection_id: "{{ remote_peering_connection_resource_id | oracle.oci.override(test_remote_peering_connection_get_remote_peering_connection_id, omit) }}"
+    register: result
+    when: skip_remote_peering_connection_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.remote_peering_connections | length == 1
+    when: skip_remote_peering_connection_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.drg_id is defined
+        - item.id is defined
+        - item.is_cross_tenancy_peering is defined
+        - item.lifecycle_state is defined
+        - item.peering_status is defined
+        - item.time_created is defined
+    with_items: "{{ result.remote_peering_connections }}"
+    when: skip_remote_peering_connection_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ remote_peering_connection_get_custom_assertions }}"
+    when: remote_peering_connection_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete remote_peering_connection
+      oci_network_remote_peering_connection:
+        remote_peering_connection_id: "{{ remote_peering_connection_resource_id | oracle.oci.override(test_remote_peering_connection_delete_rescue_remote_peering_connection_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: remote_peering_connection_resource_id is defined
+
+    - name: Delete dependency drg
+      oci_network_drg:
+        drg_id: "{{ dependency_drg_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_remote_peering_connection_delete_dependency_drg_test is not defined and skip_remote_peering_connection_dependencies is not defined and dependency_drg_id is defined

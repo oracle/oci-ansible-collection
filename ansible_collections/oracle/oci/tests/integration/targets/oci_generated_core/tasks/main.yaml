@@ -34,3 +34,15 @@
 - import_tasks: oci_network_subnet_tests.yaml
   tags:
     - subnet
+- import_tasks: oci_network_local_peering_gateway_tests.yaml
+  tags:
+    - local_peering
+    - peering
+- import_tasks: oci_network_remote_peering_connection_tests.yaml
+  tags:
+    - remote_peering_connection
+    - peering
+- import_tasks: oci_network_peer_region_for_remote_peering_tests.yaml
+  tags:
+    - peer_region_for_remote_peering
+    - peering

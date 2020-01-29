@@ -26,6 +26,13 @@ moduleWhitelist:
   - oci_network_service_gateway_actions
   - oci_network_subnet
   - oci_network_subnet_facts
+  - oci_network_local_peering_gateway
+  - oci_network_local_peering_gateway_actions
+  - oci_network_local_peering_gateway_facts
+  - oci_network_peer_region_for_remote_peering_facts
+  - oci_network_remote_peering_connection
+  - oci_network_remote_peering_connection_actions
+  - oci_network_remote_peering_connection_facts
   - oci_identity_dynamic_group
   - oci_identity_dynamic_group_facts
   - oci_identity_region_facts

@@ -60,3 +60,9 @@ test_subnet_update_using_name_optional_required_security_list_ids: null
 test_subnet_create_optional_required_security_list_ids: null
 test_subnet_update_optional_required_security_list_ids: null
 test_subnet_create_optional_required_dns_label: null
+
+# variables for oci_network_local_peering_gateway_tests.yaml
+skip_local_peering_gateway_create_dependency_route_table_test: yes
+test_local_peering_gateway_update_using_name_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
+test_local_peering_gateway_create_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
+test_local_peering_gateway_update_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"

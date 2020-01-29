@@ -1,0 +1,216 @@
+- oci_network_vcn_facts:
+      compartment_id: "{{ test_compartment_ocid }}"
+  register: test_vcns
+
+# Get all LPGs in test VCNs
+- oci_network_local_peering_gateway_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+    vcn_id: "{{ item['id'] }}"
+  with_items: "{{ test_vcns.vcns }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  register: result
+
+# Delete the retrieved LPGs
+- oci_network_local_peering_gateway:
+    id: "{{ item.local_peering_gateways[0].id }}"
+    state: absent
+  with_items: "{{ result.results }}"
+  when: item.local_peering_gateways is defined and item.local_peering_gateways | length > 0
+  ignore_errors: yes
+
+# Get route tables in test VCN
+- name: List all Route Tables
+  oci_network_route_table_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+    vcn_id: "{{ item['id'] }}"
+  with_items: "{{ test_vcns.vcns }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  register: result
+
+- oci_network_vcn:
+      id: "{{ item['id'] }}"
+      state: absent
+  with_items: "{{ test_vcns.vcns }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  ignore_errors: yes
+
+# ===========================================================================================
+
+- block:
+
+    - name: Create a VCN
+      oci_network_vcn:
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "{{ vcn_name }}"
+        cidr_block: "{{ cidr_block }}"
+      register: result
+
+    - set_fact:
+        vcn1_id: "{{ result.vcn.id }}"
+        default_route_table_id: "{{ result.vcn.default_route_table_id }}"
+
+    - name: Assert that VCN is created
+      assert:
+        that:
+        - result.changed == True
+
+    # ===========================================================================================
+
+    - name: Create a LPG
+      oci_network_local_peering_gateway:
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "{{ lpg1_name }}"
+        vcn_id: "{{ vcn1_id }}"
+        route_table_id: "{{ default_route_table_id }}"
+      register: result
+
+    - set_fact:
+        test_lpg1_id: "{{ result.local_peering_gateway.id }}"
+
+    - name: Assert that changed is true and LPG is created
+      assert:
+        that:
+        - result.changed == True
+        - result.local_peering_gateway['compartment_id'] == test_compartment_ocid
+        - result.local_peering_gateway['display_name'] == lpg1_name
+        - result.local_peering_gateway['vcn_id'] == vcn1_id
+        - result.local_peering_gateway['route_table_id'] == default_route_table_id
+
+    # ===========================================================================================
+
+    - name: Create second VCN in the same region
+      oci_network_vcn:
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "{{ vcn2_name }}"
+        cidr_block: "{{ cidr2_block }}"
+      register: result
+
+    - set_fact:
+        vcn2_id: "{{ result.vcn.id }}"
+
+    - name: Assert that VCN is created
+      assert:
+        that:
+        - result.changed == True
+
+    # ===========================================================================================
+
+    - name: Create second LPG for peering
+      oci_network_local_peering_gateway:
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "{{ lpg2_name }}"
+        vcn_id: "{{ vcn2_id }}"
+      register: result
+
+    - set_fact:
+        test_lpg2_id: "{{ result.local_peering_gateway.id }}"
+
+    - name: Assert that changed is true and LPG is created
+      assert:
+        that:
+        - result.changed == True
+        - result.local_peering_gateway['compartment_id'] == test_compartment_ocid
+        - result.local_peering_gateway['display_name'] == lpg2_name
+        - result.local_peering_gateway['vcn_id'] == vcn2_id
+
+    # ===========================================================================================
+
+    - name: Connect LPGs
+      oci_network_local_peering_gateway_actions:
+        local_peering_gateway_id: "{{ test_lpg1_id }}"
+        peer_id: "{{ test_lpg2_id }}"
+        action: connect_local_peering_gateways
+      register: result
+
+    - name: Assert that changed is true and LPG is peered
+      assert:
+        that:
+        - result.changed == True
+        - result.local_peering_gateway['peering_status'] == "PEERED"
+        - result.local_peering_gateway['peer_advertised_cidr'] == cidr2_block
+
+    # ===========================================================================================
+
+    - name: Reattempt connecting LPGs
+      oci_network_local_peering_gateway_actions:
+        local_peering_gateway_id: "{{ test_lpg1_id }}"
+        peer_id: "{{ test_lpg2_id }}"
+        action: connect_local_peering_gateways
+      register: result
+
+    - name: Assert that changed is false and LPG is peered
+      assert:
+        that:
+        - result.changed == False
+        - result.local_peering_gateway['peering_status'] == "PEERED"
+        - result.local_peering_gateway['peer_advertised_cidr'] == cidr2_block
+
+    # ===========================================================================================
+
+    - name: Delete test LPG1
+      oci_network_local_peering_gateway:
+        local_peering_gateway_id: "{{ test_lpg1_id }}"
+        state: absent
+      register: result
+
+    - name: Assert LPG1 is deleted
+      assert:
+        that:
+        - result.changed == True
+
+    - name: Delete test LPG2
+      oci_network_local_peering_gateway:
+        local_peering_gateway_id: "{{ test_lpg2_id }}"
+        state: absent
+      register: result
+
+    - name: Assert LPG2 is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    # ===========================================================================================
+
+    - name: Delete test VCN1
+      oci_network_vcn:
+        vcn_id: "{{ vcn1_id }}"
+        state: 'absent'
+
+    - name: Delete test VCN2
+      oci_network_vcn:
+        vcn_id: "{{ vcn2_id }}"
+        state: 'absent'
+
+      # ===========================================================================================
+
+
+  rescue:
+
+    - name: Delete LPG1
+      oci_network_local_peering_gateway:
+        id: "{{ test_lpg1_id }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete LPG2
+      oci_network_local_peering_gateway:
+        id: "{{ test_lpg2_id }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete test VCN1
+      oci_network_vcn:
+        vcn_id: "{{ vcn1_id }}"
+        state: 'absent'
+      ignore_errors: yes
+
+    - name: Delete test VCN2
+      oci_network_vcn:
+        vcn_id: "{{ vcn2_id }}"
+        state: 'absent'
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

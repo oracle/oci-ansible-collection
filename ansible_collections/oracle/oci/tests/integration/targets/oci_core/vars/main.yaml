@@ -1,0 +1,12 @@
+# variables for oci_network_local_peering_gateway_actions_tests.yaml
+vcn_name: "test_vcn_{{random_suffix_1024}}"
+cidr_block: "10.0.0.0/16"
+vcn2_name: "test_vcn2_{{random_suffix_1024}}"
+cidr2_block: "172.16.1.0/30"
+lpg1_name: "test_lpg1_{{random_suffix_1024}}"
+lpg2_name: "test_lpg2_{{random_suffix_1024}}"
+
+# variables for oci_network_remote_peering_connection_actions_tests.yaml
+drg_name: "test_drg_{{random_suffix_1024}}"
+rpc_name: "test_rpc_{{random_suffix_1024}}"
+region2_name: "us-phoenix-1"

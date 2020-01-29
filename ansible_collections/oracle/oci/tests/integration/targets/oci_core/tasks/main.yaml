@@ -4,3 +4,9 @@
 - import_tasks: oci_network_service_gateway_actions_tests.yaml
   tags:
     - service_gateway_actions
+- import_tasks: oci_network_local_peering_gateway_actions_tests.yaml
+  tags:
+    - local_peering_actions
+- import_tasks: oci_network_remote_peering_connection_actions_tests.yaml
+  tags:
+    - remote_peering_connection_actions

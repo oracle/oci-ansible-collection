@@ -208,3 +208,36 @@ class ServiceGatewayActionsHelperCustom:
                 return False
             return True
         return True
+
+
+class LocalPeeringGatewayActionsHelperCustom:
+    def is_action_necessary(self, action):
+        this_lpg = self.get_resource().data
+        peer_lpg = self.client.get_local_peering_gateway(
+            local_peering_gateway_id=self.module.params.get("peer_id")
+        ).data
+
+        this_vcn = self.client.get_vcn(vcn_id=this_lpg.vcn_id).data
+        peer_vcn = self.client.get_vcn(vcn_id=peer_lpg.vcn_id).data
+
+        if (
+            this_lpg.peering_status == "PEERED"
+            and this_lpg.peer_advertised_cidr == peer_vcn.cidr_block
+        ) and (
+            peer_lpg.peering_status == "PEERED"
+            and peer_lpg.peer_advertised_cidr == this_vcn.cidr_block
+        ):
+            return False
+
+        return True
+
+
+class RemotePeeringConnectionActionsHelperCustom:
+    def is_action_necessary(self, action):
+        this_rpc = self.get_resource().data
+        if (
+            this_rpc.peering_status == "PEERED"
+            and this_rpc.peer_id == self.module.params.get("peer_id")
+        ):
+            return False
+        return True
