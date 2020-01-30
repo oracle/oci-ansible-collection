@@ -264,15 +264,6 @@ class OCIResourceHelperBase:
         """Expected to be generated inside the module."""
         pass
 
-    # some values are computed by the server based on user input
-    # this function allows us to normalize user input values only for
-    # the purposes of comparison to existing values
-    # e.g. we can convert input: "foo" to input: "foo{service_added_suffix"}
-    # to allow matching the appropriate resource
-    def convert_request_model_fields_to_computed_server_values(self, model):
-        """Expected to be generated inside the module."""
-        pass
-
     def get_resource_active_states(self):
         return oci_common_utils.DEFAULT_READY_STATES
 
@@ -394,7 +385,7 @@ class OCIResourceHelperBase:
     def get_exclude_attributes(self):
         return ["freeform_tags", "node_count"]
 
-    def get_attributes_to_consider(self, create_model):
+    def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
         if self.module.params.get("key_by") is not None:
             return self.module.params["key_by"]
         return [
@@ -408,10 +399,28 @@ class OCIResourceHelperBase:
             self.module.params, self.get_create_model_class()
         )
 
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        """This function allows any customisations that are needed in the create model for comparison during the
+        idempotence check.
+
+        This can be done for many reasons. For ex: some resource have different names for same parameter in create
+        and get model making the idempotence logic to fail or we may need to update a value since the server computes
+        and stores it differently etc."""
+        return to_dict(create_model)
+
     def get_update_model(self):
         return convert_input_data_to_model_class(
             self.module.params, self.get_update_model_class()
         )
+
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        """This function allows any customisations that are needed in the update model for comparison during the
+        idempotence check.
+
+        This can be done for many reasons. For ex: some resource have different names for same parameter in update
+        and get model making the idempotence logic to fail or we may need to update a value since the server computes
+        and stores it differently etc."""
+        return to_dict(update_model)
 
     def get_user_provided_value(self, attr):
         return self.module.params.get(attr)
@@ -419,7 +428,6 @@ class OCIResourceHelperBase:
     def get_matching_resource(self):
 
         create_model = self.get_create_model()
-        self.convert_request_model_fields_to_computed_server_values(create_model)
         attributes_to_consider = (
             [
                 parameter
@@ -427,7 +435,12 @@ class OCIResourceHelperBase:
                 if self.module.params.get(parameter)
             ]
             if self._use_name_as_identifier()
-            else self.get_attributes_to_consider(create_model)
+            else self.get_attributes_to_consider_for_create_idempotency_check(
+                create_model
+            )
+        )
+        create_model_dict = self.get_create_model_dict_for_idempotence_check(
+            create_model
         )
         for resource in self.list_resources():
             if not self._is_resource_active(resource):
@@ -435,7 +448,7 @@ class OCIResourceHelperBase:
 
             resource_dict = to_dict(resource)
             if oci_common_utils.is_dict_subset(
-                source_dict=to_dict(create_model),
+                source_dict=create_model_dict,
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
             ):
@@ -480,10 +493,11 @@ class OCIResourceHelperBase:
     def is_update_necessary(self):
         current_resource_dict = to_dict(self.get_resource().data)
         update_model = self.get_update_model()
-        self.convert_request_model_fields_to_computed_server_values(update_model)
-        update_model_dict = to_dict(update_model)
+        update_model_dict = self.get_update_model_dict_for_idempotence_check(
+            update_model
+        )
         return not oci_common_utils.is_dict_subset(
-            update_model_dict, current_resource_dict, update_model.attribute_map
+            update_model_dict, current_resource_dict
         )
 
     def update(self):

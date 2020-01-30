@@ -37,14 +37,27 @@ class MfaTotpDeviceHelperCustom:
 
 
 class PolicyHelperCustom:
-    def convert_request_model_fields_to_computed_server_values(self, model):
-        # user must pass in version date in format YYYY-MM-DD but service
-        # returns it as 2020-01-17T00:00:00+00:00 so we need to normalize
-        # for comparison purposes
-        if model.version_date:
-            model.version_date = "{version_date}T00:00:00+00:00".format(
-                version_date=model.version_date
+    def update_version_date(self, model_dict):
+        if model_dict["version_date"]:
+            model_dict["version_date"] = "{version_date}T00:00:00+00:00".format(
+                version_date=model_dict["version_date"]
             )
+
+        return model_dict
+
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        model_dict = super(
+            PolicyHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+        self.update_version_date(model_dict)
+        return model_dict
+
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        model_dict = super(
+            PolicyHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        self.update_version_date(model_dict)
+        return model_dict
 
 
 class IdentityProviderHelperCustom:

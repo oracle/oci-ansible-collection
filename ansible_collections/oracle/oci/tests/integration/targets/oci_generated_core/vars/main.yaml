@@ -142,12 +142,14 @@ test_virtual_circuit_public_prefix_list_virtual_circuit_id: "{{ public_colocated
 # variables for oci_network_virtual_circuit_bandwidth_shape_tests.yaml
 test_virtual_circuit_bandwidth_shape_list_compartment_id: "{{ temp_test_compartment_ocid }}"
 
-
 # variables for oci_network_drg_attachment_tests.yaml
 skip_drg_attachment_create_dependency_route_table_test: yes
 test_drg_attachment_update_using_name_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
 test_drg_attachment_create_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
 test_drg_attachment_update_optional_required_route_table_id: "{{ dependency_vcn.default_route_table_id }}"
+
+# variables for oci_ip_sec_connection_setup_tests.yaml
+updated_ip_sec_tunnel_name: "updated-ip-sec-tunnel-{{ random_suffix_1024 }}"
 
 # variables for oci_ip_sec_connection_tests.yaml
 test_ip_sec_connection_create_optional_required_tunnel_configuration: null
@@ -158,5 +160,19 @@ test_ip_sec_connection_device_status_get_ipsc_id: "{{ setup_ipsc_id }}"
 
 # variables for oci_ip_sec_connection_tunnel_tests.yaml
 test_ip_sec_connection_tunnel_update_using_name_optional_required_ipsc_id: "{{ setup_ipsc_id }}"
-test_ip_sec_connection_tunnel_update_optional_required_tunnel_id: "{{ setup_ipsc_id }}"
+test_ip_sec_connection_tunnel_update_using_name_optional_required_display_name: "{{ updated_ip_sec_tunnel_name }}"
+test_ip_sec_connection_tunnel_update_using_name_optional_required_bgp_session_config_customer_bgp_asn: null
+test_ip_sec_connection_tunnel_update_optional_required_ipsc_id: "{{ setup_ipsc_id }}"
+test_ip_sec_connection_tunnel_update_optional_required_tunnel_id: "{{ setup_ipsc_second_tunnel_id }}"
+test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config_oracle_interface_ip: "10.0.0.6/31"
+test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config_customer_interface_ip: "10.0.0.7/31"
 test_ip_sec_connection_tunnel_update_optional_required_bgp_session_config_customer_bgp_asn: null
+test_ip_sec_connection_tunnel_list_ipsc_id: "{{ setup_ipsc_id }}"
+test_ip_sec_connection_tunnel_get_ipsc_id: "{{ setup_ipsc_id }}"
+test_ip_sec_connection_tunnel_get_tunnel_id: "{{ setup_ipsc_second_tunnel_id }}"
+
+# variables for oci_ip_sec_connection_tunnel_shared_secret_tests.yaml
+test_ip_sec_connection_tunnel_shared_secret_update_optional_required_ipsc_id: "{{ setup_ipsc_id }}"
+test_ip_sec_connection_tunnel_shared_secret_update_optional_required_tunnel_id: "{{ setup_ipsc_second_tunnel_id }}"
+test_ip_sec_connection_tunnel_shared_secret_get_ipsc_id: "{{ setup_ipsc_id }}"
+test_ip_sec_connection_tunnel_shared_secret_get_tunnel_id: "{{ setup_ipsc_second_tunnel_id }}"

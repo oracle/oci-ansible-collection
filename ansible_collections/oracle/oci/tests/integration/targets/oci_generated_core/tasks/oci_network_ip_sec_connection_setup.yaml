@@ -28,3 +28,26 @@
 
 - set_fact:
     setup_ipsc_id: "{{ result.ip_sec_connection.id }}"
+
+- name: Get ip sec tunnels
+  oci_network_ip_sec_connection_tunnel_facts:
+    ipsc_id: "{{ setup_ipsc_id }}"
+  register: result
+
+- set_fact:
+    setup_ipsc_first_tunnel_id: "{{ result.ip_sec_connection_tunnels[0].id }}"
+    setup_ipsc_second_tunnel_id: "{{ result.ip_sec_connection_tunnels[1].id }}"
+
+# ip_sec_connection creates two tunnels. Both have the same names. Update one to be able to test
+# name as identifier changes.
+- name: Update the name of the first tunnel
+  oci_network_ip_sec_connection_tunnel:
+    ipsc_id: "{{ setup_ipsc_id }}"
+    tunnel_id: "{{ setup_ipsc_first_tunnel_id }}"
+    display_name: "{{ updated_ip_sec_tunnel_name }}"
+  register: result
+
+- name: Assert that the name of the tunnel is updated
+  assert:
+    that:
+      - result.changed == True
