@@ -1,0 +1,109 @@
+- block:
+
+    - name: Create Colocated Public Virtual Circuit
+      oci_network_virtual_circuit:
+        compartment_id: '{{ temp_test_compartment_ocid }}'
+        display_name: '{{ public_vc_display_name }}'
+        type: '{{ public_vc_type }}'
+        cross_connect_mappings: '{{ public_vc_cross_connect_mappings }}'
+        customer_bgp_asn: '{{ public_vc_customer_bgp_asn }}'
+        public_prefixes: '{{ public_vc_public_prefixes }}'
+        state: 'present'
+      register: result
+
+    - debug:
+        msg: "{{ result }}"
+
+    - set_fact:
+        public_colocated_virtual_circuit_id: "{{result.virtual_circuit.id}}"
+
+    - name: Assert that Colocated Public Virtual Circuit has been created
+      assert:
+        that:
+        - result.changed == True
+    # ===========================================================================================
+    - name: Bulk add new public prefixes to the virtual circuit
+      oci_network_virtual_circuit_actions:
+        virtual_circuit_id: '{{ public_colocated_virtual_circuit_id }}'
+        public_prefixes: '{{ bulk_add_public_vc_public_prefixes }}'
+        action: bulk_add_virtual_circuit_public_prefixes
+      register: result
+
+    - name: Assert that new public prefix in the Colocated Public Virtual Circuit has been added
+      assert:
+        that:
+        - result.changed == True
+    # ===========================================================================================
+    - name: Bulk add new public prefixes to the virtual circuit - idempotence
+      oci_network_virtual_circuit_actions:
+        virtual_circuit_id: '{{ public_colocated_virtual_circuit_id }}'
+        public_prefixes: '{{ bulk_add_public_vc_public_prefixes }}'
+        action: bulk_add_virtual_circuit_public_prefixes
+      register: result
+
+    - name: Assert that public prefies are not added again
+      assert:
+        that:
+          - result.changed == False
+    # ===========================================================================================
+    - name: List Public Prefixes of the Public Virtual Circuit
+      oci_network_virtual_circuit_public_prefix_facts:
+        virtual_circuit_id: "{{public_colocated_virtual_circuit_id}}"
+      register: result
+
+    - debug:
+        msg: "{{ result }}"
+
+    - name: Assert that Public Prefixes of the Virtual Circuit has been listed
+      assert:
+        that:
+        - result.virtual_circuit_public_prefixes|length >= 2
+    # ===========================================================================================
+    - name: List Public Prefixes of the Public Virtual Circuit filtered by Lifecycle State
+      oci_network_virtual_circuit_public_prefix_facts:
+        virtual_circuit_id: "{{public_colocated_virtual_circuit_id}}"
+        verification_state: 'IN_PROGRESS'
+      register: result
+
+    - name: Assert that Public Prefixes of the Virtual Circuit has been listed
+      assert:
+        that:
+        - result.virtual_circuit_public_prefixes|length >= 2
+    # ===========================================================================================
+    - name: Bulk delete all public prefixes in the virtual circuit
+      oci_network_virtual_circuit_actions:
+        virtual_circuit_id: '{{ public_colocated_virtual_circuit_id }}'
+        public_prefixes: '{{ bulk_deletable_public_vc_public_prefixes }}'
+        action: bulk_delete_virtual_circuit_public_prefixes
+      register: result
+
+    - name: Assert that all public prefixes in the Colocated Public Virtual Circuit has been deleted
+      assert:
+        that:
+        - result.changed == True
+    # ===========================================================================================
+    - name: Bulk delete all public prefixes in the virtual circuit - idempotence
+      oci_network_virtual_circuit_actions:
+        virtual_circuit_id: '{{ public_colocated_virtual_circuit_id }}'
+        public_prefixes: '{{ bulk_deletable_public_vc_public_prefixes }}'
+        action: bulk_delete_virtual_circuit_public_prefixes
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+          - result.changed == False
+  # ===========================================================================================
+
+  always:
+
+    - name: Delete Virtual Circuit
+      oci_network_virtual_circuit:
+        virtual_circuit_id: "{{public_colocated_virtual_circuit_id}}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that the virtual circuit is deleted
+      assert:
+        that:
+          - result.changed == True

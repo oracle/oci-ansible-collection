@@ -10,3 +10,21 @@ lpg2_name: "test_lpg2_{{random_suffix_1024}}"
 drg_name: "test_drg_{{random_suffix_1024}}"
 rpc_name: "test_rpc_{{random_suffix_1024}}"
 region2_name: "us-phoenix-1"
+
+# variables for oci_network_virtual_circuit_actions_tests.yaml
+public_vc_display_name: 'gen-public-virtual-circuit-for-actions-{{random_suffix_1024}}'
+public_vc_cross_connect_mappings:
+  - cross_connect_or_cross_connect_group_id: '{{ temp_cross_connect_group_id }}'
+    vlan: "{{ random_suffix_vlan_1 }}"
+public_vc_customer_bgp_asn: 5
+public_vc_type: 'PUBLIC'
+public_vc_public_prefixes:
+  - cidr_block: '206.209.22.0/24'
+bulk_add_public_vc_public_prefixes:
+  - cidr_block: '206.209.22.0/24'
+  - cidr_block: '206.209.23.0/24'
+  - cidr_block: '206.209.24.0/24'
+bulk_deletable_public_vc_public_prefixes:
+  - cidr_block: '206.209.22.0/24'
+  - cidr_block: '206.209.23.0/24'
+  - cidr_block: '206.209.24.0/24'

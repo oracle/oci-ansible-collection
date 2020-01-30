@@ -10,3 +10,6 @@
 - import_tasks: oci_network_remote_peering_connection_actions_tests.yaml
   tags:
     - remote_peering_connection_actions
+- import_tasks: oci_network_virtual_circuit_actions_tests.yaml
+  tags:
+    - virtual_circuit_actions
