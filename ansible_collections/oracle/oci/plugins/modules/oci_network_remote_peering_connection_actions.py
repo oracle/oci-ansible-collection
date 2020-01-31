@@ -193,7 +193,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
     get_custom_class,
-    convert_input_data_to_model_class,
 )
 
 try:
@@ -230,7 +229,7 @@ class RemotePeeringConnectionActionsHelperGen(OCIActionsHelperBase):
         )
 
     def connect_remote_peering_connections(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ConnectRemotePeeringConnectionsDetails
         )
         return oci_wait_utils.call_and_wait(

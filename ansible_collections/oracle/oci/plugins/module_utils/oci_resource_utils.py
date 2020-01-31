@@ -13,14 +13,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
 )
 
-# import the customisation files.
-from ansible_collections.oracle.oci.plugins.module_utils import (
-    oci_identity_custom_helpers,
-    oci_network_custom_helpers,
-)
-from ansible.module_utils import six
-import sys
-import re
 import inspect
 import os
 
@@ -395,7 +387,7 @@ class OCIResourceHelperBase:
         ]
 
     def get_create_model(self):
-        return convert_input_data_to_model_class(
+        return oci_common_utils.convert_input_data_to_model_class(
             self.module.params, self.get_create_model_class()
         )
 
@@ -409,7 +401,7 @@ class OCIResourceHelperBase:
         return to_dict(create_model)
 
     def get_update_model(self):
-        return convert_input_data_to_model_class(
+        return oci_common_utils.convert_input_data_to_model_class(
             self.module.params, self.get_update_model_class()
         )
 
@@ -705,100 +697,6 @@ class OCIResourceHelperBase:
             )
 
 
-# convert dictionary to a Python SDK model class
-# for example:
-#   data: {
-#        'hostname_label': 'mytestinstance',
-#        'subnet_id': 'ocid1.subnet.oc1.iad.xxxxxEXAMPLExxxxx',
-#        'display_name': 'my_vnic'
-#   }
-#
-# model_class: <class 'oci.core.models.create_vnic_details.CreateVnicDetails'>
-#
-# will create a CreateVnicDetails instance with the relevant fields populated
-# based on 'data'
-def convert_input_data_to_model_class(data, model_class):
-    # e.g. oci.core.models.create_vnic_details.LaunchInstanceDetails -> oci.core.models
-    namespace = ".".join(model_class.__module__.split(".")[0:-1])
-
-    # e.g. 'oci.core.models' -> <module 'oci.core.models'>
-    module = sys.modules[namespace]
-
-    # if the type is polymoprhic, data might be a subtype of model_class
-    # and thus we need to parse it as the correct subtype based on the discriminator
-    # if we parse based on the declared (base) type, we will skip all fields that are
-    # only defined on the subtype
-    model_instance = model_class()
-    if hasattr(model_instance, "get_subtype"):
-        # get_subtype expects the camelCase version of the data (i.e. if discriminator field
-        # name is source_type in python it expects sourceType)
-        camelized_top_level_keys = dict(
-            (camelize(key), value) for key, value in six.iteritems(data)
-        )
-        subtype_name = model_instance.get_subtype(camelized_top_level_keys)
-        model_class = getattr(module, subtype_name)
-        model_instance = model_class()
-
-    for attr in model_instance.attribute_map:
-        if data.get(attr) is None:
-            continue
-
-        value = data[attr]
-
-        # e.g. LaunchInstanceDetails.swagger_types.get('create_vnic_details') -> 'CreateVnicDetails'
-        swagger_type = model_instance.swagger_types.get(attr)
-        # if data is complex, we need to convert nested values
-        if hasattr(module, swagger_type):
-            value = convert_input_data_to_model_class(
-                value, getattr(module, swagger_type)
-            )
-        elif swagger_type.find("list[") == 0:
-            # convert individual items in the list to complex type
-            element_swagger_type = re.match(r"list\[(.*)\]", swagger_type).group(1)
-            if hasattr(module, element_swagger_type):
-                converted_values = []
-                for element in value:
-                    converted_values.append(
-                        convert_input_data_to_model_class(
-                            element, getattr(module, element_swagger_type)
-                        )
-                    )
-                value = converted_values
-        elif swagger_type.find("dict(") == 0:
-            # convert individual values in dict to complex type
-            match = re.match(r"dict\(([^,]*), (.*)\)", swagger_type)
-            entry_value_swagger_type = match.group(2)
-
-            if hasattr(module, entry_value_swagger_type):
-                converted_values = {}
-                for key in value:
-                    converted_values[key] = convert_input_data_to_model_class(
-                        value[key], getattr(module, entry_value_swagger_type)
-                    )
-
-                value = converted_values
-
-        setattr(model_instance, attr, value)
-    return model_instance
-
-
-# Converts an argument to camel case with a lower case first character. For example
-# "my_param" would turn into "myParam" and "this_other_param" would be "thisOtherParam"
-#
-# Supports both UpperCaseCamel and lowerCaseCamel, though lower case is considered the default
-def camelize(to_camelize, uppercase_first_letter=False):
-    if not to_camelize:
-        return ""
-
-    if uppercase_first_letter:
-        return re.sub(r"(?:^|[_-])(.)", lambda m: m.group(1).upper(), to_camelize)
-    else:
-        return (
-            to_camelize[0].lower()
-            + camelize(to_camelize, uppercase_first_letter=True)[1:]
-        )
-
-
 def get_custom_class_mapping(modules):
     """Find the custom classes in the given modules and return a mapping with class name as key and class as value"""
     custom_class_mapping = {}
@@ -816,6 +714,12 @@ def get_custom_class_mapping(modules):
 # modules might not always be perfect. The custom behaviour is handled by having a custom class which is used to
 # override the generated behaviour. Create a mapping of those custom classes so that we can dynamically override
 # the behaviour.
+# import the customisation files.
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_identity_custom_helpers,
+    oci_network_custom_helpers,
+)  # noqa
+
 custom_helper_mapping = get_custom_class_mapping(
     [oci_identity_custom_helpers, oci_network_custom_helpers]
 )

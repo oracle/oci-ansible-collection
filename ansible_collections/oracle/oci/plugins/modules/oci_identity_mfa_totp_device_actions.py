@@ -147,7 +147,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
     get_custom_class,
-    convert_input_data_to_model_class,
 )
 
 try:
@@ -184,7 +183,7 @@ class MfaTotpDeviceActionsHelperGen(OCIActionsHelperBase):
         )
 
     def activate(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, MfaTotpToken
         )
         return oci_wait_utils.call_and_wait(

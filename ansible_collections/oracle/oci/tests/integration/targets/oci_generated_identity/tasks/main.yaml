@@ -56,3 +56,13 @@
 - import_tasks: oci_identity_provider_tests.yaml
   tags:
       - identity_provider
+# TODO: these tests pass but cannot be enabled because
+# compartments count against quota even once deleted for
+# some amount of time so we can't afford to create + delete
+# compartments on every pipeline run
+# - import_tasks: oci_identity_compartment_tests.yaml
+#   tags:
+#       - compartment
+- import_tasks: oci_identity_api_key_tests.yaml
+  tags:
+      - api_key

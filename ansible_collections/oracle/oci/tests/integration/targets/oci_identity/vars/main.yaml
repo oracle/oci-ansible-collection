@@ -81,3 +81,17 @@ test_identity_provider_protocol: "SAML2"
 updated_test_identity_provider_description: "updated_test identity provider {{random_suffix_1024}}"
 updated_test_identity_provider_freeform_tags:
   action: update
+
+# compartments
+# a specific compartment that is used for testing creating / deleting OCI compartments
+identity_create_compartment_name: "ansible_test_compartment_{{ random_suffix_1024 }}"
+identity_create_compartment_name2: "ansible_test_compartment_2_{{ random_suffix_1024 }}"
+identity_create_compartment_description: "Test compartment for OCI Ansible modules_{{ random_suffix_1024 }}"
+test_list_compartments_user_name: "ansible_test_user_list_compartments{{ random_suffix_1024 }}"
+test_list_compartments_group_name: "ansible_test_user_list_compartments_group{{ random_suffix_1024 }}"
+
+# API signing keys
+api_key_pub_key_path: "/tmp/api_signing_key_{{random_suffix_1024}}.pem"
+another_api_key_pub_key_path: "/tmp/another_api_signing_key_{{random_suffix_1024}}.pem"
+api_key_private_key_path: "/tmp/api_signing_key_private_{{random_suffix_1024}}.pem"
+another_api_key_private_key_path: "/tmp/another_api_signing_key_private_{{random_suffix_1024}}.pem"

@@ -6,3 +6,10 @@ updated_test_tag_default_value: "updated_test_tag_default_value_{{ random_suffix
 # yet released so we are now using the OCID instead
 test_tag_default_tag_name: "ansible_tag_default_tag_1"
 test_tag_default_tag_ocid: "ocid1.tagdefinition.oc1..aaaaaaaap56awyvpp4guxvmumdhkql62a2ec3qm7xh3qfvhjsu3ofijnkvca"
+
+# compartments
+identity_test_compartment_name: "MyAnsibleTestCompartment_{{random_suffix_1024}}"
+identity_test_compartment_description: "This is a compartment to test Ansible module's support for Compartments. Do not delete. {{random_suffix_1024}} from {{ansible_nodename}}"
+
+identity_test_compartment_new_description: "{{random_suffix_1024}} {{identity_test_compartment_description}} in {{ansible_nodename}}"
+identity_new_compartment_name: "{{random_suffix_1024}}_{{identity_test_compartment_name}}"

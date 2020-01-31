@@ -15,6 +15,7 @@
     <module-rename-file>${project.basedir}/module-rename-config.yaml</module-rename-file>
     <supplemental-examples-file>${project.basedir}/module-supplemental-x-examples.yaml</supplemental-examples-file>
     <inceptionYear>2016</inceptionYear>
+    <supplemental-examples-file>${project.basedir}/module-supplemental-x-examples.yaml</supplemental-examples-file>
     <collection-base-dir>ansible_collections/oracle/oci</collection-base-dir>
     <modules-output-directory>${collection-base-dir}/plugins/modules</modules-output-directory>
     <test-output-directory>${collection-base-dir}/tests/integration/targets/</test-output-directory>

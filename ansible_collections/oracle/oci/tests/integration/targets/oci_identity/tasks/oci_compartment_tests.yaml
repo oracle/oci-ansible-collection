@@ -1,0 +1,517 @@
+# tests for `oci_compartment` and `oci_compartment_facts` modules
+
+- name:
+  debug:
+    msg: "compartment id being used in this test is {{identity_compartment_ocid}}"
+
+- name: Get details of immediate child compartments of the root compartment
+  oci_identity_compartment_facts:
+    parent_compartment_id: "{{tenancy_ocid}}"
+  register: result
+
+- set_fact:
+    compartment_id: "{{item.id}}"
+  with_items: "{{result.compartments}}"
+  when: item.id == identity_compartment_ocid
+
+- name: Assert that compartment_ocid is present in the list
+  assert:
+    that:
+      - compartment_id == identity_compartment_ocid
+
+- name: Fail if the result contains non-immediate child compartment whose parent compartment id is not tenancy_ocid
+  fail:
+    msg: "Non-immediate child compartment ({{ item.id }}) returned for {{tenancy_ocid}}."
+  when: item.compartment_id != tenancy_ocid
+  loop: "{{ result.compartments }}"
+
+# ===================================================================================
+
+- name: Get details of immediate child compartments of a non-root compartment
+  oci_identity_compartment_facts:
+    parent_compartment_id: "{{test_compartment_ocid}}"
+  register: result
+
+- name: Fail if the result contains non-immediate child compartment whose parent compartment id is not test_compartment_ocid
+  fail:
+    msg: "Non-immediate child compartment ({{ item.id }}) returned for {{test_compartment_ocid}}."
+  when: item.compartment_id != test_compartment_ocid
+  loop: "{{ result.compartments }}"
+
+# ===================================================================================
+
+- name: Get details of a non-root compartment
+  oci_identity_compartment_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+  register: result
+
+- set_fact:
+    test_compartment_name: "{{ result.compartments[0].name }}"
+
+- set_fact:
+    test_compartment_description: "{{ result.compartments[0].description }}"
+
+- name: Assert only one compartment is returned & the details of non-root compartment match
+  assert:
+    that:
+      - result.compartments | length == 1
+      - result.compartments[0].id == test_compartment_ocid
+
+# ===================================================================================
+
+- name: Get details of the root compartment
+  oci_identity_compartment_facts:
+    compartment_id: "{{tenancy_ocid}}"
+  register: result
+
+- name: Assert only one compartment is returned & the details of root compartment match
+  assert:
+    that:
+      - result.compartments | length == 1
+      - result.compartments[0].id == tenancy_ocid
+
+# ===================================================================================
+
+- name: Get details of all subcompartments of the root compartment
+  oci_identity_compartment_facts:
+    parent_compartment_id: "{{tenancy_ocid}}"
+    compartment_id_in_subtree: True
+  register: result
+
+- set_fact:
+    list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+- debug:
+    msg: '{{ list_of_subcompartment_ocids }}'
+
+- name: Assert more than one compartments are returned and all test subcompartments are in the list
+  assert:
+    that:
+      - result.compartments | length > 1
+      - identity_compartment_ocid in list_of_subcompartment_ocids
+      - compartment_at_depth_2_ocid in list_of_subcompartment_ocids
+      - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+      - compartment_at_depth_4_ocid in list_of_subcompartment_ocids
+
+# ===================================================================================
+
+- name: Get details of all subcompartments of a non-root compartment
+  oci_identity_compartment_facts:
+    parent_compartment_id: "{{test_compartment_ocid}}"
+    compartment_id_in_subtree: True
+  register: result
+
+- set_fact:
+    list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+- debug:
+    msg: '{{ list_of_subcompartment_ocids }}'
+
+- name: Assert more than one compartments are returned and all test subcompartments are in the list
+  assert:
+    that:
+      - result.compartments | length > 1
+      - compartment_at_depth_2_ocid in list_of_subcompartment_ocids
+      - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+      - compartment_at_depth_4_ocid in list_of_subcompartment_ocids
+      - identity_compartment_ocid not in list_of_subcompartment_ocids
+
+# ===================================================================================
+# TEST FILTERS
+# ===================================================================================
+- block:
+
+  # ===================================================================================
+  # tests run with a user that has permission to access all compartments
+  # thus we need to create a test user with limited access so we can validate
+  # that client side filtering by access_level is working
+  - name: Create test group
+    oci_identity_group:
+      name: "{{ test_list_compartments_group_name }}"
+      description: "Test group to list compartments with limited access"
+      compartment_id: "{{ tenancy_ocid }}"
+    register: result
+
+  - set_fact:
+      test_group_id: "{{ result.group.id }}"
+      test_group_name: "{{ result.group.name }}"
+
+  - name: Create test user
+    oci_identity_user:
+      name: "{{ test_list_compartments_user_name }}"
+      description: "Test user to list compartments with limited access"
+      compartment_id: "{{ tenancy_ocid }}"
+    register: result
+
+  - set_fact:
+      test_user_id: "{{ result.user.id }}"
+
+  - name: Add test user to test group
+    oci_identity_user_group_membership:
+      compartment_id: "{{ tenancy_ocid }}"
+      user_id: "{{ test_user_id }}"
+      group_id: "{{ test_group_id }}"
+    register: result
+
+  - set_fact:
+      test_user_group_membership_id: "{{ result.user_group_membership.id }}"
+
+  - set_fact:
+      api_user_key_password: "ansible"
+
+  - name: Create a private key for testing api signing keys
+    openssl_privatekey:
+      path:  "{{ api_key_private_key_path }}"
+      size: 2048
+      cipher: aes128
+      passphrase: "{{api_user_key_password}}"
+  - name: Create a public key from that temp private key
+    openssl_publickey:
+      path: "{{ api_key_pub_key_path }}"
+      privatekey_path: "{{ api_key_private_key_path }}"
+      privatekey_passphrase: "{{api_user_key_password}}"
+      force: True
+    register: result
+
+  - name: Create an API Signing Key
+    oci_identity_api_key:
+      user_id: "{{ test_user_id }}"
+      key: "{{ lookup('file', api_key_pub_key_path) }}"
+    register: result
+  - debug:
+      msg: "Created API signing key {{result}}"
+  - set_fact:
+      api_signing_key_1_ocid: "{{ result.api_key.key_id }}"
+      api_signing_key_1_fingerprint: "{{ result.api_key.fingerprint }}"
+  - name: Assert that API Signing Key was created and is active
+    assert:
+      that:
+          - result.changed == True
+          - result.api_key.lifecycle_state == "ACTIVE"
+  - debug:
+      msg: "Created API signing key {{result}}"
+
+  - name: Create a policy to allow new test user to inspect a nested compartment
+    oci_identity_policy:
+      name: "{{test_policy_name}}"
+      compartment_id: "{{test_compartment_ocid}}"
+      description: "{{test_policy_description}}"
+      statements: 
+        - "Allow group {{test_group_name}} to inspect compartments in compartment id {{compartment_at_depth_3_ocid}}"
+    register: result
+
+  - set_fact:
+      test_policy_id: "{{result.policy.id}}"
+
+  # give time for permissions to propagate
+  - pause:
+      seconds: 30
+
+  # ===================================================================================
+
+  - name: Get details of compartment_at_depth_3_ocid
+    oci_identity_compartment_facts:
+      compartment_id: "{{compartment_at_depth_3_ocid}}"
+    register: result
+
+  - set_fact:
+      compartment_at_depth_3_name: "{{ result.compartments[0].name }}"
+
+  # this ensures that the search is not pruned by name before fetching all subcompartments
+  # we need to fetch everything and then filter by name *afterwards*
+  - name: Get details of all subcompartments of a non-root compartment filtered by name
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{test_compartment_ocid}}"
+      compartment_id_in_subtree: True
+      name: "{{ compartment_at_depth_3_name }}"
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert single compartment with specified name is returned
+    assert:
+      that:
+        - result.compartments | length == 1
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - result.compartments[0].name == "{{ compartment_at_depth_3_name }}"
+
+  # ===================================================================================
+
+  - name: Get details of all subcompartments of a non-root compartment filtered by access level (ACCESSIBLE) using user with limited access
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{test_compartment_ocid}}"
+      compartment_id_in_subtree: True
+      access_level: ACCESSIBLE
+      api_user: "{{ test_user_id }}"
+      api_user_fingerprint: "{{ api_signing_key_1_fingerprint }}"
+      api_user_key_file: "{{ api_key_private_key_path }}"
+      api_user_key_pass_phrase: "{{api_user_key_password}}"
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert more than one compartments are returned and all test subcompartments are in the list
+    assert:
+      that:
+        - result.compartments | length > 1
+        - compartment_at_depth_2_ocid in list_of_subcompartment_ocids
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - compartment_at_depth_4_ocid in list_of_subcompartment_ocids
+        - identity_compartment_ocid not in list_of_subcompartment_ocids
+        # this compartment is under test_compartment_ocid but should not be accessible
+        # by `user` because it is not in the direct hierarchy of compartment `user` has access
+        # to (in this case compartment_at_depth_3_ocid)
+        - compartment_sibling_at_depth_2_ocid not in list_of_subcompartment_ocids
+
+  # ===================================================================================
+
+  - name: Get details of all subcompartments of a non-root compartment filtered by access level (ANY) using user with limited access
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{test_compartment_ocid}}"
+      compartment_id_in_subtree: True
+      access_level: ANY
+      api_user: "{{ test_user_id }}"
+      api_user_fingerprint: "{{ api_signing_key_1_fingerprint }}"
+      api_user_key_file: "{{ api_key_private_key_path }}"
+      api_user_key_pass_phrase: "{{api_user_key_password}}"
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert more than one compartments are returned and all test subcompartments are in the list
+    assert:
+      that:
+        - result.compartments | length > 1
+        - compartment_at_depth_2_ocid in list_of_subcompartment_ocids
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - compartment_at_depth_4_ocid in list_of_subcompartment_ocids
+        - identity_compartment_ocid not in list_of_subcompartment_ocids
+        - compartment_sibling_at_depth_2_ocid in list_of_subcompartment_ocids
+
+  # ===================================================================================
+
+  - name: Get details of all subcompartments of a non-root compartment filtered by access level AND name
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{test_compartment_ocid}}"
+      compartment_id_in_subtree: True
+      access_level: ACCESSIBLE
+      name: "{{ compartment_at_depth_3_name }}"
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert more than one compartments are returned and all test subcompartments are in the list
+    assert:
+      that:
+        - result.compartments | length == 1
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - result.compartments[0].name == "{{ compartment_at_depth_3_name }}"
+
+  # ===================================================================================
+
+  - name: Get details of all subcompartments of a root compartment filtered by name
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{tenancy_ocid}}"
+      compartment_id_in_subtree: True
+      name: "{{ compartment_at_depth_3_name }}"
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert more than one compartments are returned and all test subcompartments are in the list
+    assert:
+      that:
+        - result.compartments | length == 1
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - result.compartments[0].name == "{{ compartment_at_depth_3_name }}"
+
+  # ===================================================================================
+
+  - name: Get details of all subcompartments of a root compartment filtered by access level
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{tenancy_ocid}}"
+      compartment_id_in_subtree: True
+      access_level: ACCESSIBLE
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert more than one compartments are returned and all test subcompartments are in the list
+    assert:
+      that:
+        - result.compartments | length > 1
+        - compartment_at_depth_2_ocid in list_of_subcompartment_ocids
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - compartment_at_depth_4_ocid in list_of_subcompartment_ocids
+        - identity_compartment_ocid in list_of_subcompartment_ocids
+
+  # ===================================================================================
+
+  - name: Get details of all subcompartments of a root compartment filtered by access level AND name
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{tenancy_ocid}}"
+      compartment_id_in_subtree: True
+      access_level: ACCESSIBLE
+      name: "{{ compartment_at_depth_3_name }}"
+    register: result
+
+  - set_fact:
+      list_of_subcompartment_ocids: "{{ result.compartments|map(attribute='id')|list }}"
+
+  - debug:
+      msg: '{{ list_of_subcompartment_ocids }}'
+
+  - name: Assert more than one compartments are returned and all test subcompartments are in the list
+    assert:
+      that:
+        - result.compartments | length == 1
+        - compartment_at_depth_3_ocid in list_of_subcompartment_ocids
+        - result.compartments[0].name == "{{ compartment_at_depth_3_name }}"
+
+  - name: Delete the temp public key
+    openssl_publickey:
+      path: "{{ api_key_pub_key_path }}"
+      privatekey_path: "{{ api_key_private_key_path }}"
+      state: "absent"
+
+  - name: Delete the temp private key
+    openssl_privatekey:
+      path: "{{ api_key_private_key_path }}"
+      state: "absent"
+
+  - name: Delete test policy
+    oci_identity_policy:
+      policy_id: "{{ test_policy_id }}"
+      state: absent
+  
+  - name: Remove user from group
+    oci_identity_user_group_membership:
+      user_group_membership_id: "{{test_user_group_membership_id}}"
+      state: absent
+
+  - name: Delete test user
+    oci_identity_user:
+      user_id: "{{ test_user_id }}"
+      state: absent
+
+  - name: Delete test group
+    oci_identity_group:
+      group_id: "{{ test_group_id }}"
+      state: absent
+
+  rescue:
+    - name: Delete the temp public key
+      openssl_publickey:
+        path: "{{ api_key_pub_key_path }}"
+        privatekey_path: "{{ api_key_private_key_path }}"
+        state: "absent"
+      ignore_errors: yes
+
+    - name: Delete the temp private key
+      openssl_privatekey:
+        path: "{{ api_key_private_key_path }}"
+        state: "absent"
+      ignore_errors: yes
+
+    - name: Delete test policy
+      oci_identity_policy:
+        policy_id: "{{ test_policy_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove user from group
+      oci_identity_user_group_membership:
+        user_group_membership_id: "{{test_user_group_membership_id}}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete test user
+      oci_identity_user:
+        user_id: "{{ test_user_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete test group
+      oci_identity_group:
+        group_id: "{{ test_group_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"
+
+# ===================================================================================
+
+# Create + Delete Compartment tests cannot be run regularly, so adding some sanity checks
+# for idempotency
+
+- name: Create compartment (idempotency test)
+  oci_identity_compartment:
+    parent_compartment_id: "{{tenancy_ocid}}"
+    name: "{{test_compartment_name}}"
+    description: "{{test_compartment_description}}"
+  register: result
+
+- name: Assert that changed is false, nothing was created
+  assert:
+    that:
+      - result.changed == False
+      - result.compartment['description'] == "{{test_compartment_description}}"
+      - result.compartment['name'] == "{{test_compartment_name}}"
+
+# ===================================================================================
+
+- name: Delete compartment (idempotency test)
+  oci_identity_compartment:
+    # this is a fake compartment id, so it should always already not exist
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaanwjuqtxj2dhyquv52zpv4oi7u2mpgbcb7oxo2h46xwwdzx3abcde"
+    state: absent
+  register: result
+
+- debug:
+    msg: '{{ result }}'
+
+- name: Assert result is not changed
+  assert:
+    that:
+      - result.changed == False
+
+# ===================================================================================
+
+- name: Delete compartment using name (idempotency test)
+  oci_identity_compartment:
+    parent_compartment_id: "{{tenancy_ocid}}"
+    name: "FakeCompartmentThatShouldNeverExist12_34"
+    state: absent
+  environment:
+    OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+
+- name: Assert result is not changed
+  assert:
+    that:
+      - result.changed == False

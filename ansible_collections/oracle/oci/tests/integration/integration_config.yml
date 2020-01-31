@@ -2,6 +2,10 @@ tenancy_ocid: "ocid1.tenancy.oc1..aaaaaaaayqotwvxvy4t433xh3b5ccj4z3w6ke4t4m2sjli
 test_compartment_ocid: "ocid1.compartment.oc1..aaaaaaaa7tlbhw5sjnbf7u7eyonsfjt737773ptgj66nlnsyr3teglev2bla"
 # TODO: dynamically populate this once we ship oci_identity_compartment_facts
 test_compartment_name: "AnsibleIntegrationTestCompartment1"
+# a specific compartment that is used for testing OCI compartments
+identity_compartment_ocid: "ocid1.compartment.oc1..aaaaaaaawwwbbsh55kolgpvizprgypqekfubgkirllk3llzvrtrnkft6x47a"
+# parent compartment to test create and delete compartments under
+identity_create_delete_parent_compartment_ocid: ocid1.compartment.oc1..aaaaaaaanwjuqtxj2dhyquv52zpv4oi7u2mpgbcb7oxo2h46xwwdzx3nqgiq
 
 test_tag_default_tests_compartment_ocid: "ocid1.compartment.oc1..aaaaaaaaztglfq7tna6sygij2aoqxwkjvc4xnqtefqt5d4m4p3wpv6glmkwq"
 # Tag namespace for tag default tests. This is in a different compartment to avoid test resources having tags

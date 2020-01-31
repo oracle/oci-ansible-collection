@@ -1,0 +1,457 @@
+---
+- block:
+  - name: Create compartment (check mode)
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_create_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_create_required_name, omit) }}"
+      description: "{{ 'For network components' | oracle.oci.override(test_compartment_create_required_description, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_compartment_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_compartment_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_create_check_mode_custom_assertions }}"
+    when: compartment_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create compartment with required parameters
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_create_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_create_required_name, omit) }}"
+      description: "{{ 'For network components' | oracle.oci.override(test_compartment_create_required_description, omit) }}"
+    register: result
+    when: skip_compartment_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_compartment_create_required_original_test is not defined
+
+  - set_fact:
+      compartment_resource_id: "{{ result.compartment.id }}"
+    when: skip_compartment_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_create_required_original_custom_assertions }}"
+    when: compartment_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create compartment with required parameters(idempotency)
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_create_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_create_required_name, omit) }}"
+      description: "{{ 'For network components' | oracle.oci.override(test_compartment_create_required_description, omit) }}"
+    register: result
+    when: skip_compartment_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_compartment_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_create_required_idempotency_custom_assertions }}"
+    when: compartment_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update compartment using name with optional + required parameters
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_update_using_name_optional_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_update_using_name_optional_required_name, omit) }}"
+      description: "{{ ('For network componentsupdated' + random_suffix_1024) | oracle.oci.override(test_compartment_update_using_name_optional_required_description, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_compartment_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_compartment_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_compartment_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_compartment_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_update_using_name_optional_required_custom_assertions }}"
+    when: compartment_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update compartment using name with optional + required parameters (idempotence)
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_update_using_name_optional_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_update_using_name_optional_required_name, omit) }}"
+      description: "{{ ('For network componentsupdated' + random_suffix_1024) | oracle.oci.override(test_compartment_update_using_name_optional_required_description, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_compartment_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_compartment_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_compartment_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_compartment_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: compartment_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete compartment
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_delete_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_compartment_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_compartment_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_delete_required_custom_assertions }}"
+    when: compartment_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete compartment (idempotency)
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_delete_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_compartment_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_compartment_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_delete_required_idempotency_custom_assertions }}"
+    when: compartment_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create compartment with optional + required parameters
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_create_optional_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_create_optional_required_name, omit) }}"
+      description: "{{ 'For network components' | oracle.oci.override(test_compartment_create_optional_required_description, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_compartment_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_compartment_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_compartment_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_compartment_create_optional_required_original_test is not defined
+
+  - set_fact:
+      compartment_resource_id: "{{ result.compartment.id }}"
+    when: skip_compartment_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_create_optional_required_original_custom_assertions }}"
+    when: compartment_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create compartment with optional + required parameters (idempotence)
+    oci_identity_compartment:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_create_optional_required_parent_compartment_id, omit) }}"
+      name: "{{ ('Network' + random_suffix_1024) | oracle.oci.override(test_compartment_create_optional_required_name, omit) }}"
+      description: "{{ 'For network components' | oracle.oci.override(test_compartment_create_optional_required_description, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_compartment_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_compartment_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_compartment_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_compartment_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_create_optional_required_idempotence_custom_assertions }}"
+    when: compartment_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update compartment with optional + required parameters
+    oci_identity_compartment:
+      name: "{{ ('Networkupdated' + random_suffix_1024) | oracle.oci.override(test_compartment_update_optional_required_name, omit) }}"
+      description: "{{ ('For network componentsupdated' + random_suffix_1024) | oracle.oci.override(test_compartment_update_optional_required_description, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_compartment_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_compartment_update_optional_required_defined_tags, omit) }}"
+      compartment_id: "{{ compartment_resource_id | oracle.oci.override(test_compartment_update_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_compartment_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_compartment_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_update_optional_required_custom_assertions }}"
+    when: compartment_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update compartment with optional + required parameters (idempotence)
+    oci_identity_compartment:
+      name: "{{ ('Networkupdated' + random_suffix_1024) | oracle.oci.override(test_compartment_update_optional_required_name, omit) }}"
+      description: "{{ ('For network componentsupdated' + random_suffix_1024) | oracle.oci.override(test_compartment_update_optional_required_description, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_compartment_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_compartment_update_optional_required_defined_tags, omit) }}"
+      compartment_id: "{{ compartment_resource_id | oracle.oci.override(test_compartment_update_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_compartment_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_compartment_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.compartment.id is defined
+        - result.compartment.compartment_id is defined
+        - result.compartment.name is defined
+        - result.compartment.description is defined
+        - result.compartment.time_created is defined
+        - result.compartment.lifecycle_state is defined
+    when: skip_compartment_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_update_optional_required_idempotence_custom_assertions }}"
+    when: compartment_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List compartments
+    oci_identity_compartment_facts:
+      parent_compartment_id: "{{ dependency_parent_compartment_id | oracle.oci.override(test_compartment_list_parent_compartment_id, omit) }}"
+    register: result
+    when: skip_compartment_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.compartments | length > 0
+    when: skip_compartment_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.compartments }}"
+    when: skip_compartment_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_list_custom_assertions }}"
+    when: compartment_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get compartment
+    oci_identity_compartment_facts:
+      compartment_id: "{{ compartment_resource_id | oracle.oci.override(test_compartment_get_compartment_id, omit) }}"
+    register: result
+    when: skip_compartment_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.compartments | length == 1
+    when: skip_compartment_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+    with_items: "{{ result.compartments }}"
+    when: skip_compartment_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ compartment_get_custom_assertions }}"
+    when: compartment_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete compartment
+      oci_identity_compartment:
+        compartment_id: "{{ compartment_resource_id | oracle.oci.override(test_compartment_delete_rescue_compartment_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: compartment_resource_id is defined

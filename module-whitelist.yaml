@@ -99,6 +99,10 @@ moduleWhitelist:
   - oci_identity_provider_actions
   - oci_identity_authentication_policy
   - oci_identity_authentication_policy_facts
+  - oci_identity_compartment
+  - oci_identity_compartment_facts
+  - oci_identity_api_key
+  - oci_identity_api_key_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

@@ -1,0 +1,128 @@
+# tests for `oci_compartment` and `oci_compartment_facts` modules
+
+- name:
+  debug:
+    msg: "compartment id being used in this test is {{identity_compartment_ocid}}"
+
+- name: Update name and description of a compartment
+  oci_identity_compartment:
+    name: "{{identity_test_compartment_name}}"
+    compartment_id: "{{identity_compartment_ocid}}"
+    description: "{{identity_test_compartment_description}}"
+    freeform_tags:
+      type: ansible_test
+  register: result
+- debug: msg="{{result}}"
+
+- name: Assert that name and description has been updated
+  assert:
+    that:
+      # result.changed == True
+      # result.changed may be False if the compartment already had the same name or description
+      - result.compartment['name'] == "{{identity_test_compartment_name}}"
+      - result.compartment['description'] == "{{identity_test_compartment_description}}"
+      - result.compartment['freeform_tags']['type'] == "ansible_test"
+      - result.compartment['lifecycle_state'] == "ACTIVE"
+
+# ===================================================================================
+
+- name: Reattempt update name and description of a compartment
+  oci_identity_compartment:
+    compartment_id: "{{identity_compartment_ocid}}"
+    description: "{{identity_test_compartment_description}}"
+  register: result
+
+- name: Assert that changed is false
+  assert:
+    that:
+      - result.changed == False
+      - result.compartment['name'] == "{{identity_test_compartment_name}}"
+      - result.compartment['description'] == "{{identity_test_compartment_description}}"
+      - result.compartment['lifecycle_state'] == "ACTIVE"
+
+# ===================================================================================
+- name: Ensure description of a compartment is the original description.
+  oci_identity_compartment:
+    compartment_id: "{{identity_compartment_ocid}}"
+    description: "{{identity_test_compartment_description}}"
+
+
+- name: Update only description of a compartment
+  oci_identity_compartment:
+    compartment_id: "{{identity_compartment_ocid}}"
+    description: "{{identity_test_compartment_new_description}}"
+  register: result
+- debug: msg="{{result}}"
+- name: Assert that changed is true, description has been updated and name remains unchanged
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment['description'] == "{{identity_test_compartment_new_description}}"
+      - result.compartment['name'] == "{{identity_test_compartment_name}}"
+      - result.compartment['lifecycle_state'] == "ACTIVE"
+
+# ===================================================================================
+# TODO: investigate instability, for right now this exists in old modules as well
+# operation returns successful before another update is allowed
+- pause:
+   seconds: 15
+
+- name: Update only name of a compartment
+  oci_identity_compartment:
+    compartment_id: "{{identity_compartment_ocid}}"
+    name: "{{identity_new_compartment_name}}"
+  register: result
+
+- name: Assert that changed is true, name has been updated and description remains unchanged
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment['description'] == "{{identity_test_compartment_new_description}}"
+      - result.compartment['name'] == "{{identity_new_compartment_name}}"
+      - result.compartment['lifecycle_state'] == "ACTIVE"
+
+# ===================================================================================
+# TODO: investigate instability, for right now this exists in old modules as well
+# operation returns successful before another update is allowed
+- pause:
+   seconds: 15
+
+- name: Update description of compartment using name
+  oci_identity_compartment:
+    parent_compartment_id: "{{tenancy_ocid}}"
+    name: "{{identity_new_compartment_name}}"
+    description: "{{identity_test_compartment_description}}"
+  environment:
+    OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+
+- name: Assert that changed is true, description has been updated and name remains unchanged
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment['description'] == "{{identity_test_compartment_description}}"
+      - result.compartment['name'] == "{{identity_new_compartment_name}}"
+      - result.compartment['lifecycle_state'] == "ACTIVE"
+      - result.compartment['compartment_id'] == "{{tenancy_ocid}}"
+      - result.compartment['id'] == "{{identity_compartment_ocid}}"
+
+# ===================================================================================
+
+- name: Update description of compartment using name (idempotency test)
+  oci_identity_compartment:
+    parent_compartment_id: "{{tenancy_ocid}}"
+    name: "{{identity_new_compartment_name}}"
+    description: "{{identity_test_compartment_description}}"
+  environment:
+    OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+
+- name: Assert that changed is false, nothing was updated
+  assert:
+    that:
+      - result.changed == False
+      - result.compartment['description'] == "{{identity_test_compartment_description}}"
+      - result.compartment['name'] == "{{identity_new_compartment_name}}"
+      - result.compartment['lifecycle_state'] == "ACTIVE"
+      - result.compartment['compartment_id'] == "{{tenancy_ocid}}"
+      - result.compartment['id'] == "{{identity_compartment_ocid}}"

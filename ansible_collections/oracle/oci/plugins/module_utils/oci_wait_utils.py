@@ -13,6 +13,7 @@ from . import oci_common_utils
 try:
     import oci
     from oci.util import to_dict
+    from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -116,7 +117,13 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
         )
 
     def get_fetch_func(self):
-        identifier = self.operation_response.data.id
+        if hasattr(self.operation_response.data, "id"):
+            identifier = self.operation_response.data.id
+        else:
+            identifier = getattr(
+                self.operation_response.data,
+                self.resource_helper.get_module_resource_id_param(),
+            )
         if not identifier:
             self.resource_helper.module.fail_json(
                 "Error getting the resource identifier."
@@ -258,6 +265,59 @@ class PeeringStatusWaiter(LifecycleStateWaiter):
         return lambda r: r.data.peering_status == "PEERED"
 
 
+class CreateCompartmentOperationLifecycleStateWaiter(
+    CreateOperationLifecycleStateWaiter
+):
+    """Waiter which waits on the lifecycle state of the resource"""
+
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateCompartmentOperationLifecycleStateWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    def get_fetch_func(self):
+        identifier = self.operation_response.data.id
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                "Error getting the resource identifier."
+            )
+        try:
+            id_orig = self.resource_helper.module.params[
+                self.resource_helper.get_module_resource_id_param()
+            ]
+        except NotImplementedError:
+            return lambda **kwargs: self.resource_helper.get_resource()
+
+        def fetch_func(**kwargs):
+            self.resource_helper.module.params[
+                self.resource_helper.get_module_resource_id_param()
+            ] = identifier
+
+            try:
+                get_response = self.resource_helper.get_resource()
+            except ServiceError as se:
+                # create compartment has a service issue where CREATE
+                # returns with lifecycle_state = ACTIVE before the
+                # compartment is available to be fetched via a GET request
+                # This is because it takes few seconds for the permissions on a
+                # compartment to be ready.
+                # Wait for few seconds before attempting a get call on compartment.
+                if se.status != 404:
+                    raise
+
+                # return a dummy response to allow waiting to continue
+                get_response = oci_common_utils.get_default_response_from_resource(
+                    oci.identity.models.Compartment()
+                )
+
+            self.resource_helper.module.params[
+                self.resource_helper.get_module_resource_id_param()
+            ] = id_orig
+            return get_response
+
+        return fetch_func
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -321,6 +381,13 @@ _WAITER_OVERRIDE_MAP = {
         "remote_peering_connection",
         "CONNECT_REMOTE_PEERING_CONNECTIONS_ACTION",
     ): PeeringStatusWaiter,
+    # create compartment has a service issue where it returns before resource can be fetched with a GET
+    # thus we need a custom waiter that continues to fetch even if the first few fetches return a 404
+    (
+        "identity",
+        "compartment",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateCompartmentOperationLifecycleStateWaiter,
 }
 
 

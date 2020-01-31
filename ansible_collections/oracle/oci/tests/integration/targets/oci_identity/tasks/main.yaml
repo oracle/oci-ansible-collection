@@ -38,3 +38,15 @@
 - import_tasks: oci_identity_provider_tests.yaml
   tags:
     - identity_provider
+- import_tasks: oci_compartment_tests.yaml
+  tags:
+    - compartment
+# TODO: can't enable these until we have a mechanism to run
+# them less often since compartments will stick around
+# and count against our quota for minimum 90 days
+# - import_tasks: oci_compartment_create_delete_tests.yaml
+#   tags:
+#     - create_delete_compartment
+- import_tasks: oci_api_key_tests.yaml
+  tags:
+    - api_key

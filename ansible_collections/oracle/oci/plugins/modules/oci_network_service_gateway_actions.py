@@ -203,7 +203,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
     get_custom_class,
-    convert_input_data_to_model_class,
 )
 
 try:
@@ -239,7 +238,7 @@ class ServiceGatewayActionsHelperGen(OCIActionsHelperBase):
         )
 
     def attach_service_id(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ServiceIdRequestDetails
         )
         return oci_wait_utils.call_and_wait(
@@ -261,7 +260,7 @@ class ServiceGatewayActionsHelperGen(OCIActionsHelperBase):
         )
 
     def detach_service_id(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ServiceIdRequestDetails
         )
         return oci_wait_utils.call_and_wait(

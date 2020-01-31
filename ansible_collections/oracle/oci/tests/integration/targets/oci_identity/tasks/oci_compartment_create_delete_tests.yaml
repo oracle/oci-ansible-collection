@@ -1,0 +1,139 @@
+# tests for creating and deleting compartments
+# deleted compartments still count against quota for a minimum of 90 days
+# so we can't execute these tests regularly
+
+- name:
+  debug:
+    msg: "compartment id being used in this test is {{identity_create_delete_parent_compartment_ocid}}"
+
+# Cleanup all Compartments matching display name
+- oci_identity_compartment_facts:
+    parent_compartment_id: "{{ identity_create_delete_parent_compartment_ocid }}"
+  register: test_compartments
+
+- oci_identity_compartment:
+    compartment_id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ test_compartments.compartments }}"
+  when: item.name == identity_create_compartment_name
+  ignore_errors: yes
+
+# ===================================================================================
+
+- name: Create a compartment under identity_create_delete_parent_compartment_ocid using parent_compartment_id
+  oci_identity_compartment:
+    parent_compartment_id: "{{ identity_create_delete_parent_compartment_ocid }}"
+    name: "{{ identity_create_compartment_name }}"
+    description: "{{ identity_create_compartment_description }}"
+  register: result
+
+- set_fact:
+   test_created_compartment_id: "{{ result.compartment.id }}"
+
+- name: Assert a compartment is created
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment.name == compartment_name
+      - result.compartment.description == identity_create_compartment_description
+
+# ===================================================================================
+
+- name: Attempt again to create compartment under identity_create_delete_parent_compartment_ocid
+  oci_identity_compartment:
+    parent_compartment_id: "{{ identity_create_delete_parent_compartment_ocid }}"
+    name: "{{ identity_create_compartment_name }}"
+    description: "{{ identity_create_compartment_description }}"
+  register: result
+
+- name: Assert compartment create op is idempotent
+  assert:
+    that:
+      - result.changed == False
+      - result.compartment.id == test_created_compartment_id
+
+# ===================================================================================
+
+- name: Delete compartment using name
+  oci_identity_compartment:
+    parent_compartment_id: '{{ identity_create_delete_parent_compartment_ocid }}'
+    name: "{{ identity_create_compartment_name }}"
+    state: absent
+  environment:
+    OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+
+- name: Assert compartment is deleted and work request is retrieved
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment.id == test_created_compartment_id
+      - result.work_request.compartment_id is defined
+
+# ===================================================================================
+
+- name: Reattempt to delete compartment using name (idempotency test)
+  oci_identity_compartment:
+    parent_compartment_id: '{{ identity_create_delete_parent_compartment_ocid }}'
+    name: "{{ identity_create_compartment_name }}"
+    state: absent
+  environment:
+    OCI_USE_NAME_AS_IDENTIFIER: 1
+  register: result
+
+- name: Assert delete compartment is idempotent
+  assert:
+    that:
+      - result.changed == False
+
+# ===================================================================================
+
+- name: Create another compartment under identity_create_delete_parent_compartment_ocid using parent_compartment_id to test delete using id
+  oci_identity_compartment:
+    parent_compartment_id: "{{ identity_create_delete_parent_compartment_ocid }}"
+    name: "{{ identity_create_compartment_name2 }}"
+    description: "{{ identity_create_compartment_description }}"
+  register: result
+
+- set_fact:
+   test_created_compartment_id: "{{ result.compartment.id }}"
+
+- name: Assert a compartment is created
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment.name == compartment_name
+      - result.compartment.description == identity_create_compartment_description
+
+- set_fact:
+   test_created_compartment_id: "{{ result.compartment.id }}"
+
+# ===================================================================================
+
+- name: Delete compartment using ID
+  oci_identity_compartment:
+    compartment_id: '{{ test_created_compartment_id }}'
+    state: absent
+  register: result
+
+- name: Assert compartment is deleted and work request is retrieved
+  assert:
+    that:
+      - result.changed == True
+      - result.compartment.id == test_created_compartment_id
+       - result.work_request.compartment_id is defined
+
+# ===================================================================================
+
+- name: Reattempt to delete compartment
+  oci_identity_compartment:
+    compartment_id: '{{ test_created_compartment_id }}'
+    state: absent
+  register: result
+
+- name: Assert delete compartment is idempotent
+  assert:
+    that:
+      - result.changed == False
+
+# ===================================================================================

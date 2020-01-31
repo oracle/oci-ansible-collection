@@ -61,3 +61,13 @@ core:
           "203597"
         ]
       }
+
+identity:
+  UploadApiKey: |
+      Example I: Add network security group security rules
+      POST /users/{userId}/apiKey
+      Host: identity.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "key" : "-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A..."
+      }

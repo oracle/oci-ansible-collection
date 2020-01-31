@@ -585,7 +585,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
     get_custom_class,
-    convert_input_data_to_model_class,
 )
 
 try:
@@ -615,7 +614,7 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
         return self.module.params.get("network_security_group_id")
 
     def add_network_security_group_security_rules(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, AddNetworkSecurityGroupSecurityRulesDetails
         )
         return oci_wait_utils.call_and_wait(
@@ -639,7 +638,7 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
         )
 
     def remove_network_security_group_security_rules(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RemoveNetworkSecurityGroupSecurityRulesDetails
         )
         return oci_wait_utils.call_and_wait(
@@ -663,7 +662,7 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
         )
 
     def update_network_security_group_security_rules(self):
-        action_details = convert_input_data_to_model_class(
+        action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, UpdateNetworkSecurityGroupSecurityRulesDetails
         )
         return oci_wait_utils.call_and_wait(
