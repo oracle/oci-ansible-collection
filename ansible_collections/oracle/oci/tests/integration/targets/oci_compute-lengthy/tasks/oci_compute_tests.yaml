@@ -44,6 +44,26 @@
 # Start lengthy compute tests
 - block:
 
+    - name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance
+      tempfile:
+        state: directory
+        suffix: cert
+      register: result
+    - set_fact:
+        temp_certificates_path: "{{ result.path }}"
+    - name: Generate a Private Key
+      openssl_privatekey:
+        path: "{{ temp_certificates_path }}/private_key.pem"
+        type: RSA
+        size: 2048
+    - set_fact:
+        my_test_public_key_path: "{{ temp_certificates_path }}/public_key.pem"
+    - name: Generate a Public Key
+      openssl_publickey:
+        path: "{{ my_test_public_key_path }}"
+        privatekey_path: "{{ temp_certificates_path }}/private_key.pem"
+        format: OpenSSH
+
     ## Create/Launch
     - name: Create new compute instance
       oci_compute_instance:
@@ -72,6 +92,96 @@
         - result.changed == True
         - result.instance.display_name == "{{test_instance_name}}"
         - result.instance.lifecycle_state == "RUNNING"
+
+    - name: Create a new console connection to the instance
+      oci_compute_instance_console_connection:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        public_key: "{{ lookup('file', my_test_public_key_path) }}"
+        freeform_tags: "{{ test_default_freeform_tags }}"
+        defined_tags: "{{ test_default_defined_tags }}"
+      register: result
+    - set_fact:
+        my_instance_console_connection_ocid: "{{result.instance_console_connection.id}}"
+    - debug:
+        msg: "{{ result }}"
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+          - result.instance_console_connection.instance_id == "{{my_instance_ocid}}"
+          - result.instance_console_connection.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
+          - result.instance_console_connection.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
+
+    # The public_key field exists in the create model (CreateInstanceConsoleConnectionDetails) but not in get model
+    # (InstanceConsoleConnection). This causes the idempotence logic to consider the resource as a mismatch.
+    # Even though it is easier to overcome this issue by just adding public_key to exclude attributes, it is not ideal
+    # as a different user trying to create ConsoleConnection with different public key would succeed but the user would
+    # not be able to create connection since the console connection was created with a different key.
+    # This is fine for the following reasons:
+    #  1) It is reasonable to assume that InstanceConsoleConnection is created for debugging issues with the instance
+    #     and not in general playbooks which are run multiple times.
+    #  2) Users can overcome this issue by using key_by in cases where the user is sure that the same public key is used
+    #     and idempotence is required.
+    - name: Create a new console connection to the instance - idempotence test. Confirm no match when public_key is considered for idempotence.
+      oci_compute_instance_console_connection:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        public_key: "{{ lookup('file', my_test_public_key_path) }}"
+        freeform_tags: "{{ test_default_freeform_tags }}"
+        defined_tags: "{{ test_default_defined_tags }}"
+      register: result
+      ignore_errors: yes
+
+    - debug:
+        msg: "{{ result }}"
+    - name: Assert that creating console connection failed
+      assert:
+        that:
+          - result is failed
+
+    - name: Create a new console connection to the instance - idempotence test. Confirm match when public_key is not considered for idempotence.
+      oci_compute_instance_console_connection:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        public_key: "{{ lookup('file', my_test_public_key_path) }}"
+        freeform_tags: "{{ test_default_freeform_tags }}"
+        defined_tags: "{{ test_default_defined_tags }}"
+        key_by:
+          - instance_id
+      register: result
+
+    - debug:
+        msg: "{{ result }}"
+    - name: Assert that the console connection is not created
+      assert:
+        that:
+          - result.changed == False
+          - result.instance_console_connection.instance_id == "{{my_instance_ocid}}"
+          - result.instance_console_connection.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
+          - result.instance_console_connection.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
+
+    - name: List instance console connections of the compartment
+      oci_compute_instance_console_connection_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+    - name: Assert that there is atleast one instance console connection in the compartment
+      assert:
+        that:
+          - result.changed == False
+          - result.instance_console_connections | length > 0
+
+    - name: Get instance console connections by ocid
+      oci_compute_instance_console_connection_facts:
+        id: "{{my_instance_console_connection_ocid}}"
+      register: result
+    - name: Assert that there is atleast one instance console connection for the given instance
+      assert:
+        that:
+          - result.changed == False
+          - result.instance_console_connections | length == 1
+          - result.instance_console_connections[0].id == my_instance_console_connection_ocid
+          - result.instance_console_connections[0].instance_id == my_instance_ocid
 
     # oci_compute_instance_actions tests
     - name: Stop the instance
@@ -593,8 +703,6 @@
         create_vnic_details:
           hostname_label: "{{test_windows_instance_name}}"
           subnet_id: "{{common_subnet_id}}"
-        freeform_tags: "{{ test_default_freeform_tags }}"
-        defined_tags: "{{ test_default_defined_tags }}"
       register: result
     - debug:
         msg: "{{ result }}"
@@ -605,23 +713,20 @@
         that:
         - result.changed == True
         - result.instance.display_name == "{{test_windows_instance_name}}"
-        - result.instance.lifecycle_state == "RUNNING"
-        - result.instance.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
-        - result.instance.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
 
-#    - name: Get windows instance initial credentials
-#      oci_instance_credentials_facts:
-#        id: "{{windows_instance_ocid}}"
-#      register: result
-#    - set_fact:
-#        curr_windows_initial_pass: "{{result.instance_credentials.password}}"
-#        curr_windows_initial_username: "{{result.instance_credentials.username}}"
-#    - name: Assert that windows initial credentials were defined
-#      assert:
-#        that:
-#        - result.changed == False
-#        - (curr_windows_initial_pass is defined) and (curr_windows_initial_pass is not none) and (curr_windows_initial_pass | trim != "")
-#        - (curr_windows_initial_username is defined) and (curr_windows_initial_username is not none) and (curr_windows_initial_username | trim != "")
+    - name: Get windows instance initial credentials
+      oci_compute_instance_credentials_facts:
+        id: "{{windows_instance_ocid}}"
+      register: result
+    - set_fact:
+        curr_windows_initial_pass: "{{result.instance_credentials.password}}"
+        curr_windows_initial_username: "{{result.instance_credentials.username}}"
+    - name: Assert that windows initial credentials were defined
+      assert:
+        that:
+        - result.changed == False
+        - (curr_windows_initial_pass is defined) and (curr_windows_initial_pass is not none) and (curr_windows_initial_pass | trim != "")
+        - (curr_windows_initial_username is defined) and (curr_windows_initial_username is not none) and (curr_windows_initial_username | trim != "")
 
     - name: Create new Windows compute instance - idempotency test
       oci_compute_instance:
@@ -636,28 +741,22 @@
         create_vnic_details:
           hostname_label: "{{test_windows_instance_name}}"
           subnet_id: "{{common_subnet_id}}"
-        freeform_tags: "{{ test_default_freeform_tags }}"
-        defined_tags: "{{ test_default_defined_tags }}"
       register: result
-    - name: Assert that changed is true
+    - name: Assert that changed is false
       assert:
         that:
         - result.changed == False
         - result.instance.display_name == "{{test_windows_instance_name}}"
-        - result.instance.lifecycle_state == "RUNNING"
-        - result.instance.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
-        - result.instance.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
         - result.instance.id == windows_instance_ocid
-#    - name: Get windows instance initial credentials again
-#      oci_instance_credentials_facts:
-#        id: "{{result.instance.id}}"
-#      register: result
-#    - name: Assert that windows initial credentials were the same as the earlier attempt
-#      assert:
-#        that:
-#        - result.changed == False
-#        - result.instance_credentials.username == curr_windows_initial_username
-#        - result.instance_credentials.password == curr_windows_initial_pass
+    - name: Get windows instance initial credentials again
+      oci_compute_instance_credentials_facts:
+        id: "{{result.instance.id}}"
+      register: result
+    - name: Assert that windows initial credentials were the same as the earlier attempt
+      assert:
+        that:
+        - result.instance_credentials.username == curr_windows_initial_username
+        - result.instance_credentials.password == curr_windows_initial_pass
 
     - name: Terminate the windows instance
       oci_compute_instance:

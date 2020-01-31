@@ -167,7 +167,7 @@ options:
             cidr_block:
                 description:
                     - An individual public IP prefix (CIDR) to add to the public virtual circuit.
-                      Must be /31 or less specific.
+                      All prefix sizes are allowed.
                 type: str
                 required: true
     region:
@@ -456,7 +456,7 @@ virtual_circuit:
         public_prefixes:
             description:
                 - For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
-                  advertise across the connection. Each prefix must be /31 or less specific.
+                  advertise across the connection. All prefix sizes are allowed.
             returned: on success
             type: list
             sample: []

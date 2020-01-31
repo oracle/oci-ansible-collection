@@ -166,12 +166,28 @@
         - instance_setup
         - instance
         - instance_actions
+        - instance_console_connection
+        - instance_console_history
+        - instance_console_history_content
+        - device
         - boot_volume
         - boot_volume_backup
         - boot_volume_attachment
     - import_tasks: oci_compute_instance_tests.yaml
       tags:
         - instance
+    - import_tasks: oci_compute_instance_console_connection_tests.yaml
+      tags:
+        - instance_console_connection
+    - import_tasks: oci_compute_instance_console_history_tests.yaml
+      tags:
+        - instance_console_history
+    - import_tasks: oci_compute_instance_console_history_content_tests.yaml
+      tags:
+        - instance_console_history_content
+    - import_tasks: oci_compute_device_tests.yaml
+      tags:
+        - device
     - name: Stop the setup instance for creating a boot volume
       oci_compute_instance_actions:
         instance_id: "{{ setup_instance_id }}"
@@ -235,5 +251,25 @@
         - boot_volume
         - boot_volume_backup
         - boot_volume_attachment
+        - instance_console_connection
+        - instance_console_history
+        - instance_console_history_content
+        - device
+  tags:
+    - instance_full
+
+- block:
+    - import_tasks: oci_compute_windows_instance_setup.yaml
+      tags:
+        - windows_instance_setup
+        - instance_credentials
+    - import_tasks: oci_compute_instance_credentials_tests.yaml
+      tags:
+        - instance_credentials
+  always:
+    - import_tasks: oci_compute_windows_instance_teardown.yaml
+      tags:
+        - windows_instance_teardown
+        - instance_credentials
   tags:
     - instance_full

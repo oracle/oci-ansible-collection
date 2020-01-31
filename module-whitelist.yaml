@@ -111,6 +111,13 @@ moduleWhitelist:
   - oci_compute_instance
   - oci_compute_instance_facts
   - oci_compute_instance_actions
+  - oci_compute_instance_console_connection
+  - oci_compute_instance_console_connection_facts
+  - oci_compute_instance_console_history
+  - oci_compute_instance_console_history_facts
+  - oci_compute_instance_console_history_content_facts
+  - oci_compute_instance_credentials_facts
+  - oci_compute_device_facts
   - oci_budget
   - oci_budget_facts
   - oci_budget_alert_rule
@@ -146,6 +153,9 @@ modulePathOverrides:
   /networkSecurityGroups/{networkSecurityGroupId}/actions/addSecurityRules: network_security_group_security_rule
   /networkSecurityGroups/{networkSecurityGroupId}/actions/removeSecurityRules: network_security_group_security_rule
   /networkSecurityGroups/{networkSecurityGroupId}/actions/updateSecurityRules: network_security_group_security_rule
+  /instanceConsoleHistories/: instance_console_history
+  /instanceConsoleHistories/{instanceConsoleHistoryId}: instance_console_history
+  /instanceConsoleHistories/{instanceConsoleHistoryId}/data: instance_console_history_content
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules
@@ -182,4 +192,4 @@ operationIdBlacklist:
   - update_user_capabilities
   - update_user_state
   # deprecated
-  - get_windows_instance_initial_credentials
+  - get_instance_default_credentials

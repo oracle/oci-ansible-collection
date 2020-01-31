@@ -1,0 +1,88 @@
+---
+- block:
+  - name: Create dependency instance with required parameters
+    oci_compute_instance:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_compartment_id, omit) }}"
+      display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_display_name, omit) }}"
+      shape: "{{ 'VM.Standard2.1' | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_shape, omit) }}"
+    register: result
+    when: skip_instance_console_history_content_create_dependency_instance_test is not defined and skip_instance_console_history_content_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_content_create_dependency_instance_test is not defined and skip_instance_console_history_content_dependencies is not defined
+  - set_fact:
+      dependency_instance: "{{ result.instance }}"
+      dependency_instance_id: "{{ result.instance.id }}"
+    when: skip_instance_console_history_content_create_dependency_instance_test is not defined and skip_instance_console_history_content_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_content_create_dependency_instance_custom_assertions }}"
+    when: instance_console_history_content_create_dependency_instance_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency instance_console_history with required parameters
+    oci_compute_instance_console_history:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_console_history_display_name, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_console_history_instance_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_content_create_dependency_instance_console_history_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_content_create_dependency_instance_console_history_test is not defined and skip_instance_console_history_content_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_content_create_dependency_instance_console_history_test is not defined and skip_instance_console_history_content_dependencies is not defined
+  - set_fact:
+      dependency_instance_console_history: "{{ result.instance_console_history }}"
+      dependency_instance_console_history_id: "{{ result.instance_console_history.id }}"
+    when: skip_instance_console_history_content_create_dependency_instance_console_history_test is not defined and skip_instance_console_history_content_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_content_create_dependency_instance_console_history_custom_assertions }}"
+    when: instance_console_history_content_create_dependency_instance_console_history_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get instance_console_history_content
+    oci_compute_instance_console_history_content_facts:
+      instance_console_history_id: "{{ instance_console_history_content_resource_id | oracle.oci.override(test_instance_console_history_content_get_instance_console_history_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_content_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.instance_console_history_content is defined
+        - result.instance_console_history_content != None
+    when: skip_instance_console_history_content_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_content_get_custom_assertions }}"
+    when: instance_console_history_content_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete dependency instance_console_history
+      oci_compute_instance_console_history:
+        instance_console_history_id: "{{ dependency_instance_console_history_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_console_history_content_delete_dependency_instance_console_history_test is not defined and skip_instance_console_history_content_dependencies is not defined and dependency_instance_console_history_id is defined
+
+    - name: Delete dependency instance
+      oci_compute_instance:
+        instance_id: "{{ dependency_instance_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_console_history_content_delete_dependency_instance_test is not defined and skip_instance_console_history_content_dependencies is not defined and dependency_instance_id is defined

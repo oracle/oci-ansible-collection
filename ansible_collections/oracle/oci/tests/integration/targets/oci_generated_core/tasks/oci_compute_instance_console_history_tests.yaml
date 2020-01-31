@@ -1,0 +1,486 @@
+---
+- block:
+  - name: Create dependency instance with required parameters
+    oci_compute_instance:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_console_history_create_dependency_instance_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_create_dependency_instance_compartment_id, omit) }}"
+      display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_create_dependency_instance_display_name, omit) }}"
+      shape: "{{ 'VM.Standard2.1' | oracle.oci.override(test_instance_console_history_create_dependency_instance_shape, omit) }}"
+    register: result
+    when: skip_instance_console_history_create_dependency_instance_test is not defined and skip_instance_console_history_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_create_dependency_instance_test is not defined and skip_instance_console_history_dependencies is not defined
+  - set_fact:
+      dependency_instance: "{{ result.instance }}"
+      dependency_instance_id: "{{ result.instance.id }}"
+    when: skip_instance_console_history_create_dependency_instance_test is not defined and skip_instance_console_history_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_create_dependency_instance_custom_assertions }}"
+    when: instance_console_history_create_dependency_instance_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create instance_console_history (check mode)
+    oci_compute_instance_console_history:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_create_required_display_name, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_console_history_create_required_instance_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_create_required_compartment_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_instance_console_history_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_create_check_mode_custom_assertions }}"
+    when: instance_console_history_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create instance_console_history with required parameters
+    oci_compute_instance_console_history:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_create_required_display_name, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_console_history_create_required_instance_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_create_required_original_test is not defined
+
+  - set_fact:
+      instance_console_history_resource_id: "{{ result.instance_console_history.id }}"
+    when: skip_instance_console_history_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_create_required_original_custom_assertions }}"
+    when: instance_console_history_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create instance_console_history with required parameters(idempotency)
+    oci_compute_instance_console_history:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_create_required_display_name, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_console_history_create_required_instance_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_console_history_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_create_required_idempotency_custom_assertions }}"
+    when: instance_console_history_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_console_history using name with optional + required parameters
+    oci_compute_instance_console_history:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_freeform_tags, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_compartment_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_console_history_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_update_using_name_optional_required_custom_assertions }}"
+    when: instance_console_history_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_console_history using name with optional + required parameters (idempotence)
+    oci_compute_instance_console_history:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_freeform_tags, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_update_using_name_optional_required_compartment_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_console_history_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_console_history_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: instance_console_history_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete instance_console_history
+    oci_compute_instance_console_history:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_delete_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_console_history_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_delete_required_custom_assertions }}"
+    when: instance_console_history_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete instance_console_history (idempotency)
+    oci_compute_instance_console_history:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_delete_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_console_history_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_console_history_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_delete_required_idempotency_custom_assertions }}"
+    when: instance_console_history_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create instance_console_history with optional + required parameters
+    oci_compute_instance_console_history:
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_console_history_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_instance_console_history_create_optional_required_freeform_tags, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_console_history_create_optional_required_instance_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_create_optional_required_original_test is not defined
+
+  - set_fact:
+      instance_console_history_resource_id: "{{ result.instance_console_history.id }}"
+    when: skip_instance_console_history_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_create_optional_required_original_custom_assertions }}"
+    when: instance_console_history_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create instance_console_history with optional + required parameters (idempotence)
+    oci_compute_instance_console_history:
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_console_history_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_instance_console_history_create_optional_required_freeform_tags, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_console_history_create_optional_required_instance_id, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_console_history_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_create_optional_required_idempotence_custom_assertions }}"
+    when: instance_console_history_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_console_history with optional + required parameters
+    oci_compute_instance_console_history:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_console_history_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_console_history_update_optional_required_freeform_tags, omit) }}"
+      instance_console_history_id: "{{ instance_console_history_resource_id | oracle.oci.override(test_instance_console_history_update_optional_required_instance_console_history_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_console_history_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_update_optional_required_custom_assertions }}"
+    when: instance_console_history_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_console_history with optional + required parameters (idempotence)
+    oci_compute_instance_console_history:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_console_history_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_instance_console_history_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_console_history_update_optional_required_freeform_tags, omit) }}"
+      instance_console_history_id: "{{ instance_console_history_resource_id | oracle.oci.override(test_instance_console_history_update_optional_required_instance_console_history_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_console_history_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_console_history.availability_domain is defined
+        - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.id is defined
+        - result.instance_console_history.instance_id is defined
+        - result.instance_console_history.lifecycle_state is defined
+        - result.instance_console_history.time_created is defined
+    when: skip_instance_console_history_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_update_optional_required_idempotence_custom_assertions }}"
+    when: instance_console_history_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List instance_console_histories
+    oci_compute_instance_console_history_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_console_history_list_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.instance_console_histories | length > 0
+    when: skip_instance_console_history_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.instance_id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+    with_items: "{{ result.instance_console_histories }}"
+    when: skip_instance_console_history_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_list_custom_assertions }}"
+    when: instance_console_history_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get instance_console_history
+    oci_compute_instance_console_history_facts:
+      instance_console_history_id: "{{ instance_console_history_resource_id | oracle.oci.override(test_instance_console_history_get_instance_console_history_id, omit) }}"
+    register: result
+    when: skip_instance_console_history_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.instance_console_histories | length == 1
+    when: skip_instance_console_history_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.instance_id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+    with_items: "{{ result.instance_console_histories }}"
+    when: skip_instance_console_history_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_console_history_get_custom_assertions }}"
+    when: instance_console_history_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete instance_console_history
+      oci_compute_instance_console_history:
+        instance_console_history_id: "{{ instance_console_history_resource_id | oracle.oci.override(test_instance_console_history_delete_rescue_instance_console_history_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: instance_console_history_resource_id is defined
+
+    - name: Delete dependency instance
+      oci_compute_instance:
+        instance_id: "{{ dependency_instance_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_console_history_delete_dependency_instance_test is not defined and skip_instance_console_history_dependencies is not defined and dependency_instance_id is defined

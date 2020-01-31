@@ -221,6 +221,39 @@ test_instance_create_optional_required_subnet_id: null
 test_instance_update_optional_required_display_name: "updated-ansible-gen-test-instance-{{random_suffix_1024}}"
 test_instance_update_optional_required_agent_config_is_monitoring_disabled: false
 
+# variables for oci_compute_instance_console_connection_tests.yaml
+skip_instance_console_connection_dependencies: yes
+skip_instance_console_connection_delete_dependency_instance_test: yes
+# The public_key field exists in the create model (CreateInstanceConsoleConnectionDetails) but not in get model
+# (InstanceConsoleConnection). This causes the idempotence logic to consider the resource as a mismatch.
+# Even though it is easier to overcome this issue by just adding public_key to exclude attributes, it is not ideal
+# as a different user trying to create ConsoleConnection with different public key would succeed but the user would
+# not be able to create connection since the console connection was created with a different key.
+# This is fine for the following reasons:
+#  1) It is reasonable to assume that InstanceConsoleConnection is created for debugging issues with the instance
+#     and not in general playbooks which are run multiple times.
+#  2) Users can overcome this issue by using key_by in cases where the user is sure that the same public key is used
+#     and idempotence is required.
+skip_instance_console_connection_create_required_idempotency_test: yes
+skip_instance_console_connection_create_optional_required_idempotence_test: yes
+test_instance_console_connection_create_required_public_key: "{{ lookup('file', my_test_public_key_path) }}"
+test_instance_console_connection_create_optional_required_public_key: "{{ lookup('file', my_test_public_key_path) }}"
+
+# variables for oci_compute_instance_console_history_tests.yaml
+skip_instance_console_history_dependencies: yes
+
+# variables for oci_compute_instance_console_history_content_tests.yaml
+skip_instance_console_history_content_create_dependency_instance_test: yes
+skip_instance_console_history_content_delete_dependency_instance_test: yes
+instance_console_history_content_resource_id: "{{ dependency_instance_console_history.id }}"
+
+# variables for oci_compute_instance_credential_tests.yaml
+skip_instance_credentials_create_dependency_instance_test: yes
+skip_instance_credentials_delete_dependency_instance_test: yes
+test_instance_credentials_get_instance_id: "{{ setup_windows_instance_id }}"
+
+# variables for oci_compute_device_tests.yaml
+skip_device_dependencies: yes
 # variables for oci_blockstorage_boot_volume_tests.yaml
 test_boot_volume_create_required_source_details_type: "bootVolume"
 test_boot_volume_create_required_source_details_id: "{{ setup_instance_boot_volume_id }}"

@@ -287,7 +287,7 @@ virtual_circuits:
         public_prefixes:
             description:
                 - For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
-                  advertise across the connection. Each prefix must be /31 or less specific.
+                  advertise across the connection. All prefix sizes are allowed.
             returned: on success
             type: list
             sample: []

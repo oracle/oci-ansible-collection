@@ -128,6 +128,14 @@ core:
           "subnetId": "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
         }
       }
+  CreateInstanceConsoleConnection: |
+      Example I: Create instance console connection
+      POST /20160918/instanceConsoleConnections
+      {
+      "instanceId":"ocid1.instance.oc1.phx.<var>&lt;unique_ID&gt;</var>",
+      "compartmentId":"ocid1.compartment.oc1.phx.<var>&lt;unique_ID&gt;</var>",
+      "publicKey":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCZ06fccNTQfq+xubFlJ5ZR3kt+uzspdH9tXL+lAejSM1NXM+CFZev7MIxfEjas06y80ZBZ7DUTQO0GsampleVorF8M4xuLwrmzRtkoZzU16umt4y1W0Q4ifdp3IiiU0U8/WxczSXcUVZOLqkz5dc6oMHdMVpkimietWzGZ4LBBsH/LjEVY7E0V+a0sNchlVDIZcm7ErReBLcdTGDq0uLBiuChyl6RUkX1PNhusquTGwK7zc8OBXkRuubn5UKXhI3Ul9Nyk4XESkVWIGNKmw8mSpoJSjR8P9ZjRmcZVo8S+x4KVPMZKQEor== smith@example.com 8GnoV/6Ox6TNoh9BiifqGKC9VGYuC89RvUajRBTZSK2TK4DPfaT+2R+slPsFrwiT/oPEhhEK1S5Q== rsa-key-20160227"
+      }
 identity:
   UploadApiKey: |
       Example I: Add network security group security rules
