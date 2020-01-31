@@ -166,14 +166,74 @@
         - instance_setup
         - instance
         - instance_actions
+        - boot_volume
+        - boot_volume_backup
+        - boot_volume_attachment
     - import_tasks: oci_compute_instance_tests.yaml
       tags:
         - instance
+    - name: Stop the setup instance for creating a boot volume
+      oci_compute_instance_actions:
+        instance_id: "{{ setup_instance_id }}"
+        action: "stop"
+      register: result
+      tags:
+        - boot_volume
+        - boot_volume_backup
+        - boot_volume_attachment
+    - name: Assert that the setup instance is stopped
+      assert:
+        that:
+          - result.changed == True
+      tags:
+        - boot_volume
+        - boot_volume_backup
+        - boot_volume_attachment
+    - import_tasks: oci_blockstorage_boot_volume_tests.yaml
+      tags:
+        - boot_volume
+    - import_tasks: oci_blockstorage_boot_volume_backup_tests.yaml
+      tags:
+        - boot_volume_backup
+    - name: Detach boot volume for the setup instance
+      oci_compute_boot_volume_attachment:
+        boot_volume_attachment_id: "{{ setup_instance_boot_volume_attachment_id }}"
+        state: absent
+      register: result
+      tags:
+        - boot_volume_attachment
+    - name: Assert that the boot volume is detached for the setup instance
+      assert:
+        that:
+          - result.changed == True
+      tags:
+        - boot_volume_attachment
+    - import_tasks: oci_compute_boot_volume_attachment_tests.yaml
+      tags:
+        - boot_volume_attachment
+    - name: Attach the boot volume to the setup instance
+      oci_compute_boot_volume_attachment:
+        boot_volume_id: "{{ setup_instance_boot_volume_id }}"
+        instance_id: "{{ setup_instance_id }}"
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+      tags:
+        - boot_volume_attachment
+    - name: Assert that the boot volume is attached to the setup instance
+      assert:
+        that:
+          - result.changed == True
+      tags:
+        - boot_volume_attachment
   always:
     - import_tasks: oci_compute_instance_teardown.yaml
       tags:
         - instance_teardown
         - instance
         - instance_actions
+        - boot_volume
+        - boot_volume_backup
+        - boot_volume_attachment
   tags:
     - instance_full

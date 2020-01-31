@@ -1,0 +1,483 @@
+---
+- block:
+  - set_fact:
+      test_boot_volume_backup_create_dependency_boot_volume_source_details:
+        type: "{{ 'bootVolumeBackup' | oracle.oci.override(test_boot_volume_backup_create_dependency_boot_volume_source_details_type, omit) }}"
+        id: "{{ 'ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_boot_volume_backup_create_dependency_boot_volume_source_details_id, omit) }}"
+    when: test_boot_volume_backup_create_dependency_boot_volume_source_details is not defined
+
+  - name: Create dependency boot_volume with required parameters
+    oci_blockstorage_boot_volume:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_boot_volume_backup_create_dependency_boot_volume_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_create_dependency_boot_volume_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_create_dependency_boot_volume_display_name, omit) }}"
+      source_details: "{{ '{}' | oracle.oci.override(test_boot_volume_backup_create_dependency_boot_volume_source_details, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_create_dependency_boot_volume_test is not defined and skip_boot_volume_backup_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_create_dependency_boot_volume_test is not defined and skip_boot_volume_backup_dependencies is not defined
+  - set_fact:
+      dependency_boot_volume: "{{ result.boot_volume }}"
+      dependency_boot_volume_id: "{{ result.boot_volume.id }}"
+    when: skip_boot_volume_backup_create_dependency_boot_volume_test is not defined and skip_boot_volume_backup_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_create_dependency_boot_volume_custom_assertions }}"
+    when: boot_volume_backup_create_dependency_boot_volume_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create boot_volume_backup (check mode)
+    oci_blockstorage_boot_volume_backup:
+      boot_volume_id: "{{ dependency_boot_volume_id | oracle.oci.override(test_boot_volume_backup_create_required_boot_volume_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_create_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_create_required_compartment_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_boot_volume_backup_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_create_check_mode_custom_assertions }}"
+    when: boot_volume_backup_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create boot_volume_backup with required parameters
+    oci_blockstorage_boot_volume_backup:
+      boot_volume_id: "{{ dependency_boot_volume_id | oracle.oci.override(test_boot_volume_backup_create_required_boot_volume_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_create_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_create_required_original_test is not defined
+
+  - set_fact:
+      boot_volume_backup_resource_id: "{{ result.boot_volume_backup.id }}"
+    when: skip_boot_volume_backup_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_create_required_original_custom_assertions }}"
+    when: boot_volume_backup_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create boot_volume_backup with required parameters(idempotency)
+    oci_blockstorage_boot_volume_backup:
+      boot_volume_id: "{{ dependency_boot_volume_id | oracle.oci.override(test_boot_volume_backup_create_required_boot_volume_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_create_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_boot_volume_backup_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_create_required_idempotency_custom_assertions }}"
+    when: boot_volume_backup_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update boot_volume_backup using name with optional + required parameters
+    oci_blockstorage_boot_volume_backup:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_freeform_tags, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_compartment_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_boot_volume_backup_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_update_using_name_optional_required_custom_assertions }}"
+    when: boot_volume_backup_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update boot_volume_backup using name with optional + required parameters (idempotence)
+    oci_blockstorage_boot_volume_backup:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_freeform_tags, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_update_using_name_optional_required_compartment_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_boot_volume_backup_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_boot_volume_backup_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: boot_volume_backup_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete boot_volume_backup
+    oci_blockstorage_boot_volume_backup:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_delete_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_boot_volume_backup_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_delete_required_custom_assertions }}"
+    when: boot_volume_backup_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete boot_volume_backup (idempotency)
+    oci_blockstorage_boot_volume_backup:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_delete_required_display_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_boot_volume_backup_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_boot_volume_backup_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_delete_required_idempotency_custom_assertions }}"
+    when: boot_volume_backup_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create boot_volume_backup with optional + required parameters
+    oci_blockstorage_boot_volume_backup:
+      boot_volume_id: "{{ dependency_boot_volume_id | oracle.oci.override(test_boot_volume_backup_create_optional_required_boot_volume_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_boot_volume_backup_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_boot_volume_backup_create_optional_required_freeform_tags, omit) }}"
+      type: "{{ 'FULL' | oracle.oci.override(test_boot_volume_backup_create_optional_required_type, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_create_optional_required_original_test is not defined
+
+  - set_fact:
+      boot_volume_backup_resource_id: "{{ result.boot_volume_backup.id }}"
+    when: skip_boot_volume_backup_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_create_optional_required_original_custom_assertions }}"
+    when: boot_volume_backup_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create boot_volume_backup with optional + required parameters (idempotence)
+    oci_blockstorage_boot_volume_backup:
+      boot_volume_id: "{{ dependency_boot_volume_id | oracle.oci.override(test_boot_volume_backup_create_optional_required_boot_volume_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_boot_volume_backup_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_boot_volume_backup_create_optional_required_freeform_tags, omit) }}"
+      type: "{{ 'FULL' | oracle.oci.override(test_boot_volume_backup_create_optional_required_type, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_create_optional_required_compartment_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_boot_volume_backup_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_create_optional_required_idempotence_custom_assertions }}"
+    when: boot_volume_backup_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update boot_volume_backup with optional + required parameters
+    oci_blockstorage_boot_volume_backup:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_boot_volume_backup_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_boot_volume_backup_update_optional_required_freeform_tags, omit) }}"
+      boot_volume_backup_id: "{{ boot_volume_backup_resource_id | oracle.oci.override(test_boot_volume_backup_update_optional_required_boot_volume_backup_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_boot_volume_backup_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_update_optional_required_custom_assertions }}"
+    when: boot_volume_backup_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update boot_volume_backup with optional + required parameters (idempotence)
+    oci_blockstorage_boot_volume_backup:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_boot_volume_backup_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_boot_volume_backup_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_boot_volume_backup_update_optional_required_freeform_tags, omit) }}"
+      boot_volume_backup_id: "{{ boot_volume_backup_resource_id | oracle.oci.override(test_boot_volume_backup_update_optional_required_boot_volume_backup_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_boot_volume_backup_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.time_created is defined
+    when: skip_boot_volume_backup_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_update_optional_required_idempotence_custom_assertions }}"
+    when: boot_volume_backup_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List boot_volume_backups
+    oci_blockstorage_boot_volume_backup_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_boot_volume_backup_list_compartment_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.boot_volume_backups | length > 0
+    when: skip_boot_volume_backup_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+    with_items: "{{ result.boot_volume_backups }}"
+    when: skip_boot_volume_backup_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_list_custom_assertions }}"
+    when: boot_volume_backup_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get boot_volume_backup
+    oci_blockstorage_boot_volume_backup_facts:
+      boot_volume_backup_id: "{{ boot_volume_backup_resource_id | oracle.oci.override(test_boot_volume_backup_get_boot_volume_backup_id, omit) }}"
+    register: result
+    when: skip_boot_volume_backup_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.boot_volume_backups | length == 1
+    when: skip_boot_volume_backup_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+    with_items: "{{ result.boot_volume_backups }}"
+    when: skip_boot_volume_backup_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ boot_volume_backup_get_custom_assertions }}"
+    when: boot_volume_backup_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete boot_volume_backup
+      oci_blockstorage_boot_volume_backup:
+        boot_volume_backup_id: "{{ boot_volume_backup_resource_id | oracle.oci.override(test_boot_volume_backup_delete_rescue_boot_volume_backup_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: boot_volume_backup_resource_id is defined
+
+    - name: Delete dependency boot_volume
+      oci_blockstorage_boot_volume:
+        boot_volume_id: "{{ dependency_boot_volume_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_boot_volume_backup_delete_dependency_boot_volume_test is not defined and skip_boot_volume_backup_dependencies is not defined and dependency_boot_volume_id is defined

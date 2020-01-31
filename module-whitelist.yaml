@@ -115,7 +115,13 @@ moduleWhitelist:
   - oci_budget_facts
   - oci_budget_alert_rule
   - oci_budget_alert_rule_facts
-
+  - oci_compute_boot_volume_attachment
+  - oci_compute_boot_volume_attachment_facts
+  - oci_blockstorage_boot_volume
+  - oci_blockstorage_boot_volume_facts
+  - oci_blockstorage_boot_volume_backup
+  - oci_blockstorage_boot_volume_backup_facts
+  - oci_blockstorage_boot_volume_backup_actions
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

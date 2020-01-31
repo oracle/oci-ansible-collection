@@ -50,3 +50,13 @@
     dependency_instance_id: "{{ result.instance.id }}"
 - debug:
     msg: "{{ result }}"
+- name: Get boot volume attachment for the setup instance
+  oci_compute_boot_volume_attachment_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+    availability_domain: "{{ test_availability_domain }}"
+    instance_id: "{{ setup_instance_id }}"
+  register: result
+- set_fact:
+    setup_instance_boot_volume_attachment_id: "{{ result.boot_volume_attachments[0].id }}"
+    setup_instance_boot_volume_attachment_display_name: "{{ result.boot_volume_attachments[0].display_name }}"
+    setup_instance_boot_volume_id: "{{ result.boot_volume_attachments[0].boot_volume_id }}"

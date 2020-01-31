@@ -25,7 +25,21 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class OCIResourceFactsHelperBase:
+class OCIResourceCommonBase:
+    """Base class for the Helper Classes to hold common code."""
+
+    def prepare_result(self, changed, resource_type, resource=None):
+        result = dict(changed=changed)
+        result[resource_type] = resource
+        return result
+
+    def _is_resource_active(self, resource):
+        if "lifecycle_state" not in resource.attribute_map:
+            return True
+        return resource.lifecycle_state not in oci_common_utils.DEAD_STATES
+
+
+class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
         self.module = module
         self.resource_type = resource_type
@@ -97,7 +111,7 @@ class OCIResourceFactsHelperBase:
         return to_dict(resources)
 
 
-class OCIActionsHelperBase:
+class OCIActionsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
         self.module = module
         self.resource_type = resource_type
@@ -165,12 +179,12 @@ class OCIActionsHelperBase:
 
         is_action_necessary = self.is_action_necessary(action)
         if not is_action_necessary:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=False, resource_type=self.resource_type, resource=resource
             )
 
         if self.check_mode:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=resource
             )
 
@@ -183,14 +197,14 @@ class OCIActionsHelperBase:
                 msg="Performing action failed with exception: {0}".format(se.message)
             )
         else:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=to_dict(actioned_resource),
             )
 
 
-class OCIResourceHelperBase:
+class OCIResourceHelperBase(OCIResourceCommonBase):
     NAME_PARAMETERS = ["display_name", "name"]
     USE_NAME_AS_IDENTIFIER_ENV_VAR_KEY = "OCI_USE_NAME_AS_IDENTIFIER"
 
@@ -370,11 +384,6 @@ class OCIResourceHelperBase:
             resource=existing_resources[0]
         )
 
-    def _is_resource_active(self, resource):
-        if "lifecycle_state" not in resource.attribute_map:
-            return True
-        return resource.lifecycle_state not in oci_common_utils.DEAD_STATES
-
     def get_exclude_attributes(self):
         return ["freeform_tags", "node_count"]
 
@@ -452,20 +461,20 @@ class OCIResourceHelperBase:
 
         if self.module.params.get("force_create"):
             if self.check_mode:
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=True, resource_type=self.resource_type, resource=dict()
                 )
         else:
             resource_matched = self.get_matching_resource()
             if resource_matched:
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=False,
                     resource_type=self.resource_type,
                     resource=to_dict(resource_matched),
                 )
 
         if self.check_mode:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=dict()
             )
 
@@ -477,7 +486,7 @@ class OCIResourceHelperBase:
         except ServiceError as se:
             self.module.fail_json(msg=se.message)
         else:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=to_dict(created_resource),
@@ -506,12 +515,12 @@ class OCIResourceHelperBase:
 
         is_update_necessary = self.is_update_necessary()
         if not is_update_necessary:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=False, resource_type=self.resource_type, resource=resource
             )
 
         if self.check_mode:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=resource
             )
 
@@ -524,7 +533,7 @@ class OCIResourceHelperBase:
                 msg="Updating resource failed with exception: {0}".format(se.message)
             )
         else:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=to_dict(updated_resource),
@@ -551,7 +560,7 @@ class OCIResourceHelperBase:
             get_response = self.get_resource()
         except ServiceError as se:
             if se.status == 404:
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=False, resource_type=self.resource_type, resource=dict()
                 )
             self.module.fail_json(
@@ -563,12 +572,12 @@ class OCIResourceHelperBase:
                 "lifecycle_state" in resource
                 and resource["lifecycle_state"] in oci_common_utils.DEAD_STATES
             ):
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=False, resource_type=self.resource_type, resource=resource
                 )
 
         if self.check_mode:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
@@ -580,7 +589,7 @@ class OCIResourceHelperBase:
             self.module.fail_json(msg=str(mwtex))
         except ServiceError as se:
             if se.status == 404:
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=True,
                     resource_type=self.resource_type,
                     resource=oci_common_utils.get_resource_with_state(
@@ -593,7 +602,7 @@ class OCIResourceHelperBase:
         else:
             if deleted_resource:
                 resource = to_dict(deleted_resource)
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
@@ -620,12 +629,12 @@ class OCIResourceHelperBase:
         self.set_required_ids_in_module_when_name_is_identifier(resource)
         is_update_necessary = self.is_update_necessary()
         if not is_update_necessary:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=False, resource_type=self.resource_type, resource=resource
             )
 
         if self.check_mode:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=resource
             )
 
@@ -638,7 +647,7 @@ class OCIResourceHelperBase:
                 msg="Updating resource failed with exception: {0}".format(se.message)
             )
         else:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=to_dict(updated_resource),
@@ -650,7 +659,7 @@ class OCIResourceHelperBase:
             get_response = self.get_resource_using_name()
         except ServiceError as se:
             if se.status == 404:
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=False, resource_type=self.resource_type, resource=dict()
                 )
             self.module.fail_json(
@@ -662,12 +671,12 @@ class OCIResourceHelperBase:
                 "lifecycle_state" in resource
                 and resource["lifecycle_state"] in oci_common_utils.DEAD_STATES
             ):
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=False, resource_type=self.resource_type, resource=resource
                 )
 
         if self.check_mode:
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
                 resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
@@ -680,7 +689,7 @@ class OCIResourceHelperBase:
             self.module.fail_json(msg=str(mwtex))
         except ServiceError as se:
             if se.status == 404:
-                return oci_common_utils.get_result(
+                return self.prepare_result(
                     changed=True,
                     resource_type=self.resource_type,
                     resource=oci_common_utils.get_resource_with_state(
@@ -693,7 +702,7 @@ class OCIResourceHelperBase:
         else:
             if deleted_resource:
                 resource = to_dict(deleted_resource)
-            return oci_common_utils.get_result(
+            return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=resource
             )
 
@@ -720,6 +729,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_identity_custom_helpers,
     oci_network_custom_helpers,
     oci_compute_custom_helpers,
+    oci_blockstorage_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -727,6 +737,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_identity_custom_helpers,
         oci_network_custom_helpers,
         oci_compute_custom_helpers,
+        oci_blockstorage_custom_helpers,
     ]
 )
 

@@ -24,8 +24,38 @@
     when: instance_create_dependency_vcn_custom_assertions is defined
   # dependency resource image has no Create operation
 
-  # dependency resource boot_volume has no Create operation
 
+# ==================================================================================================== #
+
+  - set_fact:
+      test_instance_create_dependency_boot_volume_source_details:
+        type: "{{ 'bootVolumeBackup' | oracle.oci.override(test_instance_create_dependency_boot_volume_source_details_type, omit) }}"
+        id: "{{ 'ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_instance_create_dependency_boot_volume_source_details_id, omit) }}"
+    when: test_instance_create_dependency_boot_volume_source_details is not defined
+
+  - name: Create dependency boot_volume with required parameters
+    oci_blockstorage_boot_volume:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_create_dependency_boot_volume_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_create_dependency_boot_volume_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_create_dependency_boot_volume_display_name, omit) }}"
+      source_details: "{{ '{}' | oracle.oci.override(test_instance_create_dependency_boot_volume_source_details, omit) }}"
+    register: result
+    when: skip_instance_create_dependency_boot_volume_test is not defined and skip_instance_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_create_dependency_boot_volume_test is not defined and skip_instance_dependencies is not defined
+  - set_fact:
+      dependency_boot_volume: "{{ result.boot_volume }}"
+      dependency_boot_volume_id: "{{ result.boot_volume.id }}"
+    when: skip_instance_create_dependency_boot_volume_test is not defined and skip_instance_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_create_dependency_boot_volume_custom_assertions }}"
+    when: instance_create_dependency_boot_volume_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -590,6 +620,13 @@
         state: absent
       ignore_errors: yes
       when: skip_instance_delete_dependency_subnet_test is not defined and skip_instance_dependencies is not defined and dependency_subnet_id is defined
+
+    - name: Delete dependency boot_volume
+      oci_blockstorage_boot_volume:
+        boot_volume_id: "{{ dependency_boot_volume_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_delete_dependency_boot_volume_test is not defined and skip_instance_dependencies is not defined and dependency_boot_volume_id is defined
 
     - name: Delete dependency vcn
       oci_network_vcn:

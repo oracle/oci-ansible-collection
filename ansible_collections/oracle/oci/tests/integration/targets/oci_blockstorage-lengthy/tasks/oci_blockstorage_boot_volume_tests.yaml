@@ -1,0 +1,362 @@
+---
+# Tests for oci_boot_volume & oci_boot_volume_facts
+
+## Cleanup before test run
+- name: Get facts about all compute instances in compartment
+  oci_compute_instance_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+    availability_domain: "{{test_availability_domain}}"
+  register: currinstances
+
+- set_fact:
+    todeleteinstance_id: "{{item.id}}"
+  when: (item.display_name == test_instance_name) and (item.lifecycle_state != "TERMINATED")
+  with_items: "{{currinstances.instances}}"
+  ignore_errors: yes
+
+- debug:
+    msg: "Instance to delete: {{todeleteinstance_id}}"
+  ignore_errors: yes
+
+- name: Delete the instance
+  oci_compute_instance:
+    id: "{{todeleteinstance_id}}"
+    state: 'absent'
+  ignore_errors: yes
+
+- name: Delete boot volumes
+  oci_blockstorage_boot_volume_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+    availability_domain: "{{ test_availability_domain }}"
+  register: test_boot_volumes
+
+- oci_blockstorage_boot_volume:
+    id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ test_boot_volumes.boot_volumes }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  ignore_errors: yes
+
+# ====================================================================================================
+
+- block:
+    ## Create/Launch an instance & then use the created boot volume for tests
+    - name: Create new compute instance
+      oci_compute_instance:
+        name: "{{test_instance_name}}"
+        image_id: "{{image_ocid}}"
+        shape: "{{test_instance_shape}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        availability_domain: "{{test_availability_domain}}"
+        create_vnic_details:
+          hostname_label: "{{test_instance_name}}"
+          subnet_id: "{{common_subnet_id}}"
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+
+    # name: Set variable to current instance id
+    - set_fact:
+        my_instance_ocid: "{{result.instance.id}}"
+
+    - name: Get boot volume attachment for the setup instance
+      oci_compute_boot_volume_attachment_facts:
+        compartment_id: "{{ test_compartment_ocid }}"
+        availability_domain: "{{ test_availability_domain }}"
+        instance_id: "{{ my_instance_ocid }}"
+      register: result
+
+    - set_fact:
+        test_boot_volume_ocid: "{{ result.boot_volume_attachments[0].boot_volume_id }}"
+
+    # ====================================================================================================
+
+    - name: Create a boot volume with test boot volume as source
+      oci_blockstorage_boot_volume:
+        name: "{{ boot_volume_name }}"
+        availability_domain: "{{test_availability_domain}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        source_details:
+          id: "{{ test_boot_volume_ocid }}"
+          type: "bootVolume"
+        size_in_gbs: 100
+      register: result
+
+    - set_fact:
+        created_boot_volume_ocid: "{{ result.boot_volume.id }}"
+
+    - name: Assert that changed is true and boot volume is created
+      assert:
+        that:
+          - result.changed == True
+          - result.boot_volume.display_name == boot_volume_name
+          - result.boot_volume.availability_domain == test_availability_domain
+          - result.boot_volume.compartment_id == test_compartment_ocid
+          - result.boot_volume.source_details.id == test_boot_volume_ocid
+          - result.boot_volume.source_details.type == "bootVolume"
+          - result.boot_volume.is_hydrated == True
+          - result.boot_volume.size_in_gbs == 100
+
+    # ====================================================================================================
+
+    - name: Reattempt to create a boot volume with test boot volume as source
+      oci_blockstorage_boot_volume:
+        name: "{{ boot_volume_name }}"
+        availability_domain: "{{test_availability_domain}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        source_details:
+          id: "{{ test_boot_volume_ocid }}"
+          type: "bootVolume"
+        size_in_gbs: 100
+      register: result
+
+    - name: Assert that changed is false and boot volume is retrieved
+      assert:
+        that:
+          - result.changed == False
+          - result.boot_volume.id == created_boot_volume_ocid
+
+    # ====================================================================================================
+
+    - name: Reattempt to create a boot volume with default size & test boot volume as source
+      oci_blockstorage_boot_volume:
+        name: "{{ boot_volume_name }}"
+        availability_domain: "{{test_availability_domain}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        source_details:
+          id: "{{ test_boot_volume_ocid }}"
+          type: "bootVolume"
+      register: result
+
+    - set_fact:
+        default_sized_boot_volume_ocid: "{{ result.boot_volume.id }}"
+
+    - name: Assert that changed is false and a new boot volume is not created
+      assert:
+        that:
+          - result.changed == False
+          - result.boot_volume.id == created_boot_volume_ocid
+
+    # ====================================================================================================
+    - name: Resize and rename the test boot volume
+      oci_blockstorage_boot_volume:
+        id: "{{created_boot_volume_ocid}}"
+        name: "{{ boot_volume_name }}"
+        size_in_gbs: 200
+      register: result
+
+    - name: Assert that changed is true, boot volume name and size is updated
+      assert:
+          that:
+              - result.changed == True
+              - result.boot_volume.display_name == boot_volume_name
+              - result.boot_volume.size_in_gbs == 200
+
+    - name: Resize and rename the test boot volume - idempotency test
+      oci_blockstorage_boot_volume:
+        id: "{{created_boot_volume_ocid}}"
+        name: "{{ boot_volume_name }}"
+        size_in_gbs: 200
+      register: result
+
+    - name: Assert that changed is False, boot volume name and size is updated
+      assert:
+          that:
+              - result.changed == False
+              - result.boot_volume.display_name == boot_volume_name
+              - result.boot_volume.size_in_gbs == 200
+    # ====================================================================================================
+
+    - name: Test delete boot volume operation
+      oci_blockstorage_boot_volume:
+        id: "{{item}}"
+        state: absent
+      with_items:
+        - "{{created_boot_volume_ocid}}"
+        - "{{default_sized_boot_volume_ocid}}"
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+
+    # ====================================================================================================
+
+    - name: Update the test boot volume
+      oci_blockstorage_boot_volume:
+        id: "{{test_boot_volume_ocid}}"
+        name: "{{ boot_volume_name }}"
+      register: result
+
+    - name: Assert that changed is true, boot volume name is updated
+      assert:
+        that:
+          - result.changed == True
+          - result.boot_volume.display_name == boot_volume_name
+
+    - name: Create boot_volume_backup with required parameters
+      oci_blockstorage_boot_volume_backup:
+        boot_volume_id: "{{ test_boot_volume_ocid }}"
+        display_name: "{{ boot_volume_backup_name }}"
+        compartment_id: "{{ test_compartment_ocid  }}"
+      register: result
+
+    - name: Assert that the backup is created
+      assert:
+        that:
+          - result.changed == True
+
+    - set_fact:
+        test_boot_volume_backup_ocid: "{{ result.boot_volume_backup.id }}"
+
+    - name: Copy boot volume backup to a different region
+      oci_blockstorage_boot_volume_backup_actions:
+        boot_volume_backup_id: "{{ test_boot_volume_backup_ocid }}"
+        destination_region: "{{ region2_name }}"
+        action: copy
+      register: result
+
+    - name: Assert that the backup is copied
+      assert:
+        that:
+          - result.changed == True
+          - result.boot_volume_backup.id is defined
+          - result.boot_volume_backup.source_boot_volume_backup_id == test_boot_volume_backup_ocid
+
+    - set_fact:
+        test_copy_boot_volume_backup_ocid: "{{ result.boot_volume_backup.id }}"
+
+    - name: Copy boot volume backup to a different region (idempotence)
+      oci_blockstorage_boot_volume_backup_actions:
+        boot_volume_backup_id: "{{ test_boot_volume_backup_ocid }}"
+        destination_region: "{{ region2_name }}"
+        action: copy
+      register: result
+
+    - name: Assert that the backup is not created again
+      assert:
+        that:
+          - result.changed == False
+          - result.boot_volume_backup.id == test_copy_boot_volume_backup_ocid
+          - result.boot_volume_backup.source_boot_volume_backup_id == test_boot_volume_backup_ocid
+
+    # ====================================================================================================
+
+    - name: Check idempotence of update boot volume
+      oci_blockstorage_boot_volume:
+        id: "{{test_boot_volume_ocid}}"
+        name: "{{ boot_volume_name }}"
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.boot_volume.display_name == boot_volume_name
+
+    # ====================================================================================================
+
+    - name: List boot volumes
+      oci_blockstorage_boot_volume_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        availability_domain: "{{test_availability_domain}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_boot_volume: "{{ item }}"
+      with_items: "{{result.boot_volumes}}"
+      when: item.id == test_boot_volume_ocid
+
+    - name: Assert the number of boot volumes in compartment is non-zero & we can retrieve facts of test boot volume
+      assert:
+        that:
+          - result.boot_volumes | length > 0
+          - facts_of_test_boot_volume is defined
+
+    # ====================================================================================================
+
+    - name: Get information of the test boot volume
+      oci_blockstorage_boot_volume_facts:
+        id: "{{test_boot_volume_ocid}}"
+      register: result
+
+    - name: Assert that facts of test boot volume are retrieved
+      assert:
+        that:
+          - result.boot_volumes[0].id == test_boot_volume_ocid
+
+    # ====================================================================================================
+
+    - name: Delete the instance and preserve boot volume
+      oci_compute_instance:
+        id: "{{my_instance_ocid}}"
+        state: 'absent'
+        preserve_boot_volume: yes
+      register: result
+    - name: Assert that the instance was terminated, and changed is true
+      assert:
+        that:
+          - result.changed == True
+
+    # ====================================================================================================
+
+    - name: Test delete boot volume operation
+      oci_blockstorage_boot_volume:
+        id: "{{test_boot_volume_ocid}}"
+        state: absent
+
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+          that:
+              - result.changed == True
+
+    # ====================================================================================================
+
+    - name: Test idempotence of delete boot volume operation
+      oci_blockstorage_boot_volume:
+        id: "{{test_boot_volume_ocid}}"
+        state: absent
+
+      register: result
+
+    - name: Assert that boot volume delete operation is idempotent
+      assert:
+          that:
+              - result.changed == False
+
+    # ====================================================================================================
+
+  rescue:
+
+    - name: Delete instance
+      oci_compute_instance:
+        instance_id: "{{ my_instance_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete boot volume
+      oci_blockstorage_boot_volume:
+        boot_volume_id: "{{ created_boot_volume_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete boot volume
+      oci_blockstorage_boot_volume:
+        boot_volume_id: "{{ default_sized_boot_volume_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete boot volume
+      oci_blockstorage_boot_volume:
+        boot_volume_id: "{{ test_boot_volume_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

@@ -79,3 +79,13 @@ class InstanceHelperCustom:
             launch_options = dict()
         create_model_dict["launch_options"] = launch_options
         return create_model_dict
+
+
+class BootVolumeAttachmentHelperCustom:
+    # An instance can only be attached to one boot volume and the name given to the attachment does not affect the
+    # resource. Also a display_name update to the attachment resource does not seem to take affect.
+    # So exclude display_name for idempotency.
+    def get_exclude_attributes(self):
+        return super(
+            BootVolumeAttachmentHelperCustom, self
+        ).get_exclude_attributes() + ["display_name"]

@@ -26,3 +26,7 @@ udx-1764
 
 # fault domain option in LaunchInstanceDetails
 udx-588
+
+# Boot Volume Backup & Clone
+udx-775
+udx-1329
