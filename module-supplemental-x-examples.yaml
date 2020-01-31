@@ -61,7 +61,73 @@ core:
           "203597"
         ]
       }
+  LaunchInstance: |
+      Example 1: Launch/create an instance using an image, with custom metadata and a private IP assignment
+      POST /instances
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "displayName": "myinstance1",
+        "availabilityDomain": "BnQb:PHX-AD-1",
+        "compartmentId": "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq",
+        "shape": "VM.Standard2.1",
+        "metadata": {
+          "foo": "bar",
+          "baz": "quux"
+        },
+        "sourceDetails": {
+          "sourceType": "image",
+          "imageId": "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
+        },
+        "createVnicDetails": {
+          "hostnameLabel": "myinstance1",
+          "privateIp": "10.0.0.5",
+          "subnetId": "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
+        }
+      }
 
+
+      Example 2: Launch/create an instance using a boot volume, a private IP assignment and attach a volume, and a specific fault domain
+      POST /instances
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "displayName": "myinstance1",
+        "availabilityDomain": "BnQb:PHX-AD-1",
+        "faultDomain": "FAULT-DOMAIN-2",
+        "compartmentId": "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq",
+        "shape": "VM.Standard2.1",
+        "sourceDetails": {
+          "sourceType": "bootVolume",
+          "bootVolumeId": "ocid1.bootvolume.oc1.iad.xxxxxEXAMPLExxxxx"
+        },
+        "createVnicDetails": {
+          "hostnameLabel": "myinstance1",
+          "privateIp": "10.0.0.5",
+          "subnetId": "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
+        }
+      }
+
+
+      Example 3: Launch/create an instance using an image with custom boot volume size
+      POST /instances
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "displayName": "myinstance1",
+        "availabilityDomain": "BnQb:PHX-AD-1",
+        "compartmentId": "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq",
+        "shape": "VM.Standard2.1",
+        "sourceDetails": {
+          "sourceType": "image",
+          "imageId": "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx",
+          "bootVolumeSizeInGBs": 100
+        },
+        "createVnicDetails": {
+          "hostnameLabel": "myinstance1",
+          "subnetId": "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
+        }
+      }
 identity:
   UploadApiKey: |
       Example I: Add network security group security rules

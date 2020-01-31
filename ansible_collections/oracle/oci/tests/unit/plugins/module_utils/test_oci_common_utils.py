@@ -340,11 +340,11 @@ def test_are_dicts_equal_when_source_has_less_keys():
 def test_are_dicts_equal_when_source_subdicts_have_less_keys():
     s = {"key1": {"subkey1": "subval1"}}
     t = {"key1": {"subkey1": "subval1", "subkey2": "subval2"}}
-    assert oci_common_utils.are_dicts_equal(s, t) is False
+    assert oci_common_utils.are_dicts_equal(s, t) is True
 
     s = {"key1": {"subkey1": {"subkey2": "subval2"}}}
     t = {"key1": {"subkey1": {"subkey2": "subval2", "subkey3": "subval3"}}}
-    assert oci_common_utils.are_dicts_equal(s, t) is False
+    assert oci_common_utils.are_dicts_equal(s, t) is True
 
     s = {"key1": {"subkey1": {}}}
     t = {"key1": {"subkey1": {"subkey2": "subval2", "subkey3": "subval3"}}}
@@ -389,7 +389,7 @@ def test_are_dicts_equal_when_dicts_have_dict_values():
         "key1": "val1",
         "key2": {"subkey1": {"subkey2": "subval2"}, "subkey3": {"subkey4": "subval4"}},
     }
-    assert oci_common_utils.are_dicts_equal(s, t) is False
+    assert oci_common_utils.are_dicts_equal(s, t) is True
 
     s = {"key1": "val1", "key2": {"subkey1": {"subkey2": "subval2"}}, "key3": {}}
     t = {

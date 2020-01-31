@@ -118,7 +118,7 @@ ansible/ansible-oci.cache
 .settings/
 
 # swagger-codegen
-ansible/lib/ansible/modules/cloud/oracle/.swagger-codegen-ignore
+.swagger-codegen-ignore
 
 # collection
 *.tar.gz

@@ -23,3 +23,6 @@ udx-1215
 
 # network security groups
 udx-1764
+
+# fault domain option in LaunchInstanceDetails
+udx-588

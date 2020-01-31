@@ -1,11 +1,19 @@
 # Global overrides for generated tests
+# tag variables
+test_tag_namespace_name: "test_tag_namespace_{{ random_suffix_1024 }}"
+test_tag_name: "ansible_tag_1"
 test_default_defined_tags:
      ansible_tag_namespace_integration_test_1:
             ansible_tag_1: 'initial'
 test_default_updated_defined_tags:
      ansible_tag_namespace_integration_test_1:
             ansible_tag_1: 'updated'
+test_default_defined_tag_value: "initial"
+test_default_defined_tag_updated_value: "updated"
 test_default_freeform_tags:
      Department: 'Operations'
 test_default_updated_freeform_tags:
      Department: 'updated'
+test_default_freeform_tag_key: "Department"
+test_default_freeform_tag_value: "Operations"
+test_default_freeform_tag_updated_value: "updated"

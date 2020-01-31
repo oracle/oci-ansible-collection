@@ -1,0 +1,3 @@
+- import_tasks: oci_compute_tests.yaml
+  tags:
+    - compute

@@ -160,3 +160,20 @@
       - app_catalog_subscription
   tags:
     - app_catalog
+- block:
+    - import_tasks: oci_compute_instance_setup.yaml
+      tags:
+        - instance_setup
+        - instance
+        - instance_actions
+    - import_tasks: oci_compute_instance_tests.yaml
+      tags:
+        - instance
+  always:
+    - import_tasks: oci_compute_instance_teardown.yaml
+      tags:
+        - instance_teardown
+        - instance
+        - instance_actions
+  tags:
+    - instance_full

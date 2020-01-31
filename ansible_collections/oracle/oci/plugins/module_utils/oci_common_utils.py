@@ -265,6 +265,15 @@ def are_dicts_equal(
                 return False
             if not are_lists_equal(source_val, target_val):
                 return False
+        elif isinstance(source_val, dict):
+            if not isinstance(target_val, dict):
+                return False
+            if not are_dicts_equal(
+                source_val,
+                target_val,
+                ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+            ):
+                return False
         elif source_val != target_val:
             return False
     return True

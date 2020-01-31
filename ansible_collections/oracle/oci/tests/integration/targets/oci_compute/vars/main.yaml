@@ -1,0 +1,9 @@
+# variables for oci_compute_tests.yaml
+test_instance_name: "ansible-test-instance-{{random_suffix_1024}}"
+test_instance_boot_volume_size_in_gbs: 100
+test_mod_instance_name: "ansible-test-modname-instance-{{random_suffix_1024}}"
+test_app_catalog_instance_name: "ansible-test-app-catalog-instance-{{random_suffix_1024}}"
+test_private_ip: "10.0.1.{{random_suffix_250}}"
+test_device_path: "/dev/oracleoci/oraclevdb"
+my_freeform_test_tag_key: "test_freeform_tag_{{random_suffix_250}}"
+my_freeform_test_tag_value: "test_freeform_tag_{{random_suffix_250}}_value"

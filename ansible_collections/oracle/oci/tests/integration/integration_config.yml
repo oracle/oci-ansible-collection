@@ -42,3 +42,17 @@ test_tag_namespace_mod_description_2: "{{test_tag_namespace_name}} modified desc
 temp_cross_connect_group_id: 'ocid1.crossconnectgroup.oc1.iad.aaaaaaaar6wcwiz3olu66ptoqnepdauopl7olyjy65ebphrgjhhdwdtibhha'
 temp_test_compartment_ocid: 'ocid1.compartment.oc1..aaaaaaaaztglfq7tna6sygij2aoqxwkjvc4xnqtefqt5d4m4p3wpv6glmkwq'
 temp_cross_connect_id: "ocid1.crossconnect.oc1.iad.aaaaaaaaoxhthjvzpefiemcuk3svbohd37xlpdgruvkt43yqkw2oqbwaw64q"
+
+# Instance shape to use for compute instances
+test_instance_shape: "VM.Standard2.1"
+test_windows_instance_shape: "VM.Standard2.1"
+
+# Image Canonical-Ubuntu-16.04-2019.11.13-0
+image_ocid: "ocid1.image.oc1.iad.aaaaaaaaaptk6mucnja34nfssflcen7cxgnxrhsmkvj2nfj7g3rkeykm5ura"
+
+# Image Windows  "Windows-Server-2008-R2-Enterprise-Edition-VM-2018.09.13-0"
+windows_image_ocid: "ocid1.image.oc1.iad.aaaaaaaav3jfxfznpfrhoesdsv35xgdyircwqffdpjiq3uvd657iygqzokia"
+
+# App catalog image listing (Jenkins Certified by Bitnami) id
+test_app_catalog_listing_id: "ocid1.appcataloglisting.oc1..aaaaaaaamfkymkaswbyqdn32ckslmespcaqgda6et7juetbtuz3h7nwtamdq"
+test_app_catalog_instance_shape: "VM.Standard2.2"

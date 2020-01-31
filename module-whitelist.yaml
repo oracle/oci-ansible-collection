@@ -108,6 +108,9 @@ moduleWhitelist:
   - oci_compute_app_catalog_listing_resource_version_facts
   - oci_compute_app_catalog_subscription
   - oci_compute_app_catalog_subscription_facts
+  - oci_compute_instance
+  - oci_compute_instance_facts
+  - oci_compute_instance_actions
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -125,6 +128,9 @@ modulePathOverrides:
   /virtualCircuits/{virtualCircuitId}/actions/bulkAddPublicPrefixes: virtual_circuit
   /virtualCircuits/{virtualCircuitId}/actions/bulkDeletePublicPrefixes: virtual_circuit
   /appCatalogListings/{listingId}/resourceVersions/{resourceVersion}/agreements: app_catalog_listing_resource_version_agreement
+  # to avoid conflicts with instance module since these operations return instance as well
+  /instanceConfigurations/{instanceConfigurationId}/actions/launch: instance_configuration
+  /instancePools/{instancePoolId}/instances: instance_pool_instance
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules
@@ -160,3 +166,5 @@ operationIdBlacklist:
   # conflict in current codegen with update_user
   - update_user_capabilities
   - update_user_state
+  # deprecated
+  - get_windows_instance_initial_credentials

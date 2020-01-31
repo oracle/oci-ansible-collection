@@ -3,6 +3,7 @@
     cidr_block: "10.0.0.0/16"
     compartment_id: "{{ test_compartment_ocid }}"
     display_name: "{{ ('CommonVCN' + random_suffix_1024) }}"
+    dns_label: "commonvcn"
   register: common_vcn_create_result
 
 - set_fact:
@@ -44,3 +45,18 @@
 - set_fact:
     sg_for_common_vcn: "{{ sg_for_common_vcn_create_result.service_gateway }}"
     sg_for_common_vcn_id: "{{ sg_for_common_vcn_create_result.service_gateway.id }}"
+
+- name: Create subnet for common vcn
+  oci_network_subnet:
+    display_name: "{{ ('SubnetForCommonVCN' + random_suffix_1024) }}"
+    dns_label: "commonsubnet1"
+    cidr_block: "10.0.1.0/24"
+    route_table_id: "{{ common_vcn.default_route_table_id }}"
+    security_list_ids:
+      - "{{ common_vcn.default_security_list_id }}"
+    vcn_id: "{{ common_vcn_id }}"
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: result
+
+- set_fact:
+    common_subnet_id: "{{ result.subnet.id }}"

@@ -352,6 +352,7 @@ class OCIResourceHelperBase:
             if hasattr(existing_resource, name_parameter)
             and getattr(existing_resource, name_parameter)
             == self.module.params.get(name_parameter)
+            and self._is_resource_active(existing_resource)
         ]
         if len(existing_resources) > 1:
             self.module.fail_json(
@@ -488,7 +489,7 @@ class OCIResourceHelperBase:
         update_model_dict = self.get_update_model_dict_for_idempotence_check(
             update_model
         )
-        return not oci_common_utils.is_dict_subset(
+        return not oci_common_utils.are_dicts_equal(
             update_model_dict, current_resource_dict
         )
 

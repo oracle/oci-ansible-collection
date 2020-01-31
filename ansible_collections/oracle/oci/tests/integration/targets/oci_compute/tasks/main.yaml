@@ -1,0 +1,6 @@
+- import_tasks: oci_compute_tests.yaml
+  tags:
+    - compute
+- import_tasks: oci_app_catalog_tests.yaml
+  tags:
+    - app_catalog

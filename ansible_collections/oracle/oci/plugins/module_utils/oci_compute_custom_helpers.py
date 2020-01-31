@@ -54,3 +54,28 @@ class AppCatalogSubscriptionHelperCustom:
             "time_retrieved",
             "signature",
         ]
+
+
+class InstanceHelperCustom:
+    def get_exclude_attributes(self):
+        return super(InstanceHelperCustom, self).get_exclude_attributes() + [
+            "create_vnic_details",
+        ]
+
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        create_model_dict = super(
+            InstanceHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+        # is_pv_encryption_in_transit_enabled is a top level param on LaunchInstanceDetails but it gets returned
+        # inside Instance.LaunchOptions so we need to propagate the value so that the existing resource matching
+        # logic works properly
+        if create_model_dict.get("is_pv_encryption_in_transit_enabled") is not None:
+            launch_options = dict(
+                is_pv_encryption_in_transit_enabled=create_model_dict.pop(
+                    "is_pv_encryption_in_transit_enabled"
+                )
+            )
+        else:
+            launch_options = dict()
+        create_model_dict["launch_options"] = launch_options
+        return create_model_dict

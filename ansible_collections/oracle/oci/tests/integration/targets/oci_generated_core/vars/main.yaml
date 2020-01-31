@@ -193,3 +193,29 @@ test_app_catalog_subscription_create_optional_required_time_retrieved: "{{ app_c
 test_app_catalog_subscription_create_optional_required_signature: "{{ app_catalog_agreement.signature }}"
 app_catalog_subscription_resource_id: "define_this_so_that_delete_test_runs"
 test_app_catalog_subscription_delete_rescue_listing_resource_version: "{{ app_catalog_agreement.listing_resource_version }}"
+
+# variables for oci_compute_instance_setup.yaml
+test_instance_name: "setup-ansible-test-instance-{{random_suffix_1024}}"
+
+# variables for oci_compute_instance_tests.yaml
+skip_instance_create_check_mode_test: yes
+skip_instance_create_required_original_test: yes
+skip_instance_create_required_idempotency_test: yes
+test_instance_update_using_name_optional_required_display_name: "{{ test_instance_name }}"
+skip_instance_delete_required_test: yes
+skip_instance_delete_required_idempotency_test: yes
+test_instance_create_optional_required_display_name: "ansible-gen-test-instance-{{random_suffix_1024}}"
+test_instance_create_optional_required_shape: "{{test_instance_shape}}"
+test_instance_create_optional_required_hostname_label: null
+test_instance_create_optional_required_create_vnic_details:
+  subnet_id: "{{dependency_subnet_id}}"
+test_instance_create_optional_required_extended_metadata: null
+test_instance_create_optional_required_ipxe_script: null
+test_instance_create_optional_required_image_id: null
+test_instance_create_optional_required_metadata: null
+test_instance_create_optional_required_source_details:
+  source_type: "image"
+  image_id: "{{image_ocid}}"
+test_instance_create_optional_required_subnet_id: null
+test_instance_update_optional_required_display_name: "updated-ansible-gen-test-instance-{{random_suffix_1024}}"
+test_instance_update_optional_required_agent_config_is_monitoring_disabled: false
