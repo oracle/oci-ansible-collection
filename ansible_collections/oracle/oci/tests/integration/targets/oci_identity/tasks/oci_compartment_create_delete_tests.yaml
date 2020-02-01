@@ -18,6 +18,13 @@
   when: item.name == identity_create_compartment_name
   ignore_errors: yes
 
+- oci_identity_compartment:
+    compartment_id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ test_compartments.compartments }}"
+  when: item.name == identity_create_compartment_name2
+  ignore_errors: yes
+
 # ===================================================================================
 
 - name: Create a compartment under identity_create_delete_parent_compartment_ocid using parent_compartment_id
@@ -34,7 +41,7 @@
   assert:
     that:
       - result.changed == True
-      - result.compartment.name == compartment_name
+      - result.compartment.name == identity_create_compartment_name
       - result.compartment.description == identity_create_compartment_description
 
 # ===================================================================================
@@ -63,12 +70,12 @@
     OCI_USE_NAME_AS_IDENTIFIER: 1
   register: result
 
-- name: Assert compartment is deleted and work request is retrieved
+- name: Assert compartment is deleted
   assert:
     that:
       - result.changed == True
       - result.compartment.id == test_created_compartment_id
-      - result.work_request.compartment_id is defined
+      # - result.work_request.compartment_id is defined
 
 # ===================================================================================
 
@@ -87,6 +94,9 @@
       - result.changed == False
 
 # ===================================================================================
+# TODO: workaround copmartment rename in progress service error
+- pause:
+    seconds: 60
 
 - name: Create another compartment under identity_create_delete_parent_compartment_ocid using parent_compartment_id to test delete using id
   oci_identity_compartment:
@@ -102,7 +112,7 @@
   assert:
     that:
       - result.changed == True
-      - result.compartment.name == compartment_name
+      - result.compartment.name == identity_create_compartment_name2
       - result.compartment.description == identity_create_compartment_description
 
 - set_fact:
@@ -116,12 +126,12 @@
     state: absent
   register: result
 
-- name: Assert compartment is deleted and work request is retrieved
+- name: Assert compartment is deleted
   assert:
     that:
       - result.changed == True
       - result.compartment.id == test_created_compartment_id
-       - result.work_request.compartment_id is defined
+      # - result.work_request.compartment_id is defined
 
 # ===================================================================================
 
