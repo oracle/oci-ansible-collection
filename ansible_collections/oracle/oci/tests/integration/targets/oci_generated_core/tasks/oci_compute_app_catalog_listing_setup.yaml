@@ -1,0 +1,61 @@
+- name: List app_catalog_listings
+  oci_compute_app_catalog_listing_facts:
+  register: result
+
+- set_fact:
+    app_catalog_listings: "{{ result.app_catalog_listings }}"
+
+- set_fact:
+    app_catalog_listing: "{{ item }}"
+  when: item.publisher_name is not match("Oracle*")
+  loop: "{{ app_catalog_listings }}"
+
+- set_fact:
+    oracle_app_catalog_listing: "{{ item }}"
+  when: item.publisher_name is match("Oracle*")
+  loop: "{{ app_catalog_listings }}"
+
+- name: Print non oracle app catalog listing
+  debug:
+    msg: "{{ app_catalog_listing }}"
+
+- name: Print oracle app catalog listing
+  debug:
+    msg: "{{ oracle_app_catalog_listing }}"
+
+- name: List app_catalog_listing_resource_versions
+  oci_compute_app_catalog_listing_resource_version_facts:
+    listing_id: "{{ app_catalog_listing.listing_id }}"
+  register: result
+
+- set_fact:
+    app_catalog_listing_resource_id: "{{ app_catalog_listing.listing_id }}"
+    dependency_listing_id: "{{ app_catalog_listing.listing_id }}"
+    app_catalog_listing_resource_version_resource_id: "{{ result.app_catalog_listing_resource_versions[0].listing_resource_version }}"
+    app_catalog_listing_resource_version_agreement_resource_id: "{{ result.app_catalog_listing_resource_versions[0].listing_resource_version }}"
+
+- name: Get app_catalog_listing_resource_version_agreement
+  oci_compute_app_catalog_listing_resource_version_agreement_facts:
+    listing_id: "{{ dependency_listing_id }}"
+    resource_version: "{{ app_catalog_listing_resource_version_agreement_resource_id }}"
+  register: result
+
+- set_fact:
+    app_catalog_agreement: "{{ result.app_catalog_listing_resource_version_agreement }}"
+
+- name: List app_catalog_listing_resource_versions for oracle listing
+  oci_compute_app_catalog_listing_resource_version_facts:
+    listing_id: "{{ oracle_app_catalog_listing.listing_id }}"
+  register: result
+
+- set_fact:
+    oracle_app_catalog_listing_resource_version: "{{ result.app_catalog_listing_resource_versions[0] }}"
+
+- name: Get app_catalog_listing_resource_version_agreement
+  oci_compute_app_catalog_listing_resource_version_agreement_facts:
+    listing_id: "{{ oracle_app_catalog_listing.listing_id }}"
+    resource_version: "{{ oracle_app_catalog_listing_resource_version.listing_resource_version }}"
+  register: result
+
+- set_fact:
+    oracle_app_catalog_agreement: "{{ result.app_catalog_listing_resource_version_agreement }}"

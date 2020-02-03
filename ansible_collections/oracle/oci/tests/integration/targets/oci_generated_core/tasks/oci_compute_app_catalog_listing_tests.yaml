@@ -1,0 +1,45 @@
+---
+- block:
+  - name: List app_catalog_listings
+    oci_compute_app_catalog_listing_facts:
+    register: result
+    when: skip_app_catalog_listing_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.app_catalog_listings | length > 0
+    when: skip_app_catalog_listing_list_test is not defined
+
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ app_catalog_listing_list_custom_assertions }}"
+    when: app_catalog_listing_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get app_catalog_listing
+    oci_compute_app_catalog_listing_facts:
+      listing_id: "{{ app_catalog_listing_resource_id | oracle.oci.override(test_app_catalog_listing_get_listing_id, omit) }}"
+    register: result
+    when: skip_app_catalog_listing_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.app_catalog_listings | length == 1
+    when: skip_app_catalog_listing_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ app_catalog_listing_get_custom_assertions }}"
+    when: app_catalog_listing_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

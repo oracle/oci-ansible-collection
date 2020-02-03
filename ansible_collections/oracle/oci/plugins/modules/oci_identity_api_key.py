@@ -158,7 +158,6 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.identity import IdentityClient
     from oci.identity.models import CreateApiKeyDetails
-    from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -180,7 +179,7 @@ class ApiKeyHelperGen(OCIResourceHelperBase):
             if self.get_module_resource_id() == resource.fingerprint:
                 return oci_common_utils.get_default_response_from_resource(resource)
 
-        raise ServiceError(404, None, {}, None)
+        oci_common_utils.raise_does_not_exist_service_error()
 
     def list_resources(self):
         required_list_method_params = [

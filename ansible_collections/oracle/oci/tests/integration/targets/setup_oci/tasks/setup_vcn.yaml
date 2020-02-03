@@ -1,0 +1,46 @@
+- name: Create a vcn which can be used for multiple tests
+  oci_network_vcn:
+    cidr_block: "10.0.0.0/16"
+    compartment_id: "{{ test_compartment_ocid }}"
+    display_name: "{{ ('CommonVCN' + random_suffix_1024) }}"
+  register: common_vcn_create_result
+
+- set_fact:
+    common_vcn: "{{ common_vcn_create_result.vcn }}"
+    common_vcn_id: "{{ common_vcn_create_result.vcn.id }}"
+    common_vcn_default_sec_list_id: "{{ common_vcn_create_result.vcn.default_security_list_id }}"
+    common_vcn_default_route_table_id: "{{ common_vcn_create_result.vcn.default_route_table_id }}"
+
+- name: Create an internet gateway for the common vcn
+  oci_network_internet_gateway:
+    compartment_id: "{{test_compartment_ocid}}"
+    vcn_id: "{{ common_vcn_id }}"
+    name: "{{ ('IGForCommonVCN' + random_suffix_1024) }}"
+    is_enabled: yes
+  register: ig_for_common_vcn_create_result
+
+- set_fact:
+    ig_for_common_vcn: "{{ ig_for_common_vcn_create_result.internet_gateway }}"
+    ig_for_common_vcn_id: "{{ ig_for_common_vcn_create_result.internet_gateway.id }}"
+
+- name: Add route rule to default route table in common vcn
+  oci_network_route_table:
+    rt_id: "{{ common_vcn_default_route_table_id }}"
+    route_rules:
+      - destination: "0.0.0.0/0"
+        destination_type: "CIDR_BLOCK"
+        network_entity_id: "{{ ig_for_common_vcn_id }}"
+  register: add_route_rule_to_common_vcn_result
+
+- name: Create a service gateway in the common vcn
+  oci_network_service_gateway:
+    compartment_id: "{{ test_compartment_ocid }}"
+    display_name: "{{ ('SGForCommonVCN' + random_suffix_1024) }}"
+    services:
+      - service_id: "{{ dependency_service_id }}"
+    vcn_id: "{{ common_vcn_id }}"
+  register: sg_for_common_vcn_create_result
+
+- set_fact:
+    sg_for_common_vcn: "{{ sg_for_common_vcn_create_result.service_gateway }}"
+    sg_for_common_vcn_id: "{{ sg_for_common_vcn_create_result.service_gateway.id }}"

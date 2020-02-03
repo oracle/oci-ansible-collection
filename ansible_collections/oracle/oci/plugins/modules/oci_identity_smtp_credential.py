@@ -167,7 +167,6 @@ try:
     from oci.identity import IdentityClient
     from oci.identity.models import CreateSmtpCredentialDetails
     from oci.identity.models import UpdateSmtpCredentialDetails
-    from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -189,7 +188,7 @@ class SmtpCredentialHelperGen(OCIResourceHelperBase):
             if self.get_module_resource_id() == resource.id:
                 return oci_common_utils.get_default_response_from_resource(resource)
 
-        raise ServiceError(404, None, {}, None)
+        oci_common_utils.raise_does_not_exist_service_error()
 
     def list_resources(self):
         required_list_method_params = [

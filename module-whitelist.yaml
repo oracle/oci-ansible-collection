@@ -103,6 +103,11 @@ moduleWhitelist:
   - oci_identity_compartment_facts
   - oci_identity_api_key
   - oci_identity_api_key_facts
+  - oci_compute_app_catalog_listing_facts
+  - oci_compute_app_catalog_listing_resource_version_agreement_facts
+  - oci_compute_app_catalog_listing_resource_version_facts
+  - oci_compute_app_catalog_subscription
+  - oci_compute_app_catalog_subscription_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -119,6 +124,7 @@ modulePathOverrides:
   /fastConnectProviderServices/{providerServiceId}/virtualCircuitBandwidthShapes: fast_connect_provider_service_virtual_circuit_bandwidth_shape
   /virtualCircuits/{virtualCircuitId}/actions/bulkAddPublicPrefixes: virtual_circuit
   /virtualCircuits/{virtualCircuitId}/actions/bulkDeletePublicPrefixes: virtual_circuit
+  /appCatalogListings/{listingId}/resourceVersions/{resourceVersion}/agreements: app_catalog_listing_resource_version_agreement
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules

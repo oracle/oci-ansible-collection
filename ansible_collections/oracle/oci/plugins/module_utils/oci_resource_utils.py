@@ -718,10 +718,15 @@ def get_custom_class_mapping(modules):
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_identity_custom_helpers,
     oci_network_custom_helpers,
+    oci_compute_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
-    [oci_identity_custom_helpers, oci_network_custom_helpers]
+    [
+        oci_identity_custom_helpers,
+        oci_network_custom_helpers,
+        oci_compute_custom_helpers,
+    ]
 )
 
 

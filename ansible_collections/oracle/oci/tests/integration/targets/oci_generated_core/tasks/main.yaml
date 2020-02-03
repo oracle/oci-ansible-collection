@@ -138,3 +138,25 @@
           - ip_sec_connection_tunnel_shared_secret
   tags:
     - ip_sec_connection_full
+- block:
+  - import_tasks: oci_compute_app_catalog_listing_setup.yaml
+    tags:
+      - app_catalog_listing_setup
+      - app_catalog_listing
+      - app_catalog_listing_resource_version
+      - app_catalog_listing_resource_version_agreement
+      - app_catalog_subscription
+  - import_tasks: oci_compute_app_catalog_listing_tests.yaml
+    tags:
+      - app_catalog_listing
+  - import_tasks: oci_compute_app_catalog_listing_resource_version_tests.yaml
+    tags:
+      - app_catalog_listing_resource_version
+  - import_tasks: oci_compute_app_catalog_listing_resource_version_agreement_tests.yaml
+    tags:
+      - app_catalog_listing_resource_version_agreement
+  - import_tasks: oci_compute_app_catalog_subscription_tests.yaml
+    tags:
+      - app_catalog_subscription
+  tags:
+    - app_catalog

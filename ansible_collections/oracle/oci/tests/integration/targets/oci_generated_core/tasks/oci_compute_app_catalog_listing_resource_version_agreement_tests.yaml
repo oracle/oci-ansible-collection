@@ -1,0 +1,26 @@
+---
+- block:
+  - name: Get app_catalog_listing_resource_version_agreement
+    oci_compute_app_catalog_listing_resource_version_agreement_facts:
+      listing_id: "{{ dependency_listing_id | oracle.oci.override(test_app_catalog_listing_resource_version_agreement_get_listing_id, omit) }}"
+      resource_version: "{{ app_catalog_listing_resource_version_agreement_resource_id | oracle.oci.override(test_app_catalog_listing_resource_version_agreement_get_resource_version, omit) }}"
+    register: result
+    when: skip_app_catalog_listing_resource_version_agreement_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.app_catalog_listing_resource_version_agreement is defined
+        - result.app_catalog_listing_resource_version_agreement != None
+    when: skip_app_catalog_listing_resource_version_agreement_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ app_catalog_listing_resource_version_agreement_get_custom_assertions }}"
+    when: app_catalog_listing_resource_version_agreement_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."
