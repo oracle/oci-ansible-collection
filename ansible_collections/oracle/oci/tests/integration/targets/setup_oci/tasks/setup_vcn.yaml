@@ -2,7 +2,7 @@
   oci_network_vcn:
     cidr_block: "10.0.0.0/16"
     compartment_id: "{{ test_compartment_ocid }}"
-    display_name: "{{ ('CommonVCN' + random_suffix_1024) }}"
+    display_name: "CommonVCN"
     dns_label: "commonvcn"
   register: common_vcn_create_result
 
@@ -16,7 +16,7 @@
   oci_network_internet_gateway:
     compartment_id: "{{test_compartment_ocid}}"
     vcn_id: "{{ common_vcn_id }}"
-    name: "{{ ('IGForCommonVCN' + random_suffix_1024) }}"
+    name: "IGForCommonVCN"
     is_enabled: yes
   register: ig_for_common_vcn_create_result
 
@@ -36,7 +36,7 @@
 - name: Create a service gateway in the common vcn
   oci_network_service_gateway:
     compartment_id: "{{ test_compartment_ocid }}"
-    display_name: "{{ ('SGForCommonVCN' + random_suffix_1024) }}"
+    display_name: "SGForCommonVCN"
     services:
       - service_id: "{{ dependency_service_id }}"
     vcn_id: "{{ common_vcn_id }}"
@@ -48,7 +48,7 @@
 
 - name: Create subnet for common vcn
   oci_network_subnet:
-    display_name: "{{ ('SubnetForCommonVCN' + random_suffix_1024) }}"
+    display_name: "SubnetForCommonVCN"
     dns_label: "commonsubnet1"
     cidr_block: "10.0.1.0/24"
     route_table_id: "{{ common_vcn.default_route_table_id }}"

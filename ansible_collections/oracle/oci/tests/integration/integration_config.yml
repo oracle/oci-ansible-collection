@@ -53,6 +53,6 @@ image_ocid: "ocid1.image.oc1.iad.aaaaaaaaaptk6mucnja34nfssflcen7cxgnxrhsmkvj2nfj
 # Image Windows  "Windows-Server-2008-R2-Enterprise-Edition-VM-2018.09.13-0"
 windows_image_ocid: "ocid1.image.oc1.iad.aaaaaaaav3jfxfznpfrhoesdsv35xgdyircwqffdpjiq3uvd657iygqzokia"
 
-# App catalog image listing (Jenkins Certified by Bitnami) id
-test_app_catalog_listing_id: "ocid1.appcataloglisting.oc1..aaaaaaaamfkymkaswbyqdn32ckslmespcaqgda6et7juetbtuz3h7nwtamdq"
+# App catalog image listing (Time Machine on Oracle Linux - BYOL) id
+test_app_catalog_listing_id: "ocid1.appcataloglisting.oc1..aaaaaaaabqh4ywl4ipur7esxm4jio4wrubxds5ct5znisx7n5jft64wqnohq"
 test_app_catalog_instance_shape: "VM.Standard2.2"
