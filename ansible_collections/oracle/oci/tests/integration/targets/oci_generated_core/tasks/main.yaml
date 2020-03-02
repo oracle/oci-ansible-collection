@@ -175,6 +175,11 @@
         - boot_volume_attachment
         - image
         - image_shape_compatibility_entry
+        - vnic_attachment
+        - vnic
+        - public_ip
+        - private_ip
+        - network_security_group_vnic
     - import_tasks: oci_compute_instance_tests.yaml
       tags:
         - instance
@@ -190,6 +195,21 @@
     - import_tasks: oci_compute_device_tests.yaml
       tags:
         - device
+    - import_tasks: oci_compute_vnic_attachment_tests.yaml
+      tags:
+        - vnic_attachment
+    - import_tasks: oci_network_vnic_tests.yaml
+      tags:
+        - vnic
+    - import_tasks: oci_network_public_ip_tests.yaml
+      tags:
+        - public_ip
+    - import_tasks: oci_network_public_ip_tests.yaml
+      tags:
+        - private_ip
+    - import_tasks: oci_network_security_group_vnic_tests.yaml
+      tags:
+        - network_security_group_vnic
     - name: Stop the setup instance for creating a boot volume
       oci_compute_instance_actions:
         instance_id: "{{ setup_instance_id }}"
@@ -305,6 +325,11 @@
         - device
         - image
         - image_shape_compatibility_entry
+        - vnic_attachment
+        - vnic
+        - public_ip
+        - private_ip
+        - network_security_group_vnic
   tags:
     - instance_full
 

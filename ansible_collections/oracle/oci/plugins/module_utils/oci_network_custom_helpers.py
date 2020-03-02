@@ -20,6 +20,12 @@ try:
         BulkAddVirtualCircuitPublicPrefixesDetails,
         BulkDeleteVirtualCircuitPublicPrefixesDetails,
     )
+    from oci.core.models.get_public_ip_by_private_ip_id_details import (
+        GetPublicIpByPrivateIpIdDetails,
+    )
+    from oci.core.models.get_public_ip_by_ip_address_details import (
+        GetPublicIpByIpAddressDetails,
+    )
 
     HAS_OCI_PY_SDK = True
 
@@ -388,3 +394,33 @@ class IpSecConnectionTunnelHelperCustom:
             lambda key: "bgp_session_info" if key == "bgp_session_config" else key
         )
         return dict((key_mapping(key), val) for key, val in update_model_dict.items())
+
+
+class PublicIpFactsHelperCustom:
+    def is_get(self):
+        if super(PublicIpFactsHelperCustom, self).is_get():
+            return True
+        if self.module.params["private_ip_id"] or self.module.params["ip_address"]:
+            return True
+        return False
+
+    def get_resource(self):
+        if self.module.params["public_ip_id"]:
+            return super(PublicIpFactsHelperCustom, self).get_resource()
+        # Getting public_ip using private_ip_id and ip_address in the API are action operations. But it is a little
+        # twisted to think of them as action operations in ansible context (also in general as well). So adding those to
+        # the facts module where they really belong.
+        if self.module.params["private_ip_id"]:
+            return oci_common_utils.call_with_backoff(
+                self.client.get_public_ip_by_private_ip_id,
+                get_public_ip_by_private_ip_id_details=oci_common_utils.convert_input_data_to_model_class(
+                    self.module.params, GetPublicIpByPrivateIpIdDetails
+                ),
+            )
+        if self.module.params["ip_address"]:
+            return oci_common_utils.call_with_backoff(
+                self.client.get_public_ip_by_ip_address,
+                get_public_ip_by_ip_address_details=oci_common_utils.convert_input_data_to_model_class(
+                    self.module.params, GetPublicIpByIpAddressDetails
+                ),
+            )

@@ -60,3 +60,13 @@
     setup_instance_boot_volume_attachment_id: "{{ result.boot_volume_attachments[0].id }}"
     setup_instance_boot_volume_attachment_display_name: "{{ result.boot_volume_attachments[0].display_name }}"
     setup_instance_boot_volume_id: "{{ result.boot_volume_attachments[0].boot_volume_id }}"
+
+- name: Get vnic attachments for the setup instance
+  oci_compute_vnic_attachment_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+    instance_id: "{{ setup_instance_id }}"
+  register: result
+
+- set_fact:
+    vnic_resource_id: "{{ result.vnic_attachments[0].vnic_id }}"
+    dependency_vnic_id: "{{ result.vnic_attachments[0].vnic_id }}"

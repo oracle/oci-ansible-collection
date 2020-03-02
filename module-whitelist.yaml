@@ -135,6 +135,22 @@ moduleWhitelist:
   - oci_compute_image_shape_compatibility_entry
   - oci_compute_shape_facts
   - oci_object_storage_namespace_facts
+  - oci_network_vnic
+  - oci_network_vnic_facts
+  - oci_compute_vnic_attachment
+  - oci_compute_vnic_attachment_facts
+  - oci_network_security_group_vnic_facts
+  - oci_network_private_ip
+  - oci_network_private_ip_facts
+  - oci_network_public_ip
+  - oci_network_public_ip_facts
+operationOverrides:
+  /publicIps/actions/getByIpAddress:
+    path: "/publicIps/getByIpAddress"
+    httpMethod: "GET"
+  /publicIps/actions/getByPrivateIpId:
+    path: "/publicIps/getByPrivateIpId"
+    httpMethod: "GET"
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -178,7 +194,7 @@ operationIdBlacklist:
   # UpdateDbHomeDetails.version (type=PatchDetails) conflicts with CreateDbHome.version (type=string)
   # so currently we can't support both operations. We choose to prefer supporting CreateDbHome for now
   - update_db_home
-  # these are exceptional cases becaues their path implies they are '/actions/' but should 
+  # these are exceptional cases becaues their path implies they are '/actions/' but should
   # really be facts modules
   - get_public_ip_by_ip_address
   - get_public_ip_by_private_ip_id
@@ -199,3 +215,21 @@ operationIdBlacklist:
   - update_user_state
   # deprecated
   - get_instance_default_credentials
+
+extraFactsModuleParameters:
+  core:
+    public_ip:
+      - paramName: private_ip_id
+        baseName: privateIpId
+        description: OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve
+                     information of a public IP assigned to it.
+        required: false
+        dataType: str
+        isUsedByList: true
+      - paramName: ip_address
+        baseName: ipAddress
+        description: OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve
+                     information of a public IP assigned to it.
+        required: false
+        dataType: str
+        isUsedByList: true

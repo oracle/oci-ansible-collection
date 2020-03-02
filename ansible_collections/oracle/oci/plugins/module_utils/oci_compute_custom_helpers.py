@@ -9,9 +9,14 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from ansible.module_utils._text import to_text
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_common_utils,
+    oci_config_utils,
+)
 
 try:
+    from oci.core import VirtualNetworkClient
+    from oci.util import to_dict
     from oci.core.models import ImageShapeCompatibilityEntry
 
     HAS_OCI_PY_SDK = True
@@ -137,3 +142,36 @@ class ImageShapeCompatibilityEntryHelperCustom:
         # update. Also making the API call even if the entry exists does not throw any error. So choosing to make
         # the API call always.
         return True
+
+
+class VnicAttachmentHelperCustom:
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        create_model_dict = super(
+            VnicAttachmentHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+        # The VNIC details specified in create_vnic_details are not available in the vnic_attachment directly. It has
+        # vnic_id which can be used to fetch the required information. So update the key name for create_vnic_details
+        # in the create model. The vnic information is added to the existing resource with the same key in
+        # get_existing_resource_dict_for_idempotence_check so that the idempotence logic compares the vnic details.
+        if create_model_dict.get("create_vnic_details") is not None:
+            create_model_dict["vnic"] = create_model_dict.pop("create_vnic_details")
+        return create_model_dict
+
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        existing_resource_dict = super(
+            VnicAttachmentHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+        if existing_resource_dict.get("vnic_id"):
+            # The information provided in create_vnic_details attr of create model does not exist directly in the
+            # get model but have to be fetched from the vnic details. Fetch and add the information to the existing
+            # resource so that the idempotence logic can compare the vnic details.
+            virtual_network_client = oci_config_utils.create_service_client(
+                self.module, VirtualNetworkClient
+            )
+            existing_vnic = to_dict(
+                virtual_network_client.get_vnic(
+                    vnic_id=existing_resource_dict.get("vnic_id")
+                ).data
+            )
+            existing_resource_dict["vnic"] = existing_vnic
+        return existing_resource_dict

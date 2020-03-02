@@ -35,3 +35,13 @@ bulk_deletable_public_vc_public_prefixes:
 add_security_rule_action: "add"
 update_security_rule_action: "update"
 remove_security_rule_action: "remove"
+
+# variables for oci_network_ip_tests.yaml
+instance_name: 'private_ip_test_instance-{{random_suffix_1024}}'
+private_ip_name: 'test_private_ip-{{random_suffix_1024}}'
+updated_private_ip_name: 'ansible_private_ip-{{random_suffix_1024}}'
+
+public_ip_name: 'public_ip-{{random_suffix_1024}}'
+updated_public_ip_name: 'updated_public_ip-{{random_suffix_1024}}'
+
+hostname_label_name: "ip-test-{{random_suffix_1024}}"

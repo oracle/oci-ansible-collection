@@ -410,6 +410,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         and stores it differently etc."""
         return to_dict(create_model)
 
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        """This function allows any customisations that are needed in the existing resource for comparison during the
+        idempotence check.
+
+        This can useful in scenarios where the existing resource does not have all the information used to create
+        it but need multiple calls to get the information. For ex: create_vnic_details in attach_vnic_details has
+        information which is not available in vnic_attachment completely. We need to get the vnic details which
+        has the information and then do the comparison."""
+        return to_dict(existing_resource)
+
     def get_update_model(self):
         return oci_common_utils.convert_input_data_to_model_class(
             self.module.params, self.get_update_model_class()
@@ -448,7 +458,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             if not self._is_resource_active(resource):
                 continue
 
-            resource_dict = to_dict(resource)
+            resource_dict = self.get_existing_resource_dict_for_idempotence_check(
+                resource
+            )
             if oci_common_utils.is_dict_subset(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,

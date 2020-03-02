@@ -1,0 +1,334 @@
+---
+- block:
+  # dependency resource vnic has no Create operation
+
+  - name: Create private_ip (check mode)
+    oci_network_private_ip:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_create_required_display_name, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_create_required_vnic_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_private_ip_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_private_ip_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_create_check_mode_custom_assertions }}"
+    when: private_ip_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create private_ip with required parameters
+    oci_network_private_ip:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_create_required_display_name, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_create_required_vnic_id, omit) }}"
+    register: result
+    when: skip_private_ip_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_private_ip_create_required_original_test is not defined
+
+  - set_fact:
+      private_ip_resource_id: "{{ result.private_ip.id }}"
+    when: skip_private_ip_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_create_required_original_custom_assertions }}"
+    when: private_ip_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create private_ip with required parameters(idempotency)
+    oci_network_private_ip:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_create_required_display_name, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_create_required_vnic_id, omit) }}"
+    register: result
+    when: skip_private_ip_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_private_ip_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_create_required_idempotency_custom_assertions }}"
+    when: private_ip_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update private_ip using name with optional + required parameters
+    oci_network_private_ip:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_private_ip_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_private_ip_update_using_name_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ ('bminstance-1updated' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_using_name_optional_required_hostname_label, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_update_using_name_optional_required_vnic_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_private_ip_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_private_ip_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_update_using_name_optional_required_custom_assertions }}"
+    when: private_ip_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update private_ip using name with optional + required parameters (idempotence)
+    oci_network_private_ip:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_private_ip_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_private_ip_update_using_name_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ ('bminstance-1updated' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_using_name_optional_required_hostname_label, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_update_using_name_optional_required_vnic_id, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_private_ip_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_private_ip_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: private_ip_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete private_ip
+    oci_network_private_ip:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_private_ip_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_private_ip_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_delete_required_custom_assertions }}"
+    when: private_ip_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete private_ip (idempotency)
+    oci_network_private_ip:
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_private_ip_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_private_ip_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_delete_required_idempotency_custom_assertions }}"
+    when: private_ip_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create private_ip with optional + required parameters
+    oci_network_private_ip:
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_private_ip_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_private_ip_create_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ 'bminstance-1' | oracle.oci.override(test_private_ip_create_optional_required_hostname_label, omit) }}"
+      ip_address: "{{ '10.0.3.3' | oracle.oci.override(test_private_ip_create_optional_required_ip_address, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_create_optional_required_vnic_id, omit) }}"
+    register: result
+    when: skip_private_ip_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_private_ip_create_optional_required_original_test is not defined
+
+  - set_fact:
+      private_ip_resource_id: "{{ result.private_ip.id }}"
+    when: skip_private_ip_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_create_optional_required_original_custom_assertions }}"
+    when: private_ip_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create private_ip with optional + required parameters (idempotence)
+    oci_network_private_ip:
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_private_ip_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_private_ip_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_private_ip_create_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ 'bminstance-1' | oracle.oci.override(test_private_ip_create_optional_required_hostname_label, omit) }}"
+      ip_address: "{{ '10.0.3.3' | oracle.oci.override(test_private_ip_create_optional_required_ip_address, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_create_optional_required_vnic_id, omit) }}"
+    register: result
+    when: skip_private_ip_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_private_ip_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_create_optional_required_idempotence_custom_assertions }}"
+    when: private_ip_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update private_ip with optional + required parameters
+    oci_network_private_ip:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_private_ip_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_private_ip_update_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ ('bminstance-1updated' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_optional_required_hostname_label, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_update_optional_required_vnic_id, omit) }}"
+      private_ip_id: "{{ private_ip_resource_id | oracle.oci.override(test_private_ip_update_optional_required_private_ip_id, omit) }}"
+    register: result
+    when: skip_private_ip_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_private_ip_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_update_optional_required_custom_assertions }}"
+    when: private_ip_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update private_ip with optional + required parameters (idempotence)
+    oci_network_private_ip:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_private_ip_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_private_ip_update_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ ('bminstance-1updated' + random_suffix_1024) | oracle.oci.override(test_private_ip_update_optional_required_hostname_label, omit) }}"
+      vnic_id: "{{ dependency_vnic_id | oracle.oci.override(test_private_ip_update_optional_required_vnic_id, omit) }}"
+      private_ip_id: "{{ private_ip_resource_id | oracle.oci.override(test_private_ip_update_optional_required_private_ip_id, omit) }}"
+    register: result
+    when: skip_private_ip_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_private_ip_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_update_optional_required_idempotence_custom_assertions }}"
+    when: private_ip_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List private_ips
+    oci_network_private_ip_facts:
+    register: result
+    when: skip_private_ip_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.private_ips | length > 0
+    when: skip_private_ip_list_test is not defined
+
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_list_custom_assertions }}"
+    when: private_ip_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get private_ip
+    oci_network_private_ip_facts:
+      private_ip_id: "{{ private_ip_resource_id | oracle.oci.override(test_private_ip_get_private_ip_id, omit) }}"
+    register: result
+    when: skip_private_ip_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.private_ips | length == 1
+    when: skip_private_ip_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ private_ip_get_custom_assertions }}"
+    when: private_ip_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete private_ip
+      oci_network_private_ip:
+        private_ip_id: "{{ private_ip_resource_id | oracle.oci.override(test_private_ip_delete_rescue_private_ip_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: private_ip_resource_id is defined

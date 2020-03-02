@@ -1,0 +1,114 @@
+---
+- block:
+  - name: Update vnic with optional + required parameters
+    oci_network_vnic:
+      vnic_id: "{{ vnic_resource_id | oracle.oci.override(test_vnic_update_optional_required_vnic_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_vnic_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_vnic_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_vnic_update_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ ('hostname_label_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_vnic_update_optional_required_hostname_label, omit) }}"
+      nsg_ids: "{{ [ 'null' ] | oracle.oci.override(test_vnic_update_optional_required_nsg_ids, omit) }}"
+      skip_source_dest_check: "{{ true | oracle.oci.override(test_vnic_update_optional_required_skip_source_dest_check, omit) }}"
+    register: result
+    when: skip_vnic_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_vnic_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.vnic.availability_domain is defined
+        - result.vnic.compartment_id is defined
+        - result.vnic.id is defined
+        - result.vnic.lifecycle_state is defined
+        - result.vnic.subnet_id is defined
+        - result.vnic.time_created is defined
+    when: skip_vnic_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ vnic_update_optional_required_custom_assertions }}"
+    when: vnic_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update vnic with optional + required parameters (idempotence)
+    oci_network_vnic:
+      vnic_id: "{{ vnic_resource_id | oracle.oci.override(test_vnic_update_optional_required_vnic_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_vnic_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_vnic_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_vnic_update_optional_required_freeform_tags, omit) }}"
+      hostname_label: "{{ ('hostname_label_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_vnic_update_optional_required_hostname_label, omit) }}"
+      nsg_ids: "{{ [ 'null' ] | oracle.oci.override(test_vnic_update_optional_required_nsg_ids, omit) }}"
+      skip_source_dest_check: "{{ true | oracle.oci.override(test_vnic_update_optional_required_skip_source_dest_check, omit) }}"
+    register: result
+    when: skip_vnic_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_vnic_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.vnic.availability_domain is defined
+        - result.vnic.compartment_id is defined
+        - result.vnic.id is defined
+        - result.vnic.lifecycle_state is defined
+        - result.vnic.subnet_id is defined
+        - result.vnic.time_created is defined
+    when: skip_vnic_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ vnic_update_optional_required_idempotence_custom_assertions }}"
+    when: vnic_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get vnic
+    oci_network_vnic_facts:
+      vnic_id: "{{ vnic_resource_id | oracle.oci.override(test_vnic_get_vnic_id, omit) }}"
+    register: result
+    when: skip_vnic_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.vnic is defined
+        - result.vnic != None
+    when: skip_vnic_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.subnet_id is defined
+        - item.time_created is defined
+    with_items:
+      - "{{ result.vnic }}"
+    when: skip_vnic_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ vnic_get_custom_assertions }}"
+    when: vnic_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

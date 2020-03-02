@@ -26,6 +26,39 @@
 # ==================================================================================================== #
 
   - set_fact:
+      test_subnet_create_dependency_dhcp_options_options:
+      - type: "{{ 'DomainNameServer' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_type, omit) }}"
+        custom_dns_servers: "{{ [ '202.44.61.9' ] | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_custom_dns_servers, omit) }}"
+        server_type: "{{ 'CustomDnsServer' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_server_type, omit) }}"
+    when: test_subnet_create_dependency_dhcp_options_options is not defined
+
+  - name: Create dependency dhcp_options with required parameters
+    oci_network_dhcp_options:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_subnet_create_dependency_dhcp_options_compartment_id, omit) }}"
+      display_name: "{{ ('MyDhcpOptions' + random_suffix_1024) | oracle.oci.override(test_subnet_create_dependency_dhcp_options_display_name, omit) }}"
+      options: "{{ '[]' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_subnet_create_dependency_dhcp_options_vcn_id, omit) }}"
+    register: result
+    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined
+  - set_fact:
+      dependency_dhcp_options: "{{ result.dhcp_options }}"
+      dependency_dhcp_options_id: "{{ result.dhcp_options.id }}"
+    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ subnet_create_dependency_dhcp_options_custom_assertions }}"
+    when: subnet_create_dependency_dhcp_options_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
       test_subnet_create_dependency_route_table_route_rules:
       - cidr_block: "{{ '0.0.0.0/0' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_cidr_block, omit) }}"
         destination: "{{ 'destination_example' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_destination, omit) }}"
@@ -56,39 +89,6 @@
         - "{{ item }}"
     with_items: "{{ subnet_create_dependency_route_table_custom_assertions }}"
     when: subnet_create_dependency_route_table_custom_assertions is defined
-
-# ==================================================================================================== #
-
-  - set_fact:
-      test_subnet_create_dependency_dhcp_options_options:
-      - type: "{{ 'DomainNameServer' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_type, omit) }}"
-        custom_dns_servers: "{{ [ '202.44.61.9' ] | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_custom_dns_servers, omit) }}"
-        server_type: "{{ 'CustomDnsServer' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_server_type, omit) }}"
-    when: test_subnet_create_dependency_dhcp_options_options is not defined
-
-  - name: Create dependency dhcp_options with required parameters
-    oci_network_dhcp_options:
-      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_subnet_create_dependency_dhcp_options_compartment_id, omit) }}"
-      display_name: "{{ ('MyDhcpOptions' + random_suffix_1024) | oracle.oci.override(test_subnet_create_dependency_dhcp_options_display_name, omit) }}"
-      options: "{{ '[]' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options, omit) }}"
-      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_subnet_create_dependency_dhcp_options_vcn_id, omit) }}"
-    register: result
-    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined
-  - name: Assert resource was created
-    assert:
-      that:
-        - result.changed == True
-    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined
-  - set_fact:
-      dependency_dhcp_options: "{{ result.dhcp_options }}"
-      dependency_dhcp_options_id: "{{ result.dhcp_options.id }}"
-    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined
-  - name: Assert custom assertions
-    assert:
-      that:
-        - "{{ item }}"
-    with_items: "{{ subnet_create_dependency_dhcp_options_custom_assertions }}"
-    when: subnet_create_dependency_dhcp_options_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -600,19 +600,19 @@
       ignore_errors: yes
       when: subnet_resource_id is defined
 
-    - name: Delete dependency dhcp_options
-      oci_network_dhcp_options:
-        dhcp_id: "{{ dependency_dhcp_options_id }}"
-        state: absent
-      ignore_errors: yes
-      when: skip_subnet_delete_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined and dependency_dhcp_options_id is defined
-
     - name: Delete dependency route_table
       oci_network_route_table:
         rt_id: "{{ dependency_route_table_id }}"
         state: absent
       ignore_errors: yes
       when: skip_subnet_delete_dependency_route_table_test is not defined and skip_subnet_dependencies is not defined and dependency_route_table_id is defined
+
+    - name: Delete dependency dhcp_options
+      oci_network_dhcp_options:
+        dhcp_id: "{{ dependency_dhcp_options_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_subnet_delete_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined and dependency_dhcp_options_id is defined
 
     - name: Delete dependency vcn
       oci_network_vcn:

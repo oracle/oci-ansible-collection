@@ -307,3 +307,31 @@ skip_image_shape_compatibility_entry_dependencies: yes
 test_image_shape_compatibility_entry_update_optional_required_shape_name: "{{ test_instance_shape }}"
 skip_image_shape_compatibility_entry_update_optional_required_idempotence_test: yes
 test_image_shape_compatibility_entry_delete_rescue_shape_name: "{{ test_instance_shape }}"
+
+# variables for oci_compute_vnic_attachment_tests.yaml
+skip_vnic_attachment_dependencies: yes
+test_vnic_attachment_create_required_create_vnic_details:
+  subnet_id: "{{ common_subnet_id }}"
+  skip_source_dest_check: yes
+  assign_public_ip: yes
+  display_name: "testvnicattachment"
+test_vnic_attachment_create_optional_required_nic_index: null
+test_vnic_attachment_create_optional_required_create_vnic_details: "{{ test_vnic_attachment_create_required_create_vnic_details }}"
+
+# variables for oci_network_vnic_tests.yaml
+test_vnic_update_optional_required_nsg_ids:
+  - "{{ setup_instance_nsg_id }}"
+test_vnic_update_optional_required_hostname_label: "updatedlabel{{ random_suffix_1024 }}"
+
+# variables for oci_network_public_ip_tests.yaml
+test_public_ip_create_required_lifetime: "RESERVED"
+test_public_ip_update_using_name_optional_required_private_ip_id: null
+test_public_ip_create_optional_required_lifetime: "RESERVED"
+test_public_ip_create_optional_required_private_ip_id: null
+test_public_ip_update_optional_required_private_ip_id: null
+
+# variables for oci_network_private_ip_tests.yaml
+
+# variables for oci_network_security_group_vnic_tests.yaml
+skip_network_security_group_vnic_dependencies: yes
+test_network_security_group_vnic_list_network_security_group_id: "{{ setup_instance_nsg_id }}"
