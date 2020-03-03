@@ -19,10 +19,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_network_security_rule_facts
-short_description: Fetches details about one or multiple SecurityRule resources in Oracle Cloud Infrastructure
+module: oci_network_security_group_security_rule_facts
+short_description: Fetches details about one or multiple NetworkSecurityGroupSecurityRule resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about one or multiple SecurityRule resources in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple NetworkSecurityGroupSecurityRule resources in Oracle Cloud Infrastructure
     - Lists the security rules in the specified network security group.
 version_added: "2.5"
 options:
@@ -61,16 +61,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List security_rules
-  oci_network_security_rule_facts:
+- name: List network_security_group_security_rules
+  oci_network_security_group_security_rule_facts:
     network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
 
 """
 
 RETURN = """
-security_rules:
+network_security_group_security_rules:
     description:
-        - List of SecurityRule resources
+        - List of NetworkSecurityGroupSecurityRule resources
     returned: on success
     type: complex
     contains:
@@ -356,7 +356,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class SecurityRuleFactsHelperGen(OCIResourceFactsHelperBase):
+class NetworkSecurityGroupSecurityRuleFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: list"""
 
     def get_required_params_for_list(self):
@@ -384,10 +384,15 @@ class SecurityRuleFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-SecurityRuleFactsHelperCustom = get_custom_class("SecurityRuleFactsHelperCustom")
+NetworkSecurityGroupSecurityRuleFactsHelperCustom = get_custom_class(
+    "NetworkSecurityGroupSecurityRuleFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(SecurityRuleFactsHelperCustom, SecurityRuleFactsHelperGen):
+class ResourceFactsHelper(
+    NetworkSecurityGroupSecurityRuleFactsHelperCustom,
+    NetworkSecurityGroupSecurityRuleFactsHelperGen,
+):
     pass
 
 
@@ -409,7 +414,7 @@ def main():
 
     resource_facts_helper = ResourceFactsHelper(
         module=module,
-        resource_type="security_rule",
+        resource_type="network_security_group_security_rule",
         service_client_class=VirtualNetworkClient,
         namespace="core",
     )
@@ -423,7 +428,7 @@ def main():
     else:
         resource_facts_helper.fail()
 
-    module.exit_json(security_rules=result)
+    module.exit_json(network_security_group_security_rules=result)
 
 
 if __name__ == "__main__":

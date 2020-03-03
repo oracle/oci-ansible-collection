@@ -23,7 +23,7 @@ module: oci_network_remote_peering_connection_actions
 short_description: Perform actions on a RemotePeeringConnection resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a RemotePeeringConnection resource in Oracle Cloud Infrastructure
-    - "For I(action=connect_remote_peering_connections), connects this RPC to another one in a different region.
+    - "For I(action=connect), connects this RPC to another one in a different region.
       This operation must be called by the VCN administrator who is designated as
       the *requestor* in the peering relationship. The *acceptor* must implement
       an Identity and Access Management (IAM) policy that gives the requestor permission
@@ -54,7 +54,7 @@ options:
             - The action to perform on the RemotePeeringConnection.
         type: str
         required: true
-        choices: ["connect_remote_peering_connections"]
+        choices: ["connect"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -63,12 +63,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Perform action connect_remote_peering_connections on remote_peering_connection
+- name: Perform action connect on remote_peering_connection
   oci_network_remote_peering_connection_actions:
     remote_peering_connection_id: ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx
     peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
     peer_region_name: us-ashburn-1
-    action: connect_remote_peering_connections
+    action: connect
 
 """
 
@@ -207,7 +207,7 @@ except ImportError:
 class RemotePeeringConnectionActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
-        connect_remote_peering_connections
+        connect
     """
 
     @staticmethod
@@ -228,7 +228,7 @@ class RemotePeeringConnectionActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
-    def connect_remote_peering_connections(self):
+    def connect(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ConnectRemotePeeringConnectionsDetails
         )
@@ -275,11 +275,7 @@ def main():
             ),
             peer_id=dict(type="str", required=True),
             peer_region_name=dict(type="str", required=True),
-            action=dict(
-                type="str",
-                required=True,
-                choices=["connect_remote_peering_connections"],
-            ),
+            action=dict(type="str", required=True, choices=["connect"]),
         )
     )
 

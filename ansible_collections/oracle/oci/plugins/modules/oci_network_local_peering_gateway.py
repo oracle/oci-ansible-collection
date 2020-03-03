@@ -24,7 +24,7 @@ short_description: Manage a LocalPeeringGateway resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete a LocalPeeringGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new local peering gateway (LPG) for the specified VCN.
-    - "This resource has the following action operations in the M(oci_local_peering_gateway_actions) module: connect_local_peering_gateways."
+    - "This resource has the following action operations in the M(oci_local_peering_gateway_actions) module: connect."
 version_added: "2.5"
 options:
     compartment_id:

@@ -1,4 +1,4 @@
-- import_tasks: oci_network_security_rule_tests.yaml
+- import_tasks: oci_network_security_group_security_rule_tests.yaml
   tags:
     - security_rule
 - import_tasks: oci_network_service_gateway_actions_tests.yaml

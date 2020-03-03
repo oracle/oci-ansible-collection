@@ -19,13 +19,13 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_network_security_rule_actions
-short_description: Perform actions on a SecurityRule resource in Oracle Cloud Infrastructure
+module: oci_network_security_group_security_rule_actions
+short_description: Perform actions on a NetworkSecurityGroupSecurityRule resource in Oracle Cloud Infrastructure
 description:
-    - Perform actions on a SecurityRule resource in Oracle Cloud Infrastructure
-    - For I(action=add_network_security_group_security_rules), adds one or more security rules to the specified network security group.
-    - For I(action=remove_network_security_group_security_rules), removes one or more security rules from the specified network security group.
-    - For I(action=update_network_security_group_security_rules), updates one or more security rules in the specified network security group.
+    - Perform actions on a NetworkSecurityGroupSecurityRule resource in Oracle Cloud Infrastructure
+    - For I(action=add), adds one or more security rules to the specified network security group.
+    - For I(action=remove), removes one or more security rules from the specified network security group.
+    - For I(action=update), updates one or more security rules in the specified network security group.
 version_added: "2.5"
 options:
     network_security_group_id:
@@ -37,7 +37,7 @@ options:
     security_rules:
         description:
             - The NSG security rules to add.
-            - Applicable only for I(action=add_network_security_group_security_rules)I(action=update_network_security_group_security_rules).
+            - Applicable only for I(action=add)I(action=update).
         type: list
         suboptions:
             description:
@@ -234,14 +234,14 @@ options:
     security_rule_ids:
         description:
             - The Oracle-assigned ID of each L(SecurityRule,https://docs.cloud.oracle.com/#/en/iaas/20160918/SecurityRule/) to be deleted.
-            - Applicable only for I(action=remove_network_security_group_security_rules).
+            - Applicable only for I(action=remove).
         type: list
     action:
         description:
-            - The action to perform on the SecurityRule.
+            - The action to perform on the NetworkSecurityGroupSecurityRule.
         type: str
         required: true
-        choices: ["add_network_security_group_security_rules", "remove_network_security_group_security_rules", "update_network_security_group_security_rules"]
+        choices: ["add", "remove", "update"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -250,8 +250,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Perform action add_network_security_group_security_rules on security_rule
-  oci_network_security_rule_actions:
+- name: Perform action add on network_security_group_security_rule
+  oci_network_security_group_security_rule_actions:
     network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
     security_rules:
     - description: Example ingress security rule
@@ -264,18 +264,18 @@ EXAMPLES = """
       destination: 10.0.0.0/16
       direction: EGRESS
       protocol: all
-    action: add_network_security_group_security_rules
+    action: add
 
-- name: Perform action remove_network_security_group_security_rules on security_rule
-  oci_network_security_rule_actions:
+- name: Perform action remove on network_security_group_security_rule
+  oci_network_security_group_security_rule_actions:
     network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
     security_rule_ids:
     - 880233
     - 203597
-    action: remove_network_security_group_security_rules
+    action: remove
 
-- name: Perform action update_network_security_group_security_rules on security_rule
-  oci_network_security_rule_actions:
+- name: Perform action update on network_security_group_security_rule
+  oci_network_security_group_security_rule_actions:
     network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
     security_rules:
     - description: Example ingress security rule - updated
@@ -290,14 +290,14 @@ EXAMPLES = """
       direction: EGRESS
       id: 880233
       protocol: all
-    action: update_network_security_group_security_rules
+    action: update
 
 """
 
 RETURN = """
-security_rule:
+network_security_group_security_rule:
     description:
-        - Details of the SecurityRule resource acted upon by the current operation
+        - Details of the NetworkSecurityGroupSecurityRule resource acted upon by the current operation
     returned: on success
     type: complex
     contains:
@@ -598,12 +598,12 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
+class NetworkSecurityGroupSecurityRuleActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
-        add_network_security_group_security_rules
-        remove_network_security_group_security_rules
-        update_network_security_group_security_rules
+        add
+        remove
+        update
     """
 
     @staticmethod
@@ -613,7 +613,7 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("network_security_group_id")
 
-    def add_network_security_group_security_rules(self):
+    def add(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, AddNetworkSecurityGroupSecurityRulesDetails
         )
@@ -637,7 +637,7 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
             or self.get_action_desired_states(self.module.params.get("action")),
         )
 
-    def remove_network_security_group_security_rules(self):
+    def remove(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RemoveNetworkSecurityGroupSecurityRulesDetails
         )
@@ -661,7 +661,7 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
             or self.get_action_desired_states(self.module.params.get("action")),
         )
 
-    def update_network_security_group_security_rules(self):
+    def update(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, UpdateNetworkSecurityGroupSecurityRulesDetails
         )
@@ -686,10 +686,15 @@ class SecurityRuleActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-SecurityRuleActionsHelperCustom = get_custom_class("SecurityRuleActionsHelperCustom")
+NetworkSecurityGroupSecurityRuleActionsHelperCustom = get_custom_class(
+    "NetworkSecurityGroupSecurityRuleActionsHelperCustom"
+)
 
 
-class ResourceHelper(SecurityRuleActionsHelperCustom, SecurityRuleActionsHelperGen):
+class ResourceHelper(
+    NetworkSecurityGroupSecurityRuleActionsHelperCustom,
+    NetworkSecurityGroupSecurityRuleActionsHelperGen,
+):
     pass
 
 
@@ -776,15 +781,7 @@ def main():
                 ),
             ),
             security_rule_ids=dict(type="list"),
-            action=dict(
-                type="str",
-                required=True,
-                choices=[
-                    "add_network_security_group_security_rules",
-                    "remove_network_security_group_security_rules",
-                    "update_network_security_group_security_rules",
-                ],
-            ),
+            action=dict(type="str", required=True, choices=["add", "remove", "update"]),
         )
     )
 
@@ -795,7 +792,7 @@ def main():
 
     resource_helper = ResourceHelper(
         module=module,
-        resource_type="security_rule",
+        resource_type="network_security_group_security_rule",
         service_client_class=VirtualNetworkClient,
         namespace="core",
     )

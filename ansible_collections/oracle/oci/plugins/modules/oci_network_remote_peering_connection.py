@@ -24,7 +24,7 @@ short_description: Manage a RemotePeeringConnection resource in Oracle Cloud Inf
 description:
     - This module allows the user to create, update and delete a RemotePeeringConnection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new remote peering connection (RPC) for the specified DRG.
-    - "This resource has the following action operations in the M(oci_remote_peering_connection_actions) module: connect_remote_peering_connections."
+    - "This resource has the following action operations in the M(oci_remote_peering_connection_actions) module: connect."
 version_added: "2.5"
 options:
     compartment_id:

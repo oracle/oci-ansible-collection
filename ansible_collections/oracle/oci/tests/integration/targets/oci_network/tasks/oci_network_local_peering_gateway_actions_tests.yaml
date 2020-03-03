@@ -119,7 +119,7 @@
       oci_network_local_peering_gateway_actions:
         local_peering_gateway_id: "{{ test_lpg1_id }}"
         peer_id: "{{ test_lpg2_id }}"
-        action: connect_local_peering_gateways
+        action: "{{ connect_local_peering_gateways_action }}"
       register: result
 
     - name: Assert that changed is true and LPG is peered
@@ -135,7 +135,7 @@
       oci_network_local_peering_gateway_actions:
         local_peering_gateway_id: "{{ test_lpg1_id }}"
         peer_id: "{{ test_lpg2_id }}"
-        action: connect_local_peering_gateways
+        action: "{{ connect_local_peering_gateways_action }}"
       register: result
 
     - name: Assert that changed is false and LPG is peered

@@ -23,7 +23,7 @@ module: oci_network_local_peering_gateway_actions
 short_description: Perform actions on a LocalPeeringGateway resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a LocalPeeringGateway resource in Oracle Cloud Infrastructure
-    - "For I(action=connect_local_peering_gateways), connects this local peering gateway (LPG) to another one in the same region.
+    - "For I(action=connect), connects this local peering gateway (LPG) to another one in the same region.
       This operation must be called by the VCN administrator who is designated as
       the *requestor* in the peering relationship. The *acceptor* must implement
       an Identity and Access Management (IAM) policy that gives the requestor permission
@@ -48,7 +48,7 @@ options:
             - The action to perform on the LocalPeeringGateway.
         type: str
         required: true
-        choices: ["connect_local_peering_gateways"]
+        choices: ["connect"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -57,11 +57,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Perform action connect_local_peering_gateways on local_peering_gateway
+- name: Perform action connect on local_peering_gateway
   oci_network_local_peering_gateway_actions:
     local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
     peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
-    action: connect_local_peering_gateways
+    action: connect
 
 """
 
@@ -215,7 +215,7 @@ except ImportError:
 class LocalPeeringGatewayActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
-        connect_local_peering_gateways
+        connect
     """
 
     @staticmethod
@@ -234,7 +234,7 @@ class LocalPeeringGatewayActionsHelperGen(OCIActionsHelperBase):
             local_peering_gateway_id=self.module.params.get("local_peering_gateway_id"),
         )
 
-    def connect_local_peering_gateways(self):
+    def connect(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ConnectLocalPeeringGatewaysDetails
         )
@@ -278,9 +278,7 @@ def main():
         dict(
             local_peering_gateway_id=dict(aliases=["id"], type="str", required=True),
             peer_id=dict(type="str", required=True),
-            action=dict(
-                type="str", required=True, choices=["connect_local_peering_gateways"]
-            ),
+            action=dict(type="str", required=True, choices=["connect"]),
         )
     )
 

@@ -149,7 +149,7 @@
         remote_peering_connection_id: "{{ test_rpc1_id }}"
         peer_id: "{{ test_rpc2_id }}"
         peer_region_name: "{{ region2_name }}"
-        action: connect_remote_peering_connections
+        action: "{{ connect_remote_peering_connections_action }}"
       register: result
 
     - name: Assert that changed is true and RPC is peered
@@ -166,7 +166,7 @@
         remote_peering_connection_id: "{{ test_rpc1_id }}"
         peer_id: "{{ test_rpc2_id }}"
         peer_region_name: "{{ region2_name }}"
-        action: connect_remote_peering_connections
+        action: "{{ connect_remote_peering_connections_action }}"
       register: result
 
     - name: Assert that changed is false and RPC is peered

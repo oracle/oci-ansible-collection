@@ -28,21 +28,21 @@
           - result.changed == True
 
     - name: List all security rules in NSG (should be empty)
-      oci_network_security_rule_facts:
+      oci_network_security_group_security_rule_facts:
         network_security_group_id: "{{ nsg_id }}"
       register: result
 
     - name: Validate that new NSG has no rules
       assert:
         that:
-          - result.security_rules | length == 0
+          - result.network_security_group_security_rules | length == 0
 
     ## TEST ADD RULES
 
     - name: Add rules
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: add_network_security_group_security_rules
+        action: "{{ add_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule"
             source_type: CIDR_BLOCK
@@ -60,12 +60,12 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 2
+          - result.network_security_group_security_rule.security_rules | length == 2
 
     - name: Add rules - idempotency check
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: add_network_security_group_security_rules
+        action: "{{ add_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule"
             source_type: CIDR_BLOCK
@@ -83,12 +83,12 @@
       assert:
         that:
           - result.changed == False
-          - result.security_rule.security_rules | length == 2
+          - result.network_security_group_security_rule.security_rules | length == 2
 
     - name: Add additional rule - check mode
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: add_network_security_group_security_rules
+        action: "{{ add_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule"
             source_type: CIDR_BLOCK
@@ -112,12 +112,12 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 0
+          - result.network_security_group_security_rule.security_rules | length == 0
 
     - name: Add rules confirm that only additional rule is added
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: add_network_security_group_security_rules
+        action: "{{ add_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule"
             source_type: CIDR_BLOCK
@@ -140,27 +140,27 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 3
+          - result.network_security_group_security_rule.security_rules | length == 3
 
     - name: List all security rules in NSG
-      oci_network_security_rule_facts:
+      oci_network_security_group_security_rule_facts:
         network_security_group_id: "{{ nsg_id }}"
       register: result
 
     - name: Validate that only 3 rules are present
       assert:
         that:
-          - result.security_rules | length == 3
+          - result.network_security_group_security_rules | length == 3
 
     - set_fact:
-        first_security_rule_id: "{{ result.security_rules[0].id }}"
+        first_security_rule_id: "{{ result.network_security_group_security_rules[0].id }}"
 
     ## TEST UPDATE RULES
 
     - name: Update first rule - check mode
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: update_network_security_group_security_rules
+        action: "{{ update_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule - updated"
             source_type: CIDR_BLOCK
@@ -175,12 +175,12 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 0
+          - result.network_security_group_security_rule.security_rules | length == 0
 
     - name: Update first rule
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: update_network_security_group_security_rules
+        action: "{{ update_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule - updated"
             source_type: CIDR_BLOCK
@@ -194,15 +194,15 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 3
+          - result.network_security_group_security_rule.security_rules | length == 3
 
     - name: List all security rules in NSG
-      oci_network_security_rule_facts:
+      oci_network_security_group_security_rule_facts:
         network_security_group_id: "{{ nsg_id }}"
       register: result
 
     - set_fact:
-        first_security_rule: "{{ result.security_rules[0] }}"
+        first_security_rule: "{{ result.network_security_group_security_rules[0] }}"
 
     - name: Validate that rule was updated
       assert:
@@ -211,9 +211,9 @@
           - first_security_rule.source == "10.0.0.0/32"
 
     - name: Update first rule - idempotency check
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: update_network_security_group_security_rules
+        action: "{{ update_security_rule_action }}"
         security_rules:
           - description: "Test ingress security rule - updated"
             source_type: CIDR_BLOCK
@@ -227,14 +227,14 @@
       assert:
         that:
           - result.changed == False
-          - result.security_rule.security_rules | length == 3
+          - result.network_security_group_security_rule.security_rules | length == 3
 
     ## TEST REMOVE RULES
 
     - name: Remove a security rule by ID - check mode
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: remove_network_security_group_security_rules
+        action: "{{ remove_security_rule_action }}"
         security_rule_ids:
           - "{{ first_security_rule_id }}"
       check_mode: True
@@ -244,12 +244,12 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 0
+          - result.network_security_group_security_rule.security_rules | length == 0
 
     - name: Remove a security rule by ID
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: remove_network_security_group_security_rules
+        action: "{{ remove_security_rule_action }}"
         security_rule_ids:
           - "{{ first_security_rule_id }}"
       register: result
@@ -258,24 +258,24 @@
       assert:
         that:
           - result.changed == True
-          - result.security_rule.security_rules | length == 2
+          - result.network_security_group_security_rule.security_rules | length == 2
 
     - name: List all security rules in NSG
-      oci_network_security_rule_facts:
+      oci_network_security_group_security_rule_facts:
         network_security_group_id: "{{ nsg_id }}"
       register: result
 
     - name: Validate that rule was removed and there is one fewer now
       assert:
         that:
-          - result.security_rules | length == 2
-          - result.security_rules[0].id != first_security_rule_id
-          - result.security_rules[1].id != first_security_rule_id
+          - result.network_security_group_security_rules | length == 2
+          - result.network_security_group_security_rules[0].id != first_security_rule_id
+          - result.network_security_group_security_rules[1].id != first_security_rule_id
 
     - name: Remove a security rule by ID - idempotency check
-      oci_network_security_rule_actions:
+      oci_network_security_group_security_rule_actions:
         network_security_group_id: "{{ nsg_id }}"
-        action: remove_network_security_group_security_rules
+        action: "{{ remove_security_rule_action }}"
         security_rule_ids:
           - "{{ first_security_rule_id }}"
       register: result
@@ -284,7 +284,7 @@
       assert:
         that:
           - result.changed == False
-          - result.security_rule.security_rules | length == 2
+          - result.network_security_group_security_rule.security_rules | length == 2
 
     ## clean up
     - name: Delete NSG

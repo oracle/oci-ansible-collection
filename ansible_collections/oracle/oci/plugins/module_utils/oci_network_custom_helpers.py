@@ -27,7 +27,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class SecurityRuleActionsHelperCustom:
+class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
+    ADD_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION = "add"
+    UPDATE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION = "update"
+    REMOVE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION = "remove"
+
     def _add_network_security_group_rules_idempotency_check(self):
         existing_security_rules = self.list_security_rules()
         provided_security_rules = self.module.params.get("security_rules", [])
@@ -113,21 +117,21 @@ class SecurityRuleActionsHelperCustom:
 
         # the idempotency checks for these actions are custom since we aren't doing the regular
         # check for existence, we are checking if a requested resource is present within a list
-        if action == "add_network_security_group_security_rules":
+        if action == self.ADD_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION:
             action_idempotency_checks_fn = (
                 self._add_network_security_group_rules_idempotency_check
             )
             check_mode_response_resource = to_dict(
                 AddedNetworkSecurityGroupSecurityRules(security_rules=[])
             )
-        elif action == "update_network_security_group_security_rules":
+        elif action == self.UPDATE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION:
             action_idempotency_checks_fn = (
                 self._update_network_security_group_rules_idempotency_check
             )
             check_mode_response_resource = to_dict(
                 UpdatedNetworkSecurityGroupSecurityRules(security_rules=[])
             )
-        elif action == "remove_network_security_group_security_rules":
+        elif action == self.REMOVE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION:
             action_idempotency_checks_fn = (
                 self._remove_network_security_group_rules_idempotency_check
             )

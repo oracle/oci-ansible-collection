@@ -1,0 +1,95 @@
+---
+- block:
+  - name: Create dependency vcn with required parameters
+    oci_network_vcn:
+      cidr_block: "{{ '10.0.0.0/16' | oracle.oci.override(test_network_security_group_security_rule_create_dependency_vcn_cidr_block, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_network_security_group_security_rule_create_dependency_vcn_compartment_id, omit) }}"
+      display_name: "{{ ('MyVcn' + random_suffix_1024) | oracle.oci.override(test_network_security_group_security_rule_create_dependency_vcn_display_name, omit) }}"
+    register: result
+    when: skip_network_security_group_security_rule_create_dependency_vcn_test is not defined and skip_network_security_group_security_rule_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_network_security_group_security_rule_create_dependency_vcn_test is not defined and skip_network_security_group_security_rule_dependencies is not defined
+  - set_fact:
+      dependency_vcn: "{{ result.vcn }}"
+      dependency_vcn_id: "{{ result.vcn.id }}"
+    when: skip_network_security_group_security_rule_create_dependency_vcn_test is not defined and skip_network_security_group_security_rule_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ network_security_group_security_rule_create_dependency_vcn_custom_assertions }}"
+    when: network_security_group_security_rule_create_dependency_vcn_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency network_security_group with required parameters
+    oci_network_security_group:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_network_security_group_security_rule_create_dependency_network_security_group_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_network_security_group_security_rule_create_dependency_network_security_group_display_name, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_network_security_group_security_rule_create_dependency_network_security_group_vcn_id, omit) }}"
+    register: result
+    when: skip_network_security_group_security_rule_create_dependency_network_security_group_test is not defined and skip_network_security_group_security_rule_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_network_security_group_security_rule_create_dependency_network_security_group_test is not defined and skip_network_security_group_security_rule_dependencies is not defined
+  - set_fact:
+      dependency_network_security_group: "{{ result.network_security_group }}"
+      dependency_network_security_group_id: "{{ result.network_security_group.id }}"
+    when: skip_network_security_group_security_rule_create_dependency_network_security_group_test is not defined and skip_network_security_group_security_rule_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ network_security_group_security_rule_create_dependency_network_security_group_custom_assertions }}"
+    when: network_security_group_security_rule_create_dependency_network_security_group_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List network_security_group_security_rules
+    oci_network_security_group_security_rule_facts:
+      network_security_group_id: "{{ dependency_network_security_group_id | oracle.oci.override(test_network_security_group_security_rule_list_network_security_group_id, omit) }}"
+    register: result
+    when: skip_network_security_group_security_rule_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.network_security_group_security_rules | length > 0
+    when: skip_network_security_group_security_rule_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.direction is defined
+        - item.protocol is defined
+    with_items: "{{ result.network_security_group_security_rules }}"
+    when: skip_network_security_group_security_rule_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ network_security_group_security_rule_list_custom_assertions }}"
+    when: network_security_group_security_rule_list_custom_assertions is defined
+
+  always:
+
+    - name: Delete dependency network_security_group
+      oci_network_security_group:
+        network_security_group_id: "{{ dependency_network_security_group_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_network_security_group_security_rule_delete_dependency_network_security_group_test is not defined and skip_network_security_group_security_rule_dependencies is not defined and dependency_network_security_group_id is defined
+
+    - name: Delete dependency vcn
+      oci_network_vcn:
+        vcn_id: "{{ dependency_vcn_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_network_security_group_security_rule_delete_dependency_vcn_test is not defined and skip_network_security_group_security_rule_dependencies is not defined and dependency_vcn_id is defined
