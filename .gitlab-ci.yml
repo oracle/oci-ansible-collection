@@ -67,14 +67,28 @@ integration_tests_set_1:
   variables:
     set_no: 0
     targets: "integration_test_targets"
-    total_target_sets: 2
+    total_target_sets: 4
 
 integration_tests_set_2:
   <<: *integration_tests_job_def
   variables:
     set_no: 1
     targets: "integration_test_targets"
-    total_target_sets: 2
+    total_target_sets: 4
+
+integration_tests_set_3:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 2
+    targets: "integration_test_targets"
+    total_target_sets: 4
+
+integration_tests_set_4:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 3
+    targets: "integration_test_targets"
+    total_target_sets: 4
 
 # There are some integration tests that cannot be run in parallel due to various constraints like tests which update
 # a global resource, limit issues etc. So we separate these tests and run them in a single runner so that they cannot

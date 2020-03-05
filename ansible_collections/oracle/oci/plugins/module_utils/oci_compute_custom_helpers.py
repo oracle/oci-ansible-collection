@@ -11,6 +11,13 @@ __metaclass__ = type
 from ansible.module_utils._text import to_text
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
+try:
+    from oci.core.models import ImageShapeCompatibilityEntry
+
+    HAS_OCI_PY_SDK = True
+except ImportError:
+    HAS_OCI_PY_SDK = False
+
 
 class AppCatalogSubscriptionHelperCustom:
     def __init__(self, module, resource_type, service_client_class, namespace):
@@ -101,3 +108,32 @@ class BootVolumeAttachmentHelperCustom:
         return super(
             BootVolumeAttachmentHelperCustom, self
         ).get_exclude_attributes() + ["display_name"]
+
+
+class ImageHelperCustom:
+    def get_exclude_attributes(self):
+        exclude_attributes = super(ImageHelperCustom, self).get_exclude_attributes()
+        # exclude the attributes from the create model which are not present in the get model for idempotency check
+        return exclude_attributes + [
+            "instance_id",
+            "image_source_details",
+        ]
+
+
+class ImageShapeCompatibilityEntryHelperCustom:
+    def get_resource(self):
+        # This resource does not have a get or list method. `update` and `delete` does not return anything and
+        # updating even if the entry exists does not throw any error. Same with delete. So choosing to make the API
+        # call always. The customisation for `get_resource` is only to make the other functions work and to return
+        # some data to the user.
+        return oci_common_utils.get_default_response_from_resource(
+            resource=oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, ImageShapeCompatibilityEntry
+            )
+        )
+
+    def is_update_necessary(self):
+        # This resource does not have a get or list method. So no way to check if it already exists or not. So always
+        # update. Also making the API call even if the entry exists does not throw any error. So choosing to make
+        # the API call always.
+        return True

@@ -173,6 +173,8 @@
         - boot_volume
         - boot_volume_backup
         - boot_volume_attachment
+        - image
+        - image_shape_compatibility_entry
     - import_tasks: oci_compute_instance_tests.yaml
       tags:
         - instance
@@ -197,6 +199,8 @@
         - boot_volume
         - boot_volume_backup
         - boot_volume_attachment
+        - image
+        - image_shape_compatibility_entry
     - name: Assert that the setup instance is stopped
       assert:
         that:
@@ -205,6 +209,8 @@
         - boot_volume
         - boot_volume_backup
         - boot_volume_attachment
+        - image
+        - image_shape_compatibility_entry
     - import_tasks: oci_blockstorage_boot_volume_tests.yaml
       tags:
         - boot_volume
@@ -242,7 +248,49 @@
           - result.changed == True
       tags:
         - boot_volume_attachment
+    - name: Create an image from this stopped instance with `PARAVIRTUALIZED` launch_mode
+      oci_compute_image:
+        name: "{{test_image_name}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{setup_instance_id}}"
+        freeform_tags: "{{ test_default_freeform_tags }}"
+        defined_tags: "{{ test_default_defined_tags }}"
+        launch_mode: "PARAVIRTUALIZED"
+      register: result
+      tags:
+        - image
+        - image_shape_compatibility_entry
+    - set_fact:
+        setup_image_id: "{{result.image.id}}"
+        dependency_image_id: "{{result.image.id}}"
+      tags:
+        - image
+        - image_shape_compatibility_entry
+    - name: Assert that an image was created
+      assert:
+        that:
+          - result.changed == True
+          - result.image.display_name == "{{test_image_name}}"
+          - result.image.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
+          - result.image.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
+          - result.image.launch_mode == "PARAVIRTUALIZED"
+      tags:
+        - image
+        - image_shape_compatibility_entry
+    - import_tasks: oci_compute_image_tests.yaml
+      tags:
+        - image
+    - import_tasks: oci_compute_image_shape_compatibility_entry_tests.yaml
+      tags:
+        - image_shape_compatibility_entry
   always:
+    - name: Delete setup image
+      oci_compute_image:
+        id: "{{ setup_image_id }}"
+        state: absent
+      tags:
+        - image
+        - image_shape_compatibility_entry
     - import_tasks: oci_compute_instance_teardown.yaml
       tags:
         - instance_teardown
@@ -255,6 +303,8 @@
         - instance_console_history
         - instance_console_history_content
         - device
+        - image
+        - image_shape_compatibility_entry
   tags:
     - instance_full
 
@@ -273,3 +323,6 @@
         - instance_credentials
   tags:
     - instance_full
+- import_tasks: oci_compute_shape_tests.yaml
+  tags:
+    - shape

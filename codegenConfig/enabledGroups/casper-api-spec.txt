@@ -11,3 +11,6 @@
 udx-1328
 udx-682
 udx-847
+
+# compartment_id optional parameter for namespace
+udx-1257

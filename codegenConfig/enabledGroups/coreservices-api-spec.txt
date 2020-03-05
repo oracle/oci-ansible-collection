@@ -30,3 +30,6 @@ udx-588
 # Boot Volume Backup & Clone
 udx-775
 udx-1329
+
+# ImageShapeCompatibilityEntry
+udx-709

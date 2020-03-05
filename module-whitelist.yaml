@@ -129,6 +129,12 @@ moduleWhitelist:
   - oci_blockstorage_boot_volume_backup
   - oci_blockstorage_boot_volume_backup_facts
   - oci_blockstorage_boot_volume_backup_actions
+  - oci_compute_image
+  - oci_compute_image_facts
+  - oci_compute_image_actions
+  - oci_compute_image_shape_compatibility_entry
+  - oci_compute_shape_facts
+  - oci_object_storage_namespace_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

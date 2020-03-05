@@ -22,8 +22,30 @@
         - "{{ item }}"
     with_items: "{{ instance_create_dependency_vcn_custom_assertions }}"
     when: instance_create_dependency_vcn_custom_assertions is defined
-  # dependency resource image has no Create operation
 
+# ==================================================================================================== #
+
+  - name: Create dependency image with required parameters
+    oci_compute_image:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_create_dependency_image_compartment_id, omit) }}"
+      display_name: "{{ ('MyCustomImage' + random_suffix_1024) | oracle.oci.override(test_instance_create_dependency_image_display_name, omit) }}"
+    register: result
+    when: skip_instance_create_dependency_image_test is not defined and skip_instance_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_create_dependency_image_test is not defined and skip_instance_dependencies is not defined
+  - set_fact:
+      dependency_image: "{{ result.image }}"
+      dependency_image_id: "{{ result.image.id }}"
+    when: skip_instance_create_dependency_image_test is not defined and skip_instance_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_create_dependency_image_custom_assertions }}"
+    when: instance_create_dependency_image_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -627,6 +649,13 @@
         state: absent
       ignore_errors: yes
       when: skip_instance_delete_dependency_boot_volume_test is not defined and skip_instance_dependencies is not defined and dependency_boot_volume_id is defined
+
+    - name: Delete dependency image
+      oci_compute_image:
+        image_id: "{{ dependency_image_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_delete_dependency_image_test is not defined and skip_instance_dependencies is not defined and dependency_image_id is defined
 
     - name: Delete dependency vcn
       oci_network_vcn:
