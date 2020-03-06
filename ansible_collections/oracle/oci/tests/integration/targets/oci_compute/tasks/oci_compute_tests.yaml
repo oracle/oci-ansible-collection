@@ -69,11 +69,10 @@
           - result.instance.lifecycle_state == "RUNNING"
           - result.instance.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
           - result.instance.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
-          # TODO: Enable when this customisation is added to the instance module
-#          - result.instance.primary_private_ip is defined
-#          - result.instance.primary_private_ip != ""
-#          - result.instance.primary_public_ip is defined
-#          - result.instance.primary_public_ip != ""
+          - result.instance.primary_private_ip is defined
+          - result.instance.primary_private_ip != ""
+          - result.instance.primary_public_ip is defined
+          - result.instance.primary_public_ip != ""
 
     - name: Create new compute instance - idempotence test
       oci_compute_instance:
@@ -106,11 +105,10 @@
           - result.instance.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
           - result.instance.id == my_instance_ocid
           - result.instance.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
-          # TODO: Enable when this customisation is added to the instance module
-#          - result.instance.primary_private_ip is defined
-#          - result.instance.primary_private_ip != ""
-#          - result.instance.primary_public_ip is defined
-#          - result.instance.primary_public_ip != ""
+          - result.instance.primary_private_ip is defined
+          - result.instance.primary_private_ip != ""
+          - result.instance.primary_public_ip is defined
+          - result.instance.primary_public_ip != ""
 
     # Update the defined tag's value
     - name: Update defined tag
@@ -449,19 +447,18 @@
 
     # ====================================================================================================
 
-    # TODO: Enable these when this customisation is added to instance module
-    ## Get IPs
-#    - name: Get private and public IPs
-#      oci_compute_instance_facts:
-#          id: "{{my_instance_ocid}}"
-#      register: result
-#    - name: Assert that IPs are returned and not empty
-#      assert:
-#        that:
-#          - "'primary_private_ip' in result.instances[0]"
-#          - result.instances[0].primary_private_ip != ""
-#          - "'primary_public_ip' in result.instances[0]"
-#          - result.instances[0].primary_public_ip != ""
+    # Get IPs
+    - name: Get private and public IPs
+      oci_compute_instance_facts:
+          id: "{{my_instance_ocid}}"
+      register: result
+    - name: Assert that IPs are returned and not empty
+      assert:
+        that:
+          - "'primary_private_ip' in result.instances[0]"
+          - result.instances[0].primary_private_ip != ""
+          - "'primary_public_ip' in result.instances[0]"
+          - result.instances[0].primary_public_ip != ""
 
     - name: Delete the instance
       oci_compute_instance:

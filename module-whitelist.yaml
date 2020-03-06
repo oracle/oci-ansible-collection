@@ -201,13 +201,7 @@ moduleWhitelist:
   - oci_container_engine_node_pool
   - oci_container_engine_node_pool_facts
   - oci_container_engine_node_pool_options_facts
-operationOverrides:
-  /publicIps/actions/getByIpAddress:
-    path: "/publicIps/getByIpAddress"
-    httpMethod: "GET"
-  /publicIps/actions/getByPrivateIpId:
-    path: "/publicIps/getByPrivateIpId"
-    httpMethod: "GET"
+
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -292,6 +286,15 @@ extraFactsModuleParameters:
         isUsedByList: true
 extraFactsModuleReturnProperties:
   core:
+    instance:
+      - name: primary_private_ip
+        description: The private IP of the primary VNIC attached to this instance
+        datatype: str
+        example: "10.0.0.10"
+      - name: primary_public_ip
+        description: The public IP of the primary VNIC attached to this instance
+        datatype: str
+        example: "140.34.93.209"
     volume_attachment:
       - name: iscsi_attach_commands
         description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
@@ -309,6 +312,15 @@ extraFactsModuleReturnProperties:
         ]'
 extraResourceModuleReturnProperties:
   core:
+    instance:
+      - name: primary_private_ip
+        description: The private IP of the primary VNIC attached to this instance
+        datatype: str
+        example: "10.0.0.10"
+      - name: primary_public_ip
+        description: The public IP of the primary VNIC attached to this instance
+        datatype: str
+        example: "140.34.93.209"
     volume_attachment:
       - name: iscsi_attach_commands
         description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.

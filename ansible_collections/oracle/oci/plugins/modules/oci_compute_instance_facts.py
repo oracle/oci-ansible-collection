@@ -367,6 +367,18 @@ instances:
             returned: on success
             type: string
             sample: 2018-05-25T21:10:29.600Z
+        primary_private_ip:
+            description:
+                - The private IP of the primary VNIC attached to this instance
+            returned: on success
+            type: string
+            sample: 10.0.0.10
+        primary_public_ip:
+            description:
+                - The public IP of the primary VNIC attached to this instance
+            returned: on success
+            type: string
+            sample: 140.34.93.209
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -401,7 +413,9 @@ instances:
         "agent_config": {
             "is_monitoring_disabled": true
         },
-        "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z"
+        "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
+        "primary_private_ip": 10.0.0.10,
+        "primary_public_ip": 140.34.93.209
     }]
 """
 

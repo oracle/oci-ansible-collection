@@ -18,10 +18,21 @@ try:
     from oci.core import VirtualNetworkClient
     from oci.util import to_dict
     from oci.core.models import ImageShapeCompatibilityEntry
+    from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
+
+logger = oci_common_utils.get_logger("oci_compute_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
 
 
 class AppCatalogSubscriptionHelperCustom:
@@ -77,7 +88,59 @@ class AppCatalogSubscriptionHelperCustom:
         ]
 
 
+def get_primary_ips(compute_client, network_client, instance):
+    if not instance:
+        return None, None
+
+    primary_public_ip = None
+    primary_private_ip = None
+
+    vnic_attachments = oci_common_utils.list_all_resources(
+        compute_client.list_vnic_attachments,
+        compartment_id=instance["compartment_id"],
+        instance_id=instance["id"],
+    )
+
+    if vnic_attachments:
+        for vnic_attachment in vnic_attachments:
+            if vnic_attachment.lifecycle_state == "ATTACHED":
+                try:
+                    vnic = network_client.get_vnic(vnic_attachment.vnic_id).data
+                    if vnic.is_primary:
+                        if vnic.public_ip:
+                            primary_public_ip = vnic.public_ip
+                        if vnic.private_ip:
+                            primary_private_ip = vnic.private_ip
+                except ServiceError as ex:
+                    if ex.status == 404:
+                        _debug(
+                            "Either VNIC with ID %s does not exist or you are not authorized to access it.",
+                            vnic_attachment.vnic_id,
+                        )
+
+    return primary_public_ip, primary_private_ip
+
+
+def add_primary_ip_info(module, compute_client, network_client, instance):
+    try:
+        primary_public_ip, primary_private_ip = get_primary_ips(
+            compute_client, network_client, instance
+        )
+        instance["primary_public_ip"] = primary_public_ip
+        instance["primary_private_ip"] = primary_private_ip
+    except ServiceError as ex:
+        instance["primary_public_ip"] = None
+        instance["primary_private_ip"] = None
+        module.fail_json(msg=ex.message)
+
+
 class InstanceHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(InstanceHelperCustom, self).__init__(*args, **kwargs)
+        self.network_client = oci_config_utils.create_service_client(
+            self.module, VirtualNetworkClient
+        )
+
     def get_exclude_attributes(self):
         return super(InstanceHelperCustom, self).get_exclude_attributes() + [
             "create_vnic_details",
@@ -100,6 +163,33 @@ class InstanceHelperCustom:
             launch_options = dict()
         create_model_dict["launch_options"] = launch_options
         return create_model_dict
+
+    def prepare_result(self, *args, **kwargs):
+        result = super(InstanceHelperCustom, self).prepare_result(*args, **kwargs)
+        if result.get("instance"):
+            add_primary_ip_info(
+                self.module, self.client, self.network_client, result["instance"]
+            )
+        return result
+
+
+class InstanceFactsHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(InstanceFactsHelperCustom, self).__init__(*args, **kwargs)
+        self.network_client = oci_config_utils.create_service_client(
+            self.module, VirtualNetworkClient
+        )
+
+    def get(self, *args, **kwargs):
+        instance = super(InstanceFactsHelperCustom, self).get(*args, **kwargs)
+        add_primary_ip_info(self.module, self.client, self.network_client, instance)
+        return instance
+
+    def list(self, *args, **kwargs):
+        instances = super(InstanceFactsHelperCustom, self).list(*args, **kwargs)
+        for instance in instances:
+            add_primary_ip_info(self.module, self.client, self.network_client, instance)
+        return instances
 
 
 class InstanceConsoleHistoryContentFactsHelperCustom:
