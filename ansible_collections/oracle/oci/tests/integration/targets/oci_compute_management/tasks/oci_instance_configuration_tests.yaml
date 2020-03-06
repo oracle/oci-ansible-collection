@@ -1,0 +1,330 @@
+---
+## Cleanup before test run
+- name: Get facts about all instance pools in compartment
+  oci_compute_management_instance_pool_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+  register: currinstancepools
+
+- set_fact:
+    todeleteinstancepool_id: "{{item.id}}"
+  when: (item.display_name == test_mod_instance_pool_name or item.display_name == test_instance_pool_name) and (item.lifecycle_state != "TERMINATED")
+  with_items: "{{currinstancepools.instance_pools}}"
+  ignore_errors: yes
+
+
+- debug:
+    msg: "Instance pool to delete: {{todeleteinstancepool_id}}"
+  ignore_errors: yes
+
+- name: Delete any left over instance pools
+  oci_compute_management_instance_pool:
+    id: "{{todeleteinstancepool_id}}"
+    state: 'absent'
+  ignore_errors: yes
+
+- name: Get facts about all instance configurations in compartment
+  oci_compute_management_instance_configuration_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+  register: currinstanceconfigs
+
+- set_fact:
+    todeleteinstanceconfig_id: "{{item.id}}"
+  when: (item.display_name == test_mod_instance_configuration_name or item.display_name == test_instance_configuration_name)
+  with_items: "{{currinstanceconfigs.instance_configurations}}"
+  ignore_errors: yes
+
+- debug:
+    msg: "Instance configuration to delete: {{todeleteinstanceconfig_id}}"
+  ignore_errors: yes
+
+- name: Delete any left over instance configurations
+  oci_compute_management_instance_configuration:
+    id: "{{todeleteinstanceconfig_id}}"
+    state: 'absent'
+  ignore_errors: yes
+
+- block:
+
+    # Test Instance configurations
+
+    ## Create/Launch
+    - name: Create a new basic compute instance configuration that only has launch_details and VNIC configuration
+      oci_compute_management_instance_configuration:
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{test_instance_configuration_name}}"
+        instance_details:
+          instance_type: "compute"
+          launch_details:
+            compartment_id: "{{test_compartment_ocid}}"
+            create_vnic_details:
+              assign_public_ip: True
+              display_name: "{{test_instance_name}}"
+              skip_source_dest_check: False
+            display_name: "{{test_instance_name}}"
+            shape: "{{ test_instance_shape }}"
+            source_details:
+              source_type: "image"
+              image_id: "{{image_ocid}}"
+              boot_volume_size_in_gbs: 100
+            freeform_tags: "{{ test_default_freeform_tags }}"
+      register: result
+
+    - set_fact:
+        my_instance_config_ocid: "{{result.instance_configuration.id}}"
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.instance_configuration.display_name == "{{test_instance_configuration_name}}"
+        - result.instance_configuration.instance_details.launch_details.source_details.boot_volume_size_in_gbs == 100
+
+    - name: Launch instance using the instance configuration
+      oci_compute_management_instance_configuration_actions:
+        instance_configuration_id: "{{ my_instance_config_ocid }}"
+        instance_type: "compute"
+        launch_details:
+          availability_domain: "{{ test_availability_domain }}"
+          create_vnic_details:
+            subnet_id: "{{ common_subnet_id }}"
+        action: launch
+      register: result
+
+    - set_fact:
+        instance_configuration_instance_id: "{{ result.instance.id }}"
+
+    - name: Assert that the instance is created
+      assert:
+        that:
+          - result.changed == True
+          - result.instance.id is defined
+
+    - name: Create instance configuration from instance
+      oci_compute_management_instance_configuration:
+        source: "INSTANCE"
+        display_name: "ansible-test-instance-configuraiton-from-instance-{{ random_suffix_1024 }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{ instance_configuration_instance_id }}"
+      register: result
+
+    - set_fact:
+        instance_configuration_from_instance_id: "{{ result.instance_configuration.id }}"
+
+    - name: Assert that the instance configuration from instance is created
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Create instance configuration from instance (idempotence)
+      oci_compute_management_instance_configuration:
+        source: "INSTANCE"
+        display_name: "ansible-test-instance-configuraiton-from-instance-{{ random_suffix_1024 }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{ instance_configuration_instance_id }}"
+      register: result
+
+    - name: Assert that the instance configuration is not created again
+      assert:
+        that:
+          - result.changed == False
+          - result.instance_configuration.id == instance_configuration_from_instance_id
+
+    - name: Delete instance configuraiton created from instance
+      oci_compute_management_instance_configuration:
+        id: "{{instance_configuration_from_instance_id}}"
+        state: 'absent'
+      register: result
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+          - result.instance_configuration.id == instance_configuration_from_instance_id
+
+    - name: Delete instance
+      oci_compute_instance:
+        id: "{{ instance_configuration_instance_id }}"
+        state: absent
+      register: result
+
+    - name: Assert that the instance is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Get all instance configurations in test compartment
+      oci_compute_management_instance_configuration_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+    - set_fact:
+        facts_of_test_inst_conf: "{{item}}"
+      with_items: "{{result.instance_configurations}}"
+      when: item.id == my_instance_config_ocid
+    - name: Assert that the test instance configuration we created was retrieved
+      assert:
+        that:
+        - facts_of_test_inst_conf is defined
+        - facts_of_test_inst_conf.id == my_instance_config_ocid
+
+    - name: Get instance configurations in test compartment using display_name filter
+      oci_compute_management_instance_configuration_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{test_instance_configuration_name}}"
+      register: result
+    - set_fact:
+        facts_of_test_inst_conf_using_disp_name: "{{item}}"
+      with_items: "{{result.instance_configurations}}"
+      when: item.id == my_instance_config_ocid
+    - name: Assert that the test instance configuration we created was retrieved
+      assert:
+        that:
+        - facts_of_test_inst_conf_using_disp_name is defined
+        - facts_of_test_inst_conf_using_disp_name.id == my_instance_config_ocid
+
+
+    - name: Get a specific instance configuration
+      oci_compute_management_instance_configuration_facts:
+        id: "{{my_instance_config_ocid}}"
+      register: result
+    - name: Assert that the test instance configuration we created was retrieved
+      assert:
+        that:
+        - facts_of_test_inst_conf is defined
+        - facts_of_test_inst_conf.id == my_instance_config_ocid
+
+    - name: Delete the instance configuration
+      oci_compute_management_instance_configuration:
+        id: "{{my_instance_config_ocid}}"
+        state: 'absent'
+      register: result
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.instance_configuration.id == my_instance_config_ocid
+
+  rescue:
+
+    - name: Delete instance
+      oci_compute_instance:
+        id: "{{ instance_configuration_instance_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the instance configuration
+      oci_compute_management_instance_configuration:
+        id: "{{my_instance_config_ocid}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Delete instance configuraiton created from instance
+      oci_compute_management_instance_configuration:
+        id: "{{instance_configuration_from_instance_id}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"
+
+- block:
+
+    - name: Create a more complex compute instance configuration that has launch_details, block volumes and secondary VNICs
+      oci_compute_management_instance_configuration:
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{test_instance_configuration_name}}"
+        instance_details:
+          instance_type: "compute"
+          launch_details:
+            compartment_id: "{{test_compartment_ocid}}"
+            create_vnic_details:
+              assign_public_ip: True
+              display_name: "{{test_instance_name}}"
+              skip_source_dest_check: False
+            display_name: "{{test_instance_name}}"
+            shape: "{{ test_instance_shape }}"
+            source_details:
+              source_type: "image"
+              image_id: "{{image_ocid}}"
+            freeform_tags: "{{ test_default_freeform_tags }}"
+          secondary_vnics:
+          - display_name: "{{test_instance_name}}_vnic_1"
+            nic_index: 1
+            create_vnic_details:
+              assign_public_ip: True
+              hostname_label: foo
+          block_volumes:
+          - create_details:
+              source_details:
+                type: "volume"
+                id: "ocid1.volume.oc1.iad.abuwcljrwqc6xpvihcqxl5gopp4sbi6ilbd5lvnllf5m4s4g2y3bndxdto5a"
+            attach_details:
+              type: "iscsi"
+      register: result
+    - set_fact:
+        my_instance_config_adv_ocid: "{{result.instance_configuration.id}}"
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.instance_configuration.display_name == "{{test_instance_configuration_name}}"
+
+    - name: Create a more complex compute instance configuration that has launch_details, block volumes and secondary VNICs (Idempotence)
+      oci_compute_management_instance_configuration:
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{test_instance_configuration_name}}"
+        instance_details:
+          instance_type: "compute"
+          launch_details:
+            compartment_id: "{{test_compartment_ocid}}"
+            create_vnic_details:
+              assign_public_ip: True
+              display_name: "{{test_instance_name}}"
+              skip_source_dest_check: False
+            display_name: "{{test_instance_name}}"
+            shape: "{{ test_instance_shape }}"
+            source_details:
+              source_type: "image"
+              image_id: "{{image_ocid}}"
+            freeform_tags: "{{ test_default_freeform_tags }}"
+          secondary_vnics:
+            - display_name: "{{test_instance_name}}_vnic_1"
+              nic_index: 1
+              create_vnic_details:
+                assign_public_ip: True
+                hostname_label: foo
+          block_volumes:
+            - create_details:
+                source_details:
+                  type: "volume"
+                  id: "ocid1.volume.oc1.iad.abuwcljrwqc6xpvihcqxl5gopp4sbi6ilbd5lvnllf5m4s4g2y3bndxdto5a"
+              attach_details:
+                type: "iscsi"
+      register: result
+
+    - name: Assert that the instance configuration is not created again
+      assert:
+        that:
+          - result.changed == False
+
+    - name: Delete the instance configuration
+      oci_compute_management_instance_configuration:
+        id: "{{my_instance_config_adv_ocid}}"
+        state: 'absent'
+      register: result
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.instance_configuration.id == my_instance_config_adv_ocid
+
+  rescue:
+
+    - name: Delete the instance configuration
+      oci_compute_management_instance_configuration:
+        id: "{{my_instance_config_adv_ocid}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

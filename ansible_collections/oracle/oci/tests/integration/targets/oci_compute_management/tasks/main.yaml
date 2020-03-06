@@ -1,0 +1,6 @@
+- import_tasks: oci_instance_configuration_tests.yaml
+  tags:
+    - instance_configuration
+- import_tasks: oci_instance_pool_tests.yaml
+  tags:
+    - instance_pool

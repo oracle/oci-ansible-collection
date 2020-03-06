@@ -1,0 +1,8 @@
+test_image_name: "ansible-test-image-{{random_suffix_1024}}"
+test_instance_name: "ansible-test-instance-lengthy-{{random_suffix_1024}}"
+
+test_instance_configuration_name: "ansible-test-instance-configuration-lengthy-{{random_suffix_1024}}"
+test_mod_instance_configuration_name: "ansible-mod-test-instance-configuration-lengthy-{{random_suffix_1024}}"
+
+test_instance_pool_name: "ansible-test-instance-pool-lengthy-{{random_suffix_1024}}"
+test_mod_instance_pool_name: "ansible-mod-test-instance-pool-lengthy-{{random_suffix_1024}}"

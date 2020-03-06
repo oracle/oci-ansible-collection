@@ -1,0 +1,111 @@
+---
+- block:
+  - name: Create dependency instance_configuration with required parameters
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_configuration_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_configuration_display_name, omit) }}"
+    register: result
+    when: skip_instance_pool_instance_create_dependency_instance_configuration_test is not defined and skip_instance_pool_instance_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_pool_instance_create_dependency_instance_configuration_test is not defined and skip_instance_pool_instance_dependencies is not defined
+  - set_fact:
+      dependency_instance_configuration: "{{ result.instance_configuration }}"
+      dependency_instance_configuration_id: "{{ result.instance_configuration.id }}"
+    when: skip_instance_pool_instance_create_dependency_instance_configuration_test is not defined and skip_instance_pool_instance_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_pool_instance_create_dependency_instance_configuration_custom_assertions }}"
+    when: instance_pool_instance_create_dependency_instance_configuration_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_instance_pool_instance_create_dependency_instance_pool_placement_configurations:
+      - availability_domain: "{{ 'Uocm:PHX-AD-1' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations_availability_domain, omit) }}"
+        primary_subnet_id: "{{ 'ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations_primary_subnet_id, omit) }}"
+        secondary_vnic_subnets:
+        - display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_secondary_vnic_subnets_display_name, omit) }}"
+          subnet_id: "{{ 'ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_secondary_vnic_subnets_subnet_id, omit) }}"
+    when: test_instance_pool_instance_create_dependency_instance_pool_placement_configurations is not defined
+
+  - name: Create dependency instance_pool with required parameters
+    oci_compute_management_instance_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_compartment_id, omit) }}"
+      display_name: "{{ ('autoscaling-instance-pool' + random_suffix_1024) | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_display_name, omit) }}"
+      instance_configuration_id: "{{ dependency_instance_configuration_id | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_instance_configuration_id, omit) }}"
+      placement_configurations: "{{ '[]' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations, omit) }}"
+      size: "{{ 15 | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_size, omit) }}"
+    register: result
+    when: skip_instance_pool_instance_create_dependency_instance_pool_test is not defined and skip_instance_pool_instance_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_pool_instance_create_dependency_instance_pool_test is not defined and skip_instance_pool_instance_dependencies is not defined
+  - set_fact:
+      dependency_instance_pool: "{{ result.instance_pool }}"
+      dependency_instance_pool_id: "{{ result.instance_pool.id }}"
+    when: skip_instance_pool_instance_create_dependency_instance_pool_test is not defined and skip_instance_pool_instance_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_pool_instance_create_dependency_instance_pool_custom_assertions }}"
+    when: instance_pool_instance_create_dependency_instance_pool_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List instance_pool_instances
+    oci_compute_management_instance_pool_instance_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_pool_instance_list_compartment_id, omit) }}"
+      instance_pool_id: "{{ dependency_instance_pool_id | oracle.oci.override(test_instance_pool_instance_list_instance_pool_id, omit) }}"
+    register: result
+    when: skip_instance_pool_instance_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.instance_pool_instances | length > 0
+    when: skip_instance_pool_instance_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.instance_configuration_id is defined
+        - item.region is defined
+        - item.state is defined
+        - item.time_created is defined
+    with_items: "{{ result.instance_pool_instances }}"
+    when: skip_instance_pool_instance_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_pool_instance_list_custom_assertions }}"
+    when: instance_pool_instance_list_custom_assertions is defined
+
+  always:
+
+    - name: Delete dependency instance_pool
+      oci_compute_management_instance_pool:
+        instance_pool_id: "{{ dependency_instance_pool_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_pool_instance_delete_dependency_instance_pool_test is not defined and skip_instance_pool_instance_dependencies is not defined and dependency_instance_pool_id is defined
+
+    - name: Delete dependency instance_configuration
+      oci_compute_management_instance_configuration:
+        instance_configuration_id: "{{ dependency_instance_configuration_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_pool_instance_delete_dependency_instance_configuration_test is not defined and skip_instance_pool_instance_dependencies is not defined and dependency_instance_configuration_id is defined

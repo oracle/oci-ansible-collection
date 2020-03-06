@@ -335,3 +335,79 @@ test_public_ip_update_optional_required_private_ip_id: null
 # variables for oci_network_security_group_vnic_tests.yaml
 skip_network_security_group_vnic_dependencies: yes
 test_network_security_group_vnic_list_network_security_group_id: "{{ setup_instance_nsg_id }}"
+
+# variables for oci_compute_management_instance_configuration_setup.yaml
+test_instance_configuration_name: "setup-ansible-test-instance-configuration-{{random_suffix_1024}}"
+
+# variables for oci_compute_management_instance_configuration_tests.yaml
+# Skip the dependencies since the dependency instance creation fails since the dependency resources are creation with
+# only the required params and some of the params are required even though they are not marked as required explicitly.
+# For the same reason disable the create instance configuration tests which use only required parameters and use the
+# config created in oci_compute_management_instance_configuration_setup.yaml for the update and delete using name tests.
+skip_instance_configuration_dependencies: yes
+skip_instance_configuration_create_check_mode_test: yes
+skip_instance_configuration_create_required_original_test: yes
+skip_instance_configuration_create_required_idempotency_test: yes
+test_instance_configuration_update_using_name_optional_required_display_name: "{{ test_instance_configuration_name }}"
+test_instance_configuration_delete_required_display_name: "{{ test_instance_configuration_name }}"
+test_instance_configuration_create_optional_required_instance_details:
+  instance_type: "compute"
+  launch_details:
+    compartment_id: "{{test_compartment_ocid}}"
+    create_vnic_details:
+      assign_public_ip: True
+      display_name: "{{test_instance_name}}"
+      skip_source_dest_check: False
+    display_name: "{{test_instance_name}}"
+    shape: "{{ test_instance_shape }}"
+    source_details:
+      source_type: "image"
+      image_id: "{{image_ocid}}"
+    freeform_tags: "{{ test_default_freeform_tags }}"
+  secondary_vnics:
+    - display_name: "{{test_instance_name}}_vnic_1"
+      nic_index: 1
+      create_vnic_details:
+        assign_public_ip: True
+        hostname_label: foo
+  block_volumes:
+    - create_details:
+        source_details:
+          type: "volume"
+          id: "ocid1.volume.oc1.iad.abuwcljrwqc6xpvihcqxl5gopp4sbi6ilbd5lvnllf5m4s4g2y3bndxdto5a"
+      attach_details:
+        type: "iscsi"
+test_instance_configuration_create_optional_required_source: null
+test_instance_configuration_create_optional_required_instance_id: null
+
+# variables for oci_compute_management_instance_pool_setup.yaml
+test_instance_pool_instance_configuration_name: "test-instance-configuration-{{random_suffix_1024}}"
+
+# variables for oci_compute_management_instance_pool_tests.yaml
+# Skip the dependencies for the same reason that we skipped the dependencies for instance configuration tests but for
+# instance configuration. Use the instance configuration created manually in
+# oci_compute_management_instance_pool_setup.yaml instead.
+skip_instance_pool_dependencies: yes
+test_instance_pool_create_required_size: 1
+test_instance_pool_create_required_placement_configurations:
+  - availability_domain: "{{test_availability_domain}}"
+    primary_subnet_id: "{{common_subnet_id}}"
+test_instance_pool_update_using_name_optional_required_size: null
+test_instance_pool_update_using_name_optional_required_placement_configurations: null
+# TODO: Enable when load balancer modules are available
+test_instance_pool_create_optional_required_load_balancers: null
+test_instance_pool_create_optional_required_size: 1
+test_instance_pool_create_optional_required_display_name: "ansible-test-optional-required-pool-{{ random_suffix_1024 }}"
+test_instance_pool_create_optional_required_placement_configurations: "{{ test_instance_pool_create_required_placement_configurations }}"
+test_instance_pool_update_optional_required_size: null
+# Including defined_tags fails. Check https://docs.cloud.oracle.com/en-us/iaas/Content/knownissues.htm#tagpropagation.
+test_instance_pool_create_optional_required_defined_tags: null
+test_instance_pool_update_optional_required_placement_configurations: null
+
+# variables for oci_compute_management_instance_pool_instance_tests.yaml
+# Skip the dependencies for the same reason that we skipped the dependencies for instance configuration tests but for
+# instance configuration. Use the instance configuration created manually in
+# oci_compute_management_instance_pool_setup.yaml instead.
+skip_instance_pool_instance_create_dependency_instance_configuration_test: yes
+test_instance_pool_instance_create_dependency_instance_pool_size: 1
+test_instance_pool_instance_create_dependency_instance_pool_placement_configurations: "{{ test_instance_pool_create_required_placement_configurations }}"

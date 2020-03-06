@@ -135,6 +135,8 @@ moduleWhitelist:
   - oci_compute_image_shape_compatibility_entry
   - oci_compute_shape_facts
   - oci_object_storage_namespace_facts
+  # TODO: Enable when load balancer modules are available
+#  - oci_compute_management_instance_pool_load_balancer_attachment_facts
   - oci_network_vnic
   - oci_network_vnic_facts
   - oci_compute_vnic_attachment
@@ -144,6 +146,13 @@ moduleWhitelist:
   - oci_network_private_ip_facts
   - oci_network_public_ip
   - oci_network_public_ip_facts
+  - oci_compute_management_instance_configuration
+  - oci_compute_management_instance_configuration_facts
+  - oci_compute_management_instance_configuration_actions
+  - oci_compute_management_instance_pool
+  - oci_compute_management_instance_pool_facts
+  - oci_compute_management_instance_pool_actions
+  - oci_compute_management_instance_pool_instance_facts
 operationOverrides:
   /publicIps/actions/getByIpAddress:
     path: "/publicIps/getByIpAddress"

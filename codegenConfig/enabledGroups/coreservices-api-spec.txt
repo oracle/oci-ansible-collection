@@ -33,3 +33,9 @@ udx-1329
 
 # ImageShapeCompatibilityEntry
 udx-709
+
+# boot_volume_size_in_gbs parameter in instance_configuration
+udx-1923
+
+# instance_configuration from instance
+udx-1831

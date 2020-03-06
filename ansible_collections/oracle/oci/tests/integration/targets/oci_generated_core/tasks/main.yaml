@@ -351,3 +351,39 @@
 - import_tasks: oci_compute_shape_tests.yaml
   tags:
     - shape
+
+- block:
+    - import_tasks: oci_compute_management_instance_configuration_setup.yaml
+      tags:
+        - instance_configuration
+    - import_tasks: oci_compute_management_instance_configuration_tests.yaml
+      tags:
+        - instance_configuration
+
+  always:
+    - import_tasks: oci_compute_management_instance_configuration_teardown.yaml
+      tags:
+        - instance_configuration
+  tags:
+    - compute_management
+
+- block:
+    - import_tasks: oci_compute_management_instance_pool_setup.yaml
+      tags:
+        - instance_pool
+        - instance_pool_instance
+    - import_tasks: oci_compute_management_instance_pool_tests.yaml
+      tags:
+        - instance_pool
+    - import_tasks: oci_compute_management_instance_pool_instance_tests.yaml
+      tags:
+        - instance_pool_instance
+
+  always:
+
+    - import_tasks: oci_compute_management_instance_pool_teardown.yaml
+      tags:
+        - instance_pool
+        - instance_pool_instance
+  tags:
+    - compute_management

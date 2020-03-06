@@ -1,0 +1,644 @@
+---
+- block:
+  # dependency resource volume has no Create operation
+
+  - name: Create dependency vcn with required parameters
+    oci_network_vcn:
+      cidr_block: "{{ '10.0.0.0/16' | oracle.oci.override(test_instance_configuration_create_dependency_vcn_cidr_block, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_dependency_vcn_compartment_id, omit) }}"
+      display_name: "{{ ('MyVcn' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_dependency_vcn_display_name, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_dependency_vcn_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_dependency_vcn_test is not defined and skip_instance_configuration_dependencies is not defined
+  - set_fact:
+      dependency_vcn: "{{ result.vcn }}"
+      dependency_vcn_id: "{{ result.vcn.id }}"
+    when: skip_instance_configuration_create_dependency_vcn_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_dependency_vcn_custom_assertions }}"
+    when: instance_configuration_create_dependency_vcn_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency image with required parameters
+    oci_compute_image:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_dependency_image_compartment_id, omit) }}"
+      display_name: "{{ ('MyCustomImage' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_dependency_image_display_name, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_dependency_image_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_dependency_image_test is not defined and skip_instance_configuration_dependencies is not defined
+  - set_fact:
+      dependency_image: "{{ result.image }}"
+      dependency_image_id: "{{ result.image.id }}"
+    when: skip_instance_configuration_create_dependency_image_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_dependency_image_custom_assertions }}"
+    when: instance_configuration_create_dependency_image_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency instance with required parameters
+    oci_compute_instance:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_configuration_create_dependency_instance_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_dependency_instance_compartment_id, omit) }}"
+      display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_dependency_instance_display_name, omit) }}"
+      shape: "{{ 'VM.Standard2.1' | oracle.oci.override(test_instance_configuration_create_dependency_instance_shape, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_dependency_instance_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_dependency_instance_test is not defined and skip_instance_configuration_dependencies is not defined
+  - set_fact:
+      dependency_instance: "{{ result.instance }}"
+      dependency_instance_id: "{{ result.instance.id }}"
+    when: skip_instance_configuration_create_dependency_instance_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_dependency_instance_custom_assertions }}"
+    when: instance_configuration_create_dependency_instance_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_instance_configuration_create_dependency_boot_volume_source_details:
+        type: "{{ 'bootVolumeBackup' | oracle.oci.override(test_instance_configuration_create_dependency_boot_volume_source_details_type, omit) }}"
+        id: "{{ 'ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_instance_configuration_create_dependency_boot_volume_source_details_id, omit) }}"
+    when: test_instance_configuration_create_dependency_boot_volume_source_details is not defined
+
+  - name: Create dependency boot_volume with required parameters
+    oci_blockstorage_boot_volume:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_configuration_create_dependency_boot_volume_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_dependency_boot_volume_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_dependency_boot_volume_display_name, omit) }}"
+      source_details: "{{ '{}' | oracle.oci.override(test_instance_configuration_create_dependency_boot_volume_source_details, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_dependency_boot_volume_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_dependency_boot_volume_test is not defined and skip_instance_configuration_dependencies is not defined
+  - set_fact:
+      dependency_boot_volume: "{{ result.boot_volume }}"
+      dependency_boot_volume_id: "{{ result.boot_volume.id }}"
+    when: skip_instance_configuration_create_dependency_boot_volume_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_dependency_boot_volume_custom_assertions }}"
+    when: instance_configuration_create_dependency_boot_volume_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency subnet with required parameters
+    oci_network_subnet:
+      cidr_block: "{{ '10.0.2.0/24' | oracle.oci.override(test_instance_configuration_create_dependency_subnet_cidr_block, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_dependency_subnet_compartment_id, omit) }}"
+      display_name: "{{ ('MySubnet' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_dependency_subnet_display_name, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_instance_configuration_create_dependency_subnet_vcn_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_dependency_subnet_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_dependency_subnet_test is not defined and skip_instance_configuration_dependencies is not defined
+  - set_fact:
+      dependency_subnet: "{{ result.subnet }}"
+      dependency_subnet_id: "{{ result.subnet.id }}"
+    when: skip_instance_configuration_create_dependency_subnet_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_dependency_subnet_custom_assertions }}"
+    when: instance_configuration_create_dependency_subnet_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create instance_configuration (check mode)
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_required_display_name, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_instance_configuration_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_check_mode_custom_assertions }}"
+    when: instance_configuration_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create instance_configuration with required parameters
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_required_display_name, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_required_original_test is not defined
+
+  - set_fact:
+      instance_configuration_resource_id: "{{ result.instance_configuration.id }}"
+    when: skip_instance_configuration_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_required_original_custom_assertions }}"
+    when: instance_configuration_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create instance_configuration with required parameters(idempotency)
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_required_display_name, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_configuration_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_required_idempotency_custom_assertions }}"
+    when: instance_configuration_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_configuration using name with optional + required parameters
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_configuration_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_update_using_name_optional_required_custom_assertions }}"
+    when: instance_configuration_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_configuration using name with optional + required parameters (idempotence)
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_configuration_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_configuration_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_configuration_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: instance_configuration_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete instance_configuration
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_configuration_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_delete_required_custom_assertions }}"
+    when: instance_configuration_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete instance_configuration (idempotency)
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_instance_configuration_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_configuration_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_delete_required_idempotency_custom_assertions }}"
+    when: instance_configuration_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_instance_configuration_create_optional_required_instance_details:
+        instance_type: "{{ 'compute' | oracle.oci.override(test_instance_configuration_create_optional_required_instance_details_instance_type, omit) }}"
+        block_volumes:
+        - attach_details:
+            display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_attach_details_display_name, omit) }}"
+            is_read_only: "{{ true | oracle.oci.override(test_instance_configuration_create_optional_required_attach_details_is_read_only, omit) }}"
+            type: "{{ 'iscsi' | oracle.oci.override(test_instance_configuration_create_optional_required_attach_details_type, omit) }}"
+            use_chap: "{{ true | oracle.oci.override(test_instance_configuration_create_optional_required_attach_details_use_chap, omit) }}"
+          create_details:
+            availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_availability_domain, omit) }}"
+            backup_policy_id: "{{ dependency_backup_policy_id | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_backup_policy_id, omit) }}"
+            compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_compartment_id, omit) }}"
+            defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_defined_tags, omit) }}"
+            display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_display_name, omit) }}"
+            freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_freeform_tags, omit) }}"
+            size_in_gbs: "{{ 56 | oracle.oci.override(test_instance_configuration_create_optional_required_create_details_size_in_gbs, omit) }}"
+            source_details:
+              type: "{{ 'volumeBackup' | oracle.oci.override(test_instance_configuration_create_optional_required_source_details_type, omit) }}"
+              id: "{{ dependency_id | oracle.oci.override(test_instance_configuration_create_optional_required_source_details_id, omit) }}"
+          volume_id: "{{ dependency_volume_id | oracle.oci.override(test_instance_configuration_create_optional_required_block_volumes_volume_id, omit) }}"
+        launch_details:
+          availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_availability_domain, omit) }}"
+          compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_compartment_id, omit) }}"
+          create_vnic_details:
+            assign_public_ip: "{{ true | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_assign_public_ip, omit) }}"
+            display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_display_name, omit) }}"
+            hostname_label: "{{ 'hostname_label_example' | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_hostname_label, omit) }}"
+            private_ip: "{{ 'private_ip_example' | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_private_ip, omit) }}"
+            skip_source_dest_check: "{{ true | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_skip_source_dest_check, omit) }}"
+            subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_subnet_id, omit) }}"
+          defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_defined_tags, omit) }}"
+          display_name: "{{ ('My bare metal instance' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_display_name, omit) }}"
+          freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_freeform_tags, omit) }}"
+          ipxe_script: "{{ 'ipxe_script_example' | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_ipxe_script, omit) }}"
+          shape: "{{ 'shape_example' | oracle.oci.override(test_instance_configuration_create_optional_required_launch_details_shape, omit) }}"
+          source_details:
+            source_type: "{{ 'image' | oracle.oci.override(test_instance_configuration_create_optional_required_source_details_source_type, omit) }}"
+            boot_volume_size_in_gbs: "{{ 56 | oracle.oci.override(test_instance_configuration_create_optional_required_source_details_boot_volume_size_in_gbs, omit) }}"
+            image_id: "{{ dependency_image_id | oracle.oci.override(test_instance_configuration_create_optional_required_source_details_image_id, omit) }}"
+            boot_volume_id: "{{ dependency_boot_volume_id | oracle.oci.override(test_instance_configuration_create_optional_required_source_details_boot_volume_id, omit) }}"
+        secondary_vnics:
+        - create_vnic_details:
+            assign_public_ip: "{{ true | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_assign_public_ip, omit) }}"
+            display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_display_name, omit) }}"
+            hostname_label: "{{ 'hostname_label_example' | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_hostname_label, omit) }}"
+            private_ip: "{{ 'private_ip_example' | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_private_ip, omit) }}"
+            skip_source_dest_check: "{{ true | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_skip_source_dest_check, omit) }}"
+            subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_instance_configuration_create_optional_required_create_vnic_details_subnet_id, omit) }}"
+          display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_secondary_vnics_display_name, omit) }}"
+          nic_index: "{{ 56 | oracle.oci.override(test_instance_configuration_create_optional_required_secondary_vnics_nic_index, omit) }}"
+    when: test_instance_configuration_create_optional_required_instance_details is not defined
+
+  - name: Create instance_configuration with optional + required parameters
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_configuration_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_instance_configuration_create_optional_required_freeform_tags, omit) }}"
+      source: "{{ 'INSTANCE' | oracle.oci.override(test_instance_configuration_create_optional_required_source, omit) }}"
+      instance_details: "{{ '{}' | oracle.oci.override(test_instance_configuration_create_optional_required_instance_details, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_configuration_create_optional_required_instance_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_optional_required_original_test is not defined
+
+  - set_fact:
+      instance_configuration_resource_id: "{{ result.instance_configuration.id }}"
+    when: skip_instance_configuration_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_optional_required_original_custom_assertions }}"
+    when: instance_configuration_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create instance_configuration with optional + required parameters (idempotence)
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_configuration_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_instance_configuration_create_optional_required_freeform_tags, omit) }}"
+      source: "{{ 'INSTANCE' | oracle.oci.override(test_instance_configuration_create_optional_required_source, omit) }}"
+      instance_details: "{{ '{}' | oracle.oci.override(test_instance_configuration_create_optional_required_instance_details, omit) }}"
+      instance_id: "{{ dependency_instance_id | oracle.oci.override(test_instance_configuration_create_optional_required_instance_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_configuration_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_optional_required_idempotence_custom_assertions }}"
+    when: instance_configuration_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_configuration with optional + required parameters
+    oci_compute_management_instance_configuration:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_configuration_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example-instance-configurationupdated' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_configuration_update_optional_required_freeform_tags, omit) }}"
+      instance_configuration_id: "{{ instance_configuration_resource_id | oracle.oci.override(test_instance_configuration_update_optional_required_instance_configuration_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_update_optional_required_custom_assertions }}"
+    when: instance_configuration_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update instance_configuration with optional + required parameters (idempotence)
+    oci_compute_management_instance_configuration:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_configuration_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example-instance-configurationupdated' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_configuration_update_optional_required_freeform_tags, omit) }}"
+      instance_configuration_id: "{{ instance_configuration_resource_id | oracle.oci.override(test_instance_configuration_update_optional_required_instance_configuration_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_instance_configuration_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.id is defined
+        - result.instance_configuration.time_created is defined
+    when: skip_instance_configuration_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_update_optional_required_idempotence_custom_assertions }}"
+    when: instance_configuration_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List instance_configurations
+    oci_compute_management_instance_configuration_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_list_compartment_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.instance_configurations | length > 0
+    when: skip_instance_configuration_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.time_created is defined
+    with_items: "{{ result.instance_configurations }}"
+    when: skip_instance_configuration_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_list_custom_assertions }}"
+    when: instance_configuration_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get instance_configuration
+    oci_compute_management_instance_configuration_facts:
+      instance_configuration_id: "{{ instance_configuration_resource_id | oracle.oci.override(test_instance_configuration_get_instance_configuration_id, omit) }}"
+    register: result
+    when: skip_instance_configuration_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.instance_configurations | length == 1
+    when: skip_instance_configuration_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.time_created is defined
+    with_items: "{{ result.instance_configurations }}"
+    when: skip_instance_configuration_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_get_custom_assertions }}"
+    when: instance_configuration_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete instance_configuration
+      oci_compute_management_instance_configuration:
+        instance_configuration_id: "{{ instance_configuration_resource_id | oracle.oci.override(test_instance_configuration_delete_rescue_instance_configuration_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: instance_configuration_resource_id is defined
+
+    - name: Delete dependency subnet
+      oci_network_subnet:
+        subnet_id: "{{ dependency_subnet_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_configuration_delete_dependency_subnet_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_subnet_id is defined
+
+    - name: Delete dependency boot_volume
+      oci_blockstorage_boot_volume:
+        boot_volume_id: "{{ dependency_boot_volume_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_configuration_delete_dependency_boot_volume_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_boot_volume_id is defined
+
+    - name: Delete dependency instance
+      oci_compute_instance:
+        instance_id: "{{ dependency_instance_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_configuration_delete_dependency_instance_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_instance_id is defined
+
+    - name: Delete dependency image
+      oci_compute_image:
+        image_id: "{{ dependency_image_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_configuration_delete_dependency_image_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_image_id is defined
+
+    - name: Delete dependency vcn
+      oci_network_vcn:
+        vcn_id: "{{ dependency_vcn_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_configuration_delete_dependency_vcn_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_vcn_id is defined
