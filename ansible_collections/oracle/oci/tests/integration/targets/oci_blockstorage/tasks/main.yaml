@@ -1,0 +1,3 @@
+- import_tasks: oci_volume_tests.yaml
+  tags:
+    - volume

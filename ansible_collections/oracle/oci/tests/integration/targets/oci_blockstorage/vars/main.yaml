@@ -1,0 +1,5 @@
+test_volume_name: "ansible-test-volume-{{random_suffix_1024}}"
+test_volume_backup_name: "ansible-test-volume-backup-{{random_suffix_1024}}"
+test_copy_volume_backup_name: "ansible-test-copy-volume-backup-{{random_suffix_1024}}"
+test_volume_group_name: "ansible-test-volume-group-{{random_suffix_1024}}"
+test_vol_grp_backup_name: "ansible-test-volume-group-backup-{{random_suffix_1024}}"

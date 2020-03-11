@@ -180,6 +180,7 @@
         - public_ip
         - private_ip
         - network_security_group_vnic
+        - volume_attachment
     - import_tasks: oci_compute_instance_tests.yaml
       tags:
         - instance
@@ -303,6 +304,9 @@
     - import_tasks: oci_compute_image_shape_compatibility_entry_tests.yaml
       tags:
         - image_shape_compatibility_entry
+    - import_tasks: oci_compute_volume_attachment_tests.yaml
+      tags:
+        - volume_attachment
   always:
     - name: Delete setup image
       oci_compute_image:
@@ -330,6 +334,7 @@
         - public_ip
         - private_ip
         - network_security_group_vnic
+        - volume_attachment
   tags:
     - instance_full
 
@@ -387,3 +392,21 @@
         - instance_pool_instance
   tags:
     - compute_management
+- block:
+    - import_tasks: oci_blockstorage_setup.yaml
+      tags:
+        - blockstorage_setup
+        - volume
+    - import_tasks: oci_blockstorage_volume_tests.yaml
+      tags:
+        - volume
+    - import_tasks: oci_blockstorage_volume_backup_tests.yaml
+      tags:
+        - volume_backup
+  always:
+    - import_tasks: oci_blockstorage_teardown.yaml
+      tags:
+        - blockstorage_teardown
+        - volume
+  tags:
+    - blockstorage

@@ -388,6 +388,14 @@ _WAITER_OVERRIDE_MAP = {
         "boot_volume_backup",
         "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NoneWaiter,
+    # The generated copy method in volume_backup_actions waits on the source backup lifecycle state. But the source
+    # backup remains in AVAILABLE state when the copy is in progress. So override to not wait here and add a
+    # customisation to wait until the copy is done.
+    (
+        "core",
+        "volume_backup",
+        "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NoneWaiter,
 }
 
 

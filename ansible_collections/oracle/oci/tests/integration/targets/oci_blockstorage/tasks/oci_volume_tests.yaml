@@ -1,0 +1,694 @@
+---
+- debug:
+    msg: "{{ansible_version}}"
+
+# Cleanup all block volumes with display name having {{random_suffix_1024}}
+- oci_blockstorage_volume_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: result
+- oci_blockstorage_volume:
+    id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ result.volumes }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  ignore_errors: yes
+
+# Cleanup all volume backups with display name having {{random_suffix_1024}}
+- oci_blockstorage_volume_backup_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: result
+- oci_blockstorage_volume_backup:
+    id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ result.volume_backups }}"
+  when: item.display_name.find(random_suffix_1024) != -1
+  ignore_errors: yes
+
+- block:
+
+    # Tests for oci_blockstorage_volume and oci_blockstorage_volume_facts
+    - name: Create a block volume
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{ test_volume_name }}"
+        size_in_gbs: 50
+      register: result
+
+    - set_fact:
+        volume_ocid: "{{ result.volume.id }}"
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.volume.availability_domain == test_availability_domain
+        - result.volume.compartment_id == test_compartment_ocid
+        - result.volume.lifecycle_state == "AVAILABLE"
+
+    # =============================================================================
+
+    - name: Create a block volume initialized with source volume
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{ test_volume_name }}"
+        size_in_gbs: 50
+        source_details:
+          id: "{{ volume_ocid }}"
+          type: "volume"
+      register: result
+
+    - set_fact:
+        cloned_volume_ocid: "{{ result.volume.id }}"
+
+    - name: Assert that changed is true, volume has the specified source volume id & it is hydrated
+      assert:
+        that:
+        - result.changed == True
+        - result.volume.availability_domain == test_availability_domain
+        - result.volume.compartment_id == test_compartment_ocid
+        - result.volume.lifecycle_state == "AVAILABLE"
+        - result.volume.is_hydrated == True
+        - result.volume.source_details.id == volume_ocid
+
+    # =============================================================================
+
+    - name: Retry creating a block volume initialized with source volume
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{ test_volume_name }}"
+        size_in_gbs: 50
+        source_details:
+          id: "{{ volume_ocid }}"
+          type: "volume"
+      register: result
+
+    - name: Assert that create volume is idempotent. Check changed is false and previously created volume is returned.
+      assert:
+        that:
+        - result.changed == False
+        - result.volume.id == cloned_volume_ocid
+
+    # =============================================================================
+
+    - name: Retry create a block volume with force_create
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        size_in_gbs: 50
+        display_name: "{{ test_volume_name }}"
+        force_create: yes
+      register: result
+
+    - set_fact:
+        forced_volume_ocid: "{{ result.volume.id }}"
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.volume.availability_domain == test_availability_domain
+        - result.volume.compartment_id == test_compartment_ocid
+        - result.volume.lifecycle_state == "AVAILABLE"
+
+    # ============================================================================
+
+    - name: Delete force_create volume
+      oci_blockstorage_volume:
+        id: "{{ forced_volume_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # =============================================================================
+
+    - name: Create a volume of non-default size
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{ test_volume_name }}"
+        size_in_gbs: 100
+      register: result
+
+    - set_fact:
+        non_def_size_vol_ocid: "{{ result.volume.id }}"
+
+    - name: Create a block volume initialized with source volume of non-default size
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{ test_volume_name }}"
+        source_details:
+          id: "{{ non_def_size_vol_ocid }}"
+          type: "volume"
+      register: result
+
+    - set_fact:
+        clone_non_def_size_vol_ocid: "{{ result.volume.id }}"
+
+    - name: Assert that changed is true and volume has the specified source volume id
+      assert:
+        that:
+        - result.changed == True
+        - result.volume.availability_domain == test_availability_domain
+        - result.volume.compartment_id == test_compartment_ocid
+        - result.volume.lifecycle_state == "AVAILABLE"
+        - result.volume.source_details.id == non_def_size_vol_ocid
+
+    # =============================================================================
+
+    - name: Retry creating a block volume initialized with source volume of non-default size
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{ test_volume_name }}"
+        source_details:
+          id: "{{ non_def_size_vol_ocid }}"
+          type: "volume"
+      register: result
+
+    - name: Assert that create volume with source_details option is idempotent. Check changed is false and previously created volume is returned.
+      assert:
+        that:
+        - result.changed == False
+        - result.volume.id == clone_non_def_size_vol_ocid
+
+    # =============================================================================
+
+    - name: Retry create a block volume using key_by with a different size
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        size_in_gbs: 51
+        display_name: "{{ test_volume_name }}"
+        key_by: ["availability_domain", "compartment_id", "display_name"]
+      register: result
+
+    - name: Assert that changed is false and Latest created matching resource is returned
+      assert:
+        that:
+        - result.changed == False
+
+    # ============================================================================
+
+    - name: Create a volume backup
+      oci_blockstorage_volume_backup:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_volume_backup_name }}"
+        volume_id: "{{ volume_ocid }}"
+        type: "FULL"
+      register: result
+
+    - set_fact:
+        test_full_backup_ocid: "{{ result.volume_backup.id }}"
+
+    - name: Assert that changed is true & backup is created for the volume
+      assert:
+        that:
+        - result.changed == True
+        - result.volume_backup.volume_id == volume_ocid
+        - result.volume_backup.type == "FULL"
+
+    # ============================================================================
+
+    - name: Delete volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ test_full_backup_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ============================================================================
+
+    - name: Create a volume backup
+      oci_blockstorage_volume_backup:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_volume_backup_name }}"
+        volume_id: "{{ volume_ocid }}"
+        freeform_tags:
+          type: "storage"
+      register: result
+
+    - set_fact:
+        test_backup_ocid: "{{ result.volume_backup.id }}"
+
+    - name: Assert that changed is true & backup is created for the volume
+      assert:
+        that:
+        - result.changed == True
+        - result.volume_backup.volume_id == volume_ocid
+        - result.volume_backup.type == "INCREMENTAL"
+        - result.volume_backup.freeform_tags['type'] == "storage"
+
+    # =============================================================================
+
+    - name: Reattempt creating a volume backup
+      oci_blockstorage_volume_backup:
+        compartment_id: "{{ test_compartment_ocid }}"
+        volume_id: "{{ volume_ocid }}"
+        freeform_tags:
+          type: "storage"
+      register: result
+
+    - name: Assert that create is idempotent with changed as false and previously created backup is returned
+      assert:
+        that:
+        - result.changed == False
+        - result.volume_backup.id == test_backup_ocid
+
+    # ============================================================================
+
+    - name: Copy volume backup to a different region
+      oci_blockstorage_volume_backup_actions:
+        volume_backup_id: "{{ test_backup_ocid }}"
+        destination_region: "{{ region2_name }}"
+        display_name: "{{ test_copy_volume_backup_name }}"
+        action: copy
+      register: copy_volume_result
+
+    - name: Assert that copy is created
+      assert:
+        that:
+        - copy_volume_result.changed == True
+        - copy_volume_result.volume_backup.id is defined
+
+    - set_fact:
+        copy_volume_backup_id: "{{ copy_volume_result.volume_backup.id }}"
+
+    - name: Copy volume backup to a different region idempotence
+      oci_blockstorage_volume_backup_actions:
+        volume_backup_id: "{{ test_backup_ocid }}"
+        destination_region: "{{ region2_name }}"
+        display_name: "{{ test_copy_volume_backup_name }}"
+        action: copy
+      register: copy_volume_idempotence_result
+    - name: Assert that the backup is not copied again
+      assert:
+        that:
+          - copy_volume_idempotence_result.changed == False
+          - copy_volume_idempotence_result.volume_backup.id == copy_volume_backup_id
+
+    - name: Delete copied volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ copy_volume_backup_id }}"
+        region: "{{ region2_name }}"
+        state: absent
+      register: delete_copy_volume_backup_result
+
+    - name: Assert that the copied volume backup is deleted
+      assert:
+        that:
+        - delete_copy_volume_backup_result.changed == True
+
+    # =============================================================================
+
+    - name: Reattempt creating a volume backup with force_create option
+      oci_blockstorage_volume_backup:
+        compartment_id: "{{ test_compartment_ocid }}"
+        volume_id: "{{ volume_ocid }}"
+        freeform_tags:
+          type: "storage"
+        force_create: True
+      register: forcedbackup
+
+    - name: Assert that create is idempotent with changed as false and previously created backup is returned
+      assert:
+        that:
+        - forcedbackup.changed == True
+        - forcedbackup.volume_backup.id != test_backup_ocid
+
+    # =============================================================================
+
+    - name: Delete forced backup
+      oci_blockstorage_volume_backup:
+        id: "{{ forcedbackup.volume_backup.id }}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ============================================================================
+
+    - name: Update name of a volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ test_backup_ocid }}"
+        name: "test_backup-{{random_suffix_1024}}"
+        freeform_tags:
+          type: "archive"
+      register: result
+
+    - name: Assert that changed is true & backup name is updated
+      assert:
+        that:
+        - result.changed == True
+        - result.volume_backup.volume_id == volume_ocid
+        - result.volume_backup.display_name == "test_backup-{{random_suffix_1024}}"
+        - result.volume_backup.freeform_tags['type'] == "archive"
+        - result.volume_backup.lifecycle_state == "AVAILABLE"
+
+    # =============================================================================
+
+    - name: Re-attempt update volume backup operation
+      oci_blockstorage_volume_backup:
+        id: "{{ test_backup_ocid }}"
+        name: "test_backup-{{random_suffix_1024}}"
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+        - result.changed == False
+        - result.volume_backup.id == test_backup_ocid
+        - result.volume_backup.freeform_tags['type'] == "archive"
+        - result.volume_backup.lifecycle_state == "AVAILABLE"
+
+    # =============================================================================
+
+    - name: Retrieve facts of a volume backup
+      oci_blockstorage_volume_backup_facts:
+        id: "{{ test_backup_ocid }}"
+      register: result
+
+    - name: Assert that facts of test backup are retrieved
+      assert:
+        that:
+        - result.volume_backups[0].id == test_backup_ocid
+
+    # =============================================================================
+
+    - name: Retrieve facts of all volume backups
+      oci_blockstorage_volume_backup_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_backup: "{{ item }}"
+      with_items: "{{result.volume_backups}}"
+      when: item.id == test_backup_ocid
+
+    - name: Assert the number of volume backups in compartment is non-zero and that we can retrieve facts of test volume backup
+      assert:
+        that:
+        - result.volume_backups | length > 0
+        - facts_of_test_backup is defined
+
+    - name: Retrieve facts of a volume backup using the display_name filter
+      oci_blockstorage_volume_backup_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "test_backup-{{random_suffix_1024}}"
+      register: result
+    - debug:
+        msg: "{{result}}"
+    - set_fact:
+        facts_of_test_backup: "{{ item }}"
+      with_items: "{{result.volume_backups}}"
+      when: item.id == test_backup_ocid
+
+    - name: Assert the number of volume backups in compartment is non-zero and that we can retrieve facts of test volume backup
+      assert:
+        that:
+        - result.volume_backups | length > 0
+        - facts_of_test_backup is defined
+        - facts_of_test_backup.display_name == "test_backup-{{random_suffix_1024}}"
+
+    - name: Retrieve facts of a volume backup using the volume_id filter
+      oci_blockstorage_volume_backup_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        volume_id: "{{volume_ocid}}"
+      register: result
+    - debug: msg="{{result}}"
+    - set_fact:
+        facts_of_test_backup: "{{ item }}"
+      with_items: "{{result.volume_backups}}"
+      when: item.id == test_backup_ocid
+
+    - name: Assert the number of volume backups in compartment is non-zero and that we can retrieve facts of test volume backup
+      assert:
+        that:
+        - result.volume_backups | length > 0
+        - facts_of_test_backup is defined
+        - facts_of_test_backup.display_name == "test_backup-{{random_suffix_1024}}"
+    # =============================================================================
+
+    - name: Create a block volume restored from a backup
+      oci_blockstorage_volume:
+        display_name: "{{ test_volume_name }}"
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        size_in_gbs: 50
+        source_details:
+          id: "{{test_backup_ocid}}"
+          type: "volumeBackup"
+      register: result
+
+    - set_fact:
+        restored_volume_ocid: "{{ result.volume.id }}"
+
+    - name: Assert that changed is true, volume's source is backup and volume is hydrated
+      assert:
+        that:
+        - result.changed == True
+        - result.volume.availability_domain == test_availability_domain
+        - result.volume.compartment_id == test_compartment_ocid
+        - result.volume.lifecycle_state == "AVAILABLE"
+        - result.volume.is_hydrated == True
+        - result.volume.source_details.id == test_backup_ocid
+
+    # =============================================================================
+
+    - name: Update a block volume
+      oci_blockstorage_volume:
+        id: "{{ volume_ocid }}"
+        name: "ansible_volume-{{random_suffix_1024}}"
+      register: result
+
+    - name: Assert that changed is true and volume name is updated
+      assert:
+        that:
+        - result.changed == True
+        - result.volume.id == volume_ocid
+        - result.volume.display_name == "ansible_volume-{{random_suffix_1024}}"
+        - result.volume.lifecycle_state == "AVAILABLE"
+
+    # =============================================================================
+
+    - name: Check idempotency of update volume operation
+      oci_blockstorage_volume:
+        id: "{{ volume_ocid }}"
+        name: "ansible_volume-{{random_suffix_1024}}"
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+        - result.changed == False
+        - result.volume.lifecycle_state == "AVAILABLE"
+
+    # =============================================================================
+
+    - name: Get information of a volume
+      oci_blockstorage_volume_facts:
+        id: "{{ volume_ocid }}"
+      register: result
+
+    - name: Assert that facts of test volume are retrieved
+      assert:
+        that:
+        - result.volumes | length == 1
+        - result.volumes[0].id == volume_ocid
+
+    # =============================================================================
+
+    - name: Get information of all volumes
+      oci_blockstorage_volume_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_volume: "{{ item }}"
+      with_items: "{{result.volumes}}"
+      when: item.id == volume_ocid
+
+    - name: Assert the number of volumes in compartment is non-zero and that we can retrieve facts of test volume
+      assert:
+        that:
+        - result.volumes | length > 0
+        - facts_of_test_volume is defined
+
+    - name: Get volume facts using display_name filter
+      oci_blockstorage_volume_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "{{test_volume_name}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_volume: "{{ item }}"
+      with_items: "{{result.volumes}}"
+      when: item.id == volume_ocid
+
+    - debug: msg="{{facts_of_test_volume}}"
+    - name: Assert the number of volumes in compartment is non-zero and that we can retrieve facts of the test volume
+      assert:
+        that:
+        - result.volumes | length > 0
+        - facts_of_test_volume is defined
+    # =============================================================================
+
+    - name: Delete a volume
+      oci_blockstorage_volume:
+        id: "{{ volume_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # =============================================================================
+
+    - name: Check idempotency of delete volume operation
+      oci_blockstorage_volume:
+        id: "{{ volume_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+        - result.changed == False
+
+    # ============================================================================
+
+    - name: Delete test volumes
+      oci_blockstorage_volume:
+        id: "{{ item }}"
+        state: absent
+      register: result
+      with_items:
+      - "{{ non_def_size_vol_ocid }}"
+      - "{{ clone_non_def_size_vol_ocid }}"
+      - "{{ cloned_volume_ocid }}"
+      - "{{ restored_volume_ocid }}"
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ============================================================================
+
+    - name: Delete volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ test_backup_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ============================================================================
+
+    - name: Re-attempt delete volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ test_backup_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert delete volume backup is idempotent
+      assert:
+        that:
+        - result.changed == False
+
+    # ============================================================================
+
+  rescue:
+
+    - name: Delete force_create volume
+      oci_blockstorage_volume:
+        id: "{{ forced_volume_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ test_full_backup_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete forced backup
+      oci_blockstorage_volume_backup:
+        id: "{{ forcedbackup.volume_backup.id }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete a volume
+      oci_blockstorage_volume:
+        id: "{{ volume_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete test volumes
+      oci_blockstorage_volume:
+        id: "{{ non_def_size_vol_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete test volumes
+      oci_blockstorage_volume:
+        id: "{{ clone_non_def_size_vol_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete test volumes
+      oci_blockstorage_volume:
+        id: "{{ cloned_volume_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete test volumes
+      oci_blockstorage_volume:
+        id: "{{ restored_volume_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ test_backup_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete copied volume backup
+      oci_blockstorage_volume_backup:
+        id: "{{ copy_volume_backup_id }}"
+        region: "{{ region2_name }}"
+        state: absent
+      register: delete_copy_volume_backup_result
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

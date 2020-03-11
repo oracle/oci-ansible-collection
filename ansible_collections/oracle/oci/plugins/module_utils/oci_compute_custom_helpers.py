@@ -175,3 +175,100 @@ class VnicAttachmentHelperCustom:
             )
             existing_resource_dict["vnic"] = existing_vnic
         return existing_resource_dict
+
+
+def get_iscsi_attach_commands(volume_attachment):
+    if not volume_attachment.get("attachment_type") == "iscsi":
+        return []
+    iqn = volume_attachment.get("iqn")
+    ipv4 = volume_attachment.get("ipv4")
+    port = volume_attachment.get("port")
+    chap_username = volume_attachment.get("chap_username")
+    chap_secret = volume_attachment.get("chap_secret")
+    iscsi_attach_commands = [
+        "sudo iscsiadm -m node -o new -T {0} -p {1}:{2}".format(iqn, ipv4, port),
+        "sudo iscsiadm -m node -o update -T {0} -n node.startup -v automatic".format(
+            iqn
+        ),
+    ]
+    if chap_username:
+        iscsi_attach_commands.extend(
+            [
+                "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.authmethod -v CHAP".format(
+                    iqn, ipv4, port
+                ),
+                "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.username -v {3}".format(
+                    iqn, ipv4, port, chap_username
+                ),
+                "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.password -v {3}".format(
+                    iqn, ipv4, port, chap_secret
+                ),
+            ]
+        )
+    iscsi_attach_commands.append(
+        "sudo iscsiadm -m node -T {0} -p {1}:{2} -l".format(iqn, ipv4, port)
+    )
+    return iscsi_attach_commands
+
+
+def get_iscsi_detach_commands(volume_attachment):
+    if not volume_attachment.get("attachment_type") == "iscsi":
+        return []
+    return [
+        "sudo iscsiadm -m node -T {0} -p {1}:{2} -u".format(
+            volume_attachment.get("iqn"),
+            volume_attachment.get("ipv4"),
+            volume_attachment.get("port"),
+        ),
+        "sudo iscsiadm -m node -o delete -T {0}".format(volume_attachment.get("iqn")),
+    ]
+
+
+def with_iscsi_commands(volume_attachment):
+    if not volume_attachment:
+        return volume_attachment
+    volume_attachment["iscsi_attach_commands"] = get_iscsi_attach_commands(
+        volume_attachment
+    )
+    volume_attachment["iscsi_detach_commands"] = get_iscsi_detach_commands(
+        volume_attachment
+    )
+    return volume_attachment
+
+
+class VolumeAttachmentHelperCustom:
+    def prepare_result(self, *args, **kwargs):
+        result = super(VolumeAttachmentHelperCustom, self).prepare_result(
+            *args, **kwargs
+        )
+        if not result.get("volume_attachment"):
+            return result
+        result["volume_attachment"] = with_iscsi_commands(result["volume_attachment"])
+        return result
+
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        create_model_dict = super(
+            VolumeAttachmentHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+        # get model has the attribute name "attachment_type" which defines the attachment type where as it "type" in
+        # get model. So change the key name to avoid mismatch.
+        create_model_dict["attachment_type"] = create_model_dict.pop("type", None)
+        # use_chap param does not exist in the get model. So remove it from the create model.
+        create_model_dict.pop("use_chap", None)
+        return create_model_dict
+
+
+class VolumeAttachmentFactsHelperCustom:
+    def get(self, *args, **kwargs):
+        volume_attachment = super(VolumeAttachmentFactsHelperCustom, self).get(
+            *args, **kwargs
+        )
+        return with_iscsi_commands(volume_attachment)
+
+    def list(self, *args, **kwargs):
+        return [
+            with_iscsi_commands(volume_attachment)
+            for volume_attachment in super(
+                VolumeAttachmentFactsHelperCustom, self
+            ).list(*args, **kwargs)
+        ]

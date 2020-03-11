@@ -411,3 +411,23 @@ test_instance_pool_update_optional_required_placement_configurations: null
 skip_instance_pool_instance_create_dependency_instance_configuration_test: yes
 test_instance_pool_instance_create_dependency_instance_pool_size: 1
 test_instance_pool_instance_create_dependency_instance_pool_placement_configurations: "{{ test_instance_pool_create_required_placement_configurations }}"
+
+# variables for oci_compute_volume_attachment_tests.yaml
+skip_volume_attachment_create_dependency_instance_test: yes
+test_volume_attachment_create_optional_required_device: "/dev/oracleoci/oraclevdb"
+
+# variables for oci_blockstorage_setup.yaml
+setup_volume_display_name: "setup-volume-{{random_suffix_1024}}"
+
+# variables for oci_blockstorage_volume_tests.yaml
+test_volume_create_optional_required_backup_policy_id: null
+# kms not available in the tenancy
+test_volume_create_optional_required_kms_key_id: null
+# already using size_in_gbs. So disable this.
+test_volume_create_optional_required_size_in_mbs: null
+# this field is deprecated. using source_details
+test_volume_create_optional_required_volume_backup_id: null
+test_volume_create_optional_required_source_details_id: "{{ setup_volume_id }}"
+
+# variables for oci_blockstorage_volume_backup_tests.yaml
+test_volume_backup_create_dependency_volume_display_name: "test-volume-for-backup-{{ random_suffix_1024 }}"

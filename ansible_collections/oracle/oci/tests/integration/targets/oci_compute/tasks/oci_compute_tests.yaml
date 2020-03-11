@@ -150,264 +150,234 @@
 
     # ====================================================================================================
 
-# TODO: Enable when all necessary modules are available
-#    - name: Create a block volume
-#      oci_volume:
-#        availability_domain: "{{ test_availability_domain }}"
-#        compartment_id: "{{test_compartment_ocid}}"
-#        display_name: "test_{{random_suffix_1024}}"
-#        size_in_gbs: 50
-#        wait: true
-#      register: result
-#
-#    - set_fact:
-#        test_volume_ocid: "{{ result.volume.id }}"
-#
-#    # Test attaching a volume to a created instance with oci_volume_attachment
-#    - name: Attach a test volume to instance using oci_volume_attachment
-#      oci_volume_attachment:
-#        instance_id: "{{my_instance_ocid}}"
-#        volume_id: "{{test_volume_ocid}}"
-#        type: iscsi
-#        device: "{{test_device_path}}"
-#      register: result
-#
-#    - set_fact:
-#        volume_attachment_ocid: "{{result.volume_attachment.id}}"
-#
-#    - name: Assert that changed is true
-#      assert:
-#        that:
-#          - result.changed == True
-#          - result.volume_attachment.instance_id == my_instance_ocid
-#          - result.volume_attachment.volume_id == test_volume_ocid
-#          - result.volume_attachment.iscsi_attach_commands | length == 3
-#          - result.volume_attachment.iscsi_detach_commands | length == 2
-#          - result.volume_attachment.device == test_device_path
-#
-#    # ====================================================================================================
-#
-#    - name: Reattempt attaching a test volume to instance using oci_volume_attachment to check idempotence
-#      oci_volume_attachment:
-#        instance_id: "{{my_instance_ocid}}"
-#        volume_id: "{{test_volume_ocid}}"
-#        type: iscsi
-#        device: "{{test_device_path}}"
-#      register: result
-#
-#    - name: Assert that changed is false
-#      assert:
-#        that:
-#          - result.changed == False
-#          - result.volume_attachment.id == volume_attachment_ocid
-#          - result.volume_attachment.iscsi_attach_commands | length == 3
-#          - result.volume_attachment.iscsi_detach_commands | length == 2
-#          - result.volume_attachment.device == test_device_path
-#
-#    # ====================================================================================================
-#
-#    - name: Get information of all volume attachments
-#      oci_volume_attachment_facts:
-#        compartment_id: "{{test_compartment_ocid}}"
-#      register: result
-#
-#    - set_fact:
-#        facts_of_test_attachment: "{{item}}"
-#      with_items: "{{result.volume_attachments}}"
-#      when: item.id == volume_attachment_ocid
-#
-#    - name: Assert the number of volume_attachments in compartment is non-zero and that test attachment is in the list
-#      assert:
-#        that:
-#          - result.volume_attachments | length > 0
-#          - facts_of_test_attachment is defined
-#
-#    # ====================================================================================================
-#
-#    - name: Get information of a volume attachment
-#      oci_volume_attachment_facts:
-#        volume_attachment_id: "{{volume_attachment_ocid}}"
-#      register: result
-#
-#    - name: Assert that facts of test attachment are retrieved
-#      assert:
-#        that:
-#          - result.volume_attachments | length == 1
-#          - result.volume_attachments[0].id == volume_attachment_ocid
-#          - result.volume_attachments[0].iscsi_attach_commands | length == 3
-#          - result.volume_attachments[0].iscsi_detach_commands | length == 2
-#
-#    # ====================================================================================================
-#
-#    - name: Get information of volume attachments with instance_id
-#      oci_volume_attachment_facts:
-#        compartment_id: "{{test_compartment_ocid}}"
-#        instance_id: "{{my_instance_ocid}}"
-#      register: result
-#
-#    - set_fact:
-#        facts_of_test_attachment: "{{item}}"
-#      with_items: "{{result.volume_attachments}}"
-#      when: item.id == volume_attachment_ocid
-#
-#    - name: Assert the number of volume_attachments is non-zero and that test attachment is in the list
-#      assert:
-#        that:
-#          - result.volume_attachments | length > 0
-#          - facts_of_test_attachment is defined
-#
-#    # ====================================================================================================
-#
-#    - name: Get information of volume attachments with volume_id
-#      oci_volume_attachment_facts:
-#        compartment_id: "{{test_compartment_ocid}}"
-#        volume_id: "{{test_volume_ocid}}"
-#      register: result
-#
-#    - set_fact:
-#        facts_of_test_attachment: "{{item}}"
-#      with_items: "{{result.volume_attachments}}"
-#      when: item.id == volume_attachment_ocid
-#
-#    - name: Assert the number of volume_attachments is non-zero and that test attachment is in the list
-#      assert:
-#        that:
-#          - result.volume_attachments | length > 0
-#          - facts_of_test_attachment is defined
-#
-#    # ====================================================================================================
-#
-#    - name: Get information of volume attachments with both instance_id & volume_id
-#      oci_volume_attachment_facts:
-#        compartment_id: "{{test_compartment_ocid}}"
-#        instance_id: "{{my_instance_ocid}}"
-#        volume_id: "{{test_volume_ocid}}"
-#      register: result
-#
-#    - name: Assert that facts of test attachment are retrieved
-#      assert:
-#        that:
-#          - result.volume_attachments | length == 1
-#          - result.volume_attachments[0].id == volume_attachment_ocid
-#
-#    # ====================================================================================================
-#
-#    - name: Get volume information by updating name to assert attachment information is present in the returned value
-#      oci_volume:
-#        volume_id: "{{test_volume_ocid}}"
-#        name: 'integration_test_volume_{{random_suffix_1024}}'
-#      environment:
-#        OCI_ANSIBLE_EXPERIMENTAL: True
-#      register: result
-#
-#    - name: Assert attachment information is present in the returned value
-#      assert:
-#        that:
-#          - result.volume.attached_instance_information[0].id == volume_attachment_ocid
-#
-#    # ====================================================================================================
-#
-#    - name: Get volume facts to assert attachment information is present in the returned value
-#      oci_volume_facts:
-#        volume_id: "{{test_volume_ocid}}"
-#      environment:
-#        OCI_ANSIBLE_EXPERIMENTAL: True
-#      register: result
-#
-#    - name: Assert attachment information is present in the returned volume facts
-#      assert:
-#        that:
-#          - result.volumes[0].attached_instance_information[0].id == volume_attachment_ocid
-#
-#    - name: Get volume facts to assert attachment information is present in the returned value, with lookup_all_attached_instances set to true
-#      oci_volume_facts:
-#        volume_id: "{{test_volume_ocid}}"
-#        # in this test we don't have an attachment in a different compartment
-#        # add it later, and test that an attachment in a different compartment is listed
-#        # too in the return value.
-#        lookup_all_attached_instances: yes
-#      environment:
-#        OCI_ANSIBLE_EXPERIMENTAL: True
-#      register: result
-#
-#    - name: Assert attachment information is present in the returned volume facts
-#      assert:
-#        that:
-#          - result.volumes[0].attached_instance_information[0].id == volume_attachment_ocid
-#    # ====================================================================================================
-#
-#    - name: Detach a block volume
-#      oci_volume_attachment:
-#        volume_attachment_id: "{{volume_attachment_ocid}}"
-#        state: absent
-#      register: result
-#
-#    - name: Assert that changed is true
-#      assert:
-#        that:
-#          - result.changed == True
-#
-#    # ====================================================================================================
-#
-#    - name: Check idempotency of block volume detach operation
-#      oci_volume_attachment:
-#        volume_attachment_id: "{{volume_attachment_ocid}}"
-#        state: absent
-#      register: result
-#
-#    - name: Assert that changed is false
-#      assert:
-#        that:
-#          - result.changed == False
-#
-#    # ====================================================================================================
-#
-#    # Test attaching a volume(with chap enabled) to a created instance with oci_volume_attachment
-#    - name: Attach a test volume to instance using oci_volume_attachment
-#      oci_volume_attachment:
-#        instance_id: "{{my_instance_ocid}}"
-#        volume_id: "{{test_volume_ocid}}"
-#        type: iscsi
-#        use_chap: yes
-#      register: chap_result
-#
-#    - set_fact:
-#        chap_volume_attachment_ocid: "{{chap_result.volume_attachment.id}}"
-#
-#    - name: Assert that changed is true
-#      assert:
-#        that:
-#        - chap_result.changed == True
-#        - chap_result.volume_attachment.instance_id == my_instance_ocid
-#        - chap_result.volume_attachment.volume_id == test_volume_ocid
-#        - chap_result.volume_attachment.iscsi_attach_commands | length == 6
-#        - chap_result.volume_attachment.iscsi_detach_commands | length == 2
-#
-#    - name: Get information of a volume attachment
-#      oci_volume_attachment_facts:
-#        volume_attachment_id: "{{chap_volume_attachment_ocid}}"
-#      register: result
-#
-#    - name: Assert that facts of test attachment are retrieved
-#      assert:
-#        that:
-#        - result.volume_attachments | length == 1
-#        - result.volume_attachments[0].id == chap_volume_attachment_ocid
-#        - result.volume_attachments[0].iscsi_attach_commands | length == 6
-#        - result.volume_attachments[0].iscsi_detach_commands | length == 2
-#
-#    - name: Detach a block volume
-#      oci_volume_attachment:
-#        volume_attachment_id: "{{chap_volume_attachment_ocid}}"
-#        state: absent
-#      register: result
-#
-#    - name: Assert that changed is true
-#      assert:
-#        that:
-#        - result.changed == True
-#
-#    # ====================================================================================================
+    - name: Create a block volume
+      oci_blockstorage_volume:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{test_compartment_ocid}}"
+        display_name: "test_{{random_suffix_1024}}"
+        size_in_gbs: 50
+      register: result
+
+    - set_fact:
+        test_volume_ocid: "{{ result.volume.id }}"
+
+    # Test attaching a volume to a created instance with oci_volume_attachment
+    - name: Attach a test volume to instance using oci_volume_attachment
+      oci_compute_volume_attachment:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        volume_id: "{{test_volume_ocid}}"
+        type: iscsi
+        device: "{{test_device_path}}"
+      register: result
+
+    - set_fact:
+        volume_attachment_ocid: "{{result.volume_attachment.id}}"
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+          - result.volume_attachment.instance_id == my_instance_ocid
+          - result.volume_attachment.volume_id == test_volume_ocid
+          - result.volume_attachment.iscsi_attach_commands | length == 3
+          - result.volume_attachment.iscsi_detach_commands | length == 2
+          - result.volume_attachment.device == test_device_path
+
+    # ====================================================================================================
+
+    - name: Reattempt attaching a test volume to instance using oci_volume_attachment to check idempotence
+      oci_compute_volume_attachment:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        volume_id: "{{test_volume_ocid}}"
+        type: iscsi
+        device: "{{test_device_path}}"
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.volume_attachment.id == volume_attachment_ocid
+          - result.volume_attachment.iscsi_attach_commands | length == 3
+          - result.volume_attachment.iscsi_detach_commands | length == 2
+          - result.volume_attachment.device == test_device_path
+
+    # ====================================================================================================
+
+    - name: Get information of all volume attachments
+      oci_compute_volume_attachment_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_attachment: "{{item}}"
+      with_items: "{{result.volume_attachments}}"
+      when: item.id == volume_attachment_ocid
+
+    - name: Assert the number of volume_attachments in compartment is non-zero and that test attachment is in the list
+      assert:
+        that:
+          - result.volume_attachments | length > 0
+          - facts_of_test_attachment is defined
+
+    # ====================================================================================================
+
+    - name: Get information of a volume attachment
+      oci_compute_volume_attachment_facts:
+        volume_attachment_id: "{{volume_attachment_ocid}}"
+      register: result
+
+    - name: Assert that facts of test attachment are retrieved
+      assert:
+        that:
+          - result.volume_attachments | length == 1
+          - result.volume_attachments[0].id == volume_attachment_ocid
+          - result.volume_attachments[0].iscsi_attach_commands | length == 3
+          - result.volume_attachments[0].iscsi_detach_commands | length == 2
+
+    # ====================================================================================================
+
+    - name: Get information of volume attachments with instance_id
+      oci_compute_volume_attachment_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_attachment: "{{item}}"
+      with_items: "{{result.volume_attachments}}"
+      when: item.id == volume_attachment_ocid
+
+    - name: Assert the number of volume_attachments is non-zero and that test attachment is in the list
+      assert:
+        that:
+          - result.volume_attachments | length > 0
+          - facts_of_test_attachment is defined
+
+    # ====================================================================================================
+
+    - name: Get information of volume attachments with volume_id
+      oci_compute_volume_attachment_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        volume_id: "{{test_volume_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_attachment: "{{item}}"
+      with_items: "{{result.volume_attachments}}"
+      when: item.id == volume_attachment_ocid
+
+    - name: Assert the number of volume_attachments is non-zero and that test attachment is in the list
+      assert:
+        that:
+          - result.volume_attachments | length > 0
+          - facts_of_test_attachment is defined
+
+    # ====================================================================================================
+
+    - name: Get information of volume attachments with both instance_id & volume_id
+      oci_compute_volume_attachment_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        volume_id: "{{test_volume_ocid}}"
+      register: result
+
+    - name: Assert that facts of test attachment are retrieved
+      assert:
+        that:
+          - result.volume_attachments | length == 1
+          - result.volume_attachments[0].id == volume_attachment_ocid
+
+    # ====================================================================================================
+
+    - name: Get volume information by updating name
+      oci_blockstorage_volume:
+        volume_id: "{{test_volume_ocid}}"
+        name: 'integration_test_volume_{{random_suffix_1024}}'
+      register: result
+
+    - name: Assert attachment information is present in the returned value
+      assert:
+        that:
+          - result.volume.display_name == 'integration_test_volume_{{random_suffix_1024}}'
+
+    # ====================================================================================================
+
+    - name: Detach a block volume
+      oci_compute_volume_attachment:
+        volume_attachment_id: "{{volume_attachment_ocid}}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+
+    # ====================================================================================================
+
+    - name: Check idempotency of block volume detach operation
+      oci_compute_volume_attachment:
+        volume_attachment_id: "{{volume_attachment_ocid}}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is false
+      assert:
+        that:
+          - result.changed == False
+
+    # ====================================================================================================
+
+    # Test attaching a volume(with chap enabled) to a created instance with oci_volume_attachment
+    - name: Attach a test volume to instance using oci_volume_attachment
+      oci_compute_volume_attachment:
+        compartment_id: "{{test_compartment_ocid}}"
+        instance_id: "{{my_instance_ocid}}"
+        volume_id: "{{test_volume_ocid}}"
+        type: iscsi
+        use_chap: yes
+      register: chap_result
+
+    - set_fact:
+        chap_volume_attachment_ocid: "{{chap_result.volume_attachment.id}}"
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - chap_result.changed == True
+        - chap_result.volume_attachment.instance_id == my_instance_ocid
+        - chap_result.volume_attachment.volume_id == test_volume_ocid
+        - chap_result.volume_attachment.iscsi_attach_commands | length == 6
+        - chap_result.volume_attachment.iscsi_detach_commands | length == 2
+
+    - name: Get information of a volume attachment
+      oci_compute_volume_attachment_facts:
+        volume_attachment_id: "{{chap_volume_attachment_ocid}}"
+      register: result
+
+    - name: Assert that facts of test attachment are retrieved
+      assert:
+        that:
+        - result.volume_attachments | length == 1
+        - result.volume_attachments[0].id == chap_volume_attachment_ocid
+        - result.volume_attachments[0].iscsi_attach_commands | length == 6
+        - result.volume_attachments[0].iscsi_detach_commands | length == 2
+
+    - name: Detach a block volume
+      oci_compute_volume_attachment:
+        volume_attachment_id: "{{chap_volume_attachment_ocid}}"
+        state: absent
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ====================================================================================================
 
     - name: Get facts about all compute instances in compartment and availability domain
       oci_compute_instance_facts:
@@ -505,7 +475,7 @@
         - delete_instance_result.changed == True
 
 #    - name: Delete the test volume
-#      oci_volume:
+#      oci_blockstorage_volume:
 #        id: "{{ test_volume_ocid }}"
 #        state: absent
 #      register: delete_vol_result
@@ -537,7 +507,7 @@
       ignore_errors: yes
 
 #    - name: Delete the test volume
-#      oci_volume:
+#      oci_blockstorage_volume:
 #        id: "{{ test_volume_ocid }}"
 #        state: absent
 #      register: delete_vol_result

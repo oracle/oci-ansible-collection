@@ -163,6 +163,13 @@ operationOverrides:
   /publicIps/actions/getByPrivateIpId:
     path: "/publicIps/getByPrivateIpId"
     httpMethod: "GET"
+  - oci_compute_volume_attachment
+  - oci_compute_volume_attachment_facts
+  - oci_blockstorage_volume
+  - oci_blockstorage_volume_facts
+  - oci_blockstorage_volume_backup
+  - oci_blockstorage_volume_backup_facts
+  - oci_blockstorage_volume_backup_actions
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -245,3 +252,36 @@ extraFactsModuleParameters:
         required: false
         dataType: str
         isUsedByList: true
+  - get_windows_instance_initial_credentials
+extraFactsModuleReturnProperties:
+  volume_attachment:
+    - name: iscsi_attach_commands
+      description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
+      datatype: list
+      example: '[
+          "sudo iscsiadm -m node -o new -T IQN -p IP:PORT",
+          "sudo iscsiadm -m node -o update ..."
+      ]'
+    - name: iscsi_detach_commands
+      description: Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
+      datatype: list
+      example: '[
+        "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
+        "sudo iscsiadm -m node -o delete -T IQN"
+      ]'
+extraResourceModuleReturnProperties:
+  volume_attachment:
+    - name: iscsi_attach_commands
+      description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
+      datatype: list
+      example: '[
+        "sudo iscsiadm -m node -o new -T IQN -p IP:PORT",
+        "sudo iscsiadm -m node -o update ..."
+      ]'
+    - name: iscsi_detach_commands
+      description: Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
+      datatype: list
+      example: '[
+        "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
+        "sudo iscsiadm -m node -o delete -T IQN"
+      ]'
