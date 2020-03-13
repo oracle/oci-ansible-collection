@@ -1,0 +1,7 @@
+---
+- import_tasks: oci_audit_configuration_tests.yaml
+  tags:
+    - audit_configuration
+- import_tasks: oci_audit_event_tests.yaml
+  tags:
+    - audit_events

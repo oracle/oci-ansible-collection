@@ -160,6 +160,9 @@ operationOverrides:
   /publicIps/actions/getByPrivateIpId:
     path: "/publicIps/getByPrivateIpId"
     httpMethod: "GET"
+  - oci_audit_event_facts
+  - oci_audit_configuration
+  - oci_audit_configuration_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -196,7 +199,7 @@ pluralizationOverrides:
   namespace_metadata: namespace_metadatas
 forcePluralizedFactsModules:
   # these maintain backwards compatibility with existing facts modules which only have a GET operation, but return a LIST
-  - oci_audit_configuration_facts
+  #- oci_audit_configuration_facts
   - oci_namespace_metadata_facts
   - oci_object_storage_object_lifecycle_policy_facts
 operationIdBlacklist:
