@@ -8,7 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from . import oci_common_utils
+from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
     import oci
@@ -239,21 +239,6 @@ class NoneWaiter(Waiter):
         return self.operation_response.data
 
 
-class AuditConfigurationLifecycleStateWaiter(LifecycleStateWaiter):
-    def __init__(self, client, resource_helper, operation_response, wait_for_states):
-        super(AuditConfigurationLifecycleStateWaiter, self).__init__(
-            client, resource_helper, operation_response, wait_for_states
-        )
-
-    def get_evaluate_response_lambda(self):
-        # The update operation currently returns a work request id but the AuditClient currently does not support
-        # waiting for the work request. So wait until the configuration is updated by checking the value.
-        return (
-            lambda r: r.data.retention_period_days
-            == self.resource_helper.module.params.get("retention_period_days")
-        )
-
-
 class PeeringStatusWaiter(LifecycleStateWaiter):
     def __init__(self, client, resource_helper, operation_response, wait_for_states):
         super(PeeringStatusWaiter, self).__init__(
@@ -316,6 +301,13 @@ class CreateCompartmentOperationLifecycleStateWaiter(
             return get_response
 
         return fetch_func
+
+
+class VolumeCreateWaitUntilCopyIsDoneWaiter(CreateOperationLifecycleStateWaiter):
+    def get_evaluate_response_lambda(self):
+        return lambda r: not hasattr(r.data, "is_hydrated") or getattr(
+            r.data, "is_hydrated"
+        )
 
 
 # A map specifying the overrides for the default waiters.
@@ -396,6 +388,16 @@ _WAITER_OVERRIDE_MAP = {
         "volume_backup",
         "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NoneWaiter,
+    (
+        "core",
+        "boot_volume",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): VolumeCreateWaitUntilCopyIsDoneWaiter,
+    (
+        "core",
+        "volume",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): VolumeCreateWaitUntilCopyIsDoneWaiter,
 }
 
 

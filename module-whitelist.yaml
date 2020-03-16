@@ -156,13 +156,6 @@ moduleWhitelist:
   - oci_audit_event_facts
   - oci_audit_configuration
   - oci_audit_configuration_facts
-operationOverrides:
-  /publicIps/actions/getByIpAddress:
-    path: "/publicIps/getByIpAddress"
-    httpMethod: "GET"
-  /publicIps/actions/getByPrivateIpId:
-    path: "/publicIps/getByPrivateIpId"
-    httpMethod: "GET"
   - oci_compute_volume_attachment
   - oci_compute_volume_attachment_facts
   - oci_blockstorage_volume
@@ -170,6 +163,21 @@ operationOverrides:
   - oci_blockstorage_volume_backup
   - oci_blockstorage_volume_backup_facts
   - oci_blockstorage_volume_backup_actions
+  - oci_blockstorage_volume_group
+  - oci_blockstorage_volume_group_facts
+  - oci_blockstorage_volume_group_backup
+  - oci_blockstorage_volume_group_backup_facts
+  - oci_blockstorage_volume_backup_policy
+  - oci_blockstorage_volume_backup_policy_facts
+  - oci_blockstorage_volume_backup_policy_assignment
+  - oci_blockstorage_volume_backup_policy_assignment_facts
+operationOverrides:
+  /publicIps/actions/getByIpAddress:
+    path: "/publicIps/getByIpAddress"
+    httpMethod: "GET"
+  /publicIps/actions/getByPrivateIpId:
+    path: "/publicIps/getByPrivateIpId"
+    httpMethod: "GET"
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -206,7 +214,6 @@ pluralizationOverrides:
   namespace_metadata: namespace_metadatas
 forcePluralizedFactsModules:
   # these maintain backwards compatibility with existing facts modules which only have a GET operation, but return a LIST
-  #- oci_audit_configuration_facts
   - oci_namespace_metadata_facts
   - oci_object_storage_object_lifecycle_policy_facts
 operationIdBlacklist:
@@ -252,36 +259,42 @@ extraFactsModuleParameters:
         required: false
         dataType: str
         isUsedByList: true
-  - get_windows_instance_initial_credentials
 extraFactsModuleReturnProperties:
-  volume_attachment:
-    - name: iscsi_attach_commands
-      description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
-      datatype: list
-      example: '[
+  core:
+    volume_attachment:
+      - name: iscsi_attach_commands
+        description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
+        datatype: list
+        example: '[
+            "sudo iscsiadm -m node -o new -T IQN -p IP:PORT",
+            "sudo iscsiadm -m node -o update ..."
+        ]'
+      - name: iscsi_detach_commands
+        description: Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
+        datatype: list
+        example: '[
+          "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
+          "sudo iscsiadm -m node -o delete -T IQN"
+        ]'
+extraResourceModuleReturnProperties:
+  core:
+    volume_attachment:
+      - name: iscsi_attach_commands
+        description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
+        datatype: list
+        example: '[
           "sudo iscsiadm -m node -o new -T IQN -p IP:PORT",
           "sudo iscsiadm -m node -o update ..."
-      ]'
-    - name: iscsi_detach_commands
-      description: Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
-      datatype: list
-      example: '[
-        "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
-        "sudo iscsiadm -m node -o delete -T IQN"
-      ]'
-extraResourceModuleReturnProperties:
-  volume_attachment:
-    - name: iscsi_attach_commands
-      description: Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
-      datatype: list
-      example: '[
-        "sudo iscsiadm -m node -o new -T IQN -p IP:PORT",
-        "sudo iscsiadm -m node -o update ..."
-      ]'
-    - name: iscsi_detach_commands
-      description: Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
-      datatype: list
-      example: '[
-        "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
-        "sudo iscsiadm -m node -o delete -T IQN"
-      ]'
+        ]'
+      - name: iscsi_detach_commands
+        description: Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
+        datatype: list
+        example: '[
+          "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
+          "sudo iscsiadm -m node -o delete -T IQN"
+        ]'
+resourceModuleParameterValueOverrides:
+  core:
+    volume_backup_policy:
+      - paramName: compartment_id
+        isRequiredForList: true

@@ -7,4 +7,11 @@
 
 - set_fact:
     setup_volume_id: "{{ result.volume.id }}"
-    dependency_volume_id: "{{ result.volume.id }}"
+    dependency_asset_id: "{{ result.volume.id }}"
+
+- name: List backup policies in the compartment
+  oci_blockstorage_volume_backup_policy_facts:
+  register: result
+
+- set_fact:
+    dependency_policy_id: "{{ result.volume_backup_policies[0].id }}"

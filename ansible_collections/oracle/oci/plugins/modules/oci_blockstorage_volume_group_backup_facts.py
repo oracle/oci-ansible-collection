@@ -19,29 +19,29 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_blockstorage_volume_facts
-short_description: Fetches details about one or multiple Volume resources in Oracle Cloud Infrastructure
+module: oci_blockstorage_volume_group_backup_facts
+short_description: Fetches details about one or multiple VolumeGroupBackup resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about one or multiple Volume resources in Oracle Cloud Infrastructure
-    - Lists the volumes in the specified compartment and availability domain.
-    - If I(volume_id) is specified, the details of a single Volume will be returned.
+    - Fetches details about one or multiple VolumeGroupBackup resources in Oracle Cloud Infrastructure
+    - Lists the volume group backups in the specified compartment. You can filter the results by volume group.
+      For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+    - If I(volume_group_backup_id) is specified, the details of a single VolumeGroupBackup will be returned.
 version_added: "2.5"
 options:
-    volume_id:
+    volume_group_backup_id:
         description:
-            - The OCID of the volume.
-            - Required to get a specific volume.
+            - The Oracle Cloud ID (OCID) that uniquely identifies the volume group backup.
+            - Required to get a specific volume_group_backup.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-            - Required to list multiple volumes.
+            - Required to list multiple volume_group_backups.
         type: str
-    availability_domain:
+    volume_group_id:
         description:
-            - The name of the availability domain.
-            - "Example: `Uocm:PHX-AD-1`"
+            - The OCID of the volume group.
         type: str
     display_name:
         description:
@@ -69,21 +69,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-    volume_group_id:
-        description:
-            - The OCID of the volume group.
-        type: str
-    lifecycle_state:
-        description:
-            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
-        type: str
-        choices:
-            - "PROVISIONING"
-            - "RESTORING"
-            - "AVAILABLE"
-            - "TERMINATING"
-            - "TERMINATED"
-            - "FAULTY"
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -92,33 +77,26 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List volumes
-  oci_blockstorage_volume_facts:
+- name: List volume_group_backups
+  oci_blockstorage_volume_group_backup_facts:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
-- name: Get a specific volume
-  oci_blockstorage_volume_facts:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+- name: Get a specific volume_group_backup
+  oci_blockstorage_volume_group_backup_facts:
+    volume_group_backup_id: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
 
 """
 
 RETURN = """
-volumes:
+volume_group_backups:
     description:
-        - List of Volume resources
+        - List of VolumeGroupBackup resources
     returned: on success
     type: complex
     contains:
-        availability_domain:
-            description:
-                - The availability domain of the volume.
-                - "Example: `Uocm:PHX-AD-1`"
-            returned: on success
-            type: string
-            sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment that contains the volume.
+                - The OCID of the compartment that contains the volume group backup.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -132,8 +110,7 @@ volumes:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
+                - A user-friendly name for the volume group backup. Does not have to be unique and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
@@ -148,65 +125,69 @@ volumes:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The OCID of the volume.
+                - The OCID of the volume group backup.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-        is_hydrated:
-            description:
-                - Specifies whether the cloned volume's data has finished copying from the source volume or backup.
-            returned: on success
-            type: bool
-            sample: true
-        kms_key_id:
-            description:
-                - The OCID of the Key Management key which is the master encryption key for the volume.
-            returned: on success
-            type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
-                - The current state of a volume.
+                - The current state of a volume group backup.
             returned: on success
             type: string
-            sample: PROVISIONING
-        size_in_gbs:
-            description:
-                - The size of the volume in GBs.
-            returned: on success
-            type: int
-            sample: 56
+            sample: CREATING
         size_in_mbs:
             description:
-                - The size of the volume in MBs. This field is deprecated. Use sizeInGBs instead.
+                - The aggregate size of the volume group backup, in MBs.
             returned: on success
             type: int
             sample: 56
-        source_details:
+        size_in_gbs:
             description:
-                - The volume source, either an existing volume in the same availability domain or a volume backup.
-                  If null, an empty volume is created.
+                - The aggregate size of the volume group backup, in GBs.
             returned: on success
-            type: complex
-            contains:
-                type:
-                    description:
-                        - ""
-                    returned: on success
-                    type: string
-                    sample: volume
-                id:
-                    description:
-                        - The OCID of the volume.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            type: int
+            sample: 56
         time_created:
             description:
-                - The date and time the volume was created. Format defined by RFC3339.
+                - The date and time the volume group backup was created. This is the time the actual point-in-time image
+                  of the volume group data was taken. Format defined by RFC3339.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        time_request_received:
+            description:
+                - The date and time the request to create the volume group backup was received. Format defined by RFC3339.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        type:
+            description:
+                - The type of backup.
+            returned: on success
+            type: string
+            sample: FULL
+        unique_size_in_mbs:
+            description:
+                - The aggregate size used by the volume group backup, in MBs.
+                  It is typically smaller than sizeInMBs, depending on the space
+                  consumed on the volume group and whether the volume backup is full or incremental.
+            returned: on success
+            type: int
+            sample: 56
+        unique_size_in_gbs:
+            description:
+                - The aggregate size used by the volume group backup, in GBs.
+                  It is typically smaller than sizeInGBs, depending on the space
+                  consumed on the volume group and whether the volume backup is full or incremental.
+            returned: on success
+            type: int
+            sample: 56
+        volume_backup_ids:
+            description:
+                - OCIDs for the volume backups in this volume group backup.
+            returned: on success
+            type: list
+            sample: []
         volume_group_id:
             description:
                 - The OCID of the source volume group.
@@ -214,22 +195,20 @@ volumes:
             type: string
             sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
-        "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_hydrated": true,
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
-        "lifecycle_state": "PROVISIONING",
-        "size_in_gbs": 56,
+        "lifecycle_state": "CREATING",
         "size_in_mbs": 56,
-        "source_details": {
-            "type": "volume",
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        },
+        "size_in_gbs": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
+        "time_request_received": "2013-10-20T19:20:30+01:00",
+        "type": "FULL",
+        "unique_size_in_mbs": 56,
+        "unique_size_in_gbs": 56,
+        "volume_backup_ids": [],
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
@@ -249,12 +228,12 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
+class VolumeGroupBackupFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
         return [
-            "volume_id",
+            "volume_group_backup_id",
         ]
 
     def get_required_params_for_list(self):
@@ -264,17 +243,16 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
-            self.client.get_volume, volume_id=self.module.params.get("volume_id"),
+            self.client.get_volume_group_backup,
+            volume_group_backup_id=self.module.params.get("volume_group_backup_id"),
         )
 
     def list_resources(self):
         optional_list_method_params = [
-            "availability_domain",
+            "volume_group_id",
             "display_name",
             "sort_by",
             "sort_order",
-            "volume_group_id",
-            "lifecycle_state",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -282,16 +260,20 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_volumes,
+            self.client.list_volume_group_backups,
             compartment_id=self.module.params.get("compartment_id"),
             **optional_kwargs
         )
 
 
-VolumeFactsHelperCustom = get_custom_class("VolumeFactsHelperCustom")
+VolumeGroupBackupFactsHelperCustom = get_custom_class(
+    "VolumeGroupBackupFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(VolumeFactsHelperCustom, VolumeFactsHelperGen):
+class ResourceFactsHelper(
+    VolumeGroupBackupFactsHelperCustom, VolumeGroupBackupFactsHelperGen
+):
     pass
 
 
@@ -299,24 +281,12 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            volume_id=dict(aliases=["id"], type="str"),
+            volume_group_backup_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            availability_domain=dict(type="str"),
+            volume_group_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            volume_group_id=dict(type="str"),
-            lifecycle_state=dict(
-                type="str",
-                choices=[
-                    "PROVISIONING",
-                    "RESTORING",
-                    "AVAILABLE",
-                    "TERMINATING",
-                    "TERMINATED",
-                    "FAULTY",
-                ],
-            ),
         )
     )
 
@@ -327,7 +297,7 @@ def main():
 
     resource_facts_helper = ResourceFactsHelper(
         module=module,
-        resource_type="volume",
+        resource_type="volume_group_backup",
         service_client_class=BlockstorageClient,
         namespace="core",
     )
@@ -341,7 +311,7 @@ def main():
     else:
         resource_facts_helper.fail()
 
-    module.exit_json(volumes=result)
+    module.exit_json(volume_group_backups=result)
 
 
 if __name__ == "__main__":

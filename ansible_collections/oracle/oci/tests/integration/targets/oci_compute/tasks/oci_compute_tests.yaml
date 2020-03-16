@@ -474,16 +474,16 @@
         that:
         - delete_instance_result.changed == True
 
-#    - name: Delete the test volume
-#      oci_blockstorage_volume:
-#        id: "{{ test_volume_ocid }}"
-#        state: absent
-#      register: delete_vol_result
-#
-#    - name: Assert that changed is true
-#      assert:
-#        that:
-#        - delete_vol_result.changed == True
+    - name: Delete the test volume
+      oci_blockstorage_volume:
+        id: "{{ test_volume_ocid }}"
+        state: absent
+      register: delete_vol_result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - delete_vol_result.changed == True
 
     - name: Delete the network security group
       oci_network_security_group:
@@ -506,12 +506,12 @@
       register: delete_instance_result
       ignore_errors: yes
 
-#    - name: Delete the test volume
-#      oci_blockstorage_volume:
-#        id: "{{ test_volume_ocid }}"
-#        state: absent
-#      register: delete_vol_result
-#      ignore_errors: yes
+    - name: Delete the test volume
+      oci_blockstorage_volume:
+        id: "{{ test_volume_ocid }}"
+        state: absent
+      register: delete_vol_result
+      ignore_errors: yes
 
     - name: Delete the network security group
       oci_network_security_group:
@@ -524,82 +524,79 @@
 
 # Test for custom boot volume size
 
-# TODO: Enable when all necessary modules are available
-#- block:
-#    # ===========================================================================================
-#    ## Create/Launch
-#    - name: Create new compute instance for testing custom bool volume size
-#      oci_compute_instance:
-#        name: "custom-boot-vol-{{test_instance_name}}"
-#        shape: "{{test_instance_shape}}"
-#        compartment_id: "{{test_compartment_ocid}}"
-#        availability_domain: "{{test_availability_domain}}"
-#        source_details:
-#          source_type: "image"
-#          image_id: "{{image_ocid}}"
-#          boot_volume_size_in_gbs: "{{test_instance_boot_volume_size_in_gbs}}"
-#        vnic:
-#            hostname_label: "custombootvol{{test_instance_name}}"
-#            subnet_id: "{{common_subnet_id}}"
-#      register: result
-#    # name: Set variable to current instance id
-#    - set_fact:
-#        my_custom_boot_vol_instance_ocid: "{{result.instance.id}}"
-#    - debug:
-#        msg: "{{ result }}"
-#    - name: Assert that changed is true
-#      assert:
-#          that:
-#              - result.changed == True
-#              - result.instance.display_name == "custom-boot-vol-{{test_instance_name}}"
-#              - result.instance.lifecycle_state == "RUNNING"
-#
-#    - name: Get the boot volume attachment details for the instance
-#      oci_boot_volume_attachment_facts:
-#        availability_domain: "{{ test_availability_domain }}"
-#        compartment_id: "{{ test_compartment_ocid }}"
-#        instance_id: "{{ my_custom_boot_vol_instance_ocid }}"
-#      register: boot_volume_attachment_result
-#
-#    - set_fact:
-#        boot_volume_id: "{{ boot_volume_attachment_result.boot_volume_attachments[0].boot_volume_id }}"
-#
-#    - name: Get the boot volume details
-#      oci_boot_volume_facts:
-#        boot_volume_id: "{{ boot_volume_id }}"
-#      register: boot_volume_result
-#
-#    - set_fact:
-#        boot_volume: "{{ boot_volume_result.boot_volumes[0] }}"
-#
-#    - name: Check that the boot volume has the custom size specified
-#      assert:
-#        that:
-#          - boot_volume.id == boot_volume_id
-#          - boot_volume.size_in_gbs == test_instance_boot_volume_size_in_gbs
-#
-#    ## Delete/Terminate
-#    - name: Delete the instance
-#      oci_compute_instance:
-#        id: "{{my_custom_boot_vol_instance_ocid}}"
-#        state: 'absent'
-#      register: result
-#
-#    - name: Assert that the instance was terminated, and changed is true
-#      assert:
-#        that:
-#        - result.changed == True
-#        - result.instance.lifecycle_state == "TERMINATED"
-#
-#
-#  rescue:
-#
-#    - name: Delete the instance
-#      oci_compute_instance:
-#        id: "{{my_custom_boot_vol_instance_ocid}}"
-#        state: 'absent'
-#      register: result
-#      ignore_errors: yes
-#
-#    - fail:
-#        msg: "{{ ansible_failed_result }}"
+- block:
+    # ===========================================================================================
+    ## Create/Launch
+    - name: Create new compute instance for testing custom bool volume size
+      oci_compute_instance:
+        name: "custom-boot-vol-{{test_instance_name}}"
+        shape: "{{test_instance_shape}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        availability_domain: "{{test_availability_domain}}"
+        source_details:
+          source_type: "image"
+          image_id: "{{image_ocid}}"
+          boot_volume_size_in_gbs: "{{test_instance_boot_volume_size_in_gbs}}"
+        create_vnic_details:
+            hostname_label: "custombootvol{{test_instance_name}}"
+            subnet_id: "{{common_subnet_id}}"
+      register: result
+    # name: Set variable to current instance id
+    - set_fact:
+        my_custom_boot_vol_instance_ocid: "{{result.instance.id}}"
+    - debug:
+        msg: "{{ result }}"
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+          - result.instance.display_name == "custom-boot-vol-{{test_instance_name}}"
+
+    - name: Get the boot volume attachment details for the instance
+      oci_compute_boot_volume_attachment_facts:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        instance_id: "{{ my_custom_boot_vol_instance_ocid }}"
+      register: boot_volume_attachment_result
+
+    - set_fact:
+        boot_volume_id: "{{ boot_volume_attachment_result.boot_volume_attachments[0].boot_volume_id }}"
+
+    - name: Get the boot volume details
+      oci_blockstorage_boot_volume_facts:
+        boot_volume_id: "{{ boot_volume_id }}"
+      register: boot_volume_result
+
+    - set_fact:
+        boot_volume: "{{ boot_volume_result.boot_volumes[0] }}"
+
+    - name: Check that the boot volume has the custom size specified
+      assert:
+        that:
+          - boot_volume.id == boot_volume_id
+          - boot_volume.size_in_gbs == test_instance_boot_volume_size_in_gbs
+
+    ## Delete/Terminate
+    - name: Delete the instance
+      oci_compute_instance:
+        id: "{{my_custom_boot_vol_instance_ocid}}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that the instance was terminated, and changed is true
+      assert:
+        that:
+        - result.changed == True
+
+
+  rescue:
+
+    - name: Delete the instance
+      oci_compute_instance:
+        id: "{{my_custom_boot_vol_instance_ocid}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

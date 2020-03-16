@@ -19,24 +19,25 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_blockstorage_volume_facts
-short_description: Fetches details about one or multiple Volume resources in Oracle Cloud Infrastructure
+module: oci_blockstorage_volume_group_facts
+short_description: Fetches details about one or multiple VolumeGroup resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about one or multiple Volume resources in Oracle Cloud Infrastructure
-    - Lists the volumes in the specified compartment and availability domain.
-    - If I(volume_id) is specified, the details of a single Volume will be returned.
+    - Fetches details about one or multiple VolumeGroup resources in Oracle Cloud Infrastructure
+    - Lists the volume groups in the specified compartment and availability domain.
+      For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+    - If I(volume_group_id) is specified, the details of a single VolumeGroup will be returned.
 version_added: "2.5"
 options:
-    volume_id:
+    volume_group_id:
         description:
-            - The OCID of the volume.
-            - Required to get a specific volume.
+            - The Oracle Cloud ID (OCID) that uniquely identifies the volume group.
+            - Required to get a specific volume_group.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-            - Required to list multiple volumes.
+            - Required to list multiple volume_groups.
         type: str
     availability_domain:
         description:
@@ -69,17 +70,12 @@ options:
         choices:
             - "ASC"
             - "DESC"
-    volume_group_id:
-        description:
-            - The OCID of the volume group.
-        type: str
     lifecycle_state:
         description:
             - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
         type: str
         choices:
             - "PROVISIONING"
-            - "RESTORING"
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
@@ -92,33 +88,32 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: List volumes
-  oci_blockstorage_volume_facts:
+- name: List volume_groups
+  oci_blockstorage_volume_group_facts:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
-- name: Get a specific volume
-  oci_blockstorage_volume_facts:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+- name: Get a specific volume_group
+  oci_blockstorage_volume_group_facts:
+    volume_group_id: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
 
 """
 
 RETURN = """
-volumes:
+volume_groups:
     description:
-        - List of Volume resources
+        - List of VolumeGroup resources
     returned: on success
     type: complex
     contains:
         availability_domain:
             description:
-                - The availability domain of the volume.
-                - "Example: `Uocm:PHX-AD-1`"
+                - The availability domain of the volume group.
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment that contains the volume.
+                - The OCID of the compartment that contains the volume group.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -132,8 +127,7 @@ volumes:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
+                - A user-friendly name for the volume group. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
@@ -148,44 +142,32 @@ volumes:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The OCID of the volume.
+                - The OCID for the volume group.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-        is_hydrated:
-            description:
-                - Specifies whether the cloned volume's data has finished copying from the source volume or backup.
-            returned: on success
-            type: bool
-            sample: true
-        kms_key_id:
-            description:
-                - The OCID of the Key Management key which is the master encryption key for the volume.
-            returned: on success
-            type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
-                - The current state of a volume.
+                - The current state of a volume group.
             returned: on success
             type: string
             sample: PROVISIONING
-        size_in_gbs:
+        size_in_mbs:
             description:
-                - The size of the volume in GBs.
+                - The aggregate size of the volume group in MBs.
             returned: on success
             type: int
             sample: 56
-        size_in_mbs:
+        size_in_gbs:
             description:
-                - The size of the volume in MBs. This field is deprecated. Use sizeInGBs instead.
+                - The aggregate size of the volume group in GBs.
             returned: on success
             type: int
             sample: 56
         source_details:
             description:
-                - The volume source, either an existing volume in the same availability domain or a volume backup.
-                  If null, an empty volume is created.
+                - The volume group source. The source is either another a list of
+                  volume IDs in the same availability domain, another volume group, or a volume group backup.
             returned: on success
             type: complex
             contains:
@@ -194,25 +176,43 @@ volumes:
                         - ""
                     returned: on success
                     type: string
-                    sample: volume
-                id:
+                    sample: volumeGroupId
+                volume_group_id:
                     description:
-                        - The OCID of the volume.
+                        - The OCID of the volume group to clone from.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+                volume_ids:
+                    description:
+                        - OCIDs for the volumes in this volume group.
+                    returned: on success
+                    type: list
+                    sample: []
+                volume_group_backup_id:
+                    description:
+                        - The OCID of the volume group backup to restore from.
+                    returned: on success
+                    type: string
+                    sample: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - The date and time the volume was created. Format defined by RFC3339.
+                - The date and time the volume group was created. Format defined by RFC3339.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
-        volume_group_id:
+        volume_ids:
             description:
-                - The OCID of the source volume group.
+                - OCIDs for the volumes in this volume group.
             returned: on success
-            type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            type: list
+            sample: []
+        is_hydrated:
+            description:
+                - Specifies whether the newly created cloned volume group's data has finished copying from the source volume group or backup.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -220,17 +220,18 @@ volumes:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_hydrated": true,
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "size_in_gbs": 56,
         "size_in_mbs": 56,
+        "size_in_gbs": 56,
         "source_details": {
-            "type": "volume",
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            "type": "volumeGroupId",
+            "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "volume_ids": [],
+            "volume_group_backup_id": "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        "volume_ids": [],
+        "is_hydrated": true
     }]
 """
 
@@ -249,12 +250,12 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
+class VolumeGroupFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
         return [
-            "volume_id",
+            "volume_group_id",
         ]
 
     def get_required_params_for_list(self):
@@ -264,7 +265,8 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
-            self.client.get_volume, volume_id=self.module.params.get("volume_id"),
+            self.client.get_volume_group,
+            volume_group_id=self.module.params.get("volume_group_id"),
         )
 
     def list_resources(self):
@@ -273,7 +275,6 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "sort_by",
             "sort_order",
-            "volume_group_id",
             "lifecycle_state",
         ]
         optional_kwargs = dict(
@@ -282,16 +283,16 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_volumes,
+            self.client.list_volume_groups,
             compartment_id=self.module.params.get("compartment_id"),
             **optional_kwargs
         )
 
 
-VolumeFactsHelperCustom = get_custom_class("VolumeFactsHelperCustom")
+VolumeGroupFactsHelperCustom = get_custom_class("VolumeGroupFactsHelperCustom")
 
 
-class ResourceFactsHelper(VolumeFactsHelperCustom, VolumeFactsHelperGen):
+class ResourceFactsHelper(VolumeGroupFactsHelperCustom, VolumeGroupFactsHelperGen):
     pass
 
 
@@ -299,18 +300,16 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            volume_id=dict(aliases=["id"], type="str"),
+            volume_group_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             availability_domain=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            volume_group_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
                 choices=[
                     "PROVISIONING",
-                    "RESTORING",
                     "AVAILABLE",
                     "TERMINATING",
                     "TERMINATED",
@@ -327,7 +326,7 @@ def main():
 
     resource_facts_helper = ResourceFactsHelper(
         module=module,
-        resource_type="volume",
+        resource_type="volume_group",
         service_client_class=BlockstorageClient,
         namespace="core",
     )
@@ -341,7 +340,7 @@ def main():
     else:
         resource_facts_helper.fail()
 
-    module.exit_json(volumes=result)
+    module.exit_json(volume_groups=result)
 
 
 if __name__ == "__main__":

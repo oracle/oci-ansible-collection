@@ -1,412 +1,507 @@
-- import_tasks: oci_network_vcn_tests.yaml
-  tags:
-    - vcn
-- import_tasks: oci_network_internet_gateway_tests.yaml
-  tags:
-    - internet_gateway
-- import_tasks: oci_network_nat_gateway_tests.yaml
-  tags:
-    - nat_gateway
-- import_tasks: oci_network_service_tests.yaml
-  tags:
-    - service
-- import_tasks: oci_network_service_gateway_tests.yaml
-  tags:
-    - service_gateway
-- import_tasks: oci_network_cpe_tests.yaml
-  tags:
-    - cpe
-- import_tasks: oci_network_drg_tests.yaml
-  tags:
-    - drg
-- import_tasks: oci_network_dhcp_options_tests.yaml
-  tags:
-    - dhcp_options
-- import_tasks: oci_network_security_group_tests.yaml
-  tags:
-    - security_group
-- import_tasks: oci_network_route_table_tests.yaml
-  tags:
-    - route_table
-- import_tasks: oci_network_security_list_tests.yaml
-  tags:
-    - security_list
-- import_tasks: oci_network_subnet_tests.yaml
-  tags:
-    - subnet
-- import_tasks: oci_network_local_peering_gateway_tests.yaml
-  tags:
-    - local_peering
-    - peering
-- import_tasks: oci_network_remote_peering_connection_tests.yaml
-  tags:
-    - remote_peering_connection
-    - peering
-- import_tasks: oci_network_peer_region_for_remote_peering_tests.yaml
-  tags:
-    - peer_region_for_remote_peering
-    - peering
-- import_tasks: oci_network_fast_connect_provider_service_tests.yaml
-  tags:
-    - fast_connect
-    - fast_connect_provider_service
-# oci_network_fast_connect_provider_service_key_tests.yaml tests won't work because we do not have a valid
-# provider service key which we get only when we set up a virtual circuit connection from the provider to OCI.
-# So ignoring the failures for now.
-# TODO: Check if we have a test provider with key available and enable the tests
-#- import_tasks: oci_network_fast_connect_provider_service_key_tests.yaml
-#  tags:
-#    - fast_connect
-#    - fast_connect_provider_service_key
-- import_tasks: oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_tests.yaml
-  tags:
-    - fast_connect
-    - fast_connect_provider_service_virtual_circuit_bandwidth_shape
-- import_tasks: oci_network_drg_attachment_tests.yaml
-  tags:
-    - drg_attachment
-- import_tasks: oci_network_cross_connect_group_tests.yaml
-  tags:
-    - cross_connect_group
-- import_tasks: oci_network_cross_connect_location_tests.yaml
-  tags:
-    - cross_connect_location
-- import_tasks: oci_network_cross_connect_port_speed_shape_tests.yaml
-  tags:
-    - cross_connect_port_speed_shape
-- import_tasks: oci_network_cross_connect_status_tests.yaml
-  tags:
-    - cross_connect_status
 - block:
-
-  - import_tasks: oci_network_virtual_circuit_setup.yaml
-    tags:
-      - virtual_circuit_setup
-      - virtual_circuit
-      - virtual_circuit_public_prefix
-      - virtuil_circuit_bandwidth_shape
-  - import_tasks: oci_network_virtual_circuit_tests.yaml
-    tags:
-      - virtual_circuit
-  - import_tasks: oci_network_virtual_circuit_public_prefix_tests.yaml
-    tags:
-      - virtual_circuit_public_prefix
-  - import_tasks: oci_network_virtual_circuit_bandwidth_shape_tests.yaml
-    tags:
-      - virtuil_circuit_bandwidth_shape
-
-  always:
-    - import_tasks: oci_network_virtual_circuit_teardown.yaml
+    - import_tasks: oci_network_vcn_tests.yaml
       tags:
-        - virtual_circuit_teardown
-        - virtual_circuit
-        - virtual_circuit_public_prefix
-        - virtuil_circuit_bandwidth_shape
-  tags:
-    - virtual_circuit_full
-- block:
-  - import_tasks: oci_network_ip_sec_connection_tests.yaml
-    tags:
-      - ip_sec_connection
-  - block:
-      - import_tasks: oci_network_ip_sec_connection_setup.yaml
+        - vcn
+    - import_tasks: oci_network_internet_gateway_tests.yaml
+      tags:
+        - internet_gateway
+    - import_tasks: oci_network_nat_gateway_tests.yaml
+      tags:
+        - nat_gateway
+    - import_tasks: oci_network_service_tests.yaml
+      tags:
+        - service
+    - import_tasks: oci_network_service_gateway_tests.yaml
+      tags:
+        - service_gateway
+    - import_tasks: oci_network_cpe_tests.yaml
+      tags:
+        - cpe
+    - import_tasks: oci_network_drg_tests.yaml
+      tags:
+        - drg
+    - import_tasks: oci_network_dhcp_options_tests.yaml
+      tags:
+        - dhcp_options
+    - import_tasks: oci_network_security_group_tests.yaml
+      tags:
+        - security_group
+    - import_tasks: oci_network_route_table_tests.yaml
+      tags:
+        - route_table
+    - import_tasks: oci_network_security_list_tests.yaml
+      tags:
+        - security_list
+    - import_tasks: oci_network_subnet_tests.yaml
+      tags:
+        - subnet
+    - import_tasks: oci_network_local_peering_gateway_tests.yaml
+      tags:
+        - local_peering
+        - peering
+    - import_tasks: oci_network_remote_peering_connection_tests.yaml
+      tags:
+        - remote_peering_connection
+        - peering
+    - import_tasks: oci_network_peer_region_for_remote_peering_tests.yaml
+      tags:
+        - peer_region_for_remote_peering
+        - peering
+    - import_tasks: oci_network_fast_connect_provider_service_tests.yaml
+      tags:
+        - fast_connect
+        - fast_connect_provider_service
+    # oci_network_fast_connect_provider_service_key_tests.yaml tests won't work because we do not have a valid
+    # provider service key which we get only when we set up a virtual circuit connection from the provider to OCI.
+    # So ignoring the failures for now.
+    # TODO: Check if we have a test provider with key available and enable the tests
+    #- import_tasks: oci_network_fast_connect_provider_service_key_tests.yaml
+    #  tags:
+    #    - fast_connect
+    #    - fast_connect_provider_service_key
+    - import_tasks: oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_tests.yaml
+      tags:
+        - fast_connect
+        - fast_connect_provider_service_virtual_circuit_bandwidth_shape
+    - import_tasks: oci_network_drg_attachment_tests.yaml
+      tags:
+        - drg_attachment
+    - import_tasks: oci_network_cross_connect_group_tests.yaml
+      tags:
+        - cross_connect_group
+    - import_tasks: oci_network_cross_connect_location_tests.yaml
+      tags:
+        - cross_connect_location
+    - import_tasks: oci_network_cross_connect_port_speed_shape_tests.yaml
+      tags:
+        - cross_connect_port_speed_shape
+    - import_tasks: oci_network_cross_connect_status_tests.yaml
+      tags:
+        - cross_connect_status
+
+    - block:
+
+      - import_tasks: oci_network_virtual_circuit_setup.yaml
         tags:
-          - ip_sec_connection_setup
-          - ip_sec_connection_device_config
-          - ip_sec_connection_device_status
-          - ip_sec_connection_tunnel
-          - ip_sec_connection_tunnel_shared_secret
-      - import_tasks: oci_network_ip_sec_connection_device_config_tests.yaml
+          - virtual_circuit_setup
+          - virtual_circuit
+          - virtual_circuit_public_prefix
+          - virtuil_circuit_bandwidth_shape
+      - import_tasks: oci_network_virtual_circuit_tests.yaml
         tags:
-          - ip_sec_connection_device_config
-      - import_tasks: oci_network_ip_sec_connection_device_status_tests.yaml
+          - virtual_circuit
+      - import_tasks: oci_network_virtual_circuit_public_prefix_tests.yaml
         tags:
-          - ip_sec_connection_device_status
-      - import_tasks: oci_network_ip_sec_connection_tunnel_tests.yaml
+          - virtual_circuit_public_prefix
+      - import_tasks: oci_network_virtual_circuit_bandwidth_shape_tests.yaml
         tags:
-          - ip_sec_connection_tunnel
-      - import_tasks: oci_network_ip_sec_connection_tunnel_shared_secret_tests.yaml
+          - virtuil_circuit_bandwidth_shape
+      - import_tasks: oci_network_virtual_circuit_teardown.yaml
         tags:
-          - ip_sec_connection_tunnel_shared_secret
-    always:
-      - import_tasks: oci_network_ip_sec_connection_teardown.yaml
+          - virtual_circuit_teardown
+          - virtual_circuit
+          - virtual_circuit_public_prefix
+          - virtuil_circuit_bandwidth_shape
+
+      always:
+        - import_tasks: oci_network_virtual_circuit_teardown.yaml
+          ignore_errors: yes
+          tags:
+            - virtual_circuit_teardown
+            - virtual_circuit
+            - virtual_circuit_public_prefix
+            - virtuil_circuit_bandwidth_shape
+      tags:
+        - virtual_circuit_full
+    - block:
+      - import_tasks: oci_network_ip_sec_connection_tests.yaml
         tags:
-          - ip_sec_connection_teardown
-          - ip_sec_connection_device_config
-          - ip_sec_connection_device_status
-          - ip_sec_connection_tunnel
-          - ip_sec_connection_tunnel_shared_secret
+          - ip_sec_connection
+      - block:
+          - import_tasks: oci_network_ip_sec_connection_setup.yaml
+            tags:
+              - ip_sec_connection_setup
+              - ip_sec_connection_device_config
+              - ip_sec_connection_device_status
+              - ip_sec_connection_tunnel
+              - ip_sec_connection_tunnel_shared_secret
+          - import_tasks: oci_network_ip_sec_connection_device_config_tests.yaml
+            tags:
+              - ip_sec_connection_device_config
+          - import_tasks: oci_network_ip_sec_connection_device_status_tests.yaml
+            tags:
+              - ip_sec_connection_device_status
+          - import_tasks: oci_network_ip_sec_connection_tunnel_tests.yaml
+            tags:
+              - ip_sec_connection_tunnel
+          - import_tasks: oci_network_ip_sec_connection_tunnel_shared_secret_tests.yaml
+            tags:
+              - ip_sec_connection_tunnel_shared_secret
+          - import_tasks: oci_network_ip_sec_connection_teardown.yaml
+            tags:
+              - ip_sec_connection_teardown
+              - ip_sec_connection_device_config
+              - ip_sec_connection_device_status
+              - ip_sec_connection_tunnel
+              - ip_sec_connection_tunnel_shared_secret
+        always:
+          - import_tasks: oci_network_ip_sec_connection_teardown.yaml
+            ignore_errors: yes
+            tags:
+              - ip_sec_connection_teardown
+              - ip_sec_connection_device_config
+              - ip_sec_connection_device_status
+              - ip_sec_connection_tunnel
+              - ip_sec_connection_tunnel_shared_secret
+      tags:
+        - ip_sec_connection_full
   tags:
-    - ip_sec_connection_full
-- block:
-  - import_tasks: oci_compute_app_catalog_listing_setup.yaml
-    tags:
-      - app_catalog_listing_setup
-      - app_catalog_listing
-      - app_catalog_listing_resource_version
-      - app_catalog_listing_resource_version_agreement
-      - app_catalog_subscription
-  - import_tasks: oci_compute_app_catalog_listing_tests.yaml
-    tags:
-      - app_catalog_listing
-  - import_tasks: oci_compute_app_catalog_listing_resource_version_tests.yaml
-    tags:
-      - app_catalog_listing_resource_version
-  - import_tasks: oci_compute_app_catalog_listing_resource_version_agreement_tests.yaml
-    tags:
-      - app_catalog_listing_resource_version_agreement
-  - import_tasks: oci_compute_app_catalog_subscription_tests.yaml
-    tags:
-      - app_catalog_subscription
-  tags:
-    - app_catalog
-- block:
-    - import_tasks: oci_compute_instance_setup.yaml
-      tags:
-        - instance_setup
-        - instance
-        - instance_actions
-        - instance_console_connection
-        - instance_console_history
-        - instance_console_history_content
-        - device
-        - boot_volume
-        - boot_volume_backup
-        - boot_volume_attachment
-        - image
-        - image_shape_compatibility_entry
-        - vnic_attachment
-        - vnic
-        - public_ip
-        - private_ip
-        - network_security_group_vnic
-        - volume_attachment
-    - import_tasks: oci_compute_instance_tests.yaml
-      tags:
-        - instance
-    - import_tasks: oci_compute_instance_console_connection_tests.yaml
-      tags:
-        - instance_console_connection
-    - import_tasks: oci_compute_instance_console_history_tests.yaml
-      tags:
-        - instance_console_history
-    - import_tasks: oci_compute_instance_console_history_content_tests.yaml
-      tags:
-        - instance_console_history_content
-    - import_tasks: oci_compute_device_tests.yaml
-      tags:
-        - device
-    - import_tasks: oci_compute_vnic_attachment_tests.yaml
-      tags:
-        - vnic_attachment
-    - import_tasks: oci_network_vnic_tests.yaml
-      tags:
-        - vnic
-    - import_tasks: oci_network_public_ip_tests.yaml
-      tags:
-        - public_ip
-    - import_tasks: oci_network_public_ip_tests.yaml
-      tags:
-        - private_ip
-    - import_tasks: oci_network_security_group_vnic_tests.yaml
-      tags:
-        - network_security_group_vnic
-    - name: Stop the setup instance for creating a boot volume
-      oci_compute_instance_actions:
-        instance_id: "{{ setup_instance_id }}"
-        action: "stop"
-      register: result
-      tags:
-        - boot_volume
-        - boot_volume_backup
-        - boot_volume_attachment
-        - image
-        - image_shape_compatibility_entry
-    - name: Assert that the setup instance is stopped
-      assert:
-        that:
-          - result.changed == True
-      tags:
-        - boot_volume
-        - boot_volume_backup
-        - boot_volume_attachment
-        - image
-        - image_shape_compatibility_entry
-    - import_tasks: oci_blockstorage_boot_volume_tests.yaml
-      tags:
-        - boot_volume
-    - import_tasks: oci_blockstorage_boot_volume_backup_tests.yaml
-      tags:
-        - boot_volume_backup
-    - name: Detach boot volume for the setup instance
-      oci_compute_boot_volume_attachment:
-        boot_volume_attachment_id: "{{ setup_instance_boot_volume_attachment_id }}"
-        state: absent
-      register: result
-      tags:
-        - boot_volume_attachment
-    - name: Assert that the boot volume is detached for the setup instance
-      assert:
-        that:
-          - result.changed == True
-      tags:
-        - boot_volume_attachment
-    - import_tasks: oci_compute_boot_volume_attachment_tests.yaml
-      tags:
-        - boot_volume_attachment
-    - name: Attach the boot volume to the setup instance
-      oci_compute_boot_volume_attachment:
-        boot_volume_id: "{{ setup_instance_boot_volume_id }}"
-        instance_id: "{{ setup_instance_id }}"
-        availability_domain: "{{ test_availability_domain }}"
-        compartment_id: "{{ test_compartment_ocid }}"
-      register: result
-      tags:
-        - boot_volume_attachment
-    - name: Assert that the boot volume is attached to the setup instance
-      assert:
-        that:
-          - result.changed == True
-      tags:
-        - boot_volume_attachment
-    - name: Create an image from this stopped instance with `PARAVIRTUALIZED` launch_mode
-      oci_compute_image:
-        name: "{{test_image_name}}"
-        compartment_id: "{{test_compartment_ocid}}"
-        instance_id: "{{setup_instance_id}}"
-        freeform_tags: "{{ test_default_freeform_tags }}"
-        defined_tags: "{{ test_default_defined_tags }}"
-        launch_mode: "PARAVIRTUALIZED"
-      register: result
-      tags:
-        - image
-        - image_shape_compatibility_entry
-    - set_fact:
-        setup_image_id: "{{result.image.id}}"
-        dependency_image_id: "{{result.image.id}}"
-      tags:
-        - image
-        - image_shape_compatibility_entry
-    - name: Assert that an image was created
-      assert:
-        that:
-          - result.changed == True
-          - result.image.display_name == "{{test_image_name}}"
-          - result.image.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
-          - result.image.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
-          - result.image.launch_mode == "PARAVIRTUALIZED"
-      tags:
-        - image
-        - image_shape_compatibility_entry
-    - import_tasks: oci_compute_image_tests.yaml
-      tags:
-        - image
-    - import_tasks: oci_compute_image_shape_compatibility_entry_tests.yaml
-      tags:
-        - image_shape_compatibility_entry
-    - import_tasks: oci_compute_volume_attachment_tests.yaml
-      tags:
-        - volume_attachment
-  always:
-    - name: Delete setup image
-      oci_compute_image:
-        id: "{{ setup_image_id }}"
-        state: absent
-      tags:
-        - image
-        - image_shape_compatibility_entry
-    - import_tasks: oci_compute_instance_teardown.yaml
-      tags:
-        - instance_teardown
-        - instance
-        - instance_actions
-        - boot_volume
-        - boot_volume_backup
-        - boot_volume_attachment
-        - instance_console_connection
-        - instance_console_history
-        - instance_console_history_content
-        - device
-        - image
-        - image_shape_compatibility_entry
-        - vnic_attachment
-        - vnic
-        - public_ip
-        - private_ip
-        - network_security_group_vnic
-        - volume_attachment
-  tags:
-    - instance_full
+    - core_set_1
 
 - block:
-    - import_tasks: oci_compute_windows_instance_setup.yaml
+    - block:
+      - import_tasks: oci_compute_app_catalog_listing_setup.yaml
+        tags:
+          - app_catalog_listing_setup
+          - app_catalog_listing
+          - app_catalog_listing_resource_version
+          - app_catalog_listing_resource_version_agreement
+          - app_catalog_subscription
+      - import_tasks: oci_compute_app_catalog_listing_tests.yaml
+        tags:
+          - app_catalog_listing
+      - import_tasks: oci_compute_app_catalog_listing_resource_version_tests.yaml
+        tags:
+          - app_catalog_listing_resource_version
+      - import_tasks: oci_compute_app_catalog_listing_resource_version_agreement_tests.yaml
+        tags:
+          - app_catalog_listing_resource_version_agreement
+      - import_tasks: oci_compute_app_catalog_subscription_tests.yaml
+        tags:
+          - app_catalog_subscription
       tags:
-        - windows_instance_setup
-        - instance_credentials
-    - import_tasks: oci_compute_instance_credentials_tests.yaml
+        - app_catalog
+    - block:
+        - import_tasks: oci_compute_instance_setup.yaml
+          tags:
+            - instance_setup
+            - instance
+            - instance_actions
+            - instance_console_connection
+            - instance_console_history
+            - instance_console_history_content
+            - device
+            - boot_volume
+            - boot_volume_backup
+            - boot_volume_attachment
+            - image
+            - image_shape_compatibility_entry
+            - vnic_attachment
+            - vnic
+            - public_ip
+            - private_ip
+            - network_security_group_vnic
+            - volume_attachment
+        - import_tasks: oci_compute_instance_tests.yaml
+          tags:
+            - instance
+        - import_tasks: oci_compute_instance_console_connection_tests.yaml
+          tags:
+            - instance_console_connection
+        - import_tasks: oci_compute_instance_console_history_tests.yaml
+          tags:
+            - instance_console_history
+        - import_tasks: oci_compute_instance_console_history_content_tests.yaml
+          tags:
+            - instance_console_history_content
+        - import_tasks: oci_compute_device_tests.yaml
+          tags:
+            - device
+        - import_tasks: oci_compute_vnic_attachment_tests.yaml
+          tags:
+            - vnic_attachment
+        - import_tasks: oci_network_vnic_tests.yaml
+          tags:
+            - vnic
+        - import_tasks: oci_network_public_ip_tests.yaml
+          tags:
+            - public_ip
+        - import_tasks: oci_network_public_ip_tests.yaml
+          tags:
+            - private_ip
+        - import_tasks: oci_network_security_group_vnic_tests.yaml
+          tags:
+            - network_security_group_vnic
+        - import_tasks: oci_compute_volume_attachment_tests.yaml
+          tags:
+            - volume_attachment
+        - name: Stop the setup instance for creating a boot volume
+          oci_compute_instance_actions:
+            instance_id: "{{ setup_instance_id }}"
+            action: "stop"
+          register: result
+          tags:
+            - boot_volume
+            - boot_volume_backup
+            - boot_volume_attachment
+            - image
+            - image_shape_compatibility_entry
+        - name: Assert that the setup instance is stopped
+          assert:
+            that:
+              - result.changed == True
+          tags:
+            - boot_volume
+            - boot_volume_backup
+            - boot_volume_attachment
+            - image
+            - image_shape_compatibility_entry
+        - import_tasks: oci_blockstorage_boot_volume_tests.yaml
+          tags:
+            - boot_volume
+        - import_tasks: oci_blockstorage_boot_volume_backup_tests.yaml
+          tags:
+            - boot_volume_backup
+        - name: Detach boot volume for the setup instance
+          oci_compute_boot_volume_attachment:
+            boot_volume_attachment_id: "{{ setup_instance_boot_volume_attachment_id }}"
+            state: absent
+          register: result
+          tags:
+            - boot_volume_attachment
+        - name: Assert that the boot volume is detached for the setup instance
+          assert:
+            that:
+              - result.changed == True
+          tags:
+            - boot_volume_attachment
+        - import_tasks: oci_compute_boot_volume_attachment_tests.yaml
+          tags:
+            - boot_volume_attachment
+        - name: Attach the boot volume to the setup instance
+          oci_compute_boot_volume_attachment:
+            boot_volume_id: "{{ setup_instance_boot_volume_id }}"
+            instance_id: "{{ setup_instance_id }}"
+            availability_domain: "{{ test_availability_domain }}"
+            compartment_id: "{{ test_compartment_ocid }}"
+          register: result
+          tags:
+            - boot_volume_attachment
+        - name: Assert that the boot volume is attached to the setup instance
+          assert:
+            that:
+              - result.changed == True
+          tags:
+            - boot_volume_attachment
+        - name: Create an image from this stopped instance with `PARAVIRTUALIZED` launch_mode
+          oci_compute_image:
+            name: "{{test_image_name}}"
+            compartment_id: "{{test_compartment_ocid}}"
+            instance_id: "{{setup_instance_id}}"
+            freeform_tags: "{{ test_default_freeform_tags }}"
+            defined_tags: "{{ test_default_defined_tags }}"
+            launch_mode: "PARAVIRTUALIZED"
+          register: result
+          tags:
+            - image
+            - image_shape_compatibility_entry
+        - set_fact:
+            setup_image_id: "{{result.image.id}}"
+            dependency_image_id: "{{result.image.id}}"
+          tags:
+            - image
+            - image_shape_compatibility_entry
+        - name: Assert that an image was created
+          assert:
+            that:
+              - result.changed == True
+              - result.image.display_name == "{{test_image_name}}"
+              - result.image.freeform_tags.{{test_default_freeform_tag_key}} == "{{ test_default_freeform_tag_value }}"
+              - result.image.defined_tags.{{test_tag_namespace_name}}.{{test_tag_name}} == "{{ test_default_defined_tag_value }}"
+              - result.image.launch_mode == "PARAVIRTUALIZED"
+          tags:
+            - image
+            - image_shape_compatibility_entry
+        - import_tasks: oci_compute_image_tests.yaml
+          tags:
+            - image
+        - import_tasks: oci_compute_image_shape_compatibility_entry_tests.yaml
+          tags:
+            - image_shape_compatibility_entry
+        - name: Delete setup image
+          oci_compute_image:
+            id: "{{ setup_image_id }}"
+            state: absent
+          tags:
+            - image
+            - image_shape_compatibility_entry
+        - import_tasks: oci_compute_instance_teardown.yaml
+          tags:
+            - instance_teardown
+            - instance
+            - instance_actions
+            - boot_volume
+            - boot_volume_backup
+            - boot_volume_attachment
+            - instance_console_connection
+            - instance_console_history
+            - instance_console_history_content
+            - device
+            - image
+            - image_shape_compatibility_entry
+            - vnic_attachment
+            - vnic
+            - public_ip
+            - private_ip
+            - network_security_group_vnic
+            - volume_attachment
+      always:
+        - name: Delete setup image
+          oci_compute_image:
+            id: "{{ setup_image_id }}"
+            state: absent
+          ignore_errors: yes
+          tags:
+            - image
+            - image_shape_compatibility_entry
+        - import_tasks: oci_compute_instance_teardown.yaml
+          ignore_errors: yes
+          tags:
+            - instance_teardown
+            - instance
+            - instance_actions
+            - boot_volume
+            - boot_volume_backup
+            - boot_volume_attachment
+            - instance_console_connection
+            - instance_console_history
+            - instance_console_history_content
+            - device
+            - image
+            - image_shape_compatibility_entry
+            - vnic_attachment
+            - vnic
+            - public_ip
+            - private_ip
+            - network_security_group_vnic
+            - volume_attachment
       tags:
-        - instance_credentials
-  always:
-    - import_tasks: oci_compute_windows_instance_teardown.yaml
+        - instance_full
+
+    - block:
+        - import_tasks: oci_compute_windows_instance_setup.yaml
+          tags:
+            - windows_instance_setup
+            - instance_credentials
+        - import_tasks: oci_compute_instance_credentials_tests.yaml
+          tags:
+            - instance_credentials
+        - import_tasks: oci_compute_windows_instance_teardown.yaml
+          tags:
+            - windows_instance_teardown
+            - instance_credentials
+      always:
+        - import_tasks: oci_compute_windows_instance_teardown.yaml
+          ignore_errors: yes
+          tags:
+            - windows_instance_teardown
+            - instance_credentials
       tags:
-        - windows_instance_teardown
-        - instance_credentials
+        - instance_full
+    - import_tasks: oci_compute_shape_tests.yaml
+      tags:
+        - shape
   tags:
-    - instance_full
-- import_tasks: oci_compute_shape_tests.yaml
-  tags:
-    - shape
+    - core_set_2
 
 - block:
-    - import_tasks: oci_compute_management_instance_configuration_setup.yaml
-      tags:
-        - instance_configuration
-    - import_tasks: oci_compute_management_instance_configuration_tests.yaml
-      tags:
-        - instance_configuration
+    - block:
+        - import_tasks: oci_compute_management_instance_configuration_setup.yaml
+          tags:
+            - instance_configuration
+        - import_tasks: oci_compute_management_instance_configuration_tests.yaml
+          tags:
+            - instance_configuration
+        - import_tasks: oci_compute_management_instance_configuration_teardown.yaml
+          tags:
+            - instance_configuration
 
-  always:
-    - import_tasks: oci_compute_management_instance_configuration_teardown.yaml
+      always:
+        - import_tasks: oci_compute_management_instance_configuration_teardown.yaml
+          ignore_errors: yes
+          tags:
+            - instance_configuration
       tags:
-        - instance_configuration
+        - compute_management
+
+    - block:
+        - import_tasks: oci_compute_management_instance_pool_setup.yaml
+          tags:
+            - instance_pool
+            - instance_pool_instance
+        - import_tasks: oci_compute_management_instance_pool_tests.yaml
+          tags:
+            - instance_pool
+        - import_tasks: oci_compute_management_instance_pool_instance_tests.yaml
+          tags:
+            - instance_pool_instance
+        - import_tasks: oci_compute_management_instance_pool_teardown.yaml
+          tags:
+            - instance_pool
+            - instance_pool_instance
+
+      always:
+
+        - import_tasks: oci_compute_management_instance_pool_teardown.yaml
+          ignore_errors: yes
+          tags:
+            - instance_pool
+            - instance_pool_instance
+      tags:
+        - compute_management
+    - block:
+        - import_tasks: oci_blockstorage_setup.yaml
+          tags:
+            - blockstorage_setup
+            - volume
+            - volume_group
+            - volume_group_backup
+            - volume_backup_policy_assignment
+        - import_tasks: oci_blockstorage_volume_tests.yaml
+          tags:
+            - volume
+        - import_tasks: oci_blockstorage_volume_backup_tests.yaml
+          tags:
+            - volume_backup
+        - import_tasks: oci_blockstorage_volume_group_tests.yaml
+          tags:
+            - volume_group
+        - import_tasks: oci_blockstorage_volume_group_backup_tests.yaml
+          tags:
+            - volume_group_backup
+        - import_tasks: oci_blockstorage_volume_backup_policy_tests.yaml
+          tags:
+            - volume_backup_policy
+        - import_tasks: oci_blockstorage_volume_backup_policy_assignment_tests.yaml
+          tags:
+            - volume_backup_policy_assignment
+        - import_tasks: oci_blockstorage_teardown.yaml
+          tags:
+            - blockstorage_teardown
+            - volume
+            - volume_group
+            - volume_group_backup
+            - volume_backup_policy_assignment
+      always:
+        - import_tasks: oci_blockstorage_teardown.yaml
+          ignore_errors: yes
+          tags:
+            - blockstorage_teardown
+            - volume
+            - volume_group
+            - volume_group_backup
+            - volume_backup_policy_assignment
+      tags:
+        - blockstorage
   tags:
-    - compute_management
-
-- block:
-    - import_tasks: oci_compute_management_instance_pool_setup.yaml
-      tags:
-        - instance_pool
-        - instance_pool_instance
-    - import_tasks: oci_compute_management_instance_pool_tests.yaml
-      tags:
-        - instance_pool
-    - import_tasks: oci_compute_management_instance_pool_instance_tests.yaml
-      tags:
-        - instance_pool_instance
-
-  always:
-
-    - import_tasks: oci_compute_management_instance_pool_teardown.yaml
-      tags:
-        - instance_pool
-        - instance_pool_instance
-  tags:
-    - compute_management
-- block:
-    - import_tasks: oci_blockstorage_setup.yaml
-      tags:
-        - blockstorage_setup
-        - volume
-    - import_tasks: oci_blockstorage_volume_tests.yaml
-      tags:
-        - volume
-    - import_tasks: oci_blockstorage_volume_backup_tests.yaml
-      tags:
-        - volume_backup
-  always:
-    - import_tasks: oci_blockstorage_teardown.yaml
-      tags:
-        - blockstorage_teardown
-        - volume
-  tags:
-    - blockstorage
+    - core_set_3

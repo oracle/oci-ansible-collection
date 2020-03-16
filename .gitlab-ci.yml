@@ -25,7 +25,8 @@ before_script:
   - cat ~/.oci/config
   - cp .oci/*.pem ~/.oci/
   - source scripts/common-vars.sh
-  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | sort)
+  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | grep -v oci_generated_core | grep -v lengthy | sort)
+  - export lengthy_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | grep lengthy | sort)
   - export non_parallel_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep non_parallel | sort)
 
 after_script:
@@ -67,28 +68,61 @@ integration_tests_set_1:
   variables:
     set_no: 0
     targets: "integration_test_targets"
-    total_target_sets: 4
+    total_target_sets: 3
 
 integration_tests_set_2:
   <<: *integration_tests_job_def
   variables:
     set_no: 1
     targets: "integration_test_targets"
-    total_target_sets: 4
+    total_target_sets: 3
 
 integration_tests_set_3:
   <<: *integration_tests_job_def
   variables:
     set_no: 2
     targets: "integration_test_targets"
-    total_target_sets: 4
+    total_target_sets: 3
 
-integration_tests_set_4:
+lengthy_integration_tests_set_1:
   <<: *integration_tests_job_def
   variables:
-    set_no: 3
-    targets: "integration_test_targets"
-    total_target_sets: 4
+    set_no: 0
+    targets: "lengthy_integration_test_targets"
+    total_target_sets: 2
+
+lengthy_integration_tests_set_2:
+  <<: *integration_tests_job_def
+  variables:
+    set_no: 1
+    targets: "lengthy_integration_test_targets"
+    total_target_sets: 2
+
+.core_integration_tests_job_template: &core_integration_tests_job_def
+  stage: integration_tests
+  tags:
+    - integration
+  except:
+    - tags
+  script:
+    - echo "Running core tests with tag $tag"
+    - tox -e integration -- oci_generated_core --tags $tag
+  retry: 2
+
+core_integration_tests_set_1:
+  <<: *core_integration_tests_job_def
+  variables:
+    tag: "core_set_1"
+
+core_integration_tests_set_2:
+  <<: *core_integration_tests_job_def
+  variables:
+    tag: "core_set_2"
+
+core_integration_tests_set_3:
+  <<: *core_integration_tests_job_def
+  variables:
+    tag: "core_set_3"
 
 # There are some integration tests that cannot be run in parallel due to various constraints like tests which update
 # a global resource, limit issues etc. So we separate these tests and run them in a single runner so that they cannot
