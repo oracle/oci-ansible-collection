@@ -1,0 +1,7 @@
+# variables for oci_audit_configuration_tests.yaml
+#skip_configuration_update_optional_required_test: True
+#skip_configuration_update_optional_required_idempotence_test: True
+#skip_configuration_get_test: True
+
+# variables for oci_audit_event_tests.yaml
+#skip_audit_event_list_test: True
