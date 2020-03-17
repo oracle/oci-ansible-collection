@@ -21,15 +21,15 @@ except ImportError:
 
 
 class ConfigurationHelperCustom:
-    ## This is one of the cases where the module does not have a resource_id.
-    ## base class is_update method depends on having a resource_id. So override this method to return True
-    ## as this is the only operation supported by the module oci_configuration
+    # This is one of the cases where the module does not have a resource_id.
+    # base class is_update method depends on having a resource_id. So override this method to return True
+    # as this is the only operation supported by the module oci_configuration
     def is_update(self):
         return True
 
     def update_resource(self):
-        ## The update operation currently returns a work request id but the AuditClient currently does not support
-        ## waiting for the work request. So wait until the configuration is updated by checking the value.
+        # The update operation currently returns a work request id but the AuditClient currently does not support
+        # waiting for the work request. So wait until the configuration is updated by checking the value.
         super(ConfigurationHelperCustom, self).update_resource()
         get_response = self.get_resource()
         waiter_response = oci.wait_until(
