@@ -1,0 +1,40 @@
+---
+#### shared dependencies ###
+#dependency_target_compartment_id: "{{ test_compartment_ocid }}"
+
+### oci_budget_tests.yaml ###
+# budgets can only be created in the root compartment so we cant the default `test_compartment_ocid`
+test_budget_create_required_compartment_id: "{{ tenancy_ocid }}"
+test_budget_create_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_budget_list_compartment_id: "{{ tenancy_ocid }}"
+
+### oci_budget_alert_rule_tests.yaml ###
+test_budget_alert_rule_create_dependency_budget_compartment_id: "{{ tenancy_ocid }}"
+
+recipients: "recipients@oracle.com"
+recipients_updated: "recipients-updated@oracle.com"
+test_budget_alert_rule_create_required_recipients: "{{ recipients }}"
+test_budget_alert_rule_create_optional_required_recipients: "{{  recipients }}"
+test_budget_alert_rule_update_optional_required_recipients: "{{ recipients_updated }}"
+test_budget_alert_rule_update_using_name_optional_required_recipients: "{{ recipients_updated }}"
+
+
+### name variables
+# oci_budget_tests
+test_budget_display_name: "{{ 'budget_integration_test' + random_suffix_1024 }}"
+test_budget_display_name_updated: "{{ 'budget_integration_test_updated' + random_suffix_1024 }}"
+
+# oci_budget_alert_rule_tests
+test_budget_alert_rule_display_name: "{{ 'budget_alert_rule_integration_test' + random_suffix_1024 }}"
+test_budget_alert_rule_display_name_updated: "{{ 'budget_alert_rule_integration_test_updated' + random_suffix_1024 }}"
+
+
+### compartment variables
+# oci_budget_tests
+test_budget_create_required_target_compartment_id: "{{ test_compartment_ocid }}"
+test_budget_create_optional_required_target_compartment_id: "{{ test_compartment_ocid }}"
+test_budget_update_using_name_optional_required_compartment_id: "{{ tenancy_ocid }}"
+test_budget_delete_required_compartment_id: "{{ tenancy_ocid }}"
+
+# oci_budget_alert_rule_tests
+test_budget_alert_rule_create_dependency_budget_target_compartment_id: "{{ test_compartment_ocid }}"

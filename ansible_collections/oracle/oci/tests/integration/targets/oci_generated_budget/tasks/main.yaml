@@ -1,0 +1,3 @@
+---
+- include: oci_budget_tests.yaml
+- include: oci_budget_alert_rule_tests.yaml

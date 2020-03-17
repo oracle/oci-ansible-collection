@@ -30,17 +30,25 @@ DESCRIPTION_INDENT = 4
 SECTION_HEADERS = ['DOCUMENTATION = """', 'RETURN = """']
 SECTION_ENDING = '"""'
 
+
 def get_all_files():
     all_module_files = glob.glob(ALL_MODULES_PATTERN)
 
     all_module_files = [
         module_file
-        for module_file in all_module_files 
-        if (len(MODULE_WHITELIST) == 0 or os.path.splitext(os.path.basename(module_file))[0] in MODULE_WHITELIST)
+        for module_file in all_module_files
+        if (
+            len(MODULE_WHITELIST) == 0
+            or os.path.splitext(os.path.basename(module_file))[0] in MODULE_WHITELIST
+        )
     ]
 
     if len(all_module_files) == 0:
-        print("No modules found matching pattern: {} and in whitelist: {}".format(ALL_MODULES_PATTERN, str(MODULE_WHITELIST)))
+        print(
+            "No modules found matching pattern: {} and in whitelist: {}".format(
+                ALL_MODULES_PATTERN, str(MODULE_WHITELIST)
+            )
+        )
         sys.exit(0)
 
     return all_module_files

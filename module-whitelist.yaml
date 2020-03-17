@@ -111,6 +111,11 @@ moduleWhitelist:
   - oci_compute_instance
   - oci_compute_instance_facts
   - oci_compute_instance_actions
+  - oci_budget
+  - oci_budget_facts
+  - oci_budget_alert_rule
+  - oci_budget_alert_rule_facts
+
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

@@ -1,0 +1,578 @@
+---
+- block:
+  - name: Create dependency budget with required parameters
+    oci_budget:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_budget_alert_rule_create_dependency_budget_compartment_id, omit) }}"
+      target_compartment_id: "{{ dependency_target_compartment_id | oracle.oci.override(test_budget_alert_rule_create_dependency_budget_target_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_create_dependency_budget_display_name, omit) }}"
+      amount: "{{ 10 | oracle.oci.override(test_budget_alert_rule_create_dependency_budget_amount, omit) }}"
+      reset_period: "{{ 'MONTHLY' | oracle.oci.override(test_budget_alert_rule_create_dependency_budget_reset_period, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_create_dependency_budget_test is not defined and skip_budget_alert_rule_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_create_dependency_budget_test is not defined and skip_budget_alert_rule_dependencies is not defined
+  - set_fact:
+      dependency_budget: "{{ result.budget }}"
+      dependency_budget_id: "{{ result.budget.id }}"
+    when: skip_budget_alert_rule_create_dependency_budget_test is not defined and skip_budget_alert_rule_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_create_dependency_budget_custom_assertions }}"
+    when: budget_alert_rule_create_dependency_budget_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create budget_alert_rule (check mode)
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_create_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_create_required_display_name, omit) }}"
+      type: "{{ 'ACTUAL' | oracle.oci.override(test_budget_alert_rule_create_required_type, omit) }}"
+      threshold: "{{ 10 | oracle.oci.override(test_budget_alert_rule_create_required_threshold, omit) }}"
+      threshold_type: "{{ 'PERCENTAGE' | oracle.oci.override(test_budget_alert_rule_create_required_threshold_type, omit) }}"
+      recipients: "{{ 'recipients_example' | oracle.oci.override(test_budget_alert_rule_create_required_recipients, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_budget_alert_rule_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_create_check_mode_custom_assertions }}"
+    when: budget_alert_rule_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create budget_alert_rule with required parameters
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_create_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_create_required_display_name, omit) }}"
+      type: "{{ 'ACTUAL' | oracle.oci.override(test_budget_alert_rule_create_required_type, omit) }}"
+      threshold: "{{ 10 | oracle.oci.override(test_budget_alert_rule_create_required_threshold, omit) }}"
+      threshold_type: "{{ 'PERCENTAGE' | oracle.oci.override(test_budget_alert_rule_create_required_threshold_type, omit) }}"
+      recipients: "{{ 'recipients_example' | oracle.oci.override(test_budget_alert_rule_create_required_recipients, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_create_required_original_test is not defined
+
+  - set_fact:
+      budget_alert_rule_resource_id: "{{ result.budget_alert_rule.id }}"
+    when: skip_budget_alert_rule_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_create_required_original_custom_assertions }}"
+    when: budget_alert_rule_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create budget_alert_rule with required parameters(idempotency)
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_create_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_create_required_display_name, omit) }}"
+      type: "{{ 'ACTUAL' | oracle.oci.override(test_budget_alert_rule_create_required_type, omit) }}"
+      threshold: "{{ 10 | oracle.oci.override(test_budget_alert_rule_create_required_threshold, omit) }}"
+      threshold_type: "{{ 'PERCENTAGE' | oracle.oci.override(test_budget_alert_rule_create_required_threshold_type, omit) }}"
+      recipients: "{{ 'recipients_example' | oracle.oci.override(test_budget_alert_rule_create_required_recipients, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_budget_alert_rule_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_create_required_idempotency_custom_assertions }}"
+    when: budget_alert_rule_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update budget_alert_rule using name with optional + required parameters
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_display_name, omit) }}"
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_description, omit) }}"
+      type: "{{ 'FORECAST' | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_type, omit) }}"
+      threshold: "{{ 20.0 | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_threshold, omit) }}"
+      threshold_type: "{{ 'ABSOLUTE' | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_threshold_type, omit) }}"
+      recipients: "{{ ('recipients_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_recipients, omit) }}"
+      message: "{{ ('message_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_message, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_budget_alert_rule_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_update_using_name_optional_required_custom_assertions }}"
+    when: budget_alert_rule_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update budget_alert_rule using name with optional + required parameters (idempotence)
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_display_name, omit) }}"
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_description, omit) }}"
+      type: "{{ 'FORECAST' | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_type, omit) }}"
+      threshold: "{{ 20.0 | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_threshold, omit) }}"
+      threshold_type: "{{ 'ABSOLUTE' | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_threshold_type, omit) }}"
+      recipients: "{{ ('recipients_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_recipients, omit) }}"
+      message: "{{ ('message_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_message, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_budget_alert_rule_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_budget_alert_rule_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_budget_alert_rule_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: budget_alert_rule_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete budget_alert_rule
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_delete_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_budget_alert_rule_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_delete_required_custom_assertions }}"
+    when: budget_alert_rule_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete budget_alert_rule (idempotency)
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_delete_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_budget_alert_rule_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_budget_alert_rule_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_delete_required_idempotency_custom_assertions }}"
+    when: budget_alert_rule_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create budget_alert_rule with optional + required parameters
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_create_optional_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_create_optional_required_display_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_budget_alert_rule_create_optional_required_description, omit) }}"
+      type: "{{ 'ACTUAL' | oracle.oci.override(test_budget_alert_rule_create_optional_required_type, omit) }}"
+      threshold: "{{ 10 | oracle.oci.override(test_budget_alert_rule_create_optional_required_threshold, omit) }}"
+      threshold_type: "{{ 'PERCENTAGE' | oracle.oci.override(test_budget_alert_rule_create_optional_required_threshold_type, omit) }}"
+      recipients: "{{ 'recipients_example' | oracle.oci.override(test_budget_alert_rule_create_optional_required_recipients, omit) }}"
+      message: "{{ 'message_example' | oracle.oci.override(test_budget_alert_rule_create_optional_required_message, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_budget_alert_rule_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_budget_alert_rule_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_create_optional_required_original_test is not defined
+
+  - set_fact:
+      budget_alert_rule_resource_id: "{{ result.budget_alert_rule.id }}"
+    when: skip_budget_alert_rule_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_create_optional_required_original_custom_assertions }}"
+    when: budget_alert_rule_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create budget_alert_rule with optional + required parameters (idempotence)
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_create_optional_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_create_optional_required_display_name, omit) }}"
+      description: "{{ 'description_example' | oracle.oci.override(test_budget_alert_rule_create_optional_required_description, omit) }}"
+      type: "{{ 'ACTUAL' | oracle.oci.override(test_budget_alert_rule_create_optional_required_type, omit) }}"
+      threshold: "{{ 10 | oracle.oci.override(test_budget_alert_rule_create_optional_required_threshold, omit) }}"
+      threshold_type: "{{ 'PERCENTAGE' | oracle.oci.override(test_budget_alert_rule_create_optional_required_threshold_type, omit) }}"
+      recipients: "{{ 'recipients_example' | oracle.oci.override(test_budget_alert_rule_create_optional_required_recipients, omit) }}"
+      message: "{{ 'message_example' | oracle.oci.override(test_budget_alert_rule_create_optional_required_message, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_budget_alert_rule_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_budget_alert_rule_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_budget_alert_rule_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_create_optional_required_idempotence_custom_assertions }}"
+    when: budget_alert_rule_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update budget_alert_rule with optional + required parameters
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_update_optional_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_display_name, omit) }}"
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_description, omit) }}"
+      type: "{{ 'FORECAST' | oracle.oci.override(test_budget_alert_rule_update_optional_required_type, omit) }}"
+      threshold: "{{ 20.0 | oracle.oci.override(test_budget_alert_rule_update_optional_required_threshold, omit) }}"
+      threshold_type: "{{ 'ABSOLUTE' | oracle.oci.override(test_budget_alert_rule_update_optional_required_threshold_type, omit) }}"
+      recipients: "{{ ('recipients_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_recipients, omit) }}"
+      message: "{{ ('message_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_message, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_budget_alert_rule_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_budget_alert_rule_update_optional_required_defined_tags, omit) }}"
+      alert_rule_id: "{{ budget_alert_rule_resource_id | oracle.oci.override(test_budget_alert_rule_update_optional_required_alert_rule_id, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_budget_alert_rule_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_update_optional_required_custom_assertions }}"
+    when: budget_alert_rule_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update budget_alert_rule with optional + required parameters (idempotence)
+    oci_budget_alert_rule:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_update_optional_required_budget_id, omit) }}"
+      display_name: "{{ ('display_name_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_display_name, omit) }}"
+      description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_description, omit) }}"
+      type: "{{ 'FORECAST' | oracle.oci.override(test_budget_alert_rule_update_optional_required_type, omit) }}"
+      threshold: "{{ 20.0 | oracle.oci.override(test_budget_alert_rule_update_optional_required_threshold, omit) }}"
+      threshold_type: "{{ 'ABSOLUTE' | oracle.oci.override(test_budget_alert_rule_update_optional_required_threshold_type, omit) }}"
+      recipients: "{{ ('recipients_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_recipients, omit) }}"
+      message: "{{ ('message_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_budget_alert_rule_update_optional_required_message, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_budget_alert_rule_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_budget_alert_rule_update_optional_required_defined_tags, omit) }}"
+      alert_rule_id: "{{ budget_alert_rule_resource_id | oracle.oci.override(test_budget_alert_rule_update_optional_required_alert_rule_id, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_budget_alert_rule_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.budget_alert_rule.id is defined
+        - result.budget_alert_rule.budget_id is defined
+        - result.budget_alert_rule.display_name is defined
+        - result.budget_alert_rule.type is defined
+        - result.budget_alert_rule.threshold is defined
+        - result.budget_alert_rule.threshold_type is defined
+        - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.recipients is defined
+        - result.budget_alert_rule.time_created is defined
+        - result.budget_alert_rule.time_updated is defined
+    when: skip_budget_alert_rule_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_update_optional_required_idempotence_custom_assertions }}"
+    when: budget_alert_rule_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List budget_alert_rules
+    oci_budget_alert_rule_facts:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_list_budget_id, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.budget_alert_rules | length > 0
+    when: skip_budget_alert_rule_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.budget_id is defined
+        - item.display_name is defined
+        - item.type is defined
+        - item.threshold is defined
+        - item.threshold_type is defined
+        - item.lifecycle_state is defined
+        - item.recipients is defined
+        - item.time_created is defined
+        - item.time_updated is defined
+    with_items: "{{ result.budget_alert_rules }}"
+    when: skip_budget_alert_rule_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_list_custom_assertions }}"
+    when: budget_alert_rule_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get budget_alert_rule
+    oci_budget_alert_rule_facts:
+      budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_get_budget_id, omit) }}"
+      alert_rule_id: "{{ budget_alert_rule_resource_id | oracle.oci.override(test_budget_alert_rule_get_alert_rule_id, omit) }}"
+    register: result
+    when: skip_budget_alert_rule_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.budget_alert_rules | length == 1
+    when: skip_budget_alert_rule_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.budget_id is defined
+        - item.display_name is defined
+        - item.type is defined
+        - item.threshold is defined
+        - item.threshold_type is defined
+        - item.lifecycle_state is defined
+        - item.recipients is defined
+        - item.time_created is defined
+        - item.time_updated is defined
+    with_items: "{{ result.budget_alert_rules }}"
+    when: skip_budget_alert_rule_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ budget_alert_rule_get_custom_assertions }}"
+    when: budget_alert_rule_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete budget_alert_rule
+      oci_budget_alert_rule:
+        budget_id: "{{ dependency_budget_id | oracle.oci.override(test_budget_alert_rule_delete_rescue_budget_id, omit) }}"
+        alert_rule_id: "{{ budget_alert_rule_resource_id | oracle.oci.override(test_budget_alert_rule_delete_rescue_alert_rule_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: budget_alert_rule_resource_id is defined
+
+    - name: Delete dependency budget
+      oci_budget:
+        budget_id: "{{ dependency_budget_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_budget_alert_rule_delete_dependency_budget_test is not defined and skip_budget_alert_rule_dependencies is not defined and dependency_budget_id is defined
