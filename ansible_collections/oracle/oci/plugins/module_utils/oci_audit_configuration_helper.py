@@ -8,7 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible.module_utils.oracle import oci_common_utils
+from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 
 try:
