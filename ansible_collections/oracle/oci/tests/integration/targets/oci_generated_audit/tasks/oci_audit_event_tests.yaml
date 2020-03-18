@@ -3,8 +3,8 @@
   - name: List audit_events
     oci_audit_event_facts:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_audit_event_list_compartment_id, omit) }}"
-      start_time: "{{ '2020-03-16T2:10:30+01:00' | oracle.oci.override(test_audit_event_list_start_time, omit) }}"
-      end_time: "{{ '2020-03-16T2:11:30+01:00' | oracle.oci.override(test_audit_event_list_end_time, omit) }}"
+      start_time: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_audit_event_list_start_time, omit) }}"
+      end_time: "{{ '2013-10-20T19:20:30+01:00' | oracle.oci.override(test_audit_event_list_end_time, omit) }}"
     register: result
     when: skip_audit_event_list_test is not defined
 

@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_audit_configuration_facts
-short_description: Fetches details about one or multiple Configuration resources in Oracle Cloud Infrastructure
+short_description: Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 description:
-    - Fetches details about one or multiple Configuration resources in Oracle Cloud Infrastructure
+    - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
     - Get the configuration
 version_added: "2.5"
 options:
@@ -48,7 +48,7 @@ EXAMPLES = """
 RETURN = """
 configuration:
     description:
-        - List of Configuration resources
+        - Configuration resource
     returned: on success
     type: complex
     contains:
@@ -58,9 +58,9 @@ configuration:
             returned: on success
             type: int
             sample: 56
-    sample: [{
+    sample: {
         "retention_period_days": 56
-    }]
+    }
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -119,7 +119,7 @@ def main():
     result = []
 
     if resource_facts_helper.is_get():
-        result = [resource_facts_helper.get()]
+        result = resource_facts_helper.get()
     elif resource_facts_helper.is_list():
         result = resource_facts_helper.list()
     else:

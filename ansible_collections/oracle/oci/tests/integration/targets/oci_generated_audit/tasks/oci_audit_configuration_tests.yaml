@@ -53,7 +53,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.configuration | length == 1
+        - result.configuration is defined
+        - result.configuration != None
     when: skip_configuration_get_test is not defined
 
   - name: Assert custom assertions
