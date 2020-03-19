@@ -7,5 +7,5 @@
 #skip_audit_event_list_test: True
 # current time - one week
 test_audit_event_list_start_time: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) - 604800 ) }}"
-# start_time + 5 seconds
-test_audit_event_list_end_time: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) - 604795 ) }}"
+# start_time +  5 minutes
+test_audit_event_list_end_time: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) - 604500 ) }}"
