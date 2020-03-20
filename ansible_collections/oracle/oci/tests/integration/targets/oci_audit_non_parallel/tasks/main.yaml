@@ -3,18 +3,26 @@
 - block:
 
     - name: Create a test admin user
-      oci_user:
+      oci_identity_user:
+        compartment_id: "{{ tenancy_ocid }}"
         name: "{{test_admin_user_name}}"
         description: 'Ansible Test Admin User'
-        user_groups: "{{admin_user_group}}"
-        create_or_reset_ui_password: 'yes'
         state: 'present'
       register: result
     - set_fact:
         test_admin_user_ocid: "{{result.user['id']}}"
-        test_admin_user_ui_password: "{{result.user['password']}}"
     - debug:
         msg: "Created a test admin user {{result}}"
+
+    - name: Associate user with a group
+      oci_identity_user_group_membership:
+        compartment_id: "{{ tenancy_ocid }}"
+        user_id: "{{test_admin_user_ocid}}"
+        group_id: "{{admin_user_group_id}}"
+        state: 'present'
+      register: create_user_group_membership_result
+    - set_fact:
+        user_group_membership_resource_id: "{{ create_user_group_membership_result.user_group_membership.id }}"
 
     - name: create temporary directory to house API key pair for the test admin user
       tempfile:
@@ -139,11 +147,18 @@
         api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
         api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
 
+    - name: Delete user_group_membership
+      oci_identity_user_group_membership:
+        user_group_membership_id: "{{ user_group_membership_resource_id | oracle.oci.override(test_user_group_membership_delete_rescue_user_group_membership_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
     - name: Delete the test admin user
-      oci_user:
-        id: "{{test_admin_user_ocid}}"
-        force: 'yes'
+      oci_identity_user:
+        user_id: "{{test_admin_user_ocid}}"
         state: 'absent'
+      ignore_errors: yes
       register: delete_admin_user_result
 
     - name: Assert that the test admin user is deleted
@@ -163,10 +178,16 @@
         api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
       ignore_errors: yes
 
+    - name: Delete user_group_membership
+      oci_identity_user_group_membership:
+        user_group_membership_id: "{{ user_group_membership_resource_id | oracle.oci.override(test_user_group_membership_delete_rescue_user_group_membership_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
     - name: Delete the test admin user
-      oci_user:
-        id: "{{test_admin_user_ocid}}"
-        force: 'yes'
+      oci_identity_user:
+        user_id: "{{test_admin_user_ocid}}"
         state: 'absent'
       register: delete_admin_user_result
       ignore_errors: yes
