@@ -23,7 +23,7 @@
     - set_fact:
         admin_user_group_id: "{{ item['id'] }}"
       with_items: "{{ group_list_result.groups }}"
-      when: item['name'] is match("{{ admin_user_group_name }}")
+      when: item['name'] == "{{ admin_user_group_name }}"
 
     - name: Associate user with a group
       oci_identity_user_group_membership:
