@@ -3,7 +3,7 @@
   - name: Update configuration with optional + required parameters
     oci_audit_configuration:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_configuration_update_optional_required_compartment_id, omit) }}"
-      retention_period_days: "{{ 112 | oracle.oci.override(test_configuration_update_optional_required_retention_period_days, omit) }}"
+      retention_period_days: "{{ 180 | oracle.oci.override(test_configuration_update_optional_required_retention_period_days, omit) }}"
     register: result
     when: skip_configuration_update_optional_required_test is not defined
 
@@ -25,7 +25,7 @@
   - name: Update configuration with optional + required parameters (idempotence)
     oci_audit_configuration:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_configuration_update_optional_required_compartment_id, omit) }}"
-      retention_period_days: "{{ 112 | oracle.oci.override(test_configuration_update_optional_required_retention_period_days, omit) }}"
+      retention_period_days: "{{ 180 | oracle.oci.override(test_configuration_update_optional_required_retention_period_days, omit) }}"
     register: result
     when: skip_configuration_update_optional_required_idempotence_test is not defined
 

@@ -14,6 +14,17 @@
     - debug:
         msg: "Created a test admin user {{result}}"
 
+    - name: List group within root tenancy
+      oci_identity_group_facts:
+        compartment_id: "{{ tenancy_ocid }}"
+      register: group_list_result
+    - debug:
+        msg: "Group List {{group_list_result.groups}}"
+    - set_fact:
+        admin_user_group_id: "{{ item['id'] }}"
+      with_items: "{{ group_list_result.groups }}"
+      when: item['name'] is match("{{ admin_user_group_name }}")
+
     - name: Associate user with a group
       oci_identity_user_group_membership:
         compartment_id: "{{ tenancy_ocid }}"

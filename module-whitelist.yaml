@@ -153,6 +153,9 @@ moduleWhitelist:
   - oci_compute_management_instance_pool_facts
   - oci_compute_management_instance_pool_actions
   - oci_compute_management_instance_pool_instance_facts
+  - oci_audit_event_facts
+  - oci_audit_configuration
+  - oci_audit_configuration_facts
 operationOverrides:
   /publicIps/actions/getByIpAddress:
     path: "/publicIps/getByIpAddress"
@@ -160,9 +163,6 @@ operationOverrides:
   /publicIps/actions/getByPrivateIpId:
     path: "/publicIps/getByPrivateIpId"
     httpMethod: "GET"
-  - oci_audit_event_facts
-  - oci_audit_configuration
-  - oci_audit_configuration_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy

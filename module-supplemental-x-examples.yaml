@@ -171,3 +171,21 @@ identity:
       {
         "key" : "-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A..."
       }
+audit:
+  UpdateConfiguration: |
+      Example I: Update audit configuration
+      PUT /configuration
+      Host: identity.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "compartmentId": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
+        "retentionPeriodDays": 90
+      }
+  GetConfiguration: |
+      Example I: Fetch audit configuration
+      GET /configuration
+      Host: identity.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "compartmentId": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
+      }
