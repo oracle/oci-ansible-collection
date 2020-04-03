@@ -21,15 +21,15 @@ public_vc_cross_connect_mappings:
 public_vc_customer_bgp_asn: 5
 public_vc_type: 'PUBLIC'
 public_vc_public_prefixes:
-  - cidr_block: '206.209.22.0/24'
+  - cidr_block: '129.144.0.0/24'
 bulk_add_public_vc_public_prefixes:
-  - cidr_block: '206.209.22.0/24'
-  - cidr_block: '206.209.23.0/24'
-  - cidr_block: '206.209.24.0/24'
+  - cidr_block: '129.144.0.0/24'
+  - cidr_block: '129.145.0.0/24'
+  - cidr_block: '129.146.0.0/24'
 bulk_deletable_public_vc_public_prefixes:
-  - cidr_block: '206.209.22.0/24'
-  - cidr_block: '206.209.23.0/24'
-  - cidr_block: '206.209.24.0/24'
+  - cidr_block: '129.144.0.0/24'
+  - cidr_block: '129.145.0.0/24'
+  - cidr_block: '129.146.0.0/24'
 
 # variables for oci_network_security_group_security_rule_tests.yaml
 add_security_rule_action: "add"
