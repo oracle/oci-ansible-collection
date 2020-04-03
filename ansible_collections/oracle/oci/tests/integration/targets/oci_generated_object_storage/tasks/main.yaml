@@ -1,0 +1,7 @@
+- import_tasks: oci_object_storage_namespace_metadata_tests.yaml
+  tags:
+    - namespace_metadata
+
+- import_tasks: oci_object_storage_namespace_tests.yaml
+  tags:
+    - namespace_facts

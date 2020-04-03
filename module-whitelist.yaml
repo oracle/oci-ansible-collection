@@ -134,7 +134,6 @@ moduleWhitelist:
   - oci_compute_image_actions
   - oci_compute_image_shape_compatibility_entry
   - oci_compute_shape_facts
-  - oci_object_storage_namespace_facts
   # TODO: Enable when load balancer modules are available
 #  - oci_compute_management_instance_pool_load_balancer_attachment_facts
   - oci_network_vnic
@@ -171,6 +170,12 @@ moduleWhitelist:
   - oci_blockstorage_volume_backup_policy_facts
   - oci_blockstorage_volume_backup_policy_assignment
   - oci_blockstorage_volume_backup_policy_assignment_facts
+  - oci_object_storage_bucket
+  - oci_object_storage_bucket_facts
+  - oci_object_storage_namespace_facts
+  - oci_object_storage_namespace_metadata
+  - oci_object_storage_namespace_metadata_facts
+
 operationOverrides:
   /publicIps/actions/getByIpAddress:
     path: "/publicIps/getByIpAddress"
@@ -241,6 +246,8 @@ operationIdBlacklist:
   - update_user_state
   # deprecated
   - get_instance_default_credentials
+  # update_bucket blacklisted as it is attempting to overwrite create_bucket
+  - update_bucket
 
 extraFactsModuleParameters:
   core:

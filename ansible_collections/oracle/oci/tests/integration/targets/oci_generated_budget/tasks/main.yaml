@@ -1,3 +1,7 @@
 ---
-- include: oci_budget_tests.yaml
-- include: oci_budget_alert_rule_tests.yaml
+- import_tasks: oci_budget_tests.yaml
+  tags:
+    - budget
+- import_tasks: oci_budget_alert_rule_tests.yaml
+  tags:
+    - budget_alert_rule

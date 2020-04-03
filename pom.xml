@@ -1494,7 +1494,7 @@
                 <generateInitFile>false</generateInitFile>
                 <endpoint>https://objectstorage.{domain}</endpoint>
               </additionalProperties>
-              <isTestGenerationEnabled>false</isTestGenerationEnabled>
+              <isTestGenerationEnabled>true</isTestGenerationEnabled>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>

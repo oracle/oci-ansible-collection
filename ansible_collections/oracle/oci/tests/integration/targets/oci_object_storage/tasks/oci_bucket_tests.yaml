@@ -1,0 +1,315 @@
+---
+- block:
+  - name: Create bucket (check mode)
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_create_required_namespace_name, omit) }}"
+      name: "{{ test_bucket_name | oracle.oci.override(test_bucket_create_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_create_required_compartment_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_bucket_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_bucket_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_create_check_mode_custom_assertions }}"
+    when: bucket_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create bucket with required parameters
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_create_required_namespace_name, omit) }}"
+      name: "{{ test_bucket_name | oracle.oci.override(test_bucket_create_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_bucket_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_bucket_create_required_original_test is not defined
+
+  - set_fact:
+      bucket: "{{ result.bucket }}"
+    when: skip_bucket_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.bucket.namespace is defined
+        - result.bucket.name is defined
+        - result.bucket.compartment_id is defined
+        - result.bucket.metadata is defined
+        - result.bucket.created_by is defined
+        - result.bucket.time_created is defined
+        - result.bucket.etag is defined
+    when: skip_bucket_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_create_required_original_custom_assertions }}"
+    when: bucket_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create bucket with required parameters(idempotency)
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_create_required_namespace_name, omit) }}"
+      name: "{{ test_bucket_name | oracle.oci.override(test_bucket_create_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_create_required_compartment_id, omit) }}"
+    register: result
+    when: skip_bucket_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_bucket_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.bucket.namespace is defined
+        - result.bucket.name is defined
+        - result.bucket.compartment_id is defined
+        - result.bucket.created_by is defined
+        - result.bucket.time_created is defined
+        - result.bucket.etag is defined
+    when: skip_bucket_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_create_required_idempotency_custom_assertions }}"
+    when: bucket_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete bucket
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_delete_required_namespace_name, omit) }}"
+      bucket_name: "{{ test_bucket_name | oracle.oci.override(test_bucket_delete_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_delete_required_compartment_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_bucket_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_bucket_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.bucket.namespace is defined
+        - result.bucket.name is defined
+        - result.bucket.compartment_id is defined
+        - result.bucket.metadata is defined
+        - result.bucket.created_by is defined
+        - result.bucket.time_created is defined
+        - result.bucket.etag is defined
+    when: skip_bucket_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_delete_required_custom_assertions }}"
+    when: bucket_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete bucket (idempotency)
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_delete_required_namespace_name, omit) }}"
+      name: "{{ test_bucket_name | oracle.oci.override(test_bucket_delete_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_bucket_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_bucket_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_delete_required_idempotency_custom_assertions }}"
+    when: bucket_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create bucket with optional + required parameters
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_create_optional_required_namespace_name, omit) }}"
+      name: "{{ test_bucket_name | oracle.oci.override(test_bucket_create_optional_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_create_optional_required_compartment_id, omit) }}"
+      metadata: "{{ null | oracle.oci.override(test_bucket_create_optional_required_metadata, omit) }}"
+      public_access_type: "{{ 'NoPublicAccess' | oracle.oci.override(test_bucket_create_optional_required_public_access_type, omit) }}"
+      storage_tier: "{{ 'Standard' | oracle.oci.override(test_bucket_create_optional_required_storage_tier, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_bucket_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_bucket_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_bucket_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_bucket_create_optional_required_original_test is not defined
+
+  - set_fact:
+      bucket: "{{ result.bucket }}"
+    when: skip_bucket_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.bucket.namespace is defined
+        - result.bucket.name is defined
+        - result.bucket.compartment_id is defined
+        - result.bucket.metadata is defined
+        - result.bucket.created_by is defined
+        - result.bucket.time_created is defined
+        - result.bucket.etag is defined
+    when: skip_bucket_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_create_optional_required_original_custom_assertions }}"
+    when: bucket_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List buckets
+    oci_object_storage_bucket_facts:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_list_namespace_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_list_compartment_id, omit) }}"
+    register: result
+    when: skip_bucket_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.buckets | length > 0
+    when: skip_bucket_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.namespace is defined
+        - item.name is defined
+        - item.compartment_id is defined
+        - item.created_by is defined
+        - item.time_created is defined
+        - item.etag is defined
+    with_items: "{{ result.buckets }}"
+    when: skip_bucket_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_list_custom_assertions }}"
+    when: bucket_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get bucket
+    oci_object_storage_bucket_facts:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_get_namespace_name, omit) }}"
+      bucket_name: "{{ test_bucket_name | oracle.oci.override(test_bucket_get_bucket_name, omit) }}"
+    register: result
+    when: skip_bucket_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.buckets | length == 1
+    when: skip_bucket_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.namespace is defined
+        - item.name is defined
+        - item.compartment_id is defined
+        - item.metadata is defined
+        - item.created_by is defined
+        - item.time_created is defined
+        - item.etag is defined
+    with_items: "{{ result.buckets }}"
+    when: skip_bucket_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ bucket_get_custom_assertions }}"
+    when: bucket_get_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get bucket with approximateCount and approximateSize fields
+    oci_object_storage_bucket_facts:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_get_namespace_name, omit) }}"
+      bucket_name: "{{ test_bucket_name | oracle.oci.override(test_bucket_get_bucket_name, omit) }}"
+      fields: ["approximateCount", "approximateSize"]
+    register: result
+    when: skip_bucket_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.buckets | length == 1
+    when: skip_bucket_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.namespace is defined
+        - item.name is defined
+        - item.compartment_id is defined
+        - item.metadata is defined
+        - item.created_by is defined
+        - item.time_created is defined
+        - item.etag is defined
+        - item.approximate_count is defined
+        - item.approximate_size is defined
+    with_items: "{{ result.buckets }}"
+    when: skip_bucket_get_test is not defined
+
+# ==================================================================================================== #
+
+  always:
+
+    - name: Delete bucket
+      oci_object_storage_bucket:
+        namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_delete_rescue_namespace_name, omit) }}"
+        bucket_name: "{{ test_bucket_name | oracle.oci.override(test_bucket_delete_rescue_bucket_name, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes

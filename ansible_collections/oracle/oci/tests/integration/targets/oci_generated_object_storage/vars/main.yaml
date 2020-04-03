@@ -1,0 +1,6 @@
+---
+# namespace_metadata_tests
+namespace_metadata_resource_id: "bmcs-dex-us-ashburn-1"
+test_namespace_metadata_update_optional_required_default_s3_compartment_id: null
+test_namespace_metadata_update_optional_required_default_swift_compartment_id: null
+skip_namespace_metadata_update_optional_required_test: true   # skipping the test
