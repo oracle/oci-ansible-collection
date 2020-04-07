@@ -6,6 +6,10 @@ test_node_pool_create_dependency_cluster_kubernetes_version: "v1.14.8"
 test_cluster_update_using_name_optional_required_kubernetes_version: "v1.15.7"
 test_cluster_create_optional_required_kubernetes_version: "v1.14.8"
 test_cluster_update_optional_required_kubernetes_version: "v1.14.8"
+
+# temporary skip cluster UPDATE tests while we investigate failed work request for update
+skip_cluster_update_using_name_optional_required_test: true
+
 # kms_id not available in the the compartment
 test_cluster_create_optional_required_kms_key_id: null
 # skipping idempotence test as updating kubernetes version takes a while to update and

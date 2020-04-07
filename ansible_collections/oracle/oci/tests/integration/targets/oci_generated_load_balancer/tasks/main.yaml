@@ -1,0 +1,72 @@
+---
+
+- include: oci_loadbalancer_load_balancer_tests.yaml
+  tags:
+    - loadbalancer
+
+- include: oci_loadbalancer_health_tests.yaml
+  tags:
+    - load_balancer_health
+
+- include: oci_loadbalancer_backend_health_tests.yaml
+  tags:
+    - backend_health
+
+- include: oci_loadbalancer_backend_set_health_tests.yaml
+  tags:
+    - backend_set_health
+
+- include: oci_loadbalancer_hostname_tests.yaml
+  tags:
+    - hostname
+
+- include: oci_loadbalancer_shape_tests.yaml
+  tags:
+    - loadbalancer_shape
+
+- include: oci_loadbalancer_certificate_tests.yaml
+  tags:
+    - loadbalancer_certificate
+
+- include: oci_loadbalancer_path_route_set_tests.yaml
+  tags:
+    - path_route_set
+
+- include: oci_loadbalancer_listener_tests.yaml
+  tags:
+    - loadbalancer_listener
+
+- include: oci_loadbalancer_rule_set_tests.yaml
+  tags:
+    - loadbalancer_rule_set
+
+- include: oci_loadbalancer_policy_tests.yaml
+  tags:
+    - loadbalancer_policy
+
+- include: oci_loadbalancer_protocol_tests.yaml
+  tags:
+    - loadbalancer_protocol
+
+- include: oci_loadbalancer_health_checker_tests.yaml
+  tags:
+    - loadbalancer_health_checker
+
+- block:
+  - include: oci_loadbalancer_setup.yaml
+    tags:
+      - loadbalancer_setup
+      - backend_set
+      - backend
+  - include: oci_loadbalancer_backend_set_tests.yaml
+    tags:
+      - backend_set
+  - include: oci_loadbalancer_backend_tests.yaml
+    tags:
+      - backend
+  always:
+    - include: oci_loadbalancer_teardown.yaml
+      tags:
+        - loadbalancer_teardown
+        - backend_set
+        - backend

@@ -1,0 +1,32 @@
+---
+- block:
+  - name: List load_balancer_shapes
+    oci_loadbalancer_shape_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_load_balancer_shape_list_compartment_id, omit) }}"
+    register: result
+    when: skip_load_balancer_shape_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.load_balancer_shapes | length > 0
+    when: skip_load_balancer_shape_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.name is defined
+    with_items: "{{ result.load_balancer_shapes }}"
+    when: skip_load_balancer_shape_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ load_balancer_shape_list_custom_assertions }}"
+    when: load_balancer_shape_list_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

@@ -24,6 +24,17 @@ WORK_REQUEST_WAITER_KEY = "WORK_REQUEST_WAITER"
 NONE_WAITER_KEY = "NONE_WAITER_KEY"
 
 
+logger = oci_common_utils.get_logger("oci_wait_utils")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
+
+
 class Waiter:
     """Interface defining wait method"""
 
@@ -52,6 +63,14 @@ class BaseWaiter(Waiter):
             "Expected to be implemented by the specific waiter classes."
         )
 
+    def verify_operation_succeeded(self, wait_response):
+        # by default, if the wait ended it was successful
+        # specific waiter classes may inspect additional information about
+        # the wait_response to determine if it was a success
+        # e.g. waiters can check if the terminal state is a success
+        # state and not a failure state
+        pass
+
     def wait(self):
         if self.resource_helper.module.params.get("wait") is False:
             return self.operation_response.data
@@ -67,6 +86,8 @@ class BaseWaiter(Waiter):
             ),
             fetch_func=fetch_func,
         )
+
+        self.verify_operation_succeeded(wait_response)
 
         return self.get_resource_from_wait_response(wait_response)
 
@@ -180,6 +201,31 @@ class WorkRequestWaiter(BaseWaiter):
         self.operation_response = operation_response
         self.wait_for_states = wait_for_states
 
+    def _get_work_request_state_from_response(self, r):
+        """
+        Handles fetching work request state from any of multiple fields
+        that different WorkRequest types define
+        """
+        if hasattr(r.data, "status") and getattr(r.data, "status"):
+            state = getattr(r.data, "status")
+        elif hasattr(r.data, "lifecycle_state") and getattr(r.data, "lifecycle_state"):
+            state = getattr(r.data, "lifecycle_state")
+        else:
+            raise RuntimeError(
+                "Unable to evaluate state of WorkRequest response. Did not contain status or lifecycle_state fields."
+            )
+
+        return state
+
+    def _get_work_request_errors(self, work_request_response, errors_attr=None):
+        if errors_attr:
+            return getattr(work_request_response.data, errors_attr, None)
+        if hasattr(work_request_response.data, "errors"):
+            return work_request_response.data.errors
+        if hasattr(work_request_response.data, "error_details"):
+            return work_request_response.data.error_details
+        return None
+
     def get_fetch_func(self):
         return lambda **kwargs: oci_common_utils.call_with_backoff(
             self.client.get_work_request,
@@ -188,10 +234,22 @@ class WorkRequestWaiter(BaseWaiter):
 
     def get_evaluate_response_lambda(self):
         lowered_wait_for_states = [state.lower() for state in self.wait_for_states]
-        return (
-            lambda r: getattr(r.data, "status")
-            and getattr(r.data, "status").lower() in lowered_wait_for_states
-        )
+
+        def evaluate_response(r):
+            state = self._get_work_request_state_from_response(r)
+            return state.lower() in lowered_wait_for_states
+
+        return evaluate_response
+
+    def verify_operation_succeeded(self, wait_response):
+        state = self._get_work_request_state_from_response(wait_response)
+        if state in oci_common_utils.WORK_REQUEST_FAILED_STATES:
+            self.resource_helper.module.fail_json(
+                msg="Work request {work_request_id} failed with errors: {errors}".format(
+                    work_request_id=wait_response.data.id,
+                    errors=self._get_work_request_errors(wait_response),
+                )
+            )
 
     def get_resource_from_wait_response(self, wait_response):
         get_response = self.resource_helper.get_resource()
@@ -211,12 +269,21 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
             self.resource_helper.resource_type
         )
         identifier = None
-        for resource in wait_response.data.resources:
-            if (
-                hasattr(resource, "entity_type")
-                and getattr(resource, "entity_type") == entity_type
-            ):
-                identifier = resource.identifier
+        if hasattr(wait_response.data, "resources"):
+            for resource in wait_response.data.resources:
+                if (
+                    hasattr(resource, "entity_type")
+                    and getattr(resource, "entity_type") == entity_type
+                ):
+                    identifier = resource.identifier
+        elif hasattr(
+            wait_response.data, self.resource_helper.get_module_resource_id_param()
+        ):
+            # this handles LB style WorkRequests which contain a field "load_balancer_id"
+            identifier = getattr(
+                wait_response.data, self.resource_helper.get_module_resource_id_param()
+            )
+
         if not identifier:
             self.resource_helper.module.fail_json(
                 msg="Could not get the resource identifier from work request response {0}".format(
@@ -399,6 +466,44 @@ _WAITER_OVERRIDE_MAP = {
         "volume",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): VolumeCreateWaitUntilCopyIsDoneWaiter,
+    # the load balancer work requests don't contain the OCID of the resource being created
+    # so we want to fallback to the default WorkRequestWaiter which calls the generated
+    # get_resource() method to retrieve the resource
+    (
+        "load_balancer",
+        "backend_set",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "backend",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "certificate",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "hostname",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "listener",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "path_route_set",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "rule_set",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
 }
 
 

@@ -1,0 +1,91 @@
+---
+- block:
+  - name: Create dependency load_balancer with required parameters
+    oci_loadbalancer_load_balancer:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_load_balancer_health_create_dependency_load_balancer_compartment_id, omit) }}"
+      display_name: "{{ ('example_load_balancer' + random_suffix_1024) | oracle.oci.override(test_load_balancer_health_create_dependency_load_balancer_display_name, omit) }}"
+      shape_name: "{{ '100Mbps' | oracle.oci.override(test_load_balancer_health_create_dependency_load_balancer_shape_name, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_load_balancer_health_create_dependency_load_balancer_subnet_ids, omit) }}"
+    register: result
+    when: skip_load_balancer_health_create_dependency_load_balancer_test is not defined and skip_load_balancer_health_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_load_balancer_health_create_dependency_load_balancer_test is not defined and skip_load_balancer_health_dependencies is not defined
+  - set_fact:
+      dependency_load_balancer: "{{ result.load_balancer }}"
+      dependency_load_balancer_id: "{{ result.load_balancer.id }}"
+    when: skip_load_balancer_health_create_dependency_load_balancer_test is not defined and skip_load_balancer_health_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ load_balancer_health_create_dependency_load_balancer_custom_assertions }}"
+    when: load_balancer_health_create_dependency_load_balancer_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List load_balancer_healths
+    oci_loadbalancer_health_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_load_balancer_health_list_compartment_id, omit) }}"
+    register: result
+    when: skip_load_balancer_health_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.load_balancer_healths | length > 0
+    when: skip_load_balancer_health_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.status is defined
+    with_items: "{{ result.load_balancer_healths }}"
+    when: skip_load_balancer_health_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ load_balancer_health_list_custom_assertions }}"
+    when: load_balancer_health_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get load_balancer_health
+    oci_loadbalancer_health_facts:
+      load_balancer_id: "{{ load_balancer_health_resource_id | oracle.oci.override(test_load_balancer_health_get_load_balancer_id, omit) }}"
+    register: result
+    when: skip_load_balancer_health_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.load_balancer_healths | length == 1
+    when: skip_load_balancer_health_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.status is defined
+    with_items: "{{ result.load_balancer_healths }}"
+    when: skip_load_balancer_health_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ load_balancer_health_get_custom_assertions }}"
+    when: load_balancer_health_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete dependency load_balancer
+      oci_loadbalancer_load_balancer:
+        load_balancer_id: "{{ dependency_load_balancer_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_load_balancer_health_delete_dependency_load_balancer_test is not defined and skip_load_balancer_health_dependencies is not defined and dependency_load_balancer_id is defined

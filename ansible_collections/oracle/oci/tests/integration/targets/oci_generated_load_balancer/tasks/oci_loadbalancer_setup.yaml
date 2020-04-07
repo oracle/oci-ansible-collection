@@ -1,0 +1,37 @@
+- name: Create dependency load_balancer with necessary sub resources
+  oci_loadbalancer_load_balancer:
+    compartment_id: "{{ test_compartment_ocid }}"
+    display_name: "{{ ('setup_load_balancer' + random_suffix_1024) }}"
+    shape_name: "{{ '100Mbps' }}"
+    subnet_ids: "{{ [ common_subnet_id ] }}"
+  register: result
+
+- name: Set dependency variable
+  set_fact:
+    dependency_load_balancer: "{{ result.load_balancer }}"
+    dependency_load_balancer_id: "{{ result.load_balancer.id }}"
+
+- name: Create certificate
+  oci_loadbalancer_certificate:
+    certificate_name: "example_certificate_bundle"
+    private_key: "{{ example_private_key }}"
+    public_certificate: "{{ example_public_certificate }}"
+    ca_certificate: "{{ example_ca_certificate }}"
+    load_balancer_id: "{{ dependency_load_balancer_id }}"
+  register: result
+
+- name: Create backend_set
+  oci_loadbalancer_backend_set:
+    name: "{{ setup_backend_set_name }}"
+    policy: "LEAST_CONNECTIONS"
+    health_checker:
+      protocol: HTTP
+      url_path: /healthcheck
+      port: 8080
+      return_code: 200
+      retries: 3
+      timeout_in_millis: 3000
+      interval_in_millis: 10000
+      response_body_regex: "^((?!false).|\\s)*$"
+    load_balancer_id: "{{ dependency_load_balancer_id }}"
+  register: result

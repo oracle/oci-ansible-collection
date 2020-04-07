@@ -1,0 +1,554 @@
+---
+- block:
+  - name: Create dependency load_balancer with required parameters
+    oci_loadbalancer_load_balancer:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_listener_create_dependency_load_balancer_compartment_id, omit) }}"
+      display_name: "{{ ('example_load_balancer' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_load_balancer_display_name, omit) }}"
+      shape_name: "{{ '100Mbps' | oracle.oci.override(test_listener_create_dependency_load_balancer_shape_name, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_listener_create_dependency_load_balancer_subnet_ids, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_load_balancer_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_load_balancer_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_load_balancer: "{{ result.load_balancer }}"
+      dependency_load_balancer_id: "{{ result.load_balancer.id }}"
+    when: skip_listener_create_dependency_load_balancer_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_load_balancer_custom_assertions }}"
+    when: listener_create_dependency_load_balancer_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency certificate with required parameters
+    oci_loadbalancer_certificate:
+      certificate_name: "{{ 'example_certificate_bundle' | oracle.oci.override(test_listener_create_dependency_certificate_certificate_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_certificate_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_certificate: "{{ result.certificate }}"
+      dependency_certificate_name: "{{ result.certificate.certificate_name }}"
+    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_certificate_custom_assertions }}"
+    when: listener_create_dependency_certificate_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency hostname with required parameters
+    oci_loadbalancer_hostname:
+      name: "{{ ('example_hostname_001' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_hostname_name, omit) }}"
+      hostname: "{{ 'app.example.com' | oracle.oci.override(test_listener_create_dependency_hostname_hostname, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_hostname_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_hostname: "{{ result.hostname }}"
+      dependency_hostname_name: "{{ result.hostname.name }}"
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_hostname_custom_assertions }}"
+    when: listener_create_dependency_hostname_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_listener_create_dependency_rule_set_items:
+      - action: "{{ 'ADD_HTTP_REQUEST_HEADER' | oracle.oci.override(test_listener_create_dependency_rule_set_items_action, omit) }}"
+        header: "{{ 'example_header_name' | oracle.oci.override(test_listener_create_dependency_rule_set_items_header, omit) }}"
+        value: "{{ 'example_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_value, omit) }}"
+        prefix: "{{ 'example_prefix_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_prefix, omit) }}"
+        suffix: "{{ 'example_suffix_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_suffix, omit) }}"
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and test_listener_create_dependency_rule_set_items is not defined
+
+  - name: Create dependency rule_set with required parameters
+    oci_loadbalancer_rule_set:
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_rule_set_load_balancer_id, omit) }}"
+      name: "{{ ('example_rule_set' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_rule_set_name, omit) }}"
+      items: "{{ '[]' | oracle.oci.override(test_listener_create_dependency_rule_set_items, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_rule_set: "{{ result.rule_set }}"
+      dependency_rule_set_name: "{{ result.rule_set.name }}"
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_rule_set_custom_assertions }}"
+    when: listener_create_dependency_rule_set_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_listener_create_dependency_backend_set_health_checker:
+        protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_protocol, omit) }}"
+        url_path: "{{ '/healthcheck' | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_url_path, omit) }}"
+        port: "{{ 8080 | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_port, omit) }}"
+        return_code: "{{ 200 | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_return_code, omit) }}"
+        retries: "{{ 3 | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_retries, omit) }}"
+        timeout_in_millis: "{{ 3000 | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_timeout_in_millis, omit) }}"
+        interval_in_millis: "{{ 10000 | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_interval_in_millis, omit) }}"
+        response_body_regex: "{{ '^((?!false).|\\s)*$' | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker_response_body_regex, omit) }}"
+    when: skip_listener_create_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined and test_listener_create_dependency_backend_set_health_checker is not defined
+
+  - name: Create dependency backend_set with required parameters
+    oci_loadbalancer_backend_set:
+      name: "{{ ('example_backend_set' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_backend_set_name, omit) }}"
+      policy: "{{ 'LEAST_CONNECTIONS' | oracle.oci.override(test_listener_create_dependency_backend_set_policy, omit) }}"
+      health_checker: "{{ '{}' | oracle.oci.override(test_listener_create_dependency_backend_set_health_checker, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_backend_set_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_backend_set: "{{ result.backend_set }}"
+      dependency_backend_set_name: "{{ result.backend_set.name }}"
+    when: skip_listener_create_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_backend_set_custom_assertions }}"
+    when: listener_create_dependency_backend_set_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_listener_create_dependency_path_route_set_path_routes:
+      - path: "{{ '/example/video/123' | oracle.oci.override(test_listener_create_dependency_path_route_set_path_routes_path, omit) }}"
+        path_match_type:
+          match_type: "{{ 'EXACT_MATCH' | oracle.oci.override(test_listener_create_dependency_path_route_set_path_match_type_match_type, omit) }}"
+        backend_set_name: "{{ dependency_backend_set_name | oracle.oci.override(test_listener_create_dependency_path_route_set_path_routes_backend_set_name, omit) }}"
+    when: skip_listener_create_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined and test_listener_create_dependency_path_route_set_path_routes is not defined
+
+  - name: Create dependency path_route_set with required parameters
+    oci_loadbalancer_path_route_set:
+      name: "{{ ('example_path_route_set' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_path_route_set_name, omit) }}"
+      path_routes: "{{ '[]' | oracle.oci.override(test_listener_create_dependency_path_route_set_path_routes, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_path_route_set_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_path_route_set: "{{ result.path_route_set }}"
+      dependency_path_route_set_name: "{{ result.path_route_set.name }}"
+    when: skip_listener_create_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_path_route_set_custom_assertions }}"
+    when: listener_create_dependency_path_route_set_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create listener (check mode)
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ 'example_backend_set' | oracle.oci.override(test_listener_create_required_default_backend_set_name, omit) }}"
+      port: "{{ 80 | oracle.oci.override(test_listener_create_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_create_required_protocol, omit) }}"
+      name: "{{ ('example_listener' + random_suffix_1024) | oracle.oci.override(test_listener_create_required_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_required_load_balancer_id, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_listener_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_check_mode_custom_assertions }}"
+    when: listener_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create listener with required parameters
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ 'example_backend_set' | oracle.oci.override(test_listener_create_required_default_backend_set_name, omit) }}"
+      port: "{{ 80 | oracle.oci.override(test_listener_create_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_create_required_protocol, omit) }}"
+      name: "{{ ('example_listener' + random_suffix_1024) | oracle.oci.override(test_listener_create_required_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_required_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_required_original_test is not defined
+
+  - set_fact:
+      listener_resource_name: "{{ result.listener.name }}"
+    when: skip_listener_create_required_original_test is not defined
+
+  - set_fact:
+      listener: "{{ result.listener }}"
+    when: skip_listener_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_required_original_custom_assertions }}"
+    when: listener_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create listener with required parameters(idempotency)
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ 'example_backend_set' | oracle.oci.override(test_listener_create_required_default_backend_set_name, omit) }}"
+      port: "{{ 80 | oracle.oci.override(test_listener_create_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_create_required_protocol, omit) }}"
+      name: "{{ ('example_listener' + random_suffix_1024) | oracle.oci.override(test_listener_create_required_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_required_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_listener_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_required_idempotency_custom_assertions }}"
+    when: listener_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete listener
+    oci_loadbalancer_listener:
+      name: "{{ listener_resource_name | oracle.oci.override(test_listener_delete_required_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_required_load_balancer_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_listener_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_delete_required_custom_assertions }}"
+    when: listener_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete listener (idempotency)
+    oci_loadbalancer_listener:
+      name: "{{ listener_resource_name | oracle.oci.override(test_listener_delete_required_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_required_load_balancer_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_listener_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_listener_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_delete_required_idempotency_custom_assertions }}"
+    when: listener_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_listener_create_optional_required_ssl_configuration:
+        certificate_name: "{{ dependency_certificate_name | oracle.oci.override(test_listener_create_optional_required_ssl_configuration_certificate_name, omit) }}"
+        verify_peer_certificate: "{{ true | oracle.oci.override(test_listener_create_optional_required_ssl_configuration_verify_peer_certificate, omit) }}"
+        verify_depth: "{{ 3 | oracle.oci.override(test_listener_create_optional_required_ssl_configuration_verify_depth, omit) }}"
+    when: test_listener_create_optional_required_ssl_configuration is not defined
+
+  - set_fact:
+      test_listener_create_optional_required_connection_configuration:
+        idle_timeout: "{{ 1200 | oracle.oci.override(test_listener_create_optional_required_connection_configuration_idle_timeout, omit) }}"
+    when: test_listener_create_optional_required_connection_configuration is not defined
+
+  - name: Create listener with optional + required parameters
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ 'example_backend_set' | oracle.oci.override(test_listener_create_optional_required_default_backend_set_name, omit) }}"
+      port: "{{ 80 | oracle.oci.override(test_listener_create_optional_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_create_optional_required_protocol, omit) }}"
+      hostname_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_create_optional_required_hostname_names, omit) }}"
+      path_route_set_name: "{{ dependency_path_route_set_name | oracle.oci.override(test_listener_create_optional_required_path_route_set_name, omit) }}"
+      ssl_configuration: "{{ '{}' | oracle.oci.override(test_listener_create_optional_required_ssl_configuration, omit) }}"
+      connection_configuration: "{{ '{}' | oracle.oci.override(test_listener_create_optional_required_connection_configuration, omit) }}"
+      name: "{{ ('example_listener' + random_suffix_1024) | oracle.oci.override(test_listener_create_optional_required_name, omit) }}"
+      rule_set_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_create_optional_required_rule_set_names, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_optional_required_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_optional_required_original_test is not defined
+
+  - set_fact:
+      listener_resource_name: "{{ result.listener.name }}"
+    when: skip_listener_create_optional_required_original_test is not defined
+
+  - set_fact:
+      listener: "{{ result.listener }}"
+    when: skip_listener_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_optional_required_original_custom_assertions }}"
+    when: listener_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create listener with optional + required parameters (idempotence)
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ 'example_backend_set' | oracle.oci.override(test_listener_create_optional_required_default_backend_set_name, omit) }}"
+      port: "{{ 80 | oracle.oci.override(test_listener_create_optional_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_create_optional_required_protocol, omit) }}"
+      hostname_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_create_optional_required_hostname_names, omit) }}"
+      path_route_set_name: "{{ dependency_path_route_set_name | oracle.oci.override(test_listener_create_optional_required_path_route_set_name, omit) }}"
+      ssl_configuration: "{{ '{}' | oracle.oci.override(test_listener_create_optional_required_ssl_configuration, omit) }}"
+      connection_configuration: "{{ '{}' | oracle.oci.override(test_listener_create_optional_required_connection_configuration, omit) }}"
+      name: "{{ ('example_listener' + random_suffix_1024) | oracle.oci.override(test_listener_create_optional_required_name, omit) }}"
+      rule_set_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_create_optional_required_rule_set_names, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_optional_required_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_listener_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_optional_required_idempotence_custom_assertions }}"
+    when: listener_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_listener_update_optional_required_ssl_configuration:
+        certificate_name: "{{ dependency_certificate_name | oracle.oci.override(test_listener_update_optional_required_ssl_configuration_certificate_name, omit) }}"
+        verify_peer_certificate: "{{ true | oracle.oci.override(test_listener_update_optional_required_ssl_configuration_verify_peer_certificate, omit) }}"
+        verify_depth: "{{ 6 | oracle.oci.override(test_listener_update_optional_required_ssl_configuration_verify_depth, omit) }}"
+    when: test_listener_update_optional_required_ssl_configuration is not defined
+
+  - set_fact:
+      test_listener_update_optional_required_connection_configuration:
+        idle_timeout: "{{ 2400 | oracle.oci.override(test_listener_update_optional_required_connection_configuration_idle_timeout, omit) }}"
+    when: test_listener_update_optional_required_connection_configuration is not defined
+
+  - name: Update listener with optional + required parameters
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ ('example_backend_setupdated' + random_suffix_1024) | oracle.oci.override(test_listener_update_optional_required_default_backend_set_name, omit) }}"
+      port: "{{ 160 | oracle.oci.override(test_listener_update_optional_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_update_optional_required_protocol, omit) }}"
+      hostname_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_update_optional_required_hostname_names, omit) }}"
+      path_route_set_name: "{{ dependency_path_route_set_name | oracle.oci.override(test_listener_update_optional_required_path_route_set_name, omit) }}"
+      ssl_configuration: "{{ '{}' | oracle.oci.override(test_listener_update_optional_required_ssl_configuration, omit) }}"
+      connection_configuration: "{{ '{}' | oracle.oci.override(test_listener_update_optional_required_connection_configuration, omit) }}"
+      name: "{{ listener_resource_name | oracle.oci.override(test_listener_update_optional_required_name, omit) }}"
+      rule_set_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_update_optional_required_rule_set_names, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_update_optional_required_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_update_optional_required_custom_assertions }}"
+    when: listener_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update listener with optional + required parameters (idempotence)
+    oci_loadbalancer_listener:
+      default_backend_set_name: "{{ ('example_backend_setupdated' + random_suffix_1024) | oracle.oci.override(test_listener_update_optional_required_default_backend_set_name, omit) }}"
+      port: "{{ 160 | oracle.oci.override(test_listener_update_optional_required_port, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_listener_update_optional_required_protocol, omit) }}"
+      hostname_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_update_optional_required_hostname_names, omit) }}"
+      path_route_set_name: "{{ dependency_path_route_set_name | oracle.oci.override(test_listener_update_optional_required_path_route_set_name, omit) }}"
+      ssl_configuration: "{{ '{}' | oracle.oci.override(test_listener_update_optional_required_ssl_configuration, omit) }}"
+      connection_configuration: "{{ '{}' | oracle.oci.override(test_listener_update_optional_required_connection_configuration, omit) }}"
+      name: "{{ listener_resource_name | oracle.oci.override(test_listener_update_optional_required_name, omit) }}"
+      rule_set_names: "{{ [ 'null' ] | oracle.oci.override(test_listener_update_optional_required_rule_set_names, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_update_optional_required_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_listener_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    when: skip_listener_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_update_optional_required_idempotence_custom_assertions }}"
+    when: listener_update_optional_required_idempotence_custom_assertions is defined
+
+  always:
+
+    - name: Delete listener
+      oci_loadbalancer_listener:
+        name: "{{ listener_resource_name | oracle.oci.override(test_listener_delete_rescue_name, omit) }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_rescue_load_balancer_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: listener_resource_name is defined
+
+    - name: Delete dependency path_route_set
+      oci_loadbalancer_path_route_set:
+        name: "{{ dependency_path_route_set_id }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_path_route_set_load_balancer_id, omit) }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_id is defined
+
+    - name: Delete dependency backend_set
+      oci_loadbalancer_backend_set:
+        name: "{{ dependency_backend_set_id }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_backend_set_load_balancer_id, omit) }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined and dependency_backend_set_id is defined
+
+    - name: Delete dependency rule_set
+      oci_loadbalancer_rule_set:
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_rule_set_load_balancer_id, omit) }}"
+        name: "{{ dependency_rule_set_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and dependency_rule_set_id is defined
+
+    - name: Delete dependency hostname
+      oci_loadbalancer_hostname:
+        name: "{{ dependency_hostname_id }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_hostname_load_balancer_id, omit) }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_hostname_test is not defined and skip_listener_dependencies is not defined and dependency_hostname_id is defined
+
+    - name: Delete dependency certificate
+      oci_loadbalancer_certificate:
+        certificate_name: "{{ dependency_certificate_id }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_certificate_load_balancer_id, omit) }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_certificate_test is not defined and skip_listener_dependencies is not defined and dependency_certificate_id is defined
+
+    - name: Delete dependency load_balancer
+      oci_loadbalancer_load_balancer:
+        load_balancer_id: "{{ dependency_load_balancer_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_load_balancer_test is not defined and skip_listener_dependencies is not defined and dependency_load_balancer_id is defined

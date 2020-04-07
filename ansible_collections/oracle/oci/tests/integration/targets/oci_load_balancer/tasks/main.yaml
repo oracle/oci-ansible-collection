@@ -1,0 +1,3 @@
+---
+
+- include: oci_load_balancer_legacy.yaml

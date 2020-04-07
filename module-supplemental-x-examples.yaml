@@ -286,3 +286,45 @@ autoscaling:
             "id": "ocid1.instancepool.oc1..<var>&lt;unique_ID&gt;</var>"
         }
       }
+load_balancer:
+  CreateRuleSet: |
+    POST /20170115//loadBalancers/<var>&lt;load_balancer_OCID&gt;</var>/ruleSets
+    Host: iaas.us-phoenix-1.oraclecloud.com
+    <var>&lt;authorization and other headers&gt;</var>
+
+    {
+      "name": "example_rule_set",
+      "items": [
+        {
+          "action": "ADD_HTTP_REQUEST_HEADER",
+          "header": "example_header_name",
+          "value": "example_value"
+        },
+        {
+          "action": "EXTEND_HTTP_REQUEST_HEADER_VALUE",
+          "header": "example_header_name2",
+          "prefix": "example_prefix_value",
+          "suffix": "example_suffix_value"
+        }
+      ]
+    }
+  UpdateRuleSet: |
+    PUT /20170115/loadBalancers/<var>&lt;load_balancer_OCID&gt;</var>/ruleSets/<var>&lt;rule_set_name&gt;</var>
+    Host: iaas.us-phoenix-1.oraclecloud.com
+    <var>&lt;authorization and other headers&gt;</var>
+
+    {
+      "items": [
+        {
+          "action": "ADD_HTTP_REQUEST_HEADER",
+          "header": "example_header_name",
+          "value": "example_value"
+        },
+        {
+          "action": "EXTEND_HTTP_REQUEST_HEADER_VALUE",
+          "header": "example_header_name2",
+          "prefix": "example_prefix_value",
+          "suffix": "example_suffix_value"
+        }
+      ]
+    }

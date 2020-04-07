@@ -211,7 +211,30 @@ moduleWhitelist:
   - oci_autoscaling_auto_scaling_configuration_facts
   - oci_autoscaling_auto_scaling_configuration_policy
   - oci_autoscaling_auto_scaling_configuration_policy_facts
-
+  - oci_loadbalancer_load_balancer
+  - oci_loadbalancer_load_balancer_facts
+  - oci_loadbalancer_backend
+  - oci_loadbalancer_backend_facts
+  - oci_loadbalancer_backend_health_facts
+  - oci_loadbalancer_backend_set
+  - oci_loadbalancer_backend_set_facts
+  - oci_loadbalancer_backend_set_health_facts
+  - oci_loadbalancer_certificate
+  - oci_loadbalancer_certificate_facts
+  - oci_loadbalancer_health_checker
+  - oci_loadbalancer_health_checker_facts
+  - oci_loadbalancer_health_facts
+  - oci_loadbalancer_hostname
+  - oci_loadbalancer_hostname_facts
+  - oci_loadbalancer_listener
+  - oci_loadbalancer_listener_facts
+  - oci_loadbalancer_path_route_set
+  - oci_loadbalancer_path_route_set_facts
+  - oci_loadbalancer_policy_facts
+  - oci_loadbalancer_protocol_facts
+  - oci_loadbalancer_rule_set
+  - oci_loadbalancer_rule_set_facts
+  - oci_loadbalancer_shape_facts
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -356,3 +379,32 @@ resourceModuleParameterValueOverrides:
     volume_backup_policy:
       - paramName: compartment_id
         isRequiredForList: true
+  load_balancer:
+    backend:
+      - paramName: port
+        isUsedByUpdate: true
+        isRequiredForUpdate: true
+        isUsedByDelete: true
+        isRequiredForDelete: true
+        required: true
+      - paramName: ip_address
+        isUsedByUpdate: true
+        isRequiredForUpdate: true
+        isUsedByDelete: true
+        isRequiredForDelete: true
+        required: true
+      - paramName: backend_name
+        remove: true
+    load_balancer:
+      - paramName: listeners
+        remove: true
+      - paramName: hostnames
+        remove: true
+      - paramName: backend_sets
+        remove: true
+      - paramName: certificates
+        remove: true
+      - paramName: path_route_sets
+        remove: true
+      - paramName: rule_sets
+        remove: true

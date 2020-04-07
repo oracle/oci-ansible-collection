@@ -55,6 +55,14 @@ SPEC_NAME_TO_TAGS = {
     }
 }
 
+# this is overridden in the module-rename file so we need to account for it here
+# this should be very rare since normally the spec_name will be the module prefix
+# but this is a special case where load_balancer was already taken as a name in
+# the old modules
+SPEC_NAME_TO_MODULE_PREFIX = {
+    "load_balancer": "loadbalancer"
+}
+
 MAVEN_EXEC_PLUGIN_TEMPLATE = """
 <plugin>
     <artifactId>exec-maven-plugin</artifactId>
@@ -303,13 +311,17 @@ def main(python_sdk_dir, ansible_collections_repo_dir, copy_codegen_config_enabl
         remove_child_element(pom, "./ns:properties", "./ns:properties/ns:feature-id-file")
         remove_child_element(pom, "./ns:properties", "./ns:properties/ns:feature-id-dir")
 
+        module_prefix = spec_name
+        if spec_name in SPEC_NAME_TO_MODULE_PREFIX:
+            module_prefix = SPEC_NAME_TO_MODULE_PREFIX[spec_name]
+
         if spec_name in SPEC_NAME_TO_TAGS:
             for tag in SPEC_NAME_TO_TAGS[spec_name]:
                 add_child_element_from_string(pom, plugins_xpath, MAVEN_EXEC_PLUGIN_TEMPLATE.format(service_name=tag))
                 add_child_element_from_string(pom, plugins_xpath, MAVEN_CLEAN_PLUGIN_TEMPLATE.format(service_name=tag))    
         else:
-            add_child_element_from_string(pom, plugins_xpath, MAVEN_EXEC_PLUGIN_TEMPLATE.format(service_name=spec_name))
-            add_child_element_from_string(pom, plugins_xpath, MAVEN_CLEAN_PLUGIN_TEMPLATE.format(service_name=spec_name))
+            add_child_element_from_string(pom, plugins_xpath, MAVEN_EXEC_PLUGIN_TEMPLATE.format(service_name=module_prefix))
+            add_child_element_from_string(pom, plugins_xpath, MAVEN_CLEAN_PLUGIN_TEMPLATE.format(service_name=module_prefix))
         
         if spec_name in SPEC_VERSION_OVERRIDES:
             replace_element_text(pom, ".//ns:dependencyManagement//ns:version", SPEC_VERSION_OVERRIDES.get(spec_name))

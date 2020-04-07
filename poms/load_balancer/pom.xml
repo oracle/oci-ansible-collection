@@ -123,7 +123,7 @@
         <version>1.6.0</version>
         <executions>
           <execution>
-            <id>ansible-modules-load_balancer-clean-generated-modules</id>
+            <id>ansible-modules-loadbalancer-clean-generated-modules</id>
             <phase>clean</phase>
             <goals>
               <goal>exec</goal>
@@ -131,12 +131,12 @@
             <configuration>
               <executable>${project-root-dir}/scripts/clean_generated_modules.py</executable>
               <arguments>
-                <argument>${modules-output-directory}/oci_load_balancer*.py</argument>
+                <argument>${modules-output-directory}/oci_loadbalancer*.py</argument>
               </arguments>
             </configuration>
           </execution>
           <execution>
-            <id>ansible-modules-load_balancer-format-descriptions</id>
+            <id>ansible-modules-loadbalancer-format-descriptions</id>
             <phase>compile</phase>
             <goals>
               <goal>exec</goal>
@@ -144,13 +144,13 @@
             <configuration>
               <executable>${project-root-dir}/scripts/format_generated_descriptions.py</executable>
               <arguments>
-                <argument>${modules-output-directory}/oci_load_balancer*.py</argument>
+                <argument>${modules-output-directory}/oci_loadbalancer*.py</argument>
                 <argument>${module-whitelist-file}</argument>
               </arguments>
             </configuration>
           </execution>
           <execution>
-            <id>ansible-modules-load_balancer-format-code</id>
+            <id>ansible-modules-loadbalancer-format-code</id>
             <phase>package</phase>
             <goals>
               <goal>exec</goal>
@@ -158,7 +158,7 @@
             <configuration>
               <executable>${project-root-dir}/scripts/run-black</executable>
               <arguments>
-                <argument>${modules-output-directory}/oci_load_balancer*.py</argument>
+                <argument>${modules-output-directory}/oci_loadbalancer*.py</argument>
               </arguments>
             </configuration>
           </execution>
@@ -172,18 +172,18 @@
             <fileset>
               <directory>${test-output-directory}</directory>
               <includes>
-                <include>oci_generated_load_balancer*</include>
-                <include>oci_generated_load_balancer*/tasks/*</include>
-                <include>oci_generated_load_balancer*/tasks</include>
-                <include>oci_generated_load_balancer*/meta/*</include>
-                <include>oci_generated_load_balancer*/meta</include>
-                <include>oci_generated_load_balancer*/vars</include>
+                <include>oci_generated_loadbalancer*</include>
+                <include>oci_generated_loadbalancer*/tasks/*</include>
+                <include>oci_generated_loadbalancer*/tasks</include>
+                <include>oci_generated_loadbalancer*/meta/*</include>
+                <include>oci_generated_loadbalancer*/meta</include>
+                <include>oci_generated_loadbalancer*/vars</include>
               </includes>
               <excludes>
-                <include>oci_generated_load_balancer*/tasks/main.yaml</include>
-                <include>oci_generated_load_balancer*/tasks/*_setup.yaml</include>
-                <include>oci_generated_load_balancer*/tasks/*_teardown.yaml</include>
-                <include>oci_generated_load_balancer*/vars/main.yaml</include>
+                <include>oci_generated_loadbalancer*/tasks/main.yaml</include>
+                <include>oci_generated_loadbalancer*/tasks/*_setup.yaml</include>
+                <include>oci_generated_loadbalancer*/tasks/*_teardown.yaml</include>
+                <include>oci_generated_loadbalancer*/vars/main.yaml</include>
               </excludes>
             </fileset>
           </filesets>
