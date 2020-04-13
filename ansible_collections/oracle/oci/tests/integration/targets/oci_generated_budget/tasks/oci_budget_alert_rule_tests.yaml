@@ -75,7 +75,7 @@
       budget_alert_rule_resource_id: "{{ result.budget_alert_rule.id }}"
     when: skip_budget_alert_rule_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -85,9 +85,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -116,7 +121,7 @@
         - result.changed == False
     when: skip_budget_alert_rule_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -126,9 +131,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -163,7 +173,7 @@
         - result.changed == True
     when: skip_budget_alert_rule_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -173,9 +183,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -210,7 +225,7 @@
         - result.changed == False
     when: skip_budget_alert_rule_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -220,9 +235,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -250,7 +270,7 @@
         - result.changed == True
     when: skip_budget_alert_rule_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -260,9 +280,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -324,7 +349,7 @@
       budget_alert_rule_resource_id: "{{ result.budget_alert_rule.id }}"
     when: skip_budget_alert_rule_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -334,9 +359,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -369,7 +399,7 @@
         - result.changed == False
     when: skip_budget_alert_rule_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -379,9 +409,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -415,7 +450,7 @@
         - result.changed == True
     when: skip_budget_alert_rule_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -425,9 +460,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -461,7 +501,7 @@
         - result.changed == False
     when: skip_budget_alert_rule_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget_alert_rule.id is defined
@@ -471,9 +511,14 @@
         - result.budget_alert_rule.threshold is defined
         - result.budget_alert_rule.threshold_type is defined
         - result.budget_alert_rule.lifecycle_state is defined
+        - result.budget_alert_rule.message is defined
+        - result.budget_alert_rule.description is defined
+        - result.budget_alert_rule.version is defined
         - result.budget_alert_rule.recipients is defined
         - result.budget_alert_rule.time_created is defined
         - result.budget_alert_rule.time_updated is defined
+        - result.budget_alert_rule.freeform_tags is defined
+        - result.budget_alert_rule.defined_tags is defined
     when: skip_budget_alert_rule_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -498,7 +543,7 @@
     when: skip_budget_alert_rule_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -508,9 +553,14 @@
         - item.threshold is defined
         - item.threshold_type is defined
         - item.lifecycle_state is defined
+        - item.message is defined
+        - item.description is defined
+        - item.version is defined
         - item.recipients is defined
         - item.time_created is defined
         - item.time_updated is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.budget_alert_rules }}"
     when: skip_budget_alert_rule_list_test is not defined
 
@@ -536,7 +586,7 @@
         - result.budget_alert_rules | length == 1
     when: skip_budget_alert_rule_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -546,9 +596,14 @@
         - item.threshold is defined
         - item.threshold_type is defined
         - item.lifecycle_state is defined
+        - item.message is defined
+        - item.description is defined
+        - item.version is defined
         - item.recipients is defined
         - item.time_created is defined
         - item.time_updated is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.budget_alert_rules }}"
     when: skip_budget_alert_rule_get_test is not defined
 

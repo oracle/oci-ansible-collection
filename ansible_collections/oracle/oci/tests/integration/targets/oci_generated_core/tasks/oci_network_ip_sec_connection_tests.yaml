@@ -95,15 +95,19 @@
       ip_sec_connection_resource_id: "{{ result.ip_sec_connection.id }}"
     when: skip_ip_sec_connection_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -131,15 +135,19 @@
         - result.changed == False
     when: skip_ip_sec_connection_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -168,15 +176,19 @@
         - result.changed == True
     when: skip_ip_sec_connection_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -205,15 +217,19 @@
         - result.changed == False
     when: skip_ip_sec_connection_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -241,15 +257,19 @@
         - result.changed == True
     when: skip_ip_sec_connection_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -320,15 +340,19 @@
       ip_sec_connection_resource_id: "{{ result.ip_sec_connection.id }}"
     when: skip_ip_sec_connection_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -359,15 +383,19 @@
         - result.changed == False
     when: skip_ip_sec_connection_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -394,15 +422,19 @@
         - result.changed == True
     when: skip_ip_sec_connection_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -429,15 +461,19 @@
         - result.changed == False
     when: skip_ip_sec_connection_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection.compartment_id is defined
         - result.ip_sec_connection.cpe_id is defined
+        - result.ip_sec_connection.defined_tags is defined
+        - result.ip_sec_connection.display_name is defined
         - result.ip_sec_connection.drg_id is defined
+        - result.ip_sec_connection.freeform_tags is defined
         - result.ip_sec_connection.id is defined
         - result.ip_sec_connection.lifecycle_state is defined
         - result.ip_sec_connection.static_routes is defined
+        - result.ip_sec_connection.time_created is defined
     when: skip_ip_sec_connection_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -462,15 +498,19 @@
     when: skip_ip_sec_connection_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
         - item.cpe_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
         - item.drg_id is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.static_routes is defined
+        - item.time_created is defined
     with_items: "{{ result.ip_sec_connections }}"
     when: skip_ip_sec_connection_list_test is not defined
 
@@ -495,15 +535,19 @@
         - result.ip_sec_connections | length == 1
     when: skip_ip_sec_connection_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
         - item.cpe_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
         - item.drg_id is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.static_routes is defined
+        - item.time_created is defined
     with_items: "{{ result.ip_sec_connections }}"
     when: skip_ip_sec_connection_get_test is not defined
 

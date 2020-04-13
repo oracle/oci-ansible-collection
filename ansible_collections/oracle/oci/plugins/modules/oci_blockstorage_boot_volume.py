@@ -260,6 +260,12 @@ boot_volume:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        volume_group_id:
+            description:
+                - The OCID of the source volume group.
+            returned: on success
+            type: string
+            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -276,7 +282,8 @@ boot_volume:
             "type": "bootVolumeBackup",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

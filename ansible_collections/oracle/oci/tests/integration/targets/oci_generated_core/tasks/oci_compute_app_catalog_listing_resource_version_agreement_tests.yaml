@@ -14,6 +14,19 @@
         - result.app_catalog_listing_resource_version_agreement != None
     when: skip_app_catalog_listing_resource_version_agreement_get_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.listing_id is defined
+        - item.listing_resource_version is defined
+        - item.oracle_terms_of_use_link is defined
+        - item.eula_link is defined
+        - item.time_retrieved is defined
+        - item.signature is defined
+    with_items:
+      - "{{ result.app_catalog_listing_resource_version_agreement }}"
+    when: skip_app_catalog_listing_resource_version_agreement_get_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

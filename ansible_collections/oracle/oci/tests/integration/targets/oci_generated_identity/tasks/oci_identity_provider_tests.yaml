@@ -50,7 +50,7 @@
       identity_provider_resource_id: "{{ result.identity_provider.id }}"
     when: skip_identity_provider_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -60,7 +60,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -90,7 +97,7 @@
         - result.changed == False
     when: skip_identity_provider_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -100,7 +107,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -134,7 +148,7 @@
         - result.changed == True
     when: skip_identity_provider_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -144,7 +158,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -178,7 +199,7 @@
         - result.changed == False
     when: skip_identity_provider_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -188,7 +209,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -217,7 +245,7 @@
         - result.changed == True
     when: skip_identity_provider_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -227,7 +255,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -290,7 +325,7 @@
       identity_provider_resource_id: "{{ result.identity_provider.id }}"
     when: skip_identity_provider_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -300,7 +335,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -333,7 +375,7 @@
         - result.changed == False
     when: skip_identity_provider_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -343,7 +385,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -374,7 +423,7 @@
         - result.changed == True
     when: skip_identity_provider_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -384,7 +433,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -415,7 +471,7 @@
         - result.changed == False
     when: skip_identity_provider_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.identity_provider.id is defined
@@ -425,7 +481,14 @@
         - result.identity_provider.product_type is defined
         - result.identity_provider.time_created is defined
         - result.identity_provider.lifecycle_state is defined
+        - result.identity_provider.inactive_status is defined
         - result.identity_provider.protocol is defined
+        - result.identity_provider.freeform_tags is defined
+        - result.identity_provider.defined_tags is defined
+        - result.identity_provider.metadata_url is defined
+        - result.identity_provider.signing_certificate is defined
+        - result.identity_provider.redirect_url is defined
+        - result.identity_provider.freeform_attributes is defined
     when: skip_identity_provider_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -451,7 +514,7 @@
     when: skip_identity_provider_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -461,7 +524,14 @@
         - item.product_type is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
         - item.protocol is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+        - item.metadata_url is defined
+        - item.signing_certificate is defined
+        - item.redirect_url is defined
+        - item.freeform_attributes is defined
     with_items: "{{ result.identity_providers }}"
     when: skip_identity_provider_list_test is not defined
 
@@ -486,7 +556,7 @@
         - result.identity_providers | length == 1
     when: skip_identity_provider_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -496,7 +566,14 @@
         - item.product_type is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
         - item.protocol is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+        - item.metadata_url is defined
+        - item.signing_certificate is defined
+        - item.redirect_url is defined
+        - item.freeform_attributes is defined
     with_items: "{{ result.identity_providers }}"
     when: skip_identity_provider_get_test is not defined
 

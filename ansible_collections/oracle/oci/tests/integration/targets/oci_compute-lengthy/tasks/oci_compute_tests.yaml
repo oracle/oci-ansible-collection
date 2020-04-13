@@ -5,7 +5,7 @@
 - name: Get facts about all compute instances in compartment
   oci_compute_instance_facts:
     compartment_id: "{{test_compartment_ocid}}"
-    availability_domain: "{{test_availability_domain}}"
+    availability_domain: "{{test_availability_domain_2}}"
   register: currinstances
 
 - set_fact:
@@ -71,7 +71,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         metadata:
           foo: bar
           baz: quux
@@ -298,7 +298,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           hostname_label: "{{test_instance_name}}"
           private_ip: "{{test_private_ip}}"
@@ -321,7 +321,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           hostname_label: "{{test_instance_name}}"
           private_ip: "{{test_private_ip}}"
@@ -362,7 +362,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
       register: result
@@ -380,7 +380,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
       register: result
@@ -416,7 +416,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
         metadata:
@@ -437,7 +437,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
         metadata:
@@ -489,7 +489,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
         display_name: "{{test_instance_name}}"
@@ -508,7 +508,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
         metadata:
@@ -562,7 +562,7 @@
         name: "{{test_instance_name}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         source_details:
           source_type: "image"
           image_id: "{{image_ocid}}"
@@ -587,7 +587,7 @@
         name: "{{test_instance_name}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         source_details:
           source_type: "image"
           image_id: "{{image_ocid}}"
@@ -637,7 +637,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
       register: result
@@ -696,7 +696,7 @@
         image_id: "{{windows_image_ocid}}"
         shape: "{{test_windows_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         metadata:
           foo: bar
           baz: quux
@@ -734,7 +734,7 @@
         image_id: "{{windows_image_ocid}}"
         shape: "{{test_windows_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         metadata:
           foo: bar
           baz: quux
@@ -783,7 +783,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           hostname_label: "{{test_instance_name}}"
           private_ip: "{{test_private_ip}}"
@@ -811,7 +811,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
       register: result
@@ -848,7 +848,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           hostname_label: "{{test_instance_name}}"
           private_ip: "{{test_private_ip}}"
@@ -871,7 +871,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_2}}"
         create_vnic_details:
           subnet_id: "{{common_subnet_id}}"
       register: result

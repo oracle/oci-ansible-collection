@@ -42,14 +42,17 @@
       tag_namespace_resource_id: "{{ result.tag_namespace.id }}"
     when: skip_tag_namespace_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_create_required_original_test is not defined
 
@@ -76,14 +79,17 @@
         - result.changed == False
     when: skip_tag_namespace_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_create_required_idempotency_test is not defined
 
@@ -115,14 +121,17 @@
         - result.changed == True
     when: skip_tag_namespace_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_update_using_name_optional_required_test is not defined
 
@@ -154,14 +163,17 @@
         - result.changed == False
     when: skip_tag_namespace_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_update_using_name_optional_required_idempotence_test is not defined
 
@@ -190,14 +202,17 @@
         - result.changed == True
     when: skip_tag_namespace_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_delete_required_test is not defined
 
@@ -255,14 +270,17 @@
       tag_namespace_resource_id: "{{ result.tag_namespace.id }}"
     when: skip_tag_namespace_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_create_optional_required_original_test is not defined
 
@@ -291,14 +309,17 @@
         - result.changed == False
     when: skip_tag_namespace_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_create_optional_required_idempotence_test is not defined
 
@@ -327,14 +348,17 @@
         - result.changed == True
     when: skip_tag_namespace_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_update_optional_required_test is not defined
 
@@ -363,14 +387,17 @@
         - result.changed == False
     when: skip_tag_namespace_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag_namespace.id is defined
         - result.tag_namespace.compartment_id is defined
         - result.tag_namespace.name is defined
         - result.tag_namespace.description is defined
+        - result.tag_namespace.freeform_tags is defined
+        - result.tag_namespace.defined_tags is defined
         - result.tag_namespace.is_retired is defined
+        - result.tag_namespace.lifecycle_state is defined
         - result.tag_namespace.time_created is defined
     when: skip_tag_namespace_update_optional_required_idempotence_test is not defined
 
@@ -396,14 +423,17 @@
     when: skip_tag_namespace_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
         - item.name is defined
         - item.description is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
         - item.is_retired is defined
+        - item.lifecycle_state is defined
         - item.time_created is defined
     with_items: "{{ result.tag_namespaces }}"
     when: skip_tag_namespace_list_test is not defined
@@ -429,14 +459,17 @@
         - result.tag_namespaces | length == 1
     when: skip_tag_namespace_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
         - item.name is defined
         - item.description is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
         - item.is_retired is defined
+        - item.lifecycle_state is defined
         - item.time_created is defined
     with_items: "{{ result.tag_namespaces }}"
     when: skip_tag_namespace_get_test is not defined

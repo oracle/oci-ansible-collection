@@ -14,7 +14,7 @@
         - result.changed == True
     when: skip_namespace_metadata_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.namespace_metadata.namespace is defined
@@ -45,7 +45,7 @@
         - result.changed == False
     when: skip_namespace_metadata_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.namespace_metadata.namespace is defined
@@ -75,7 +75,7 @@
         - result.namespace_metadata != None
     when: skip_namespace_metadata_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.namespace is defined

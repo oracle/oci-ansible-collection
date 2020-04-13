@@ -12,6 +12,14 @@
     when: skip_region_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.key is defined
+        - item.name is defined
+    with_items: "{{ result.regions }}"
+    when: skip_region_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

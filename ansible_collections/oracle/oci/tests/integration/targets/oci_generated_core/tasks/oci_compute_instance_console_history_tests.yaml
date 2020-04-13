@@ -68,11 +68,14 @@
       instance_console_history_resource_id: "{{ result.instance_console_history.id }}"
     when: skip_instance_console_history_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -102,11 +105,14 @@
         - result.changed == False
     when: skip_instance_console_history_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -139,11 +145,14 @@
         - result.changed == True
     when: skip_instance_console_history_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -176,11 +185,14 @@
         - result.changed == False
     when: skip_instance_console_history_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -212,11 +224,14 @@
         - result.changed == True
     when: skip_instance_console_history_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -277,11 +292,14 @@
       instance_console_history_resource_id: "{{ result.instance_console_history.id }}"
     when: skip_instance_console_history_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -313,11 +331,14 @@
         - result.changed == False
     when: skip_instance_console_history_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -348,11 +369,14 @@
         - result.changed == True
     when: skip_instance_console_history_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -383,11 +407,14 @@
         - result.changed == False
     when: skip_instance_console_history_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_console_history.availability_domain is defined
         - result.instance_console_history.compartment_id is defined
+        - result.instance_console_history.defined_tags is defined
+        - result.instance_console_history.display_name is defined
+        - result.instance_console_history.freeform_tags is defined
         - result.instance_console_history.id is defined
         - result.instance_console_history.instance_id is defined
         - result.instance_console_history.lifecycle_state is defined
@@ -416,11 +443,14 @@
     when: skip_instance_console_history_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.instance_id is defined
         - item.lifecycle_state is defined
@@ -449,11 +479,14 @@
         - result.instance_console_histories | length == 1
     when: skip_instance_console_history_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.instance_id is defined
         - item.lifecycle_state is defined

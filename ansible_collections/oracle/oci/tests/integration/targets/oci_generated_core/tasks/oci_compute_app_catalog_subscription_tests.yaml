@@ -48,6 +48,19 @@
       app_catalog_subscription: "{{ result.app_catalog_subscription }}"
     when: skip_app_catalog_subscription_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.app_catalog_subscription.publisher_name is defined
+        - result.app_catalog_subscription.listing_id is defined
+        - result.app_catalog_subscription.listing_resource_version is defined
+        - result.app_catalog_subscription.listing_resource_id is defined
+        - result.app_catalog_subscription.display_name is defined
+        - result.app_catalog_subscription.summary is defined
+        - result.app_catalog_subscription.compartment_id is defined
+        - result.app_catalog_subscription.time_created is defined
+    when: skip_app_catalog_subscription_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -74,6 +87,19 @@
         - result.changed == False
     when: skip_app_catalog_subscription_create_required_idempotency_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.app_catalog_subscription.publisher_name is defined
+        - result.app_catalog_subscription.listing_id is defined
+        - result.app_catalog_subscription.listing_resource_version is defined
+        - result.app_catalog_subscription.listing_resource_id is defined
+        - result.app_catalog_subscription.display_name is defined
+        - result.app_catalog_subscription.summary is defined
+        - result.app_catalog_subscription.compartment_id is defined
+        - result.app_catalog_subscription.time_created is defined
+    when: skip_app_catalog_subscription_create_required_idempotency_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -96,6 +122,19 @@
     assert:
       that:
         - result.changed == True
+    when: skip_app_catalog_subscription_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.app_catalog_subscription.publisher_name is defined
+        - result.app_catalog_subscription.listing_id is defined
+        - result.app_catalog_subscription.listing_resource_version is defined
+        - result.app_catalog_subscription.listing_resource_id is defined
+        - result.app_catalog_subscription.display_name is defined
+        - result.app_catalog_subscription.summary is defined
+        - result.app_catalog_subscription.compartment_id is defined
+        - result.app_catalog_subscription.time_created is defined
     when: skip_app_catalog_subscription_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -153,6 +192,19 @@
       app_catalog_subscription: "{{ result.app_catalog_subscription }}"
     when: skip_app_catalog_subscription_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.app_catalog_subscription.publisher_name is defined
+        - result.app_catalog_subscription.listing_id is defined
+        - result.app_catalog_subscription.listing_resource_version is defined
+        - result.app_catalog_subscription.listing_resource_id is defined
+        - result.app_catalog_subscription.display_name is defined
+        - result.app_catalog_subscription.summary is defined
+        - result.app_catalog_subscription.compartment_id is defined
+        - result.app_catalog_subscription.time_created is defined
+    when: skip_app_catalog_subscription_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -180,6 +232,19 @@
         - result.changed == False
     when: skip_app_catalog_subscription_create_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.app_catalog_subscription.publisher_name is defined
+        - result.app_catalog_subscription.listing_id is defined
+        - result.app_catalog_subscription.listing_resource_version is defined
+        - result.app_catalog_subscription.listing_resource_id is defined
+        - result.app_catalog_subscription.display_name is defined
+        - result.app_catalog_subscription.summary is defined
+        - result.app_catalog_subscription.compartment_id is defined
+        - result.app_catalog_subscription.time_created is defined
+    when: skip_app_catalog_subscription_create_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -201,6 +266,20 @@
         - result.app_catalog_subscriptions | length > 0
     when: skip_app_catalog_subscription_list_test is not defined
 
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.publisher_name is defined
+        - item.listing_id is defined
+        - item.listing_resource_version is defined
+        - item.listing_resource_id is defined
+        - item.display_name is defined
+        - item.summary is defined
+        - item.compartment_id is defined
+        - item.time_created is defined
+    with_items: "{{ result.app_catalog_subscriptions }}"
+    when: skip_app_catalog_subscription_list_test is not defined
 
   - name: Assert custom assertions
     assert:

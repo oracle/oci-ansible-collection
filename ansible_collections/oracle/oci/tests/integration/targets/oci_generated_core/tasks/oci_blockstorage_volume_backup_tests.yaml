@@ -67,15 +67,26 @@
       volume_backup_resource_id: "{{ result.volume_backup.id }}"
     when: skip_volume_backup_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -101,15 +112,26 @@
         - result.changed == False
     when: skip_volume_backup_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -138,15 +160,26 @@
         - result.changed == True
     when: skip_volume_backup_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -175,15 +208,26 @@
         - result.changed == False
     when: skip_volume_backup_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -211,15 +255,26 @@
         - result.changed == True
     when: skip_volume_backup_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -277,15 +332,26 @@
       volume_backup_resource_id: "{{ result.volume_backup.id }}"
     when: skip_volume_backup_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -314,15 +380,26 @@
         - result.changed == False
     when: skip_volume_backup_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -349,15 +426,26 @@
         - result.changed == True
     when: skip_volume_backup_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -384,15 +472,26 @@
         - result.changed == False
     when: skip_volume_backup_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup.compartment_id is defined
+        - result.volume_backup.defined_tags is defined
         - result.volume_backup.display_name is defined
+        - result.volume_backup.expiration_time is defined
+        - result.volume_backup.freeform_tags is defined
         - result.volume_backup.id is defined
         - result.volume_backup.lifecycle_state is defined
+        - result.volume_backup.size_in_gbs is defined
+        - result.volume_backup.size_in_mbs is defined
+        - result.volume_backup.source_type is defined
+        - result.volume_backup.source_volume_backup_id is defined
         - result.volume_backup.time_created is defined
+        - result.volume_backup.time_request_received is defined
         - result.volume_backup.type is defined
+        - result.volume_backup.unique_size_in_gbs is defined
+        - result.volume_backup.unique_size_in_mbs is defined
+        - result.volume_backup.volume_id is defined
     when: skip_volume_backup_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -417,15 +516,26 @@
     when: skip_volume_backup_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.expiration_time is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.size_in_gbs is defined
+        - item.size_in_mbs is defined
+        - item.source_type is defined
+        - item.source_volume_backup_id is defined
         - item.time_created is defined
+        - item.time_request_received is defined
         - item.type is defined
+        - item.unique_size_in_gbs is defined
+        - item.unique_size_in_mbs is defined
+        - item.volume_id is defined
     with_items: "{{ result.volume_backups }}"
     when: skip_volume_backup_list_test is not defined
 
@@ -450,15 +560,26 @@
         - result.volume_backups | length == 1
     when: skip_volume_backup_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.expiration_time is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.size_in_gbs is defined
+        - item.size_in_mbs is defined
+        - item.source_type is defined
+        - item.source_volume_backup_id is defined
         - item.time_created is defined
+        - item.time_request_received is defined
         - item.type is defined
+        - item.unique_size_in_gbs is defined
+        - item.unique_size_in_mbs is defined
+        - item.volume_id is defined
     with_items: "{{ result.volume_backups }}"
     when: skip_volume_backup_get_test is not defined
 

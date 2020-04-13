@@ -1,5 +1,5 @@
 test_instance_name: "ansible-test-instance-lengthy-{{random_suffix_1024}}"
-test_windows_instance_name: "ansible-test-windows-instance-{{random_suffix_1024}}"
+test_windows_instance_name: "ansible-test-windows-instance-lengthy-{{random_suffix_1024}}"
 test_private_ip: "10.0.1.{{random_suffix_250}}"
 
 # variables for oci_compute_image_tests.yaml

@@ -1,6 +1,29 @@
 ---
 - block:
-  # dependency resource volume has no Create operation
+  - name: Create dependency volume with required parameters
+    oci_blockstorage_volume:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_configuration_create_dependency_volume_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_configuration_create_dependency_volume_compartment_id, omit) }}"
+      display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_configuration_create_dependency_volume_display_name, omit) }}"
+    register: result
+    when: skip_instance_configuration_create_dependency_volume_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_configuration_create_dependency_volume_test is not defined and skip_instance_configuration_dependencies is not defined
+  - set_fact:
+      dependency_volume: "{{ result.volume }}"
+      dependency_volume_id: "{{ result.volume.id }}"
+    when: skip_instance_configuration_create_dependency_volume_test is not defined and skip_instance_configuration_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_configuration_create_dependency_volume_custom_assertions }}"
+    when: instance_configuration_create_dependency_volume_custom_assertions is defined
+
+# ==================================================================================================== #
 
   - name: Create dependency vcn with required parameters
     oci_network_vcn:
@@ -175,11 +198,16 @@
       instance_configuration_resource_id: "{{ result.instance_configuration.id }}"
     when: skip_instance_configuration_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_create_required_original_test is not defined
 
@@ -205,11 +233,16 @@
         - result.changed == False
     when: skip_instance_configuration_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_create_required_idempotency_test is not defined
 
@@ -239,11 +272,16 @@
         - result.changed == True
     when: skip_instance_configuration_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_update_using_name_optional_required_test is not defined
 
@@ -273,11 +311,16 @@
         - result.changed == False
     when: skip_instance_configuration_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_update_using_name_optional_required_idempotence_test is not defined
 
@@ -306,11 +349,16 @@
         - result.changed == True
     when: skip_instance_configuration_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_delete_required_test is not defined
 
@@ -423,11 +471,16 @@
       instance_configuration_resource_id: "{{ result.instance_configuration.id }}"
     when: skip_instance_configuration_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_create_optional_required_original_test is not defined
 
@@ -458,11 +511,16 @@
         - result.changed == False
     when: skip_instance_configuration_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_create_optional_required_idempotence_test is not defined
 
@@ -490,11 +548,16 @@
         - result.changed == True
     when: skip_instance_configuration_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_update_optional_required_test is not defined
 
@@ -522,11 +585,16 @@
         - result.changed == False
     when: skip_instance_configuration_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_configuration.compartment_id is defined
+        - result.instance_configuration.defined_tags is defined
+        - result.instance_configuration.display_name is defined
+        - result.instance_configuration.freeform_tags is defined
         - result.instance_configuration.id is defined
+        - result.instance_configuration.instance_details is defined
+        - result.instance_configuration.deferred_fields is defined
         - result.instance_configuration.time_created is defined
     when: skip_instance_configuration_update_optional_required_idempotence_test is not defined
 
@@ -552,10 +620,11 @@
     when: skip_instance_configuration_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.id is defined
         - item.time_created is defined
     with_items: "{{ result.instance_configurations }}"
@@ -582,10 +651,11 @@
         - result.instance_configurations | length == 1
     when: skip_instance_configuration_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.id is defined
         - item.time_created is defined
     with_items: "{{ result.instance_configurations }}"
@@ -642,3 +712,10 @@
         state: absent
       ignore_errors: yes
       when: skip_instance_configuration_delete_dependency_vcn_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_vcn_id is defined
+
+    - name: Delete dependency volume
+      oci_blockstorage_volume:
+        volume_id: "{{ dependency_volume_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_configuration_delete_dependency_volume_test is not defined and skip_instance_configuration_dependencies is not defined and dependency_volume_id is defined

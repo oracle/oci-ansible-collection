@@ -68,6 +68,23 @@
       cross_connect_resource_id: "{{ result.cross_connect.id }}"
     when: skip_cross_connect_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
+    when: skip_cross_connect_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -90,6 +107,23 @@
     assert:
       that:
         - result.changed == False
+    when: skip_cross_connect_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
     when: skip_cross_connect_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -120,6 +154,23 @@
         - result.changed == True
     when: skip_cross_connect_update_using_name_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
+    when: skip_cross_connect_update_using_name_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -148,6 +199,23 @@
         - result.changed == False
     when: skip_cross_connect_update_using_name_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
+    when: skip_cross_connect_update_using_name_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -171,6 +239,23 @@
     assert:
       that:
         - result.changed == True
+    when: skip_cross_connect_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
     when: skip_cross_connect_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -232,6 +317,23 @@
       cross_connect_resource_id: "{{ result.cross_connect.id }}"
     when: skip_cross_connect_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
+    when: skip_cross_connect_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -262,6 +364,23 @@
         - result.changed == False
     when: skip_cross_connect_create_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
+    when: skip_cross_connect_create_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -286,6 +405,23 @@
     assert:
       that:
         - result.changed == True
+    when: skip_cross_connect_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
     when: skip_cross_connect_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -314,6 +450,23 @@
         - result.changed == False
     when: skip_cross_connect_update_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cross_connect.compartment_id is defined
+        - result.cross_connect.cross_connect_group_id is defined
+        - result.cross_connect.defined_tags is defined
+        - result.cross_connect.display_name is defined
+        - result.cross_connect.freeform_tags is defined
+        - result.cross_connect.id is defined
+        - result.cross_connect.lifecycle_state is defined
+        - result.cross_connect.location_name is defined
+        - result.cross_connect.port_name is defined
+        - result.cross_connect.port_speed_shape_name is defined
+        - result.cross_connect.customer_reference_name is defined
+        - result.cross_connect.time_created is defined
+    when: skip_cross_connect_update_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -336,6 +489,24 @@
     when: skip_cross_connect_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.cross_connect_group_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.location_name is defined
+        - item.port_name is defined
+        - item.port_speed_shape_name is defined
+        - item.customer_reference_name is defined
+        - item.time_created is defined
+    with_items: "{{ result.cross_connects }}"
+    when: skip_cross_connect_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -355,6 +526,24 @@
     assert:
       that:
         - result.cross_connects | length == 1
+    when: skip_cross_connect_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.cross_connect_group_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.location_name is defined
+        - item.port_name is defined
+        - item.port_speed_shape_name is defined
+        - item.customer_reference_name is defined
+        - item.time_created is defined
+    with_items: "{{ result.cross_connects }}"
     when: skip_cross_connect_get_test is not defined
 
   - name: Assert custom assertions

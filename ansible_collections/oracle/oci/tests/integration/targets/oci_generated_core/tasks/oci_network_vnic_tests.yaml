@@ -18,13 +18,23 @@
         - result.changed == True
     when: skip_vnic_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.vnic.availability_domain is defined
         - result.vnic.compartment_id is defined
+        - result.vnic.defined_tags is defined
+        - result.vnic.display_name is defined
+        - result.vnic.freeform_tags is defined
+        - result.vnic.hostname_label is defined
         - result.vnic.id is defined
+        - result.vnic.is_primary is defined
         - result.vnic.lifecycle_state is defined
+        - result.vnic.mac_address is defined
+        - result.vnic.nsg_ids is defined
+        - result.vnic.private_ip is defined
+        - result.vnic.public_ip is defined
+        - result.vnic.skip_source_dest_check is defined
         - result.vnic.subnet_id is defined
         - result.vnic.time_created is defined
     when: skip_vnic_update_optional_required_test is not defined
@@ -56,13 +66,23 @@
         - result.changed == False
     when: skip_vnic_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.vnic.availability_domain is defined
         - result.vnic.compartment_id is defined
+        - result.vnic.defined_tags is defined
+        - result.vnic.display_name is defined
+        - result.vnic.freeform_tags is defined
+        - result.vnic.hostname_label is defined
         - result.vnic.id is defined
+        - result.vnic.is_primary is defined
         - result.vnic.lifecycle_state is defined
+        - result.vnic.mac_address is defined
+        - result.vnic.nsg_ids is defined
+        - result.vnic.private_ip is defined
+        - result.vnic.public_ip is defined
+        - result.vnic.skip_source_dest_check is defined
         - result.vnic.subnet_id is defined
         - result.vnic.time_created is defined
     when: skip_vnic_update_optional_required_idempotence_test is not defined
@@ -89,13 +109,23 @@
         - result.vnic != None
     when: skip_vnic_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.hostname_label is defined
         - item.id is defined
+        - item.is_primary is defined
         - item.lifecycle_state is defined
+        - item.mac_address is defined
+        - item.nsg_ids is defined
+        - item.private_ip is defined
+        - item.public_ip is defined
+        - item.skip_source_dest_check is defined
         - item.subnet_id is defined
         - item.time_created is defined
     with_items:

@@ -96,7 +96,7 @@
       idp_group_mapping_resource_id: "{{ result.idp_group_mapping.id }}"
     when: skip_idp_group_mapping_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -106,6 +106,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -131,7 +132,7 @@
         - result.changed == False
     when: skip_idp_group_mapping_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -141,6 +142,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -166,7 +168,7 @@
         - result.changed == True
     when: skip_idp_group_mapping_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -176,6 +178,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -228,7 +231,7 @@
       idp_group_mapping_resource_id: "{{ result.idp_group_mapping.id }}"
     when: skip_idp_group_mapping_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -238,6 +241,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -263,7 +267,7 @@
         - result.changed == False
     when: skip_idp_group_mapping_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -273,6 +277,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -299,7 +304,7 @@
         - result.changed == True
     when: skip_idp_group_mapping_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -309,6 +314,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -335,7 +341,7 @@
         - result.changed == False
     when: skip_idp_group_mapping_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.idp_group_mapping.id is defined
@@ -345,6 +351,7 @@
         - result.idp_group_mapping.compartment_id is defined
         - result.idp_group_mapping.time_created is defined
         - result.idp_group_mapping.lifecycle_state is defined
+        - result.idp_group_mapping.inactive_status is defined
     when: skip_idp_group_mapping_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -369,7 +376,7 @@
     when: skip_idp_group_mapping_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -379,6 +386,7 @@
         - item.compartment_id is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
     with_items: "{{ result.idp_group_mappings }}"
     when: skip_idp_group_mapping_list_test is not defined
 
@@ -404,7 +412,7 @@
         - result.idp_group_mappings | length == 1
     when: skip_idp_group_mapping_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -414,6 +422,7 @@
         - item.compartment_id is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
     with_items: "{{ result.idp_group_mappings }}"
     when: skip_idp_group_mapping_get_test is not defined
 

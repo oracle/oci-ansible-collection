@@ -42,7 +42,7 @@
       bucket: "{{ result.bucket }}"
     when: skip_bucket_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.bucket.namespace is defined
@@ -52,6 +52,14 @@
         - result.bucket.created_by is defined
         - result.bucket.time_created is defined
         - result.bucket.etag is defined
+        - result.bucket.public_access_type is defined
+        - result.bucket.storage_tier is defined
+        - result.bucket.freeform_tags is defined
+        - result.bucket.defined_tags is defined
+        - result.bucket.kms_key_id is defined
+        - result.bucket.object_lifecycle_policy_etag is defined
+        - result.bucket.approximate_count is defined
+        - result.bucket.approximate_size is defined
     when: skip_bucket_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -77,7 +85,7 @@
         - result.changed == False
     when: skip_bucket_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.bucket.namespace is defined
@@ -87,6 +95,14 @@
         - result.bucket.created_by is defined
         - result.bucket.time_created is defined
         - result.bucket.etag is defined
+        - result.bucket.public_access_type is defined
+        - result.bucket.storage_tier is defined
+        - result.bucket.freeform_tags is defined
+        - result.bucket.defined_tags is defined
+        - result.bucket.kms_key_id is defined
+        - result.bucket.object_lifecycle_policy_etag is defined
+        - result.bucket.approximate_count is defined
+        - result.bucket.approximate_size is defined
     when: skip_bucket_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -115,7 +131,7 @@
         - result.changed == True
     when: skip_bucket_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.bucket.namespace is defined
@@ -125,6 +141,14 @@
         - result.bucket.created_by is defined
         - result.bucket.time_created is defined
         - result.bucket.etag is defined
+        - result.bucket.public_access_type is defined
+        - result.bucket.storage_tier is defined
+        - result.bucket.freeform_tags is defined
+        - result.bucket.defined_tags is defined
+        - result.bucket.kms_key_id is defined
+        - result.bucket.object_lifecycle_policy_etag is defined
+        - result.bucket.approximate_count is defined
+        - result.bucket.approximate_size is defined
     when: skip_bucket_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -186,7 +210,7 @@
       bucket: "{{ result.bucket }}"
     when: skip_bucket_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.bucket.namespace is defined
@@ -196,6 +220,14 @@
         - result.bucket.created_by is defined
         - result.bucket.time_created is defined
         - result.bucket.etag is defined
+        - result.bucket.public_access_type is defined
+        - result.bucket.storage_tier is defined
+        - result.bucket.freeform_tags is defined
+        - result.bucket.defined_tags is defined
+        - result.bucket.kms_key_id is defined
+        - result.bucket.object_lifecycle_policy_etag is defined
+        - result.bucket.approximate_count is defined
+        - result.bucket.approximate_size is defined
     when: skip_bucket_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -227,7 +259,7 @@
         - result.changed == False
     when: skip_bucket_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.bucket.namespace is defined
@@ -237,6 +269,14 @@
         - result.bucket.created_by is defined
         - result.bucket.time_created is defined
         - result.bucket.etag is defined
+        - result.bucket.public_access_type is defined
+        - result.bucket.storage_tier is defined
+        - result.bucket.freeform_tags is defined
+        - result.bucket.defined_tags is defined
+        - result.bucket.kms_key_id is defined
+        - result.bucket.object_lifecycle_policy_etag is defined
+        - result.bucket.approximate_count is defined
+        - result.bucket.approximate_size is defined
     when: skip_bucket_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -262,16 +302,17 @@
     when: skip_bucket_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.namespace is defined
         - item.name is defined
         - item.compartment_id is defined
-        - item.metadata is defined
         - item.created_by is defined
         - item.time_created is defined
         - item.etag is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.buckets }}"
     when: skip_bucket_list_test is not defined
 
@@ -297,16 +338,17 @@
         - result.buckets | length == 1
     when: skip_bucket_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.namespace is defined
         - item.name is defined
         - item.compartment_id is defined
-        - item.metadata is defined
         - item.created_by is defined
         - item.time_created is defined
         - item.etag is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.buckets }}"
     when: skip_bucket_get_test is not defined
 

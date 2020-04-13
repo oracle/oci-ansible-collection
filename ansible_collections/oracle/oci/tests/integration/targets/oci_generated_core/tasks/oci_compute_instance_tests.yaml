@@ -151,16 +151,29 @@
       instance_resource_id: "{{ result.instance.id }}"
     when: skip_instance_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -187,16 +200,29 @@
         - result.changed == False
     when: skip_instance_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -231,16 +257,29 @@
         - result.changed == True
     when: skip_instance_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -270,16 +309,29 @@
         - result.changed == False
     when: skip_instance_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -307,16 +359,29 @@
         - result.changed == True
     when: skip_instance_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -410,16 +475,29 @@
       instance_resource_id: "{{ result.instance.id }}"
     when: skip_instance_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -459,16 +537,29 @@
         - result.changed == False
     when: skip_instance_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -501,16 +592,29 @@
         - result.changed == True
     when: skip_instance_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -538,16 +642,29 @@
         - result.changed == False
     when: skip_instance_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.defined_tags is defined
+        - result.instance.display_name is defined
+        - result.instance.extended_metadata is defined
+        - result.instance.fault_domain is defined
+        - result.instance.freeform_tags is defined
         - result.instance.id is defined
+        - result.instance.image_id is defined
+        - result.instance.ipxe_script is defined
+        - result.instance.launch_mode is defined
+        - result.instance.launch_options is defined
         - result.instance.lifecycle_state is defined
+        - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.source_details is defined
         - result.instance.time_created is defined
+        - result.instance.agent_config is defined
+        - result.instance.time_maintenance_reboot_due is defined
     when: skip_instance_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -572,16 +689,29 @@
     when: skip_instance_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.extended_metadata is defined
+        - item.fault_domain is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.image_id is defined
+        - item.ipxe_script is defined
+        - item.launch_mode is defined
+        - item.launch_options is defined
         - item.lifecycle_state is defined
+        - item.metadata is defined
         - item.region is defined
         - item.shape is defined
+        - item.source_details is defined
         - item.time_created is defined
+        - item.agent_config is defined
+        - item.time_maintenance_reboot_due is defined
     with_items: "{{ result.instances }}"
     when: skip_instance_list_test is not defined
 
@@ -606,16 +736,29 @@
         - result.instances | length == 1
     when: skip_instance_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.extended_metadata is defined
+        - item.fault_domain is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.image_id is defined
+        - item.ipxe_script is defined
+        - item.launch_mode is defined
+        - item.launch_options is defined
         - item.lifecycle_state is defined
+        - item.metadata is defined
         - item.region is defined
         - item.shape is defined
+        - item.source_details is defined
         - item.time_created is defined
+        - item.agent_config is defined
+        - item.time_maintenance_reboot_due is defined
     with_items: "{{ result.instances }}"
     when: skip_instance_get_test is not defined
 

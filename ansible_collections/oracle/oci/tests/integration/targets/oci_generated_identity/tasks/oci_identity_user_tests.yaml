@@ -42,15 +42,22 @@
       user_resource_id: "{{ result.user.id }}"
     when: skip_user_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_create_required_original_test is not defined
 
@@ -77,15 +84,22 @@
         - result.changed == False
     when: skip_user_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_create_required_idempotency_test is not defined
 
@@ -117,15 +131,22 @@
         - result.changed == True
     when: skip_user_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_update_using_name_optional_required_test is not defined
 
@@ -157,15 +178,22 @@
         - result.changed == False
     when: skip_user_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_update_using_name_optional_required_idempotence_test is not defined
 
@@ -194,15 +222,22 @@
         - result.changed == True
     when: skip_user_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_delete_required_test is not defined
 
@@ -261,15 +296,22 @@
       user_resource_id: "{{ result.user.id }}"
     when: skip_user_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_create_optional_required_original_test is not defined
 
@@ -299,15 +341,22 @@
         - result.changed == False
     when: skip_user_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_create_optional_required_idempotence_test is not defined
 
@@ -336,15 +385,22 @@
         - result.changed == True
     when: skip_user_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_update_optional_required_test is not defined
 
@@ -373,15 +429,22 @@
         - result.changed == False
     when: skip_user_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user.id is defined
         - result.user.compartment_id is defined
         - result.user.name is defined
         - result.user.description is defined
+        - result.user.email is defined
+        - result.user.identity_provider_id is defined
+        - result.user.external_identifier is defined
         - result.user.time_created is defined
         - result.user.lifecycle_state is defined
+        - result.user.inactive_status is defined
+        - result.user.freeform_tags is defined
+        - result.user.defined_tags is defined
+        - result.user.capabilities is defined
         - result.user.is_mfa_activated is defined
     when: skip_user_update_optional_required_idempotence_test is not defined
 
@@ -407,15 +470,22 @@
     when: skip_user_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
         - item.name is defined
         - item.description is defined
+        - item.email is defined
+        - item.identity_provider_id is defined
+        - item.external_identifier is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+        - item.capabilities is defined
         - item.is_mfa_activated is defined
     with_items: "{{ result.users }}"
     when: skip_user_list_test is not defined
@@ -441,15 +511,22 @@
         - result.users | length == 1
     when: skip_user_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
         - item.name is defined
         - item.description is defined
+        - item.email is defined
+        - item.identity_provider_id is defined
+        - item.external_identifier is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+        - item.capabilities is defined
         - item.is_mfa_activated is defined
     with_items: "{{ result.users }}"
     when: skip_user_get_test is not defined

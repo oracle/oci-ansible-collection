@@ -24,12 +24,20 @@
         - result.changed == True
     when: skip_ip_sec_connection_tunnel_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection_tunnel.compartment_id is defined
         - result.ip_sec_connection_tunnel.id is defined
+        - result.ip_sec_connection_tunnel.vpn_ip is defined
+        - result.ip_sec_connection_tunnel.cpe_ip is defined
+        - result.ip_sec_connection_tunnel.status is defined
         - result.ip_sec_connection_tunnel.lifecycle_state is defined
+        - result.ip_sec_connection_tunnel.display_name is defined
+        - result.ip_sec_connection_tunnel.bgp_session_info is defined
+        - result.ip_sec_connection_tunnel.routing is defined
+        - result.ip_sec_connection_tunnel.time_created is defined
+        - result.ip_sec_connection_tunnel.time_status_updated is defined
     when: skip_ip_sec_connection_tunnel_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -58,12 +66,20 @@
         - result.changed == False
     when: skip_ip_sec_connection_tunnel_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection_tunnel.compartment_id is defined
         - result.ip_sec_connection_tunnel.id is defined
+        - result.ip_sec_connection_tunnel.vpn_ip is defined
+        - result.ip_sec_connection_tunnel.cpe_ip is defined
+        - result.ip_sec_connection_tunnel.status is defined
         - result.ip_sec_connection_tunnel.lifecycle_state is defined
+        - result.ip_sec_connection_tunnel.display_name is defined
+        - result.ip_sec_connection_tunnel.bgp_session_info is defined
+        - result.ip_sec_connection_tunnel.routing is defined
+        - result.ip_sec_connection_tunnel.time_created is defined
+        - result.ip_sec_connection_tunnel.time_status_updated is defined
     when: skip_ip_sec_connection_tunnel_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -98,12 +114,20 @@
         - result.changed == True
     when: skip_ip_sec_connection_tunnel_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection_tunnel.compartment_id is defined
         - result.ip_sec_connection_tunnel.id is defined
+        - result.ip_sec_connection_tunnel.vpn_ip is defined
+        - result.ip_sec_connection_tunnel.cpe_ip is defined
+        - result.ip_sec_connection_tunnel.status is defined
         - result.ip_sec_connection_tunnel.lifecycle_state is defined
+        - result.ip_sec_connection_tunnel.display_name is defined
+        - result.ip_sec_connection_tunnel.bgp_session_info is defined
+        - result.ip_sec_connection_tunnel.routing is defined
+        - result.ip_sec_connection_tunnel.time_created is defined
+        - result.ip_sec_connection_tunnel.time_status_updated is defined
     when: skip_ip_sec_connection_tunnel_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -131,12 +155,20 @@
         - result.changed == False
     when: skip_ip_sec_connection_tunnel_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.ip_sec_connection_tunnel.compartment_id is defined
         - result.ip_sec_connection_tunnel.id is defined
+        - result.ip_sec_connection_tunnel.vpn_ip is defined
+        - result.ip_sec_connection_tunnel.cpe_ip is defined
+        - result.ip_sec_connection_tunnel.status is defined
         - result.ip_sec_connection_tunnel.lifecycle_state is defined
+        - result.ip_sec_connection_tunnel.display_name is defined
+        - result.ip_sec_connection_tunnel.bgp_session_info is defined
+        - result.ip_sec_connection_tunnel.routing is defined
+        - result.ip_sec_connection_tunnel.time_created is defined
+        - result.ip_sec_connection_tunnel.time_status_updated is defined
     when: skip_ip_sec_connection_tunnel_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -161,12 +193,20 @@
     when: skip_ip_sec_connection_tunnel_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
         - item.id is defined
+        - item.vpn_ip is defined
+        - item.cpe_ip is defined
+        - item.status is defined
         - item.lifecycle_state is defined
+        - item.display_name is defined
+        - item.bgp_session_info is defined
+        - item.routing is defined
+        - item.time_created is defined
+        - item.time_status_updated is defined
     with_items: "{{ result.ip_sec_connection_tunnels }}"
     when: skip_ip_sec_connection_tunnel_list_test is not defined
 
@@ -192,12 +232,20 @@
         - result.ip_sec_connection_tunnels | length == 1
     when: skip_ip_sec_connection_tunnel_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
         - item.id is defined
+        - item.vpn_ip is defined
+        - item.cpe_ip is defined
+        - item.status is defined
         - item.lifecycle_state is defined
+        - item.display_name is defined
+        - item.bgp_session_info is defined
+        - item.routing is defined
+        - item.time_created is defined
+        - item.time_status_updated is defined
     with_items: "{{ result.ip_sec_connection_tunnels }}"
     when: skip_ip_sec_connection_tunnel_get_test is not defined
 

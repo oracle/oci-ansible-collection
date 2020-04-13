@@ -67,10 +67,13 @@
       nat_gateway_resource_id: "{{ result.nat_gateway.id }}"
     when: skip_nat_gateway_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -102,10 +105,13 @@
         - result.changed == False
     when: skip_nat_gateway_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -141,10 +147,13 @@
         - result.changed == True
     when: skip_nat_gateway_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -180,10 +189,13 @@
         - result.changed == False
     when: skip_nat_gateway_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -217,10 +229,13 @@
         - result.changed == True
     when: skip_nat_gateway_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -284,10 +299,13 @@
       nat_gateway_resource_id: "{{ result.nat_gateway.id }}"
     when: skip_nat_gateway_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -322,10 +340,13 @@
         - result.changed == False
     when: skip_nat_gateway_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -359,10 +380,13 @@
         - result.changed == True
     when: skip_nat_gateway_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -396,10 +420,13 @@
         - result.changed == False
     when: skip_nat_gateway_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.nat_gateway.compartment_id is defined
+        - result.nat_gateway.defined_tags is defined
+        - result.nat_gateway.display_name is defined
+        - result.nat_gateway.freeform_tags is defined
         - result.nat_gateway.id is defined
         - result.nat_gateway.block_traffic is defined
         - result.nat_gateway.lifecycle_state is defined
@@ -430,10 +457,13 @@
     when: skip_nat_gateway_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.block_traffic is defined
         - item.lifecycle_state is defined
@@ -464,10 +494,13 @@
         - result.nat_gateways | length == 1
     when: skip_nat_gateway_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.block_traffic is defined
         - item.lifecycle_state is defined

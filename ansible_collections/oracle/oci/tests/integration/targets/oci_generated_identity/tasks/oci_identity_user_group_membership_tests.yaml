@@ -92,7 +92,7 @@
       user_group_membership_resource_id: "{{ result.user_group_membership.id }}"
     when: skip_user_group_membership_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user_group_membership.id is defined
@@ -101,6 +101,7 @@
         - result.user_group_membership.user_id is defined
         - result.user_group_membership.time_created is defined
         - result.user_group_membership.lifecycle_state is defined
+        - result.user_group_membership.inactive_status is defined
     when: skip_user_group_membership_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -126,7 +127,7 @@
         - result.changed == False
     when: skip_user_group_membership_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user_group_membership.id is defined
@@ -135,6 +136,7 @@
         - result.user_group_membership.user_id is defined
         - result.user_group_membership.time_created is defined
         - result.user_group_membership.lifecycle_state is defined
+        - result.user_group_membership.inactive_status is defined
     when: skip_user_group_membership_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -159,7 +161,7 @@
         - result.changed == True
     when: skip_user_group_membership_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user_group_membership.id is defined
@@ -168,6 +170,7 @@
         - result.user_group_membership.user_id is defined
         - result.user_group_membership.time_created is defined
         - result.user_group_membership.lifecycle_state is defined
+        - result.user_group_membership.inactive_status is defined
     when: skip_user_group_membership_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -219,7 +222,7 @@
       user_group_membership_resource_id: "{{ result.user_group_membership.id }}"
     when: skip_user_group_membership_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user_group_membership.id is defined
@@ -228,6 +231,7 @@
         - result.user_group_membership.user_id is defined
         - result.user_group_membership.time_created is defined
         - result.user_group_membership.lifecycle_state is defined
+        - result.user_group_membership.inactive_status is defined
     when: skip_user_group_membership_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -253,7 +257,7 @@
         - result.changed == False
     when: skip_user_group_membership_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.user_group_membership.id is defined
@@ -262,6 +266,7 @@
         - result.user_group_membership.user_id is defined
         - result.user_group_membership.time_created is defined
         - result.user_group_membership.lifecycle_state is defined
+        - result.user_group_membership.inactive_status is defined
     when: skip_user_group_membership_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -286,7 +291,7 @@
     when: skip_user_group_membership_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -295,6 +300,7 @@
         - item.user_id is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
     with_items: "{{ result.user_group_memberships }}"
     when: skip_user_group_membership_list_test is not defined
 
@@ -319,7 +325,7 @@
         - result.user_group_memberships | length == 1
     when: skip_user_group_membership_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -328,6 +334,7 @@
         - item.user_id is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
     with_items: "{{ result.user_group_memberships }}"
     when: skip_user_group_membership_get_test is not defined
 

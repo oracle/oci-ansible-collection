@@ -65,6 +65,18 @@
       api_key: "{{ result.api_key }}"
     when: skip_api_key_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.api_key.key_id is defined
+        - result.api_key.key_value is defined
+        - result.api_key.fingerprint is defined
+        - result.api_key.user_id is defined
+        - result.api_key.time_created is defined
+        - result.api_key.lifecycle_state is defined
+        - result.api_key.inactive_status is defined
+    when: skip_api_key_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -85,6 +97,18 @@
     assert:
       that:
         - result.changed == False
+    when: skip_api_key_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.api_key.key_id is defined
+        - result.api_key.key_value is defined
+        - result.api_key.fingerprint is defined
+        - result.api_key.user_id is defined
+        - result.api_key.time_created is defined
+        - result.api_key.lifecycle_state is defined
+        - result.api_key.inactive_status is defined
     when: skip_api_key_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -108,6 +132,18 @@
     assert:
       that:
         - result.changed == True
+    when: skip_api_key_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.api_key.key_id is defined
+        - result.api_key.key_value is defined
+        - result.api_key.fingerprint is defined
+        - result.api_key.user_id is defined
+        - result.api_key.time_created is defined
+        - result.api_key.lifecycle_state is defined
+        - result.api_key.inactive_status is defined
     when: skip_api_key_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -159,6 +195,18 @@
       api_key: "{{ result.api_key }}"
     when: skip_api_key_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.api_key.key_id is defined
+        - result.api_key.key_value is defined
+        - result.api_key.fingerprint is defined
+        - result.api_key.user_id is defined
+        - result.api_key.time_created is defined
+        - result.api_key.lifecycle_state is defined
+        - result.api_key.inactive_status is defined
+    when: skip_api_key_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -179,6 +227,18 @@
     assert:
       that:
         - result.changed == False
+    when: skip_api_key_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.api_key.key_id is defined
+        - result.api_key.key_value is defined
+        - result.api_key.fingerprint is defined
+        - result.api_key.user_id is defined
+        - result.api_key.time_created is defined
+        - result.api_key.lifecycle_state is defined
+        - result.api_key.inactive_status is defined
     when: skip_api_key_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -202,6 +262,19 @@
         - result.api_keys | length > 0
     when: skip_api_key_list_test is not defined
 
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.key_id is defined
+        - item.key_value is defined
+        - item.fingerprint is defined
+        - item.user_id is defined
+        - item.time_created is defined
+        - item.lifecycle_state is defined
+        - item.inactive_status is defined
+    with_items: "{{ result.api_keys }}"
+    when: skip_api_key_list_test is not defined
 
   - name: Assert custom assertions
     assert:

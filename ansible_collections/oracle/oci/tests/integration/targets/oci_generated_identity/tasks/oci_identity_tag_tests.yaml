@@ -67,7 +67,7 @@
       tag_resource_id: "{{ result.tag.id }}"
     when: skip_tag_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -76,8 +76,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -103,7 +107,7 @@
         - result.changed == False
     when: skip_tag_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -112,8 +116,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -139,7 +147,7 @@
         - result.changed == True
     when: skip_tag_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -148,8 +156,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -205,7 +217,7 @@
       tag_resource_id: "{{ result.tag.id }}"
     when: skip_tag_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -214,8 +226,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -244,7 +260,7 @@
         - result.changed == False
     when: skip_tag_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -253,8 +269,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -284,7 +304,7 @@
         - result.changed == True
     when: skip_tag_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -293,8 +313,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -324,7 +348,7 @@
         - result.changed == False
     when: skip_tag_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.tag.compartment_id is defined
@@ -333,8 +357,12 @@
         - result.tag.id is defined
         - result.tag.name is defined
         - result.tag.description is defined
+        - result.tag.freeform_tags is defined
+        - result.tag.defined_tags is defined
         - result.tag.is_retired is defined
+        - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
+        - result.tag.is_cost_tracking is defined
     when: skip_tag_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -359,17 +387,19 @@
     when: skip_tag_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
-        - item.tag_namespace_id is defined
-        - item.tag_namespace_name is defined
         - item.id is defined
         - item.name is defined
         - item.description is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
         - item.is_retired is defined
+        - item.lifecycle_state is defined
         - item.time_created is defined
+        - item.is_cost_tracking is defined
     with_items: "{{ result.tags }}"
     when: skip_tag_list_test is not defined
 
@@ -395,17 +425,19 @@
         - result.tags | length == 1
     when: skip_tag_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
-        - item.tag_namespace_id is defined
-        - item.tag_namespace_name is defined
         - item.id is defined
         - item.name is defined
         - item.description is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
         - item.is_retired is defined
+        - item.lifecycle_state is defined
         - item.time_created is defined
+        - item.is_cost_tracking is defined
     with_items: "{{ result.tags }}"
     when: skip_tag_get_test is not defined
 

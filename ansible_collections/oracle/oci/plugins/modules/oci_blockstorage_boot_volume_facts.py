@@ -44,6 +44,10 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple boot_volumes.
         type: str
+    volume_group_id:
+        description:
+            - The OCID of the volume group.
+        type: str
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -169,6 +173,12 @@ boot_volumes:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        volume_group_id:
+            description:
+                - The OCID of the source volume group.
+            returned: on success
+            type: string
+            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -185,7 +195,8 @@ boot_volumes:
             "type": "bootVolumeBackup",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 
@@ -226,6 +237,7 @@ class BootVolumeFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "volume_group_id",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -255,6 +267,7 @@ def main():
             boot_volume_id=dict(aliases=["id"], type="str"),
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),
+            volume_group_id=dict(type="str"),
             display_name=dict(type="str"),
         )
     )

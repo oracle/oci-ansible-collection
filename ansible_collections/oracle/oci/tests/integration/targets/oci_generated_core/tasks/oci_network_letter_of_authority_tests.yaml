@@ -39,6 +39,20 @@
         - result.letter_of_authority != None
     when: skip_letter_of_authority_get_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.authorized_entity_name is defined
+        - item.circuit_type is defined
+        - item.cross_connect_id is defined
+        - item.facility_location is defined
+        - item.port_name is defined
+        - item.time_expires is defined
+        - item.time_issued is defined
+    with_items:
+      - "{{ result.letter_of_authority }}"
+    when: skip_letter_of_authority_get_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

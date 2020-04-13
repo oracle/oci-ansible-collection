@@ -76,14 +76,18 @@
       service_gateway_resource_id: "{{ result.service_gateway.id }}"
     when: skip_service_gateway_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_create_required_original_test is not defined
 
@@ -111,14 +115,18 @@
         - result.changed == False
     when: skip_service_gateway_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_create_required_idempotency_test is not defined
 
@@ -155,14 +163,18 @@
         - result.changed == True
     when: skip_service_gateway_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_update_using_name_optional_required_test is not defined
 
@@ -194,14 +206,18 @@
         - result.changed == False
     when: skip_service_gateway_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_update_using_name_optional_required_idempotence_test is not defined
 
@@ -230,14 +246,18 @@
         - result.changed == True
     when: skip_service_gateway_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_delete_required_test is not defined
 
@@ -301,14 +321,18 @@
       service_gateway_resource_id: "{{ result.service_gateway.id }}"
     when: skip_service_gateway_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_create_optional_required_original_test is not defined
 
@@ -338,14 +362,18 @@
         - result.changed == False
     when: skip_service_gateway_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_create_optional_required_idempotence_test is not defined
 
@@ -380,14 +408,18 @@
         - result.changed == True
     when: skip_service_gateway_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_update_optional_required_test is not defined
 
@@ -417,14 +449,18 @@
         - result.changed == False
     when: skip_service_gateway_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.service_gateway.block_traffic is defined
         - result.service_gateway.compartment_id is defined
+        - result.service_gateway.defined_tags is defined
+        - result.service_gateway.display_name is defined
+        - result.service_gateway.freeform_tags is defined
         - result.service_gateway.id is defined
         - result.service_gateway.lifecycle_state is defined
         - result.service_gateway.services is defined
+        - result.service_gateway.time_created is defined
         - result.service_gateway.vcn_id is defined
     when: skip_service_gateway_update_optional_required_idempotence_test is not defined
 
@@ -450,14 +486,18 @@
     when: skip_service_gateway_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.block_traffic is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.services is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.service_gateways }}"
     when: skip_service_gateway_list_test is not defined
@@ -483,14 +523,18 @@
         - result.service_gateways | length == 1
     when: skip_service_gateway_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.block_traffic is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.services is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.service_gateways }}"
     when: skip_service_gateway_get_test is not defined

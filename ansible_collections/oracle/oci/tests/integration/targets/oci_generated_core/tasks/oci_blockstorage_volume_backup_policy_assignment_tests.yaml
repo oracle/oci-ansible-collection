@@ -40,7 +40,7 @@
       volume_backup_policy_assignment_resource_id: "{{ result.volume_backup_policy_assignment.id }}"
     when: skip_volume_backup_policy_assignment_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy_assignment.asset_id is defined
@@ -71,7 +71,7 @@
         - result.changed == False
     when: skip_volume_backup_policy_assignment_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy_assignment.asset_id is defined
@@ -102,7 +102,7 @@
         - result.changed == True
     when: skip_volume_backup_policy_assignment_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy_assignment.asset_id is defined
@@ -159,7 +159,7 @@
       volume_backup_policy_assignment_resource_id: "{{ result.volume_backup_policy_assignment.id }}"
     when: skip_volume_backup_policy_assignment_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy_assignment.asset_id is defined
@@ -190,7 +190,7 @@
         - result.changed == False
     when: skip_volume_backup_policy_assignment_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy_assignment.asset_id is defined
@@ -221,7 +221,7 @@
     when: skip_volume_backup_policy_assignment_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.asset_id is defined
@@ -252,7 +252,7 @@
         - result.volume_backup_policy_assignments | length == 1
     when: skip_volume_backup_policy_assignment_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.asset_id is defined

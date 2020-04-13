@@ -101,15 +101,21 @@
       local_peering_gateway_resource_id: "{{ result.local_peering_gateway.id }}"
     when: skip_local_peering_gateway_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_create_required_original_test is not defined
@@ -137,15 +143,21 @@
         - result.changed == False
     when: skip_local_peering_gateway_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_create_required_idempotency_test is not defined
@@ -178,15 +190,21 @@
         - result.changed == True
     when: skip_local_peering_gateway_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_update_using_name_optional_required_test is not defined
@@ -219,15 +237,21 @@
         - result.changed == False
     when: skip_local_peering_gateway_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_update_using_name_optional_required_idempotence_test is not defined
@@ -258,15 +282,21 @@
         - result.changed == True
     when: skip_local_peering_gateway_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_delete_required_test is not defined
@@ -327,15 +357,21 @@
       local_peering_gateway_resource_id: "{{ result.local_peering_gateway.id }}"
     when: skip_local_peering_gateway_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_create_optional_required_original_test is not defined
@@ -366,15 +402,21 @@
         - result.changed == False
     when: skip_local_peering_gateway_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_create_optional_required_idempotence_test is not defined
@@ -404,15 +446,21 @@
         - result.changed == True
     when: skip_local_peering_gateway_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_update_optional_required_test is not defined
@@ -442,15 +490,21 @@
         - result.changed == False
     when: skip_local_peering_gateway_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.local_peering_gateway.compartment_id is defined
+        - result.local_peering_gateway.defined_tags is defined
         - result.local_peering_gateway.display_name is defined
+        - result.local_peering_gateway.freeform_tags is defined
         - result.local_peering_gateway.id is defined
         - result.local_peering_gateway.is_cross_tenancy_peering is defined
         - result.local_peering_gateway.lifecycle_state is defined
+        - result.local_peering_gateway.peer_advertised_cidr is defined
+        - result.local_peering_gateway.peer_advertised_cidr_details is defined
         - result.local_peering_gateway.peering_status is defined
+        - result.local_peering_gateway.peering_status_details is defined
+        - result.local_peering_gateway.route_table_id is defined
         - result.local_peering_gateway.time_created is defined
         - result.local_peering_gateway.vcn_id is defined
     when: skip_local_peering_gateway_update_optional_required_idempotence_test is not defined
@@ -478,15 +532,21 @@
     when: skip_local_peering_gateway_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.is_cross_tenancy_peering is defined
         - item.lifecycle_state is defined
+        - item.peer_advertised_cidr is defined
+        - item.peer_advertised_cidr_details is defined
         - item.peering_status is defined
+        - item.peering_status_details is defined
+        - item.route_table_id is defined
         - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.local_peering_gateways }}"
@@ -513,15 +573,21 @@
         - result.local_peering_gateways | length == 1
     when: skip_local_peering_gateway_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.is_cross_tenancy_peering is defined
         - item.lifecycle_state is defined
+        - item.peer_advertised_cidr is defined
+        - item.peer_advertised_cidr_details is defined
         - item.peering_status is defined
+        - item.peering_status_details is defined
+        - item.route_table_id is defined
         - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.local_peering_gateways }}"

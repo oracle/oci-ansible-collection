@@ -104,16 +104,18 @@
       boot_volume_attachment_resource_id: "{{ result.boot_volume_attachment.id }}"
     when: skip_boot_volume_attachment_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.boot_volume_attachment.availability_domain is defined
         - result.boot_volume_attachment.boot_volume_id is defined
         - result.boot_volume_attachment.compartment_id is defined
+        - result.boot_volume_attachment.display_name is defined
         - result.boot_volume_attachment.id is defined
         - result.boot_volume_attachment.instance_id is defined
         - result.boot_volume_attachment.lifecycle_state is defined
         - result.boot_volume_attachment.time_created is defined
+        - result.boot_volume_attachment.is_pv_encryption_in_transit_enabled is defined
     when: skip_boot_volume_attachment_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -141,16 +143,18 @@
         - result.changed == False
     when: skip_boot_volume_attachment_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.boot_volume_attachment.availability_domain is defined
         - result.boot_volume_attachment.boot_volume_id is defined
         - result.boot_volume_attachment.compartment_id is defined
+        - result.boot_volume_attachment.display_name is defined
         - result.boot_volume_attachment.id is defined
         - result.boot_volume_attachment.instance_id is defined
         - result.boot_volume_attachment.lifecycle_state is defined
         - result.boot_volume_attachment.time_created is defined
+        - result.boot_volume_attachment.is_pv_encryption_in_transit_enabled is defined
     when: skip_boot_volume_attachment_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -179,16 +183,18 @@
         - result.changed == True
     when: skip_boot_volume_attachment_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.boot_volume_attachment.availability_domain is defined
         - result.boot_volume_attachment.boot_volume_id is defined
         - result.boot_volume_attachment.compartment_id is defined
+        - result.boot_volume_attachment.display_name is defined
         - result.boot_volume_attachment.id is defined
         - result.boot_volume_attachment.instance_id is defined
         - result.boot_volume_attachment.lifecycle_state is defined
         - result.boot_volume_attachment.time_created is defined
+        - result.boot_volume_attachment.is_pv_encryption_in_transit_enabled is defined
     when: skip_boot_volume_attachment_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -246,16 +252,18 @@
       boot_volume_attachment_resource_id: "{{ result.boot_volume_attachment.id }}"
     when: skip_boot_volume_attachment_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.boot_volume_attachment.availability_domain is defined
         - result.boot_volume_attachment.boot_volume_id is defined
         - result.boot_volume_attachment.compartment_id is defined
+        - result.boot_volume_attachment.display_name is defined
         - result.boot_volume_attachment.id is defined
         - result.boot_volume_attachment.instance_id is defined
         - result.boot_volume_attachment.lifecycle_state is defined
         - result.boot_volume_attachment.time_created is defined
+        - result.boot_volume_attachment.is_pv_encryption_in_transit_enabled is defined
     when: skip_boot_volume_attachment_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -283,16 +291,18 @@
         - result.changed == False
     when: skip_boot_volume_attachment_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.boot_volume_attachment.availability_domain is defined
         - result.boot_volume_attachment.boot_volume_id is defined
         - result.boot_volume_attachment.compartment_id is defined
+        - result.boot_volume_attachment.display_name is defined
         - result.boot_volume_attachment.id is defined
         - result.boot_volume_attachment.instance_id is defined
         - result.boot_volume_attachment.lifecycle_state is defined
         - result.boot_volume_attachment.time_created is defined
+        - result.boot_volume_attachment.is_pv_encryption_in_transit_enabled is defined
     when: skip_boot_volume_attachment_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -318,16 +328,18 @@
     when: skip_boot_volume_attachment_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.boot_volume_id is defined
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.id is defined
         - item.instance_id is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
+        - item.is_pv_encryption_in_transit_enabled is defined
     with_items: "{{ result.boot_volume_attachments }}"
     when: skip_boot_volume_attachment_list_test is not defined
 
@@ -352,16 +364,18 @@
         - result.boot_volume_attachments | length == 1
     when: skip_boot_volume_attachment_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.boot_volume_id is defined
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.id is defined
         - item.instance_id is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
+        - item.is_pv_encryption_in_transit_enabled is defined
     with_items: "{{ result.boot_volume_attachments }}"
     when: skip_boot_volume_attachment_get_test is not defined
 

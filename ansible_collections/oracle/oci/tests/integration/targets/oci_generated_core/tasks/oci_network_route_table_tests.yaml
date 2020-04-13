@@ -77,13 +77,17 @@
       route_table_resource_id: "{{ result.route_table.id }}"
     when: skip_route_table_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_create_required_original_test is not defined
 
@@ -111,13 +115,17 @@
         - result.changed == False
     when: skip_route_table_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_create_required_idempotency_test is not defined
 
@@ -157,13 +165,17 @@
         - result.changed == True
     when: skip_route_table_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_update_using_name_optional_required_test is not defined
 
@@ -195,13 +207,17 @@
         - result.changed == False
     when: skip_route_table_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_update_using_name_optional_required_idempotence_test is not defined
 
@@ -231,13 +247,17 @@
         - result.changed == True
     when: skip_route_table_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_delete_required_test is not defined
 
@@ -305,13 +325,17 @@
       route_table_resource_id: "{{ result.route_table.id }}"
     when: skip_route_table_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_create_optional_required_original_test is not defined
 
@@ -341,13 +365,17 @@
         - result.changed == False
     when: skip_route_table_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_create_optional_required_idempotence_test is not defined
 
@@ -384,13 +412,17 @@
         - result.changed == True
     when: skip_route_table_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_update_optional_required_test is not defined
 
@@ -419,13 +451,17 @@
         - result.changed == False
     when: skip_route_table_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.route_table.compartment_id is defined
+        - result.route_table.defined_tags is defined
+        - result.route_table.display_name is defined
+        - result.route_table.freeform_tags is defined
         - result.route_table.id is defined
         - result.route_table.lifecycle_state is defined
         - result.route_table.route_rules is defined
+        - result.route_table.time_created is defined
         - result.route_table.vcn_id is defined
     when: skip_route_table_update_optional_required_idempotence_test is not defined
 
@@ -452,13 +488,17 @@
     when: skip_route_table_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.route_rules is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.route_tables }}"
     when: skip_route_table_list_test is not defined
@@ -484,13 +524,17 @@
         - result.route_tables | length == 1
     when: skip_route_table_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.route_rules is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.route_tables }}"
     when: skip_route_table_get_test is not defined

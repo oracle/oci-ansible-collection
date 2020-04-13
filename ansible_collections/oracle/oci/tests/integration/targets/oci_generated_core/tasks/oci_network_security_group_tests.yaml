@@ -67,10 +67,13 @@
       network_security_group_resource_id: "{{ result.network_security_group.id }}"
     when: skip_network_security_group_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -100,10 +103,13 @@
         - result.changed == False
     when: skip_network_security_group_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -136,10 +142,13 @@
         - result.changed == True
     when: skip_network_security_group_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -172,10 +181,13 @@
         - result.changed == False
     when: skip_network_security_group_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -207,10 +219,13 @@
         - result.changed == True
     when: skip_network_security_group_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -271,10 +286,13 @@
       network_security_group_resource_id: "{{ result.network_security_group.id }}"
     when: skip_network_security_group_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -306,10 +324,13 @@
         - result.changed == False
     when: skip_network_security_group_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -340,10 +361,13 @@
         - result.changed == True
     when: skip_network_security_group_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -374,10 +398,13 @@
         - result.changed == False
     when: skip_network_security_group_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.network_security_group.compartment_id is defined
+        - result.network_security_group.defined_tags is defined
+        - result.network_security_group.display_name is defined
+        - result.network_security_group.freeform_tags is defined
         - result.network_security_group.id is defined
         - result.network_security_group.lifecycle_state is defined
         - result.network_security_group.time_created is defined
@@ -406,10 +433,13 @@
     when: skip_network_security_group_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
@@ -438,10 +468,13 @@
         - result.network_security_groups | length == 1
     when: skip_network_security_group_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.time_created is defined

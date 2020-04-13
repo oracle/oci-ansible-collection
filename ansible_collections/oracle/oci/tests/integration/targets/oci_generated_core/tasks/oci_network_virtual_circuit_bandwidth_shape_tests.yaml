@@ -13,9 +13,10 @@
     when: skip_virtual_circuit_bandwidth_shape_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.bandwidth_in_mbps is defined
         - item.name is defined
     with_items: "{{ result.virtual_circuit_bandwidth_shapes }}"
     when: skip_virtual_circuit_bandwidth_shape_list_test is not defined

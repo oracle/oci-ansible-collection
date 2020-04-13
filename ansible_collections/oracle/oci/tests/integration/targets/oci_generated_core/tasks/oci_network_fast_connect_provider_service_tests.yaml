@@ -13,14 +13,16 @@
     when: skip_fast_connect_provider_service_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.description is defined
         - item.id is defined
         - item.private_peering_bgp_management is defined
         - item.provider_name is defined
         - item.provider_service_name is defined
         - item.public_peering_bgp_management is defined
+        - item.supported_virtual_circuit_types is defined
         - item.customer_asn_management is defined
         - item.provider_service_key_management is defined
         - item.bandwith_shape_management is defined
@@ -50,14 +52,16 @@
         - result.fast_connect_provider_services | length == 1
     when: skip_fast_connect_provider_service_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.description is defined
         - item.id is defined
         - item.private_peering_bgp_management is defined
         - item.provider_name is defined
         - item.provider_service_name is defined
         - item.public_peering_bgp_management is defined
+        - item.supported_virtual_circuit_types is defined
         - item.customer_asn_management is defined
         - item.provider_service_key_management is defined
         - item.bandwith_shape_management is defined

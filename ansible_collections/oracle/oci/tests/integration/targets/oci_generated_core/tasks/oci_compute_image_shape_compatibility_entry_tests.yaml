@@ -37,7 +37,7 @@
         - result.changed == True
     when: skip_image_shape_compatibility_entry_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.image_shape_compatibility_entry.image_id is defined
@@ -66,7 +66,7 @@
         - result.changed == False
     when: skip_image_shape_compatibility_entry_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.image_shape_compatibility_entry.image_id is defined

@@ -40,13 +40,16 @@
       volume_backup_policy_resource_id: "{{ result.volume_backup_policy.id }}"
     when: skip_volume_backup_policy_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -71,13 +74,16 @@
         - result.changed == False
     when: skip_volume_backup_policy_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -121,13 +127,16 @@
         - result.changed == True
     when: skip_volume_backup_policy_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -157,13 +166,16 @@
         - result.changed == False
     when: skip_volume_backup_policy_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -191,13 +203,16 @@
         - result.changed == True
     when: skip_volume_backup_policy_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -268,13 +283,16 @@
       volume_backup_policy_resource_id: "{{ result.volume_backup_policy.id }}"
     when: skip_volume_backup_policy_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -302,13 +320,16 @@
         - result.changed == False
     when: skip_volume_backup_policy_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -350,13 +371,16 @@
         - result.changed == True
     when: skip_volume_backup_policy_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -384,13 +408,16 @@
         - result.changed == False
     when: skip_volume_backup_policy_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_backup_policy.display_name is defined
         - result.volume_backup_policy.id is defined
         - result.volume_backup_policy.schedules is defined
         - result.volume_backup_policy.time_created is defined
+        - result.volume_backup_policy.compartment_id is defined
+        - result.volume_backup_policy.defined_tags is defined
+        - result.volume_backup_policy.freeform_tags is defined
     when: skip_volume_backup_policy_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -414,13 +441,16 @@
     when: skip_volume_backup_policy_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.display_name is defined
         - item.id is defined
         - item.schedules is defined
         - item.time_created is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.freeform_tags is defined
     with_items: "{{ result.volume_backup_policies }}"
     when: skip_volume_backup_policy_list_test is not defined
 
@@ -445,13 +475,16 @@
         - result.volume_backup_policies | length == 1
     when: skip_volume_backup_policy_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.display_name is defined
         - item.id is defined
         - item.schedules is defined
         - item.time_created is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.freeform_tags is defined
     with_items: "{{ result.volume_backup_policies }}"
     when: skip_volume_backup_policy_get_test is not defined
 

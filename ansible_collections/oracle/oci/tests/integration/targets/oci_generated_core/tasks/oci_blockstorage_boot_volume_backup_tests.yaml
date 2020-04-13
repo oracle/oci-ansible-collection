@@ -74,14 +74,25 @@
       boot_volume_backup_resource_id: "{{ result.boot_volume_backup.id }}"
     when: skip_boot_volume_backup_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -107,14 +118,25 @@
         - result.changed == False
     when: skip_boot_volume_backup_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -143,14 +165,25 @@
         - result.changed == True
     when: skip_boot_volume_backup_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -179,14 +212,25 @@
         - result.changed == False
     when: skip_boot_volume_backup_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -214,14 +258,25 @@
         - result.changed == True
     when: skip_boot_volume_backup_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -279,14 +334,25 @@
       boot_volume_backup_resource_id: "{{ result.boot_volume_backup.id }}"
     when: skip_boot_volume_backup_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -315,14 +381,25 @@
         - result.changed == False
     when: skip_boot_volume_backup_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -349,14 +426,25 @@
         - result.changed == True
     when: skip_boot_volume_backup_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -383,14 +471,25 @@
         - result.changed == False
     when: skip_boot_volume_backup_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.boot_volume_backup.boot_volume_id is defined
         - result.boot_volume_backup.compartment_id is defined
+        - result.boot_volume_backup.defined_tags is defined
         - result.boot_volume_backup.display_name is defined
+        - result.boot_volume_backup.expiration_time is defined
+        - result.boot_volume_backup.freeform_tags is defined
         - result.boot_volume_backup.id is defined
+        - result.boot_volume_backup.image_id is defined
         - result.boot_volume_backup.lifecycle_state is defined
+        - result.boot_volume_backup.size_in_gbs is defined
+        - result.boot_volume_backup.source_boot_volume_backup_id is defined
+        - result.boot_volume_backup.source_type is defined
         - result.boot_volume_backup.time_created is defined
+        - result.boot_volume_backup.time_request_received is defined
+        - result.boot_volume_backup.type is defined
+        - result.boot_volume_backup.unique_size_in_gbs is defined
     when: skip_boot_volume_backup_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -415,14 +514,25 @@
     when: skip_boot_volume_backup_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.boot_volume_id is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.expiration_time is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.image_id is defined
         - item.lifecycle_state is defined
+        - item.size_in_gbs is defined
+        - item.source_boot_volume_backup_id is defined
+        - item.source_type is defined
         - item.time_created is defined
+        - item.time_request_received is defined
+        - item.type is defined
+        - item.unique_size_in_gbs is defined
     with_items: "{{ result.boot_volume_backups }}"
     when: skip_boot_volume_backup_list_test is not defined
 
@@ -447,14 +557,25 @@
         - result.boot_volume_backups | length == 1
     when: skip_boot_volume_backup_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.boot_volume_id is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.expiration_time is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.image_id is defined
         - item.lifecycle_state is defined
+        - item.size_in_gbs is defined
+        - item.source_boot_volume_backup_id is defined
+        - item.source_type is defined
         - item.time_created is defined
+        - item.time_request_received is defined
+        - item.type is defined
+        - item.unique_size_in_gbs is defined
     with_items: "{{ result.boot_volume_backups }}"
     when: skip_boot_volume_backup_get_test is not defined
 

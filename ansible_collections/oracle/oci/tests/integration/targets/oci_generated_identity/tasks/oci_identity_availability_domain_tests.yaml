@@ -13,6 +13,15 @@
     when: skip_availability_domain_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.name is defined
+        - item.id is defined
+        - item.compartment_id is defined
+    with_items: "{{ result.availability_domains }}"
+    when: skip_availability_domain_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

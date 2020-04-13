@@ -111,17 +111,22 @@
       volume_group_resource_id: "{{ result.volume_group.id }}"
     when: skip_volume_group_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -148,17 +153,22 @@
         - result.changed == False
     when: skip_volume_group_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -188,17 +198,22 @@
         - result.changed == True
     when: skip_volume_group_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -228,17 +243,22 @@
         - result.changed == False
     when: skip_volume_group_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -266,17 +286,22 @@
         - result.changed == True
     when: skip_volume_group_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -342,17 +367,22 @@
       volume_group_resource_id: "{{ result.volume_group.id }}"
     when: skip_volume_group_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -381,17 +411,22 @@
         - result.changed == False
     when: skip_volume_group_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -419,17 +454,22 @@
         - result.changed == True
     when: skip_volume_group_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -457,17 +497,22 @@
         - result.changed == False
     when: skip_volume_group_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.volume_group.availability_domain is defined
         - result.volume_group.compartment_id is defined
+        - result.volume_group.defined_tags is defined
         - result.volume_group.display_name is defined
+        - result.volume_group.freeform_tags is defined
         - result.volume_group.id is defined
         - result.volume_group.lifecycle_state is defined
         - result.volume_group.size_in_mbs is defined
+        - result.volume_group.size_in_gbs is defined
+        - result.volume_group.source_details is defined
         - result.volume_group.time_created is defined
         - result.volume_group.volume_ids is defined
+        - result.volume_group.is_hydrated is defined
     when: skip_volume_group_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -492,17 +537,22 @@
     when: skip_volume_group_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.size_in_mbs is defined
+        - item.size_in_gbs is defined
+        - item.source_details is defined
         - item.time_created is defined
         - item.volume_ids is defined
+        - item.is_hydrated is defined
     with_items: "{{ result.volume_groups }}"
     when: skip_volume_group_list_test is not defined
 
@@ -527,17 +577,22 @@
         - result.volume_groups | length == 1
     when: skip_volume_group_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
         - item.size_in_mbs is defined
+        - item.size_in_gbs is defined
+        - item.source_details is defined
         - item.time_created is defined
         - item.volume_ids is defined
+        - item.is_hydrated is defined
     with_items: "{{ result.volume_groups }}"
     when: skip_volume_group_get_test is not defined
 

@@ -12,7 +12,7 @@
     when: skip_service_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.cidr_block is defined
@@ -43,7 +43,7 @@
         - result.services | length == 1
     when: skip_service_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.cidr_block is defined

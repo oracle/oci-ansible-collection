@@ -23,6 +23,13 @@
         - result.changed == True
     when: skip_authentication_policy_update_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.authentication_policy.password_policy is defined
+        - result.authentication_policy.compartment_id is defined
+    when: skip_authentication_policy_update_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -45,6 +52,13 @@
         - result.changed == False
     when: skip_authentication_policy_update_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.authentication_policy.password_policy is defined
+        - result.authentication_policy.compartment_id is defined
+    when: skip_authentication_policy_update_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -65,6 +79,15 @@
       that:
         - result.authentication_policy is defined
         - result.authentication_policy != None
+    when: skip_authentication_policy_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.password_policy is defined
+        - item.compartment_id is defined
+    with_items:
+      - "{{ result.authentication_policy }}"
     when: skip_authentication_policy_get_test is not defined
 
   - name: Assert custom assertions

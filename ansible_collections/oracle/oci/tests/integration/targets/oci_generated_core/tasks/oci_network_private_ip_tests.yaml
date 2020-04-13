@@ -42,6 +42,23 @@
       private_ip_resource_id: "{{ result.private_ip.id }}"
     when: skip_private_ip_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
+    when: skip_private_ip_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -62,6 +79,23 @@
     assert:
       that:
         - result.changed == False
+    when: skip_private_ip_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
     when: skip_private_ip_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -91,6 +125,23 @@
         - result.changed == True
     when: skip_private_ip_update_using_name_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
+    when: skip_private_ip_update_using_name_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -118,6 +169,23 @@
         - result.changed == False
     when: skip_private_ip_update_using_name_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
+    when: skip_private_ip_update_using_name_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -140,6 +208,23 @@
     assert:
       that:
         - result.changed == True
+    when: skip_private_ip_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
     when: skip_private_ip_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -196,6 +281,23 @@
       private_ip_resource_id: "{{ result.private_ip.id }}"
     when: skip_private_ip_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
+    when: skip_private_ip_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -220,6 +322,23 @@
     assert:
       that:
         - result.changed == False
+    when: skip_private_ip_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
     when: skip_private_ip_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -248,6 +367,23 @@
         - result.changed == True
     when: skip_private_ip_update_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
+    when: skip_private_ip_update_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -274,6 +410,23 @@
         - result.changed == False
     when: skip_private_ip_update_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.private_ip.availability_domain is defined
+        - result.private_ip.compartment_id is defined
+        - result.private_ip.defined_tags is defined
+        - result.private_ip.display_name is defined
+        - result.private_ip.freeform_tags is defined
+        - result.private_ip.hostname_label is defined
+        - result.private_ip.id is defined
+        - result.private_ip.ip_address is defined
+        - result.private_ip.is_primary is defined
+        - result.private_ip.subnet_id is defined
+        - result.private_ip.time_created is defined
+        - result.private_ip.vnic_id is defined
+    when: skip_private_ip_update_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -295,6 +448,24 @@
     when: skip_private_ip_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.hostname_label is defined
+        - item.id is defined
+        - item.ip_address is defined
+        - item.is_primary is defined
+        - item.subnet_id is defined
+        - item.time_created is defined
+        - item.vnic_id is defined
+    with_items: "{{ result.private_ips }}"
+    when: skip_private_ip_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -314,6 +485,24 @@
     assert:
       that:
         - result.private_ips | length == 1
+    when: skip_private_ip_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.hostname_label is defined
+        - item.id is defined
+        - item.ip_address is defined
+        - item.is_primary is defined
+        - item.subnet_id is defined
+        - item.time_created is defined
+        - item.vnic_id is defined
+    with_items: "{{ result.private_ips }}"
     when: skip_private_ip_get_test is not defined
 
   - name: Assert custom assertions

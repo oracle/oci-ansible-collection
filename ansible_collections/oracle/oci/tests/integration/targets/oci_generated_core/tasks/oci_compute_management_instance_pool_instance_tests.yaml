@@ -74,16 +74,20 @@
     when: skip_instance_pool_instance_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.display_name is defined
+        - item.fault_domain is defined
         - item.instance_configuration_id is defined
         - item.region is defined
+        - item.shape is defined
         - item.state is defined
         - item.time_created is defined
+        - item.load_balancer_backends is defined
     with_items: "{{ result.instance_pool_instances }}"
     when: skip_instance_pool_instance_list_test is not defined
 

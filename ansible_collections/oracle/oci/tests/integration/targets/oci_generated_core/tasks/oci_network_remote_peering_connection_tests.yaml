@@ -66,15 +66,20 @@
       remote_peering_connection_resource_id: "{{ result.remote_peering_connection.id }}"
     when: skip_remote_peering_connection_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_create_required_original_test is not defined
@@ -102,15 +107,20 @@
         - result.changed == False
     when: skip_remote_peering_connection_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_create_required_idempotency_test is not defined
@@ -141,15 +151,20 @@
         - result.changed == True
     when: skip_remote_peering_connection_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_update_using_name_optional_required_test is not defined
@@ -180,15 +195,20 @@
         - result.changed == False
     when: skip_remote_peering_connection_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_update_using_name_optional_required_idempotence_test is not defined
@@ -218,15 +238,20 @@
         - result.changed == True
     when: skip_remote_peering_connection_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_delete_required_test is not defined
@@ -285,15 +310,20 @@
       remote_peering_connection_resource_id: "{{ result.remote_peering_connection.id }}"
     when: skip_remote_peering_connection_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_create_optional_required_original_test is not defined
@@ -323,15 +353,20 @@
         - result.changed == False
     when: skip_remote_peering_connection_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_create_optional_required_idempotence_test is not defined
@@ -360,15 +395,20 @@
         - result.changed == True
     when: skip_remote_peering_connection_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_update_optional_required_test is not defined
@@ -397,15 +437,20 @@
         - result.changed == False
     when: skip_remote_peering_connection_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.remote_peering_connection.compartment_id is defined
+        - result.remote_peering_connection.defined_tags is defined
         - result.remote_peering_connection.display_name is defined
         - result.remote_peering_connection.drg_id is defined
+        - result.remote_peering_connection.freeform_tags is defined
         - result.remote_peering_connection.id is defined
         - result.remote_peering_connection.is_cross_tenancy_peering is defined
         - result.remote_peering_connection.lifecycle_state is defined
+        - result.remote_peering_connection.peer_id is defined
+        - result.remote_peering_connection.peer_region_name is defined
+        - result.remote_peering_connection.peer_tenancy_id is defined
         - result.remote_peering_connection.peering_status is defined
         - result.remote_peering_connection.time_created is defined
     when: skip_remote_peering_connection_update_optional_required_idempotence_test is not defined
@@ -432,15 +477,20 @@
     when: skip_remote_peering_connection_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
         - item.drg_id is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.is_cross_tenancy_peering is defined
         - item.lifecycle_state is defined
+        - item.peer_id is defined
+        - item.peer_region_name is defined
+        - item.peer_tenancy_id is defined
         - item.peering_status is defined
         - item.time_created is defined
     with_items: "{{ result.remote_peering_connections }}"
@@ -467,15 +517,20 @@
         - result.remote_peering_connections | length == 1
     when: skip_remote_peering_connection_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
         - item.drg_id is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.is_cross_tenancy_peering is defined
         - item.lifecycle_state is defined
+        - item.peer_id is defined
+        - item.peer_region_name is defined
+        - item.peer_tenancy_id is defined
         - item.peering_status is defined
         - item.time_created is defined
     with_items: "{{ result.remote_peering_connections }}"

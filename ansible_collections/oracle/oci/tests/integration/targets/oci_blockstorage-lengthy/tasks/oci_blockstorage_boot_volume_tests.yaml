@@ -5,7 +5,7 @@
 - name: Get facts about all compute instances in compartment
   oci_compute_instance_facts:
     compartment_id: "{{test_compartment_ocid}}"
-    availability_domain: "{{test_availability_domain}}"
+    availability_domain: "{{test_availability_domain_3}}"
   register: currinstances
 
 - set_fact:
@@ -27,7 +27,7 @@
 - name: Delete boot volumes
   oci_blockstorage_boot_volume_facts:
     compartment_id: "{{ test_compartment_ocid }}"
-    availability_domain: "{{ test_availability_domain }}"
+    availability_domain: "{{ test_availability_domain_3 }}"
   register: test_boot_volumes
 
 - oci_blockstorage_boot_volume:
@@ -47,7 +47,7 @@
         image_id: "{{image_ocid}}"
         shape: "{{test_instance_shape}}"
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_3}}"
         create_vnic_details:
           hostname_label: "{{test_instance_name}}"
           subnet_id: "{{common_subnet_id}}"
@@ -65,7 +65,7 @@
     - name: Get boot volume attachment for the setup instance
       oci_compute_boot_volume_attachment_facts:
         compartment_id: "{{ test_compartment_ocid }}"
-        availability_domain: "{{ test_availability_domain }}"
+        availability_domain: "{{ test_availability_domain_3 }}"
         instance_id: "{{ my_instance_ocid }}"
       register: result
 
@@ -77,7 +77,7 @@
     - name: Create a boot volume with test boot volume as source
       oci_blockstorage_boot_volume:
         name: "{{ boot_volume_name }}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_3}}"
         compartment_id: "{{test_compartment_ocid}}"
         source_details:
           id: "{{ test_boot_volume_ocid }}"
@@ -93,7 +93,7 @@
         that:
           - result.changed == True
           - result.boot_volume.display_name == boot_volume_name
-          - result.boot_volume.availability_domain == test_availability_domain
+          - result.boot_volume.availability_domain == test_availability_domain_3
           - result.boot_volume.compartment_id == test_compartment_ocid
           - result.boot_volume.source_details.id == test_boot_volume_ocid
           - result.boot_volume.source_details.type == "bootVolume"
@@ -105,7 +105,7 @@
     - name: Reattempt to create a boot volume with test boot volume as source
       oci_blockstorage_boot_volume:
         name: "{{ boot_volume_name }}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_3}}"
         compartment_id: "{{test_compartment_ocid}}"
         source_details:
           id: "{{ test_boot_volume_ocid }}"
@@ -124,7 +124,7 @@
     - name: Reattempt to create a boot volume with default size & test boot volume as source
       oci_blockstorage_boot_volume:
         name: "{{ boot_volume_name }}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_3}}"
         compartment_id: "{{test_compartment_ocid}}"
         source_details:
           id: "{{ test_boot_volume_ocid }}"
@@ -263,7 +263,7 @@
     - name: List boot volumes
       oci_blockstorage_boot_volume_facts:
         compartment_id: "{{test_compartment_ocid}}"
-        availability_domain: "{{test_availability_domain}}"
+        availability_domain: "{{test_availability_domain_3}}"
       register: result
 
     - set_fact:

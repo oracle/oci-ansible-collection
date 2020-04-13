@@ -15,6 +15,34 @@
     when: skip_audit_event_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.tenant_id is defined
+        - item.compartment_id is defined
+        - item.compartment_name is defined
+        - item.event_id is defined
+        - item.event_name is defined
+        - item.event_source is defined
+        - item.event_type is defined
+        - item.event_time is defined
+        - item.principal_id is defined
+        - item.credential_id is defined
+        - item.request_action is defined
+        - item.request_id is defined
+        - item.request_agent is defined
+        - item.request_headers is defined
+        - item.request_origin is defined
+        - item.request_parameters is defined
+        - item.request_resource is defined
+        - item.response_headers is defined
+        - item.response_status is defined
+        - item.response_time is defined
+        - item.response_payload is defined
+        - item.user_name is defined
+    with_items: "{{ result.audit_events }}"
+    when: skip_audit_event_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

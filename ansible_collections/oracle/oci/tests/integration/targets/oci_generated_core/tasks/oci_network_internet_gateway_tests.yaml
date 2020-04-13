@@ -69,12 +69,17 @@
       internet_gateway_resource_id: "{{ result.internet_gateway.id }}"
     when: skip_internet_gateway_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_create_required_original_test is not defined
 
@@ -102,12 +107,17 @@
         - result.changed == False
     when: skip_internet_gateway_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_create_required_idempotency_test is not defined
 
@@ -139,12 +149,17 @@
         - result.changed == True
     when: skip_internet_gateway_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_update_using_name_optional_required_test is not defined
 
@@ -176,12 +191,17 @@
         - result.changed == False
     when: skip_internet_gateway_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_update_using_name_optional_required_idempotence_test is not defined
 
@@ -211,12 +231,17 @@
         - result.changed == True
     when: skip_internet_gateway_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_delete_required_test is not defined
 
@@ -276,12 +301,17 @@
       internet_gateway_resource_id: "{{ result.internet_gateway.id }}"
     when: skip_internet_gateway_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_create_optional_required_original_test is not defined
 
@@ -311,12 +341,17 @@
         - result.changed == False
     when: skip_internet_gateway_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_create_optional_required_idempotence_test is not defined
 
@@ -345,12 +380,17 @@
         - result.changed == True
     when: skip_internet_gateway_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_update_optional_required_test is not defined
 
@@ -379,12 +419,17 @@
         - result.changed == False
     when: skip_internet_gateway_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.internet_gateway.compartment_id is defined
+        - result.internet_gateway.defined_tags is defined
+        - result.internet_gateway.display_name is defined
+        - result.internet_gateway.freeform_tags is defined
         - result.internet_gateway.id is defined
+        - result.internet_gateway.is_enabled is defined
         - result.internet_gateway.lifecycle_state is defined
+        - result.internet_gateway.time_created is defined
         - result.internet_gateway.vcn_id is defined
     when: skip_internet_gateway_update_optional_required_idempotence_test is not defined
 
@@ -411,12 +456,17 @@
     when: skip_internet_gateway_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.is_enabled is defined
         - item.lifecycle_state is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.internet_gateways }}"
     when: skip_internet_gateway_list_test is not defined
@@ -442,12 +492,17 @@
         - result.internet_gateways | length == 1
     when: skip_internet_gateway_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.is_enabled is defined
         - item.lifecycle_state is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.internet_gateways }}"
     when: skip_internet_gateway_get_test is not defined

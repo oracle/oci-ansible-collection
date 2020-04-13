@@ -44,7 +44,7 @@
       dynamic_group_resource_id: "{{ result.dynamic_group.id }}"
     when: skip_dynamic_group_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -54,6 +54,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -80,7 +83,7 @@
         - result.changed == False
     when: skip_dynamic_group_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -90,6 +93,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -120,7 +126,7 @@
         - result.changed == True
     when: skip_dynamic_group_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -130,6 +136,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -160,7 +169,7 @@
         - result.changed == False
     when: skip_dynamic_group_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -170,6 +179,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -197,7 +209,7 @@
         - result.changed == True
     when: skip_dynamic_group_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -207,6 +219,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -264,7 +279,7 @@
       dynamic_group_resource_id: "{{ result.dynamic_group.id }}"
     when: skip_dynamic_group_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -274,6 +289,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -302,7 +320,7 @@
         - result.changed == False
     when: skip_dynamic_group_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -312,6 +330,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -339,7 +360,7 @@
         - result.changed == True
     when: skip_dynamic_group_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -349,6 +370,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -376,7 +400,7 @@
         - result.changed == False
     when: skip_dynamic_group_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.dynamic_group.id is defined
@@ -386,6 +410,9 @@
         - result.dynamic_group.matching_rule is defined
         - result.dynamic_group.time_created is defined
         - result.dynamic_group.lifecycle_state is defined
+        - result.dynamic_group.inactive_status is defined
+        - result.dynamic_group.freeform_tags is defined
+        - result.dynamic_group.defined_tags is defined
     when: skip_dynamic_group_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -410,7 +437,7 @@
     when: skip_dynamic_group_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -420,6 +447,9 @@
         - item.matching_rule is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.dynamic_groups }}"
     when: skip_dynamic_group_list_test is not defined
 
@@ -444,7 +474,7 @@
         - result.dynamic_groups | length == 1
     when: skip_dynamic_group_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -454,6 +484,9 @@
         - item.matching_rule is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.dynamic_groups }}"
     when: skip_dynamic_group_get_test is not defined
 

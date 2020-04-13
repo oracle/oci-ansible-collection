@@ -42,12 +42,16 @@
       cpe_resource_id: "{{ result.cpe.id }}"
     when: skip_cpe_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -73,12 +77,16 @@
         - result.changed == False
     when: skip_cpe_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -107,12 +115,16 @@
         - result.changed == True
     when: skip_cpe_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -141,12 +153,16 @@
         - result.changed == False
     when: skip_cpe_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -174,12 +190,16 @@
         - result.changed == True
     when: skip_cpe_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -236,12 +256,16 @@
       cpe_resource_id: "{{ result.cpe.id }}"
     when: skip_cpe_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -269,12 +293,16 @@
         - result.changed == False
     when: skip_cpe_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -301,12 +329,16 @@
         - result.changed == True
     when: skip_cpe_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -333,12 +365,16 @@
         - result.changed == False
     when: skip_cpe_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.cpe.compartment_id is defined
+        - result.cpe.defined_tags is defined
+        - result.cpe.display_name is defined
+        - result.cpe.freeform_tags is defined
         - result.cpe.id is defined
         - result.cpe.ip_address is defined
+        - result.cpe.time_created is defined
     when: skip_cpe_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -363,12 +399,16 @@
     when: skip_cpe_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.ip_address is defined
+        - item.time_created is defined
     with_items: "{{ result.cpes }}"
     when: skip_cpe_list_test is not defined
 
@@ -393,12 +433,16 @@
         - result.cpes | length == 1
     when: skip_cpe_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.ip_address is defined
+        - item.time_created is defined
     with_items: "{{ result.cpes }}"
     when: skip_cpe_get_test is not defined
 

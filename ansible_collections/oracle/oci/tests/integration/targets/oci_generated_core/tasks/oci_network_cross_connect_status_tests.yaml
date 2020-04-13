@@ -39,10 +39,13 @@
         - result.cross_connect_status != None
     when: skip_cross_connect_status_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.cross_connect_id is defined
+        - item.interface_state is defined
+        - item.light_level_ind_bm is defined
+        - item.light_level_indicator is defined
     with_items:
       - "{{ result.cross_connect_status }}"
     when: skip_cross_connect_status_get_test is not defined

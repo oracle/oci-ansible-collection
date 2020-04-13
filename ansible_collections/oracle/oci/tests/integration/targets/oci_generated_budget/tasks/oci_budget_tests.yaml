@@ -46,19 +46,26 @@
       budget_resource_id: "{{ result.budget.id }}"
     when: skip_budget_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -86,19 +93,26 @@
         - result.changed == False
     when: skip_budget_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -130,19 +144,26 @@
         - result.changed == True
     when: skip_budget_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -174,19 +195,26 @@
         - result.changed == False
     when: skip_budget_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -214,19 +242,26 @@
         - result.changed == True
     when: skip_budget_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -286,19 +321,26 @@
       budget_resource_id: "{{ result.budget.id }}"
     when: skip_budget_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -329,19 +371,26 @@
         - result.changed == False
     when: skip_budget_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -371,19 +420,26 @@
         - result.changed == True
     when: skip_budget_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -413,19 +469,26 @@
         - result.changed == False
     when: skip_budget_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.budget.id is defined
         - result.budget.compartment_id is defined
         - result.budget.target_compartment_id is defined
         - result.budget.display_name is defined
+        - result.budget.description is defined
         - result.budget.amount is defined
         - result.budget.reset_period is defined
         - result.budget.lifecycle_state is defined
         - result.budget.alert_rule_count is defined
+        - result.budget.version is defined
+        - result.budget.actual_spend is defined
+        - result.budget.forecasted_spend is defined
+        - result.budget.time_spend_computed is defined
         - result.budget.time_created is defined
         - result.budget.time_updated is defined
+        - result.budget.freeform_tags is defined
+        - result.budget.defined_tags is defined
     when: skip_budget_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -450,19 +513,26 @@
     when: skip_budget_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
         - item.target_compartment_id is defined
         - item.display_name is defined
+        - item.description is defined
         - item.amount is defined
         - item.reset_period is defined
         - item.lifecycle_state is defined
         - item.alert_rule_count is defined
+        - item.version is defined
+        - item.actual_spend is defined
+        - item.forecasted_spend is defined
+        - item.time_spend_computed is defined
         - item.time_created is defined
         - item.time_updated is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.budgets }}"
     when: skip_budget_list_test is not defined
 
@@ -487,19 +557,26 @@
         - result.budgets | length == 1
     when: skip_budget_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
         - item.target_compartment_id is defined
         - item.display_name is defined
+        - item.description is defined
         - item.amount is defined
         - item.reset_period is defined
         - item.lifecycle_state is defined
         - item.alert_rule_count is defined
+        - item.version is defined
+        - item.actual_spend is defined
+        - item.forecasted_spend is defined
+        - item.time_spend_computed is defined
         - item.time_created is defined
         - item.time_updated is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.budgets }}"
     when: skip_budget_get_test is not defined
 

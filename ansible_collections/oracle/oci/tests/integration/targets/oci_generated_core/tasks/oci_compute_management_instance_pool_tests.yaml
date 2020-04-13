@@ -130,16 +130,20 @@
       instance_pool_resource_id: "{{ result.instance_pool.id }}"
     when: skip_instance_pool_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -167,16 +171,20 @@
         - result.changed == False
     when: skip_instance_pool_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -217,16 +225,20 @@
         - result.changed == True
     when: skip_instance_pool_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -258,16 +270,20 @@
         - result.changed == False
     when: skip_instance_pool_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -295,16 +311,20 @@
         - result.changed == True
     when: skip_instance_pool_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -381,16 +401,20 @@
       instance_pool_resource_id: "{{ result.instance_pool.id }}"
     when: skip_instance_pool_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -421,16 +445,20 @@
         - result.changed == False
     when: skip_instance_pool_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -469,16 +497,20 @@
         - result.changed == True
     when: skip_instance_pool_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -508,16 +540,20 @@
         - result.changed == False
     when: skip_instance_pool_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.instance_pool.id is defined
         - result.instance_pool.compartment_id is defined
+        - result.instance_pool.defined_tags is defined
+        - result.instance_pool.display_name is defined
+        - result.instance_pool.freeform_tags is defined
         - result.instance_pool.instance_configuration_id is defined
         - result.instance_pool.lifecycle_state is defined
         - result.instance_pool.placement_configurations is defined
         - result.instance_pool.size is defined
         - result.instance_pool.time_created is defined
+        - result.instance_pool.load_balancers is defined
     when: skip_instance_pool_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -542,14 +578,14 @@
     when: skip_instance_pool_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.instance_configuration_id is defined
         - item.lifecycle_state is defined
-        - item.placement_configurations is defined
         - item.size is defined
         - item.time_created is defined
     with_items: "{{ result.instance_pools }}"
@@ -576,14 +612,14 @@
         - result.instance_pools | length == 1
     when: skip_instance_pool_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.instance_configuration_id is defined
         - item.lifecycle_state is defined
-        - item.placement_configurations is defined
         - item.size is defined
         - item.time_created is defined
     with_items: "{{ result.instance_pools }}"

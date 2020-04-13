@@ -14,10 +14,12 @@
         - result.fast_connect_provider_service_key != None
     when: skip_fast_connect_provider_service_key_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.name is defined
+        - item.bandwidth_shape_name is defined
+        - item.peering_location is defined
     with_items:
       - "{{ result.fast_connect_provider_service_key }}"
     when: skip_fast_connect_provider_service_key_get_test is not defined

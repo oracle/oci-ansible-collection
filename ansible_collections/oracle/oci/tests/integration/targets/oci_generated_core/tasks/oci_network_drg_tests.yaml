@@ -40,12 +40,16 @@
       drg_resource_id: "{{ result.drg.id }}"
     when: skip_drg_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -70,12 +74,16 @@
         - result.changed == False
     when: skip_drg_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -104,12 +112,16 @@
         - result.changed == True
     when: skip_drg_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -138,12 +150,16 @@
         - result.changed == False
     when: skip_drg_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -171,12 +187,16 @@
         - result.changed == True
     when: skip_drg_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -232,12 +252,16 @@
       drg_resource_id: "{{ result.drg.id }}"
     when: skip_drg_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -264,12 +288,16 @@
         - result.changed == False
     when: skip_drg_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -296,12 +324,16 @@
         - result.changed == True
     when: skip_drg_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -328,12 +360,16 @@
         - result.changed == False
     when: skip_drg_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg.compartment_id is defined
+        - result.drg.defined_tags is defined
+        - result.drg.display_name is defined
+        - result.drg.freeform_tags is defined
         - result.drg.id is defined
         - result.drg.lifecycle_state is defined
+        - result.drg.time_created is defined
     when: skip_drg_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -358,12 +394,16 @@
     when: skip_drg_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.time_created is defined
     with_items: "{{ result.drgs }}"
     when: skip_drg_list_test is not defined
 
@@ -388,12 +428,16 @@
         - result.drgs | length == 1
     when: skip_drg_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.time_created is defined
     with_items: "{{ result.drgs }}"
     when: skip_drg_get_test is not defined
 

@@ -68,6 +68,20 @@
       instance_console_connection_resource_id: "{{ result.instance_console_connection.id }}"
     when: skip_instance_console_connection_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.instance_console_connection.compartment_id is defined
+        - result.instance_console_connection.connection_string is defined
+        - result.instance_console_connection.defined_tags is defined
+        - result.instance_console_connection.fingerprint is defined
+        - result.instance_console_connection.freeform_tags is defined
+        - result.instance_console_connection.id is defined
+        - result.instance_console_connection.instance_id is defined
+        - result.instance_console_connection.lifecycle_state is defined
+        - result.instance_console_connection.vnc_connection_string is defined
+    when: skip_instance_console_connection_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -91,6 +105,20 @@
         - result.changed == False
     when: skip_instance_console_connection_create_required_idempotency_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.instance_console_connection.compartment_id is defined
+        - result.instance_console_connection.connection_string is defined
+        - result.instance_console_connection.defined_tags is defined
+        - result.instance_console_connection.fingerprint is defined
+        - result.instance_console_connection.freeform_tags is defined
+        - result.instance_console_connection.id is defined
+        - result.instance_console_connection.instance_id is defined
+        - result.instance_console_connection.lifecycle_state is defined
+        - result.instance_console_connection.vnc_connection_string is defined
+    when: skip_instance_console_connection_create_required_idempotency_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -111,6 +139,20 @@
     assert:
       that:
         - result.changed == True
+    when: skip_instance_console_connection_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.instance_console_connection.compartment_id is defined
+        - result.instance_console_connection.connection_string is defined
+        - result.instance_console_connection.defined_tags is defined
+        - result.instance_console_connection.fingerprint is defined
+        - result.instance_console_connection.freeform_tags is defined
+        - result.instance_console_connection.id is defined
+        - result.instance_console_connection.instance_id is defined
+        - result.instance_console_connection.lifecycle_state is defined
+        - result.instance_console_connection.vnc_connection_string is defined
     when: skip_instance_console_connection_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -164,6 +206,20 @@
       instance_console_connection_resource_id: "{{ result.instance_console_connection.id }}"
     when: skip_instance_console_connection_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.instance_console_connection.compartment_id is defined
+        - result.instance_console_connection.connection_string is defined
+        - result.instance_console_connection.defined_tags is defined
+        - result.instance_console_connection.fingerprint is defined
+        - result.instance_console_connection.freeform_tags is defined
+        - result.instance_console_connection.id is defined
+        - result.instance_console_connection.instance_id is defined
+        - result.instance_console_connection.lifecycle_state is defined
+        - result.instance_console_connection.vnc_connection_string is defined
+    when: skip_instance_console_connection_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -189,6 +245,20 @@
         - result.changed == False
     when: skip_instance_console_connection_create_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.instance_console_connection.compartment_id is defined
+        - result.instance_console_connection.connection_string is defined
+        - result.instance_console_connection.defined_tags is defined
+        - result.instance_console_connection.fingerprint is defined
+        - result.instance_console_connection.freeform_tags is defined
+        - result.instance_console_connection.id is defined
+        - result.instance_console_connection.instance_id is defined
+        - result.instance_console_connection.lifecycle_state is defined
+        - result.instance_console_connection.vnc_connection_string is defined
+    when: skip_instance_console_connection_create_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -211,6 +281,21 @@
     when: skip_instance_console_connection_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.connection_string is defined
+        - item.defined_tags is defined
+        - item.fingerprint is defined
+        - item.freeform_tags is defined
+        - item.id is defined
+        - item.instance_id is defined
+        - item.lifecycle_state is defined
+        - item.vnc_connection_string is defined
+    with_items: "{{ result.instance_console_connections }}"
+    when: skip_instance_console_connection_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -230,6 +315,21 @@
     assert:
       that:
         - result.instance_console_connections | length == 1
+    when: skip_instance_console_connection_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.connection_string is defined
+        - item.defined_tags is defined
+        - item.fingerprint is defined
+        - item.freeform_tags is defined
+        - item.id is defined
+        - item.instance_id is defined
+        - item.lifecycle_state is defined
+        - item.vnc_connection_string is defined
+    with_items: "{{ result.instance_console_connections }}"
     when: skip_instance_console_connection_get_test is not defined
 
   - name: Assert custom assertions

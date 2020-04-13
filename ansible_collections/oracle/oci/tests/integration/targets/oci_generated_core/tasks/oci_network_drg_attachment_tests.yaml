@@ -127,13 +127,16 @@
       drg_attachment_resource_id: "{{ result.drg_attachment.id }}"
     when: skip_drg_attachment_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_create_required_original_test is not defined
 
@@ -161,13 +164,16 @@
         - result.changed == False
     when: skip_drg_attachment_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_create_required_idempotency_test is not defined
 
@@ -196,13 +202,16 @@
         - result.changed == True
     when: skip_drg_attachment_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_update_using_name_optional_required_test is not defined
 
@@ -231,13 +240,16 @@
         - result.changed == False
     when: skip_drg_attachment_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_update_using_name_optional_required_idempotence_test is not defined
 
@@ -266,13 +278,16 @@
         - result.changed == True
     when: skip_drg_attachment_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_delete_required_test is not defined
 
@@ -330,13 +345,16 @@
       drg_attachment_resource_id: "{{ result.drg_attachment.id }}"
     when: skip_drg_attachment_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_create_optional_required_original_test is not defined
 
@@ -365,13 +383,16 @@
         - result.changed == False
     when: skip_drg_attachment_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_create_optional_required_idempotence_test is not defined
 
@@ -398,13 +419,16 @@
         - result.changed == True
     when: skip_drg_attachment_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_update_optional_required_test is not defined
 
@@ -431,13 +455,16 @@
         - result.changed == False
     when: skip_drg_attachment_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.drg_attachment.compartment_id is defined
+        - result.drg_attachment.display_name is defined
         - result.drg_attachment.drg_id is defined
         - result.drg_attachment.id is defined
         - result.drg_attachment.lifecycle_state is defined
+        - result.drg_attachment.route_table_id is defined
+        - result.drg_attachment.time_created is defined
         - result.drg_attachment.vcn_id is defined
     when: skip_drg_attachment_update_optional_required_idempotence_test is not defined
 
@@ -463,13 +490,16 @@
     when: skip_drg_attachment_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.drg_id is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.route_table_id is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.drg_attachments }}"
     when: skip_drg_attachment_list_test is not defined
@@ -495,13 +525,16 @@
         - result.drg_attachments | length == 1
     when: skip_drg_attachment_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.display_name is defined
         - item.drg_id is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.route_table_id is defined
+        - item.time_created is defined
         - item.vcn_id is defined
     with_items: "{{ result.drg_attachments }}"
     when: skip_drg_attachment_get_test is not defined

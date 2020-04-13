@@ -12,6 +12,13 @@
         - result.namespace != None
     when: skip_namespace_get_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+    with_items:
+      - "{{ result.namespace }}"
+    when: skip_namespace_get_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

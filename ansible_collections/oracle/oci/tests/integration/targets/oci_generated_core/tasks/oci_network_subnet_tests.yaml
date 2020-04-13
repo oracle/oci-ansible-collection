@@ -136,14 +136,24 @@
       subnet_resource_id: "{{ result.subnet.id }}"
     when: skip_subnet_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -173,14 +183,24 @@
         - result.changed == False
     when: skip_subnet_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -216,14 +236,24 @@
         - result.changed == True
     when: skip_subnet_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -259,14 +289,24 @@
         - result.changed == False
     when: skip_subnet_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -298,14 +338,24 @@
         - result.changed == True
     when: skip_subnet_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -373,14 +423,24 @@
       subnet_resource_id: "{{ result.subnet.id }}"
     when: skip_subnet_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -418,14 +478,24 @@
         - result.changed == False
     when: skip_subnet_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -458,14 +528,24 @@
         - result.changed == True
     when: skip_subnet_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -498,14 +578,24 @@
         - result.changed == False
     when: skip_subnet_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.subnet.availability_domain is defined
         - result.subnet.cidr_block is defined
         - result.subnet.compartment_id is defined
+        - result.subnet.defined_tags is defined
+        - result.subnet.dhcp_options_id is defined
+        - result.subnet.display_name is defined
+        - result.subnet.dns_label is defined
+        - result.subnet.freeform_tags is defined
         - result.subnet.id is defined
         - result.subnet.lifecycle_state is defined
+        - result.subnet.prohibit_public_ip_on_vnic is defined
         - result.subnet.route_table_id is defined
+        - result.subnet.security_list_ids is defined
+        - result.subnet.subnet_domain_name is defined
+        - result.subnet.time_created is defined
         - result.subnet.vcn_id is defined
         - result.subnet.virtual_router_ip is defined
         - result.subnet.virtual_router_mac is defined
@@ -534,14 +624,24 @@
     when: skip_subnet_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.availability_domain is defined
         - item.cidr_block is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.dhcp_options_id is defined
+        - item.display_name is defined
+        - item.dns_label is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.prohibit_public_ip_on_vnic is defined
         - item.route_table_id is defined
+        - item.security_list_ids is defined
+        - item.subnet_domain_name is defined
+        - item.time_created is defined
         - item.vcn_id is defined
         - item.virtual_router_ip is defined
         - item.virtual_router_mac is defined
@@ -569,14 +669,24 @@
         - result.subnets | length == 1
     when: skip_subnet_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.availability_domain is defined
         - item.cidr_block is defined
         - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.dhcp_options_id is defined
+        - item.display_name is defined
+        - item.dns_label is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.lifecycle_state is defined
+        - item.prohibit_public_ip_on_vnic is defined
         - item.route_table_id is defined
+        - item.security_list_ids is defined
+        - item.subnet_domain_name is defined
+        - item.time_created is defined
         - item.vcn_id is defined
         - item.virtual_router_ip is defined
         - item.virtual_router_mac is defined

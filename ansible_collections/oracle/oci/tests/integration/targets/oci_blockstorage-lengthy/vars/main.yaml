@@ -1,4 +1,4 @@
 # variables for oci_blockstorage_boot_volume_tests.yaml
-test_instance_name: "ansible-test-instance-{{random_suffix_1024}}"
+test_instance_name: "ansible-test-instance-blockstorage-lengthy-{{random_suffix_1024}}"
 boot_volume_name: "ansible-test-boot-volume-{{random_suffix_1024}}"
 boot_volume_backup_name: "ansible-test-boot-volume-backup-{{random_suffix_1024}}"

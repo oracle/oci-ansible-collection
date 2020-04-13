@@ -42,6 +42,35 @@
       virtual_circuit_resource_id: "{{ result.virtual_circuit.id }}"
     when: skip_virtual_circuit_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
+    when: skip_virtual_circuit_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -63,6 +92,35 @@
     assert:
       that:
         - result.changed == False
+    when: skip_virtual_circuit_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
     when: skip_virtual_circuit_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -107,6 +165,35 @@
         - result.changed == True
     when: skip_virtual_circuit_update_using_name_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
+    when: skip_virtual_circuit_update_using_name_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -140,6 +227,35 @@
         - result.changed == False
     when: skip_virtual_circuit_update_using_name_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
+    when: skip_virtual_circuit_update_using_name_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -163,6 +279,35 @@
     assert:
       that:
         - result.changed == True
+    when: skip_virtual_circuit_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
     when: skip_virtual_circuit_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -243,6 +388,35 @@
       virtual_circuit_resource_id: "{{ result.virtual_circuit.id }}"
     when: skip_virtual_circuit_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
+    when: skip_virtual_circuit_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -276,6 +450,35 @@
     assert:
       that:
         - result.changed == False
+    when: skip_virtual_circuit_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
     when: skip_virtual_circuit_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -318,6 +521,35 @@
         - result.changed == True
     when: skip_virtual_circuit_update_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
+    when: skip_virtual_circuit_update_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -349,6 +581,35 @@
         - result.changed == False
     when: skip_virtual_circuit_update_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.virtual_circuit.bandwidth_shape_name is defined
+        - result.virtual_circuit.bgp_management is defined
+        - result.virtual_circuit.bgp_session_state is defined
+        - result.virtual_circuit.compartment_id is defined
+        - result.virtual_circuit.cross_connect_mappings is defined
+        - result.virtual_circuit.customer_bgp_asn is defined
+        - result.virtual_circuit.defined_tags is defined
+        - result.virtual_circuit.display_name is defined
+        - result.virtual_circuit.freeform_tags is defined
+        - result.virtual_circuit.gateway_id is defined
+        - result.virtual_circuit.id is defined
+        - result.virtual_circuit.lifecycle_state is defined
+        - result.virtual_circuit.oracle_bgp_asn is defined
+        - result.virtual_circuit.provider_name is defined
+        - result.virtual_circuit.provider_service_id is defined
+        - result.virtual_circuit.provider_service_key_name is defined
+        - result.virtual_circuit.provider_service_name is defined
+        - result.virtual_circuit.provider_state is defined
+        - result.virtual_circuit.public_prefixes is defined
+        - result.virtual_circuit.reference_comment is defined
+        - result.virtual_circuit.region is defined
+        - result.virtual_circuit.service_type is defined
+        - result.virtual_circuit.time_created is defined
+        - result.virtual_circuit.type is defined
+    when: skip_virtual_circuit_update_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -371,6 +632,36 @@
     when: skip_virtual_circuit_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.bandwidth_shape_name is defined
+        - item.bgp_management is defined
+        - item.bgp_session_state is defined
+        - item.compartment_id is defined
+        - item.cross_connect_mappings is defined
+        - item.customer_bgp_asn is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.gateway_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.oracle_bgp_asn is defined
+        - item.provider_name is defined
+        - item.provider_service_id is defined
+        - item.provider_service_key_name is defined
+        - item.provider_service_name is defined
+        - item.provider_state is defined
+        - item.public_prefixes is defined
+        - item.reference_comment is defined
+        - item.region is defined
+        - item.service_type is defined
+        - item.time_created is defined
+        - item.type is defined
+    with_items: "{{ result.virtual_circuits }}"
+    when: skip_virtual_circuit_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -390,6 +681,36 @@
     assert:
       that:
         - result.virtual_circuits | length == 1
+    when: skip_virtual_circuit_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.bandwidth_shape_name is defined
+        - item.bgp_management is defined
+        - item.bgp_session_state is defined
+        - item.compartment_id is defined
+        - item.cross_connect_mappings is defined
+        - item.customer_bgp_asn is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.gateway_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.oracle_bgp_asn is defined
+        - item.provider_name is defined
+        - item.provider_service_id is defined
+        - item.provider_service_key_name is defined
+        - item.provider_service_name is defined
+        - item.provider_state is defined
+        - item.public_prefixes is defined
+        - item.reference_comment is defined
+        - item.region is defined
+        - item.service_type is defined
+        - item.time_created is defined
+        - item.type is defined
+    with_items: "{{ result.virtual_circuits }}"
     when: skip_virtual_circuit_get_test is not defined
 
   - name: Assert custom assertions

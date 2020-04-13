@@ -63,9 +63,11 @@
     when: skip_network_security_group_vnic_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.resource_id is defined
+        - item.time_associated is defined
         - item.vnic_id is defined
     with_items: "{{ result.network_security_group_vnics }}"
     when: skip_network_security_group_vnic_list_test is not defined

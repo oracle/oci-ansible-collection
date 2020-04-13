@@ -79,7 +79,7 @@
         instance_configuration_id: "{{my_instance_config_ocid}}"
         size: 1
         placement_configurations:
-        - availability_domain: "{{test_availability_domain}}"
+        - availability_domain: "{{test_availability_domain_3}}"
           primary_subnet_id: "{{common_subnet_id}}"
       register: result
     - set_fact:
@@ -98,7 +98,7 @@
         instance_configuration_id: "{{my_instance_config_ocid}}"
         size: 1
         placement_configurations:
-        - availability_domain: "{{test_availability_domain}}"
+        - availability_domain: "{{test_availability_domain_3}}"
           primary_subnet_id: "{{common_subnet_id}}"
       register: result
     - name: Assert that changed is False

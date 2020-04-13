@@ -121,12 +121,14 @@
       security_list_resource_id: "{{ result.security_list.id }}"
     when: skip_security_list_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -159,12 +161,14 @@
         - result.changed == False
     when: skip_security_list_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -251,12 +255,14 @@
         - result.changed == True
     when: skip_security_list_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -293,12 +299,14 @@
         - result.changed == False
     when: skip_security_list_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -332,12 +340,14 @@
         - result.changed == True
     when: skip_security_list_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -452,12 +462,14 @@
       security_list_resource_id: "{{ result.security_list.id }}"
     when: skip_security_list_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -492,12 +504,14 @@
         - result.changed == False
     when: skip_security_list_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -581,12 +595,14 @@
         - result.changed == True
     when: skip_security_list_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -620,12 +636,14 @@
         - result.changed == False
     when: skip_security_list_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.security_list.compartment_id is defined
+        - result.security_list.defined_tags is defined
         - result.security_list.display_name is defined
         - result.security_list.egress_security_rules is defined
+        - result.security_list.freeform_tags is defined
         - result.security_list.id is defined
         - result.security_list.ingress_security_rules is defined
         - result.security_list.lifecycle_state is defined
@@ -656,12 +674,14 @@
     when: skip_security_list_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
         - item.egress_security_rules is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.ingress_security_rules is defined
         - item.lifecycle_state is defined
@@ -691,12 +711,14 @@
         - result.security_lists | length == 1
     when: skip_security_list_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.compartment_id is defined
+        - item.defined_tags is defined
         - item.display_name is defined
         - item.egress_security_rules is defined
+        - item.freeform_tags is defined
         - item.id is defined
         - item.ingress_security_rules is defined
         - item.lifecycle_state is defined

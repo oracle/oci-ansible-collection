@@ -44,7 +44,7 @@
       policy_resource_id: "{{ result.policy.id }}"
     when: skip_policy_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -54,6 +54,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -80,7 +84,7 @@
         - result.changed == False
     when: skip_policy_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -90,6 +94,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -121,7 +129,7 @@
         - result.changed == True
     when: skip_policy_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -131,6 +139,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -162,7 +174,7 @@
         - result.changed == False
     when: skip_policy_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -172,6 +184,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -199,7 +215,7 @@
         - result.changed == True
     when: skip_policy_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -209,6 +225,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -267,7 +287,7 @@
       policy_resource_id: "{{ result.policy.id }}"
     when: skip_policy_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -277,6 +297,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -306,7 +330,7 @@
         - result.changed == False
     when: skip_policy_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -316,6 +340,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -344,7 +372,7 @@
         - result.changed == True
     when: skip_policy_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -354,6 +382,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -382,7 +414,7 @@
         - result.changed == False
     when: skip_policy_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.policy.id is defined
@@ -392,6 +424,10 @@
         - result.policy.description is defined
         - result.policy.time_created is defined
         - result.policy.lifecycle_state is defined
+        - result.policy.inactive_status is defined
+        - result.policy.version_date is defined
+        - result.policy.freeform_tags is defined
+        - result.policy.defined_tags is defined
     when: skip_policy_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -416,7 +452,7 @@
     when: skip_policy_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -426,6 +462,10 @@
         - item.description is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.version_date is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.policies }}"
     when: skip_policy_list_test is not defined
 
@@ -450,7 +490,7 @@
         - result.policies | length == 1
     when: skip_policy_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -460,6 +500,10 @@
         - item.description is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.version_date is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.policies }}"
     when: skip_policy_get_test is not defined
 

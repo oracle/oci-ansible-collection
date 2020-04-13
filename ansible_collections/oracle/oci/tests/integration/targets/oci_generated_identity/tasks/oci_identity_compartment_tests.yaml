@@ -42,7 +42,7 @@
       compartment_resource_id: "{{ result.compartment.id }}"
     when: skip_compartment_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -51,6 +51,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -76,7 +80,7 @@
         - result.changed == False
     when: skip_compartment_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -85,6 +89,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -114,7 +122,7 @@
         - result.changed == True
     when: skip_compartment_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -123,6 +131,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -152,7 +164,7 @@
         - result.changed == False
     when: skip_compartment_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -161,6 +173,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -188,7 +204,7 @@
         - result.changed == True
     when: skip_compartment_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -197,6 +213,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -253,7 +273,7 @@
       compartment_resource_id: "{{ result.compartment.id }}"
     when: skip_compartment_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -262,6 +282,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -289,7 +313,7 @@
         - result.changed == False
     when: skip_compartment_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -298,6 +322,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -325,7 +353,7 @@
         - result.changed == True
     when: skip_compartment_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -334,6 +362,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -361,7 +393,7 @@
         - result.changed == False
     when: skip_compartment_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.compartment.id is defined
@@ -370,6 +402,10 @@
         - result.compartment.description is defined
         - result.compartment.time_created is defined
         - result.compartment.lifecycle_state is defined
+        - result.compartment.inactive_status is defined
+        - result.compartment.is_accessible is defined
+        - result.compartment.freeform_tags is defined
+        - result.compartment.defined_tags is defined
     when: skip_compartment_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -394,7 +430,7 @@
     when: skip_compartment_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -403,6 +439,10 @@
         - item.description is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.is_accessible is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.compartments }}"
     when: skip_compartment_list_test is not defined
 
@@ -427,7 +467,7 @@
         - result.compartments | length == 1
     when: skip_compartment_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
@@ -436,6 +476,10 @@
         - item.description is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
+        - item.is_accessible is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.compartments }}"
     when: skip_compartment_get_test is not defined
 

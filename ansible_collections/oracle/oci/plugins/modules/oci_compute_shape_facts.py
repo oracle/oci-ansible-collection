@@ -62,12 +62,6 @@ shapes:
     returned: on success
     type: complex
     contains:
-        availability_domain:
-            description:
-                - The shape's availability domain.
-            returned: on success
-            type: string
-            sample: Uocm:PHX-AD-1
         shape:
             description:
                 - The name of the shape. You can enumerate all available shapes by calling
@@ -76,7 +70,6 @@ shapes:
             type: string
             sample: shape_example
     sample: [{
-        "availability_domain": "Uocm:PHX-AD-1",
         "shape": "shape_example"
     }]
 """

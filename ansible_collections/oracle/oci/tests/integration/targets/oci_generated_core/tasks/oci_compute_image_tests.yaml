@@ -66,15 +66,23 @@
       image_resource_id: "{{ result.image.id }}"
     when: skip_image_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_create_required_original_test is not defined
 
@@ -100,15 +108,23 @@
         - result.changed == False
     when: skip_image_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_create_required_idempotency_test is not defined
 
@@ -140,15 +156,23 @@
         - result.changed == True
     when: skip_image_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_update_using_name_optional_required_test is not defined
 
@@ -180,15 +204,23 @@
         - result.changed == False
     when: skip_image_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_update_using_name_optional_required_idempotence_test is not defined
 
@@ -217,15 +249,23 @@
         - result.changed == True
     when: skip_image_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_delete_required_test is not defined
 
@@ -308,15 +348,23 @@
       image_resource_id: "{{ result.image.id }}"
     when: skip_image_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_create_optional_required_original_test is not defined
 
@@ -348,15 +396,23 @@
         - result.changed == False
     when: skip_image_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_create_optional_required_idempotence_test is not defined
 
@@ -386,15 +442,23 @@
         - result.changed == True
     when: skip_image_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_update_optional_required_test is not defined
 
@@ -424,15 +488,23 @@
         - result.changed == False
     when: skip_image_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.image.base_image_id is defined
         - result.image.compartment_id is defined
         - result.image.create_image_allowed is defined
+        - result.image.defined_tags is defined
+        - result.image.display_name is defined
+        - result.image.freeform_tags is defined
         - result.image.id is defined
+        - result.image.launch_mode is defined
+        - result.image.launch_options is defined
         - result.image.lifecycle_state is defined
         - result.image.operating_system is defined
         - result.image.operating_system_version is defined
+        - result.image.agent_features is defined
+        - result.image.size_in_mbs is defined
         - result.image.time_created is defined
     when: skip_image_update_optional_required_idempotence_test is not defined
 
@@ -458,15 +530,23 @@
     when: skip_image_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.base_image_id is defined
         - item.compartment_id is defined
         - item.create_image_allowed is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.launch_mode is defined
+        - item.launch_options is defined
         - item.lifecycle_state is defined
         - item.operating_system is defined
         - item.operating_system_version is defined
+        - item.agent_features is defined
+        - item.size_in_mbs is defined
         - item.time_created is defined
     with_items: "{{ result.images }}"
     when: skip_image_list_test is not defined
@@ -492,15 +572,23 @@
         - result.images | length == 1
     when: skip_image_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.base_image_id is defined
         - item.compartment_id is defined
         - item.create_image_allowed is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
         - item.id is defined
+        - item.launch_mode is defined
+        - item.launch_options is defined
         - item.lifecycle_state is defined
         - item.operating_system is defined
         - item.operating_system_version is defined
+        - item.agent_features is defined
+        - item.size_in_mbs is defined
         - item.time_created is defined
     with_items: "{{ result.images }}"
     when: skip_image_get_test is not defined

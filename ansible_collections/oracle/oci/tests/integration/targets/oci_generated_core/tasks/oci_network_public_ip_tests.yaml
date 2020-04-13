@@ -70,6 +70,25 @@
       public_ip_resource_id: "{{ result.public_ip.id }}"
     when: skip_public_ip_create_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
+    when: skip_public_ip_create_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -92,6 +111,25 @@
     assert:
       that:
         - result.changed == False
+    when: skip_public_ip_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
     when: skip_public_ip_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -122,6 +160,25 @@
         - result.changed == True
     when: skip_public_ip_update_using_name_optional_required_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
+    when: skip_public_ip_update_using_name_optional_required_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -150,6 +207,25 @@
         - result.changed == False
     when: skip_public_ip_update_using_name_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
+    when: skip_public_ip_update_using_name_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -174,6 +250,25 @@
     assert:
       that:
         - result.changed == True
+    when: skip_public_ip_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
     when: skip_public_ip_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -233,6 +328,25 @@
       public_ip_resource_id: "{{ result.public_ip.id }}"
     when: skip_public_ip_create_optional_required_original_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
+    when: skip_public_ip_create_optional_required_original_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -260,6 +374,25 @@
         - result.changed == False
     when: skip_public_ip_create_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
+    when: skip_public_ip_create_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -283,6 +416,25 @@
     assert:
       that:
         - result.changed == True
+    when: skip_public_ip_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
     when: skip_public_ip_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -310,6 +462,25 @@
         - result.changed == False
     when: skip_public_ip_update_optional_required_idempotence_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.public_ip.assigned_entity_id is defined
+        - result.public_ip.assigned_entity_type is defined
+        - result.public_ip.availability_domain is defined
+        - result.public_ip.compartment_id is defined
+        - result.public_ip.defined_tags is defined
+        - result.public_ip.display_name is defined
+        - result.public_ip.freeform_tags is defined
+        - result.public_ip.id is defined
+        - result.public_ip.ip_address is defined
+        - result.public_ip.lifecycle_state is defined
+        - result.public_ip.lifetime is defined
+        - result.public_ip.private_ip_id is defined
+        - result.public_ip.scope is defined
+        - result.public_ip.time_created is defined
+    when: skip_public_ip_update_optional_required_idempotence_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -333,6 +504,26 @@
     when: skip_public_ip_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.assigned_entity_id is defined
+        - item.assigned_entity_type is defined
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.id is defined
+        - item.ip_address is defined
+        - item.lifecycle_state is defined
+        - item.lifetime is defined
+        - item.private_ip_id is defined
+        - item.scope is defined
+        - item.time_created is defined
+    with_items: "{{ result.public_ips }}"
+    when: skip_public_ip_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -352,6 +543,26 @@
     assert:
       that:
         - result.public_ips | length == 1
+    when: skip_public_ip_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.assigned_entity_id is defined
+        - item.assigned_entity_type is defined
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.id is defined
+        - item.ip_address is defined
+        - item.lifecycle_state is defined
+        - item.lifetime is defined
+        - item.private_ip_id is defined
+        - item.scope is defined
+        - item.time_created is defined
+    with_items: "{{ result.public_ips }}"
     when: skip_public_ip_get_test is not defined
 
   - name: Assert custom assertions

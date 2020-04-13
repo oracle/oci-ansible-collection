@@ -63,13 +63,15 @@
       mfa_totp_device_resource_id: "{{ result.mfa_totp_device.id }}"
     when: skip_mfa_totp_device_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.mfa_totp_device.id is defined
         - result.mfa_totp_device.user_id is defined
         - result.mfa_totp_device.time_created is defined
+        - result.mfa_totp_device.time_expires is defined
         - result.mfa_totp_device.lifecycle_state is defined
+        - result.mfa_totp_device.inactive_status is defined
         - result.mfa_totp_device.is_activated is defined
     when: skip_mfa_totp_device_create_required_original_test is not defined
 
@@ -94,13 +96,15 @@
         - result.changed == False
     when: skip_mfa_totp_device_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.mfa_totp_device.id is defined
         - result.mfa_totp_device.user_id is defined
         - result.mfa_totp_device.time_created is defined
+        - result.mfa_totp_device.time_expires is defined
         - result.mfa_totp_device.lifecycle_state is defined
+        - result.mfa_totp_device.inactive_status is defined
         - result.mfa_totp_device.is_activated is defined
     when: skip_mfa_totp_device_create_required_idempotency_test is not defined
 
@@ -127,13 +131,15 @@
         - result.changed == True
     when: skip_mfa_totp_device_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.mfa_totp_device.id is defined
         - result.mfa_totp_device.user_id is defined
         - result.mfa_totp_device.time_created is defined
+        - result.mfa_totp_device.time_expires is defined
         - result.mfa_totp_device.lifecycle_state is defined
+        - result.mfa_totp_device.inactive_status is defined
         - result.mfa_totp_device.is_activated is defined
     when: skip_mfa_totp_device_delete_required_test is not defined
 
@@ -185,13 +191,15 @@
       mfa_totp_device_resource_id: "{{ result.mfa_totp_device.id }}"
     when: skip_mfa_totp_device_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.mfa_totp_device.id is defined
         - result.mfa_totp_device.user_id is defined
         - result.mfa_totp_device.time_created is defined
+        - result.mfa_totp_device.time_expires is defined
         - result.mfa_totp_device.lifecycle_state is defined
+        - result.mfa_totp_device.inactive_status is defined
         - result.mfa_totp_device.is_activated is defined
     when: skip_mfa_totp_device_create_optional_required_original_test is not defined
 
@@ -216,13 +224,15 @@
         - result.changed == False
     when: skip_mfa_totp_device_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.mfa_totp_device.id is defined
         - result.mfa_totp_device.user_id is defined
         - result.mfa_totp_device.time_created is defined
+        - result.mfa_totp_device.time_expires is defined
         - result.mfa_totp_device.lifecycle_state is defined
+        - result.mfa_totp_device.inactive_status is defined
         - result.mfa_totp_device.is_activated is defined
     when: skip_mfa_totp_device_create_optional_required_idempotence_test is not defined
 
@@ -248,13 +258,15 @@
     when: skip_mfa_totp_device_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.user_id is defined
         - item.time_created is defined
+        - item.time_expires is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
         - item.is_activated is defined
     with_items: "{{ result.mfa_totp_devices }}"
     when: skip_mfa_totp_device_list_test is not defined
@@ -281,13 +293,15 @@
         - result.mfa_totp_devices | length == 1
     when: skip_mfa_totp_device_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.id is defined
         - item.user_id is defined
         - item.time_created is defined
+        - item.time_expires is defined
         - item.lifecycle_state is defined
+        - item.inactive_status is defined
         - item.is_activated is defined
     with_items: "{{ result.mfa_totp_devices }}"
     when: skip_mfa_totp_device_get_test is not defined

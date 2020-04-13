@@ -42,6 +42,18 @@
     when: skip_identity_provider_group_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.identity_provider_id is defined
+        - item.display_name is defined
+        - item.external_identifier is defined
+        - item.time_created is defined
+        - item.time_modified is defined
+    with_items: "{{ result.identity_provider_groups }}"
+    when: skip_identity_provider_group_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

@@ -13,6 +13,19 @@
         - result.tenancy != None
     when: skip_tenancy_get_test is not defined
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.name is defined
+        - item.description is defined
+        - item.home_region_key is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+    with_items:
+      - "{{ result.tenancy }}"
+    when: skip_tenancy_get_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:

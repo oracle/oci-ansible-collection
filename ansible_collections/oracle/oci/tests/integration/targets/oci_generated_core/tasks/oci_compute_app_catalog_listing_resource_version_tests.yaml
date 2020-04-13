@@ -13,6 +13,16 @@
     when: skip_app_catalog_listing_resource_version_list_test is not defined
 
 
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.listing_id is defined
+        - item.time_published is defined
+        - item.listing_resource_id is defined
+        - item.listing_resource_version is defined
+    with_items: "{{ result.app_catalog_listing_resource_versions }}"
+    when: skip_app_catalog_listing_resource_version_list_test is not defined
+
   - name: Assert custom assertions
     assert:
       that:
@@ -33,6 +43,16 @@
     assert:
       that:
         - result.app_catalog_listing_resource_versions | length == 1
+    when: skip_app_catalog_listing_resource_version_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.listing_id is defined
+        - item.time_published is defined
+        - item.listing_resource_id is defined
+        - item.listing_resource_version is defined
+    with_items: "{{ result.app_catalog_listing_resource_versions }}"
     when: skip_app_catalog_listing_resource_version_get_test is not defined
 
   - name: Assert custom assertions
