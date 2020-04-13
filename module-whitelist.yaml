@@ -175,7 +175,6 @@ moduleWhitelist:
   - oci_object_storage_namespace_facts
   - oci_object_storage_namespace_metadata
   - oci_object_storage_namespace_metadata_facts
-
   - oci_file_storage_export
   - oci_file_storage_export_facts
   - oci_file_storage_mount_target
@@ -186,13 +185,7 @@ moduleWhitelist:
   - oci_file_storage_export_set_facts
   - oci_file_storage_snapshot
   - oci_file_storage_snapshot_facts
-operationOverrides:
-  /publicIps/actions/getByIpAddress:
-    path: "/publicIps/getByIpAddress"
-    httpMethod: "GET"
-  /publicIps/actions/getByPrivateIpId:
-    path: "/publicIps/getByPrivateIpId"
-    httpMethod: "GET"
+
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -256,8 +249,6 @@ operationIdBlacklist:
   - update_user_state
   # deprecated
   - get_instance_default_credentials
-  # update_bucket blacklisted as it is attempting to overwrite create_bucket
-  - update_bucket
 
 extraFactsModuleParameters:
   core:

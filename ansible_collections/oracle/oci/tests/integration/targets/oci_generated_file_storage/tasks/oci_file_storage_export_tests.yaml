@@ -69,7 +69,7 @@
       export_resource_id: "{{ result.export.id }}"
     when: skip_export_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -104,7 +104,7 @@
         - result.changed == False
     when: skip_export_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -138,7 +138,7 @@
         - result.changed == True
     when: skip_export_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -210,7 +210,7 @@
       export_resource_id: "{{ result.export.id }}"
     when: skip_export_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -246,7 +246,7 @@
         - result.changed == False
     when: skip_export_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -290,7 +290,7 @@
         - result.changed == True
     when: skip_export_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -324,7 +324,7 @@
         - result.changed == False
     when: skip_export_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.export.export_options is defined
@@ -357,10 +357,9 @@
     when: skip_export_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
-        - item.export_options is defined
         - item.export_set_id is defined
         - item.file_system_id is defined
         - item.id is defined
@@ -391,10 +390,9 @@
         - result.exports | length == 1
     when: skip_export_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
-        - item.export_options is defined
         - item.export_set_id is defined
         - item.file_system_id is defined
         - item.id is defined

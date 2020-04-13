@@ -1,3 +1,0 @@
-- import_tasks: oci_bucket_tests.yaml
-  tags:
-    - bucket

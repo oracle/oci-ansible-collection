@@ -80,9 +80,16 @@ class NamespaceFactsHelperGen(OCIResourceFactsHelperBase):
         return []
 
     def get_resource(self):
+        optional_get_method_params = [
+            "compartment_id",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
-            self.client.get_namespace,
-            compartment_id=self.module.params.get("compartment_id"),
+            self.client.get_namespace, **optional_kwargs
         )
 
 

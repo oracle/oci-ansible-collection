@@ -237,11 +237,19 @@ class BucketFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_resource(self):
+        optional_get_method_params = [
+            "fields",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_bucket,
             namespace_name=self.module.params.get("namespace_name"),
             bucket_name=self.module.params.get("bucket_name"),
-            fields=self.module.params.get("fields"),
+            **optional_kwargs
         )
 
     def list_resources(self):

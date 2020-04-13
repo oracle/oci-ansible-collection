@@ -191,7 +191,6 @@ test_app_catalog_subscription_create_optional_required_oracle_terms_of_use_link:
 test_app_catalog_subscription_create_optional_required_eula_link: "{{ app_catalog_agreement.eula_link }}"
 test_app_catalog_subscription_create_optional_required_time_retrieved: "{{ app_catalog_agreement.time_retrieved }}"
 test_app_catalog_subscription_create_optional_required_signature: "{{ app_catalog_agreement.signature }}"
-app_catalog_subscription_resource_id: "define_this_so_that_delete_test_runs"
 test_app_catalog_subscription_delete_rescue_listing_resource_version: "{{ app_catalog_agreement.listing_resource_version }}"
 
 # variables for oci_compute_instance_setup.yaml

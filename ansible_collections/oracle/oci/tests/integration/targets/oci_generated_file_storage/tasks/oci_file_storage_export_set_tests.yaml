@@ -18,13 +18,16 @@
         - result.changed == True
     when: skip_export_set_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.export_set.availability_domain is defined
         - result.export_set.compartment_id is defined
         - result.export_set.display_name is defined
         - result.export_set.id is defined
         - result.export_set.lifecycle_state is defined
+        - result.export_set.max_fs_stat_bytes is defined
+        - result.export_set.max_fs_stat_files is defined
         - result.export_set.time_created is defined
         - result.export_set.vcn_id is defined
     when: skip_export_set_update_using_name_optional_required_test is not defined
@@ -56,13 +59,16 @@
         - result.changed == False
     when: skip_export_set_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.export_set.availability_domain is defined
         - result.export_set.compartment_id is defined
         - result.export_set.display_name is defined
         - result.export_set.id is defined
         - result.export_set.lifecycle_state is defined
+        - result.export_set.max_fs_stat_bytes is defined
+        - result.export_set.max_fs_stat_files is defined
         - result.export_set.time_created is defined
         - result.export_set.vcn_id is defined
     when: skip_export_set_update_using_name_optional_required_idempotence_test is not defined
@@ -91,13 +97,16 @@
         - result.changed == True
     when: skip_export_set_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.export_set.availability_domain is defined
         - result.export_set.compartment_id is defined
         - result.export_set.display_name is defined
         - result.export_set.id is defined
         - result.export_set.lifecycle_state is defined
+        - result.export_set.max_fs_stat_bytes is defined
+        - result.export_set.max_fs_stat_files is defined
         - result.export_set.time_created is defined
         - result.export_set.vcn_id is defined
     when: skip_export_set_update_optional_required_test is not defined
@@ -126,13 +135,16 @@
         - result.changed == False
     when: skip_export_set_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.export_set.availability_domain is defined
         - result.export_set.compartment_id is defined
         - result.export_set.display_name is defined
         - result.export_set.id is defined
         - result.export_set.lifecycle_state is defined
+        - result.export_set.max_fs_stat_bytes is defined
+        - result.export_set.max_fs_stat_files is defined
         - result.export_set.time_created is defined
         - result.export_set.vcn_id is defined
     when: skip_export_set_update_optional_required_idempotence_test is not defined
@@ -160,9 +172,10 @@
     when: skip_export_set_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.availability_domain is defined
         - item.compartment_id is defined
         - item.display_name is defined
         - item.id is defined
@@ -193,9 +206,10 @@
         - result.export_sets | length == 1
     when: skip_export_set_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.availability_domain is defined
         - item.compartment_id is defined
         - item.display_name is defined
         - item.id is defined

@@ -89,13 +89,21 @@ class InstanceConsoleHistoryContentFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_resource(self):
+        optional_get_method_params = [
+            "offset",
+            "length",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_console_history_content,
             instance_console_history_id=self.module.params.get(
                 "instance_console_history_id"
             ),
-            offset=self.module.params.get("offset"),
-            length=self.module.params.get("length"),
+            **optional_kwargs
         )
 
 

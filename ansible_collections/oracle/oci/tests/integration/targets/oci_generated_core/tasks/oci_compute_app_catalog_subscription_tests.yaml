@@ -298,4 +298,3 @@
         state: absent
       register: result
       ignore_errors: yes
-      when: app_catalog_subscription_resource_id is defined

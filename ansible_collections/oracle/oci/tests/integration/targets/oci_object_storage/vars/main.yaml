@@ -1,6 +1,0 @@
----
-# bucket_tests
-test_bucket_name: "my_test_bucket_{{random_suffix_1024}}"
-
-test_bucket_create_optional_required_metadata: null
-test_bucket_create_optional_required_kms_key_id: "{{ kms_ocid }}"

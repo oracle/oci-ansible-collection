@@ -457,7 +457,6 @@
         state: absent
       register: result
       ignore_errors: yes
-      when: tag_resource_id is defined
 
     - name: Delete dependency tag_namespace
       oci_identity_tag_namespace:

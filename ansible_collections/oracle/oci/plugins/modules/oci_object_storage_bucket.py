@@ -22,7 +22,7 @@ DOCUMENTATION = """
 module: oci_object_storage_bucket
 short_description: Manage a Bucket resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create and delete a Bucket resource in Oracle Cloud Infrastructure
+    - This module allows the user to create, update and delete a Bucket resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a bucket in the given namespace with a bucket name and optional user-defined metadata. Avoid entering
       confidential information in bucket names.
 version_added: "2.5"
@@ -37,14 +37,12 @@ options:
             - "The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, and dashes.
               Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
               example: Example: my-new-bucket1"
-            - Required for create using I(state=present).
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+        required: true
     compartment_id:
         description:
             - The ID of the compartment in which to create the bucket.
             - Required for create using I(state=present).
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     metadata:
         description:
@@ -88,16 +86,10 @@ options:
         description:
             - The OCID of a KMS key id used to call KMS to generate the data key or decrypt the encrypted data key.
         type: str
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
     state:
         description:
             - The state of the Bucket.
-            - Use I(state=present) to create a Bucket.
+            - Use I(state=present) to create or update a Bucket.
             - Use I(state=absent) to delete a Bucket.
         type: str
         required: false
@@ -117,17 +109,15 @@ EXAMPLES = """
     name: my-test-1
     compartment_id: ocid.compartment.oc1..exampleuniquecompartmentID
 
-- name: Delete bucket
-  oci_object_storage_bucket:
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    state: absent
-
-- name: Delete bucket using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+- name: Update bucket
   oci_object_storage_bucket:
     namespace_name: namespace_name_example
     name: my-test-1
-    compartment_id: ocid.compartment.oc1..exampleuniquecompartmentID
+
+- name: Delete bucket
+  oci_object_storage_bucket:
+    namespace_name: namespace_name_example
+    name: my-test-1
     state: absent
 
 """
@@ -275,6 +265,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.object_storage import ObjectStorageClient
     from oci.object_storage.models import CreateBucketDetails
+    from oci.object_storage.models import UpdateBucketDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -282,13 +273,7 @@ except ImportError:
 
 
 class BucketHelperGen(OCIResourceHelperBase):
-    """Supported operations: create, get, list and delete"""
-
-    def get_module_resource_id_param(self):
-        return "bucket_name"
-
-    def get_module_resource_id(self):
-        return self.module.params.get("bucket_name")
+    """Supported operations: create, update, get, list and delete"""
 
     def get_get_fn(self):
         return self.client.get_bucket
@@ -346,6 +331,27 @@ class BucketHelperGen(OCIResourceHelperBase):
             or self.get_resource_active_states(),
         )
 
+    def get_update_model_class(self):
+        return UpdateBucketDetails
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_bucket,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                namespace_name=self.module.params.get("namespace_name"),
+                bucket_name=self.module.params.get("bucket_name"),
+                update_bucket_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.client,
+            resource_helper=self,
+            wait_for_states=self.module.params.get("wait_until")
+            or self.get_resource_active_states(),
+        )
+
     def delete_resource(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_bucket,
@@ -377,7 +383,7 @@ def main():
     module_args.update(
         dict(
             namespace_name=dict(type="str", required=True),
-            name=dict(type="str"),
+            name=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             metadata=dict(type="dict"),
             public_access_type=dict(
@@ -388,7 +394,6 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
-            bucket_name=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )
@@ -407,10 +412,10 @@ def main():
 
     result = dict(changed=False)
 
-    if resource_helper.is_delete_using_name():
-        result = resource_helper.delete_using_name()
-    elif resource_helper.is_delete():
+    if resource_helper.is_delete():
         result = resource_helper.delete()
+    elif resource_helper.is_update():
+        result = resource_helper.update()
     elif resource_helper.is_create():
         result = resource_helper.create()
 

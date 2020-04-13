@@ -44,17 +44,21 @@
       mount_target_resource_id: "{{ result.mount_target.id }}"
     when: skip_mount_target_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -81,17 +85,21 @@
         - result.changed == False
     when: skip_mount_target_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -121,17 +129,21 @@
         - result.changed == True
     when: skip_mount_target_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -161,17 +173,21 @@
         - result.changed == False
     when: skip_mount_target_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -200,17 +216,21 @@
         - result.changed == True
     when: skip_mount_target_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -271,17 +291,21 @@
       mount_target_resource_id: "{{ result.mount_target.id }}"
     when: skip_mount_target_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -312,17 +336,21 @@
         - result.changed == False
     when: skip_mount_target_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -349,17 +377,21 @@
         - result.changed == True
     when: skip_mount_target_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -386,17 +418,21 @@
         - result.changed == False
     when: skip_mount_target_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - result.mount_target.availability_domain is defined
         - result.mount_target.compartment_id is defined
         - result.mount_target.display_name is defined
+        - result.mount_target.export_set_id is defined
         - result.mount_target.id is defined
         - result.mount_target.lifecycle_details is defined
         - result.mount_target.lifecycle_state is defined
         - result.mount_target.private_ip_ids is defined
         - result.mount_target.subnet_id is defined
         - result.mount_target.time_created is defined
+        - result.mount_target.freeform_tags is defined
+        - result.mount_target.defined_tags is defined
     when: skip_mount_target_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -422,13 +458,14 @@
     when: skip_mount_target_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.availability_domain is defined
         - item.compartment_id is defined
         - item.display_name is defined
+        - item.export_set_id is defined
         - item.id is defined
-        - item.lifecycle_details is defined
         - item.lifecycle_state is defined
         - item.private_ip_ids is defined
         - item.subnet_id is defined
@@ -457,13 +494,14 @@
         - result.mount_targets | length == 1
     when: skip_mount_target_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
+        - item.availability_domain is defined
         - item.compartment_id is defined
         - item.display_name is defined
+        - item.export_set_id is defined
         - item.id is defined
-        - item.lifecycle_details is defined
         - item.lifecycle_state is defined
         - item.private_ip_ids is defined
         - item.subnet_id is defined

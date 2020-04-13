@@ -38,6 +38,14 @@ class OCIResourceCommonBase:
             return True
         return resource.lifecycle_state not in oci_common_utils.DEAD_STATES
 
+    def is_summary_model(self, resource):
+        try:
+            if resource.__class__.__name__.endswith("Summary"):
+                return True
+        except AttributeError:
+            return False
+        return False
+
 
 class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
@@ -437,6 +445,19 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
     def get_user_provided_value(self, attr):
         return self.module.params.get(attr)
 
+    def get_get_model_from_summary_model(self, summary_model):
+        try:
+            try:
+                return self.get_get_fn()(summary_model.id).data
+            except AttributeError:
+                # In most of the cases where the resource does not have an id, name is used to identify the resource.
+                # So the get_resource should work as we would have the name in the module params. If this is not the
+                # case then this function should be overridden with the custom logic to get the get model.
+                return self.get_resource().data
+        except NotImplementedError:
+            # Resource does not have a get function. Return the summary model.
+            return summary_model
+
     def get_matching_resource(self):
 
         create_model = self.get_create_model()
@@ -466,7 +487,14 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
             ):
-                return resource
+                # some resources return a summary model instead of a full model in the list call. Returning the summary
+                # model makes the return values inconsistent between the first and subsequent runs. So get and return
+                # the get model (if exists).
+                return (
+                    self.get_get_model_from_summary_model(resource)
+                    if self.is_summary_model(resource)
+                    else resource
+                )
         return None
 
     def create(self):
@@ -746,6 +774,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_audit_custom_helpers,
     oci_object_storage_custom_helpers,
     oci_file_storage_custom_helpers,
+    oci_budget_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -758,6 +787,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_audit_custom_helpers,
         oci_object_storage_custom_helpers,
         oci_file_storage_custom_helpers,
+        oci_budget_custom_helpers,
     ]
 )
 

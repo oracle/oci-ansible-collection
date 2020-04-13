@@ -65,7 +65,7 @@
       snapshot_resource_id: "{{ result.snapshot.id }}"
     when: skip_snapshot_create_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -73,6 +73,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -97,7 +99,7 @@
         - result.changed == False
     when: skip_snapshot_create_required_idempotency_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -105,6 +107,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -133,7 +137,7 @@
         - result.changed == True
     when: skip_snapshot_update_using_name_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -141,6 +145,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_update_using_name_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -169,7 +175,7 @@
         - result.changed == False
     when: skip_snapshot_update_using_name_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -177,6 +183,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_update_using_name_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -204,7 +212,7 @@
         - result.changed == True
     when: skip_snapshot_delete_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -212,6 +220,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -267,7 +277,7 @@
       snapshot_resource_id: "{{ result.snapshot.id }}"
     when: skip_snapshot_create_optional_required_original_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -275,6 +285,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -301,7 +313,7 @@
         - result.changed == False
     when: skip_snapshot_create_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -309,6 +321,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -334,7 +348,7 @@
         - result.changed == True
     when: skip_snapshot_update_optional_required_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -342,6 +356,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -367,7 +383,7 @@
         - result.changed == False
     when: skip_snapshot_update_optional_required_idempotence_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - result.snapshot.file_system_id is defined
@@ -375,6 +391,8 @@
         - result.snapshot.lifecycle_state is defined
         - result.snapshot.name is defined
         - result.snapshot.time_created is defined
+        - result.snapshot.freeform_tags is defined
+        - result.snapshot.defined_tags is defined
     when: skip_snapshot_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -399,7 +417,7 @@
     when: skip_snapshot_list_test is not defined
 
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.file_system_id is defined
@@ -431,7 +449,7 @@
         - result.snapshots | length == 1
     when: skip_snapshot_get_test is not defined
 
-  - name: Assert required properties are populated
+  - name: Assert response properties are populated
     assert:
       that:
         - item.file_system_id is defined

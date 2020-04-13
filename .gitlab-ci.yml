@@ -27,8 +27,7 @@ before_script:
   - source scripts/common-vars.sh
   - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | grep -v oci_generated_core | grep -v lengthy | sort)
   - export lengthy_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | grep lengthy | sort)
-  # TODO: enable audit tests once the issues with the audit service are fixed
-  - export non_parallel_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep non_parallel | grep -v audit | sort)
+  - export non_parallel_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep non_parallel | sort)
 
 after_script:
     # clean up all configuration artifacts so that the next run starts with a clean

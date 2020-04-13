@@ -4,3 +4,20 @@ namespace_metadata_resource_id: "bmcs-dex-us-ashburn-1"
 test_namespace_metadata_update_optional_required_default_s3_compartment_id: null
 test_namespace_metadata_update_optional_required_default_swift_compartment_id: null
 skip_namespace_metadata_update_optional_required_test: true   # skipping the test
+
+# variables for oci_object_storage_bucket_tests.yaml
+test_bucket_name: "test-bucket-{{ random_suffix_1024 }}"
+test_bucket_create_required_name: "{{ test_bucket_name }}"
+test_bucket_delete_required_name: "{{ test_bucket_name }}"
+test_bucket_create_optional_required_name: "{{ test_bucket_name }}"
+test_bucket_create_optional_required_metadata:
+  department: "Finance"
+test_bucket_create_optional_required_kms_key_id: null
+test_bucket_update_optional_required_name: "{{ test_bucket_name }}"
+test_bucket_update_optional_required_compartment_id: "{{ identity_compartment_ocid }}"
+test_bucket_update_optional_required_public_access_type: "NoPublicAccess"
+test_bucket_update_optional_required_metadata:
+  department: "Accounting"
+test_bucket_update_optional_required_kms_key_id: null
+test_bucket_get_bucket_name: "{{ test_bucket_name }}"
+test_bucket_delete_rescue_name: "{{ test_bucket_name }}"

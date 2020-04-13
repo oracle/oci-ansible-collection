@@ -5,3 +5,6 @@
 - import_tasks: oci_object_storage_namespace_tests.yaml
   tags:
     - namespace_facts
+- import_tasks: oci_object_storage_bucket_tests.yaml
+  tags:
+    - bucket
