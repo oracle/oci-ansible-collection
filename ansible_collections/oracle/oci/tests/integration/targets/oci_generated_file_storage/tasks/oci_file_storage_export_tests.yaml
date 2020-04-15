@@ -1,0 +1,429 @@
+---
+- block:
+  - name: Create dependency file_system with required parameters
+    oci_file_storage_file_system:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_export_create_dependency_file_system_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_export_create_dependency_file_system_compartment_id, omit) }}"
+      display_name: "{{ ('media-files-1' + random_suffix_1024) | oracle.oci.override(test_export_create_dependency_file_system_display_name, omit) }}"
+    register: result
+    when: skip_export_create_dependency_file_system_test is not defined and skip_export_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_create_dependency_file_system_test is not defined and skip_export_dependencies is not defined
+  - set_fact:
+      dependency_file_system: "{{ result.file_system }}"
+      dependency_file_system_id: "{{ result.file_system.id }}"
+    when: skip_export_create_dependency_file_system_test is not defined and skip_export_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_create_dependency_file_system_custom_assertions }}"
+    when: export_create_dependency_file_system_custom_assertions is defined
+  # dependency resource export_set has no Create operation
+
+
+# ==================================================================================================== #
+
+  - name: Create export (check mode)
+    oci_file_storage_export:
+      export_set_id: "{{ dependency_export_set_id | oracle.oci.override(test_export_create_required_export_set_id, omit) }}"
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_export_create_required_file_system_id, omit) }}"
+      path: "{{ '/mediafiles' | oracle.oci.override(test_export_create_required_path, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_export_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_create_check_mode_custom_assertions }}"
+    when: export_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create export with required parameters
+    oci_file_storage_export:
+      export_set_id: "{{ dependency_export_set_id | oracle.oci.override(test_export_create_required_export_set_id, omit) }}"
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_export_create_required_file_system_id, omit) }}"
+      path: "{{ '/mediafiles' | oracle.oci.override(test_export_create_required_path, omit) }}"
+    register: result
+    when: skip_export_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_create_required_original_test is not defined
+
+  - set_fact:
+      export_resource_id: "{{ result.export.id }}"
+    when: skip_export_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_create_required_original_custom_assertions }}"
+    when: export_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create export with required parameters(idempotency)
+    oci_file_storage_export:
+      export_set_id: "{{ dependency_export_set_id | oracle.oci.override(test_export_create_required_export_set_id, omit) }}"
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_export_create_required_file_system_id, omit) }}"
+      path: "{{ '/mediafiles' | oracle.oci.override(test_export_create_required_path, omit) }}"
+    register: result
+    when: skip_export_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_export_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_create_required_idempotency_custom_assertions }}"
+    when: export_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete export
+    oci_file_storage_export:
+      export_id: "{{ export_resource_id | oracle.oci.override(test_export_delete_required_export_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_export_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_delete_required_custom_assertions }}"
+    when: export_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete export (idempotency)
+    oci_file_storage_export:
+      export_id: "{{ export_resource_id | oracle.oci.override(test_export_delete_required_export_id, omit) }}"
+      state: absent
+    register: result
+    when: skip_export_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_export_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_delete_required_idempotency_custom_assertions }}"
+    when: export_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_export_create_optional_required_export_options:
+      - source: "{{ 'source_example' | oracle.oci.override(test_export_create_optional_required_export_options_source, omit) }}"
+        require_privileged_source_port: "{{ true | oracle.oci.override(test_export_create_optional_required_export_options_require_privileged_source_port, omit) }}"
+        access: "{{ 'READ_WRITE' | oracle.oci.override(test_export_create_optional_required_export_options_access, omit) }}"
+        identity_squash: "{{ 'NONE' | oracle.oci.override(test_export_create_optional_required_export_options_identity_squash, omit) }}"
+        anonymous_uid: "{{ 56 | oracle.oci.override(test_export_create_optional_required_export_options_anonymous_uid, omit) }}"
+        anonymous_gid: "{{ 56 | oracle.oci.override(test_export_create_optional_required_export_options_anonymous_gid, omit) }}"
+    when: test_export_create_optional_required_export_options is not defined
+
+  - name: Create export with optional + required parameters
+    oci_file_storage_export:
+      export_options: "{{ '[]' | oracle.oci.override(test_export_create_optional_required_export_options, omit) }}"
+      export_set_id: "{{ dependency_export_set_id | oracle.oci.override(test_export_create_optional_required_export_set_id, omit) }}"
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_export_create_optional_required_file_system_id, omit) }}"
+      path: "{{ '/mediafiles' | oracle.oci.override(test_export_create_optional_required_path, omit) }}"
+    register: result
+    when: skip_export_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_create_optional_required_original_test is not defined
+
+  - set_fact:
+      export_resource_id: "{{ result.export.id }}"
+    when: skip_export_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_create_optional_required_original_custom_assertions }}"
+    when: export_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create export with optional + required parameters (idempotence)
+    oci_file_storage_export:
+      export_options: "{{ '[]' | oracle.oci.override(test_export_create_optional_required_export_options, omit) }}"
+      export_set_id: "{{ dependency_export_set_id | oracle.oci.override(test_export_create_optional_required_export_set_id, omit) }}"
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_export_create_optional_required_file_system_id, omit) }}"
+      path: "{{ '/mediafiles' | oracle.oci.override(test_export_create_optional_required_path, omit) }}"
+    register: result
+    when: skip_export_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_export_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_create_optional_required_idempotence_custom_assertions }}"
+    when: export_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_export_update_optional_required_export_options:
+      - source: "{{ ('source_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_export_update_optional_required_export_options_source, omit) }}"
+        require_privileged_source_port: "{{ true | oracle.oci.override(test_export_update_optional_required_export_options_require_privileged_source_port, omit) }}"
+        access: "{{ 'READ_ONLY' | oracle.oci.override(test_export_update_optional_required_export_options_access, omit) }}"
+        identity_squash: "{{ 'ROOT' | oracle.oci.override(test_export_update_optional_required_export_options_identity_squash, omit) }}"
+        anonymous_uid: "{{ 112 | oracle.oci.override(test_export_update_optional_required_export_options_anonymous_uid, omit) }}"
+        anonymous_gid: "{{ 112 | oracle.oci.override(test_export_update_optional_required_export_options_anonymous_gid, omit) }}"
+    when: test_export_update_optional_required_export_options is not defined
+
+  - name: Update export with optional + required parameters
+    oci_file_storage_export:
+      export_options: "{{ '[]' | oracle.oci.override(test_export_update_optional_required_export_options, omit) }}"
+      export_id: "{{ export_resource_id | oracle.oci.override(test_export_update_optional_required_export_id, omit) }}"
+    register: result
+    when: skip_export_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_update_optional_required_custom_assertions }}"
+    when: export_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update export with optional + required parameters (idempotence)
+    oci_file_storage_export:
+      export_options: "{{ '[]' | oracle.oci.override(test_export_update_optional_required_export_options, omit) }}"
+      export_id: "{{ export_resource_id | oracle.oci.override(test_export_update_optional_required_export_id, omit) }}"
+    register: result
+    when: skip_export_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_export_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export.export_options is defined
+        - result.export.export_set_id is defined
+        - result.export.file_system_id is defined
+        - result.export.id is defined
+        - result.export.lifecycle_state is defined
+        - result.export.path is defined
+        - result.export.time_created is defined
+    when: skip_export_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_update_optional_required_idempotence_custom_assertions }}"
+    when: export_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List exports
+    oci_file_storage_export_facts:
+    register: result
+    when: skip_export_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.exports | length > 0
+    when: skip_export_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.export_options is defined
+        - item.export_set_id is defined
+        - item.file_system_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.path is defined
+        - item.time_created is defined
+    with_items: "{{ result.exports }}"
+    when: skip_export_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_list_custom_assertions }}"
+    when: export_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get export
+    oci_file_storage_export_facts:
+      export_id: "{{ export_resource_id | oracle.oci.override(test_export_get_export_id, omit) }}"
+    register: result
+    when: skip_export_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.exports | length == 1
+    when: skip_export_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.export_options is defined
+        - item.export_set_id is defined
+        - item.file_system_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.path is defined
+        - item.time_created is defined
+    with_items: "{{ result.exports }}"
+    when: skip_export_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_get_custom_assertions }}"
+    when: export_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete export
+      oci_file_storage_export:
+        export_id: "{{ export_resource_id | oracle.oci.override(test_export_delete_rescue_export_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: export_resource_id is defined
+
+    - name: Delete dependency file_system
+      oci_file_storage_file_system:
+        file_system_id: "{{ dependency_file_system_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_export_delete_dependency_file_system_test is not defined and skip_export_dependencies is not defined and dependency_file_system_id is defined

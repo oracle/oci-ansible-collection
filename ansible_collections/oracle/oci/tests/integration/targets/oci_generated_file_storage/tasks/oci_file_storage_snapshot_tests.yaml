@@ -1,0 +1,467 @@
+---
+- block:
+  - name: Create dependency file_system with required parameters
+    oci_file_storage_file_system:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_snapshot_create_dependency_file_system_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_snapshot_create_dependency_file_system_compartment_id, omit) }}"
+      display_name: "{{ ('media-files-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_create_dependency_file_system_display_name, omit) }}"
+    register: result
+    when: skip_snapshot_create_dependency_file_system_test is not defined and skip_snapshot_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_create_dependency_file_system_test is not defined and skip_snapshot_dependencies is not defined
+  - set_fact:
+      dependency_file_system: "{{ result.file_system }}"
+      dependency_file_system_id: "{{ result.file_system.id }}"
+    when: skip_snapshot_create_dependency_file_system_test is not defined and skip_snapshot_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_create_dependency_file_system_custom_assertions }}"
+    when: snapshot_create_dependency_file_system_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create snapshot (check mode)
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_create_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_create_required_name, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_snapshot_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_create_check_mode_custom_assertions }}"
+    when: snapshot_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create snapshot with required parameters
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_create_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_create_required_name, omit) }}"
+    register: result
+    when: skip_snapshot_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_create_required_original_test is not defined
+
+  - set_fact:
+      snapshot_resource_id: "{{ result.snapshot.id }}"
+    when: skip_snapshot_create_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_create_required_original_custom_assertions }}"
+    when: snapshot_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create snapshot with required parameters(idempotency)
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_create_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_create_required_name, omit) }}"
+    register: result
+    when: skip_snapshot_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_snapshot_create_required_idempotency_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_create_required_idempotency_custom_assertions }}"
+    when: snapshot_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update snapshot using name with optional + required parameters
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_update_using_name_optional_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_update_using_name_optional_required_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_snapshot_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_snapshot_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_snapshot_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_update_using_name_optional_required_custom_assertions }}"
+    when: snapshot_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update snapshot using name with optional + required parameters (idempotence)
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_update_using_name_optional_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_update_using_name_optional_required_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_snapshot_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_snapshot_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_snapshot_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_snapshot_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: snapshot_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete snapshot
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_delete_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_snapshot_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_delete_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_delete_required_custom_assertions }}"
+    when: snapshot_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete snapshot (idempotency)
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_delete_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_snapshot_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_snapshot_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_delete_required_idempotency_custom_assertions }}"
+    when: snapshot_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create snapshot with optional + required parameters
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_create_optional_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_create_optional_required_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_snapshot_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_snapshot_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_snapshot_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_create_optional_required_original_test is not defined
+
+  - set_fact:
+      snapshot_resource_id: "{{ result.snapshot.id }}"
+    when: skip_snapshot_create_optional_required_original_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_create_optional_required_original_custom_assertions }}"
+    when: snapshot_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create snapshot with optional + required parameters (idempotence)
+    oci_file_storage_snapshot:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_create_optional_required_file_system_id, omit) }}"
+      name: "{{ ('snapshot-1' + random_suffix_1024) | oracle.oci.override(test_snapshot_create_optional_required_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_snapshot_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_snapshot_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_snapshot_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_snapshot_create_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_create_optional_required_idempotence_custom_assertions }}"
+    when: snapshot_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update snapshot with optional + required parameters
+    oci_file_storage_snapshot:
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_snapshot_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_snapshot_update_optional_required_defined_tags, omit) }}"
+      snapshot_id: "{{ snapshot_resource_id | oracle.oci.override(test_snapshot_update_optional_required_snapshot_id, omit) }}"
+    register: result
+    when: skip_snapshot_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_snapshot_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_update_optional_required_custom_assertions }}"
+    when: snapshot_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update snapshot with optional + required parameters (idempotence)
+    oci_file_storage_snapshot:
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_snapshot_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_snapshot_update_optional_required_defined_tags, omit) }}"
+      snapshot_id: "{{ snapshot_resource_id | oracle.oci.override(test_snapshot_update_optional_required_snapshot_id, omit) }}"
+    register: result
+    when: skip_snapshot_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_snapshot_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.snapshot.file_system_id is defined
+        - result.snapshot.id is defined
+        - result.snapshot.lifecycle_state is defined
+        - result.snapshot.name is defined
+        - result.snapshot.time_created is defined
+    when: skip_snapshot_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_update_optional_required_idempotence_custom_assertions }}"
+    when: snapshot_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List snapshots
+    oci_file_storage_snapshot_facts:
+      file_system_id: "{{ dependency_file_system_id | oracle.oci.override(test_snapshot_list_file_system_id, omit) }}"
+    register: result
+    when: skip_snapshot_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.snapshots | length > 0
+    when: skip_snapshot_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.file_system_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.name is defined
+        - item.time_created is defined
+    with_items: "{{ result.snapshots }}"
+    when: skip_snapshot_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_list_custom_assertions }}"
+    when: snapshot_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get snapshot
+    oci_file_storage_snapshot_facts:
+      snapshot_id: "{{ snapshot_resource_id | oracle.oci.override(test_snapshot_get_snapshot_id, omit) }}"
+    register: result
+    when: skip_snapshot_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.snapshots | length == 1
+    when: skip_snapshot_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.file_system_id is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.name is defined
+        - item.time_created is defined
+    with_items: "{{ result.snapshots }}"
+    when: skip_snapshot_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ snapshot_get_custom_assertions }}"
+    when: snapshot_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete snapshot
+      oci_file_storage_snapshot:
+        snapshot_id: "{{ snapshot_resource_id | oracle.oci.override(test_snapshot_delete_rescue_snapshot_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: snapshot_resource_id is defined
+
+    - name: Delete dependency file_system
+      oci_file_storage_file_system:
+        file_system_id: "{{ dependency_file_system_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_snapshot_delete_dependency_file_system_test is not defined and skip_snapshot_dependencies is not defined and dependency_file_system_id is defined

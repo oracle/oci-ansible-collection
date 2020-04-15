@@ -176,6 +176,16 @@ moduleWhitelist:
   - oci_object_storage_namespace_metadata
   - oci_object_storage_namespace_metadata_facts
 
+  - oci_file_storage_export
+  - oci_file_storage_export_facts
+  - oci_file_storage_mount_target
+  - oci_file_storage_mount_target_facts
+  - oci_file_storage_file_system
+  - oci_file_storage_file_system_facts
+  - oci_file_storage_export_set
+  - oci_file_storage_export_set_facts
+  - oci_file_storage_snapshot
+  - oci_file_storage_snapshot_facts
 operationOverrides:
   /publicIps/actions/getByIpAddress:
     path: "/publicIps/getByIpAddress"

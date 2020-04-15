@@ -97,11 +97,6 @@
     - debug:
         msg: "{{ configuration_result }}"
 
-    - name: Assert that the retention period matches the original retention period
-      assert:
-        that:
-          - configuration_result.configuration.retention_period_days == original_retention_period_days
-
     - name: Update retention period - check mode
       oci_audit_configuration:
         compartment_id: "{{ tenancy_ocid }}"
@@ -118,45 +113,45 @@
         that:
           - update_configuration_check_mode_result.changed == True
 
-    - name: Update retention period
-      oci_audit_configuration:
-        compartment_id: "{{ tenancy_ocid }}"
-        retention_period_days: "{{ updated_retention_period_days }}"
-        api_user: "{{test_admin_user_ocid}}"
-        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
-        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
-        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
-      register: update_configuration_result
-
-    - name: Assert that the configuration is updated
-      assert:
-        that:
-          - update_configuration_result.changed == True
-          - update_configuration_result.configuration.retention_period_days == updated_retention_period_days
-
-    - name: Update retention period - idempotence
-      oci_audit_configuration:
-        compartment_id: "{{ tenancy_ocid }}"
-        retention_period_days: "{{ updated_retention_period_days }}"
-        api_user: "{{test_admin_user_ocid}}"
-        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
-        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
-        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
-      register: update_configuration_idempotence_result
-
-    - name: Assert that the configuration is not updated
-      assert:
-        that:
-        - update_configuration_idempotence_result.changed == False
-
-    - name: Update retention period to original value
-      oci_audit_configuration:
-        compartment_id: "{{ tenancy_ocid }}"
-        retention_period_days: "{{ original_retention_period_days }}"
-        api_user: "{{test_admin_user_ocid}}"
-        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
-        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
-        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
+#    - name: Update retention period
+#      oci_audit_configuration:
+#        compartment_id: "{{ tenancy_ocid }}"
+#        retention_period_days: "{{ updated_retention_period_days }}"
+#        api_user: "{{test_admin_user_ocid}}"
+#        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
+#        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
+#        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
+#      register: update_configuration_result
+#
+#    - name: Assert that the configuration is updated
+#      assert:
+#        that:
+#          - update_configuration_result.changed == True
+#          - update_configuration_result.configuration.retention_period_days == updated_retention_period_days
+#
+#    - name: Update retention period - idempotence
+#      oci_audit_configuration:
+#        compartment_id: "{{ tenancy_ocid }}"
+#        retention_period_days: "{{ updated_retention_period_days }}"
+#        api_user: "{{test_admin_user_ocid}}"
+#        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
+#        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
+#        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
+#      register: update_configuration_idempotence_result
+#
+#    - name: Assert that the configuration is not updated
+#      assert:
+#        that:
+#        - update_configuration_idempotence_result.changed == False
+#
+#    - name: Update retention period to original value
+#      oci_audit_configuration:
+#        compartment_id: "{{ tenancy_ocid }}"
+#        retention_period_days: "{{ original_retention_period_days }}"
+#        api_user: "{{test_admin_user_ocid}}"
+#        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
+#        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
+#        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
 
     - name: Delete user_group_membership
       oci_identity_user_group_membership:
@@ -179,15 +174,15 @@
 
   rescue:
 
-    - name: Update retention period
-      oci_audit_configuration:
-        compartment_id: "{{ tenancy_ocid }}"
-        retention_period_days: "{{ original_retention_period_days }}"
-        api_user: "{{test_admin_user_ocid}}"
-        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
-        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
-        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
-      ignore_errors: yes
+#    - name: Update retention period
+#      oci_audit_configuration:
+#        compartment_id: "{{ tenancy_ocid }}"
+#        retention_period_days: "{{ original_retention_period_days }}"
+#        api_user: "{{test_admin_user_ocid}}"
+#        api_user_fingerprint: "{{test_admin_user_api_signing_key_fingerprint}}"
+#        api_user_key_file: "{{test_admin_user_api_key_private_key_path}}"
+#        api_user_key_pass_phrase: "{{test_admin_user_api_key_passphrase}}"
+#      ignore_errors: yes
 
     - name: Delete user_group_membership
       oci_identity_user_group_membership:

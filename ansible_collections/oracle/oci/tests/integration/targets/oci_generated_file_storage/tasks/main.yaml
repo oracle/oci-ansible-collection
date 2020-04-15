@@ -1,0 +1,56 @@
+---
+- block:
+  - import_tasks: oci_file_storage_mount_target_tests.yaml
+    tags:
+      - mount_target
+
+  - name: Create mount_target with required parameters
+    oci_file_storage_mount_target:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_mount_target_create_required_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_mount_target_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('mount-target-5' + random_suffix_1024) | oracle.oci.override(test_mount_target_create_required_display_name, omit) }}"
+      subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_mount_target_create_required_subnet_id, omit) }}"
+    register: result
+    when: skip_mount_target_create_required_original_test is not defined
+
+  - set_fact:
+      mount_target_resource_id: "{{ result.mount_target.id }}"
+      mount_target_export_set_id: "{{ result.mount_target.export_set_id }}"
+
+  - name: Get display name of export set
+    oci_file_storage_export_set_facts:
+      export_set_id: "{{ mount_target_export_set_id }}"
+    register: result
+
+  - set_fact:
+      export_set_display_name: "{{ result.export_sets[0].display_name }}"
+
+  - import_tasks: oci_file_storage_export_tests.yaml
+    tags:
+      - file_storage_export
+    vars:
+      dependency_export_set_id: "{{ mount_target_export_set_id }}"
+
+  - import_tasks: oci_file_storage_file_system_tests.yaml
+    tags:
+      - file_system
+
+  - import_tasks: oci_file_storage_export_set_tests.yaml
+    tags:
+      - export_set
+    vars:
+      export_set_resource_id: "{{ mount_target_export_set_id }}"
+      test_export_set_update_using_name_optional_required_display_name: "{{ export_set_display_name }}"
+
+  - import_tasks: oci_file_storage_snapshot_tests.yaml
+    tags:
+      - snap_shot
+
+  always:
+    - name: Delete mount_target
+      oci_file_storage_mount_target:
+        mount_target_id: "{{ mount_target_resource_id | oracle.oci.override(test_mount_target_delete_rescue_mount_target_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: mount_target_resource_id is defined

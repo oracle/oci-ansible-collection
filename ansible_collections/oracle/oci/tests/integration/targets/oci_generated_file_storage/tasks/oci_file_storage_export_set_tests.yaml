@@ -1,0 +1,217 @@
+---
+- block:
+  - name: Update export_set using name with optional + required parameters
+    oci_file_storage_export_set:
+      display_name: "{{ ('mount-target-5-new-exportset' + random_suffix_1024) | oracle.oci.override(test_export_set_update_using_name_optional_required_display_name, omit) }}"
+      max_fs_stat_bytes: "{{ 112 | oracle.oci.override(test_export_set_update_using_name_optional_required_max_fs_stat_bytes, omit) }}"
+      max_fs_stat_files: "{{ 112 | oracle.oci.override(test_export_set_update_using_name_optional_required_max_fs_stat_files, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_export_set_update_using_name_optional_required_compartment_id, omit) }}"
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_export_set_update_using_name_optional_required_availability_domain, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_export_set_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_set_update_using_name_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export_set.compartment_id is defined
+        - result.export_set.display_name is defined
+        - result.export_set.id is defined
+        - result.export_set.lifecycle_state is defined
+        - result.export_set.time_created is defined
+        - result.export_set.vcn_id is defined
+    when: skip_export_set_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_set_update_using_name_optional_required_custom_assertions }}"
+    when: export_set_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update export_set using name with optional + required parameters (idempotence)
+    oci_file_storage_export_set:
+      display_name: "{{ ('mount-target-5-new-exportset' + random_suffix_1024) | oracle.oci.override(test_export_set_update_using_name_optional_required_display_name, omit) }}"
+      max_fs_stat_bytes: "{{ 112 | oracle.oci.override(test_export_set_update_using_name_optional_required_max_fs_stat_bytes, omit) }}"
+      max_fs_stat_files: "{{ 112 | oracle.oci.override(test_export_set_update_using_name_optional_required_max_fs_stat_files, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_export_set_update_using_name_optional_required_compartment_id, omit) }}"
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_export_set_update_using_name_optional_required_availability_domain, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_export_set_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_export_set_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export_set.compartment_id is defined
+        - result.export_set.display_name is defined
+        - result.export_set.id is defined
+        - result.export_set.lifecycle_state is defined
+        - result.export_set.time_created is defined
+        - result.export_set.vcn_id is defined
+    when: skip_export_set_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_set_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: export_set_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update export_set with optional + required parameters
+    oci_file_storage_export_set:
+      export_set_id: "{{ export_set_resource_id | oracle.oci.override(test_export_set_update_optional_required_export_set_id, omit) }}"
+      display_name: "{{ ('mount-target-5-new-exportsetupdated' + random_suffix_1024) | oracle.oci.override(test_export_set_update_optional_required_display_name, omit) }}"
+      max_fs_stat_bytes: "{{ 112 | oracle.oci.override(test_export_set_update_optional_required_max_fs_stat_bytes, omit) }}"
+      max_fs_stat_files: "{{ 112 | oracle.oci.override(test_export_set_update_optional_required_max_fs_stat_files, omit) }}"
+    register: result
+    when: skip_export_set_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_export_set_update_optional_required_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export_set.compartment_id is defined
+        - result.export_set.display_name is defined
+        - result.export_set.id is defined
+        - result.export_set.lifecycle_state is defined
+        - result.export_set.time_created is defined
+        - result.export_set.vcn_id is defined
+    when: skip_export_set_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_set_update_optional_required_custom_assertions }}"
+    when: export_set_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update export_set with optional + required parameters (idempotence)
+    oci_file_storage_export_set:
+      export_set_id: "{{ export_set_resource_id | oracle.oci.override(test_export_set_update_optional_required_export_set_id, omit) }}"
+      display_name: "{{ ('mount-target-5-new-exportsetupdated' + random_suffix_1024) | oracle.oci.override(test_export_set_update_optional_required_display_name, omit) }}"
+      max_fs_stat_bytes: "{{ 112 | oracle.oci.override(test_export_set_update_optional_required_max_fs_stat_bytes, omit) }}"
+      max_fs_stat_files: "{{ 112 | oracle.oci.override(test_export_set_update_optional_required_max_fs_stat_files, omit) }}"
+    register: result
+    when: skip_export_set_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_export_set_update_optional_required_idempotence_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - result.export_set.compartment_id is defined
+        - result.export_set.display_name is defined
+        - result.export_set.id is defined
+        - result.export_set.lifecycle_state is defined
+        - result.export_set.time_created is defined
+        - result.export_set.vcn_id is defined
+    when: skip_export_set_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_set_update_optional_required_idempotence_custom_assertions }}"
+    when: export_set_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List export_sets
+    oci_file_storage_export_set_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_export_set_list_compartment_id, omit) }}"
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_export_set_list_availability_domain, omit) }}"
+    register: result
+    when: skip_export_set_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.export_sets | length > 0
+    when: skip_export_set_list_test is not defined
+
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+        - item.vcn_id is defined
+    with_items: "{{ result.export_sets }}"
+    when: skip_export_set_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_set_list_custom_assertions }}"
+    when: export_set_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get export_set
+    oci_file_storage_export_set_facts:
+      export_set_id: "{{ export_set_resource_id | oracle.oci.override(test_export_set_get_export_set_id, omit) }}"
+    register: result
+    when: skip_export_set_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.export_sets | length == 1
+    when: skip_export_set_get_test is not defined
+
+  - name: Assert required properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+        - item.vcn_id is defined
+    with_items: "{{ result.export_sets }}"
+    when: skip_export_set_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ export_set_get_custom_assertions }}"
+    when: export_set_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

@@ -1557,7 +1557,7 @@
                 <generateInitFile>true</generateInitFile>
                 <endpoint>https://filestorage.{domain}</endpoint>
               </additionalProperties>
-              <isTestGenerationEnabled>false</isTestGenerationEnabled>
+              <isTestGenerationEnabled>true</isTestGenerationEnabled>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
