@@ -284,6 +284,13 @@ class TagHelperCustom:
     def get_module_resource_id(self):
         return None
 
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_tag,
+            tag_namespace_id=self.module.params.get("tag_namespace_id"),
+            tag_name=summary_model.name,
+        )
+
 
 class UiPasswordHelperCustom:
 

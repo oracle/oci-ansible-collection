@@ -389,7 +389,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 )
             )
         return oci_common_utils.get_default_response_from_resource(
-            resource=existing_resources[0]
+            resource=self.get_get_model_from_summary_model(existing_resources[0])
+            if self.is_summary_model(existing_resources[0])
+            else existing_resources[0]
         )
 
     def get_exclude_attributes(self):
@@ -447,15 +449,22 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def get_get_model_from_summary_model(self, summary_model):
         try:
-            try:
-                return self.get_get_fn()(summary_model.id).data
-            except AttributeError:
-                # In most of the cases where the resource does not have an id, name is used to identify the resource.
-                # So the get_resource should work as we would have the name in the module params. If this is not the
-                # case then this function should be overridden with the custom logic to get the get model.
-                return self.get_resource().data
+            return self.get_get_fn()(summary_model.id).data
+        except AttributeError:
+            # In most of the cases where the resource does not have an id, name is used to identify the resource.
+            # So the get_resource should work as we would have the name in the module params. If this is not the
+            # case then this function should be overridden with the custom logic to get the get model.
+            return self.get_resource().data
+        except TypeError:
+            # There are cases where get takes multiple parameters one among them being the id. In most of those cases,
+            # other parameters are available in module params. So set the resource id param and call get_resource.
+            id_orig = self.module.params[self.get_module_resource_id_param()]
+            self.module.params[self.get_module_resource_id_param()] = summary_model.id
+            model = self.get_resource().data
+            self.module.params[self.get_module_resource_id_param()] = id_orig
+            return model
         except NotImplementedError:
-            # Resource does not have a get function. Return the summary model.
+            # Resource does not have a get operation. Return the summary model.
             return summary_model
 
     def get_matching_resource(self):
@@ -774,7 +783,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_audit_custom_helpers,
     oci_object_storage_custom_helpers,
     oci_file_storage_custom_helpers,
-    oci_budget_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -787,7 +795,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_audit_custom_helpers,
         oci_object_storage_custom_helpers,
         oci_file_storage_custom_helpers,
-        oci_budget_custom_helpers,
     ]
 )
 
