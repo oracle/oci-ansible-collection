@@ -328,3 +328,27 @@ load_balancer:
         }
       ]
     }
+
+object_storage:
+  PutObject: |
+      Example I: Upload object
+      PUT /n/{namespaceName}/b/{bucketName}/o/{objectName}
+      Host: objectstorage.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "namespaceName": "namespace_example",
+        "bucketName": "bucket_example",
+        "objectName": "object_example",
+        "src": "/usr/local/myobject.txt"
+      }
+
+      Example I: Download object
+      PUT /n/{namespaceName}/b/{bucketName}/o/{objectName}
+      Host: objectstorage.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "namespaceName": "namespace_example",
+        "bucketName": "bucket_example",
+        "objectName": "object_example",
+        "dest": "/usr/local/myobject.txt"
+      }

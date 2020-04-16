@@ -1,0 +1,28 @@
+test_bucket_name: "AnsibleTestBucket_{{random_suffix_1024}}"
+test_archive_bucket_name: "AnsibleTestBucketArchive_{{random_suffix_1024}}"
+transient_test_bucket_name: "TransientTestBucket_{{random_suffix_1024}}"
+transient_test_bucket_name_in_region2: "TransientTestBucket_inregion2_{{random_suffix_1024}}"
+test_object_name: "test_file.txt_{{random_suffix_1024}}"
+test_object_opc_meta: '{"language": "english"}'
+test_archive_object_name: "test_file.txt_archive_{{random_suffix_1024}}"
+test_renamed_object_name: "test_file.txt_renamed_{{random_suffix_1024}}"
+test_object_name_in_region2: "test_file.txt_inregion2_{{random_suffix_1024}}"
+
+bucket_level_par_name: "preauth_request_bucket_{{random_suffix_1024}}"
+object_level_par_name: "preauth_request_object_{{random_suffix_1024}}"
+bucket_level_par_accesstype: "AnyObjectWrite"
+object_level_par_accesstype: "ObjectWrite"
+
+multipart_upload_object_name: "multipart_upload_object_{{random_suffix_1024}}"
+
+# tags variables
+creation_freeform_tag:
+  ansible_tag: "tag while resource creation"
+updation_freeform_tag:
+  ansible_tag: "tag while resource updation"
+creation_defined_tag:
+  ansible_tag_namespace_integration_test_1:
+    ansible_tag_1: 'school'
+updation_defined_tag:
+  ansible_tag_namespace_integration_test_1:
+    ansible_tag_1: 'office'

@@ -16,7 +16,7 @@
 - debug:
     msg: "Image to delete: {{todeleteimage_id}}"
   ignore_errors: yes
-- name: Delete the instance
+- name: Delete the image
   oci_compute_image:
     id: "{{todeleteimage_id}}"
     state: 'absent'
@@ -44,23 +44,15 @@
           - result.changed == True
           - result.image.display_name == "{{test_image_name}}"
 
-    # TODO: Enable the bucket creation once the object storage modules are available.
-    # Using pre-created bucket for now.
     # create object storage bucket required to export image
-#    - name: Create bucket for exporting image
-#      oci_bucket:
-#        namespace_name: "{{ test_namespace_name }}"
-#        compartment_id: "{{ test_compartment_ocid }}"
-#        name: "{{ test_export_image_bucket_name }}"
-#        public_access_type: 'NoPublicAccess'
-#        state: 'present'
-#      register: create_bucket_result
-#      environment: "{{ proxy_env }}"
-#
-#    - name: Assert that bucket is created
-#      assert:
-#        that:
-#          - create_bucket_result.changed == True
+    - name: Create bucket for exporting image
+      oci_object_storage_bucket:
+        namespace_name: "{{ test_namespace_name }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_export_image_bucket_name }}"
+        public_access_type: 'NoPublicAccess'
+        state: 'present'
+      register: create_bucket_result
 
     - name: Export image to object storage - check mode
       oci_compute_image_actions:
@@ -88,25 +80,23 @@
         action: export
       register: export_image_result
 
-    # TODO: Enable once object storage modules are available
-#    - name: Get the objects in the bucket
-#      oci_object_facts:
-#        namespace_name: "{{ test_namespace_name }}"
-#        bucket_name: "{{ test_export_image_bucket_name }}"
-#        object_name: "{{ test_export_image_object_name }}"
-#      register: objects_result
-#      environment: "{{ proxy_env }}"
-#
-#    - set_fact:
-#        exported_object: "{{ item }}"
-#      when: item.name == test_export_image_object_name
-#      loop: "{{ objects_result.objects }}"
+    - name: Get the objects in the bucket
+      oci_object_storage_object_facts:
+        namespace_name: "{{ test_namespace_name }}"
+        bucket_name: "{{ test_export_image_bucket_name }}"
+        object_name: "{{ test_export_image_object_name }}"
+      register: objects_result
+
+    - set_fact:
+        exported_object: "{{ item }}"
+      when: item.name == test_export_image_object_name
+      loop: "{{ objects_result.objects }}"
 
     - name: Assert that the image is exported
       assert:
         that:
           - export_image_result.changed == True
-#          - exported_object is defined
+          - exported_object is defined
 
     - name: Check that the image would be exported always
       oci_compute_image_actions:
@@ -132,24 +122,23 @@
         action: export
       register: export_image_to_object_storage_url_result
 
-#    - name: Get the objects in the bucket
-#      oci_object_facts:
-#        namespace_name: "{{ test_namespace_name }}"
-#        bucket_name: "{{ test_export_image_bucket_name }}"
-#        object_name: "{{ test_export_image_to_url_object_name }}"
-#      register: objects_result
-#      environment: "{{ proxy_env }}"
-#
-#    - set_fact:
-#        exported_object: "{{ item }}"
-#      when: item.name == test_export_image_to_url_object_name
-#      loop: "{{ objects_result.objects }}"
+    - name: Get the objects in the bucket
+      oci_object_storage_object_facts:
+        namespace_name: "{{ test_namespace_name }}"
+        bucket_name: "{{ test_export_image_bucket_name }}"
+        object_name: "{{ test_export_image_to_url_object_name }}"
+      register: objects_result
+
+    - set_fact:
+        exported_object: "{{ item }}"
+      when: item.name == test_export_image_to_url_object_name
+      loop: "{{ objects_result.objects }}"
 
     - name: Assert that the image is exported
       assert:
         that:
         - export_image_to_object_storage_url_result.changed == True
-#        - exported_object is defined
+        - exported_object is defined
 
     - name: Delete the image
       oci_compute_image:
@@ -160,19 +149,32 @@
         that:
         - result.changed == True
 
-#    - name: Delete bucket
-#      oci_bucket:
-#        namespace_name: "{{ test_namespace_name }}"
-#        name: "{{ test_export_image_bucket_name }}"
-#        force: 'yes'
-#        state: 'absent'
-#      register: delete_bucket_result
-#      environment: "{{ proxy_env }}"
+    - name: List objects
+      oci_object_storage_object_facts:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_export_image_bucket_name}}"
+      register: result
 
-#    - name: Assert that bucket is deleted
-#      assert:
-#        that:
-#          - delete_bucket_result.changed == True
+    - name: Delete objects
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_export_image_bucket_name}}"
+        object_name: "{{ item.name }}"
+        state: absent
+      register: result
+      loop: "{{ result.objects }}"
+
+    - name: Delete bucket
+      oci_object_storage_bucket:
+        namespace_name: "{{ test_namespace_name }}"
+        name: "{{ test_export_image_bucket_name }}"
+        state: 'absent'
+      register: delete_bucket_result
+
+    - name: Assert that bucket is deleted
+      assert:
+        that:
+          - delete_bucket_result.changed == True
 
   rescue:
 
@@ -182,17 +184,30 @@
         state: 'absent'
       ignore_errors: yes
 
-#    - name: Delete bucket
-#      oci_bucket:
-#        namespace_name: "{{ test_namespace_name }}"
-#        name: "{{ test_export_image_bucket_name }}"
-#        force: 'yes'
-#        state: 'absent'
-#      register: delete_bucket_result
-#      environment: "{{ proxy_env }}"
-#      ignore_errors: yes
+    - name: List objects
+      oci_object_storage_object_facts:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_export_image_bucket_name}}"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete objects
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_export_image_bucket_name}}"
+        object_name: "{{ item.name }}"
+        state: absent
+      register: result
+      loop: "{{ result.objects }}"
+      ignore_errors: yes
+
+    - name: Delete bucket
+      oci_object_storage_bucket:
+        namespace_name: "{{ test_namespace_name }}"
+        name: "{{ test_export_image_bucket_name }}"
+        state: 'absent'
+      register: delete_bucket_result
+      ignore_errors: yes
 
     - fail:
         msg: "{{ ansible_failed_result }}"
-  tags:
-    - nightly

@@ -14,3 +14,18 @@ udx-847
 
 # compartment_id optional parameter for namespace
 udx-1257
+
+# reencrypt bucket
+udx-1721
+
+# retention rule
+udx-2379
+udx-1574
+
+# etag field
+udx-2218
+
+object-versioning
+
+# events
+udx-2123

@@ -1,0 +1,14 @@
+- import_tasks: oci_object_storage_tests.yaml
+  tags:
+    - object
+# reencrypt action works only when the bucket is encrypted using a kms key.
+# TODO:  Enable once the kms modules are available.
+#- import_tasks: oci_object_storage_bucket_actions_tests.yaml
+#  tags:
+#    - bucket_actions
+- import_tasks: oci_object_storage_object_actions_tests.yaml
+  tags:
+    - object_actions
+- import_tasks: oci_object_storage_object_lifecycle_policy_tests.yaml
+  tags:
+    - object_lifecycle_policy

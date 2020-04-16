@@ -1,0 +1,324 @@
+- block:
+
+    - name: Create a transient test bucket in OCI to contain test objects
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{transient_test_bucket_name}}"
+        public_access_type: 'NoPublicAccess'
+        metadata:
+          project: 'Test Project'
+        state: 'present'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ==============================================================
+
+    - name: Create a temporary test file
+      tempfile:
+      register: tmpfile1
+
+    - name: Put content in the temporary test file
+      copy:
+        content: "This is content for the test file."
+        dest: "{{ tmpfile1.path }}"
+
+    - name: Get the stat of the test file for verifying successful upload/download
+      stat:
+        path: "{{ tmpfile1.path }}"
+        get_checksum: yes
+      register: tmpfile1stat
+
+    - name: Create an OCI object
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{test_object_name}}"
+        src: "{{ tmpfile1.path }}"
+        opc_meta: "{{ test_object_opc_meta }}"
+      register: result
+
+    - name: Assert that changed is True
+      assert:
+        that:
+        - result.changed == True
+
+    - name: Create a transient test bucket in OCI in region2
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{transient_test_bucket_name_in_region2}}"
+        public_access_type: 'NoPublicAccess'
+        metadata:
+          project: 'Test Project'
+        region: "{{ region2_name }}"
+        state: 'present'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    - name: Perform action copy on bucket
+      oci_object_storage_object_actions:
+        source_object_name: "{{test_object_name}}"
+        destination_region: "{{ region2_name }}"
+        destination_namespace: "{{test_namespace_name}}"
+        destination_bucket: "{{transient_test_bucket_name_in_region2}}"
+        destination_object_name: "{{ test_object_name_in_region2 }}"
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        action: copy
+      register: copy_result
+
+    - name: Assert that the copy action is performed
+      assert:
+        that:
+          - copy_result.changed == True
+          - copy_result.object is defined
+          - copy_result.object.name == test_object_name_in_region2
+
+    - name: Get the objects in region2 to check if the object is actually copied
+      oci_object_storage_object_facts:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name_in_region2}}"
+        object_name: "{{ test_object_name_in_region2 }}"
+        region: "{{ region2_name }}"
+      register: objects_result
+
+    - set_fact:
+        copied_object: "{{ item }}"
+      when: item.name == test_object_name_in_region2
+      loop: "{{ objects_result.objects }}"
+
+    - name: Assert that the object is copied
+      assert:
+        that:
+          - copied_object is defined
+
+    - name: Perform action rename on bucket
+      oci_object_storage_object_actions:
+        source_name: "{{ test_object_name }}"
+        new_name: "{{ test_renamed_object_name }}"
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        action: rename
+      register: rename_result
+
+    - name: Assert that the rename action is performed
+      assert:
+        that:
+          - rename_result.changed == True
+          - rename_result.object is defined
+          - rename_result.object.name == test_renamed_object_name
+
+    - name: Get the objects to check if the object is actually renamed
+      oci_object_storage_object_facts:
+        namespace_name: "{{ test_namespace_name }}"
+        bucket_name: "{{ transient_test_bucket_name }}"
+        object_name: "{{ test_renamed_object_name }}"
+      register: objects_result
+
+    - set_fact:
+        renamed_object: "{{ item }}"
+      when: item.name == test_renamed_object_name
+      loop: "{{ objects_result.objects }}"
+
+    - name: Assert that the object is copied
+      assert:
+        that:
+        - renamed_object is defined
+
+    - name: Create new bucket with storageTier Archive
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{test_archive_bucket_name}}"
+        storage_tier: 'Archive'
+        metadata:
+          project: 'Test Project'
+        state: 'present'
+      register: result
+
+    - name: Assert that bucket created
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Create an OCI object
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_archive_bucket_name}}"
+        object_name: "{{test_archive_object_name}}"
+        src: "{{ tmpfile1.path }}"
+        opc_meta: "{{ test_object_opc_meta }}"
+      register: result
+
+    - name: Assert that changed is True
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Perform action restore on bucket
+      oci_object_storage_object_actions:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_archive_bucket_name}}"
+        object_name: "{{ test_archive_object_name }}"
+        action: restore
+      register: restore_result
+
+    - name: Assert that the restore action is performed
+      assert:
+        that:
+          - restore_result.changed == True
+          - restore_result.object is defined
+          - restore_result.object.name == test_archive_object_name
+
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{ test_renamed_object_name }}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that object is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Cleanup - delete test bucket
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{transient_test_bucket_name}}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Cleanup - delete object in test bucket in region2
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name_in_region2}}"
+        object_name: "{{ test_object_name_in_region2 }}"
+        region: "{{ region2_name }}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that object is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Cleanup - delete test bucket in OCI in region2
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{transient_test_bucket_name_in_region2}}"
+        region: "{{ region2_name }}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_archive_bucket_name}}"
+        object_name: "{{ test_archive_object_name }}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that object is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Delete Archive bucket with storageTier Archive
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{test_archive_bucket_name}}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+
+  rescue:
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{ test_object_name }}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{ test_renamed_object_name }}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Cleanup - delete test bucket in OCI
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{transient_test_bucket_name}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Cleanup - delete object in test bucket in region2
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name_in_region2}}"
+        object_name: "{{ test_object_name_in_region2 }}"
+        region: "{{ region2_name }}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Cleanup - delete test bucket in OCI in region2
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{transient_test_bucket_name_in_region2}}"
+        region: "{{ region2_name }}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{test_archive_bucket_name}}"
+        object_name: "{{ test_archive_object_name }}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Delete Archive bucket with storageTier Archive
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{test_archive_bucket_name}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - fail:
+          msg: "{{ ansible_failed_result }}"

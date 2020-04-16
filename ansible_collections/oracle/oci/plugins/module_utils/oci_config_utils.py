@@ -128,14 +128,14 @@ def set_db_test_flag(service_client):
         )
 
 
-def create_service_client(module, service_client_class):
+def create_service_client(module, service_client_class, config=None):
     """
     Creates a service client using the common module options provided by the user.
     :param module: An AnsibleModule that represents user provided options for a Task
     :param service_client_class: A class that represents a client to an OCI Service
     :return: A fully configured client
     """
-    config = get_oci_config(module, service_client_class)
+    config = config or get_oci_config(module, service_client_class)
     kwargs = {}
 
     if _is_instance_principal_auth(module):

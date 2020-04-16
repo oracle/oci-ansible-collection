@@ -1,0 +1,63 @@
+- name: Create bucket in region2
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{region2_bucket_name}}"
+    state: 'present'
+    region: "{{ region2_name }}"
+  register: result
+
+- name: Create bucket
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{region1_bucket_name}}"
+    state: 'present'
+  register: result
+
+- name: Create a temporary file to be used as object
+  tempfile:
+  register: tmpfile1
+
+- name: Put content in the temporary test file
+  copy:
+    content: "This is content for the test file."
+    dest: "{{ tmpfile1.path }}"
+
+- name: Create object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{region1_bucket_name}}"
+    object_name: "{{ region1_object_name }}"
+    src: "{{ tmpfile1.path }}"
+  register: result
+
+- name: Create bucket with versioning enabled
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{ versioned_bucket_name }}"
+    versioning: "Enabled"
+    state: 'present'
+  register: result
+
+- name: Upload object into versioned bucket
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{versioned_bucket_name}}"
+    object_name: "{{ versioned_object_name }}"
+    src: "{{ tmpfile1.path }}"
+  register: result
+
+- name: Put content in the temporary test file
+  copy:
+    content: "This is v2 content for the test file."
+    dest: "{{ tmpfile1.path }}"
+
+- name: Upload v2 object into versioned bucket
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{versioned_bucket_name}}"
+    object_name: "{{ versioned_object_name }}"
+    src: "{{ tmpfile1.path }}"
+  register: result

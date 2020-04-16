@@ -4,3 +4,4 @@
 - import_tasks: oci_compute_image_tests.yaml
   tags:
     - image
+    - nightly

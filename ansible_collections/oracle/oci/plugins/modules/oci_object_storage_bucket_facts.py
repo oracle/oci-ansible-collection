@@ -51,6 +51,7 @@ options:
         choices:
             - "approximateCount"
             - "approximateSize"
+            - "tags"
     compartment_id:
         description:
             - The ID of the compartment in which to list buckets.
@@ -145,6 +146,14 @@ buckets:
             returned: on success
             type: string
             sample: Standard
+        object_events_enabled:
+            description:
+                - Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
+                  set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
+                  about events, see L(Overview of Events,https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -188,6 +197,28 @@ buckets:
             returned: on success
             type: int
             sample: 56
+        replication_enabled:
+            description:
+                - Whether or not this bucket is a replication source. By default, `replicationEnabled` is set to `false`. This will
+                  be set to 'true' when you create a replication policy for the bucket.
+            returned: on success
+            type: bool
+            sample: true
+        is_read_only:
+            description:
+                - Whether or not this bucket is read only. By default, `isReadOnly` is set to `false`. This will
+                  be set to 'true' when this bucket is configured as a destination in a replication policy.
+            returned: on success
+            type: bool
+            sample: true
+        versioning:
+            description:
+                - The versioning status on the bucket. A bucket is created with versioning `Disabled` by default.
+                  For versioning `Enabled`, objects are protected from overwrites and deletes, by maintaining their version history. When versioning is
+                  `Suspended`, the previous versions will still remain but new versions will no longer be created when overwitten or deleted.
+            returned: on success
+            type: string
+            sample: Enabled
     sample: [{
         "namespace": "namespace_example",
         "name": "name_example",
@@ -198,12 +229,16 @@ buckets:
         "etag": "etag_example",
         "public_access_type": "NoPublicAccess",
         "storage_tier": "Standard",
+        "object_events_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "object_lifecycle_policy_etag": "object_lifecycle_policy_etag_example",
         "approximate_count": 56,
-        "approximate_size": 56
+        "approximate_size": 56,
+        "replication_enabled": true,
+        "is_read_only": true,
+        "versioning": "Enabled"
     }]
 """
 
@@ -283,7 +318,9 @@ def main():
         dict(
             namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str"),
-            fields=dict(type="list", choices=["approximateCount", "approximateSize"]),
+            fields=dict(
+                type="list", choices=["approximateCount", "approximateSize", "tags"]
+            ),
             compartment_id=dict(type="str"),
         )
     )

@@ -172,6 +172,7 @@ moduleWhitelist:
   - oci_blockstorage_volume_backup_policy_assignment_facts
   - oci_object_storage_bucket
   - oci_object_storage_bucket_facts
+  - oci_object_storage_bucket_actions
   - oci_object_storage_namespace_facts
   - oci_object_storage_namespace_metadata
   - oci_object_storage_namespace_metadata_facts
@@ -235,6 +236,20 @@ moduleWhitelist:
   - oci_loadbalancer_rule_set
   - oci_loadbalancer_rule_set_facts
   - oci_loadbalancer_shape_facts
+  - oci_object_storage_object
+  - oci_object_storage_object_facts
+  - oci_object_storage_object_actions
+  - oci_object_storage_object_version_facts
+  - oci_object_storage_object_lifecycle_policy
+  - oci_object_storage_object_lifecycle_policy_facts
+  - oci_object_storage_preauthenticated_request
+  - oci_object_storage_preauthenticated_request_facts
+  - oci_object_storage_retention_rule
+  - oci_object_storage_retention_rule_facts
+  - oci_object_storage_replication_source_facts
+  - oci_object_storage_replication_policy
+  - oci_object_storage_replication_policy_facts
+
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -243,9 +258,8 @@ modulePathOverrides:
   /budgets/{budgetId}/alertRules/{alertRuleId}: budget_alert_rule
   /identityProviders/{identityProviderId}/actions/resetScimClient/: identity_provider
   /n/{namespaceName}: namespace_metadata
-  /n/{namespaceName}/b/{bucketName}/actions/copyObject: bucket
-  /n/{namespaceName}/b/{bucketName}/actions/restoreObjects: bucket
-  /n/{namespaceName}/b/{bucketName}/actions/renameObject: bucket
+  /n/{namespaceName}/b/{bucketName}/actions/makeBucketWritable: bucket
+  /n/{namespaceName}/b/{bucketName}/objectversions: object_version
   /tagNamespaces/actions/listCostTrackingTags: cost_tracking_tag
   # to avoid collision with the fast_connect_provider_service resource because of x-related-resource
   /fastConnectProviderServices/{providerServiceId}/virtualCircuitBandwidthShapes: fast_connect_provider_service_virtual_circuit_bandwidth_shape
@@ -264,6 +278,9 @@ modulePathOverrides:
   /instanceConsoleHistories/{instanceConsoleHistoryId}/data: instance_console_history_content
   /clusters/{clusterId}/kubeconfig/content: kubeconfig
   /clusterNetworks/{clusterNetworkId}/instances: cluster_network_instance
+  /n/{namespaceName}/b/{bucketName}/replicationPolicies: replication_policy
+  /n/{namespaceName}/b/{bucketName}/replicationPolicies/{replicationId}: replication_policy
+  /n/{namespaceName}/b/{bucketName}/replicationSources: replication_source
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules
@@ -322,6 +339,32 @@ extraFactsModuleParameters:
         required: false
         dataType: str
         isUsedByList: true
+extraResourceModuleParameters:
+  object_storage:
+    object:
+      - paramName: src
+        baseName: src
+        description: The source file path when uploading an object. Use with I(state=present) to upload an object. This
+                     option is mutually exclusive with I(dest).
+        required: false
+        dataType: str
+        example: "/usr/local/myfile.txt"
+        isUsedByUpdate: true
+      - paramName: dest
+        baseName: dest
+        description: The destination file path when downloading an object. Use with I(namespace_name), I(bucket_name)
+                     and I(object_name) to download an object.
+        required: false
+        dataType: str
+        example: "/usr/local/myfile.txt"
+        isUsedByGet: true
+      - paramName: force
+        baseName: force
+        description: Force overwriting existing local file when downloading or existing remote object when uploading.
+        required: false
+        dataType: bool
+        defaultValue: true
+        forceUseDefaultValue: true
 extraFactsModuleReturnProperties:
   core:
     instance:
@@ -374,6 +417,15 @@ extraResourceModuleReturnProperties:
           "sudo iscsiadm -m node -T IQN -p IP:PORT -u",
           "sudo iscsiadm -m node -o delete -T IQN"
         ]'
+  object_storage:
+    preauthenticated_request:
+      - name: access_uri
+        description: |
+          The URI to embed in the URL when using the pre-authenticated request. Only returned on successful creation of
+          the preauthenticated request.
+        datatype: str
+        isString: true
+        example: "/p/x-xxxxxx_Examplexxxxxx/n/{namespace_name}/{bucket_name}/o/"
 resourceModuleParameterValueOverrides:
   core:
     volume_backup_policy:
@@ -408,3 +460,18 @@ resourceModuleParameterValueOverrides:
         remove: true
       - paramName: rule_sets
         remove: true
+
+  object_storage:
+    object:
+      - paramName: put_object_body
+        remove: true
+factsModuleParameterValueOverrides:
+  object_storage:
+    object:
+      - paramName: fields
+        allowableValues:
+          values: []
+    object_version:
+      - paramName: fields
+        allowableValues:
+          values: []

@@ -58,12 +58,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -101,12 +105,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -144,12 +152,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -192,9 +204,11 @@
       metadata: "{{ null | oracle.oci.override(test_bucket_create_optional_required_metadata, omit) }}"
       public_access_type: "{{ 'NoPublicAccess' | oracle.oci.override(test_bucket_create_optional_required_public_access_type, omit) }}"
       storage_tier: "{{ 'Standard' | oracle.oci.override(test_bucket_create_optional_required_storage_tier, omit) }}"
+      object_events_enabled: "{{ true | oracle.oci.override(test_bucket_create_optional_required_object_events_enabled, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_bucket_create_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_bucket_create_optional_required_defined_tags, omit) }}"
       kms_key_id: "{{ dependency_kms_key_id | oracle.oci.override(test_bucket_create_optional_required_kms_key_id, omit) }}"
+      versioning: "{{ 'Enabled' | oracle.oci.override(test_bucket_create_optional_required_versioning, omit) }}"
     register: result
     when: skip_bucket_create_optional_required_original_test is not defined
 
@@ -224,12 +238,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -249,9 +267,11 @@
       metadata: "{{ null | oracle.oci.override(test_bucket_create_optional_required_metadata, omit) }}"
       public_access_type: "{{ 'NoPublicAccess' | oracle.oci.override(test_bucket_create_optional_required_public_access_type, omit) }}"
       storage_tier: "{{ 'Standard' | oracle.oci.override(test_bucket_create_optional_required_storage_tier, omit) }}"
+      object_events_enabled: "{{ true | oracle.oci.override(test_bucket_create_optional_required_object_events_enabled, omit) }}"
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_bucket_create_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_bucket_create_optional_required_defined_tags, omit) }}"
       kms_key_id: "{{ dependency_kms_key_id | oracle.oci.override(test_bucket_create_optional_required_kms_key_id, omit) }}"
+      versioning: "{{ 'Enabled' | oracle.oci.override(test_bucket_create_optional_required_versioning, omit) }}"
     register: result
     when: skip_bucket_create_optional_required_idempotence_test is not defined
 
@@ -273,12 +293,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -297,9 +321,11 @@
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_update_optional_required_compartment_id, omit) }}"
       metadata: "{{ null | oracle.oci.override(test_bucket_update_optional_required_metadata, omit) }}"
       public_access_type: "{{ 'ObjectRead' | oracle.oci.override(test_bucket_update_optional_required_public_access_type, omit) }}"
+      object_events_enabled: "{{ true | oracle.oci.override(test_bucket_update_optional_required_object_events_enabled, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_bucket_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_bucket_update_optional_required_defined_tags, omit) }}"
       kms_key_id: "{{ dependency_kms_key_id | oracle.oci.override(test_bucket_update_optional_required_kms_key_id, omit) }}"
+      versioning: "{{ 'Disabled' | oracle.oci.override(test_bucket_update_optional_required_versioning, omit) }}"
     register: result
     when: skip_bucket_update_optional_required_test is not defined
 
@@ -321,12 +347,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -345,9 +375,11 @@
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_update_optional_required_compartment_id, omit) }}"
       metadata: "{{ null | oracle.oci.override(test_bucket_update_optional_required_metadata, omit) }}"
       public_access_type: "{{ 'ObjectRead' | oracle.oci.override(test_bucket_update_optional_required_public_access_type, omit) }}"
+      object_events_enabled: "{{ true | oracle.oci.override(test_bucket_update_optional_required_object_events_enabled, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_bucket_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_bucket_update_optional_required_defined_tags, omit) }}"
       kms_key_id: "{{ dependency_kms_key_id | oracle.oci.override(test_bucket_update_optional_required_kms_key_id, omit) }}"
+      versioning: "{{ 'Disabled' | oracle.oci.override(test_bucket_update_optional_required_versioning, omit) }}"
     register: result
     when: skip_bucket_update_optional_required_idempotence_test is not defined
 
@@ -369,12 +401,16 @@
         - result.bucket.etag is defined
         - result.bucket.public_access_type is defined
         - result.bucket.storage_tier is defined
+        - result.bucket.object_events_enabled is defined
         - result.bucket.freeform_tags is defined
         - result.bucket.defined_tags is defined
         - result.bucket.kms_key_id is defined
         - result.bucket.object_lifecycle_policy_etag is defined
         - result.bucket.approximate_count is defined
         - result.bucket.approximate_size is defined
+        - result.bucket.replication_enabled is defined
+        - result.bucket.is_read_only is defined
+        - result.bucket.versioning is defined
     when: skip_bucket_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions

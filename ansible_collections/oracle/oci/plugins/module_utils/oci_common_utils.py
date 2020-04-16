@@ -588,8 +588,8 @@ def merge_dicts(*dictionaries):
     return merged_dict
 
 
-def get_default_response_from_resource(resource):
-    return oci.Response(status=200, headers=None, data=resource, request=None)
+def get_default_response_from_resource(resource, headers=None):
+    return oci.Response(status=200, headers=headers, data=resource, request=None)
 
 
 def is_work_request_success(work_request_response):

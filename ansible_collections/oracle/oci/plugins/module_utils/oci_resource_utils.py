@@ -43,9 +43,11 @@ def get_logger():
 class OCIResourceCommonBase:
     """Base class for the Helper Classes to hold common code."""
 
-    def prepare_result(self, changed, resource_type, resource=None):
+    def prepare_result(self, changed, resource_type, resource=None, msg=None):
         result = dict(changed=changed)
         result[resource_type] = resource
+        if msg:
+            result["msg"] = msg
         return result
 
     def _is_resource_active(self, resource):
@@ -220,6 +222,16 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
                 msg="Performing action failed with exception: {0}".format(se.message)
             )
         else:
+            # sometimes when there is no waiting and also the operation does not return anything. For ex: the bucket
+            # action "make_bucket_writable" returns None and also there is no waiting. In those cases, get the resource
+            # and return it instead.
+            try:
+                actioned_resource = actioned_resource or self.get_resource().data
+            except (ServiceError, NotImplementedError) as ex:
+                _debug(
+                    "Action {0} succeeded but did not return the resource. Error fetching the resource using "
+                    "the get operation: {1}".format(action, ex)
+                )
             return self.prepare_result(
                 changed=True,
                 resource_type=self.resource_type,
@@ -867,6 +879,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_blockstorage_custom_helpers,
     oci_compute_management_custom_helpers,
     oci_audit_custom_helpers,
+    oci_object_storage_custom_helpers,
     oci_file_storage_custom_helpers,
     oci_healthchecks_custom_helpers,
     oci_container_engine_custom_helpers,
@@ -881,6 +894,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_blockstorage_custom_helpers,
         oci_compute_management_custom_helpers,
         oci_audit_custom_helpers,
+        oci_object_storage_custom_helpers,
         oci_file_storage_custom_helpers,
         oci_healthchecks_custom_helpers,
         oci_container_engine_custom_helpers,

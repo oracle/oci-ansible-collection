@@ -8,3 +8,117 @@
 - import_tasks: oci_object_storage_bucket_tests.yaml
   tags:
     - bucket
+
+- import_tasks: oci_object_storage_object_lifecycle_policy_tests.yaml
+  tags:
+    - object_lifecycle_policy
+
+- import_tasks: oci_object_storage_retention_rule_tests.yaml
+  tags:
+    - retention_rule
+
+- block:
+    - import_tasks: oci_object_storage_setup.yaml
+      tags:
+        - setup
+        - object
+        - object_version
+        - preauthenticated_request
+        - replication_source
+        - replication_policy
+        - retention_rule
+
+    - import_tasks: oci_object_storage_object_tests.yaml
+      tags:
+        - object
+
+    - import_tasks: oci_object_storage_object_version_tests.yaml
+      tags:
+        - object_version
+
+    - import_tasks: oci_object_storage_preauthenticated_request_tests.yaml
+      tags:
+        - preauthenticated_request
+
+    - import_tasks: oci_object_storage_replication_policy_tests.yaml
+      tags:
+        - replication_policy
+
+    - name: Create replication policy
+      oci_object_storage_replication_policy:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{ region2_bucket_name }}"
+        name: "{{ test_retention_policy_name }}"
+        destination_region_name: "{{ region1_name }}"
+        destination_bucket_name: "{{ region1_bucket_name }}"
+        region: "{{ region2_name }}"
+      register: result
+      tags:
+        - replication_source
+
+    - set_fact:
+        setup_replication_policy_id: "{{ result.replication_policy.id }}"
+      tags:
+        - replication_source
+
+    - import_tasks: oci_object_storage_replication_source_tests.yaml
+      tags:
+        - replication_source
+
+    - name: Stop replication
+      oci_object_storage_bucket_actions:
+        namespace_name: "{{ test_namespace_name }}"
+        bucket_name: "{{ region1_bucket_name }}"
+        action: make_bucket_writable
+      register: result
+      tags:
+        - replication_source
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+          - result.bucket.name is defined
+      tags:
+        - replication_source
+
+    - name: Stop replication (idempotence)
+      oci_object_storage_bucket_actions:
+        namespace_name: "{{ test_namespace_name }}"
+        bucket_name: "{{ region1_bucket_name }}"
+        action: make_bucket_writable
+      register: result
+      tags:
+        - replication_source
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == False
+          - result.bucket.name is defined
+      tags:
+        - replication_source
+
+    - import_tasks: oci_object_storage_teardown.yaml
+      tags:
+        - teardown
+        - object
+        - object_version
+        - preauthenticated_request
+        - replication_source
+        - replication_policy
+        - retention_rule
+  rescue:
+    - import_tasks: oci_object_storage_teardown.yaml
+      ignore_errors: yes
+      tags:
+        - teardown
+        - object
+        - object_version
+        - preauthenticated_request
+        - replication_source
+        - replication_policy
+        - retention_rule
+
+    - fail:
+        msg: "Some of the object storage tests failed. See above for errors."

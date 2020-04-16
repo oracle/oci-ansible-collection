@@ -484,11 +484,11 @@
 
     - name: Delete dependency backend_set
       oci_loadbalancer_backend_set:
-        name: "{{ dependency_backend_set_id }}"
+        name: "{{ dependency_backend_set_name }}"
         load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_backend_delete_dependency_backend_set_load_balancer_id, omit) }}"
         state: absent
       ignore_errors: yes
-      when: skip_backend_delete_dependency_backend_set_test is not defined and skip_backend_dependencies is not defined and dependency_backend_set_id is defined
+      when: skip_backend_delete_dependency_backend_set_test is not defined and skip_backend_dependencies is not defined and dependency_backend_set_name is defined
 
     - name: Delete dependency load_balancer
       oci_loadbalancer_load_balancer:

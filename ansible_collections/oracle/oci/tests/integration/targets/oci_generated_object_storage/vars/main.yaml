@@ -5,10 +5,111 @@ test_namespace_metadata_update_optional_required_default_swift_compartment_id: n
 skip_namespace_metadata_update_optional_required_test: true   # skipping the test
 
 # variables for oci_object_storage_bucket_tests.yaml
+test_bucket_name: "test-bucket-{{ random_suffix_1024 }}"
 test_bucket_create_optional_required_metadata:
   department: "Finance"
 test_bucket_create_optional_required_kms_key_id: null
 test_bucket_update_optional_required_public_access_type: "NoPublicAccess"
 test_bucket_update_optional_required_metadata:
   department: "Accounting"
+test_bucket_update_optional_required_versioning: null
 test_bucket_update_optional_required_kms_key_id: null
+
+# variables for oci_object_storage_setup_tests.yaml
+region1_name: "us-ashburn-1"
+region2_bucket_name: "setup-region2-{{ test_bucket_name }}"
+region1_bucket_name: "setup-region1-{{ test_bucket_name }}"
+region1_object_name: "setup-obj-{{ random_suffix_1024 }}"
+test_retention_policy_name: "setup-retention-policy-{{ random_suffix_1024 }}"
+versioned_bucket_name: "versioning-{{region1_bucket_name}}"
+versioned_object_name: "versioning-{{region1_object_name}}"
+
+# variables for oci_object_storage_object_tests.yaml
+skip_object_create_dependency_bucket_test: yes
+test_object_update_optional_required_bucket_name: "{{ region1_bucket_name }}"
+object_resource_name: "test-object-{{ random_suffix_1024 }}"
+test_object_update_optional_required_content_length: null
+test_object_update_optional_required_put_object_body: null
+test_object_update_optional_required_expect: null
+test_object_update_optional_required_content_md5: null
+test_object_update_optional_required_content_type: null
+test_object_update_optional_required_content_language: null
+test_object_update_optional_required_content_encoding: null
+test_object_update_optional_required_src: "{{ tmpfile1.path }}"
+test_object_update_optional_required_opc_meta:
+  department: "Accounting"
+test_object_list_bucket_name: "{{ region1_bucket_name }}"
+test_object_get_bucket_name: "{{ region1_bucket_name }}"
+test_object_delete_rescue_bucket_name: "{{ region1_bucket_name }}"
+
+# variables for oci_object_storage_object_version_tests.yaml
+# Skipping the dependency bucket creation since this test needs a bucket with versioning enabled but the parameter to
+# enable versioning for a bucket is optional and so it is not included.
+skip_object_version_create_dependency_bucket_test: yes
+test_object_version_list_bucket_name: "{{ versioned_bucket_name }}"
+
+# variables for oci_object_storage_preauthenticated_request_tests.yaml
+skip_preauthenticated_request_create_required_idempotency_test: yes
+skip_preauthenticated_request_create_optional_required_idempotence_test: yes
+test_preauthenticated_request_create_required_access_type: "AnyObjectWrite"
+# current time + 1 hour
+test_preauthenticated_request_create_required_time_expires: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) + 3600 ) }}"
+test_preauthenticated_request_create_optional_required_bucket_name: "{{ region1_bucket_name }}"
+test_preauthenticated_request_create_optional_required_object_name: "{{ region1_object_name }}"
+test_preauthenticated_request_create_optional_required_time_expires: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) + 3600 ) }}"
+test_preauthenticated_request_list_bucket_name: "{{ region1_bucket_name }}"
+test_preauthenticated_request_get_bucket_name: "{{ region1_bucket_name }}"
+test_preauthenticated_request_delete_rescue_bucket_name: "{{ region1_bucket_name }}"
+
+# variables for oci_object_storage_object_lifecycle_policy_tests.yaml
+#skip_object_lifecycle_policy_create_dependency_bucket_test: yes
+#test_object_lifecycle_policy_update_optional_required_bucket_name: "{{ region1_bucket_name }}"
+test_object_lifecycle_policy_update_optional_required_items_action: "ARCHIVE"
+#test_object_lifecycle_policy_delete_rescue_bucket_name: "{{ region1_bucket_name }}"
+object_lifecycle_policy_resource_name: "{{ dependency_bucket_name }}"
+
+# variables for oci_object_storage_replication_source_tests.yaml
+skip_replication_source_create_dependency_bucket_test: yes
+test_replication_source_list_bucket_name: "{{ region1_bucket_name }}"
+
+# variables for oci_object_storage_replication_policy_tests.yaml
+skip_replication_policy_create_dependency_bucket_test: yes
+test_replication_policy_create_required_bucket_name: "{{ region1_bucket_name }}"
+test_replication_policy_create_required_name: "generated-retention-policy-{{ random_suffix_1024 }}"
+test_replication_policy_create_required_destination_region_name: "{{ region2_name }}"
+test_replication_policy_create_required_destination_bucket_name: "{{ region2_bucket_name }}"
+test_replication_policy_delete_required_bucket_name: "{{ region1_bucket_name }}"
+test_replication_policy_delete_required_name: "{{ test_replication_policy_create_required_name }}"
+test_replication_policy_create_optional_required_bucket_name: "{{ region1_bucket_name }}"
+test_replication_policy_create_optional_required_name: "generated-another-retention-policy-{{ random_suffix_1024 }}"
+test_replication_policy_create_optional_required_destination_region_name: "{{ region2_name }}"
+test_replication_policy_create_optional_required_destination_bucket_name: "{{ region2_bucket_name }}"
+test_replication_policy_list_bucket_name: "{{ region1_bucket_name }}"
+test_replication_policy_get_bucket_name: "{{ region1_bucket_name }}"
+test_replication_policy_delete_rescue_bucket_name: "{{ region1_bucket_name }}"
+
+# variables for oci_object_storage_retention_rule_tests.yaml
+#skip_retention_rule_create_dependency_bucket_test: yes
+#test_retention_rule_create_required_bucket_name: "{{ region1_bucket_name }}"
+test_retention_rule_create_required_display_name: "test-retention-rule-{{ random_suffix_1024 }}"
+#test_retention_rule_update_using_name_optional_required_bucket_name: "{{ region1_bucket_name }}"
+test_retention_rule_update_using_name_optional_required_display_name: "{{ test_retention_rule_create_required_display_name }}"
+test_retention_rule_update_using_name_optional_required_duration:
+  time_amount: 1
+  time_unit: "DAYS"
+test_retention_rule_update_using_name_optional_required_time_rule_locked: null
+test_retention_rule_delete_required_display_name: "{{ test_retention_rule_create_required_display_name }}"
+#test_retention_rule_delete_required_bucket_name: "{{ region1_bucket_name }}"
+#test_retention_rule_create_optional_required_bucket_name: "{{ region1_bucket_name }}"
+test_retention_rule_create_optional_required_display_name: "test-another-retention-rule-{{ random_suffix_1024 }}"
+test_retention_rule_create_optional_required_duration: "{{ test_retention_rule_update_using_name_optional_required_duration }}"
+test_retention_rule_create_optional_required_time_rule_locked: null
+#test_retention_rule_update_optional_required_bucket_name: "{{ region1_bucket_name }}"
+test_retention_rule_update_optional_required_duration:
+  time_amount: 2
+  time_unit: "DAYS"
+test_retention_rule_update_optional_required_display_name: null
+test_retention_rule_update_optional_required_time_rule_locked: null
+#test_retention_rule_list_bucket_name: "{{ region1_bucket_name }}"
+#test_retention_rule_get_bucket_name: "{{ region1_bucket_name }}"
+#test_retention_rule_delete_rescue_bucket_name: "{{ region1_bucket_name }}"

@@ -1,0 +1,1141 @@
+---
+# tasks file for test_oci_bucket and oci_object
+
+# Before test run, ensure all test resources are deleted, so
+# that we can start with a clean slate.
+
+- name: Delete any existing test objects
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    state: 'absent'
+  ignore_errors: yes
+
+- name: Delete any existing test objects
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_renamed_object_name}}"
+    state: 'absent'
+  ignore_errors: yes
+
+- name: Cleanup - delete object in test bucket in region2
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name_in_region2}}"
+    object_name: "{{ test_object_name_in_region2 }}"
+    region: "{{ region2_name }}"
+    state: 'absent'
+  register: result
+  ignore_errors: yes
+
+- name: Cleanup - delete object in test bucket
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{test_archive_bucket_name}}"
+    object_name: "{{ test_archive_object_name }}"
+    state: 'absent'
+  register: result
+  ignore_errors: yes
+
+- name: List all Preauthenticated Request for a Bucket
+  oci_object_storage_preauthenticated_request_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+  register: result
+  ignore_errors: yes
+
+- name: Delete all Preauthenticated Requests
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    par_id: "{{item}}"
+    state: absent
+  with_items: "{{ result.preauthenticated_requests }}"
+  register: result
+  ignore_errors: yes
+
+- name: Delete all existing test buckets
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{item}}"
+    state: absent
+  ignore_errors: yes
+  with_items:
+    - "{{test_bucket_name}}"
+    - "{{transient_test_bucket_name}}"
+
+# ============================================================
+# Get the namespace using the optional compartment id parameter
+- name: Get namespace using the optional compartment id parameter
+  oci_object_storage_namespace_facts:
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: ns_using_compartment_result
+
+- assert:
+    that:
+      - ns_using_compartment_result.namespace == test_namespace_name
+
+# get namespace metadata
+- name: get namespace metadata
+  oci_object_storage_namespace_metadata_facts:
+    namespace_name: "{{ ns_using_compartment_result.namespace }}"
+  register: ns_metadata_result
+
+- assert:
+    that:
+      - ns_metadata_result.namespace_metadata.namespace == test_namespace_name
+      - ns_metadata_result.namespace_metadata.default_s3_compartment_id is defined
+      - ns_metadata_result.namespace_metadata.default_swift_compartment_id is defined
+
+# Bucket related tests
+# ============================================================
+- name: Create new bucket in OCI without metadata
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    public_access_type: 'NoPublicAccess'
+    defined_tags: "{{ creation_defined_tag }}"
+    freeform_tags: "{{ creation_freeform_tag }}"
+    state: 'present'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+      - result.bucket.defined_tags == creation_defined_tag
+      - result.bucket.freeform_tags == creation_freeform_tag
+
+# ============================================================
+- name: Attempt to run the same "create bucket" task again, which should return changed as false
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    public_access_type: 'NoPublicAccess'
+    defined_tags: "{{ creation_defined_tag }}"
+    freeform_tags: "{{ creation_freeform_tag }}"
+    state: 'present'
+  register: result
+
+- name: Assert that changed is false
+  assert:
+    that:
+      - result.changed == False
+
+# ============================================================
+- name: Update bucket in OCI with metadata
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    name: "{{test_bucket_name}}"
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that changed is true and metadata has been updated
+  assert:
+    that:
+      - result.changed == True
+      - result.bucket.metadata.project == 'Test Project'
+# ============================================================
+- name: Update bucket in OCI with changed public access type
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    public_access_type: 'ObjectRead'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that changed is true and public access type has been updated
+  assert:
+    that:
+      - result.changed == True
+      - result.bucket['public_access_type'] == 'ObjectRead'
+# ============================================================
+- name: Update bucket in OCI with updated tags
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    metadata:
+      project: 'Test Project'
+    defined_tags: "{{ updation_defined_tag }}"
+    freeform_tags: "{{ updation_freeform_tag }}"
+    state: 'present'
+  register: result
+
+- name: Assert that changed is true and tags have been updated
+  assert:
+    that:
+      - result.changed == True
+      - result.bucket.defined_tags == updation_defined_tag
+      - result.bucket.freeform_tags == updation_freeform_tag
+# ============================================================
+- name: Get all bucket facts
+  oci_object_storage_bucket_facts:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+  register: oci_buckets
+
+- name: Get bucket details of test bucket
+  debug: var=item
+  with_items: "{{oci_buckets.buckets}}"
+  when: item.name == test_bucket_name
+  register: retrievedfacts_of_testbucket
+
+- name: Assert that bucket summaries returned by facts contains the test bucket
+  assert:
+    that:
+        - oci_buckets.buckets | length > 0
+        - retrievedfacts_of_testbucket is defined
+
+- name: Get bucket facts for a single bucket including approximateSize and approximateCount
+  oci_object_storage_bucket_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{oci_buckets.buckets[0].name}}"
+    fields: ["approximateSize", "approximateCount"]
+  register: oci_single_bucket
+
+- name: Assert that bucket data contains approximateSize and approximateCount
+  assert:
+    that:
+        - "oci_single_bucket.buckets[0].approximate_size != None"
+        - "oci_single_bucket.buckets[0].approximate_count != None"
+
+- name: Get bucket facts for a single bucket including tags, approximateSize, and approximateCount
+  oci_object_storage_bucket_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{oci_buckets.buckets[0].name}}"
+    fields: ["tags", "approximateSize", "approximateCount"]
+  register: oci_single_bucket
+
+- name: Assert that bucket data contains approximateSize, approximateCount and tags
+  assert:
+    that:
+        - "oci_single_bucket.buckets[0].approximate_size != None"
+        - "oci_single_bucket.buckets[0].approximate_count != None"
+        - "oci_single_bucket.buckets[0].defined_tags != None"
+        - "oci_single_bucket.buckets[0].freeform_tags != None"
+
+- name: Get all bucket facts and include tag fields
+  oci_object_storage_bucket_facts:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    fields: ['tags']
+  register: oci_buckets
+
+- name: Assert that bucket data contains tags
+  assert:
+    that:
+        - "oci_buckets.buckets[0].defined_tags == updation_defined_tag"
+        - "oci_buckets.buckets[0].freeform_tags == updation_freeform_tag"
+
+- name: Get all bucket facts and include tags, approximateSize, and approximateCount fields
+  oci_object_storage_bucket_facts:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    fields: ["tags", "approximateSize", "approximateCount"]
+  register: oci_buckets
+
+- name: Assert that bucket data contains tags, approximate_size, and approximate_count
+  assert:
+    that:
+        - "oci_single_bucket.buckets[0].approximate_size != None"
+        - "oci_single_bucket.buckets[0].approximate_count != None"
+        - "oci_single_bucket.buckets[0].defined_tags != None"
+        - "oci_single_bucket.buckets[0].freeform_tags != None"
+
+- name: Get bucket details of test bucket
+  debug: var=item
+  with_items: "{{oci_buckets.buckets}}"
+  when: item.name == test_bucket_name
+  register: retrievedfacts_of_testbucket
+# - debug: msg="{{retrievedfacts_of_testbucket}}"
+- name: Assert that bucket summaries returned by facts contains the test bucket
+  assert:
+    that:
+        - oci_buckets.buckets | length > 0
+        - retrievedfacts_of_testbucket is defined
+
+
+# ============================================================
+- name: Delete existing bucket in OCI
+  oci_object_storage_bucket:
+            namespace_name: "{{test_namespace_name}}"
+            name: "{{test_bucket_name}}"
+            state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+         that:
+            - result.changed == True
+# ============================================================
+- name: Delete non-existing bucket in OCI
+  oci_object_storage_bucket:
+            namespace_name: "{{test_namespace_name}}"
+            name: 'NonExistentBucket'
+            state: 'absent'
+  register: result
+
+- name: Assert that changed is false
+  assert:
+         that:
+            - result.changed == False
+# ============================================================
+- name: Create new bucket with access ObjectReadWithoutList
+  oci_object_storage_bucket:
+            namespace_name: "{{test_namespace_name}}"
+            compartment_id: "{{test_compartment_ocid}}"
+            name: "{{test_bucket_name}}"
+            public_access_type: 'ObjectReadWithoutList'
+            metadata:
+                    project: 'Test Project'
+            state: 'present'
+  register: result
+
+- name: Assert that bucket with access ObjectReadWithoutList created
+  assert:
+         that:
+            - result.changed == True
+# ============================================================
+- name: Create new bucket with access ObjectReadWithoutList, Idempotent test
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    public_access_type: 'ObjectReadWithoutList'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that bucket create with access ObjectReadWithoutList is Idempotent
+  assert:
+         that:
+            - result.changed == False
+# ============================================================
+- name: Delete bucket with access ObjectReadWithoutList
+  oci_object_storage_bucket:
+            namespace_name: "{{test_namespace_name}}"
+            name: "{{test_bucket_name}}"
+            state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+         that:
+            - result.changed == True
+# ============================================================
+- name: Create new bucket with storageTier Archive
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    storage_tier: 'Archive'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that bucket created
+  assert:
+         that:
+            - result.changed == True
+# ============================================================
+- name: Delete Archive bucket with storageTier Archive
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    name: "{{test_bucket_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+         that:
+            - result.changed == True
+# ============================================================
+- name: Create new bucket in OCI with Preauthenticated Request at bucket level to upload object inside it
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    public_access_type: 'ObjectRead'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that bucket created
+  assert:
+    that:
+      - result.changed == True
+
+- set_fact:
+     time_expires: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) + 86400 ) }}"
+
+- name: Create a Preauthenticated Request for the entire Bucket
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{test_bucket_name}}"
+    name: "{{bucket_level_par_name}}"
+    access_type: "{{ bucket_level_par_accesstype }}"
+    time_expires: "{{time_expires}}"
+  register: result
+
+- set_fact:
+     bucket_level_par_id: "{{result.preauthenticated_request.id}}"
+
+- name: Assert that changed is True
+  assert:
+    that:
+      - result.changed == True
+      # access_uri is returned only when the preauthenticated request is created. So assert to make sure that
+      # it exists in the create response.
+      - result.preauthenticated_request.access_uri != None
+
+
+- name: Create a temporary file to be used as object
+  tempfile:
+  register: tmpfile1
+
+- name: Put content in the temporary test file
+  copy:
+    content: "This is content for the test file."
+    dest: "{{ tmpfile1.path }}"
+
+- name: Create a object in the bucket
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    src: "{{ tmpfile1.path }}"
+    opc_meta: {'language': 'english'}
+  register: result
+
+- name: Assert that bucket created with object
+  assert:
+    that:
+      - result.changed == True
+  #==============================================================
+- name: Create a Preauthenticated Request for the entire Bucket
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{test_bucket_name}}"
+    par_id: "{{ bucket_level_par_id }}"
+    state: "absent"
+  register: result
+
+- name: Delete object in the bucket
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    state: "absent"
+  register: result
+
+- name: Assert that object is removed
+  assert:
+    that:
+      - result.changed == True
+
+- name: Delete existing bucket
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    name: "{{test_bucket_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that bucket is removed
+  assert:
+    that:
+      - result.changed == True
+  #==============================================================
+- name: Cleanup - delete temporary test file
+  file:
+    state: absent
+    path: "{{ tmpfile1.path }}"
+  # ============================================================
+- name: Failure while attempting to create bucket on wrong namespace
+  oci_object_storage_bucket:
+    namespace_name: 'wrongnamespace'
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{test_bucket_name}}"
+    public_access_type: 'NoPublicAccess'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  ignore_errors: yes
+  register: result
+
+- name: Assert that changed is false
+  assert:
+    that:
+      - result.changed == False
+  # ============================================================
+- name: Failure while attempting to create bucket on wrong compartment
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: 'wrong-compartment-axbbbc'
+    name: "{{test_bucket_name}}"
+    public_access_type: 'NoPublicAccess'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  ignore_errors: yes
+  register: result
+
+- name: Assert that changed is false
+  assert:
+    that:
+      - result.changed == False
+
+# ============================================================
+
+# Object related tests
+
+- name: Create a transient test bucket in OCI to contain test objects
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{transient_test_bucket_name}}"
+    public_access_type: 'NoPublicAccess'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+
+# ==============================================================
+
+- name: Create a temporary test file
+  tempfile:
+  register: tmpfile1
+
+- name: Put content in the temporary test file
+  copy:
+    content: "This is content for the test file."
+    dest: "{{ tmpfile1.path }}"
+
+- name: Get the stat of the test file for verifying successful upload/download
+  stat:
+    path: "{{ tmpfile1.path }}"
+    get_checksum: yes
+  register: tmpfile1stat
+
+- name: Create an OCI object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    src: "{{ tmpfile1.path }}"
+    opc_meta: {'language': 'english'}
+  register: result
+
+- name: Assert that changed is True
+  assert:
+    that:
+      - result.changed == True
+      - result.object['opc-multipart-md5'] is not defined
+
+- name: Get object facts
+  oci_object_storage_object_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+  register: oci_objects
+
+- name: Get facts of all object details in our test bucket
+  debug: var=item
+  register: retrievedfacts_of_testobject
+  with_items: "{{oci_objects.objects}}"
+  when: item.name == test_object_name
+
+- name: Assert that object summaries returned by facts contains the test object
+  assert:
+    that:
+      - oci_objects.objects | length > 0
+      - not (retrievedfacts_of_testobject is none)
+
+- name: Get object facts with a custom fields specification
+  oci_object_storage_object_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    fields: "name,size"
+  register: oci_objects
+
+- name: Get facts of all object details in our test bucket
+  debug: var=item
+  register: retrievedfacts_of_testobject
+  with_items: "{{oci_objects.objects}}"
+  when: item.name == test_object_name
+
+- name: Assert that object summaries returned by facts contains the test object
+  assert:
+    that:
+      - oci_objects.objects | length > 0
+      - not (retrievedfacts_of_testobject is none)
+#
+# ============================================================
+
+- name: Create a temporary file to download the object
+  tempfile:
+  register: tmpfile2
+
+- name: Get an object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    dest: "{{ tmpfile2.path }}"
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+
+- name: Attempt to get an object to a file with same content should return changed as false
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    dest: "{{ tmpfile2.path }}"
+  register: result
+
+- name: Assert that changed is false
+  assert:
+    that:
+      - result.changed == False
+
+- name: Get the stat of the downloaded file
+  stat:
+    path: "{{ tmpfile2.path }}"
+    get_checksum: yes
+  register: tmpfile2stat
+
+- name: Assert checksums of the source and destination file
+  assert:
+    that:
+      - tmpfile1stat.stat.checksum == tmpfile2stat.stat.checksum
+
+- name: Create a temporary file to download the object
+  tempfile:
+  register: tmpfile_del
+
+- name: delete temp file
+  file:
+    path: "{{ tmpfile_del.path }}"
+    state: absent
+
+- name: Test download object when dest file does not exist
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    dest: "{{ tmpfile_del.path }}"
+  register: non_existent_dest_file_result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - non_existent_dest_file_result.changed == True
+# ============================================================
+# Test file names with non-ascii characters
+- block:
+  - name: Create a temporary file with non-ascii characters
+    tempfile:
+      state: file
+      # haiku
+      prefix: "俳句"
+    register: tmp_non_ascii_file
+
+  - name: Put test content in the temporary test file
+    copy:
+      # Basho's old-pond haiku
+      content: "古池や蛙飛び込む水の音 ふるいけやかわずとびこむみずのおと"
+      dest: "{{ tmp_non_ascii_file.path }}"
+
+  - name: Get the stat of the test file for verifying successful upload/download
+    stat:
+      path: "{{ tmp_non_ascii_file.path }}"
+      get_checksum: yes
+    register: tmp_non_ascii_file_stat
+
+  - name: Create an OCI object
+    oci_object_storage_object:
+      namespace_name: "{{test_namespace_name}}"
+      bucket_name: "{{transient_test_bucket_name}}"
+      object_name: '俳句-test'
+      src: "{{ tmp_non_ascii_file.path }}"
+      opc_meta: {'language': 'japanese'}
+    register: result
+
+  - name: Assert that changed is True
+    assert:
+      that:
+        - result.changed == True
+
+  - name: Re-Create an OCI object
+    oci_object_storage_object:
+      namespace_name: "{{test_namespace_name}}"
+      bucket_name: "{{transient_test_bucket_name}}"
+      object_name: '俳句-test'
+      src: "{{ tmp_non_ascii_file.path }}"
+      opc_meta: {'language': 'japanese'}
+      state: 'present'
+    register: result
+  - name: Assert that rerun of create has changed as False
+    assert:
+      that:
+        - result.changed == False
+
+  - name: Create a new temporary file to download the object
+    tempfile:
+    register: tmp_non_ascii_download
+
+  - name: Get the object
+    oci_object_storage_object:
+      namespace_name: "{{test_namespace_name}}"
+      bucket_name: "{{transient_test_bucket_name}}"
+      object_name: '俳句-test'
+      dest: "{{ tmp_non_ascii_download.path }}"
+    register: result
+
+#  - shell: "cat {{ tmp_non_ascii_download.path }}"
+#    register: tmp_dl_contents
+#  - debug:
+#      msg: "File contents: {{tmp_dl_contents.stdout|quote}}"
+
+  - name: Assert that changed is true
+    assert:
+      that:
+        - result.changed == True
+
+  - name: Get the stat of the downloaded file
+    stat:
+      path: "{{ tmp_non_ascii_download.path }}"
+      get_checksum: yes
+    register: tmp_non_ascii_download_stat
+
+  - name: Assert checksums of the source and destination file
+    block:
+      - assert:
+          that:
+            - tmp_non_ascii_file_stat.stat.checksum == tmp_non_ascii_download_stat.stat.checksum
+    always:
+      - name: Delete the non-ascii object
+        oci_object_storage_object:
+          namespace_name: "{{test_namespace_name}}"
+          bucket_name: "{{transient_test_bucket_name}}"
+          object_name: '俳句-test'
+          state: 'absent'
+        register: result
+
+  - name: Assert that changed is true
+    assert:
+      that:
+        - result.changed == True
+  - name: Delete temporary test file
+    file:
+      state: absent
+      path: "{{ tmp_non_ascii_file.path }}"
+
+  - name: Delete temporary test file
+    file:
+      state: absent
+      path: "{{ tmp_non_ascii_download.path }}"
+
+# ============================================================
+
+- name: Create an OCI object with invalid src
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    src: './targets/oci_object_storage/files/missing_test_file.txt'
+  ignore_errors: yes
+  register: result
+
+- name: Assert that changed is False
+  assert:
+    that:
+      - result.changed == False
+
+# ============================================================
+
+- name: Update an existing object with force = False
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    src: "{{ tmpfile1.path }}"
+    force: false
+  register: result
+
+- name: Assert that changed is False
+  assert:
+    that:
+      - result.changed == False
+      - result.msg == "Object {{test_object_name}} already present in bucket. Use force option to overwrite."
+
+# ============================================================
+
+- name: Get an object to an existing file with force = False
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    dest: "{{ tmpfile1.path }}"
+    force: False
+  register: result
+
+- name: Assert that changed is False
+  assert:
+    that:
+      - result.changed == False
+
+# ============================================================
+
+- name: Retrieve summary of an object
+  oci_object_storage_object_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+  register: result
+
+- name: Assert that test object is retrieved
+  assert:
+    that:
+      - result.objects | length == 1
+      - result.objects[0].name == test_object_name
+
+# ============================================================
+
+- name: Delete an object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+
+# ============================================================
+
+- name: Attempt to delete an object which doesn't exist should return changed as false
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: 'non_existential.txt'
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is false
+  assert:
+    that:
+      - result.changed == False
+# ============================================================
+# Listing and aborting multipart upload is only possible when multipart upload
+# is happening. To achieve that through ansible, the async feature is used.
+- name: Create a temporary file to upload the object
+  tempfile:
+  register: tmpfile_multi_part_upload
+
+# Note that this requires openssl to be installed in the machine where the test is run.
+# Ubuntu/OL have openssl available by default
+- name: Write large content (about 150MB) for multipart upload
+  shell: 'openssl rand -base64 -out {{ tmpfile_multi_part_upload.path }} 120000000'
+
+- name: Upload an OCI object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{multipart_upload_object_name}}"
+    src: "{{ tmpfile_multi_part_upload.path }}"
+    opc_meta: {'language': 'english'}
+  register: result
+
+- name: Assert that the object is uploaded
+  assert:
+    that:
+      - result.changed == True
+
+- name: Create a temporary file to download the object
+  tempfile:
+  register: tmpfile_multi_part
+
+- name: Get an object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{multipart_upload_object_name}}"
+    dest: "{{ tmpfile_multi_part.path }}"
+  register: result
+
+- name: Assert that the object uploaded through multipart upload
+  assert:
+    that:
+      - result.object['opc-multipart-md5'] is not none
+# ============================================================
+- name: Delete the object uploaded
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{multipart_upload_object_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+# ============================================================
+- name: Retrieve a bucket
+  oci_object_storage_bucket_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+  register: result
+
+- name: Assert that test bucket is retrieved
+  assert:
+    that:
+      - result.buckets | length == 1
+      - result.buckets[0].name == transient_test_bucket_name
+# ============================================================
+- name: Cleanup - delete temporary test file
+  file:
+    state: absent
+    path: "{{ tmpfile1.path }}"
+
+- name: Delete temporary test file
+  file:
+    state: absent
+    path: "{{ tmpfile2.path }}"
+
+- name: Delete temporary file for multi part upload
+  file:
+    state: absent
+    path: "{{ tmpfile_multi_part_upload.path }}"
+
+- name: Delete temporary file for multi part download
+  file:
+    state: absent
+    path: "{{ tmpfile_multi_part.path }}"
+
+# ============================================================
+- name: Cleanup - delete test bucket in OCI
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    name: "{{transient_test_bucket_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+         that:
+            - result.changed == True
+# ============================================================
+# PreAuthenticated Request related tests
+
+- name: Create a transient test bucket in OCI to contain test objects
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    compartment_id: "{{test_compartment_ocid}}"
+    name: "{{transient_test_bucket_name}}"
+    public_access_type: 'NoPublicAccess'
+    metadata:
+      project: 'Test Project'
+    state: 'present'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+
+# ==============================================================
+
+- name: Create a temporary test file
+  tempfile:
+  register: tmpfile1
+
+- name: Put content in the temporary test file
+  copy:
+    content: "This is content for the test file."
+    dest: "{{ tmpfile1.path }}"
+
+- name: Get the stat of the test file for verifying successful upload/download
+  stat:
+    path: "{{ tmpfile1.path }}"
+    get_checksum: yes
+  register: tmpfile1stat
+
+- name: Create an OCI object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    src: "{{ tmpfile1.path }}"
+  register: result
+
+- name: Assert that changed is True
+  assert:
+    that:
+      - result.changed == True
+# ==============================================================
+- set_fact:
+     time_expires: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) + 86400 ) }}"
+
+- name: Create a Preauthenticated Request for the entire Bucket
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    name: "{{bucket_level_par_name}}"
+    access_type: "{{ bucket_level_par_accesstype }}"
+    time_expires: "{{time_expires}}"
+  register: result
+
+- set_fact:
+     bucket_level_par_id: "{{result.preauthenticated_request.id}}"
+     curr_bucket_par_access_uri: "{{result.preauthenticated_request.access_uri}}"
+
+- debug: msg="{{curr_bucket_par_access_uri}}"
+- name: Assert that changed is True
+  assert:
+    that:
+      - result.changed == True
+      - (curr_bucket_par_access_uri is defined) and (curr_bucket_par_access_uri is not none) and (curr_bucket_par_access_uri| trim != "")
+
+# ==============================================================
+- set_fact:
+     time_expires: "{{ '%Y-%m-%dT%H:%M:%S+00:00' | strftime( ( ansible_date_time.epoch | int ) + 86400 ) }}"
+
+- name: Create a Preauthenticated Request for a specific object
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    name: "{{object_level_par_name}}"
+    object_name: "{{test_object_name}}"
+    access_type: "{{ object_level_par_accesstype }}"
+    time_expires: "{{time_expires}}"
+  register: result
+
+- set_fact:
+     object_level_par_id: "{{result.preauthenticated_request.id}}"
+     curr_object_par_access_uri: "{{result.preauthenticated_request.access_uri}}"
+- debug: msg="{{curr_object_par_access_uri}}"
+
+- name: Assert that changed is True
+  assert:
+    that:
+      - result.changed == True
+      - (curr_object_par_access_uri is defined) and (curr_object_par_access_uri is not none) and (curr_object_par_access_uri | trim != "")
+# ============================================================
+- name: List specific Preauthenticated Request
+  oci_object_storage_preauthenticated_request_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    par_id: "{{bucket_level_par_id}}"
+  register: result
+
+- name: Assert specific Preauthenticated Request listed
+  assert:
+    that:
+      - result.preauthenticated_requests|length >= 1
+      - result.preauthenticated_requests[0].name == bucket_level_par_name
+# ==============================================================
+- name: List Preauthenticated Request based on Object Prefix
+  oci_object_storage_preauthenticated_request_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name_prefix: "{{test_object_name}}"
+  register: result
+
+- name: Assert that Preauthenticated Request listed filtered by Object Prefix
+  assert:
+    that:
+      - result.preauthenticated_requests|length >= 1
+      - result.preauthenticated_requests[0].name == object_level_par_name
+# ==============================================================
+- name: List all Preauthenticated Request for a Bucket
+  oci_object_storage_preauthenticated_request_facts:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+  register: result
+- name: Assert that all Preauthenticated Requests listed
+  assert:
+    that:
+      - result.preauthenticated_requests|length > 0
+- name: Delete all Preauthenticated Requests
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    par_id: "{{item.id}}"
+    state: absent
+  with_items: "{{ result.preauthenticated_requests }}"
+  register: result
+
+- name: Assert that changed is True
+  assert:
+    that:
+      - result.changed == True
+# ==============================================================
+- name: Try to Delete non-existent Preauthenticated Request, Idempotent test
+  oci_object_storage_preauthenticated_request:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    par_id: "{{bucket_level_par_id}}"
+    state: absent
+  register: result
+
+- name: Assert that no change has happened
+  assert:
+    that:
+      - result.changed == False
+# ==============================================================
+- name: Cleanup - delete temporary test file
+  file:
+    state: absent
+    path: "{{ tmpfile1.path }}"
+# ============================================================
+- name: Delete an object
+  oci_object_storage_object:
+    namespace_name: "{{test_namespace_name}}"
+    bucket_name: "{{transient_test_bucket_name}}"
+    object_name: "{{test_object_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+# ============================================================
+- name: Cleanup - delete test bucket in OCI
+  oci_object_storage_bucket:
+    namespace_name: "{{test_namespace_name}}"
+    name: "{{transient_test_bucket_name}}"
+    state: 'absent'
+  register: result
+
+- name: Assert that changed is true
+  assert:
+    that:
+      - result.changed == True
+# ============================================================

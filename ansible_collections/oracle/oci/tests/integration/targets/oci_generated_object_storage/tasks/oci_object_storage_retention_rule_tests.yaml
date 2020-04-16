@@ -1,0 +1,514 @@
+---
+- block:
+  - name: Create dependency bucket with required parameters
+    oci_object_storage_bucket:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_create_dependency_bucket_namespace_name, omit) }}"
+      name: "{{ ('my-test-1' + random_suffix_1024) | oracle.oci.override(test_retention_rule_create_dependency_bucket_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_retention_rule_create_dependency_bucket_compartment_id, omit) }}"
+    register: result
+    when: skip_retention_rule_create_dependency_bucket_test is not defined and skip_retention_rule_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_create_dependency_bucket_test is not defined and skip_retention_rule_dependencies is not defined
+  - set_fact:
+      dependency_bucket: "{{ result.bucket }}"
+      dependency_bucket_name: "{{ result.bucket.name }}"
+    when: skip_retention_rule_create_dependency_bucket_test is not defined and skip_retention_rule_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_create_dependency_bucket_custom_assertions }}"
+    when: retention_rule_create_dependency_bucket_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create retention_rule (check mode)
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_create_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_create_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_create_required_display_name, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_retention_rule_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_create_check_mode_custom_assertions }}"
+    when: retention_rule_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create retention_rule with required parameters
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_create_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_create_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_create_required_display_name, omit) }}"
+    register: result
+    when: skip_retention_rule_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_create_required_original_test is not defined
+
+  - set_fact:
+      retention_rule_resource_id: "{{ result.retention_rule.id }}"
+    when: skip_retention_rule_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_create_required_original_custom_assertions }}"
+    when: retention_rule_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create retention_rule with required parameters(idempotency)
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_create_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_create_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_create_required_display_name, omit) }}"
+    register: result
+    when: skip_retention_rule_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_retention_rule_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_create_required_idempotency_custom_assertions }}"
+    when: retention_rule_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_retention_rule_update_using_name_optional_required_duration:
+        time_amount: "{{ 60 | oracle.oci.override(test_retention_rule_update_using_name_optional_required_duration_time_amount, omit) }}"
+        time_unit: "{{ 'YEARS' | oracle.oci.override(test_retention_rule_update_using_name_optional_required_duration_time_unit, omit) }}"
+    when: test_retention_rule_update_using_name_optional_required_duration is not defined
+
+  - name: Update retention_rule using name with optional + required parameters
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_update_using_name_optional_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_update_using_name_optional_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_update_using_name_optional_required_display_name, omit) }}"
+      duration: "{{ '{}' | oracle.oci.override(test_retention_rule_update_using_name_optional_required_duration, omit) }}"
+      time_rule_locked: "{{ '2019-12-13T17:23:46.000Z' | oracle.oci.override(test_retention_rule_update_using_name_optional_required_time_rule_locked, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_retention_rule_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_update_using_name_optional_required_custom_assertions }}"
+    when: retention_rule_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update retention_rule using name with optional + required parameters (idempotence)
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_update_using_name_optional_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_update_using_name_optional_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_update_using_name_optional_required_display_name, omit) }}"
+      duration: "{{ '{}' | oracle.oci.override(test_retention_rule_update_using_name_optional_required_duration, omit) }}"
+      time_rule_locked: "{{ '2019-12-13T17:23:46.000Z' | oracle.oci.override(test_retention_rule_update_using_name_optional_required_time_rule_locked, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_retention_rule_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_retention_rule_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: retention_rule_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete retention_rule
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_delete_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_delete_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_retention_rule_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_delete_required_custom_assertions }}"
+    when: retention_rule_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete retention_rule (idempotency)
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_delete_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_delete_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_retention_rule_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_retention_rule_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_delete_required_idempotency_custom_assertions }}"
+    when: retention_rule_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_retention_rule_create_optional_required_duration:
+        time_amount: "{{ 30 | oracle.oci.override(test_retention_rule_create_optional_required_duration_time_amount, omit) }}"
+        time_unit: "{{ 'DAYS' | oracle.oci.override(test_retention_rule_create_optional_required_duration_time_unit, omit) }}"
+    when: test_retention_rule_create_optional_required_duration is not defined
+
+  - name: Create retention_rule with optional + required parameters
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_create_optional_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_create_optional_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_create_optional_required_display_name, omit) }}"
+      duration: "{{ '{}' | oracle.oci.override(test_retention_rule_create_optional_required_duration, omit) }}"
+      time_rule_locked: "{{ '2019-12-13T17:23:46.000Z' | oracle.oci.override(test_retention_rule_create_optional_required_time_rule_locked, omit) }}"
+    register: result
+    when: skip_retention_rule_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_create_optional_required_original_test is not defined
+
+  - set_fact:
+      retention_rule_resource_id: "{{ result.retention_rule.id }}"
+    when: skip_retention_rule_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_create_optional_required_original_custom_assertions }}"
+    when: retention_rule_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create retention_rule with optional + required parameters (idempotence)
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_create_optional_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_create_optional_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRule' + random_suffix_1024) | oracle.oci.override(test_retention_rule_create_optional_required_display_name, omit) }}"
+      duration: "{{ '{}' | oracle.oci.override(test_retention_rule_create_optional_required_duration, omit) }}"
+      time_rule_locked: "{{ '2019-12-13T17:23:46.000Z' | oracle.oci.override(test_retention_rule_create_optional_required_time_rule_locked, omit) }}"
+    register: result
+    when: skip_retention_rule_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_retention_rule_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_create_optional_required_idempotence_custom_assertions }}"
+    when: retention_rule_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_retention_rule_update_optional_required_duration:
+        time_amount: "{{ 60 | oracle.oci.override(test_retention_rule_update_optional_required_duration_time_amount, omit) }}"
+        time_unit: "{{ 'YEARS' | oracle.oci.override(test_retention_rule_update_optional_required_duration_time_unit, omit) }}"
+    when: test_retention_rule_update_optional_required_duration is not defined
+
+  - name: Update retention_rule with optional + required parameters
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_update_optional_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_update_optional_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRuleupdated' + random_suffix_1024) | oracle.oci.override(test_retention_rule_update_optional_required_display_name, omit) }}"
+      duration: "{{ '{}' | oracle.oci.override(test_retention_rule_update_optional_required_duration, omit) }}"
+      time_rule_locked: "{{ '2019-12-13T17:23:46.000Z' | oracle.oci.override(test_retention_rule_update_optional_required_time_rule_locked, omit) }}"
+      retention_rule_id: "{{ retention_rule_resource_id | oracle.oci.override(test_retention_rule_update_optional_required_retention_rule_id, omit) }}"
+    register: result
+    when: skip_retention_rule_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_retention_rule_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_update_optional_required_custom_assertions }}"
+    when: retention_rule_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update retention_rule with optional + required parameters (idempotence)
+    oci_object_storage_retention_rule:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_update_optional_required_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_update_optional_required_bucket_name, omit) }}"
+      display_name: "{{ ('sampleRetentionRuleupdated' + random_suffix_1024) | oracle.oci.override(test_retention_rule_update_optional_required_display_name, omit) }}"
+      duration: "{{ '{}' | oracle.oci.override(test_retention_rule_update_optional_required_duration, omit) }}"
+      time_rule_locked: "{{ '2019-12-13T17:23:46.000Z' | oracle.oci.override(test_retention_rule_update_optional_required_time_rule_locked, omit) }}"
+      retention_rule_id: "{{ retention_rule_resource_id | oracle.oci.override(test_retention_rule_update_optional_required_retention_rule_id, omit) }}"
+    register: result
+    when: skip_retention_rule_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_retention_rule_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.retention_rule.id is defined
+        - result.retention_rule.display_name is defined
+        - result.retention_rule.duration is defined
+        - result.retention_rule.etag is defined
+        - result.retention_rule.time_rule_locked is defined
+        - result.retention_rule.time_created is defined
+        - result.retention_rule.time_modified is defined
+    when: skip_retention_rule_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_update_optional_required_idempotence_custom_assertions }}"
+    when: retention_rule_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List retention_rules
+    oci_object_storage_retention_rule_facts:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_list_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_list_bucket_name, omit) }}"
+    register: result
+    when: skip_retention_rule_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.retention_rules | length > 0
+    when: skip_retention_rule_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    with_items: "{{ result.retention_rules }}"
+    when: skip_retention_rule_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_list_custom_assertions }}"
+    when: retention_rule_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get retention_rule
+    oci_object_storage_retention_rule_facts:
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_get_namespace_name, omit) }}"
+      bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_get_bucket_name, omit) }}"
+      retention_rule_id: "{{ retention_rule_resource_id | oracle.oci.override(test_retention_rule_get_retention_rule_id, omit) }}"
+    register: result
+    when: skip_retention_rule_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.retention_rules | length == 1
+    when: skip_retention_rule_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+    with_items: "{{ result.retention_rules }}"
+    when: skip_retention_rule_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ retention_rule_get_custom_assertions }}"
+    when: retention_rule_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete retention_rule
+      oci_object_storage_retention_rule:
+        namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_delete_rescue_namespace_name, omit) }}"
+        bucket_name: "{{ dependency_bucket_name | oracle.oci.override(test_retention_rule_delete_rescue_bucket_name, omit) }}"
+        retention_rule_id: "{{ retention_rule_resource_id | oracle.oci.override(test_retention_rule_delete_rescue_retention_rule_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: retention_rule_resource_id is defined
+
+    - name: Delete dependency bucket
+      oci_object_storage_bucket:
+        namespace_name: "{{ test_namespace_name | oracle.oci.override(test_retention_rule_delete_dependency_bucket_namespace_name, omit) }}"
+        name: "{{ dependency_bucket_name }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_retention_rule_delete_dependency_bucket_test is not defined and skip_retention_rule_dependencies is not defined and dependency_bucket_name is defined

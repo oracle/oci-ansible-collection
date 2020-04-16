@@ -378,6 +378,11 @@ class VolumeCreateWaitUntilCopyIsDoneWaiter(CreateOperationLifecycleStateWaiter)
         )
 
 
+class CopyObjectWorkRequestWaiter(WorkRequestWaiter):
+    def get_resource_from_wait_response(self, wait_response):
+        return wait_response.data
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -504,6 +509,11 @@ _WAITER_OVERRIDE_MAP = {
         "rule_set",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): WorkRequestWaiter,
+    (
+        "object_storage",
+        "object",
+        "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): CopyObjectWorkRequestWaiter,
 }
 
 

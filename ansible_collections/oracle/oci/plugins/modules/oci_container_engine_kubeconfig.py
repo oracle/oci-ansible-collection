@@ -67,9 +67,8 @@ kubeconfig:
     description:
         - Details of the Kubeconfig resource acted upon by the current operation
     returned: on success
-    type: complex
-    contains: TODO - Operation returns binary data.
-    sample: TODO - Operation returns binary data.
+    type: str
+    sample: "sample"
 """
 
 from ansible.module_utils.basic import AnsibleModule

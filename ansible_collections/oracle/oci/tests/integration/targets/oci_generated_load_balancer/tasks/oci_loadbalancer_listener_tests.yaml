@@ -26,55 +26,6 @@
 
 # ==================================================================================================== #
 
-  - name: Create dependency certificate with required parameters
-    oci_loadbalancer_certificate:
-      certificate_name: "{{ 'example_certificate_bundle' | oracle.oci.override(test_listener_create_dependency_certificate_certificate_name, omit) }}"
-      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_certificate_load_balancer_id, omit) }}"
-    register: result
-    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
-  - name: Assert resource was created
-    assert:
-      that:
-        - result.changed == True
-    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
-  - set_fact:
-      dependency_certificate: "{{ result.certificate }}"
-      dependency_certificate_name: "{{ result.certificate.certificate_name }}"
-    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
-  - name: Assert custom assertions
-    assert:
-      that:
-        - "{{ item }}"
-    with_items: "{{ listener_create_dependency_certificate_custom_assertions }}"
-    when: listener_create_dependency_certificate_custom_assertions is defined
-
-# ==================================================================================================== #
-
-  - name: Create dependency hostname with required parameters
-    oci_loadbalancer_hostname:
-      name: "{{ ('example_hostname_001' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_hostname_name, omit) }}"
-      hostname: "{{ 'app.example.com' | oracle.oci.override(test_listener_create_dependency_hostname_hostname, omit) }}"
-      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_hostname_load_balancer_id, omit) }}"
-    register: result
-    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
-  - name: Assert resource was created
-    assert:
-      that:
-        - result.changed == True
-    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
-  - set_fact:
-      dependency_hostname: "{{ result.hostname }}"
-      dependency_hostname_name: "{{ result.hostname.name }}"
-    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
-  - name: Assert custom assertions
-    assert:
-      that:
-        - "{{ item }}"
-    with_items: "{{ listener_create_dependency_hostname_custom_assertions }}"
-    when: listener_create_dependency_hostname_custom_assertions is defined
-
-# ==================================================================================================== #
-
   - set_fact:
       test_listener_create_dependency_rule_set_items:
       - action: "{{ 'ADD_HTTP_REQUEST_HEADER' | oracle.oci.override(test_listener_create_dependency_rule_set_items_action, omit) }}"
@@ -106,6 +57,55 @@
         - "{{ item }}"
     with_items: "{{ listener_create_dependency_rule_set_custom_assertions }}"
     when: listener_create_dependency_rule_set_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency hostname with required parameters
+    oci_loadbalancer_hostname:
+      name: "{{ ('example_hostname_001' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_hostname_name, omit) }}"
+      hostname: "{{ 'app.example.com' | oracle.oci.override(test_listener_create_dependency_hostname_hostname, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_hostname_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_hostname: "{{ result.hostname }}"
+      dependency_hostname_name: "{{ result.hostname.name }}"
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_hostname_custom_assertions }}"
+    when: listener_create_dependency_hostname_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency certificate with required parameters
+    oci_loadbalancer_certificate:
+      certificate_name: "{{ 'example_certificate_bundle' | oracle.oci.override(test_listener_create_dependency_certificate_certificate_name, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_certificate_load_balancer_id, omit) }}"
+    register: result
+    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
+  - set_fact:
+      dependency_certificate: "{{ result.certificate }}"
+      dependency_certificate_name: "{{ result.certificate.certificate_name }}"
+    when: skip_listener_create_dependency_certificate_test is not defined and skip_listener_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ listener_create_dependency_certificate_custom_assertions }}"
+    when: listener_create_dependency_certificate_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -233,6 +233,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -263,6 +272,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -291,6 +309,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -369,6 +396,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -404,6 +440,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -451,6 +496,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -486,6 +540,15 @@
   - name: Assert response properties are populated
     assert:
       that:
+        - result.listener.name is defined
+        - result.listener.default_backend_set_name is defined
+        - result.listener.port is defined
+        - result.listener.protocol is defined
+        - result.listener.hostname_names is defined
+        - result.listener.path_route_set_name is defined
+        - result.listener.ssl_configuration is defined
+        - result.listener.connection_configuration is defined
+        - result.listener.rule_set_names is defined
     when: skip_listener_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -508,43 +571,43 @@
 
     - name: Delete dependency path_route_set
       oci_loadbalancer_path_route_set:
-        name: "{{ dependency_path_route_set_id }}"
+        name: "{{ dependency_path_route_set_name }}"
         load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_path_route_set_load_balancer_id, omit) }}"
         state: absent
       ignore_errors: yes
-      when: skip_listener_delete_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_id is defined
+      when: skip_listener_delete_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
 
     - name: Delete dependency backend_set
       oci_loadbalancer_backend_set:
-        name: "{{ dependency_backend_set_id }}"
+        name: "{{ dependency_backend_set_name }}"
         load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_backend_set_load_balancer_id, omit) }}"
         state: absent
       ignore_errors: yes
-      when: skip_listener_delete_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined and dependency_backend_set_id is defined
+      when: skip_listener_delete_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
+
+    - name: Delete dependency certificate
+      oci_loadbalancer_certificate:
+        certificate_name: "{{ dependency_certificate_name }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_certificate_load_balancer_id, omit) }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_certificate_test is not defined and skip_listener_dependencies is not defined and dependency_certificate_name is defined
+
+    - name: Delete dependency hostname
+      oci_loadbalancer_hostname:
+        name: "{{ dependency_hostname_name }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_hostname_load_balancer_id, omit) }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_listener_delete_dependency_hostname_test is not defined and skip_listener_dependencies is not defined and dependency_certificate_name is defined
 
     - name: Delete dependency rule_set
       oci_loadbalancer_rule_set:
         load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_rule_set_load_balancer_id, omit) }}"
-        name: "{{ dependency_rule_set_id }}"
+        name: "{{ dependency_rule_set_name }}"
         state: absent
       ignore_errors: yes
-      when: skip_listener_delete_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and dependency_rule_set_id is defined
-
-    - name: Delete dependency hostname
-      oci_loadbalancer_hostname:
-        name: "{{ dependency_hostname_id }}"
-        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_hostname_load_balancer_id, omit) }}"
-        state: absent
-      ignore_errors: yes
-      when: skip_listener_delete_dependency_hostname_test is not defined and skip_listener_dependencies is not defined and dependency_hostname_id is defined
-
-    - name: Delete dependency certificate
-      oci_loadbalancer_certificate:
-        certificate_name: "{{ dependency_certificate_id }}"
-        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_certificate_load_balancer_id, omit) }}"
-        state: absent
-      ignore_errors: yes
-      when: skip_listener_delete_dependency_certificate_test is not defined and skip_listener_dependencies is not defined and dependency_certificate_id is defined
+      when: skip_listener_delete_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and dependency_certificate_name is defined
 
     - name: Delete dependency load_balancer
       oci_loadbalancer_load_balancer:

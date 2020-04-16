@@ -1,0 +1,106 @@
+- block:
+
+    - name: Create a transient test bucket in OCI to contain test objects
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{transient_test_bucket_name}}"
+        public_access_type: 'NoPublicAccess'
+        metadata:
+          project: 'Test Project'
+        state: 'present'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+
+    # ==============================================================
+
+    - name: Create a temporary test file
+      tempfile:
+      register: tmpfile1
+
+    - name: Put content in the temporary test file
+      copy:
+        content: "This is content for the test file."
+        dest: "{{ tmpfile1.path }}"
+
+    - name: Get the stat of the test file for verifying successful upload/download
+      stat:
+        path: "{{ tmpfile1.path }}"
+        get_checksum: yes
+      register: tmpfile1stat
+
+    - name: Create an OCI object
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{test_object_name}}"
+        src: "{{ tmpfile1.path }}"
+        opc_meta: "{{ test_object_opc_meta }}"
+      register: result
+
+    - name: Assert that changed is True
+      assert:
+        that:
+        - result.changed == True
+
+    - name: Reencrypt bucket
+      oci_object_storage_bucket_actions:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        action: reencrypt
+      register: result
+
+    - name: Assert that bucket is encrypted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{ test_object_name }}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that object is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Cleanup - delete test bucket
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{transient_test_bucket_name}}"
+        state: 'absent'
+      register: result
+
+    - name: Assert that changed is true
+      assert:
+        that:
+          - result.changed == True
+
+  rescue:
+    - name: Cleanup - delete object in test bucket
+      oci_object_storage_object:
+        namespace_name: "{{test_namespace_name}}"
+        bucket_name: "{{transient_test_bucket_name}}"
+        object_name: "{{ test_object_name }}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - name: Cleanup - delete test bucket in OCI
+      oci_object_storage_bucket:
+        namespace_name: "{{test_namespace_name}}"
+        name: "{{transient_test_bucket_name}}"
+        state: 'absent'
+      register: result
+      ignore_errors: yes
+
+    - fail:
+          msg: "{{ ansible_failed_result }}"

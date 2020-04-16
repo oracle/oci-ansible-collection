@@ -19,13 +19,28 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = """
 ---
-module: oci_object_storage_bucket
-short_description: Manage a Bucket resource in Oracle Cloud Infrastructure
+module: oci_object_storage_bucket_actions
+short_description: Perform actions on a Bucket resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create, update and delete a Bucket resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a bucket in the given namespace with a bucket name and optional user-defined metadata. Avoid entering
-      confidential information in bucket names.
-    - "This resource has the following action operations in the M(oci_bucket_actions) module: make_bucket_writable, reencrypt."
+    - Perform actions on a Bucket resource in Oracle Cloud Infrastructure
+    - For I(action=make_bucket_writable), stops replication to the destination bucket and removes the replication policy. When the replication
+      policy was created, this destination bucket became read-only except for new and changed objects replicated
+      automatically from the source bucket. MakeBucketWritable removes the replication policy. This bucket is no
+      longer the target for replication and is now writable, allowing users to make changes to bucket contents.
+    - For I(action=reencrypt), re-encrypts the unique data encryption key that encrypts each object written to the bucket by using the most recent
+      version of the master encryption key assigned to the bucket. (All data encryption keys are encrypted by a master
+      encryption key. Master encryption keys are assigned to buckets and managed by Oracle by default, but you can assign
+      a key that you created and control through the Oracle Cloud Infrastructure Key Management service.) The kmsKeyId property
+      of the bucket determines which master encryption key is assigned to the bucket. If you assigned a different Key Management
+      master encryption key to the bucket, you can call this API to re-encrypt all data encryption keys with the newly
+      assigned key. Similarly, you might want to re-encrypt all data encryption keys if the assigned key has been rotated to
+      a new key version since objects were last added to the bucket. If you call this API and there is no kmsKeyId associated
+      with the bucket, the call will fail.
+      Calling this API starts a work request task to re-encrypt the data encryption key of all objects in the bucket. Only
+      objects created before the time of the API call will be re-encrypted. The call can take a long time, depending on how many
+      objects are in the bucket and how big they are. This API returns a work request ID that you can use to retrieve the status
+      of the work request task.
+      All the versions of objects will be re-encrypted whether versioning is enabled or suspended at the bucket.
 version_added: "2.5"
 options:
     namespace_name:
@@ -33,110 +48,37 @@ options:
             - The Object Storage namespace used for the request.
         type: str
         required: true
-    name:
+    bucket_name:
         description:
-            - "The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
-              Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
-              example: Example: my-new-bucket1"
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
         type: str
         required: true
-    compartment_id:
+    action:
         description:
-            - The ID of the compartment in which to create the bucket.
-            - Required for create using I(state=present).
+            - The action to perform on the Bucket.
         type: str
-    metadata:
-        description:
-            - Arbitrary string, up to 4KB, of keys and values for user-defined metadata.
-        type: dict
-    public_access_type:
-        description:
-            - The type of public access enabled on this bucket.
-              A bucket is set to `NoPublicAccess` by default, which only allows an authenticated caller to access the
-              bucket and its contents. When `ObjectRead` is enabled on the bucket, public access is allowed for the
-              `GetObject`, `HeadObject`, and `ListObjects` operations. When `ObjectReadWithoutList` is enabled on the bucket,
-              public access is allowed for the `GetObject` and `HeadObject` operations.
-        type: str
-        choices:
-            - "NoPublicAccess"
-            - "ObjectRead"
-            - "ObjectReadWithoutList"
-    storage_tier:
-        description:
-            - The type of storage tier of this bucket.
-              A bucket is set to 'Standard' tier by default, which means the bucket will be put in the standard storage tier.
-              When 'Archive' tier type is set explicitly, the bucket is put in the Archive Storage tier. The 'storageTier'
-              property is immutable after bucket is created.
-        type: str
-        choices:
-            - "Standard"
-            - "Archive"
-    object_events_enabled:
-        description:
-            - Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
-              set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
-              about events, see L(Overview of Events,https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
-        type: bool
-    freeform_tags:
-        description:
-            - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Department\\": \\"Finance\\"}`"
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-              Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-        type: dict
-    kms_key_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key
-              Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
-        type: str
-    versioning:
-        description:
-            - Set the versioning status on the bucket. By default, a bucket is created with versioning `Disabled`. Use this option to enable versioning during
-              bucket creation. Objects in a version enabled bucket are protected from overwrites and deletions. Previous versions of the same object will be
-              available in the bucket.
-        type: str
-        choices:
-            - "Enabled"
-            - "Disabled"
-            - "Suspended"
-    state:
-        description:
-            - The state of the Bucket.
-            - Use I(state=present) to create or update a Bucket.
-            - Use I(state=absent) to delete a Bucket.
-        type: str
-        required: false
-        default: 'present'
-        choices: ["present", "absent"]
+        required: true
+        choices: ["make_bucket_writable", "reencrypt"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
     - Nabeel Al-Saber (@nalsaber)
-extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Create bucket
-  oci_object_storage_bucket:
+- name: Perform action make_bucket_writable on bucket
+  oci_object_storage_bucket_actions:
     namespace_name: namespace_name_example
-    name: my-test-1
-    compartment_id: ocid.compartment.oc1..exampleuniquecompartmentID
+    bucket_name: my-new-bucket1
+    action: make_bucket_writable
 
-- name: Update bucket
-  oci_object_storage_bucket:
+- name: Perform action reencrypt on bucket
+  oci_object_storage_bucket_actions:
     namespace_name: namespace_name_example
-    name: my-test-1
-
-- name: Delete bucket
-  oci_object_storage_bucket:
-    namespace_name: namespace_name_example
-    name: my-test-1
-    state: absent
+    bucket_name: my-new-bucket1
+    action: reencrypt
 
 """
 
@@ -311,28 +253,31 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_wait_utils,
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
-    OCIResourceHelperBase,
+    OCIActionsHelperBase,
     get_custom_class,
 )
 
 try:
     from oci.object_storage import ObjectStorageClient
-    from oci.object_storage.models import CreateBucketDetails
-    from oci.object_storage.models import UpdateBucketDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BucketHelperGen(OCIResourceHelperBase):
-    """Supported operations: create, update, get, list and delete"""
+class BucketActionsHelperGen(OCIActionsHelperBase):
+    """
+    Supported actions:
+        make_bucket_writable
+        reencrypt
+    """
 
-    def get_module_resource_id_param(self):
-        return "name"
+    @staticmethod
+    def get_module_resource_id_param():
+        return "bucket_name"
 
     def get_module_resource_id(self):
-        return self.module.params.get("name")
+        return self.module.params.get("bucket_name")
 
     def get_get_fn(self):
         return self.client.get_bucket
@@ -341,133 +286,66 @@ class BucketHelperGen(OCIResourceHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_bucket,
             namespace_name=self.module.params.get("namespace_name"),
-            bucket_name=self.module.params.get("name"),
+            bucket_name=self.module.params.get("bucket_name"),
         )
 
-    def list_resources(self):
-        required_list_method_params = [
-            "namespace_name",
-            "compartment_id",
-        ]
-
-        optional_list_method_params = []
-
-        required_kwargs = dict(
-            (param, self.module.params[param]) for param in required_list_method_params
-        )
-
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
-
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
-        return oci_common_utils.list_all_resources(self.client.list_buckets, **kwargs)
-
-    def get_create_model_class(self):
-        return CreateBucketDetails
-
-    def is_update(self):
-        if not self.module.params.get("state") == "present":
-            return False
-
-        return self.does_resource_exist()
-
-    def is_create(self):
-        if not self.module.params.get("state") == "present":
-            return False
-
-        return not self.does_resource_exist()
-
-    def create_resource(self):
-        create_details = self.get_create_model()
+    def make_bucket_writable(self):
         return oci_wait_utils.call_and_wait(
-            call_fn=self.client.create_bucket,
+            call_fn=self.client.make_bucket_writable,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 namespace_name=self.module.params.get("namespace_name"),
-                create_bucket_details=create_details,
+                bucket_name=self.module.params.get("bucket_name"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.CREATE_OPERATION_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_active_states(),
+            or self.get_action_desired_states(self.module.params.get("action")),
         )
 
-    def get_update_model_class(self):
-        return UpdateBucketDetails
-
-    def update_resource(self):
-        update_details = self.get_update_model()
+    def reencrypt(self):
         return oci_wait_utils.call_and_wait(
-            call_fn=self.client.update_bucket,
+            call_fn=self.client.reencrypt_bucket,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 namespace_name=self.module.params.get("namespace_name"),
-                bucket_name=self.module.params.get("name"),
-                update_bucket_details=update_details,
+                bucket_name=self.module.params.get("bucket_name"),
             ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
             waiter_client=self.client,
             resource_helper=self,
             wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_active_states(),
-        )
-
-    def delete_resource(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.delete_bucket,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                namespace_name=self.module.params.get("namespace_name"),
-                bucket_name=self.module.params.get("name"),
-            ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
-            operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.client,
-            resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_terminated_states(),
+            or oci_common_utils.get_work_request_completed_states(),
         )
 
 
-BucketHelperCustom = get_custom_class("BucketHelperCustom")
+BucketActionsHelperCustom = get_custom_class("BucketActionsHelperCustom")
 
 
-class ResourceHelper(BucketHelperCustom, BucketHelperGen):
+class ResourceHelper(BucketActionsHelperCustom, BucketActionsHelperGen):
     pass
 
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=True, supports_wait=False
+        supports_create=False, supports_wait=True
     )
     module_args.update(
         dict(
             namespace_name=dict(type="str", required=True),
-            name=dict(type="str", required=True),
-            compartment_id=dict(type="str"),
-            metadata=dict(type="dict"),
-            public_access_type=dict(
-                type="str",
-                choices=["NoPublicAccess", "ObjectRead", "ObjectReadWithoutList"],
+            bucket_name=dict(type="str", required=True),
+            action=dict(
+                type="str", required=True, choices=["make_bucket_writable", "reencrypt"]
             ),
-            storage_tier=dict(type="str", choices=["Standard", "Archive"]),
-            object_events_enabled=dict(type="bool"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            kms_key_id=dict(type="str"),
-            versioning=dict(type="str", choices=["Enabled", "Disabled", "Suspended"]),
-            state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )
 
@@ -483,14 +361,7 @@ def main():
         namespace="object_storage",
     )
 
-    result = dict(changed=False)
-
-    if resource_helper.is_delete():
-        result = resource_helper.delete()
-    elif resource_helper.is_update():
-        result = resource_helper.update()
-    elif resource_helper.is_create():
-        result = resource_helper.create()
+    result = resource_helper.perform_action(module.params.get("action"))
 
     module.exit_json(**result)
 

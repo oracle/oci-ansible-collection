@@ -531,11 +531,11 @@
 
     - name: Delete dependency certificate
       oci_loadbalancer_certificate:
-        certificate_name: "{{ dependency_certificate_id }}"
+        certificate_name: "{{ dependency_certificate_name }}"
         load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_backend_set_delete_dependency_certificate_load_balancer_id, omit) }}"
         state: absent
       ignore_errors: yes
-      when: skip_backend_set_delete_dependency_certificate_test is not defined and skip_backend_set_dependencies is not defined and dependency_certificate_id is defined
+      when: skip_backend_set_delete_dependency_certificate_test is not defined and skip_backend_set_dependencies is not defined and dependency_certificate_name is defined
 
     - name: Delete dependency load_balancer
       oci_loadbalancer_load_balancer:
