@@ -12,18 +12,28 @@
       subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_mount_target_create_required_subnet_id, omit) }}"
     register: result
     when: skip_mount_target_create_required_original_test is not defined
+    tags:
+      - export_set
+      - file_storage_export
 
   - set_fact:
       mount_target_resource_id: "{{ result.mount_target.id }}"
       mount_target_export_set_id: "{{ result.mount_target.export_set_id }}"
+    tags:
+      - export_set
+      - file_storage_export
 
   - name: Get display name of export set
     oci_file_storage_export_set_facts:
       export_set_id: "{{ mount_target_export_set_id }}"
     register: result
+    tags:
+      - export_set
 
   - set_fact:
       export_set_display_name: "{{ result.export_sets[0].display_name }}"
+    tags:
+      - export_set
 
   - import_tasks: oci_file_storage_export_tests.yaml
     tags:
@@ -54,3 +64,6 @@
       register: result
       ignore_errors: yes
       when: mount_target_resource_id is defined
+      tags:
+        - export_set
+        - file_storage_export

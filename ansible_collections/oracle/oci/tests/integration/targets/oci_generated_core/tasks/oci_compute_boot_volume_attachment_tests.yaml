@@ -29,8 +29,8 @@
   - set_fact:
       test_boot_volume_attachment_create_dependency_boot_volume_source_details:
         type: "{{ 'bootVolumeBackup' | oracle.oci.override(test_boot_volume_attachment_create_dependency_boot_volume_source_details_type, omit) }}"
-        id: "{{ 'ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_boot_volume_attachment_create_dependency_boot_volume_source_details_id, omit) }}"
-    when: test_boot_volume_attachment_create_dependency_boot_volume_source_details is not defined
+        id: "{{ dependency_id | oracle.oci.override(test_boot_volume_attachment_create_dependency_boot_volume_source_details_id, omit) }}"
+    when: skip_boot_volume_attachment_create_dependency_boot_volume_test is not defined and skip_boot_volume_attachment_dependencies is not defined and test_boot_volume_attachment_create_dependency_boot_volume_source_details is not defined
 
   - name: Create dependency boot_volume with required parameters
     oci_blockstorage_boot_volume:

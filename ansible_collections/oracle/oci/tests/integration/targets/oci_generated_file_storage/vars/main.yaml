@@ -1,26 +1,8 @@
 # variables for oci_file_storage_mount_target_tests.yaml
 dependency_subnet_id: "{{ common_subnet_id }}"
-#skip_mount_target_create_check_mode_test: True
-#skip_mount_target_update_using_name_optional_required_idempotence_test: True
-#skip_mount_target_create_required_idempotency_test: True
-#skip_mount_target_update_using_name_optional_required_test: True
-#skip_mount_target_delete_required_test: True
-#skip_mount_target_create_optional_required_original_test: True
-#skip_mount_target_create_optional_required_idempotence_test: True
-#skip_mount_target_update_optional_required_test: True
-#skip_mount_target_update_optional_required_idempotence_test: True
-#skip_mount_target_list_test: True
-#skip_mount_target_get_test: True
 test_mount_target_create_optional_required_ip_address: "10.0.1.4"
 
-# variables for oci_file_storage_export_tests.yaml
-#skip_export_create_required_idempotency_test: True
 # Mount targets do not have Internet-routable IP addresses. Therefore they will not be reachable from the Internet, even if an associated source is 0.0.0.0/0
 test_export_create_optional_required_export_options_source: "0.0.0.0/0"
 test_export_update_optional_required_export_options_source: "0.0.0.0/0"
-#skip_export_create_optional_required_idempotence_test: True
 skip_export_list_test: True
-
-# variables for oci_file_storage_export_set_tests.yaml
-#skip_export_set_update_using_name_optional_required_test: True
-#skip_export_set_update_using_name_optional_required_idempotence_test: True

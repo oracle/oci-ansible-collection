@@ -30,8 +30,8 @@
       - cidr_block: "{{ '0.0.0.0/0' | oracle.oci.override(test_local_peering_gateway_create_dependency_route_table_route_rules_cidr_block, omit) }}"
         destination: "{{ 'destination_example' | oracle.oci.override(test_local_peering_gateway_create_dependency_route_table_route_rules_destination, omit) }}"
         destination_type: "{{ 'CIDR_BLOCK' | oracle.oci.override(test_local_peering_gateway_create_dependency_route_table_route_rules_destination_type, omit) }}"
-        network_entity_id: "{{ 'ocid1.internetgateway.oc1.phx.aaaaaaaaxtfqb2srw7hoi5cmdum4n6ow2xm2zhrzqqypmlteiiebtmvl75ya' | oracle.oci.override(test_local_peering_gateway_create_dependency_route_table_route_rules_network_entity_id, omit) }}"
-    when: test_local_peering_gateway_create_dependency_route_table_route_rules is not defined
+        network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_local_peering_gateway_create_dependency_route_table_route_rules_network_entity_id, omit) }}"
+    when: skip_local_peering_gateway_create_dependency_route_table_test is not defined and skip_local_peering_gateway_dependencies is not defined and test_local_peering_gateway_create_dependency_route_table_route_rules is not defined
 
   - name: Create dependency route_table with required parameters
     oci_network_route_table:

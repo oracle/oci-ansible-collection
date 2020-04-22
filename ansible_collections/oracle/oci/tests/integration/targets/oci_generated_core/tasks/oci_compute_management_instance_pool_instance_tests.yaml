@@ -26,12 +26,12 @@
 
   - set_fact:
       test_instance_pool_instance_create_dependency_instance_pool_placement_configurations:
-      - availability_domain: "{{ 'Uocm:PHX-AD-1' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations_availability_domain, omit) }}"
-        primary_subnet_id: "{{ 'ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations_primary_subnet_id, omit) }}"
+      - availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations_availability_domain, omit) }}"
+        primary_subnet_id: "{{ dependency_primary_subnet_id | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_placement_configurations_primary_subnet_id, omit) }}"
         secondary_vnic_subnets:
         - display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_secondary_vnic_subnets_display_name, omit) }}"
-          subnet_id: "{{ 'ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_secondary_vnic_subnets_subnet_id, omit) }}"
-    when: test_instance_pool_instance_create_dependency_instance_pool_placement_configurations is not defined
+          subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_instance_pool_instance_create_dependency_instance_pool_secondary_vnic_subnets_subnet_id, omit) }}"
+    when: skip_instance_pool_instance_create_dependency_instance_pool_test is not defined and skip_instance_pool_instance_dependencies is not defined and test_instance_pool_instance_create_dependency_instance_pool_placement_configurations is not defined
 
   - name: Create dependency instance_pool with required parameters
     oci_compute_management_instance_pool:

@@ -3,10 +3,10 @@
   - set_fact:
       test_volume_group_create_dependency_volume_group_source_details:
         type: "{{ 'volumeIds' | oracle.oci.override(test_volume_group_create_dependency_volume_group_source_details_type, omit) }}"
-        volume_group_id: "{{ 'ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_volume_group_create_dependency_volume_group_source_details_volume_group_id, omit) }}"
+        volume_group_id: "{{ dependency_volume_group_id | oracle.oci.override(test_volume_group_create_dependency_volume_group_source_details_volume_group_id, omit) }}"
         volume_ids: "{{ [ 'ocid1.volume.oc1..xxxxxEXAMPLExxxxx...vm62xq' ] | oracle.oci.override(test_volume_group_create_dependency_volume_group_source_details_volume_ids, omit) }}"
-        volume_group_backup_id: "{{ 'ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx' | oracle.oci.override(test_volume_group_create_dependency_volume_group_source_details_volume_group_backup_id, omit) }}"
-    when: test_volume_group_create_dependency_volume_group_source_details is not defined
+        volume_group_backup_id: "{{ dependency_volume_group_backup_id | oracle.oci.override(test_volume_group_create_dependency_volume_group_source_details_volume_group_backup_id, omit) }}"
+    when: skip_volume_group_create_dependency_volume_group_test is not defined and skip_volume_group_dependencies is not defined and test_volume_group_create_dependency_volume_group_source_details is not defined
 
   - name: Create dependency volume_group with required parameters
     oci_blockstorage_volume_group:

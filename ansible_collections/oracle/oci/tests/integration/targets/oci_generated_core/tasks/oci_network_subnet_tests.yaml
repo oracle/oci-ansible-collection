@@ -30,7 +30,7 @@
       - type: "{{ 'DomainNameServer' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_type, omit) }}"
         custom_dns_servers: "{{ [ '202.44.61.9' ] | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_custom_dns_servers, omit) }}"
         server_type: "{{ 'CustomDnsServer' | oracle.oci.override(test_subnet_create_dependency_dhcp_options_options_server_type, omit) }}"
-    when: test_subnet_create_dependency_dhcp_options_options is not defined
+    when: skip_subnet_create_dependency_dhcp_options_test is not defined and skip_subnet_dependencies is not defined and test_subnet_create_dependency_dhcp_options_options is not defined
 
   - name: Create dependency dhcp_options with required parameters
     oci_network_dhcp_options:
@@ -63,8 +63,8 @@
       - cidr_block: "{{ '0.0.0.0/0' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_cidr_block, omit) }}"
         destination: "{{ 'destination_example' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_destination, omit) }}"
         destination_type: "{{ 'CIDR_BLOCK' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_destination_type, omit) }}"
-        network_entity_id: "{{ 'ocid1.internetgateway.oc1.phx.aaaaaaaaxtfqb2srw7hoi5cmdum4n6ow2xm2zhrzqqypmlteiiebtmvl75ya' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_network_entity_id, omit) }}"
-    when: test_subnet_create_dependency_route_table_route_rules is not defined
+        network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_network_entity_id, omit) }}"
+    when: skip_subnet_create_dependency_route_table_test is not defined and skip_subnet_dependencies is not defined and test_subnet_create_dependency_route_table_route_rules is not defined
 
   - name: Create dependency route_table with required parameters
     oci_network_route_table:
