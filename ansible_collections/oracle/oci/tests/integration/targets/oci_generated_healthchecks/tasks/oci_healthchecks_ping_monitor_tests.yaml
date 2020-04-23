@@ -1,0 +1,590 @@
+---
+- block:
+  - name: Create ping_monitor (check mode)
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_create_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_create_required_targets, omit) }}"
+      protocol: "{{ 'TCP' | oracle.oci.override(test_ping_monitor_create_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_create_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_ping_monitor_create_required_interval_in_seconds, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_ping_monitor_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_ping_monitor_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_create_check_mode_custom_assertions }}"
+    when: ping_monitor_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create ping_monitor with required parameters
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_create_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_create_required_targets, omit) }}"
+      protocol: "{{ 'TCP' | oracle.oci.override(test_ping_monitor_create_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_create_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_ping_monitor_create_required_interval_in_seconds, omit) }}"
+    register: result
+    when: skip_ping_monitor_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_ping_monitor_create_required_original_test is not defined
+
+  - set_fact:
+      ping_monitor_resource_id: "{{ result.ping_monitor.id }}"
+    when: skip_ping_monitor_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_create_required_original_custom_assertions }}"
+    when: ping_monitor_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create ping_monitor with required parameters(idempotency)
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_create_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_create_required_targets, omit) }}"
+      protocol: "{{ 'TCP' | oracle.oci.override(test_ping_monitor_create_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_create_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_ping_monitor_create_required_interval_in_seconds, omit) }}"
+    register: result
+    when: skip_ping_monitor_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_ping_monitor_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_create_required_idempotency_custom_assertions }}"
+    when: ping_monitor_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update ping_monitor using name with optional + required parameters
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 112 | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'ICMP' | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_ping_monitor_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_ping_monitor_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_update_using_name_optional_required_custom_assertions }}"
+    when: ping_monitor_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update ping_monitor using name with optional + required parameters (idempotence)
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 112 | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'ICMP' | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_ping_monitor_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_ping_monitor_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_ping_monitor_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: ping_monitor_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete ping_monitor
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_ping_monitor_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_ping_monitor_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_delete_required_custom_assertions }}"
+    when: ping_monitor_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete ping_monitor (idempotency)
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_ping_monitor_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_ping_monitor_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_delete_required_idempotency_custom_assertions }}"
+    when: ping_monitor_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create ping_monitor with optional + required parameters
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_create_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_create_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_ping_monitor_create_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 56 | oracle.oci.override(test_ping_monitor_create_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 56 | oracle.oci.override(test_ping_monitor_create_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'TCP' | oracle.oci.override(test_ping_monitor_create_optional_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_create_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_ping_monitor_create_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_ping_monitor_create_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_ping_monitor_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_ping_monitor_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_ping_monitor_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_ping_monitor_create_optional_required_original_test is not defined
+
+  - set_fact:
+      ping_monitor_resource_id: "{{ result.ping_monitor.id }}"
+    when: skip_ping_monitor_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_create_optional_required_original_custom_assertions }}"
+    when: ping_monitor_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create ping_monitor with optional + required parameters (idempotence)
+    oci_healthchecks_ping_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_create_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_create_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_ping_monitor_create_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 56 | oracle.oci.override(test_ping_monitor_create_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 56 | oracle.oci.override(test_ping_monitor_create_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'TCP' | oracle.oci.override(test_ping_monitor_create_optional_required_protocol, omit) }}"
+      display_name: "{{ ('testPing' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_create_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_ping_monitor_create_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_ping_monitor_create_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_ping_monitor_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_ping_monitor_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_ping_monitor_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_ping_monitor_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_create_optional_required_idempotence_custom_assertions }}"
+    when: ping_monitor_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update ping_monitor with optional + required parameters
+    oci_healthchecks_ping_monitor:
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_update_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_ping_monitor_update_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 112 | oracle.oci.override(test_ping_monitor_update_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_ping_monitor_update_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'ICMP' | oracle.oci.override(test_ping_monitor_update_optional_required_protocol, omit) }}"
+      display_name: "{{ ('testPingupdated' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_update_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_ping_monitor_update_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_ping_monitor_update_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_ping_monitor_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_ping_monitor_update_optional_required_defined_tags, omit) }}"
+      monitor_id: "{{ ping_monitor_resource_id | oracle.oci.override(test_ping_monitor_update_optional_required_monitor_id, omit) }}"
+    register: result
+    when: skip_ping_monitor_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_ping_monitor_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_update_optional_required_custom_assertions }}"
+    when: ping_monitor_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update ping_monitor with optional + required parameters (idempotence)
+    oci_healthchecks_ping_monitor:
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_ping_monitor_update_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_ping_monitor_update_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 112 | oracle.oci.override(test_ping_monitor_update_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_ping_monitor_update_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'ICMP' | oracle.oci.override(test_ping_monitor_update_optional_required_protocol, omit) }}"
+      display_name: "{{ ('testPingupdated' + random_suffix_1024) | oracle.oci.override(test_ping_monitor_update_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_ping_monitor_update_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_ping_monitor_update_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_ping_monitor_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_ping_monitor_update_optional_required_defined_tags, omit) }}"
+      monitor_id: "{{ ping_monitor_resource_id | oracle.oci.override(test_ping_monitor_update_optional_required_monitor_id, omit) }}"
+    register: result
+    when: skip_ping_monitor_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_ping_monitor_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.ping_monitor.id is defined
+        - result.ping_monitor.results_url is defined
+        - result.ping_monitor.home_region is defined
+        - result.ping_monitor.time_created is defined
+        - result.ping_monitor.compartment_id is defined
+        - result.ping_monitor.targets is defined
+        - result.ping_monitor.vantage_point_names is defined
+        - result.ping_monitor.port is defined
+        - result.ping_monitor.timeout_in_seconds is defined
+        - result.ping_monitor.protocol is defined
+        - result.ping_monitor.display_name is defined
+        - result.ping_monitor.interval_in_seconds is defined
+        - result.ping_monitor.is_enabled is defined
+        - result.ping_monitor.freeform_tags is defined
+        - result.ping_monitor.defined_tags is defined
+    when: skip_ping_monitor_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_update_optional_required_idempotence_custom_assertions }}"
+    when: ping_monitor_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List ping_monitors
+    oci_healthchecks_ping_monitor_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_ping_monitor_list_compartment_id, omit) }}"
+    register: result
+    when: skip_ping_monitor_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.ping_monitors | length > 0
+    when: skip_ping_monitor_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.results_url is defined
+        - item.home_region is defined
+        - item.time_created is defined
+        - item.compartment_id is defined
+        - item.protocol is defined
+        - item.display_name is defined
+        - item.interval_in_seconds is defined
+        - item.is_enabled is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+    with_items: "{{ result.ping_monitors }}"
+    when: skip_ping_monitor_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_list_custom_assertions }}"
+    when: ping_monitor_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get ping_monitor
+    oci_healthchecks_ping_monitor_facts:
+      monitor_id: "{{ ping_monitor_resource_id | oracle.oci.override(test_ping_monitor_get_monitor_id, omit) }}"
+    register: result
+    when: skip_ping_monitor_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.ping_monitors | length == 1
+    when: skip_ping_monitor_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.results_url is defined
+        - item.home_region is defined
+        - item.time_created is defined
+        - item.compartment_id is defined
+        - item.protocol is defined
+        - item.display_name is defined
+        - item.interval_in_seconds is defined
+        - item.is_enabled is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+    with_items: "{{ result.ping_monitors }}"
+    when: skip_ping_monitor_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ ping_monitor_get_custom_assertions }}"
+    when: ping_monitor_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete ping_monitor
+      oci_healthchecks_ping_monitor:
+        monitor_id: "{{ ping_monitor_resource_id | oracle.oci.override(test_ping_monitor_delete_rescue_monitor_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: ping_monitor_resource_id is defined

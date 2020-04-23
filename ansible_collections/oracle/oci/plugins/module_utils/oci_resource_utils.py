@@ -783,6 +783,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_audit_custom_helpers,
     oci_object_storage_custom_helpers,
     oci_file_storage_custom_helpers,
+    oci_healthchecks_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -795,6 +796,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_audit_custom_helpers,
         oci_object_storage_custom_helpers,
         oci_file_storage_custom_helpers,
+        oci_healthchecks_custom_helpers,
     ]
 )
 

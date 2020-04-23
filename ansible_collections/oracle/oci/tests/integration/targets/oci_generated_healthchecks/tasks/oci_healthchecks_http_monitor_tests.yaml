@@ -1,0 +1,635 @@
+---
+- block:
+  - name: Create http_monitor (check mode)
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_create_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_create_required_targets, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_http_monitor_create_required_protocol, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_create_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_http_monitor_create_required_interval_in_seconds, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_http_monitor_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_http_monitor_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_create_check_mode_custom_assertions }}"
+    when: http_monitor_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create http_monitor with required parameters
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_create_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_create_required_targets, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_http_monitor_create_required_protocol, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_create_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_http_monitor_create_required_interval_in_seconds, omit) }}"
+    register: result
+    when: skip_http_monitor_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_http_monitor_create_required_original_test is not defined
+
+  - set_fact:
+      http_monitor_resource_id: "{{ result.http_monitor.id }}"
+    when: skip_http_monitor_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_create_required_original_custom_assertions }}"
+    when: http_monitor_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create http_monitor with required parameters(idempotency)
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_create_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_create_required_targets, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_http_monitor_create_required_protocol, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_create_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_http_monitor_create_required_interval_in_seconds, omit) }}"
+    register: result
+    when: skip_http_monitor_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_http_monitor_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_create_required_idempotency_custom_assertions }}"
+    when: http_monitor_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update http_monitor using name with optional + required parameters
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_update_using_name_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_update_using_name_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_http_monitor_update_using_name_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 886 | oracle.oci.override(test_http_monitor_update_using_name_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_http_monitor_update_using_name_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'HTTPS' | oracle.oci.override(test_http_monitor_update_using_name_optional_required_protocol, omit) }}"
+      method: "{{ 'HEAD' | oracle.oci.override(test_http_monitor_update_using_name_optional_required_method, omit) }}"
+      path: "{{ ('path_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_using_name_optional_required_path, omit) }}"
+      headers: "{{ null | oracle.oci.override(test_http_monitor_update_using_name_optional_required_headers, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_using_name_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_http_monitor_update_using_name_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_http_monitor_update_using_name_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_http_monitor_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_http_monitor_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_http_monitor_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_http_monitor_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_update_using_name_optional_required_custom_assertions }}"
+    when: http_monitor_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update http_monitor using name with optional + required parameters (idempotence)
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_update_using_name_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_update_using_name_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_http_monitor_update_using_name_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 886 | oracle.oci.override(test_http_monitor_update_using_name_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_http_monitor_update_using_name_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'HTTPS' | oracle.oci.override(test_http_monitor_update_using_name_optional_required_protocol, omit) }}"
+      method: "{{ 'HEAD' | oracle.oci.override(test_http_monitor_update_using_name_optional_required_method, omit) }}"
+      path: "{{ ('path_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_using_name_optional_required_path, omit) }}"
+      headers: "{{ null | oracle.oci.override(test_http_monitor_update_using_name_optional_required_headers, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_using_name_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_http_monitor_update_using_name_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_http_monitor_update_using_name_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_http_monitor_update_using_name_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_http_monitor_update_using_name_optional_required_defined_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_http_monitor_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_http_monitor_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: http_monitor_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete http_monitor
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_http_monitor_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_http_monitor_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_delete_required_custom_assertions }}"
+    when: http_monitor_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete http_monitor (idempotency)
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_http_monitor_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_http_monitor_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_delete_required_idempotency_custom_assertions }}"
+    when: http_monitor_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create http_monitor with optional + required parameters
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_create_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_create_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_http_monitor_create_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 443 | oracle.oci.override(test_http_monitor_create_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 56 | oracle.oci.override(test_http_monitor_create_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_http_monitor_create_optional_required_protocol, omit) }}"
+      method: "{{ 'GET' | oracle.oci.override(test_http_monitor_create_optional_required_method, omit) }}"
+      path: "{{ 'path_example' | oracle.oci.override(test_http_monitor_create_optional_required_path, omit) }}"
+      headers: "{{ null | oracle.oci.override(test_http_monitor_create_optional_required_headers, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_create_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_http_monitor_create_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_http_monitor_create_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_http_monitor_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_http_monitor_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_http_monitor_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_http_monitor_create_optional_required_original_test is not defined
+
+  - set_fact:
+      http_monitor_resource_id: "{{ result.http_monitor.id }}"
+    when: skip_http_monitor_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_create_optional_required_original_custom_assertions }}"
+    when: http_monitor_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create http_monitor with optional + required parameters (idempotence)
+    oci_healthchecks_http_monitor:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_create_optional_required_compartment_id, omit) }}"
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_create_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_http_monitor_create_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 443 | oracle.oci.override(test_http_monitor_create_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 56 | oracle.oci.override(test_http_monitor_create_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'HTTP' | oracle.oci.override(test_http_monitor_create_optional_required_protocol, omit) }}"
+      method: "{{ 'GET' | oracle.oci.override(test_http_monitor_create_optional_required_method, omit) }}"
+      path: "{{ 'path_example' | oracle.oci.override(test_http_monitor_create_optional_required_path, omit) }}"
+      headers: "{{ null | oracle.oci.override(test_http_monitor_create_optional_required_headers, omit) }}"
+      display_name: "{{ ('test' + random_suffix_1024) | oracle.oci.override(test_http_monitor_create_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 300 | oracle.oci.override(test_http_monitor_create_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_http_monitor_create_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_http_monitor_create_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_http_monitor_create_optional_required_defined_tags, omit) }}"
+    register: result
+    when: skip_http_monitor_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_http_monitor_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_create_optional_required_idempotence_custom_assertions }}"
+    when: http_monitor_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update http_monitor with optional + required parameters
+    oci_healthchecks_http_monitor:
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_update_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_http_monitor_update_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 886 | oracle.oci.override(test_http_monitor_update_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_http_monitor_update_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'HTTPS' | oracle.oci.override(test_http_monitor_update_optional_required_protocol, omit) }}"
+      method: "{{ 'HEAD' | oracle.oci.override(test_http_monitor_update_optional_required_method, omit) }}"
+      path: "{{ ('path_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_optional_required_path, omit) }}"
+      headers: "{{ null | oracle.oci.override(test_http_monitor_update_optional_required_headers, omit) }}"
+      display_name: "{{ ('testupdated' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_http_monitor_update_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_http_monitor_update_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_http_monitor_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_http_monitor_update_optional_required_defined_tags, omit) }}"
+      monitor_id: "{{ http_monitor_resource_id | oracle.oci.override(test_http_monitor_update_optional_required_monitor_id, omit) }}"
+    register: result
+    when: skip_http_monitor_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_http_monitor_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_update_optional_required_custom_assertions }}"
+    when: http_monitor_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update http_monitor with optional + required parameters (idempotence)
+    oci_healthchecks_http_monitor:
+      targets: "{{ [ '192.0.2.0' ] | oracle.oci.override(test_http_monitor_update_optional_required_targets, omit) }}"
+      vantage_point_names: "{{ [ 'null' ] | oracle.oci.override(test_http_monitor_update_optional_required_vantage_point_names, omit) }}"
+      port: "{{ 886 | oracle.oci.override(test_http_monitor_update_optional_required_port, omit) }}"
+      timeout_in_seconds: "{{ 112 | oracle.oci.override(test_http_monitor_update_optional_required_timeout_in_seconds, omit) }}"
+      protocol: "{{ 'HTTPS' | oracle.oci.override(test_http_monitor_update_optional_required_protocol, omit) }}"
+      method: "{{ 'HEAD' | oracle.oci.override(test_http_monitor_update_optional_required_method, omit) }}"
+      path: "{{ ('path_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_optional_required_path, omit) }}"
+      headers: "{{ null | oracle.oci.override(test_http_monitor_update_optional_required_headers, omit) }}"
+      display_name: "{{ ('testupdated' + random_suffix_1024) | oracle.oci.override(test_http_monitor_update_optional_required_display_name, omit) }}"
+      interval_in_seconds: "{{ 600 | oracle.oci.override(test_http_monitor_update_optional_required_interval_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_http_monitor_update_optional_required_is_enabled, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_http_monitor_update_optional_required_freeform_tags, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_http_monitor_update_optional_required_defined_tags, omit) }}"
+      monitor_id: "{{ http_monitor_resource_id | oracle.oci.override(test_http_monitor_update_optional_required_monitor_id, omit) }}"
+    register: result
+    when: skip_http_monitor_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_http_monitor_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.http_monitor.id is defined
+        - result.http_monitor.results_url is defined
+        - result.http_monitor.home_region is defined
+        - result.http_monitor.time_created is defined
+        - result.http_monitor.compartment_id is defined
+        - result.http_monitor.targets is defined
+        - result.http_monitor.vantage_point_names is defined
+        - result.http_monitor.port is defined
+        - result.http_monitor.timeout_in_seconds is defined
+        - result.http_monitor.protocol is defined
+        - result.http_monitor.method is defined
+        - result.http_monitor.path is defined
+        - result.http_monitor.headers is defined
+        - result.http_monitor.display_name is defined
+        - result.http_monitor.interval_in_seconds is defined
+        - result.http_monitor.is_enabled is defined
+        - result.http_monitor.freeform_tags is defined
+        - result.http_monitor.defined_tags is defined
+    when: skip_http_monitor_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_update_optional_required_idempotence_custom_assertions }}"
+    when: http_monitor_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List http_monitors
+    oci_healthchecks_http_monitor_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_http_monitor_list_compartment_id, omit) }}"
+    register: result
+    when: skip_http_monitor_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.http_monitors | length > 0
+    when: skip_http_monitor_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.results_url is defined
+        - item.home_region is defined
+        - item.time_created is defined
+        - item.compartment_id is defined
+        - item.protocol is defined
+        - item.display_name is defined
+        - item.interval_in_seconds is defined
+        - item.is_enabled is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+    with_items: "{{ result.http_monitors }}"
+    when: skip_http_monitor_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_list_custom_assertions }}"
+    when: http_monitor_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get http_monitor
+    oci_healthchecks_http_monitor_facts:
+      monitor_id: "{{ http_monitor_resource_id | oracle.oci.override(test_http_monitor_get_monitor_id, omit) }}"
+    register: result
+    when: skip_http_monitor_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.http_monitors | length == 1
+    when: skip_http_monitor_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.results_url is defined
+        - item.home_region is defined
+        - item.time_created is defined
+        - item.compartment_id is defined
+        - item.protocol is defined
+        - item.display_name is defined
+        - item.interval_in_seconds is defined
+        - item.is_enabled is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
+    with_items: "{{ result.http_monitors }}"
+    when: skip_http_monitor_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_monitor_get_custom_assertions }}"
+    when: http_monitor_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete http_monitor
+      oci_healthchecks_http_monitor:
+        monitor_id: "{{ http_monitor_resource_id | oracle.oci.override(test_http_monitor_delete_rescue_monitor_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: http_monitor_resource_id is defined

@@ -1,0 +1,55 @@
+---
+- block:
+  - name: List http_probe_results
+    oci_healthchecks_http_probe_result_facts:
+      probe_configuration_id: "{{ dependency_probe_configuration_id | oracle.oci.override(test_http_probe_result_list_probe_configuration_id, omit) }}"
+    register: result
+    when: skip_http_probe_result_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.http_probe_results | length > 0
+    when: skip_http_probe_result_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.key is defined
+        - item.probe_configuration_id is defined
+        - item.start_time is defined
+        - item.target is defined
+        - item.vantage_point_name is defined
+        - item.is_timed_out is defined
+        - item.is_healthy is defined
+        - item.error_category is defined
+        - item.error_message is defined
+        - item.protocol is defined
+        - item.connection is defined
+        - item.dns is defined
+        - item.status_code is defined
+        - item.domain_lookup_start is defined
+        - item.domain_lookup_end is defined
+        - item.connect_start is defined
+        - item.secure_connection_start is defined
+        - item.connect_end is defined
+        - item.fetch_start is defined
+        - item.request_start is defined
+        - item.response_start is defined
+        - item.response_end is defined
+        - item.duration is defined
+        - item.encoded_body_size is defined
+    with_items: "{{ result.http_probe_results }}"
+    when: skip_http_probe_result_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ http_probe_result_list_custom_assertions }}"
+    when: http_probe_result_list_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

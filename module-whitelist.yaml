@@ -185,6 +185,15 @@ moduleWhitelist:
   - oci_file_storage_export_set_facts
   - oci_file_storage_snapshot
   - oci_file_storage_snapshot_facts
+  - oci_healthchecks_http_monitor
+  - oci_healthchecks_http_monitor_facts
+  - oci_healthchecks_http_probe
+  - oci_healthchecks_http_probe_result_facts
+  - oci_healthchecks_ping_monitor
+  - oci_healthchecks_ping_monitor_facts
+  - oci_healthchecks_ping_probe
+  - oci_healthchecks_ping_probe_result_facts
+  - oci_healthchecks_health_checks_vantage_point_facts
 
 modulePathOverrides:
   # backwards compatibility

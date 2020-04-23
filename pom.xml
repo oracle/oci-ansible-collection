@@ -32,7 +32,7 @@
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
     <kms-api-spec-spec-file>kms-api-spec-20180608.yaml</kms-api-spec-spec-file>
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
-    <healthchecks-api-spec-spec-file>ovp-api.yaml</healthchecks-api-spec-spec-file>
+    <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
     <oci-waas-api-spec-spec-file>oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
     <rest-api-spec-spec-file>api.yaml</rest-api-spec-spec-file>
     <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
@@ -1748,7 +1748,7 @@
                 <generateInitFile>true</generateInitFile>
                 <endpoint>https://healthchecks.{domain}</endpoint>
               </additionalProperties>
-              <isTestGenerationEnabled>false</isTestGenerationEnabled>
+              <isTestGenerationEnabled>true</isTestGenerationEnabled>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
@@ -2157,7 +2157,7 @@
       <dependency>
         <groupId>com.oracle.oci</groupId>
         <artifactId>healthchecks-api-spec</artifactId>
-        <version>0.0.1-20181210.154927-6</version>
+        <version>1.2.0-20190917.134531-2</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.waas</groupId>

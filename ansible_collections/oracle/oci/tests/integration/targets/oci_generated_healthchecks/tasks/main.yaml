@@ -1,0 +1,84 @@
+---
+- import_tasks: oci_healthchecks_health_checks_vantage_point_tests.yaml
+  tags:
+    - healthchecks_vantage_points
+    - healthchecks_http_monitor
+    - healthchecks_ping_monitor
+    - healthchecks_http_probe
+    - healthchecks_ping_probe
+- set_fact:
+    vantage_points: "{{ vantage_points | default([]) }} + [ '{{ item['name'] }}' ]"
+  with_items: "{{ result.health_checks_vantage_points[:1] }}"
+  tags:
+    - healthchecks_http_monitor
+    - healthchecks_ping_monitor
+    - healthchecks_http_probe
+    - healthchecks_ping_probe
+
+- import_tasks: oci_healthchecks_http_monitor_tests.yaml
+  tags:
+    - healthchecks_http_monitor
+  vars:
+    test_http_monitor_update_using_name_optional_required_vantage_point_names: "{{vantage_points}}"
+    test_httptest_monitor_create_optional_required_vantage_point_names: "{{vantage_points}}"
+    test_http_monitor_create_optional_required_vantage_point_names: "{{vantage_points}}"
+    test_http_monitor_update_optional_required_vantage_point_names: "{{vantage_points}}"
+
+- import_tasks: oci_healthchecks_ping_monitor_tests.yaml
+  tags:
+    - healthchecks_ping_monitor
+  vars:
+    test_ping_monitor_update_using_name_optional_required_vantage_point_names: "{{ vantage_points }}"
+    test_ping_monitor_create_optional_required_vantage_point_names: "{{ vantage_points }}"
+    test_ping_monitor_update_optional_required_vantage_point_names: "{{ vantage_points }}"
+
+- import_tasks: oci_healthchecks_http_probe_tests.yaml
+  tags:
+    - healthchecks_http_probe
+  vars:
+    test_http_probe_create_optional_required_vantage_point_names: "{{ vantage_points }}"
+
+- name: Create http_probe
+  oci_healthchecks_http_probe:
+    compartment_id: "{{ test_compartment_ocid }}"
+    targets: "{{ [ 'null' ] }}"
+    protocol: "{{ 'HTTP' }}"
+    timeout_in_seconds: 60
+  register: result
+  tags:
+    - healthchecks_http_probe_result
+- set_fact:
+    probe_configuration_id: "{{ result.http_probe.id }}"
+  tags:
+    - healthchecks_http_probe_result
+
+- import_tasks: oci_healthchecks_http_probe_result_tests.yaml
+  tags:
+    - healthchecks_http_probe_result
+  vars:
+    dependency_probe_configuration_id: "{{ probe_configuration_id }}"
+
+- import_tasks: oci_healthchecks_ping_probe_tests.yaml
+  tags:
+    - healthchecks_ping_probe
+  vars:
+    test_ping_probe_create_optional_required_vantage_point_names: "{{ vantage_points }}"
+
+- name: Create ping_probe
+  oci_healthchecks_ping_probe:
+    compartment_id: "{{ test_compartment_ocid }}"
+    targets: "{{ [ '192.0.2.0' ] }}"
+    protocol: "{{ 'ICMP' }}"
+  register: result
+  tags:
+    - healthchecks_ping_probe_result
+- set_fact:
+    ping_probe_configuration_id: "{{ result.ping_probe.id }}"
+  tags:
+    - healthchecks_ping_probe_result
+
+- import_tasks: oci_healthchecks_ping_probe_result_tests.yaml
+  tags:
+    - healthchecks_ping_probe_result
+  vars:
+    dependency_probe_configuration_id: "{{ ping_probe_configuration_id }}"

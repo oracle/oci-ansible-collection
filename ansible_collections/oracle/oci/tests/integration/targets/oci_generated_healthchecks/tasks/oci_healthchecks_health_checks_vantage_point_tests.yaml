@@ -1,0 +1,35 @@
+---
+- block:
+  - name: List health_checks_vantage_points
+    oci_healthchecks_health_checks_vantage_point_facts:
+    register: result
+    when: skip_health_checks_vantage_point_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.health_checks_vantage_points | length > 0
+    when: skip_health_checks_vantage_point_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.display_name is defined
+        - item.provider_name is defined
+        - item.name is defined
+        - item.geo is defined
+        - item.routing is defined
+    with_items: "{{ result.health_checks_vantage_points }}"
+    when: skip_health_checks_vantage_point_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ health_checks_vantage_point_list_custom_assertions }}"
+    when: health_checks_vantage_point_list_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."
