@@ -207,6 +207,10 @@ moduleWhitelist:
   - oci_compute_dedicated_vm_host
   - oci_compute_dedicated_vm_host_facts
   - oci_compute_dedicated_vm_host_instance_facts
+  - oci_autoscaling_auto_scaling_configuration
+  - oci_autoscaling_auto_scaling_configuration_facts
+  - oci_autoscaling_auto_scaling_configuration_policy
+  - oci_autoscaling_auto_scaling_configuration_policy_facts
 
 modulePathOverrides:
   # backwards compatibility

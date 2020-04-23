@@ -1,0 +1,560 @@
+---
+- block:
+  - set_fact:
+      test_auto_scaling_configuration_create_required_policies:
+      - capacity:
+          max: "{{ 50 | oracle.oci.override(test_auto_scaling_configuration_create_required_capacity_max, omit) }}"
+          min: "{{ 10 | oracle.oci.override(test_auto_scaling_configuration_create_required_capacity_min, omit) }}"
+          initial: "{{ 15 | oracle.oci.override(test_auto_scaling_configuration_create_required_capacity_initial, omit) }}"
+        display_name: "{{ ('example_autoscaling_policy' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_required_policies_display_name, omit) }}"
+        policy_type: "{{ 'threshold' | oracle.oci.override(test_auto_scaling_configuration_create_required_policies_policy_type, omit) }}"
+        rules:
+        - action:
+            type: "{{ 'CHANGE_COUNT_BY' | oracle.oci.override(test_auto_scaling_configuration_create_required_action_type, omit) }}"
+            value: "{{ 5 | oracle.oci.override(test_auto_scaling_configuration_create_required_action_value, omit) }}"
+          display_name: "{{ ('example_scale_out_condition' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_required_rules_display_name, omit) }}"
+          metric:
+            metric_type: "{{ 'CPU_UTILIZATION' | oracle.oci.override(test_auto_scaling_configuration_create_required_metric_metric_type, omit) }}"
+            threshold:
+              operator: "{{ 'GTE' | oracle.oci.override(test_auto_scaling_configuration_create_required_threshold_operator, omit) }}"
+              value: "{{ 90 | oracle.oci.override(test_auto_scaling_configuration_create_required_threshold_value, omit) }}"
+    when: test_auto_scaling_configuration_create_required_policies is not defined
+
+  - set_fact:
+      test_auto_scaling_configuration_create_required_resource:
+        type: "{{ 'instancePool' | oracle.oci.override(test_auto_scaling_configuration_create_required_resource_type, omit) }}"
+        id: "{{ dependency_id | oracle.oci.override(test_auto_scaling_configuration_create_required_resource_id, omit) }}"
+    when: test_auto_scaling_configuration_create_required_resource is not defined
+
+  - name: Create auto_scaling_configuration (check mode)
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_required_display_name, omit) }}"
+      policies: "{{ '[]' | oracle.oci.override(test_auto_scaling_configuration_create_required_policies, omit) }}"
+      resource: "{{ '{}' | oracle.oci.override(test_auto_scaling_configuration_create_required_resource, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_auto_scaling_configuration_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_auto_scaling_configuration_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_create_check_mode_custom_assertions }}"
+    when: auto_scaling_configuration_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create auto_scaling_configuration with required parameters
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_required_display_name, omit) }}"
+      policies: "{{ '[]' | oracle.oci.override(test_auto_scaling_configuration_create_required_policies, omit) }}"
+      resource: "{{ '{}' | oracle.oci.override(test_auto_scaling_configuration_create_required_resource, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_auto_scaling_configuration_create_required_original_test is not defined
+
+  - set_fact:
+      auto_scaling_configuration_resource_id: "{{ result.auto_scaling_configuration.id }}"
+    when: skip_auto_scaling_configuration_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_create_required_original_custom_assertions }}"
+    when: auto_scaling_configuration_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create auto_scaling_configuration with required parameters(idempotency)
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_required_display_name, omit) }}"
+      policies: "{{ '[]' | oracle.oci.override(test_auto_scaling_configuration_create_required_policies, omit) }}"
+      resource: "{{ '{}' | oracle.oci.override(test_auto_scaling_configuration_create_required_resource, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_auto_scaling_configuration_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_create_required_idempotency_custom_assertions }}"
+    when: auto_scaling_configuration_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update auto_scaling_configuration using name with optional + required parameters
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_freeform_tags, omit) }}"
+      cool_down_in_seconds: "{{ 600 | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_cool_down_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_is_enabled, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_auto_scaling_configuration_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_auto_scaling_configuration_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_update_using_name_optional_required_custom_assertions }}"
+    when: auto_scaling_configuration_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update auto_scaling_configuration using name with optional + required parameters (idempotence)
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_freeform_tags, omit) }}"
+      cool_down_in_seconds: "{{ 600 | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_cool_down_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_auto_scaling_configuration_update_using_name_optional_required_is_enabled, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_auto_scaling_configuration_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_auto_scaling_configuration_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: auto_scaling_configuration_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete auto_scaling_configuration
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_auto_scaling_configuration_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_auto_scaling_configuration_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_delete_required_custom_assertions }}"
+    when: auto_scaling_configuration_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete auto_scaling_configuration (idempotency)
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_auto_scaling_configuration_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_auto_scaling_configuration_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_delete_required_idempotency_custom_assertions }}"
+    when: auto_scaling_configuration_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_auto_scaling_configuration_create_optional_required_policies:
+      - capacity:
+          max: "{{ 50 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_capacity_max, omit) }}"
+          min: "{{ 10 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_capacity_min, omit) }}"
+          initial: "{{ 15 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_capacity_initial, omit) }}"
+        display_name: "{{ ('example_autoscaling_policy' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_policies_display_name, omit) }}"
+        policy_type: "{{ 'threshold' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_policies_policy_type, omit) }}"
+        rules:
+        - action:
+            type: "{{ 'CHANGE_COUNT_BY' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_action_type, omit) }}"
+            value: "{{ 5 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_action_value, omit) }}"
+          display_name: "{{ ('example_scale_out_condition' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_rules_display_name, omit) }}"
+          metric:
+            metric_type: "{{ 'CPU_UTILIZATION' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_metric_metric_type, omit) }}"
+            threshold:
+              operator: "{{ 'GTE' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_threshold_operator, omit) }}"
+              value: "{{ 90 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_threshold_value, omit) }}"
+    when: test_auto_scaling_configuration_create_optional_required_policies is not defined
+
+  - set_fact:
+      test_auto_scaling_configuration_create_optional_required_resource:
+        type: "{{ 'instancePool' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_resource_type, omit) }}"
+        id: "{{ dependency_id | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_resource_id, omit) }}"
+    when: test_auto_scaling_configuration_create_optional_required_resource is not defined
+
+  - name: Create auto_scaling_configuration with optional + required parameters
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_freeform_tags, omit) }}"
+      cool_down_in_seconds: "{{ 300 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_cool_down_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_is_enabled, omit) }}"
+      policies: "{{ '[]' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_policies, omit) }}"
+      resource: "{{ '{}' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_resource, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_auto_scaling_configuration_create_optional_required_original_test is not defined
+
+  - set_fact:
+      auto_scaling_configuration_resource_id: "{{ result.auto_scaling_configuration.id }}"
+    when: skip_auto_scaling_configuration_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_create_optional_required_original_custom_assertions }}"
+    when: auto_scaling_configuration_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create auto_scaling_configuration with optional + required parameters (idempotence)
+    oci_autoscaling_auto_scaling_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_autoscaling_configuration' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_freeform_tags, omit) }}"
+      cool_down_in_seconds: "{{ 300 | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_cool_down_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_is_enabled, omit) }}"
+      policies: "{{ '[]' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_policies, omit) }}"
+      resource: "{{ '{}' | oracle.oci.override(test_auto_scaling_configuration_create_optional_required_resource, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_auto_scaling_configuration_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_create_optional_required_idempotence_custom_assertions }}"
+    when: auto_scaling_configuration_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update auto_scaling_configuration with optional + required parameters
+    oci_autoscaling_auto_scaling_configuration:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_autoscaling_configurationupdated' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_freeform_tags, omit) }}"
+      cool_down_in_seconds: "{{ 600 | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_cool_down_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_is_enabled, omit) }}"
+      auto_scaling_configuration_id: "{{ auto_scaling_configuration_resource_id | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_auto_scaling_configuration_id, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_auto_scaling_configuration_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_update_optional_required_custom_assertions }}"
+    when: auto_scaling_configuration_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update auto_scaling_configuration with optional + required parameters (idempotence)
+    oci_autoscaling_auto_scaling_configuration:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_autoscaling_configurationupdated' + random_suffix_1024) | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_freeform_tags, omit) }}"
+      cool_down_in_seconds: "{{ 600 | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_cool_down_in_seconds, omit) }}"
+      is_enabled: "{{ true | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_is_enabled, omit) }}"
+      auto_scaling_configuration_id: "{{ auto_scaling_configuration_resource_id | oracle.oci.override(test_auto_scaling_configuration_update_optional_required_auto_scaling_configuration_id, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_auto_scaling_configuration_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.auto_scaling_configuration.compartment_id is defined
+        - result.auto_scaling_configuration.defined_tags is defined
+        - result.auto_scaling_configuration.display_name is defined
+        - result.auto_scaling_configuration.freeform_tags is defined
+        - result.auto_scaling_configuration.id is defined
+        - result.auto_scaling_configuration.cool_down_in_seconds is defined
+        - result.auto_scaling_configuration.is_enabled is defined
+        - result.auto_scaling_configuration.resource is defined
+        - result.auto_scaling_configuration.policies is defined
+        - result.auto_scaling_configuration.time_created is defined
+    when: skip_auto_scaling_configuration_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_update_optional_required_idempotence_custom_assertions }}"
+    when: auto_scaling_configuration_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List auto_scaling_configurations
+    oci_autoscaling_auto_scaling_configuration_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_auto_scaling_configuration_list_compartment_id, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.auto_scaling_configurations | length > 0
+    when: skip_auto_scaling_configuration_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.id is defined
+        - item.cool_down_in_seconds is defined
+        - item.is_enabled is defined
+        - item.resource is defined
+        - item.time_created is defined
+    with_items: "{{ result.auto_scaling_configurations }}"
+    when: skip_auto_scaling_configuration_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_list_custom_assertions }}"
+    when: auto_scaling_configuration_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get auto_scaling_configuration
+    oci_autoscaling_auto_scaling_configuration_facts:
+      auto_scaling_configuration_id: "{{ auto_scaling_configuration_resource_id | oracle.oci.override(test_auto_scaling_configuration_get_auto_scaling_configuration_id, omit) }}"
+    register: result
+    when: skip_auto_scaling_configuration_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.auto_scaling_configurations | length == 1
+    when: skip_auto_scaling_configuration_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.display_name is defined
+        - item.id is defined
+        - item.cool_down_in_seconds is defined
+        - item.is_enabled is defined
+        - item.resource is defined
+        - item.time_created is defined
+    with_items: "{{ result.auto_scaling_configurations }}"
+    when: skip_auto_scaling_configuration_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ auto_scaling_configuration_get_custom_assertions }}"
+    when: auto_scaling_configuration_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete auto_scaling_configuration
+      oci_autoscaling_auto_scaling_configuration:
+        auto_scaling_configuration_id: "{{ auto_scaling_configuration_resource_id | oracle.oci.override(test_auto_scaling_configuration_delete_rescue_auto_scaling_configuration_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: auto_scaling_configuration_resource_id is defined

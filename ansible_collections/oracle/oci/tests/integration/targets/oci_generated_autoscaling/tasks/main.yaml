@@ -1,0 +1,29 @@
+- block:
+  - import_tasks: oci_autoscaling_setup.yaml
+    tags:
+      - setup
+      - auto_sclaing_configuration
+      - auto_sclaing_configuration_policy
+
+  - import_tasks: oci_autoscaling_auto_scaling_configuration_tests.yaml
+    tags:
+      - auto_sclaing_configuration
+
+  - import_tasks: oci_autoscaling_auto_scaling_configuration_policy_tests.yaml
+    tags:
+      - auto_sclaing_configuration_policy
+
+  - import_tasks: oci_autoscaling_teardown.yaml
+    tags:
+      - teardown
+      - auto_sclaing_configuration
+      - auto_sclaing_configuration_policy
+
+  always:
+
+    - import_tasks: oci_autoscaling_teardown.yaml
+      ignore_errors: yes
+      tags:
+        - teardown
+        - auto_sclaing_configuration
+        - auto_sclaing_configuration_policy

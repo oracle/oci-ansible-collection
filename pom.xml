@@ -1832,7 +1832,7 @@
                 <generateInitFile>true</generateInitFile>
                 <endpoint>None</endpoint>
               </additionalProperties>
-              <isTestGenerationEnabled>false</isTestGenerationEnabled>
+              <isTestGenerationEnabled>true</isTestGenerationEnabled>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
