@@ -50,3 +50,6 @@ udx-1363
 
 # Hide Shape.availabilityDomain
 sdk_team_hide_Shape_availabilityDomain
+
+# cluster networks
+udx-1767

@@ -464,6 +464,27 @@
             - instance_pool_instance
       tags:
         - compute_management
+
+    - block:
+
+        - import_tasks: oci_compute_management_cluster_network_setup.yaml
+
+        - import_tasks: oci_compute_management_cluster_network_tests.yaml
+
+        - import_tasks: oci_compute_management_cluster_network_instance_tests.yaml
+
+        - import_tasks: oci_compute_management_cluster_network_teardown.yaml
+
+      always:
+
+        - import_tasks: oci_compute_management_cluster_network_teardown.yaml
+          ignore_errors: yes
+
+      tags:
+        - compute_management
+        - cluster_network
+        - nightly
+
     - block:
         - import_tasks: oci_blockstorage_setup.yaml
           tags:

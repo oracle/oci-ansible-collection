@@ -1,7 +1,7 @@
-- name: Create a new basic compute instance configuration that only has launch_details and VNIC configuration
+- name: Create an instance configuration for cluster networks
   oci_compute_management_instance_configuration:
     compartment_id: "{{test_compartment_ocid}}"
-    name: "{{test_instance_configuration_name}}"
+    name: "{{test_cluster_networks_instance_configuration_name}}"
     instance_details:
       instance_type: "compute"
       launch_details:
@@ -11,7 +11,7 @@
           display_name: "{{test_instance_name}}"
           skip_source_dest_check: False
         display_name: "{{test_instance_name}}"
-        shape: "{{ test_instance_shape }}"
+        shape: "{{ test_cluster_networks_shape }}"
         source_details:
           source_type: "image"
           image_id: "{{image_ocid}}"
@@ -19,4 +19,5 @@
   register: result
 
 - set_fact:
-    setup_instance_configuration_id: "{{result.instance_configuration.id}}"
+    setup_cluster_networks_instance_configuration_id: "{{result.instance_configuration.id}}"
+    dependency_instance_configuration_id: "{{result.instance_configuration.id}}"

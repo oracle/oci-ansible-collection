@@ -201,6 +201,9 @@ moduleWhitelist:
   - oci_container_engine_node_pool
   - oci_container_engine_node_pool_facts
   - oci_container_engine_node_pool_options_facts
+  - oci_compute_management_cluster_network
+  - oci_compute_management_cluster_network_facts
+  - oci_compute_management_cluster_network_instance_facts
 
 modulePathOverrides:
   # backwards compatibility
@@ -230,6 +233,7 @@ modulePathOverrides:
   /instanceConsoleHistories/{instanceConsoleHistoryId}: instance_console_history
   /instanceConsoleHistories/{instanceConsoleHistoryId}/data: instance_console_history_content
   /clusters/{clusterId}/kubeconfig/content: kubeconfig
+  /clusterNetworks/{clusterNetworkId}/instances: cluster_network_instance
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules

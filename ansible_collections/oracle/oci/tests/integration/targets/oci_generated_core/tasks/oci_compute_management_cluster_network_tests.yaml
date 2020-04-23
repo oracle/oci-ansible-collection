@@ -1,0 +1,632 @@
+---
+- block:
+  - name: Create dependency vcn with required parameters
+    oci_network_vcn:
+      cidr_block: "{{ '10.0.0.0/16' | oracle.oci.override(test_cluster_network_create_dependency_vcn_cidr_block, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_dependency_vcn_compartment_id, omit) }}"
+      display_name: "{{ ('MyVcn' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_dependency_vcn_display_name, omit) }}"
+    register: result
+    when: skip_cluster_network_create_dependency_vcn_test is not defined and skip_cluster_network_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_create_dependency_vcn_test is not defined and skip_cluster_network_dependencies is not defined
+  - set_fact:
+      dependency_vcn: "{{ result.vcn }}"
+      dependency_vcn_id: "{{ result.vcn.id }}"
+    when: skip_cluster_network_create_dependency_vcn_test is not defined and skip_cluster_network_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_dependency_vcn_custom_assertions }}"
+    when: cluster_network_create_dependency_vcn_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency instance_configuration with required parameters
+    oci_compute_management_instance_configuration:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_dependency_instance_configuration_compartment_id, omit) }}"
+      display_name: "{{ ('example-instance-configuration' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_dependency_instance_configuration_display_name, omit) }}"
+    register: result
+    when: skip_cluster_network_create_dependency_instance_configuration_test is not defined and skip_cluster_network_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_create_dependency_instance_configuration_test is not defined and skip_cluster_network_dependencies is not defined
+  - set_fact:
+      dependency_instance_configuration: "{{ result.instance_configuration }}"
+      dependency_instance_configuration_id: "{{ result.instance_configuration.id }}"
+    when: skip_cluster_network_create_dependency_instance_configuration_test is not defined and skip_cluster_network_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_dependency_instance_configuration_custom_assertions }}"
+    when: cluster_network_create_dependency_instance_configuration_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dependency subnet with required parameters
+    oci_network_subnet:
+      cidr_block: "{{ '10.0.2.0/24' | oracle.oci.override(test_cluster_network_create_dependency_subnet_cidr_block, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_dependency_subnet_compartment_id, omit) }}"
+      display_name: "{{ ('MySubnet' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_dependency_subnet_display_name, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_cluster_network_create_dependency_subnet_vcn_id, omit) }}"
+    register: result
+    when: skip_cluster_network_create_dependency_subnet_test is not defined and skip_cluster_network_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_create_dependency_subnet_test is not defined and skip_cluster_network_dependencies is not defined
+  - set_fact:
+      dependency_subnet: "{{ result.subnet }}"
+      dependency_subnet_id: "{{ result.subnet.id }}"
+    when: skip_cluster_network_create_dependency_subnet_test is not defined and skip_cluster_network_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_dependency_subnet_custom_assertions }}"
+    when: cluster_network_create_dependency_subnet_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_cluster_network_create_required_instance_pools:
+      - defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_cluster_network_create_required_instance_pools_defined_tags, omit) }}"
+        display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_required_instance_pools_display_name, omit) }}"
+        freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_cluster_network_create_required_instance_pools_freeform_tags, omit) }}"
+        instance_configuration_id: "{{ dependency_instance_configuration_id | oracle.oci.override(test_cluster_network_create_required_instance_pools_instance_configuration_id, omit) }}"
+        size: "{{ 56 | oracle.oci.override(test_cluster_network_create_required_instance_pools_size, omit) }}"
+    when: test_cluster_network_create_required_instance_pools is not defined
+
+  - set_fact:
+      test_cluster_network_create_required_placement_configuration:
+        availability_domain: "{{ test_availability_domain | oracle.oci.override(test_cluster_network_create_required_placement_configuration_availability_domain, omit) }}"
+        primary_subnet_id: "{{ dependency_primary_subnet_id | oracle.oci.override(test_cluster_network_create_required_placement_configuration_primary_subnet_id, omit) }}"
+        secondary_vnic_subnets:
+        - display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_required_secondary_vnic_subnets_display_name, omit) }}"
+          subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_cluster_network_create_required_secondary_vnic_subnets_subnet_id, omit) }}"
+    when: test_cluster_network_create_required_placement_configuration is not defined
+
+  - name: Create cluster_network (check mode)
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_required_display_name, omit) }}"
+      instance_pools: "{{ '[]' | oracle.oci.override(test_cluster_network_create_required_instance_pools, omit) }}"
+      placement_configuration: "{{ '{}' | oracle.oci.override(test_cluster_network_create_required_placement_configuration, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_cluster_network_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_check_mode_custom_assertions }}"
+    when: cluster_network_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create cluster_network with required parameters
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_required_display_name, omit) }}"
+      instance_pools: "{{ '[]' | oracle.oci.override(test_cluster_network_create_required_instance_pools, omit) }}"
+      placement_configuration: "{{ '{}' | oracle.oci.override(test_cluster_network_create_required_placement_configuration, omit) }}"
+    register: result
+    when: skip_cluster_network_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_create_required_original_test is not defined
+
+  - set_fact:
+      cluster_network_resource_id: "{{ result.cluster_network.id }}"
+    when: skip_cluster_network_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_required_original_custom_assertions }}"
+    when: cluster_network_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create cluster_network with required parameters(idempotency)
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_required_display_name, omit) }}"
+      instance_pools: "{{ '[]' | oracle.oci.override(test_cluster_network_create_required_instance_pools, omit) }}"
+      placement_configuration: "{{ '{}' | oracle.oci.override(test_cluster_network_create_required_placement_configuration, omit) }}"
+    register: result
+    when: skip_cluster_network_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_network_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_required_idempotency_custom_assertions }}"
+    when: cluster_network_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster_network using name with optional + required parameters
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cluster_network_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cluster_network_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_network_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_update_using_name_optional_required_custom_assertions }}"
+    when: cluster_network_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster_network using name with optional + required parameters (idempotence)
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cluster_network_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cluster_network_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_network_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_network_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: cluster_network_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete cluster_network
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_network_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_delete_required_custom_assertions }}"
+    when: cluster_network_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete cluster_network (idempotency)
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_network_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_network_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_delete_required_idempotency_custom_assertions }}"
+    when: cluster_network_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_cluster_network_create_optional_required_instance_pools:
+      - defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools_defined_tags, omit) }}"
+        display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools_display_name, omit) }}"
+        freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools_freeform_tags, omit) }}"
+        instance_configuration_id: "{{ dependency_instance_configuration_id | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools_instance_configuration_id, omit) }}"
+        size: "{{ 56 | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools_size, omit) }}"
+    when: test_cluster_network_create_optional_required_instance_pools is not defined
+
+  - set_fact:
+      test_cluster_network_create_optional_required_placement_configuration:
+        availability_domain: "{{ test_availability_domain | oracle.oci.override(test_cluster_network_create_optional_required_placement_configuration_availability_domain, omit) }}"
+        primary_subnet_id: "{{ dependency_primary_subnet_id | oracle.oci.override(test_cluster_network_create_optional_required_placement_configuration_primary_subnet_id, omit) }}"
+        secondary_vnic_subnets:
+        - display_name: "{{ ('display_name_example' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_optional_required_secondary_vnic_subnets_display_name, omit) }}"
+          subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_cluster_network_create_optional_required_secondary_vnic_subnets_subnet_id, omit) }}"
+    when: test_cluster_network_create_optional_required_placement_configuration is not defined
+
+  - name: Create cluster_network with optional + required parameters
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_cluster_network_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_cluster_network_create_optional_required_freeform_tags, omit) }}"
+      instance_pools: "{{ '[]' | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools, omit) }}"
+      placement_configuration: "{{ '{}' | oracle.oci.override(test_cluster_network_create_optional_required_placement_configuration, omit) }}"
+    register: result
+    when: skip_cluster_network_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_create_optional_required_original_test is not defined
+
+  - set_fact:
+      cluster_network_resource_id: "{{ result.cluster_network.id }}"
+    when: skip_cluster_network_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_optional_required_original_custom_assertions }}"
+    when: cluster_network_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create cluster_network with optional + required parameters (idempotence)
+    oci_compute_management_cluster_network:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_create_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_cluster_network_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_cluster_network' + random_suffix_1024) | oracle.oci.override(test_cluster_network_create_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_cluster_network_create_optional_required_freeform_tags, omit) }}"
+      instance_pools: "{{ '[]' | oracle.oci.override(test_cluster_network_create_optional_required_instance_pools, omit) }}"
+      placement_configuration: "{{ '{}' | oracle.oci.override(test_cluster_network_create_optional_required_placement_configuration, omit) }}"
+    register: result
+    when: skip_cluster_network_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_network_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_create_optional_required_idempotence_custom_assertions }}"
+    when: cluster_network_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster_network with optional + required parameters
+    oci_compute_management_cluster_network:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cluster_network_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_cluster_networkupdated' + random_suffix_1024) | oracle.oci.override(test_cluster_network_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cluster_network_update_optional_required_freeform_tags, omit) }}"
+      cluster_network_id: "{{ cluster_network_resource_id | oracle.oci.override(test_cluster_network_update_optional_required_cluster_network_id, omit) }}"
+    register: result
+    when: skip_cluster_network_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_network_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_update_optional_required_custom_assertions }}"
+    when: cluster_network_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster_network with optional + required parameters (idempotence)
+    oci_compute_management_cluster_network:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_cluster_network_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('example_cluster_networkupdated' + random_suffix_1024) | oracle.oci.override(test_cluster_network_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_cluster_network_update_optional_required_freeform_tags, omit) }}"
+      cluster_network_id: "{{ cluster_network_resource_id | oracle.oci.override(test_cluster_network_update_optional_required_cluster_network_id, omit) }}"
+    register: result
+    when: skip_cluster_network_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_network_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster_network.id is defined
+        - result.cluster_network.compartment_id is defined
+        - result.cluster_network.defined_tags is defined
+        - result.cluster_network.display_name is defined
+        - result.cluster_network.freeform_tags is defined
+        - result.cluster_network.instance_pools is defined
+        - result.cluster_network.placement_configuration is defined
+        - result.cluster_network.lifecycle_state is defined
+        - result.cluster_network.time_created is defined
+        - result.cluster_network.time_updated is defined
+    when: skip_cluster_network_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_update_optional_required_idempotence_custom_assertions }}"
+    when: cluster_network_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List cluster_networks
+    oci_compute_management_cluster_network_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_network_list_compartment_id, omit) }}"
+    register: result
+    when: skip_cluster_network_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.cluster_networks | length > 0
+    when: skip_cluster_network_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.instance_pools is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+        - item.time_updated is defined
+    with_items: "{{ result.cluster_networks }}"
+    when: skip_cluster_network_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_list_custom_assertions }}"
+    when: cluster_network_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get cluster_network
+    oci_compute_management_cluster_network_facts:
+      cluster_network_id: "{{ cluster_network_resource_id | oracle.oci.override(test_cluster_network_get_cluster_network_id, omit) }}"
+    register: result
+    when: skip_cluster_network_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.cluster_networks | length == 1
+    when: skip_cluster_network_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.defined_tags is defined
+        - item.display_name is defined
+        - item.freeform_tags is defined
+        - item.instance_pools is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+        - item.time_updated is defined
+    with_items: "{{ result.cluster_networks }}"
+    when: skip_cluster_network_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_network_get_custom_assertions }}"
+    when: cluster_network_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete cluster_network
+      oci_compute_management_cluster_network:
+        cluster_network_id: "{{ cluster_network_resource_id | oracle.oci.override(test_cluster_network_delete_rescue_cluster_network_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: cluster_network_resource_id is defined
+
+    - name: Delete dependency subnet
+      oci_network_subnet:
+        subnet_id: "{{ dependency_subnet_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_cluster_network_delete_dependency_subnet_test is not defined and skip_cluster_network_dependencies is not defined and dependency_subnet_id is defined
+
+    - name: Delete dependency instance_configuration
+      oci_compute_management_instance_configuration:
+        instance_configuration_id: "{{ dependency_instance_configuration_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_cluster_network_delete_dependency_instance_configuration_test is not defined and skip_cluster_network_dependencies is not defined and dependency_instance_configuration_id is defined
+
+    - name: Delete dependency vcn
+      oci_network_vcn:
+        vcn_id: "{{ dependency_vcn_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_cluster_network_delete_dependency_vcn_test is not defined and skip_cluster_network_dependencies is not defined and dependency_vcn_id is defined

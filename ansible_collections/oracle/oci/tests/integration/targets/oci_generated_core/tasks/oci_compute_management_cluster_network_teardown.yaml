@@ -1,0 +1,5 @@
+- name: Delete setup instance configuration
+  oci_compute_management_instance_configuration:
+    id: "{{ setup_cluster_networks_instance_configuration_id }}"
+    state: absent
+  register: result

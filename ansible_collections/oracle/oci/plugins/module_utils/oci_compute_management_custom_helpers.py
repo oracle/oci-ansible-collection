@@ -184,15 +184,3 @@ class InstancePoolHelperCustom:
             self.get_get_fn()(instance_pool_id=instance_pool.id).data
             for instance_pool in super(InstancePoolHelperCustom, self).list_resources()
         ]
-
-
-class InstancePoolFactsHelperCustom:
-    def list_resources(self):
-        # Old module returns full instance_pool objects instead of summary. So get full model objects from summary
-        # to avoid a breaking change.
-        return [
-            self.client.get_instance_pool(instance_pool_id=instance_pool.id).data
-            for instance_pool in super(
-                InstancePoolFactsHelperCustom, self
-            ).list_resources()
-        ]
