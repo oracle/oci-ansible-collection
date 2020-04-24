@@ -292,7 +292,6 @@
         state: absent
       register: result
       ignore_errors: yes
-      when: api_key_resource_id is defined
 
     - name: Delete dependency user
       oci_identity_user:

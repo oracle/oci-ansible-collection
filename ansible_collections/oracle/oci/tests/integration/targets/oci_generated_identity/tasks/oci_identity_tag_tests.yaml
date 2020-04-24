@@ -136,7 +136,7 @@
   - name: Delete tag
     oci_identity_tag:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_delete_required_tag_namespace_id, omit) }}"
-      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_delete_required_name, omit) }}"
+      name: "{{ tag_resource_name | oracle.oci.override(test_tag_delete_required_name, omit) }}"
       state: absent
     register: result
     when: skip_tag_delete_required_test is not defined
@@ -176,7 +176,7 @@
   - name: Delete tag (idempotency)
     oci_identity_tag:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_delete_required_tag_namespace_id, omit) }}"
-      name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_delete_required_name, omit) }}"
+      name: "{{ tag_resource_name | oracle.oci.override(test_tag_delete_required_name, omit) }}"
       state: absent
     register: result
     when: skip_tag_delete_required_idempotency_test is not defined
@@ -289,7 +289,7 @@
   - name: Update tag with optional + required parameters
     oci_identity_tag:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_update_optional_required_tag_namespace_id, omit) }}"
-      name: "{{ ('CostCenterupdated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_name, omit) }}"
+      name: "{{ tag_resource_name | oracle.oci.override(test_tag_update_optional_required_name, omit) }}"
       description: "{{ ('This tag will show the cost center that will be used for billing of associated resources.updated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_description, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_tag_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_tag_update_optional_required_defined_tags, omit) }}"
@@ -333,7 +333,7 @@
   - name: Update tag with optional + required parameters (idempotence)
     oci_identity_tag:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_update_optional_required_tag_namespace_id, omit) }}"
-      name: "{{ ('CostCenterupdated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_name, omit) }}"
+      name: "{{ tag_resource_name | oracle.oci.override(test_tag_update_optional_required_name, omit) }}"
       description: "{{ ('This tag will show the cost center that will be used for billing of associated resources.updated' + random_suffix_1024) | oracle.oci.override(test_tag_update_optional_required_description, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_tag_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_tag_update_optional_required_defined_tags, omit) }}"
@@ -415,7 +415,7 @@
   - name: Get tag
     oci_identity_tag_facts:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_get_tag_namespace_id, omit) }}"
-      tag_name: "{{ tag_resource_id | oracle.oci.override(test_tag_get_tag_name, omit) }}"
+      tag_name: "{{ tag_resource_name | oracle.oci.override(test_tag_get_tag_name, omit) }}"
     register: result
     when: skip_tag_get_test is not defined
 
@@ -453,10 +453,11 @@
     - name: Delete tag
       oci_identity_tag:
         tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_delete_rescue_tag_namespace_id, omit) }}"
-        name: "{{ ('CostCenter' + random_suffix_1024) | oracle.oci.override(test_tag_delete_rescue_name, omit) }}"
+        name: "{{ tag_resource_name | oracle.oci.override(test_tag_delete_rescue_name, omit) }}"
         state: absent
       register: result
       ignore_errors: yes
+      when: tag_resource_id is defined
 
     - name: Delete dependency tag_namespace
       oci_identity_tag_namespace:

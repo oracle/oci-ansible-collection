@@ -3,7 +3,7 @@
   - name: Get fast_connect_provider_service_key
     oci_network_fast_connect_provider_service_key_facts:
       provider_service_id: "{{ dependency_provider_service_id | oracle.oci.override(test_fast_connect_provider_service_key_get_provider_service_id, omit) }}"
-      provider_service_key_name: "{{ fast_connect_provider_service_key_resource_id | oracle.oci.override(test_fast_connect_provider_service_key_get_provider_service_key_name, omit) }}"
+      provider_service_key_name: "{{ fast_connect_provider_service_key_resource_name | oracle.oci.override(test_fast_connect_provider_service_key_get_provider_service_key_name, omit) }}"
     register: result
     when: skip_fast_connect_provider_service_key_get_test is not defined
 

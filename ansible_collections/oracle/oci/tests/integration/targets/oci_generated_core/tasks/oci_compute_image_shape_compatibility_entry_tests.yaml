@@ -27,7 +27,7 @@
   - name: Update image_shape_compatibility_entry with optional + required parameters
     oci_compute_image_shape_compatibility_entry:
       image_id: "{{ dependency_image_id | oracle.oci.override(test_image_shape_compatibility_entry_update_optional_required_image_id, omit) }}"
-      shape_name: "{{ image_shape_compatibility_entry_resource_id | oracle.oci.override(test_image_shape_compatibility_entry_update_optional_required_shape_name, omit) }}"
+      shape_name: "{{ image_shape_compatibility_entry_resource_name | oracle.oci.override(test_image_shape_compatibility_entry_update_optional_required_shape_name, omit) }}"
     register: result
     when: skip_image_shape_compatibility_entry_update_optional_required_test is not defined
 
@@ -56,7 +56,7 @@
   - name: Update image_shape_compatibility_entry with optional + required parameters (idempotence)
     oci_compute_image_shape_compatibility_entry:
       image_id: "{{ dependency_image_id | oracle.oci.override(test_image_shape_compatibility_entry_update_optional_required_image_id, omit) }}"
-      shape_name: "{{ image_shape_compatibility_entry_resource_id | oracle.oci.override(test_image_shape_compatibility_entry_update_optional_required_shape_name, omit) }}"
+      shape_name: "{{ image_shape_compatibility_entry_resource_name | oracle.oci.override(test_image_shape_compatibility_entry_update_optional_required_shape_name, omit) }}"
     register: result
     when: skip_image_shape_compatibility_entry_update_optional_required_idempotence_test is not defined
 
@@ -81,15 +81,6 @@
     when: image_shape_compatibility_entry_update_optional_required_idempotence_custom_assertions is defined
 
   always:
-
-    - name: Delete image_shape_compatibility_entry
-      oci_compute_image_shape_compatibility_entry:
-        image_id: "{{ dependency_image_id | oracle.oci.override(test_image_shape_compatibility_entry_delete_rescue_image_id, omit) }}"
-        shape_name: "{{ image_shape_compatibility_entry_resource_id | oracle.oci.override(test_image_shape_compatibility_entry_delete_rescue_shape_name, omit) }}"
-        state: absent
-      register: result
-      ignore_errors: yes
-      when: image_shape_compatibility_entry_resource_id is defined
 
     - name: Delete dependency image
       oci_compute_image:

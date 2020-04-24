@@ -2,7 +2,7 @@
 - block:
   - name: Update namespace_metadata with optional + required parameters
     oci_object_storage_namespace_metadata:
-      namespace_name: "{{ namespace_metadata_resource_id | oracle.oci.override(test_namespace_metadata_update_optional_required_namespace_name, omit) }}"
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_namespace_metadata_update_optional_required_namespace_name, omit) }}"
       default_s3_compartment_id: "{{ dependency_default_s3_compartment_id | oracle.oci.override(test_namespace_metadata_update_optional_required_default_s3_compartment_id, omit) }}"
       default_swift_compartment_id: "{{ dependency_default_swift_compartment_id | oracle.oci.override(test_namespace_metadata_update_optional_required_default_swift_compartment_id, omit) }}"
     register: result
@@ -33,7 +33,7 @@
 
   - name: Update namespace_metadata with optional + required parameters (idempotence)
     oci_object_storage_namespace_metadata:
-      namespace_name: "{{ namespace_metadata_resource_id | oracle.oci.override(test_namespace_metadata_update_optional_required_namespace_name, omit) }}"
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_namespace_metadata_update_optional_required_namespace_name, omit) }}"
       default_s3_compartment_id: "{{ dependency_default_s3_compartment_id | oracle.oci.override(test_namespace_metadata_update_optional_required_default_s3_compartment_id, omit) }}"
       default_swift_compartment_id: "{{ dependency_default_swift_compartment_id | oracle.oci.override(test_namespace_metadata_update_optional_required_default_swift_compartment_id, omit) }}"
     register: result
@@ -64,7 +64,7 @@
 
   - name: Get namespace_metadata
     oci_object_storage_namespace_metadata_facts:
-      namespace_name: "{{ namespace_metadata_resource_id | oracle.oci.override(test_namespace_metadata_get_namespace_name, omit) }}"
+      namespace_name: "{{ test_namespace_name | oracle.oci.override(test_namespace_metadata_get_namespace_name, omit) }}"
     register: result
     when: skip_namespace_metadata_get_test is not defined
 

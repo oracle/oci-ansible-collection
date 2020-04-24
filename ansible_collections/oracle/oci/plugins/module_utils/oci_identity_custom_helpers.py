@@ -261,37 +261,6 @@ class IdentityProviderHelperCustom:
         return global_exclude_attribtes
 
 
-class TagHelperCustom:
-    def __init__(self, module, resource_type, service_client_class, namespace):
-        if "name" in module.params:
-            module.params["tag_name"] = module.params["name"]
-
-        super(TagHelperCustom, self).__init__(
-            module, resource_type, service_client_class, namespace
-        )
-
-    # there is no resource_id param for a tag, the name is the unique identifier
-    # thus it is an update if the tag exists, and a create if it doesn't
-    # so we re-use that logic from is_update_using_name
-    def is_update(self):
-        return self.is_update_using_name()
-
-    # for this module, the name is the unique identifier so we always want
-    # to use_name_as_identifier
-    def _use_name_as_identifier(self):
-        return True
-
-    def get_module_resource_id(self):
-        return None
-
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_tag,
-            tag_namespace_id=self.module.params.get("tag_namespace_id"),
-            tag_name=summary_model.name,
-        )
-
-
 class UiPasswordHelperCustom:
 
     # there is no concept of idempotency for this module
@@ -299,5 +268,5 @@ class UiPasswordHelperCustom:
     def get_matching_resource(self):
         return None
 
-    def get_module_resource_id(self):
-        return None
+    def is_create(self):
+        return True

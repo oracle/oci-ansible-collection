@@ -23,9 +23,6 @@ test_group_list_compartment_id: "{{ tenancy_ocid }}"
 # use an existing one for the GET / LIST tests
 tag_namespace_resource_id: "{{ test_tag_namespace_ocid }}"
 
-## tenancy
-tenancy_resource_id: "{{ tenancy_ocid }}"
-
 ## users
 test_user_create_required_compartment_id: "{{ tenancy_ocid }}"
 test_user_update_using_name_optional_required_compartment_id: "{{ tenancy_ocid }}"

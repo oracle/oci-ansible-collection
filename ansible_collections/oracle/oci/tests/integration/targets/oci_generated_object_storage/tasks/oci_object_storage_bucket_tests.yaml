@@ -39,6 +39,10 @@
     when: skip_bucket_create_required_original_test is not defined
 
   - set_fact:
+      bucket_resource_name: "{{ result.bucket.name }}"
+    when: skip_bucket_create_required_original_test is not defined
+
+  - set_fact:
       bucket: "{{ result.bucket }}"
     when: skip_bucket_create_required_original_test is not defined
 
@@ -117,7 +121,7 @@
   - name: Delete bucket
     oci_object_storage_bucket:
       namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_delete_required_namespace_name, omit) }}"
-      name: "{{ ('my-test-1' + random_suffix_1024) | oracle.oci.override(test_bucket_delete_required_name, omit) }}"
+      name: "{{ bucket_resource_name | oracle.oci.override(test_bucket_delete_required_name, omit) }}"
       state: absent
     register: result
     when: skip_bucket_delete_required_test is not defined
@@ -160,7 +164,7 @@
   - name: Delete bucket (idempotency)
     oci_object_storage_bucket:
       namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_delete_required_namespace_name, omit) }}"
-      name: "{{ ('my-test-1' + random_suffix_1024) | oracle.oci.override(test_bucket_delete_required_name, omit) }}"
+      name: "{{ bucket_resource_name | oracle.oci.override(test_bucket_delete_required_name, omit) }}"
       state: absent
     register: result
     when: skip_bucket_delete_required_idempotency_test is not defined
@@ -198,6 +202,10 @@
     assert:
       that:
         - result.changed == True
+    when: skip_bucket_create_optional_required_original_test is not defined
+
+  - set_fact:
+      bucket_resource_name: "{{ result.bucket.name }}"
     when: skip_bucket_create_optional_required_original_test is not defined
 
   - set_fact:
@@ -285,7 +293,7 @@
   - name: Update bucket with optional + required parameters
     oci_object_storage_bucket:
       namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_update_optional_required_namespace_name, omit) }}"
-      name: "{{ ('my-test-1updated' + random_suffix_1024) | oracle.oci.override(test_bucket_update_optional_required_name, omit) }}"
+      name: "{{ bucket_resource_name | oracle.oci.override(test_bucket_update_optional_required_name, omit) }}"
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_update_optional_required_compartment_id, omit) }}"
       metadata: "{{ null | oracle.oci.override(test_bucket_update_optional_required_metadata, omit) }}"
       public_access_type: "{{ 'ObjectRead' | oracle.oci.override(test_bucket_update_optional_required_public_access_type, omit) }}"
@@ -333,7 +341,7 @@
   - name: Update bucket with optional + required parameters (idempotence)
     oci_object_storage_bucket:
       namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_update_optional_required_namespace_name, omit) }}"
-      name: "{{ ('my-test-1updated' + random_suffix_1024) | oracle.oci.override(test_bucket_update_optional_required_name, omit) }}"
+      name: "{{ bucket_resource_name | oracle.oci.override(test_bucket_update_optional_required_name, omit) }}"
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_bucket_update_optional_required_compartment_id, omit) }}"
       metadata: "{{ null | oracle.oci.override(test_bucket_update_optional_required_metadata, omit) }}"
       public_access_type: "{{ 'ObjectRead' | oracle.oci.override(test_bucket_update_optional_required_public_access_type, omit) }}"
@@ -418,7 +426,7 @@
   - name: Get bucket
     oci_object_storage_bucket_facts:
       namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_get_namespace_name, omit) }}"
-      bucket_name: "{{ bucket_resource_id | oracle.oci.override(test_bucket_get_bucket_name, omit) }}"
+      bucket_name: "{{ bucket_resource_name | oracle.oci.override(test_bucket_get_bucket_name, omit) }}"
     register: result
     when: skip_bucket_get_test is not defined
 
@@ -454,7 +462,8 @@
     - name: Delete bucket
       oci_object_storage_bucket:
         namespace_name: "{{ test_namespace_name | oracle.oci.override(test_bucket_delete_rescue_namespace_name, omit) }}"
-        name: "{{ ('my-test-1' + random_suffix_1024) | oracle.oci.override(test_bucket_delete_rescue_name, omit) }}"
+        name: "{{ bucket_resource_name | oracle.oci.override(test_bucket_delete_rescue_name, omit) }}"
         state: absent
       register: result
       ignore_errors: yes
+      when: bucket_resource_name is defined

@@ -2,7 +2,7 @@
 - block:
   - name: Get tenancy
     oci_identity_tenancy_facts:
-      tenancy_id: "{{ tenancy_resource_id | oracle.oci.override(test_tenancy_get_tenancy_id, omit) }}"
+      tenancy_id: "{{ tenancy_ocid | oracle.oci.override(test_tenancy_get_tenancy_id, omit) }}"
     register: result
     when: skip_tenancy_get_test is not defined
 

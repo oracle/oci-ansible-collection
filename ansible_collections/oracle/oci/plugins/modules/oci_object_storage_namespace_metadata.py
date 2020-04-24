@@ -131,6 +131,18 @@ class NamespaceMetadataHelperGen(OCIResourceHelperBase):
             namespace_name=self.module.params.get("namespace_name"),
         )
 
+    def is_update(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return self.does_resource_exist()
+
+    def is_create(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return not self.does_resource_exist()
+
     def get_update_model_class(self):
         return UpdateNamespaceMetadataDetails
 

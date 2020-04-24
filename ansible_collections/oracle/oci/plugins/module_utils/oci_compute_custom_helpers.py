@@ -33,10 +33,18 @@ class AppCatalogSubscriptionHelperCustom:
         )
 
     # app_catalog_subscription does not have a resource id. It only has a create and delete operation.
-    # Both can be distinguished based on the `state` attribute. So customise `get_module_resource_id` to return None
-    # so that `is_create` would return True when state is present.
-    def get_module_resource_id(self):
-        return None
+    # Both can be distinguished based on the `state` attribute.
+    def is_create(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return True
+
+    def is_delete(self):
+        if not self.module.params.get("state") == "absent":
+            return False
+
+        return True
 
     def get_resource(self):
         app_catalog_subscriptions = oci_common_utils.list_all_resources(

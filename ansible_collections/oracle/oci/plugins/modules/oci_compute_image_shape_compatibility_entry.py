@@ -117,6 +117,18 @@ class ImageShapeCompatibilityEntryHelperGen(OCIResourceHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("shape_name")
 
+    def is_update(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return self.does_resource_exist()
+
+    def is_create(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return not self.does_resource_exist()
+
     def update_resource(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.add_image_shape_compatibility_entry,

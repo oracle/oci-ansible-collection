@@ -233,6 +233,12 @@ except ImportError:
 class TagHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_module_resource_id_param(self):
+        return "name"
+
+    def get_module_resource_id(self):
+        return self.module.params.get("name")
+
     def get_get_fn(self):
         return self.client.get_tag
 
@@ -240,7 +246,7 @@ class TagHelperGen(OCIResourceHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_tag,
             tag_namespace_id=self.module.params.get("tag_namespace_id"),
-            tag_name=self.module.params.get("tag_name"),
+            tag_name=self.module.params.get("name"),
         )
 
     def list_resources(self):
@@ -271,6 +277,18 @@ class TagHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateTagDetails
 
+    def is_update(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return self.does_resource_exist()
+
+    def is_create(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return not self.does_resource_exist()
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -298,7 +316,7 @@ class TagHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
-                tag_name=self.module.params.get("tag_name"),
+                tag_name=self.module.params.get("name"),
                 update_tag_details=update_details,
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
@@ -315,7 +333,7 @@ class TagHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
-                tag_name=self.module.params.get("tag_name"),
+                tag_name=self.module.params.get("name"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,

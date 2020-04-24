@@ -6,8 +6,9 @@
     - healthchecks_ping_monitor
     - healthchecks_http_probe
     - healthchecks_ping_probe
+
 - set_fact:
-    vantage_points: "{{ vantage_points | default([]) }} + [ '{{ item['name'] }}' ]"
+    vantage_points: "{{ result.health_checks_vantage_points[:1] | map(attribute='name') | list }}"
   with_items: "{{ result.health_checks_vantage_points[:1] }}"
   tags:
     - healthchecks_http_monitor

@@ -275,6 +275,12 @@ except ImportError:
 class BucketHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_module_resource_id_param(self):
+        return "name"
+
+    def get_module_resource_id(self):
+        return self.module.params.get("name")
+
     def get_get_fn(self):
         return self.client.get_bucket
 
@@ -282,7 +288,7 @@ class BucketHelperGen(OCIResourceHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_bucket,
             namespace_name=self.module.params.get("namespace_name"),
-            bucket_name=self.module.params.get("bucket_name"),
+            bucket_name=self.module.params.get("name"),
         )
 
     def list_resources(self):
@@ -314,6 +320,18 @@ class BucketHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateBucketDetails
 
+    def is_update(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return self.does_resource_exist()
+
+    def is_create(self):
+        if not self.module.params.get("state") == "present":
+            return False
+
+        return not self.does_resource_exist()
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -341,7 +359,7 @@ class BucketHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 namespace_name=self.module.params.get("namespace_name"),
-                bucket_name=self.module.params.get("bucket_name"),
+                bucket_name=self.module.params.get("name"),
                 update_bucket_details=update_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
@@ -358,7 +376,7 @@ class BucketHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 namespace_name=self.module.params.get("namespace_name"),
-                bucket_name=self.module.params.get("bucket_name"),
+                bucket_name=self.module.params.get("name"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,

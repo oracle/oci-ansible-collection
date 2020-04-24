@@ -13,6 +13,10 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
 )
 
+from ansible_collections.oracle.oci.plugins.module_utils.oci_common_utils import (
+    pretty_print_json,
+)
+
 import inspect
 import os
 
@@ -23,6 +27,17 @@ try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
+
+
+logger = oci_common_utils.get_logger("oci_resource_utils")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
 
 
 class OCIResourceCommonBase:
@@ -354,6 +369,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             raise
         return True
 
+    def does_resource_exist(self):
+        try:
+            self.get_resource()
+        except ServiceError as se:
+            if se.status == 404:
+                return False
+            raise
+        return True
+
     def get_resource_name_parameter(self):
         for parameter in self.NAME_PARAMETERS:
             if self.module.params.get(parameter):
@@ -491,11 +515,26 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             resource_dict = self.get_existing_resource_dict_for_idempotence_check(
                 resource
             )
+
+            _debug(
+                "Comparing create model dict values {0} against an existing resource's "
+                "values {1}".format(
+                    pretty_print_json(create_model_dict),
+                    pretty_print_json(resource_dict),
+                )
+            )
+
             if oci_common_utils.is_dict_subset(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
             ):
+                _debug(
+                    "Resource with same attributes found: {0}.".format(
+                        pretty_print_json(resource_dict)
+                    )
+                )
+
                 # some resources return a summary model instead of a full model in the list call. Returning the summary
                 # model makes the return values inconsistent between the first and subsequent runs. So get and return
                 # the get model (if exists).
@@ -504,6 +543,8 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     if self.is_summary_model(resource)
                     else resource
                 )
+
+        _debug("No matching resource found. Attempting to create a new resource.")
         return None
 
     def create(self):
@@ -515,6 +556,20 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 )
         else:
             resource_matched = self.get_matching_resource()
+            if resource_matched:
+                _debug(
+                    "found matching {resource_type} resource: {resource_dict}".format(
+                        resource_type=self.resource_type,
+                        resource_dict=to_dict(resource_matched),
+                    )
+                )
+            else:
+                _debug(
+                    "no matching {resource_type} resource found".format(
+                        resource_type=self.resource_type
+                    )
+                )
+
             if resource_matched:
                 return self.prepare_result(
                     changed=False,
@@ -547,9 +602,18 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         update_model_dict = self.get_update_model_dict_for_idempotence_check(
             update_model
         )
-        return not oci_common_utils.are_dicts_equal(
+        update_is_necessary = not oci_common_utils.are_dicts_equal(
             update_model_dict, current_resource_dict
         )
+
+        _debug(
+            "is update necessary for {resource_type}: {update_is_necessary}".format(
+                resource_type=self.resource_type,
+                update_is_necessary=update_is_necessary,
+            )
+        )
+
+        return update_is_necessary
 
     def update(self):
 
@@ -781,7 +845,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_blockstorage_custom_helpers,
     oci_compute_management_custom_helpers,
     oci_audit_custom_helpers,
-    oci_object_storage_custom_helpers,
     oci_file_storage_custom_helpers,
     oci_healthchecks_custom_helpers,
 )  # noqa
@@ -794,7 +857,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_blockstorage_custom_helpers,
         oci_compute_management_custom_helpers,
         oci_audit_custom_helpers,
-        oci_object_storage_custom_helpers,
         oci_file_storage_custom_helpers,
         oci_healthchecks_custom_helpers,
     ]
