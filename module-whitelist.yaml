@@ -272,8 +272,6 @@ operationIdBlacklist:
   - update_user_state
   # deprecated
   - get_instance_default_credentials
-  # update_bucket blacklisted as it is attempting to overwrite create_bucket
-  - update_bucket
 
 extraFactsModuleParameters:
   core:
