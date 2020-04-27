@@ -181,8 +181,9 @@ class WorkRequestWaiter(BaseWaiter):
         self.wait_for_states = wait_for_states
 
     def get_fetch_func(self):
-        return lambda **kwargs: self.client.get_work_request(
-            self.operation_response.headers["opc-work-request-id"]
+        return lambda **kwargs: oci_common_utils.call_with_backoff(
+            self.client.get_work_request,
+            self.operation_response.headers["opc-work-request-id"],
         )
 
     def get_evaluate_response_lambda(self):

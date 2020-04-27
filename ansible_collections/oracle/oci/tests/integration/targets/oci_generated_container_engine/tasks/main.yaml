@@ -1,0 +1,16 @@
+---
+- import_tasks: oci_container_engine_cluster_tests.yaml
+  tags:
+    - cluster
+
+- import_tasks: oci_container_engine_cluster_options_tests.yaml
+  tags:
+    - cluster_options
+
+- import_tasks: oci_container_engine_kubeconfig_tests.yaml
+  tags:
+    - kubeconfig
+
+- import_tasks: oci_container_engine_node_pool_options_tests.yaml
+  tags:
+    - node_pool_options

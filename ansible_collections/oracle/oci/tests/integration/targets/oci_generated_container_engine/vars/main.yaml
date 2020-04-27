@@ -1,0 +1,27 @@
+---
+# cluster test vars
+dependency_vcn_id: "{{ common_vcn_id }}"
+test_cluster_create_required_kubernetes_version: "v1.14.8"
+test_node_pool_create_dependency_cluster_kubernetes_version: "v1.14.8"
+test_cluster_update_using_name_optional_required_kubernetes_version: "v1.15.7"
+test_cluster_create_optional_required_kubernetes_version: "v1.14.8"
+test_cluster_update_optional_required_kubernetes_version: "v1.14.8"
+# kms_id not available in the the compartment
+test_cluster_create_optional_required_kms_key_id: null
+# skipping idempotence test as updating kubernetes version takes a while to update and
+# idempotence test starts updating kubernetes version again instead of not running
+skip_cluster_update_using_name_optional_required_idempotence_test: true
+
+# cluster_options_facts test vars
+test_cluster_options_get_cluster_option_id: all
+
+# kubeconfig test vars
+test_kubeconfig_create_dependency_cluster_kubernetes_version: "v1.14.8"
+test_kubeconfig_create_optional_required_token_version: "2.0.0"
+test_kubeconfig_create_optional_required_expiration: 600
+# skipping idempotent tests for kubeconfig as we are not checking for matching_resources of kubeconfig
+skip_kubeconfig_create_required_idempotency_test: true
+skip_kubeconfig_create_optional_required_idempotence_test: true
+
+# node_pool_option_facts
+test_node_pool_options_get_node_pool_option_id: all

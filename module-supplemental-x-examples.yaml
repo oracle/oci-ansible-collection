@@ -204,3 +204,29 @@ audit:
       {
         "compartmentId": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
       }
+container_engine:
+  GetClusterOptions: |
+      Example 1: Get cluster_options
+      GET /clusterOptions/{clusterOptionId}
+      Host: containerengine.us-phoenix-1.oci.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "clusterOptionId": "all"
+      }
+
+  GetNodePoolOptions: |
+      Example 1: Get node_pool_options
+      GET /nodePoolOptions/{nodePoolOptionId}
+      Host: containerengine.us-phoenix-1.oci.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "nodePoolOptionId": "all"
+      }
+
+      Example 2: Get node_pool_options specific to a cluster
+      GET /nodePoolOptions/{nodePoolOptionId}
+      Host: containerengine.us-phoenix-1.oci.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "nodePoolOptionId": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+      }

@@ -1,0 +1,35 @@
+---
+- block:
+  - name: Get node_pool_options
+    oci_container_engine_node_pool_options_facts:
+      node_pool_option_id: "{{ node_pool_options_resource_id | oracle.oci.override(test_node_pool_options_get_node_pool_option_id, omit) }}"
+    register: result
+    when: skip_node_pool_options_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.node_pool_options is defined
+        - result.node_pool_options != None
+    when: skip_node_pool_options_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.kubernetes_versions is defined
+        - item.shapes is defined
+        - item.images is defined
+    with_items:
+      - "{{ result.node_pool_options }}"
+    when: skip_node_pool_options_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_options_get_custom_assertions }}"
+    when: node_pool_options_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

@@ -1,0 +1,21 @@
+# node_pool test vars
+dependency_cluster_name: "cluster_for_node_pool_{{random_suffix_1024}}"
+node_pool_name: "test_node_pool_{{random_suffix_1024}}"
+updated_node_pool_name: "test_updated_node_pool_{{random_suffix_1024}}"
+node_image_name: "Oracle-Linux-7.4"
+kubernetes_version: "v1.14.8"
+node_shape: "{{ test_instance_shape }}"
+node_pool_subnet_ids:
+  - "{{ ad_specific_subnet_id }}"
+quantity_per_subnet: 1
+node_labels:
+  - key: "stage"
+    value: "dev"
+updated_node_labels:
+  - key: "shape"
+    value: "common"
+node_config_details:
+  size: 1
+  placement_configs:
+    - availability_domain: "{{ test_availability_domain }}"
+      subnet_id: "{{ common_subnet_id }}"

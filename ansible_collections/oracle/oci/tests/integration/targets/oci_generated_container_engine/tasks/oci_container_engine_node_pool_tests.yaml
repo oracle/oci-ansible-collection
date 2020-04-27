@@ -1,0 +1,658 @@
+---
+- block:
+  - name: Create dependency cluster with required parameters
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_node_pool_create_dependency_cluster_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_create_dependency_cluster_compartment_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_node_pool_create_dependency_cluster_vcn_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_create_dependency_cluster_kubernetes_version, omit) }}"
+    register: result
+    when: skip_node_pool_create_dependency_cluster_test is not defined and skip_node_pool_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_create_dependency_cluster_test is not defined and skip_node_pool_dependencies is not defined
+  - set_fact:
+      dependency_cluster: "{{ result.cluster }}"
+      dependency_cluster_id: "{{ result.cluster.id }}"
+    when: skip_node_pool_create_dependency_cluster_test is not defined and skip_node_pool_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_create_dependency_cluster_custom_assertions }}"
+    when: node_pool_create_dependency_cluster_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create node_pool (check mode)
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_create_required_compartment_id, omit) }}"
+      cluster_id: "{{ dependency_cluster_id | oracle.oci.override(test_node_pool_create_required_cluster_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_create_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_create_required_kubernetes_version, omit) }}"
+      node_image_name: "{{ 'Oracle-Linux-7.4' | oracle.oci.override(test_node_pool_create_required_node_image_name, omit) }}"
+      node_shape: "{{ 'VM.Standard2.4' | oracle.oci.override(test_node_pool_create_required_node_shape, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_node_pool_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_create_check_mode_custom_assertions }}"
+    when: node_pool_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create node_pool with required parameters
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_create_required_compartment_id, omit) }}"
+      cluster_id: "{{ dependency_cluster_id | oracle.oci.override(test_node_pool_create_required_cluster_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_create_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_create_required_kubernetes_version, omit) }}"
+      node_image_name: "{{ 'Oracle-Linux-7.4' | oracle.oci.override(test_node_pool_create_required_node_image_name, omit) }}"
+      node_shape: "{{ 'VM.Standard2.4' | oracle.oci.override(test_node_pool_create_required_node_shape, omit) }}"
+    register: result
+    when: skip_node_pool_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_create_required_original_test is not defined
+
+  - set_fact:
+      node_pool_resource_id: "{{ result.node_pool.id }}"
+    when: skip_node_pool_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_create_required_original_custom_assertions }}"
+    when: node_pool_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create node_pool with required parameters(idempotency)
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_create_required_compartment_id, omit) }}"
+      cluster_id: "{{ dependency_cluster_id | oracle.oci.override(test_node_pool_create_required_cluster_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_create_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_create_required_kubernetes_version, omit) }}"
+      node_image_name: "{{ 'Oracle-Linux-7.4' | oracle.oci.override(test_node_pool_create_required_node_image_name, omit) }}"
+      node_shape: "{{ 'VM.Standard2.4' | oracle.oci.override(test_node_pool_create_required_node_shape, omit) }}"
+    register: result
+    when: skip_node_pool_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_node_pool_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_create_required_idempotency_custom_assertions }}"
+    when: node_pool_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_node_pool_update_using_name_optional_required_initial_node_labels:
+      - key: "{{ ('mykeyupdated' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_using_name_optional_required_initial_node_labels_key, omit) }}"
+        value: "{{ ('myvalueupdated' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_using_name_optional_required_initial_node_labels_value, omit) }}"
+    when: test_node_pool_update_using_name_optional_required_initial_node_labels is not defined
+
+  - set_fact:
+      test_node_pool_update_using_name_optional_required_node_config_details:
+        size: "{{ 112 | oracle.oci.override(test_node_pool_update_using_name_optional_required_node_config_details_size, omit) }}"
+        placement_configs:
+        - availability_domain: "{{ test_availability_domain | oracle.oci.override(test_node_pool_update_using_name_optional_required_placement_configs_availability_domain, omit) }}"
+          subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_node_pool_update_using_name_optional_required_placement_configs_subnet_id, omit) }}"
+    when: test_node_pool_update_using_name_optional_required_node_config_details is not defined
+
+  - name: Update node_pool using name with optional + required parameters
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_update_using_name_optional_required_compartment_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_using_name_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_update_using_name_optional_required_kubernetes_version, omit) }}"
+      initial_node_labels: "{{ '[]' | oracle.oci.override(test_node_pool_update_using_name_optional_required_initial_node_labels, omit) }}"
+      quantity_per_subnet: "{{ 2 | oracle.oci.override(test_node_pool_update_using_name_optional_required_quantity_per_subnet, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_node_pool_update_using_name_optional_required_subnet_ids, omit) }}"
+      node_config_details: "{{ '{}' | oracle.oci.override(test_node_pool_update_using_name_optional_required_node_config_details, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_node_pool_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_update_using_name_optional_required_custom_assertions }}"
+    when: node_pool_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update node_pool using name with optional + required parameters (idempotence)
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_update_using_name_optional_required_compartment_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_using_name_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_update_using_name_optional_required_kubernetes_version, omit) }}"
+      initial_node_labels: "{{ '[]' | oracle.oci.override(test_node_pool_update_using_name_optional_required_initial_node_labels, omit) }}"
+      quantity_per_subnet: "{{ 2 | oracle.oci.override(test_node_pool_update_using_name_optional_required_quantity_per_subnet, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_node_pool_update_using_name_optional_required_subnet_ids, omit) }}"
+      node_config_details: "{{ '{}' | oracle.oci.override(test_node_pool_update_using_name_optional_required_node_config_details, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_node_pool_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_node_pool_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: node_pool_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete node_pool
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_delete_required_compartment_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_node_pool_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_delete_required_custom_assertions }}"
+    when: node_pool_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete node_pool (idempotency)
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_delete_required_compartment_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_delete_required_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_node_pool_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_node_pool_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_delete_required_idempotency_custom_assertions }}"
+    when: node_pool_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_node_pool_create_optional_required_initial_node_labels:
+      - key: "{{ 'mykey' | oracle.oci.override(test_node_pool_create_optional_required_initial_node_labels_key, omit) }}"
+        value: "{{ 'myvalue' | oracle.oci.override(test_node_pool_create_optional_required_initial_node_labels_value, omit) }}"
+    when: test_node_pool_create_optional_required_initial_node_labels is not defined
+
+  - set_fact:
+      test_node_pool_create_optional_required_node_config_details:
+        size: "{{ 56 | oracle.oci.override(test_node_pool_create_optional_required_node_config_details_size, omit) }}"
+        placement_configs:
+        - availability_domain: "{{ test_availability_domain | oracle.oci.override(test_node_pool_create_optional_required_placement_configs_availability_domain, omit) }}"
+          subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_node_pool_create_optional_required_placement_configs_subnet_id, omit) }}"
+    when: test_node_pool_create_optional_required_node_config_details is not defined
+
+  - name: Create node_pool with optional + required parameters
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_create_optional_required_compartment_id, omit) }}"
+      cluster_id: "{{ dependency_cluster_id | oracle.oci.override(test_node_pool_create_optional_required_cluster_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_create_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_create_optional_required_kubernetes_version, omit) }}"
+      node_metadata: "{{ null | oracle.oci.override(test_node_pool_create_optional_required_node_metadata, omit) }}"
+      node_image_name: "{{ 'Oracle-Linux-7.4' | oracle.oci.override(test_node_pool_create_optional_required_node_image_name, omit) }}"
+      node_shape: "{{ 'VM.Standard2.4' | oracle.oci.override(test_node_pool_create_optional_required_node_shape, omit) }}"
+      initial_node_labels: "{{ '[]' | oracle.oci.override(test_node_pool_create_optional_required_initial_node_labels, omit) }}"
+      ssh_public_key: "{{ 'ssh-rsa AAAAB3NzaC1yc2abc123...' | oracle.oci.override(test_node_pool_create_optional_required_ssh_public_key, omit) }}"
+      quantity_per_subnet: "{{ 1 | oracle.oci.override(test_node_pool_create_optional_required_quantity_per_subnet, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_node_pool_create_optional_required_subnet_ids, omit) }}"
+      node_config_details: "{{ '{}' | oracle.oci.override(test_node_pool_create_optional_required_node_config_details, omit) }}"
+    register: result
+    when: skip_node_pool_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_create_optional_required_original_test is not defined
+
+  - set_fact:
+      node_pool_resource_id: "{{ result.node_pool.id }}"
+    when: skip_node_pool_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_create_optional_required_original_custom_assertions }}"
+    when: node_pool_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create node_pool with optional + required parameters (idempotence)
+    oci_container_engine_node_pool:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_create_optional_required_compartment_id, omit) }}"
+      cluster_id: "{{ dependency_cluster_id | oracle.oci.override(test_node_pool_create_optional_required_cluster_id, omit) }}"
+      name: "{{ ('My Node Pool' + random_suffix_1024) | oracle.oci.override(test_node_pool_create_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_create_optional_required_kubernetes_version, omit) }}"
+      node_metadata: "{{ null | oracle.oci.override(test_node_pool_create_optional_required_node_metadata, omit) }}"
+      node_image_name: "{{ 'Oracle-Linux-7.4' | oracle.oci.override(test_node_pool_create_optional_required_node_image_name, omit) }}"
+      node_shape: "{{ 'VM.Standard2.4' | oracle.oci.override(test_node_pool_create_optional_required_node_shape, omit) }}"
+      initial_node_labels: "{{ '[]' | oracle.oci.override(test_node_pool_create_optional_required_initial_node_labels, omit) }}"
+      ssh_public_key: "{{ 'ssh-rsa AAAAB3NzaC1yc2abc123...' | oracle.oci.override(test_node_pool_create_optional_required_ssh_public_key, omit) }}"
+      quantity_per_subnet: "{{ 1 | oracle.oci.override(test_node_pool_create_optional_required_quantity_per_subnet, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_node_pool_create_optional_required_subnet_ids, omit) }}"
+      node_config_details: "{{ '{}' | oracle.oci.override(test_node_pool_create_optional_required_node_config_details, omit) }}"
+    register: result
+    when: skip_node_pool_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_node_pool_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_create_optional_required_idempotence_custom_assertions }}"
+    when: node_pool_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_node_pool_update_optional_required_initial_node_labels:
+      - key: "{{ ('mykeyupdated' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_optional_required_initial_node_labels_key, omit) }}"
+        value: "{{ ('myvalueupdated' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_optional_required_initial_node_labels_value, omit) }}"
+    when: test_node_pool_update_optional_required_initial_node_labels is not defined
+
+  - set_fact:
+      test_node_pool_update_optional_required_node_config_details:
+        size: "{{ 112 | oracle.oci.override(test_node_pool_update_optional_required_node_config_details_size, omit) }}"
+        placement_configs:
+        - availability_domain: "{{ test_availability_domain | oracle.oci.override(test_node_pool_update_optional_required_placement_configs_availability_domain, omit) }}"
+          subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_node_pool_update_optional_required_placement_configs_subnet_id, omit) }}"
+    when: test_node_pool_update_optional_required_node_config_details is not defined
+
+  - name: Update node_pool with optional + required parameters
+    oci_container_engine_node_pool:
+      name: "{{ ('My Node Poolupdated' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_update_optional_required_kubernetes_version, omit) }}"
+      initial_node_labels: "{{ '[]' | oracle.oci.override(test_node_pool_update_optional_required_initial_node_labels, omit) }}"
+      quantity_per_subnet: "{{ 2 | oracle.oci.override(test_node_pool_update_optional_required_quantity_per_subnet, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_node_pool_update_optional_required_subnet_ids, omit) }}"
+      node_config_details: "{{ '{}' | oracle.oci.override(test_node_pool_update_optional_required_node_config_details, omit) }}"
+      node_pool_id: "{{ node_pool_resource_id | oracle.oci.override(test_node_pool_update_optional_required_node_pool_id, omit) }}"
+    register: result
+    when: skip_node_pool_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_node_pool_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_update_optional_required_custom_assertions }}"
+    when: node_pool_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update node_pool with optional + required parameters (idempotence)
+    oci_container_engine_node_pool:
+      name: "{{ ('My Node Poolupdated' + random_suffix_1024) | oracle.oci.override(test_node_pool_update_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_node_pool_update_optional_required_kubernetes_version, omit) }}"
+      initial_node_labels: "{{ '[]' | oracle.oci.override(test_node_pool_update_optional_required_initial_node_labels, omit) }}"
+      quantity_per_subnet: "{{ 2 | oracle.oci.override(test_node_pool_update_optional_required_quantity_per_subnet, omit) }}"
+      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_node_pool_update_optional_required_subnet_ids, omit) }}"
+      node_config_details: "{{ '{}' | oracle.oci.override(test_node_pool_update_optional_required_node_config_details, omit) }}"
+      node_pool_id: "{{ node_pool_resource_id | oracle.oci.override(test_node_pool_update_optional_required_node_pool_id, omit) }}"
+    register: result
+    when: skip_node_pool_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_node_pool_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.node_pool.id is defined
+        - result.node_pool.compartment_id is defined
+        - result.node_pool.cluster_id is defined
+        - result.node_pool.name is defined
+        - result.node_pool.kubernetes_version is defined
+        - result.node_pool.node_metadata is defined
+        - result.node_pool.node_image_id is defined
+        - result.node_pool.node_image_name is defined
+        - result.node_pool.node_shape is defined
+        - result.node_pool.initial_node_labels is defined
+        - result.node_pool.ssh_public_key is defined
+        - result.node_pool.quantity_per_subnet is defined
+        - result.node_pool.subnet_ids is defined
+        - result.node_pool.nodes is defined
+        - result.node_pool.node_config_details is defined
+    when: skip_node_pool_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_update_optional_required_idempotence_custom_assertions }}"
+    when: node_pool_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List node_pools
+    oci_container_engine_node_pool_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_node_pool_list_compartment_id, omit) }}"
+    register: result
+    when: skip_node_pool_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.node_pools | length > 0
+    when: skip_node_pool_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.cluster_id is defined
+        - item.name is defined
+        - item.kubernetes_version is defined
+        - item.node_image_id is defined
+        - item.node_image_name is defined
+        - item.node_shape is defined
+        - item.initial_node_labels is defined
+        - item.ssh_public_key is defined
+        - item.quantity_per_subnet is defined
+        - item.subnet_ids is defined
+        - item.node_config_details is defined
+    with_items: "{{ result.node_pools }}"
+    when: skip_node_pool_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_list_custom_assertions }}"
+    when: node_pool_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get node_pool
+    oci_container_engine_node_pool_facts:
+      node_pool_id: "{{ node_pool_resource_id | oracle.oci.override(test_node_pool_get_node_pool_id, omit) }}"
+    register: result
+    when: skip_node_pool_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.node_pools | length == 1
+    when: skip_node_pool_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.compartment_id is defined
+        - item.cluster_id is defined
+        - item.name is defined
+        - item.kubernetes_version is defined
+        - item.node_image_id is defined
+        - item.node_image_name is defined
+        - item.node_shape is defined
+        - item.initial_node_labels is defined
+        - item.ssh_public_key is defined
+        - item.quantity_per_subnet is defined
+        - item.subnet_ids is defined
+        - item.node_config_details is defined
+    with_items: "{{ result.node_pools }}"
+    when: skip_node_pool_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ node_pool_get_custom_assertions }}"
+    when: node_pool_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete node_pool
+      oci_container_engine_node_pool:
+        node_pool_id: "{{ node_pool_resource_id | oracle.oci.override(test_node_pool_delete_rescue_node_pool_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: node_pool_resource_id is defined
+
+    - name: Delete dependency cluster
+      oci_container_engine_cluster:
+        cluster_id: "{{ dependency_cluster_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_node_pool_delete_dependency_cluster_test is not defined and skip_node_pool_dependencies is not defined and dependency_cluster_id is defined

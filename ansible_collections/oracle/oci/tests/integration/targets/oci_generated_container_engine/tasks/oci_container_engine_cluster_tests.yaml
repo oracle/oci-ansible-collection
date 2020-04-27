@@ -1,0 +1,528 @@
+---
+- block:
+  - name: Create cluster (check mode)
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_create_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_create_required_compartment_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_cluster_create_required_vcn_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_create_required_kubernetes_version, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_cluster_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_create_check_mode_custom_assertions }}"
+    when: cluster_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create cluster with required parameters
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_create_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_create_required_compartment_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_cluster_create_required_vcn_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_create_required_kubernetes_version, omit) }}"
+    register: result
+    when: skip_cluster_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_create_required_original_test is not defined
+
+  - set_fact:
+      cluster_resource_id: "{{ result.cluster.id }}"
+    when: skip_cluster_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_create_required_original_custom_assertions }}"
+    when: cluster_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create cluster with required parameters(idempotency)
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_create_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_create_required_compartment_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_cluster_create_required_vcn_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_create_required_kubernetes_version, omit) }}"
+    register: result
+    when: skip_cluster_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_create_required_idempotency_custom_assertions }}"
+    when: cluster_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster using name with optional + required parameters
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_update_using_name_optional_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_update_using_name_optional_required_compartment_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_update_using_name_optional_required_kubernetes_version, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_update_using_name_optional_required_custom_assertions }}"
+    when: cluster_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster using name with optional + required parameters (idempotence)
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_update_using_name_optional_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_update_using_name_optional_required_compartment_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_update_using_name_optional_required_kubernetes_version, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: cluster_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete cluster
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_delete_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_delete_required_custom_assertions }}"
+    when: cluster_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete cluster (idempotency)
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_delete_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_delete_required_compartment_id, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_cluster_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_delete_required_idempotency_custom_assertions }}"
+    when: cluster_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_cluster_create_optional_required_options:
+        kubernetes_network_config:
+          pods_cidr: "{{ '10.244.0.0/16' | oracle.oci.override(test_cluster_create_optional_required_kubernetes_network_config_pods_cidr, omit) }}"
+          services_cidr: "{{ '10.96.0.0/16' | oracle.oci.override(test_cluster_create_optional_required_kubernetes_network_config_services_cidr, omit) }}"
+        add_ons:
+          is_kubernetes_dashboard_enabled: "{{ true | oracle.oci.override(test_cluster_create_optional_required_add_ons_is_kubernetes_dashboard_enabled, omit) }}"
+          is_tiller_enabled: "{{ true | oracle.oci.override(test_cluster_create_optional_required_add_ons_is_tiller_enabled, omit) }}"
+    when: test_cluster_create_optional_required_options is not defined
+
+  - name: Create cluster with optional + required parameters
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_create_optional_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_create_optional_required_compartment_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_cluster_create_optional_required_vcn_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_create_optional_required_kubernetes_version, omit) }}"
+      kms_key_id: "{{ dependency_kms_key_id | oracle.oci.override(test_cluster_create_optional_required_kms_key_id, omit) }}"
+      options: "{{ '{}' | oracle.oci.override(test_cluster_create_optional_required_options, omit) }}"
+    register: result
+    when: skip_cluster_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_create_optional_required_original_test is not defined
+
+  - set_fact:
+      cluster_resource_id: "{{ result.cluster.id }}"
+    when: skip_cluster_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_create_optional_required_original_custom_assertions }}"
+    when: cluster_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create cluster with optional + required parameters (idempotence)
+    oci_container_engine_cluster:
+      name: "{{ ('My Cluster' + random_suffix_1024) | oracle.oci.override(test_cluster_create_optional_required_name, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_create_optional_required_compartment_id, omit) }}"
+      vcn_id: "{{ dependency_vcn_id | oracle.oci.override(test_cluster_create_optional_required_vcn_id, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_create_optional_required_kubernetes_version, omit) }}"
+      kms_key_id: "{{ dependency_kms_key_id | oracle.oci.override(test_cluster_create_optional_required_kms_key_id, omit) }}"
+      options: "{{ '{}' | oracle.oci.override(test_cluster_create_optional_required_options, omit) }}"
+    register: result
+    when: skip_cluster_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_create_optional_required_idempotence_custom_assertions }}"
+    when: cluster_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster with optional + required parameters
+    oci_container_engine_cluster:
+      name: "{{ ('My Clusterupdated' + random_suffix_1024) | oracle.oci.override(test_cluster_update_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_update_optional_required_kubernetes_version, omit) }}"
+      cluster_id: "{{ cluster_resource_id | oracle.oci.override(test_cluster_update_optional_required_cluster_id, omit) }}"
+    register: result
+    when: skip_cluster_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_cluster_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_update_optional_required_custom_assertions }}"
+    when: cluster_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update cluster with optional + required parameters (idempotence)
+    oci_container_engine_cluster:
+      name: "{{ ('My Clusterupdated' + random_suffix_1024) | oracle.oci.override(test_cluster_update_optional_required_name, omit) }}"
+      kubernetes_version: "{{ 'v1.9.4' | oracle.oci.override(test_cluster_update_optional_required_kubernetes_version, omit) }}"
+      cluster_id: "{{ cluster_resource_id | oracle.oci.override(test_cluster_update_optional_required_cluster_id, omit) }}"
+    register: result
+    when: skip_cluster_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_cluster_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.cluster.id is defined
+        - result.cluster.name is defined
+        - result.cluster.compartment_id is defined
+        - result.cluster.vcn_id is defined
+        - result.cluster.kubernetes_version is defined
+        - result.cluster.kms_key_id is defined
+        - result.cluster.options is defined
+        - result.cluster.metadata is defined
+        - result.cluster.lifecycle_state is defined
+        - result.cluster.lifecycle_details is defined
+        - result.cluster.endpoints is defined
+        - result.cluster.available_kubernetes_upgrades is defined
+    when: skip_cluster_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_update_optional_required_idempotence_custom_assertions }}"
+    when: cluster_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List clusters
+    oci_container_engine_cluster_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_cluster_list_compartment_id, omit) }}"
+    register: result
+    when: skip_cluster_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.clusters | length > 0
+    when: skip_cluster_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.name is defined
+        - item.compartment_id is defined
+        - item.vcn_id is defined
+        - item.kubernetes_version is defined
+        - item.options is defined
+        - item.metadata is defined
+        - item.lifecycle_state is defined
+        - item.lifecycle_details is defined
+        - item.endpoints is defined
+        - item.available_kubernetes_upgrades is defined
+    with_items: "{{ result.clusters }}"
+    when: skip_cluster_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_list_custom_assertions }}"
+    when: cluster_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get cluster
+    oci_container_engine_cluster_facts:
+      cluster_id: "{{ cluster_resource_id | oracle.oci.override(test_cluster_get_cluster_id, omit) }}"
+    register: result
+    when: skip_cluster_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.clusters | length == 1
+    when: skip_cluster_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.id is defined
+        - item.name is defined
+        - item.compartment_id is defined
+        - item.vcn_id is defined
+        - item.kubernetes_version is defined
+        - item.options is defined
+        - item.metadata is defined
+        - item.lifecycle_state is defined
+        - item.lifecycle_details is defined
+        - item.endpoints is defined
+        - item.available_kubernetes_upgrades is defined
+    with_items: "{{ result.clusters }}"
+    when: skip_cluster_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ cluster_get_custom_assertions }}"
+    when: cluster_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete cluster
+      oci_container_engine_cluster:
+        cluster_id: "{{ cluster_resource_id | oracle.oci.override(test_cluster_delete_rescue_cluster_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: cluster_resource_id is defined

@@ -194,7 +194,20 @@ moduleWhitelist:
   - oci_healthchecks_ping_probe
   - oci_healthchecks_ping_probe_result_facts
   - oci_healthchecks_health_checks_vantage_point_facts
-
+  - oci_container_engine_cluster
+  - oci_container_engine_cluster_facts
+  - oci_container_engine_cluster_options_facts
+  - oci_container_engine_kubeconfig
+  - oci_container_engine_node_pool
+  - oci_container_engine_node_pool_facts
+  - oci_container_engine_node_pool_options_facts
+operationOverrides:
+  /publicIps/actions/getByIpAddress:
+    path: "/publicIps/getByIpAddress"
+    httpMethod: "GET"
+  /publicIps/actions/getByPrivateIpId:
+    path: "/publicIps/getByPrivateIpId"
+    httpMethod: "GET"
 modulePathOverrides:
   # backwards compatibility
   /autoScalingConfigurations/{autoScalingConfigurationId}/policies: auto_scaling_configuration_policy
@@ -222,6 +235,7 @@ modulePathOverrides:
   /instanceConsoleHistories/: instance_console_history
   /instanceConsoleHistories/{instanceConsoleHistoryId}: instance_console_history
   /instanceConsoleHistories/{instanceConsoleHistoryId}/data: instance_console_history_content
+  /clusters/{clusterId}/kubeconfig/content: kubeconfig
 pluralizationOverrides:
   # this is a temporary hack to keep AuditConfiguration with a backwards compatible return value
   # this will be replaced soon when we make a decision about how we are going to handle facts modules
@@ -258,6 +272,8 @@ operationIdBlacklist:
   - update_user_state
   # deprecated
   - get_instance_default_credentials
+  # update_bucket blacklisted as it is attempting to overwrite create_bucket
+  - update_bucket
 
 extraFactsModuleParameters:
   core:
