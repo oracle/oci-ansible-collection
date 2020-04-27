@@ -185,6 +185,12 @@
       state: 'absent'
     register: result
 
+  - name: Delete additional test user
+    oci_identity_user:
+      id: "{{additional_test_user_id}}"
+      state: 'absent'
+    register: result
+
   - name: Delete group
     oci_identity_group:
         id: "{{test_group_id}}"
@@ -217,6 +223,12 @@
         id: "{{test_user_id}}"
         state: 'absent'
       ignore_errors: yes
+
+    - name: Delete additional test user
+      oci_identity_user:
+        id: "{{additional_test_user_id}}"
+        state: 'absent'
+      register: result
 
     - name: Delete group
       oci_identity_group:
