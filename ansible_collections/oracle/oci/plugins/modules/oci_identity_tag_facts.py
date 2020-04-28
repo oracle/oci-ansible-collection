@@ -98,7 +98,8 @@ tags:
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         name:
             description:
-                - The name of the tag. The name must be unique across all tags in the namespace and can't be changed.
+                - The name assigned to the tag during creation. This is the tag key definition.
+                  The name must be unique within the tag namespace and cannot be changed.
             returned: on success
             type: string
             sample: name_example
@@ -153,6 +154,31 @@ tags:
             returned: on success
             type: bool
             sample: true
+        validator:
+            description:
+                - The tag must have a value type, which is specified with a validator. Tags can use either a
+                  static value or a list of possible values. Static values are entered by a user applying the tag
+                  to a resource. Lists are created by you and the user must apply a value from the list. Lists
+                  are validiated.
+                - If you use the default validiator (or don't define a validator), the user applying the tag
+                  enters a value. No additional validation is performed.
+                - To clear the validator, call UpdateTag with
+                  L(DefaultTagDefinitionValidator,https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator).
+            returned: on success
+            type: complex
+            contains:
+                validator_type:
+                    description:
+                        - "Specifies the type of validation: a static value (no validation) or a list."
+                    returned: on success
+                    type: string
+                    sample: ENUM
+                values:
+                    description:
+                        - The list of allowed values for a definedTag value.
+                    returned: on success
+                    type: list
+                    sample: []
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "tag_namespace_id": "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx",
@@ -165,7 +191,11 @@ tags:
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
         "time_created": "2016-08-25T21:10:29.600Z",
-        "is_cost_tracking": true
+        "is_cost_tracking": true,
+        "validator": {
+            "validator_type": "ENUM",
+            "values": []
+        }
     }]
 """
 

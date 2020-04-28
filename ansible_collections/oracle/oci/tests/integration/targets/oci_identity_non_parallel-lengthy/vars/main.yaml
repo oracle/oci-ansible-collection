@@ -1,1 +1,4 @@
 test_unique_tag_name: "ansible_tag_1_{{random_suffix_1024}}"
+test_validator:
+  validator_type: "ENUM"
+  values: ["ENUM1", "ENUM2", "ENUM3"]

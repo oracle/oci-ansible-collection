@@ -15,6 +15,7 @@
       tag_namespace_id: "{{ test_tag_namespace_ocid_for_iam_tests }}"
       name: "{{ test_unique_tag_name }}"
       description: "{{ test_tag_description }}"
+      validator: "{{ test_validator }}"
     register: result
 
   - name: Assert that tag definition was created

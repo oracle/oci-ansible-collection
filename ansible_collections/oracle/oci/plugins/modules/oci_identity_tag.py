@@ -32,6 +32,14 @@ description:
       If you specify a name that's already in use in the tag namespace, a 409 error is returned."
     - "The tag must have a *description*. It does not have to be unique, and you can change it with
       L(UpdateTag,https://docs.cloud.oracle.com/#/en/identity/latest/Tag/UpdateTag)."
+    - The tag must have a value type, which is specified with a validator. Tags can use either a
+      static value or a list of possible values. Static values are entered by a user applying the tag
+      to a resource. Lists are created by you and the user must apply a value from the list. Lists
+      are validiated.
+    - "* If no `validator` is set, the user applying the tag to a resource can type in a static
+      value or leave the tag value empty.
+      * If a `validator` is set, the user applying the tag to a resource must select from a list
+      of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
 version_added: "2.5"
 options:
     tag_namespace_id:
@@ -41,7 +49,8 @@ options:
         required: true
     name:
         description:
-            - The name you assign to the tag during creation. The name must be unique within the tag namespace and cannot be changed.
+            - The name you assign to the tag during creation. This is the tag key definition.
+              The name must be unique within the tag namespace and cannot be changed.
         type: str
         required: true
     description:
@@ -65,6 +74,31 @@ options:
         description:
             - Indicates whether the tag is enabled for cost tracking.
         type: bool
+    validator:
+        description:
+            - The tag must have a value type, which is specified with a validator. Tags can use either a
+              static value or a list of possible values. Static values are entered by a user applying the tag
+              to a resource. Lists are created by you and the user must apply a value from the list. Lists
+              are validiated.
+            - If you use the default validiator (or don't define a validator), the user applying the tag
+              enters a value. No additional validation is performed.
+            - To clear the validator, call UpdateTag with
+              L(DefaultTagDefinitionValidator,https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator).
+        type: dict
+        suboptions:
+            validator_type:
+                description:
+                    - "Specifies the type of validation: a static value (no validation) or a list."
+                type: str
+                choices:
+                    - "DEFAULT"
+                    - "ENUM"
+                required: true
+            values:
+                description:
+                    - The list of allowed values for a definedTag value.
+                    - Applicable when validator_type is 'ENUM'
+                type: list
     is_retired:
         description:
             - Whether the tag is retired.
@@ -139,7 +173,8 @@ tag:
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         name:
             description:
-                - The name of the tag. The name must be unique across all tags in the namespace and can't be changed.
+                - The name assigned to the tag during creation. This is the tag key definition.
+                  The name must be unique within the tag namespace and cannot be changed.
             returned: on success
             type: string
             sample: name_example
@@ -194,6 +229,31 @@ tag:
             returned: on success
             type: bool
             sample: true
+        validator:
+            description:
+                - The tag must have a value type, which is specified with a validator. Tags can use either a
+                  static value or a list of possible values. Static values are entered by a user applying the tag
+                  to a resource. Lists are created by you and the user must apply a value from the list. Lists
+                  are validiated.
+                - If you use the default validiator (or don't define a validator), the user applying the tag
+                  enters a value. No additional validation is performed.
+                - To clear the validator, call UpdateTag with
+                  L(DefaultTagDefinitionValidator,https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator).
+            returned: on success
+            type: complex
+            contains:
+                validator_type:
+                    description:
+                        - "Specifies the type of validation: a static value (no validation) or a list."
+                    returned: on success
+                    type: string
+                    sample: ENUM
+                values:
+                    description:
+                        - The list of allowed values for a definedTag value.
+                    returned: on success
+                    type: list
+                    sample: []
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "tag_namespace_id": "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx",
@@ -206,7 +266,11 @@ tag:
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
         "time_created": "2016-08-25T21:10:29.600Z",
-        "is_cost_tracking": true
+        "is_cost_tracking": true,
+        "validator": {
+            "validator_type": "ENUM",
+            "values": []
+        }
     }
 """
 
@@ -363,6 +427,15 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             is_cost_tracking=dict(type="bool"),
+            validator=dict(
+                type="dict",
+                options=dict(
+                    validator_type=dict(
+                        type="str", required=True, choices=["DEFAULT", "ENUM"]
+                    ),
+                    values=dict(type="list"),
+                ),
+            ),
             is_retired=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

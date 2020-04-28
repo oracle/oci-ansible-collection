@@ -82,6 +82,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_create_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -122,6 +123,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_create_required_idempotency_test is not defined
 
   - name: Assert custom assertions
@@ -162,6 +164,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_delete_required_test is not defined
 
   - name: Assert custom assertions
@@ -196,6 +199,11 @@
 
 # ==================================================================================================== #
 
+  - set_fact:
+      test_tag_create_optional_required_validator:
+        validator_type: "{{ 'DEFAULT' | oracle.oci.override(test_tag_create_optional_required_validator_validator_type, omit) }}"
+    when: test_tag_create_optional_required_validator is not defined
+
   - name: Create tag with optional + required parameters
     oci_identity_tag:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_create_optional_required_tag_namespace_id, omit) }}"
@@ -204,6 +212,7 @@
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_tag_create_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_tag_create_optional_required_defined_tags, omit) }}"
       is_cost_tracking: "{{ true | oracle.oci.override(test_tag_create_optional_required_is_cost_tracking, omit) }}"
+      validator: "{{ '{}' | oracle.oci.override(test_tag_create_optional_required_validator, omit) }}"
     register: result
     when: skip_tag_create_optional_required_original_test is not defined
 
@@ -232,6 +241,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_create_optional_required_original_test is not defined
 
   - name: Assert custom assertions
@@ -251,6 +261,7 @@
       freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_tag_create_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_tag_create_optional_required_defined_tags, omit) }}"
       is_cost_tracking: "{{ true | oracle.oci.override(test_tag_create_optional_required_is_cost_tracking, omit) }}"
+      validator: "{{ '{}' | oracle.oci.override(test_tag_create_optional_required_validator, omit) }}"
     register: result
     when: skip_tag_create_optional_required_idempotence_test is not defined
 
@@ -275,6 +286,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_create_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
@@ -286,6 +298,11 @@
 
 # ==================================================================================================== #
 
+  - set_fact:
+      test_tag_update_optional_required_validator:
+        validator_type: "{{ 'ENUM' | oracle.oci.override(test_tag_update_optional_required_validator_validator_type, omit) }}"
+    when: test_tag_update_optional_required_validator is not defined
+
   - name: Update tag with optional + required parameters
     oci_identity_tag:
       tag_namespace_id: "{{ dependency_tag_namespace_id | oracle.oci.override(test_tag_update_optional_required_tag_namespace_id, omit) }}"
@@ -294,6 +311,7 @@
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_tag_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_tag_update_optional_required_defined_tags, omit) }}"
       is_cost_tracking: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_cost_tracking, omit) }}"
+      validator: "{{ '{}' | oracle.oci.override(test_tag_update_optional_required_validator, omit) }}"
       is_retired: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_retired, omit) }}"
     register: result
     when: skip_tag_update_optional_required_test is not defined
@@ -319,6 +337,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_update_optional_required_test is not defined
 
   - name: Assert custom assertions
@@ -338,6 +357,7 @@
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_tag_update_optional_required_freeform_tags, omit) }}"
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_tag_update_optional_required_defined_tags, omit) }}"
       is_cost_tracking: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_cost_tracking, omit) }}"
+      validator: "{{ '{}' | oracle.oci.override(test_tag_update_optional_required_validator, omit) }}"
       is_retired: "{{ true | oracle.oci.override(test_tag_update_optional_required_is_retired, omit) }}"
     register: result
     when: skip_tag_update_optional_required_idempotence_test is not defined
@@ -363,6 +383,7 @@
         - result.tag.lifecycle_state is defined
         - result.tag.time_created is defined
         - result.tag.is_cost_tracking is defined
+        - result.tag.validator is defined
     when: skip_tag_update_optional_required_idempotence_test is not defined
 
   - name: Assert custom assertions
