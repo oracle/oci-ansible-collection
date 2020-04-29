@@ -204,6 +204,9 @@ moduleWhitelist:
   - oci_compute_management_cluster_network
   - oci_compute_management_cluster_network_facts
   - oci_compute_management_cluster_network_instance_facts
+  - oci_compute_dedicated_vm_host
+  - oci_compute_dedicated_vm_host_facts
+  - oci_compute_dedicated_vm_host_instance_facts
 
 modulePathOverrides:
   # backwards compatibility

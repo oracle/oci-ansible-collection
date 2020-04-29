@@ -448,6 +448,12 @@ instance:
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        dedicated_vm_host_id:
+            description:
+                - The OCID of dedicated VM host.
+            returned: on success
+            type: string
+            sample: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -696,6 +702,7 @@ instance:
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "My bare metal instance",
         "extended_metadata": {},

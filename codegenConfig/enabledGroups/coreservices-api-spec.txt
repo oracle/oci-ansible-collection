@@ -53,3 +53,6 @@ sdk_team_hide_Shape_availabilityDomain
 
 # cluster networks
 udx-1767
+
+# dedicated vm hosts
+udx-1312

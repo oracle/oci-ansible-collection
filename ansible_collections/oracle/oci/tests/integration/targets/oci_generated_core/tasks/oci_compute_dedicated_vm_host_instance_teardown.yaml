@@ -1,0 +1,21 @@
+- name: Delete dedicated host compute instance
+  oci_compute_instance:
+    instance_id: "{{ dedicated_vm_host_instance_id }}"
+    state: "absent"
+  register: result
+
+- name: Assert that instance is deleted
+  assert:
+    that:
+      - result.changed == True
+
+- name: Delete dedicated host
+  oci_compute_dedicated_vm_host:
+    dedicated_vm_host_id: "{{ setup_dedicated_vm_host_id }}"
+    state: "absent"
+  register: result
+
+- name: Assert that dedicated vm host is deleted
+  assert:
+    that:
+      - result.changed == True

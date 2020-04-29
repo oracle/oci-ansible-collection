@@ -416,6 +416,26 @@
     - import_tasks: oci_compute_shape_tests.yaml
       tags:
         - shape
+    - block:
+        - import_tasks: oci_compute_dedicated_vm_host_tests.yaml
+          tags:
+            - dedicated_vm_host
+        - block:
+            - import_tasks: oci_compute_dedicated_vm_host_instance_setup.yaml
+
+            - import_tasks: oci_compute_dedicated_vm_host_instance_tests.yaml
+              vars:
+                dependency_dedicated_vm_host_id: "{{ setup_dedicated_vm_host_id }}"
+
+            - import_tasks: oci_compute_dedicated_vm_host_instance_teardown.yaml
+          always:
+            - import_tasks: oci_compute_dedicated_vm_host_instance_teardown.yaml
+              ignore_errors: yes
+          tags:
+            - dedicated_vm_host_instance
+      tags:
+        - dvh
+        - nightly
   tags:
     - core_set_2
 

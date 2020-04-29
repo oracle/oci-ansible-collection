@@ -197,6 +197,7 @@ test_app_catalog_subscription_delete_rescue_listing_resource_version: "{{ app_ca
 test_instance_name: "setup-ansible-test-instance-{{random_suffix_1024}}"
 
 # variables for oci_compute_instance_tests.yaml
+skip_instance_create_dependency_dedicated_vm_host_test: yes
 skip_instance_create_dependency_image_test: yes
 skip_instance_create_dependency_boot_volume_test: yes
 skip_instance_create_check_mode_test: yes
@@ -214,6 +215,7 @@ test_instance_create_optional_required_extended_metadata: null
 test_instance_create_optional_required_ipxe_script: null
 test_instance_create_optional_required_image_id: null
 test_instance_create_optional_required_metadata: null
+test_instance_create_optional_required_dedicated_vm_host_id: null
 test_instance_create_optional_required_source_details:
   source_type: "image"
   image_id: "{{image_ocid}}"
@@ -334,6 +336,15 @@ test_public_ip_update_optional_required_private_ip_id: null
 # variables for oci_network_security_group_vnic_tests.yaml
 skip_network_security_group_vnic_dependencies: yes
 test_network_security_group_vnic_list_network_security_group_id: "{{ setup_instance_nsg_id }}"
+
+# variables for oci_compute_dedicated_vm_host_tests.yaml
+dedicated_vm_host_shape: "DVH.Standard2.52"
+test_dedicated_vm_host_create_required_dedicated_vm_host_shape: "DVH.Standard2.52"
+test_dedicated_vm_host_create_optional_required_dedicated_vm_host_shape: "{{ dedicated_vm_host_shape }}"
+
+# variables for oci_compute_dedicated_vm_host_instance_tests.yaml
+skip_dedicated_vm_host_instance_create_dependency_dedicated_vm_host_test: yes
+skip_dedicated_vm_host_instance_delete_dependency_dedicated_vm_host_test: yes
 
 # variables for oci_compute_management_instance_configuration_setup.yaml
 test_instance_configuration_name: "setup-ansible-test-instance-configuration-{{random_suffix_1024}}"

@@ -118,7 +118,7 @@ lengthy_integration_tests_set_2:
     - tags
   script:
     - echo "Running core tests with tag $tag"
-    - tox -e integration -- oci_generated_core --tags $tag
+    - tox -e integration_tests -- --targets oci_generated_core --ansible-test-tags $tag --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job"
   retry: 2
 
 core_integration_tests_set_1:

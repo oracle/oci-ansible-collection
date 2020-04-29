@@ -1,5 +1,31 @@
 ---
 - block:
+  - name: Create dependency dedicated_vm_host with required parameters
+    oci_compute_dedicated_vm_host:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_create_dependency_dedicated_vm_host_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_create_dependency_dedicated_vm_host_compartment_id, omit) }}"
+      dedicated_vm_host_shape: "{{ 'dedicated_vm_host_shape_example' | oracle.oci.override(test_instance_create_dependency_dedicated_vm_host_dedicated_vm_host_shape, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_instance_create_dependency_dedicated_vm_host_display_name, omit) }}"
+    register: result
+    when: skip_instance_create_dependency_dedicated_vm_host_test is not defined and skip_instance_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_instance_create_dependency_dedicated_vm_host_test is not defined and skip_instance_dependencies is not defined
+  - set_fact:
+      dependency_dedicated_vm_host: "{{ result.dedicated_vm_host }}"
+      dependency_dedicated_vm_host_id: "{{ result.dedicated_vm_host.id }}"
+    when: skip_instance_create_dependency_dedicated_vm_host_test is not defined and skip_instance_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ instance_create_dependency_dedicated_vm_host_custom_assertions }}"
+    when: instance_create_dependency_dedicated_vm_host_custom_assertions is defined
+
+# ==================================================================================================== #
+
   - name: Create dependency vcn with required parameters
     oci_network_vcn:
       cidr_block: "{{ '10.0.0.0/16' | oracle.oci.override(test_instance_create_dependency_vcn_cidr_block, omit) }}"
@@ -156,6 +182,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -205,6 +232,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -262,6 +290,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -314,6 +343,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -364,6 +394,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -448,6 +479,7 @@
       availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_create_optional_required_availability_domain, omit) }}"
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_create_optional_required_compartment_id, omit) }}"
       create_vnic_details: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_create_vnic_details, omit) }}"
+      dedicated_vm_host_id: "{{ dependency_dedicated_vm_host_id | oracle.oci.override(test_instance_create_optional_required_dedicated_vm_host_id, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_create_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_create_optional_required_display_name, omit) }}"
       extended_metadata: "{{ null | oracle.oci.override(test_instance_create_optional_required_extended_metadata, omit) }}"
@@ -480,6 +512,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -514,6 +547,7 @@
       availability_domain: "{{ test_availability_domain | oracle.oci.override(test_instance_create_optional_required_availability_domain, omit) }}"
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_create_optional_required_compartment_id, omit) }}"
       create_vnic_details: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_create_vnic_details, omit) }}"
+      dedicated_vm_host_id: "{{ dependency_dedicated_vm_host_id | oracle.oci.override(test_instance_create_optional_required_dedicated_vm_host_id, omit) }}"
       defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_instance_create_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_create_optional_required_display_name, omit) }}"
       extended_metadata: "{{ null | oracle.oci.override(test_instance_create_optional_required_extended_metadata, omit) }}"
@@ -542,6 +576,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -597,6 +632,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -647,6 +683,7 @@
       that:
         - result.instance.availability_domain is defined
         - result.instance.compartment_id is defined
+        - result.instance.dedicated_vm_host_id is defined
         - result.instance.defined_tags is defined
         - result.instance.display_name is defined
         - result.instance.extended_metadata is defined
@@ -694,6 +731,7 @@
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.dedicated_vm_host_id is defined
         - item.defined_tags is defined
         - item.display_name is defined
         - item.extended_metadata is defined
@@ -741,6 +779,7 @@
       that:
         - item.availability_domain is defined
         - item.compartment_id is defined
+        - item.dedicated_vm_host_id is defined
         - item.defined_tags is defined
         - item.display_name is defined
         - item.extended_metadata is defined
@@ -806,3 +845,10 @@
         state: absent
       ignore_errors: yes
       when: skip_instance_delete_dependency_vcn_test is not defined and skip_instance_dependencies is not defined and dependency_vcn_id is defined
+
+    - name: Delete dependency dedicated_vm_host
+      oci_compute_dedicated_vm_host:
+        dedicated_vm_host_id: "{{ dependency_dedicated_vm_host_id }}"
+        state: absent
+      ignore_errors: yes
+      when: skip_instance_delete_dependency_dedicated_vm_host_test is not defined and skip_instance_dependencies is not defined and dependency_dedicated_vm_host_id is defined

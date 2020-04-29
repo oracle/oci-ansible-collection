@@ -1,0 +1,522 @@
+---
+- block:
+  - name: Create dedicated_vm_host (check mode)
+    oci_compute_dedicated_vm_host:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_dedicated_vm_host_create_required_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_create_required_compartment_id, omit) }}"
+      dedicated_vm_host_shape: "{{ 'dedicated_vm_host_shape_example' | oracle.oci.override(test_dedicated_vm_host_create_required_dedicated_vm_host_shape, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_create_required_display_name, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_dedicated_vm_host_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_dedicated_vm_host_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_create_check_mode_custom_assertions }}"
+    when: dedicated_vm_host_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dedicated_vm_host with required parameters
+    oci_compute_dedicated_vm_host:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_dedicated_vm_host_create_required_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_create_required_compartment_id, omit) }}"
+      dedicated_vm_host_shape: "{{ 'dedicated_vm_host_shape_example' | oracle.oci.override(test_dedicated_vm_host_create_required_dedicated_vm_host_shape, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_create_required_display_name, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_dedicated_vm_host_create_required_original_test is not defined
+
+  - set_fact:
+      dedicated_vm_host_resource_id: "{{ result.dedicated_vm_host.id }}"
+    when: skip_dedicated_vm_host_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_create_required_original_custom_assertions }}"
+    when: dedicated_vm_host_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create dedicated_vm_host with required parameters(idempotency)
+    oci_compute_dedicated_vm_host:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_dedicated_vm_host_create_required_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_create_required_compartment_id, omit) }}"
+      dedicated_vm_host_shape: "{{ 'dedicated_vm_host_shape_example' | oracle.oci.override(test_dedicated_vm_host_create_required_dedicated_vm_host_shape, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_create_required_display_name, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_dedicated_vm_host_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_create_required_idempotency_custom_assertions }}"
+    when: dedicated_vm_host_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update dedicated_vm_host using name with optional + required parameters
+    oci_compute_dedicated_vm_host:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_dedicated_vm_host_update_using_name_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_dedicated_vm_host_update_using_name_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_update_using_name_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_update_using_name_optional_required_custom_assertions }}"
+    when: dedicated_vm_host_update_using_name_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update dedicated_vm_host using name with optional + required parameters (idempotence)
+    oci_compute_dedicated_vm_host:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_compartment_id, omit) }}"
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dedicated_vm_host_update_using_name_optional_required_freeform_tags, omit) }}"
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_dedicated_vm_host_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_dedicated_vm_host_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_update_using_name_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_update_using_name_optional_required_idempotence_custom_assertions }}"
+    when: dedicated_vm_host_update_using_name_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete dedicated_vm_host
+    oci_compute_dedicated_vm_host:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_dedicated_vm_host_delete_required_test is not defined
+
+  - name: Assert resource was deleted
+    assert:
+      that:
+        - result.changed == True
+    when: skip_dedicated_vm_host_delete_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_delete_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_delete_required_custom_assertions }}"
+    when: dedicated_vm_host_delete_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Delete dedicated_vm_host (idempotency)
+    oci_compute_dedicated_vm_host:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_delete_required_compartment_id, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_delete_required_display_name, omit) }}"
+      state: absent
+    environment:
+      OCI_USE_NAME_AS_IDENTIFIER: 1
+    register: result
+    when: skip_dedicated_vm_host_delete_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_dedicated_vm_host_delete_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_delete_required_idempotency_custom_assertions }}"
+    when: dedicated_vm_host_delete_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create dedicated_vm_host with optional + required parameters
+    oci_compute_dedicated_vm_host:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_dedicated_vm_host_create_optional_required_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_create_optional_required_compartment_id, omit) }}"
+      dedicated_vm_host_shape: "{{ 'dedicated_vm_host_shape_example' | oracle.oci.override(test_dedicated_vm_host_create_optional_required_dedicated_vm_host_shape, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_dedicated_vm_host_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_create_optional_required_display_name, omit) }}"
+      fault_domain: "{{ 'FAULT-DOMAIN-1' | oracle.oci.override(test_dedicated_vm_host_create_optional_required_fault_domain, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_dedicated_vm_host_create_optional_required_freeform_tags, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_dedicated_vm_host_create_optional_required_original_test is not defined
+
+  - set_fact:
+      dedicated_vm_host_resource_id: "{{ result.dedicated_vm_host.id }}"
+    when: skip_dedicated_vm_host_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_create_optional_required_original_custom_assertions }}"
+    when: dedicated_vm_host_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create dedicated_vm_host with optional + required parameters (idempotence)
+    oci_compute_dedicated_vm_host:
+      availability_domain: "{{ test_availability_domain | oracle.oci.override(test_dedicated_vm_host_create_optional_required_availability_domain, omit) }}"
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_create_optional_required_compartment_id, omit) }}"
+      dedicated_vm_host_shape: "{{ 'dedicated_vm_host_shape_example' | oracle.oci.override(test_dedicated_vm_host_create_optional_required_dedicated_vm_host_shape, omit) }}"
+      defined_tags: "{{ test_default_defined_tags | oracle.oci.override(test_dedicated_vm_host_create_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('My dedicated VM host' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_create_optional_required_display_name, omit) }}"
+      fault_domain: "{{ 'FAULT-DOMAIN-1' | oracle.oci.override(test_dedicated_vm_host_create_optional_required_fault_domain, omit) }}"
+      freeform_tags: "{{ {'Department': 'Finance'} | oracle.oci.override(test_dedicated_vm_host_create_optional_required_freeform_tags, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_dedicated_vm_host_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_create_optional_required_idempotence_custom_assertions }}"
+    when: dedicated_vm_host_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update dedicated_vm_host with optional + required parameters
+    oci_compute_dedicated_vm_host:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dedicated_vm_host_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('My dedicated VM hostupdated' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dedicated_vm_host_update_optional_required_freeform_tags, omit) }}"
+      dedicated_vm_host_id: "{{ dedicated_vm_host_resource_id | oracle.oci.override(test_dedicated_vm_host_update_optional_required_dedicated_vm_host_id, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_update_optional_required_test is not defined
+
+  - name: Assert resource was updated
+    assert:
+      that:
+        - result.changed == True
+    when: skip_dedicated_vm_host_update_optional_required_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_update_optional_required_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_update_optional_required_custom_assertions }}"
+    when: dedicated_vm_host_update_optional_required_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Update dedicated_vm_host with optional + required parameters (idempotence)
+    oci_compute_dedicated_vm_host:
+      defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_dedicated_vm_host_update_optional_required_defined_tags, omit) }}"
+      display_name: "{{ ('My dedicated VM hostupdated' + random_suffix_1024) | oracle.oci.override(test_dedicated_vm_host_update_optional_required_display_name, omit) }}"
+      freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_dedicated_vm_host_update_optional_required_freeform_tags, omit) }}"
+      dedicated_vm_host_id: "{{ dedicated_vm_host_resource_id | oracle.oci.override(test_dedicated_vm_host_update_optional_required_dedicated_vm_host_id, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_update_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_dedicated_vm_host_update_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.dedicated_vm_host.availability_domain is defined
+        - result.dedicated_vm_host.compartment_id is defined
+        - result.dedicated_vm_host.dedicated_vm_host_shape is defined
+        - result.dedicated_vm_host.defined_tags is defined
+        - result.dedicated_vm_host.display_name is defined
+        - result.dedicated_vm_host.fault_domain is defined
+        - result.dedicated_vm_host.freeform_tags is defined
+        - result.dedicated_vm_host.id is defined
+        - result.dedicated_vm_host.lifecycle_state is defined
+        - result.dedicated_vm_host.time_created is defined
+        - result.dedicated_vm_host.total_ocpus is defined
+        - result.dedicated_vm_host.remaining_ocpus is defined
+    when: skip_dedicated_vm_host_update_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_update_optional_required_idempotence_custom_assertions }}"
+    when: dedicated_vm_host_update_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List dedicated_vm_hosts
+    oci_compute_dedicated_vm_host_facts:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_dedicated_vm_host_list_compartment_id, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.dedicated_vm_hosts | length > 0
+    when: skip_dedicated_vm_host_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.dedicated_vm_host_shape is defined
+        - item.display_name is defined
+        - item.fault_domain is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+        - item.total_ocpus is defined
+        - item.remaining_ocpus is defined
+    with_items: "{{ result.dedicated_vm_hosts }}"
+    when: skip_dedicated_vm_host_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_list_custom_assertions }}"
+    when: dedicated_vm_host_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get dedicated_vm_host
+    oci_compute_dedicated_vm_host_facts:
+      dedicated_vm_host_id: "{{ dedicated_vm_host_resource_id | oracle.oci.override(test_dedicated_vm_host_get_dedicated_vm_host_id, omit) }}"
+    register: result
+    when: skip_dedicated_vm_host_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result.dedicated_vm_hosts | length == 1
+    when: skip_dedicated_vm_host_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.availability_domain is defined
+        - item.compartment_id is defined
+        - item.dedicated_vm_host_shape is defined
+        - item.display_name is defined
+        - item.fault_domain is defined
+        - item.id is defined
+        - item.lifecycle_state is defined
+        - item.time_created is defined
+        - item.total_ocpus is defined
+        - item.remaining_ocpus is defined
+    with_items: "{{ result.dedicated_vm_hosts }}"
+    when: skip_dedicated_vm_host_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ dedicated_vm_host_get_custom_assertions }}"
+    when: dedicated_vm_host_get_custom_assertions is defined
+
+  always:
+
+    - name: Delete dedicated_vm_host
+      oci_compute_dedicated_vm_host:
+        dedicated_vm_host_id: "{{ dedicated_vm_host_resource_id | oracle.oci.override(test_dedicated_vm_host_delete_rescue_dedicated_vm_host_id, omit) }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+      when: dedicated_vm_host_resource_id is defined
