@@ -229,6 +229,7 @@
         id: "{{additional_test_user_id}}"
         state: 'absent'
       register: result
+      ignore_errors: yes
 
     - name: Delete group
       oci_identity_group:
@@ -236,6 +237,6 @@
           state: 'absent'
       register: result
       ignore_errors: yes
-    
+
     - fail:
         msg: "{{ ansible_failed_result }}"

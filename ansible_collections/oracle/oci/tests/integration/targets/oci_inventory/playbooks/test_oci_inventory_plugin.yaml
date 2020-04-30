@@ -1,0 +1,19 @@
+---
+- name: Test OCI Dynamic Inventroy Plugin
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Show all groups
+      debug:
+        var: groups
+    - name: assert groups returned
+      assert:
+        that:
+          - "'all' in groups"
+          - "groups.all | length > 1"
+
+    - meta: refresh_inventory
+    - name: assert keyed_groups are populated
+      assert:
+        that:
+          - "'test_availability_domain_IwGV_PHX_AD_1' in groups"

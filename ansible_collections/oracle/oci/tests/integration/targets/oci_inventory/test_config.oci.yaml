@@ -1,0 +1,16 @@
+plugin: oci
+
+# Select regions
+regions:
+  - us-ashburn-1
+  - us-phoenix-1
+
+keyed_groups:
+  - key: availability_domain
+    prefix: 'test_availability_domain'
+
+## Enable Cache
+cache: yes
+cache_plugin: jsonfile
+cache_timeout: 7200
+cache_connection: oci_inventory_cache
