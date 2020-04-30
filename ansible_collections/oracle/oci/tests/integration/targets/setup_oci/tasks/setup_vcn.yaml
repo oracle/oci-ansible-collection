@@ -60,3 +60,19 @@
 
 - set_fact:
     common_subnet_id: "{{ result.subnet.id }}"
+
+- name: Create subnet for common vcn in AD1
+  oci_network_subnet:
+    display_name: "AD1SubnetForCommonVCN"
+    dns_label: "commonsubnetad1"
+    cidr_block: "10.0.2.0/24"
+    availability_domain: "{{ test_availability_domain }}"
+    route_table_id: "{{ common_vcn.default_route_table_id }}"
+    security_list_ids:
+      - "{{ common_vcn.default_security_list_id }}"
+    vcn_id: "{{ common_vcn_id }}"
+    compartment_id: "{{ test_compartment_ocid }}"
+  register: result
+
+- set_fact:
+    common_vcn_ad1_subnet_id: "{{ result.subnet.id }}"

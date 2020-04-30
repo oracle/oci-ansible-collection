@@ -59,6 +59,3 @@ test_app_catalog_instance_shape: "VM.Standard2.2"
 
 # Some tests need a second region. For ex: copying volume backup to a different region.
 region2_name: "us-phoenix-1"
-
-# AD specific subnet resource within CommonVCN
-ad_specific_subnet_id: "ocid1.subnet.oc1.iad.aaaaaaaakzwdscskn274qkya56gx2ulce263fcskecfuso3nunutjvc5lfka"

@@ -15,7 +15,6 @@
     when: skip_node_pool_dependencies is not defined
   - set_fact:
       dependency_cluster_id: "{{ result.cluster.id }}"
-    when: skip_node_pool_dependencies is not defined
 
 # ==================================================================================================== #
 
@@ -30,7 +29,6 @@
       subnet_ids: "{{ node_pool_subnet_ids }}"
       quantity_per_subnet: "{{ quantity_per_subnet }}"
     register: result
-    when: skip_node_pool_subnet_ids_test is not defined
 
   - name: Assert that resource was created
     assert:
@@ -48,7 +46,6 @@
 
   - set_fact:
       node_pool_id: "{{ result.node_pool.id }}"
-    when: skip_node_pool_subnet_ids_test is not defined
 
 # ==================================================================================================== #
 
@@ -63,7 +60,6 @@
       subnet_ids: "{{ node_pool_subnet_ids }}"
       quantity_per_subnet: "{{ quantity_per_subnet }}"
     register: result
-    when: skip_node_pool_subnet_ids_test is not defined
 
   - name: Assert that resource was not created
     assert:
@@ -77,7 +73,6 @@
         - result.node_pool.node_shape == node_shape
         - result.node_pool.subnet_ids == node_pool_subnet_ids
         - result.node_pool.quantity_per_subnet == quantity_per_subnet
-    when: skip_node_pool_subnet_ids_test is not defined
 
 # ==================================================================================================== #
 
@@ -87,7 +82,6 @@
       node_pool_id: "{{ node_pool_id }}"
       initial_node_labels: "{{ updated_node_labels }}"
     register: result
-    when: skip_node_pool_subnet_ids_test is not defined
 
   - name: Assert that resource was updated
     assert:
@@ -95,7 +89,6 @@
         - result.changed == True
         - result.node_pool.name == updated_node_pool_name
         - result.node_pool.initial_node_labels == updated_node_labels
-    when: skip_node_pool_subnet_ids_test is not defined
 
 # ==================================================================================================== #
 
@@ -105,7 +98,6 @@
       node_pool_id: "{{ node_pool_id }}"
       initial_node_labels: "{{ updated_node_labels }}"
     register: result
-    when: skip_node_pool_subnet_ids_test is not defined
 
   - name: Assert that resource was not updated
     assert:
@@ -113,7 +105,6 @@
         - result.changed == False
         - result.node_pool.name == updated_node_pool_name
         - result.node_pool.initial_node_labels == updated_node_labels
-    when: skip_node_pool_subnet_ids_test is not defined
 
 # ==================================================================================================== #
 
@@ -122,13 +113,11 @@
       node_pool_id: "{{ node_pool_id }}"
       state: "absent"
     register: result
-    when: skip_node_pool_subnet_ids_test is not defined
 
   - name: Assert that resource was deleted
     assert:
       that:
         - result.changed == True
-    when: skip_node_pool_subnet_ids_test is not defined
 
 # ==================================================================================================== #
 
@@ -137,13 +126,11 @@
       node_pool_id: "{{ node_pool_id }}"
       state: absent
     register: result
-    when: skip_node_pool_subnet_ids_test is not defined
 
   - name: Assert that resource was not deleted
     assert:
       that:
         - result.changed == False
-    when: skip_node_pool_subnet_ids_test is not defined
 
 # ===========================================================================================
 # A temporary ssh public key should be generated always as part of this suite to avoid
@@ -156,18 +143,15 @@
       state: directory
       suffix: cert
     register: result
-    when: skip_node_pool_node_config_details_test is not defined
 
   - set_fact:
       ssh_public_key_path: "{{ result.path }}"
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Generate Private Key For using which Public Key will be generated
     openssl_privatekey:
       path: "{{ssh_public_key_path}}/private_key.pem"
       type: RSA
       size: 2048
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Generate Public Key
     openssl_publickey:
@@ -178,7 +162,6 @@
 
   - set_fact:
       ssh_public_key: "{{ lookup('file',  '{{ ssh_public_key_path }}/public_key.pem') }}"
-    when: skip_node_pool_node_config_details_test is not defined
 
 # ==================================================================================================== #
 
@@ -194,7 +177,6 @@
       initial_node_labels: "{{ node_labels }}"
       node_config_details: "{{ node_config_details }}"
     register: result
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Assert that resource was created
     assert:
@@ -213,7 +195,6 @@
 
   - set_fact:
       node_pool_id: "{{ result.node_pool.id }}"
-    when: skip_node_pool_node_config_details_test is not defined
 
 # ==================================================================================================== #
 
@@ -229,7 +210,6 @@
       initial_node_labels: "{{ node_labels }}"
       node_config_details: "{{ node_config_details }}"
     register: result
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Assert that resource was not created
     assert:
@@ -244,7 +224,6 @@
         - result.node_pool.ssh_public_key is defined
         - result.node_pool.initial_node_labels == node_labels
         - result.node_pool.node_config_details == node_config_details
-    when: skip_node_pool_node_config_details_test is not defined
 
 # ==================================================================================================== #
 
@@ -262,7 +241,6 @@
         - result.changed == True
         - result.node_pool.name == updated_node_pool_name
         - result.node_pool.initial_node_labels == updated_node_labels
-    when: skip_node_pool_node_config_details_test is not defined
 
 # ==================================================================================================== #
 
@@ -272,7 +250,6 @@
       node_pool_id: "{{ node_pool_id }}"
       initial_node_labels: "{{ updated_node_labels }}"
     register: result
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Assert that resource was not updated
     assert:
@@ -280,7 +257,6 @@
         - result.changed == False
         - result.node_pool.name == updated_node_pool_name
         - result.node_pool.initial_node_labels == updated_node_labels
-    when: skip_node_pool_node_config_details_test is not defined
 
 # ==================================================================================================== #
 
@@ -313,13 +289,11 @@
       node_pool_id: "{{ node_pool_id }}"
       state: "absent"
     register: result
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Assert that resource was deleted
     assert:
       that:
         - result.changed == True
-    when: skip_node_pool_node_config_details_test is not defined
 
 # ==================================================================================================== #
 
@@ -328,32 +302,42 @@
       node_pool_id: "{{ node_pool_id }}"
       state: absent
     register: result
-    when: skip_node_pool_node_config_details_test is not defined
 
   - name: Assert that resource was not deleted
     assert:
       that:
         - result.changed == False
-    when: skip_node_pool_node_config_details_test is not defined
 
+  - name: Delete dependency cluster
+    oci_container_engine_cluster:
+      cluster_id: "{{ dependency_cluster_id }}"
+      state: absent
+    register: result
+
+  - name: Assert that the cluster is deleted
+    assert:
+      that:
+        - result.changed == True
 # ==================================================================================================== #
 
-  always:
+  rescue:
     - name: Clean artifact path
       file:
         state: absent
         path: "{{ssh_public_key_path}}"
+      ignore_errors: yes
 
     - name: Delete node_pool
       oci_container_engine_node_pool:
         node_pool_id: "{{ node_pool_id }}"
         state: absent
       ignore_errors: yes
-      when: node_pool_id is defined
 
     - name: Delete dependency cluster
       oci_container_engine_cluster:
         cluster_id: "{{ dependency_cluster_id }}"
         state: absent
       ignore_errors: yes
-      when: skip_node_pool_dependencies is not defined and dependency_cluster_id is defined
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"
