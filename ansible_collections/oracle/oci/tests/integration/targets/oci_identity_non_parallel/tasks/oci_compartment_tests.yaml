@@ -65,7 +65,7 @@
 # TODO: investigate instability, for right now this exists in old modules as well
 # operation returns successful before another update is allowed
 - pause:
-   seconds: 15
+   seconds: 60
 
 - name: Update only name of a compartment
   oci_identity_compartment:

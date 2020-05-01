@@ -136,16 +136,6 @@ core_integration_tests_set_3:
   variables:
     tag: "core_set_3"
 
-core_integration_tests_set_4:
-  <<: *core_integration_tests_job_def
-  variables:
-    tag: "core_set_4"
-
-core_integration_tests_set_5:
-  <<: *core_integration_tests_job_def
-  variables:
-    tag: "core_set_5"
-
 # There are some integration tests that cannot be run in parallel due to various constraints like tests which update
 # a global resource, limit issues etc. So we separate these tests and run them in a single runner so that they cannot
 # run in parallel. The non parallel integration test targets should contain non_parallel in the target name.

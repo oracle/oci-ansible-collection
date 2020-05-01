@@ -125,10 +125,7 @@
               - ip_sec_connection_tunnel_shared_secret
       tags:
         - ip_sec_connection_full
-  tags:
-    - core_set_4
 
-- block:
     - block:
 
       - import_tasks: oci_network_virtual_circuit_setup.yaml
@@ -164,7 +161,7 @@
       tags:
         - virtual_circuit_full
   tags:
-    - core_set_5
+    - nightly
 
 - block:
     - block:

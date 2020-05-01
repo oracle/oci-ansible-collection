@@ -194,3 +194,5 @@
 
     - fail:
         msg: "{{ ansible_failed_result }}"
+  tags:
+    - nightly

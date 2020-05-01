@@ -5,6 +5,7 @@
 # Cleanup all block volumes with display name having {{random_suffix_1024}}
 - oci_blockstorage_volume_facts:
     compartment_id: "{{ test_compartment_ocid }}"
+    lifecycle_state: "AVAILABLE"
   register: result
 - oci_blockstorage_volume:
     id: "{{ item['id'] }}"
