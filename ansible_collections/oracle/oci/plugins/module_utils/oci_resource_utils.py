@@ -508,9 +508,38 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         create_model_dict = self.get_create_model_dict_for_idempotence_check(
             create_model
         )
+
+        # There are cases where method - `list_resources()` returns `Summary` model instead of `Get` model. In most of
+        # the cases `Summary` model doesn't have all the parameters available in `Get` model. It is possible to get and
+        # return `Get` model for all the resources obtained by calling `list_resources()` however doing that we would
+        # have to deal with performance overhead of multiple REST calls. To avoid that first we would filter out
+        # potential matches and then return 'Get' model for each match.
+        prospective_matches = []
         for resource in self.list_resources():
+
             if not self._is_resource_active(resource):
                 continue
+
+            resource_dict = self.get_existing_resource_dict_for_idempotence_check(
+                resource
+            )
+
+            # set `ignore_attr_if_not_in_target` to `True` to avoid false negatives.
+            if oci_common_utils.is_dict_subset(
+                source_dict=create_model_dict,
+                target_dict=resource_dict,
+                attrs=attributes_to_consider,
+                ignore_attr_if_not_in_target=True,
+            ):
+                prospective_matches.append(resource)
+
+        for resource in prospective_matches:
+
+            # some resources return a summary model instead of a full model in the list call. Returning the summary
+            # model makes the return values inconsistent between the first and subsequent runs. So get and return
+            # the get model (if exists).
+            if self.is_summary_model(resource):
+                resource = self.get_get_model_from_summary_model(resource)
 
             resource_dict = self.get_existing_resource_dict_for_idempotence_check(
                 resource
@@ -535,14 +564,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     )
                 )
 
-                # some resources return a summary model instead of a full model in the list call. Returning the summary
-                # model makes the return values inconsistent between the first and subsequent runs. So get and return
-                # the get model (if exists).
-                return (
-                    self.get_get_model_from_summary_model(resource)
-                    if self.is_summary_model(resource)
-                    else resource
-                )
+                return resource
 
         _debug("No matching resource found. Attempting to create a new resource.")
         return None
