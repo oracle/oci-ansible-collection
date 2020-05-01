@@ -470,6 +470,8 @@
         - item.private_ip_ids is defined
         - item.subnet_id is defined
         - item.time_created is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.mount_targets }}"
     when: skip_mount_target_list_test is not defined
 
@@ -506,6 +508,8 @@
         - item.private_ip_ids is defined
         - item.subnet_id is defined
         - item.time_created is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.mount_targets }}"
     when: skip_mount_target_get_test is not defined
 

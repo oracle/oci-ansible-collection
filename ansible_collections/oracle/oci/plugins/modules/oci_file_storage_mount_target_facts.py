@@ -83,7 +83,8 @@ options:
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc', where 'asc' is
-              ascending and 'desc' is descending.
+              ascending and 'desc' is descending. The default order is 'desc'
+              except for numeric values.
         type: str
         choices:
             - "ASC"
@@ -98,7 +99,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List mount_targets
   oci_file_storage_mount_target_facts:
-    compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    availability_domain: Uocm:PHX-AD-1
 
 - name: Get a specific mount_target
   oci_file_storage_mount_target_facts:

@@ -110,13 +110,13 @@ buckets:
             sample: {}
         created_by:
             description:
-                - The OCID of the user who created the bucket.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user who created the bucket.
             returned: on success
             type: string
             sample: created_by_example
         time_created:
             description:
-                - The date and time the bucket was created, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
+                - The date and time the bucket was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -163,7 +163,8 @@ buckets:
             sample: {'Operations': {'CostCenter': 'US'}}
         kms_key_id:
             description:
-                - The OCID of a KMS key id used to call KMS to generate data key or decrypt the encrypted data key.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key Management
+                  service to generate a data encryption key or to encrypt or decrypt a data encryption key.
             returned: on success
             type: string
             sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx

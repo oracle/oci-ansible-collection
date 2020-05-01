@@ -425,6 +425,8 @@
         - item.lifecycle_state is defined
         - item.name is defined
         - item.time_created is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.snapshots }}"
     when: skip_snapshot_list_test is not defined
 
@@ -457,6 +459,8 @@
         - item.lifecycle_state is defined
         - item.name is defined
         - item.time_created is defined
+        - item.freeform_tags is defined
+        - item.defined_tags is defined
     with_items: "{{ result.snapshots }}"
     when: skip_snapshot_get_test is not defined
 

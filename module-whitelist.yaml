@@ -277,6 +277,10 @@ operationIdBlacklist:
   - update_user_state
   # deprecated
   - get_instance_default_credentials
+  # overlaps with get_cpe
+  - get_cpe_device_config_content
+  # overlaps with ipsec_cpe_device
+  - get_ipsec_cpe_device_config_content 
 
 extraFactsModuleParameters:
   core:

@@ -101,15 +101,15 @@ options:
                 type: list
             private_ip:
                 description:
-                    - "A private IP address of your choice to assign to the VNIC. Value is ignored
-                      if a `vlanId` value is specified. Must be an available IP address within
-                      the subnet's CIDR. If you don't specify a value, Oracle automatically assigns
-                      a private IP address from the subnet. This is the VNIC's *primary* private IP
-                      address. The value appears in the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and
-                      also the L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
+                    - "A private IP address of your choice to assign to the VNIC. Must be an
+                      available IP address within the subnet's CIDR. If you don't specify a
+                      value, Oracle automatically assigns a private IP address from the subnet.
+                      This is the VNIC's *primary* private IP address. The value appears in
+                      the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
                       L(ListPrivateIps,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
-                    - "Example: `10.0.3.3`"
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
                 description:
@@ -124,10 +124,7 @@ options:
                     - The OCID of the subnet to create the VNIC in. When launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/requests/LaunchInstanceDetails).
-                      Alternatively, the `vlanId` can be used instead of a `subnetId`.
-                      At least one `subnetId` value is required if this field is populated; if
-                      you provide both, the values must match. If both the `vlanId` and `subnetId`
-                      fields are provided, the launch will fail.
+                      At least one of them is required; if you provide both, the values must match.
                 type: str
                 required: true
     display_name:

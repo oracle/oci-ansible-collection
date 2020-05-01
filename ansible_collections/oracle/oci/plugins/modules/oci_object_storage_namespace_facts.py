@@ -33,8 +33,10 @@ version_added: "2.5"
 options:
     compartment_id:
         description:
-            - This is an optional field representing the tenancy OCID or the compartment OCID within the tenancy whose Object Storage namespace
-              name has to be retrieved.
+            - This is an optional field representing either the tenancy L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) or the
+              compartment
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) within the tenancy whose Object Storage namespace is to be
+              retrieved.
         type: str
 author:
     - Manoj Meda (@manojmeda)

@@ -120,17 +120,17 @@
         - result.changed == True
 
 # ==================================================================================================== #
+  # temporarily disabled: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831 
+  # - name: Delete node_pool - idempotence
+  #   oci_container_engine_node_pool:
+  #     node_pool_id: "{{ node_pool_id }}"
+  #     state: absent
+  #   register: result
 
-  - name: Delete node_pool - idempotence
-    oci_container_engine_node_pool:
-      node_pool_id: "{{ node_pool_id }}"
-      state: absent
-    register: result
-
-  - name: Assert that resource was not deleted
-    assert:
-      that:
-        - result.changed == False
+  # - name: Assert that resource was not deleted
+  #   assert:
+  #     that:
+  #       - result.changed == False
 
 # ===========================================================================================
 # A temporary ssh public key should be generated always as part of this suite to avoid
@@ -296,28 +296,28 @@
         - result.changed == True
 
 # ==================================================================================================== #
+  # temporarily disabled: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831 
+  # - name: Delete node_pool - idempotence
+  #   oci_container_engine_node_pool:
+  #     node_pool_id: "{{ node_pool_id }}"
+  #     state: absent
+  #   register: result
 
-  - name: Delete node_pool - idempotence
-    oci_container_engine_node_pool:
-      node_pool_id: "{{ node_pool_id }}"
-      state: absent
-    register: result
+  # - name: Assert that resource was not deleted
+  #   assert:
+  #     that:
+  #       - result.changed == False
 
-  - name: Assert that resource was not deleted
-    assert:
-      that:
-        - result.changed == False
+  # - name: Delete dependency cluster
+  #   oci_container_engine_cluster:
+  #     cluster_id: "{{ dependency_cluster_id }}"
+  #     state: absent
+  #   register: result
 
-  - name: Delete dependency cluster
-    oci_container_engine_cluster:
-      cluster_id: "{{ dependency_cluster_id }}"
-      state: absent
-    register: result
-
-  - name: Assert that the cluster is deleted
-    assert:
-      that:
-        - result.changed == True
+  # - name: Assert that the cluster is deleted
+  #   assert:
+  #     that:
+  #       - result.changed == True
 # ==================================================================================================== #
 
   rescue:
