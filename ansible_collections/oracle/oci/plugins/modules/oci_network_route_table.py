@@ -106,6 +106,10 @@ options:
                       L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm).
                 type: str
                 required: true
+            description:
+                description:
+                    - An optional description of your choice for the rule.
+                type: str
     vcn_id:
         description:
             - The OCID of the VCN the route table belongs to.
@@ -271,6 +275,12 @@ route_table:
                     returned: on success
                     type: string
                     sample: ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx
+                description:
+                    description:
+                        - An optional description of your choice for the rule.
+                    returned: on success
+                    type: string
+                    sample: description_example
         time_created:
             description:
                 - The date and time the route table was created, in the format defined by RFC3339.
@@ -295,7 +305,8 @@ route_table:
             "cidr_block": "0.0.0.0/0",
             "destination": "destination_example",
             "destination_type": "CIDR_BLOCK",
-            "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
+            "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx",
+            "description": "description_example"
         }],
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
@@ -447,6 +458,7 @@ def main():
                         type="str", choices=["CIDR_BLOCK", "SERVICE_CIDR_BLOCK"]
                     ),
                     network_entity_id=dict(type="str", required=True),
+                    description=dict(type="str"),
                 ),
             ),
             vcn_id=dict(type="str"),

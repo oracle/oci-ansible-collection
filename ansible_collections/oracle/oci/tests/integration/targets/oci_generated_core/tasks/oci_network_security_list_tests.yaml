@@ -48,6 +48,7 @@
           source_port_range:
             max: "{{ 56 | oracle.oci.override(test_security_list_create_required_source_port_range_max, omit) }}"
             min: "{{ 56 | oracle.oci.override(test_security_list_create_required_source_port_range_min, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_security_list_create_required_egress_security_rules_description, omit) }}"
     when: test_security_list_create_required_egress_security_rules is not defined
 
   - set_fact:
@@ -73,6 +74,7 @@
           source_port_range:
             max: "{{ 56 | oracle.oci.override(test_security_list_create_required_source_port_range_max, omit) }}"
             min: "{{ 56 | oracle.oci.override(test_security_list_create_required_source_port_range_min, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_security_list_create_required_ingress_security_rules_description, omit) }}"
     when: test_security_list_create_required_ingress_security_rules is not defined
 
   - name: Create security_list (check mode)
@@ -208,6 +210,7 @@
           source_port_range:
             max: "{{ 112 | oracle.oci.override(test_security_list_update_using_name_optional_required_source_port_range_max, omit) }}"
             min: "{{ 112 | oracle.oci.override(test_security_list_update_using_name_optional_required_source_port_range_min, omit) }}"
+        description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_security_list_update_using_name_optional_required_egress_security_rules_description, omit) }}"
     when: test_security_list_update_using_name_optional_required_egress_security_rules is not defined
 
   - set_fact:
@@ -233,6 +236,7 @@
           source_port_range:
             max: "{{ 112 | oracle.oci.override(test_security_list_update_using_name_optional_required_source_port_range_max, omit) }}"
             min: "{{ 112 | oracle.oci.override(test_security_list_update_using_name_optional_required_source_port_range_min, omit) }}"
+        description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_security_list_update_using_name_optional_required_ingress_security_rules_description, omit) }}"
     when: test_security_list_update_using_name_optional_required_ingress_security_rules is not defined
 
   - name: Update security_list using name with optional + required parameters
@@ -413,6 +417,7 @@
           source_port_range:
             max: "{{ 56 | oracle.oci.override(test_security_list_create_optional_required_source_port_range_max, omit) }}"
             min: "{{ 56 | oracle.oci.override(test_security_list_create_optional_required_source_port_range_min, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_security_list_create_optional_required_egress_security_rules_description, omit) }}"
     when: test_security_list_create_optional_required_egress_security_rules is not defined
 
   - set_fact:
@@ -438,6 +443,7 @@
           source_port_range:
             max: "{{ 56 | oracle.oci.override(test_security_list_create_optional_required_source_port_range_max, omit) }}"
             min: "{{ 56 | oracle.oci.override(test_security_list_create_optional_required_source_port_range_min, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_security_list_create_optional_required_ingress_security_rules_description, omit) }}"
     when: test_security_list_create_optional_required_ingress_security_rules is not defined
 
   - name: Create security_list with optional + required parameters
@@ -551,6 +557,7 @@
           source_port_range:
             max: "{{ 112 | oracle.oci.override(test_security_list_update_optional_required_source_port_range_max, omit) }}"
             min: "{{ 112 | oracle.oci.override(test_security_list_update_optional_required_source_port_range_min, omit) }}"
+        description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_security_list_update_optional_required_egress_security_rules_description, omit) }}"
     when: test_security_list_update_optional_required_egress_security_rules is not defined
 
   - set_fact:
@@ -576,6 +583,7 @@
           source_port_range:
             max: "{{ 112 | oracle.oci.override(test_security_list_update_optional_required_source_port_range_max, omit) }}"
             min: "{{ 112 | oracle.oci.override(test_security_list_update_optional_required_source_port_range_min, omit) }}"
+        description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_security_list_update_optional_required_ingress_security_rules_description, omit) }}"
     when: test_security_list_update_optional_required_ingress_security_rules is not defined
 
   - name: Update security_list with optional + required parameters

@@ -202,6 +202,10 @@ options:
                                     - The minimum port number. Must not be greater than the maximum port number.
                                 type: int
                                 required: true
+            description:
+                description:
+                    - An optional description of your choice for the rule.
+                type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -354,6 +358,10 @@ options:
                                     - The minimum port number. Must not be greater than the maximum port number.
                                 type: int
                                 required: true
+            description:
+                description:
+                    - An optional description of your choice for the rule.
+                type: str
     vcn_id:
         description:
             - The OCID of the VCN the security list belongs to.
@@ -640,6 +648,12 @@ security_list:
                                     returned: on success
                                     type: int
                                     sample: 56
+                description:
+                    description:
+                        - An optional description of your choice for the rule.
+                    returned: on success
+                    type: string
+                    sample: description_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -821,6 +835,12 @@ security_list:
                                     returned: on success
                                     type: int
                                     sample: 56
+                description:
+                    description:
+                        - An optional description of your choice for the rule.
+                    returned: on success
+                    type: string
+                    sample: description_example
         lifecycle_state:
             description:
                 - The security list's current state.
@@ -872,7 +892,8 @@ security_list:
                     "max": 56,
                     "min": 56
                 }
-            }
+            },
+            "description": "description_example"
         }],
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -904,7 +925,8 @@ security_list:
                     "max": 56,
                     "min": 56
                 }
-            }
+            },
+            "description": "description_example"
         }],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
@@ -1103,6 +1125,7 @@ def main():
                             ),
                         ),
                     ),
+                    description=dict(type="str"),
                 ),
             ),
             freeform_tags=dict(type="dict"),
@@ -1160,6 +1183,7 @@ def main():
                             ),
                         ),
                     ),
+                    description=dict(type="str"),
                 ),
             ),
             vcn_id=dict(type="str"),

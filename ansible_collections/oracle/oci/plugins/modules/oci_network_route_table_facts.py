@@ -194,6 +194,12 @@ route_tables:
                     returned: on success
                     type: string
                     sample: ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx
+                description:
+                    description:
+                        - An optional description of your choice for the rule.
+                    returned: on success
+                    type: string
+                    sample: description_example
         time_created:
             description:
                 - The date and time the route table was created, in the format defined by RFC3339.
@@ -218,7 +224,8 @@ route_tables:
             "cidr_block": "0.0.0.0/0",
             "destination": "destination_example",
             "destination_type": "CIDR_BLOCK",
-            "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
+            "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx",
+            "description": "description_example"
         }],
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

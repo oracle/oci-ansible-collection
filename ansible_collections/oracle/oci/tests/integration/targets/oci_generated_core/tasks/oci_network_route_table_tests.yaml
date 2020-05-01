@@ -31,6 +31,7 @@
         destination: "{{ 'destination_example' | oracle.oci.override(test_route_table_create_required_route_rules_destination, omit) }}"
         destination_type: "{{ 'CIDR_BLOCK' | oracle.oci.override(test_route_table_create_required_route_rules_destination_type, omit) }}"
         network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_route_table_create_required_route_rules_network_entity_id, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_route_table_create_required_route_rules_description, omit) }}"
     when: test_route_table_create_required_route_rules is not defined
 
   - name: Create route_table (check mode)
@@ -144,6 +145,7 @@
         destination: "{{ ('destination_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_route_table_update_using_name_optional_required_route_rules_destination, omit) }}"
         destination_type: "{{ 'SERVICE_CIDR_BLOCK' | oracle.oci.override(test_route_table_update_using_name_optional_required_route_rules_destination_type, omit) }}"
         network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_route_table_update_using_name_optional_required_route_rules_network_entity_id, omit) }}"
+        description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_route_table_update_using_name_optional_required_route_rules_description, omit) }}"
     when: test_route_table_update_using_name_optional_required_route_rules is not defined
 
   - name: Update route_table using name with optional + required parameters
@@ -302,6 +304,7 @@
         destination: "{{ 'destination_example' | oracle.oci.override(test_route_table_create_optional_required_route_rules_destination, omit) }}"
         destination_type: "{{ 'CIDR_BLOCK' | oracle.oci.override(test_route_table_create_optional_required_route_rules_destination_type, omit) }}"
         network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_route_table_create_optional_required_route_rules_network_entity_id, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_route_table_create_optional_required_route_rules_description, omit) }}"
     when: test_route_table_create_optional_required_route_rules is not defined
 
   - name: Create route_table with optional + required parameters
@@ -394,6 +397,7 @@
         destination: "{{ ('destination_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_route_table_update_optional_required_route_rules_destination, omit) }}"
         destination_type: "{{ 'SERVICE_CIDR_BLOCK' | oracle.oci.override(test_route_table_update_optional_required_route_rules_destination_type, omit) }}"
         network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_route_table_update_optional_required_route_rules_network_entity_id, omit) }}"
+        description: "{{ ('description_exampleupdated' + random_suffix_1024) | oracle.oci.override(test_route_table_update_optional_required_route_rules_description, omit) }}"
     when: test_route_table_update_optional_required_route_rules is not defined
 
   - name: Update route_table with optional + required parameters

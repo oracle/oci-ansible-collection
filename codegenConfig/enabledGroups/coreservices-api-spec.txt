@@ -20,6 +20,7 @@ udx-497
 udx-802
 udx-810
 udx-1215
+udx-1151
 
 # network security groups
 udx-1764

@@ -292,6 +292,12 @@ security_lists:
                                     returned: on success
                                     type: int
                                     sample: 56
+                description:
+                    description:
+                        - An optional description of your choice for the rule.
+                    returned: on success
+                    type: string
+                    sample: description_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -473,6 +479,12 @@ security_lists:
                                     returned: on success
                                     type: int
                                     sample: 56
+                description:
+                    description:
+                        - An optional description of your choice for the rule.
+                    returned: on success
+                    type: string
+                    sample: description_example
         lifecycle_state:
             description:
                 - The security list's current state.
@@ -524,7 +536,8 @@ security_lists:
                     "max": 56,
                     "min": 56
                 }
-            }
+            },
+            "description": "description_example"
         }],
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -556,7 +569,8 @@ security_lists:
                     "max": 56,
                     "min": 56
                 }
-            }
+            },
+            "description": "description_example"
         }],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",

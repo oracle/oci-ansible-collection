@@ -31,6 +31,7 @@
         destination: "{{ 'destination_example' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_destination, omit) }}"
         destination_type: "{{ 'CIDR_BLOCK' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_destination_type, omit) }}"
         network_entity_id: "{{ dependency_network_entity_id | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_network_entity_id, omit) }}"
+        description: "{{ 'description_example' | oracle.oci.override(test_subnet_create_dependency_route_table_route_rules_description, omit) }}"
     when: skip_subnet_create_dependency_route_table_test is not defined and skip_subnet_dependencies is not defined and test_subnet_create_dependency_route_table_route_rules is not defined
 
   - name: Create dependency route_table with required parameters
