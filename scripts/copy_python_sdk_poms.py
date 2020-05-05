@@ -322,9 +322,6 @@ def main(python_sdk_dir, ansible_collections_repo_dir, copy_codegen_config_enabl
         replace_element_text(pom, ".//ns:plugin[ns:artifactId='dex-get-spec-artifact-plugin']/ns:groupId", "org.apache.maven.plugins")
         replace_element_text(pom, ".//ns:plugin[ns:artifactId='dex-get-spec-artifact-plugin']/ns:artifactId", "maven-dependency-plugin")
 
-        if spec_name == "audit":
-            replace_element_text(pom, ".//ns:hemlock-spec-spec-file", "hemlock-api-20160918.yaml")
-
         # write output
         pom_subfolder = os.path.basename(os.path.dirname(pom_path))
         output_file = os.path.join(ansible_collections_repo_dir, COLLECTIONS_REPO_POMS_RELATIVE_PATH, pom_subfolder, 'pom.xml')

@@ -25,6 +25,4 @@ python_sdk_features_blacklist:
   # CreateOAuthClientCredentials conflicts with create user 
   - 'udx-2098'
 
-python_sdk_spec_version_overrides:
-  # audit has significant breaking changes that we need to pull in in a separate change
-  audit: "0.1.9"
+python_sdk_spec_version_overrides: []

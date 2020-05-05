@@ -32,8 +32,10 @@ options:
         required: true
     retention_period_days:
         description:
-            - The retention period days
+            - The retention period setting, specified in days. The minimum is 90, the maximum 365.
+            - "Example: `90`"
         type: int
+        required: true
     state:
         description:
             - The state of the Configuration.
@@ -66,12 +68,13 @@ configuration:
     contains:
         retention_period_days:
             description:
-                - The retention period days
+                - The retention period setting, specified in days. The minimum is 90, the maximum 365.
+                - "Example: `90`"
             returned: on success
             type: int
-            sample: 56
+            sample: 90
     sample: {
-        "retention_period_days": 56
+        "retention_period_days": 90
     }
 """
 
@@ -141,7 +144,7 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            retention_period_days=dict(type="int"),
+            retention_period_days=dict(type="int", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

@@ -54,12 +54,13 @@ configuration:
     contains:
         retention_period_days:
             description:
-                - The retention period days
+                - The retention period setting, specified in days. The minimum is 90, the maximum 365.
+                - "Example: `90`"
             returned: on success
             type: int
-            sample: 56
+            sample: 90
     sample: {
-        "retention_period_days": 56
+        "retention_period_days": 90
     }
 """
 

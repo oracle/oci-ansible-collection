@@ -31,7 +31,8 @@ options:
         description:
             - "Export options for the new export. If left unspecified,
               defaults to:"
-            - "      [
+            - |
+              "      [
                        {
                           \\"source\\" : \\"0.0.0.0/0\\",
                           \\"requirePrivilegedSourcePort\\" : false,
