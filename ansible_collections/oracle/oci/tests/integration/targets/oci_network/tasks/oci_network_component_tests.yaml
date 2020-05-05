@@ -1,0 +1,229 @@
+- block:
+
+    - name: Create a vcn which can be used for multiple tests
+      oci_network_vcn:
+        cidr_block: "10.0.0.0/16"
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "IdempotenceTestVCN-{{ random_suffix_1024 }}"
+        dns_label: "idempovcn"
+      register: idempo_vcn_create_result
+
+    - set_fact:
+        idempo_vcn: "{{ idempo_vcn_create_result.vcn }}"
+        idempo_vcn_id: "{{ idempo_vcn_create_result.vcn.id }}"
+        idempo_vcn_default_sec_list_id: "{{ idempo_vcn_create_result.vcn.default_security_list_id }}"
+        idempo_vcn_default_route_table_id: "{{ idempo_vcn_create_result.vcn.default_route_table_id }}"
+
+    - name: Create an internet gateway for the common vcn
+      oci_network_internet_gateway:
+        compartment_id: "{{test_compartment_ocid}}"
+        vcn_id: "{{ idempo_vcn_id }}"
+        name: "IGForIdempoVCN-{{ random_suffix_1024 }}"
+        is_enabled: yes
+      register: ig_for_idempo_vcn_create_result
+
+    - set_fact:
+        ig_for_idempo_vcn: "{{ ig_for_idempo_vcn_create_result.internet_gateway }}"
+        ig_for_idempo_vcn_id: "{{ ig_for_idempo_vcn_create_result.internet_gateway.id }}"
+
+    - name: Create a second Route Table with Route Rules
+      oci_network_route_table:
+        compartment_id: "{{test_compartment_ocid}}"
+        vcn_id: "{{ idempo_vcn_id }}"
+        name: "RouteTable-{{ random_suffix_1024 }}"
+        route_rules:
+          - destination: "192.168.1.0/24"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_idempo_vcn_id }}"
+          - destination: "192.168.2.0/24"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_idempo_vcn_id }}"
+        state: 'present'
+      register: result
+
+    - name: Assert that Second Route Table is created
+      assert:
+        that:
+          - result.changed == True
+
+    - set_fact:
+        second_rt_id: "{{ result.route_table.id }}"
+
+    - name: Create a Route Table with less Route Rules and make sure we create route table
+      oci_network_route_table:
+        compartment_id: "{{test_compartment_ocid}}"
+        vcn_id: "{{ idempo_vcn_id }}"
+        name: "RouteTable-{{ random_suffix_1024 }}"
+        route_rules:
+          - destination: "192.168.1.0/24"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_idempo_vcn_id }}"
+        state: 'present'
+      register: result
+
+    - name: Assert that Second Route Table is created
+      assert:
+        that:
+          - result.changed == True
+
+    - set_fact:
+        third_rt_id: "{{ result.route_table.id }}"
+
+    - name: Create another Route Table with more Route Rules and make sure we create route table
+      oci_network_route_table:
+        compartment_id: "{{test_compartment_ocid}}"
+        vcn_id: "{{ idempo_vcn_id }}"
+        name: "RouteTable-{{ random_suffix_1024 }}"
+        route_rules:
+          - destination: "192.168.1.0/24"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_idempo_vcn_id }}"
+          - destination: "192.168.2.0/24"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_idempo_vcn_id }}"
+          - destination: "192.168.3.0/24"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_idempo_vcn_id }}"
+        state: 'present'
+      register: result
+
+    - name: Assert that Second Route Table is created
+      assert:
+        that:
+          - result.changed == True
+
+    - set_fact:
+        fourth_rt_id: "{{ result.route_table.id }}"
+
+    - name: Delete fourth route table
+      oci_network_route_table:
+        rt_id: "{{ fourth_rt_id }}"
+        state: "absent"
+      register: result
+
+    - name: Assert that the fourth route table is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Create subnet
+      oci_network_subnet:
+        display_name: "SubnetForIdempoVCN"
+        dns_label: "idemposubnet1"
+        cidr_block: "10.0.1.0/24"
+        route_table_id: "{{ idempo_vcn.default_route_table_id }}"
+        security_list_ids:
+          - "{{ idempo_vcn.default_security_list_id }}"
+        vcn_id: "{{ idempo_vcn_id }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+
+    - set_fact:
+        idempo_vcn_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Delete third route table
+      oci_network_route_table:
+        rt_id: "{{ third_rt_id }}"
+        state: "absent"
+      register: result
+
+    - name: Assert that the third route table is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Delete second route table
+      oci_network_route_table:
+        rt_id: "{{ second_rt_id }}"
+        state: "absent"
+      register: result
+
+    - name: Assert that the second route table is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Delete internet gateway
+      oci_network_internet_gateway:
+        ig_id: "{{ ig_for_idempo_vcn_id }}"
+        state: "absent"
+      register: result
+
+    - name: Assert that internet gateway is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Delete subnet
+      oci_network_subnet:
+        subnet_id: "{{ idempo_vcn_subnet_id }}"
+        state: "absent"
+      register: result
+
+    - name: Assert that the subnet is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - name: Delete vcn
+      oci_network_vcn:
+        vcn_id: "{{ idempo_vcn_id }}"
+        state: "absent"
+      register: result
+
+    - name: Assert that the vcn is deleted
+      assert:
+        that:
+          - result.changed == True
+
+  rescue:
+
+    - name: Delete fourth route table
+      oci_network_route_table:
+        rt_id: "{{ fourth_rt_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete third route table
+      oci_network_route_table:
+        rt_id: "{{ third_rt_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete second route table
+      oci_network_route_table:
+        rt_id: "{{ second_rt_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete internet gateway
+      oci_network_internet_gateway:
+        ig_id: "{{ ig_for_idempo_vcn_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete subnet
+      oci_network_subnet:
+        subnet_id: "{{ idempo_vcn_subnet_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete vcn
+      oci_network_vcn:
+        vcn_id: "{{ idempo_vcn_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Assert that the vcn is deleted
+      assert:
+        that:
+          - result.changed == True
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

@@ -13,6 +13,7 @@ from ansible.module_utils._text import to_bytes
 from datetime import datetime
 import tempfile
 import logging
+import logging.config
 import os
 import yaml
 import re
@@ -22,7 +23,6 @@ import json
 try:
     import oci
     from oci.retry import RetryStrategyBuilder
-    from oci.util import to_dict
     from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
@@ -178,7 +178,12 @@ def list_all_resources(target_fn, **kwargs):
     return filter_response_data(response.data, filter_params)
 
 
-def is_dict_subset(
+# compare_dicts is used to compare create and update model dicts with the existing resource. Since the existing
+# resource might have more parameters (for ex: OCID, time_created etc) than the information we provide during the
+# creation, we do a subset match of the dictionary.
+# But if a parameter present in create/update model and not in existing resource, it is considered a mismatch by default
+# This behaviour can be changed by setting the flag `ignore_attr_if_not_in_target`.
+def compare_dicts(
     source_dict, target_dict, attrs=None, ignore_attr_if_not_in_target=False
 ):
     if source_dict is None or target_dict is None:
@@ -192,6 +197,14 @@ def is_dict_subset(
         _debug(
             "dict is not subset because source_dict: {source_dict} or target dict: {target_dict} is not a dict".format(
                 source_dict=source_dict, target_dict=target_dict
+            )
+        )
+        return False
+    # handle the case when source dict is empty but target dict has values
+    if not source_dict and target_dict:
+        _debug(
+            "dicts are not equal because source dict is empty and target is not: {target_dict}".format(
+                target_dict=target_dict
             )
         )
         return False
@@ -224,7 +237,7 @@ def is_dict_subset(
                     )
                 )
                 return False
-            if not is_dict_subset(
+            if not compare_dicts(
                 source_val,
                 target_val,
                 ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
@@ -238,7 +251,7 @@ def is_dict_subset(
                     )
                 )
                 return False
-            if not is_list_subset(source_val, target_val):
+            if not compare_lists(source_val, target_val):
                 return False
         elif source_val != target_val:
             _debug(
@@ -250,7 +263,7 @@ def is_dict_subset(
     return True
 
 
-def is_list_subset(source_list, target_list):
+def compare_lists(source_list, target_list):
     if source_list is None or target_list is None:
         _debug(
             "list is not subset because source list: {source_list} or target list: {target_list} is None".format(
@@ -265,6 +278,15 @@ def is_list_subset(source_list, target_list):
             )
         )
         return False
+
+    if len(source_list) != len(target_list):
+        _debug(
+            "lists are not equal because source length: {source_length} does not match target length: {target_length}".format(
+                source_length=len(source_list), target_length=len(target_list)
+            )
+        )
+        return False
+
     if all([is_in_list(target_list, element) for element in source_list]):
         return True
 
@@ -276,10 +298,10 @@ def is_list_subset(source_list, target_list):
 
 def is_in_list(l, element):
     if isinstance(element, dict):
-        if any([is_dict_subset(element, target_element) for target_element in l]):
+        if any([compare_dicts(element, target_element) for target_element in l]):
             return True
     elif isinstance(element, list):
-        if any([is_list_subset(element, target_element) for target_element in l]):
+        if any([compare_lists(element, target_element) for target_element in l]):
             return True
     else:
         if element in l:
@@ -289,232 +311,6 @@ def is_in_list(l, element):
             "element {element} is not in list: {list}".format(element=element, list=l)
         )
     return False
-
-
-def are_dicts_equal(
-    source_dict, target_dict, attrs=None, ignore_attr_if_not_in_target=False
-):
-    if source_dict is None or target_dict is None:
-        _debug(
-            "dicts are not equal because source_dict: {source_dict} or target dict: {target_dict} is None".format(
-                source_dict=source_dict, target_dict=target_dict
-            )
-        )
-        return False
-    if not (isinstance(source_dict, dict) and isinstance(target_dict, dict)):
-        _debug(
-            "dicts are not equal because source_dict: {source_dict} or target dict: {target_dict} is not a dict".format(
-                source_dict=source_dict, target_dict=target_dict
-            )
-        )
-        return False
-    if not attrs:
-        attrs = list(source_dict)
-    # handle the case when source dict is empty but target dict has values
-    if not source_dict and target_dict:
-        _debug(
-            "dicts are not equal because source dict is empty and target is not: {target_dict}".format(
-                target_dict=target_dict
-            )
-        )
-        return False
-    for attr in attrs:
-        # compare attributes if it is only in source dict
-        if attr not in source_dict or source_dict.get(attr) is None:
-            continue
-        if attr not in target_dict:
-            if ignore_attr_if_not_in_target:
-                # if the ignore parameter is set, ignore this attribute.
-                # This might be useful in cases where some of the attributes used in update
-                # are not exposed in the get model
-                continue
-
-            _debug(
-                "dicts are not equal because attribute '{attr}' is not in target dict".format(
-                    attr=attr
-                )
-            )
-            return False
-        source_val = source_dict.get(attr)
-        target_val = target_dict.get(attr)
-        if isinstance(source_val, list):
-            if not isinstance(target_val, list):
-                _debug(
-                    "dicts are not equal because attribute '{attr}' source value is a list and target value is not: {target_val}".format(
-                        attr=attr, target_val=target_val
-                    )
-                )
-                return False
-            if not are_lists_equal(source_val, target_val):
-                return False
-        elif isinstance(source_val, dict):
-            if not isinstance(target_val, dict):
-                _debug(
-                    "dicts are not equal because attribute '{attr}' source value is a dict and target value is not: {target_val}".format(
-                        attr=attr, target_val=target_val
-                    )
-                )
-                return False
-            if not are_dicts_equal(
-                source_val,
-                target_val,
-                ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
-            ):
-                return False
-        elif source_val != target_val:
-            _debug(
-                "dicts are not equal because attribute '{attr}' value in source: {source_val} does not match target: {target_val}".format(
-                    attr=attr, source_val=source_val, target_val=target_val
-                )
-            )
-            return False
-    return True
-
-
-def are_lists_equal(s, t):
-    if s is None and t is None:
-        return True
-
-    if (s is None and len(t) >= 0) or (t is None and len(s) >= 0):
-        _debug(
-            "lists are not equal because one of source: {source_val} and target: {target_val} is None and the other is not".format(
-                source_val=s, target_val=t
-            )
-        )
-        return False
-
-    if len(s) != len(t):
-        _debug(
-            "lists are not equal because source length: {source_length} does not match target length: {target_length}".format(
-                source_length=len(s), target_length=len(t)
-            )
-        )
-        return False
-
-    if len(s) == 0:
-        return True
-
-    s = to_dict(s)
-    t = to_dict(t)
-
-    if type(s[0]) == dict:
-        # Handle list of dicts. Dictionary returned by the API may have additional keys. For example, a get call on
-        # service gateway has an attribute `services` which is a list of `ServiceIdResponseDetails`. This has a key
-        # `service_name` which is not provided in the list of `services` by a user while making an update call; only
-        # `service_id` is provided by the user in the update call.
-        sorted_s = sort_list_of_dictionary(s)
-        sorted_t = sort_list_of_dictionary(t)
-        for index, d in enumerate(sorted_s):
-            if not is_dictionary_subset(d, sorted_t[index]):
-                _debug(
-                    "lists are not equal because item: {source_item} does not match target item: {target_item}".format(
-                        source_item=d, target_item=sorted_t[index]
-                    )
-                )
-                return False
-        return True
-    else:
-        # Handle lists of primitive types.
-        try:
-            for elem in s:
-                t.remove(elem)
-        except ValueError:
-            _debug(
-                "lists are not equal because item '{source_item}' does not exist in target list: {target_list}".format(
-                    source_item=elem, target_list=t
-                )
-            )
-            return False
-        return not t
-
-
-def sort_list_of_dictionary(list_of_dict):
-    """
-    This functions sorts a list of dictionaries. It first sorts each value of the dictionary and then sorts the list of
-    individually sorted dictionaries. For sorting, each dictionary's tuple equivalent is used.
-    :param list_of_dict: List of dictionaries.
-    :return: A sorted dictionary.
-    """
-    list_with_sorted_dict = []
-    for d in list_of_dict:
-        sorted_d = sort_dictionary(d)
-        list_with_sorted_dict.append(sorted_d)
-    return sorted(list_with_sorted_dict, key=get_key_for_comparing_dict)
-
-
-def is_dictionary_subset(sub, super_dict):
-    """
-    This function checks if `sub` dictionary is a subset of `super` dictionary.
-    :param sub: subset dictionary, for example user_provided_attr_value.
-    :param super_dict: super dictionary, for example resources_attr_value.
-    :return: True if sub is contained in super.
-    """
-    # TODO: remove this function or rename it, we shouldn't have is_dictionary_subset and is_dict_subset
-    # return is_dict_subset(sub, super_dict)
-    for key in sub:
-        if sub[key] != super_dict[key]:
-            _debug(
-                "dictionary is not subset. Value for key '{key}' in subset dict: {subset_val} does not match value in superset dict: {superset_val}".format(
-                    key=key, subset_val=sub[key], superset_val=super_dict[key],
-                )
-            )
-            return False
-    return True
-
-
-def sort_dictionary(d):
-    """
-    This function sorts values of a dictionary recursively.
-    :param d: A dictionary.
-    :return: Dictionary with sorted elements.
-    """
-    sorted_d = {}
-    for key in d:
-        if type(d[key]) == list:
-            if d[key] and type(d[key][0]) == dict:
-                sorted_value = sort_list_of_dictionary(d[key])
-                sorted_d[key] = sorted_value
-            else:
-                sorted_d[key] = sorted(d[key])
-        elif type(d[key]) == dict:
-            sorted_d[key] = sort_dictionary(d[key])
-        else:
-            sorted_d[key] = d[key]
-    return sorted_d
-
-
-def get_key_for_comparing_dict(d):
-    tuple_form_of_d = tuplize(d)
-    return tuple_form_of_d
-
-
-def tuplize(d):
-    """
-    This function takes a dictionary and converts it to a list of tuples recursively.
-    :param d: A dictionary.
-    :return: List of tuples.
-    """
-    list_of_tuples = []
-    key_list = sorted(list(d.keys()))
-    for key in key_list:
-        if type(d[key]) == list:
-            # Convert a value which is itself a list of dict to a list of tuples.
-            if d[key] and type(d[key][0]) == dict:
-                sub_tuples = []
-                for sub_dict in d[key]:
-                    sub_tuples.append(tuplize(sub_dict))
-                # To handle comparing two None values, while creating a tuple for a {key: value}, make the first element
-                # in the tuple a boolean `True` if value is None so that attributes with None value are put at last
-                # in the sorted list.
-                list_of_tuples.append((sub_tuples is None, key, sub_tuples))
-            else:
-                list_of_tuples.append((d[key] is None, key, d[key]))
-        elif type(d[key]) == dict:
-            tupled_value = tuplize(d[key])
-            list_of_tuples.append((tupled_value is None, key, tupled_value))
-        else:
-            list_of_tuples.append((d[key] is None, key, d[key]))
-    return list_of_tuples
 
 
 def get_common_arg_spec(supports_create=False, supports_wait=False):

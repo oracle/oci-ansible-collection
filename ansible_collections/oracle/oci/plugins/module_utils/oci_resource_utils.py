@@ -537,7 +537,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             )
 
             # set `ignore_attr_if_not_in_target` to `True` to avoid false negatives.
-            if oci_common_utils.is_dict_subset(
+            if oci_common_utils.compare_dicts(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
@@ -565,7 +565,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 )
             )
 
-            if oci_common_utils.is_dict_subset(
+            if oci_common_utils.compare_dicts(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
@@ -636,7 +636,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         update_model_dict = self.get_update_model_dict_for_idempotence_check(
             update_model
         )
-        update_is_necessary = not oci_common_utils.are_dicts_equal(
+        update_is_necessary = not oci_common_utils.compare_dicts(
             update_model_dict, current_resource_dict
         )
 

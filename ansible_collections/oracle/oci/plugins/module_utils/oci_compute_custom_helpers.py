@@ -154,14 +154,35 @@ class InstanceHelperCustom:
         # inside Instance.LaunchOptions so we need to propagate the value so that the existing resource matching
         # logic works properly
         if create_model_dict.get("is_pv_encryption_in_transit_enabled") is not None:
-            launch_options = dict(
-                is_pv_encryption_in_transit_enabled=create_model_dict.pop(
-                    "is_pv_encryption_in_transit_enabled"
+            if create_model_dict.get("launch_options"):
+                if (
+                    create_model_dict["launch_options"].get(
+                        "is_pv_encryption_in_transit_enabled"
+                    )
+                    is None
+                ):
+                    create_model_dict["launch_options"][
+                        "is_pv_encryption_in_transit_enabled"
+                    ] = create_model_dict.pop("is_pv_encryption_in_transit_enabled")
+                else:
+                    # is_pv_encryption_in_transit_enabled is set both as a top level parameter and also under
+                    # launch_options. If the values match ignore the top level parameter. Else throw an error.
+                    if (
+                        create_model_dict["launch_options"][
+                            "is_pv_encryption_in_transit_enabled"
+                        ]
+                        != create_model_dict["is_pv_encryption_in_transit_enabled"]
+                    ):
+                        self.module.fail_json(
+                            "Conflicting values specified for is_pv_encryption_in_transit_enabled as a top level parameter and under launch_options parameter."
+                        )
+                    create_model_dict.pop("is_pv_encryption_in_transit_enabled")
+            else:
+                create_model_dict["launch_options"] = dict(
+                    is_pv_encryption_in_transit_enabled=create_model_dict.pop(
+                        "is_pv_encryption_in_transit_enabled"
+                    )
                 )
-            )
-        else:
-            launch_options = dict()
-        create_model_dict["launch_options"] = launch_options
         return create_model_dict
 
     def prepare_result(self, *args, **kwargs):
