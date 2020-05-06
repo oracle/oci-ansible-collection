@@ -551,7 +551,6 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
         common_args.update(
             wait=dict(type="bool", default=True),
             wait_timeout=dict(type="int", default=MAX_WAIT_TIMEOUT_IN_SECONDS),
-            wait_until=dict(type="str"),
         )
 
     return common_args

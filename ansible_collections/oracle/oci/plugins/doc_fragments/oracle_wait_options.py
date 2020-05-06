@@ -20,10 +20,4 @@ class ModuleDocFragment(object):
             description: Time, in seconds, to wait when I(wait=yes).
             default: 1200
             type: int
-        wait_until:
-            description: The lifecycle state to wait for the resource to transition into when I(wait=yes). By default,
-                         when I(wait=yes), we wait for the resource to get into ACTIVE/ATTACHED/AVAILABLE/PROVISIONED/
-                         RUNNING applicable lifecycle state during create operation & to get into DELETED/DETACHED/
-                         TERMINATED lifecycle state during delete operation.
-            type: str
     """
