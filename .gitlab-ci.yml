@@ -210,3 +210,21 @@ weekly:
   variables:
     <<: *scheduled_integration_tests_job_variables_def
     ansible_test_tags: "weekly"
+
+cleanup_resources:
+  stage: scheduled_jobs
+  tags:
+    - integration
+  only:
+    <<: *scheduled_integration_tests_job_only_def
+    variables:
+      - $CLEANUP_RESOURCES == "compartment_resources"
+  script:
+    - pip install -r requirements-dev.txt
+    - pip install ansible
+    - pip install -r $COLLECTION_DIR/tests/runner/requirements/integration.cloud.oci.txt
+    - source scripts/install_collection.sh
+    - cd $COLLECTION_DIR
+    - ansible-playbook $SCRIPTS_DIR/clean-up-resources.yaml
+  variables:
+    ansible_test_tags: "nightly"

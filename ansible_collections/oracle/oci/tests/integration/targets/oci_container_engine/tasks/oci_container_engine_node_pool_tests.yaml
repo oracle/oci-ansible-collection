@@ -120,7 +120,7 @@
         - result.changed == True
 
 # ==================================================================================================== #
-  # temporarily disabled: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831 
+  # temporarily disabled: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831
   # - name: Delete node_pool - idempotence
   #   oci_container_engine_node_pool:
   #     node_pool_id: "{{ node_pool_id }}"
