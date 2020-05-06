@@ -114,6 +114,7 @@ from contextlib import contextmanager
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
     oci_common_utils,
+    oci_version,
 )
 
 try:
@@ -200,7 +201,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
 
         self.config["additional_user_agent"] = (
-            oci_config_utils.inventory_agent_name + oci_common_utils.__version__
+            oci_config_utils.inventory_agent_name + oci_version.__version__
         )
         self.log(self.config["additional_user_agent"])
 

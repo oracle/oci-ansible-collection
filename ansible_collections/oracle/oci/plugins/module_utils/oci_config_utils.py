@@ -7,7 +7,10 @@
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_common_utils,
+    oci_version,
+)
 import os
 
 try:
@@ -69,7 +72,7 @@ def get_oci_config(module, service_client_class=None):
             # When auth_type is not instance_principal, config file is required
             module.fail_json(msg=str(ex))
 
-    config["additional_user_agent"] = agent_name + oci_common_utils.__version__
+    config["additional_user_agent"] = agent_name + oci_version.__version__
     # Merge any overrides through other IAM options
     _merge_auth_option(
         config,
