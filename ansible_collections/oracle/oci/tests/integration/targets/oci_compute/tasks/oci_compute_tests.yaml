@@ -28,7 +28,7 @@
     - name: Create network_security_group
       oci_network_security_group:
         compartment_id: "{{ test_compartment_ocid }}"
-        display_name: "my_nsg_{{random_suffix_1024}}"
+        display_name: "compute_nsg_{{random_suffix_1024}}"
         vcn_id: "{{ common_vcn_id }}"
       register: result
 

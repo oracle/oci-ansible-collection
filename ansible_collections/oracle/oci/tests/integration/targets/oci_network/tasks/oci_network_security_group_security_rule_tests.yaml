@@ -8,7 +8,7 @@
     id: "{{ item['id'] }}"
     state: absent
   with_items: "{{ test_nsgs.network_security_groups }}"
-  when: item.display_name.find(random_suffix_1024) != -1
+  when: item.display_name.find(random_suffix_1024) != -1 and item.display_name.find("network_test_nsg") != -1
   ignore_errors: yes
 
 - block:
@@ -16,7 +16,7 @@
       oci_network_security_group:
         compartment_id: "{{ test_compartment_ocid }}"
         vcn_id: "{{ common_vcn_id }}"
-        display_name: "my_nsg_{{random_suffix_1024}}"
+        display_name: "network_test_nsg_{{random_suffix_1024}}"
       register: result
 
     - set_fact:
