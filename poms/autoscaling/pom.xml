@@ -196,7 +196,7 @@
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
         <artifactId>autoscaling-public-api-spec</artifactId>
-        <version>0.0.49</version>
+        <version>0.0.44</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

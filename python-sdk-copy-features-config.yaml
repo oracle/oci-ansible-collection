@@ -28,5 +28,3 @@ python_sdk_features_blacklist:
 python_sdk_spec_version_overrides:
   # audit has significant breaking changes that we need to pull in in a separate change
   audit: "0.1.9"
-  # autoscaling we are ahead of the Python SDK
-  autoscaling: "0.0.49"

@@ -230,3 +230,59 @@ container_engine:
       {
         "nodePoolOptionId": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
       }
+autoscaling:
+  CreateAutoScalingConfiguration: |
+      POST /20181001/autoScalingConfigurations
+      Host: autoscaling.us-phoenix-1.oci.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+      {
+        "compartmentId": "ocid1.compartment.oc1..<var>&lt;unique_ID&gt;</var>",
+        "displayName": "example_autoscaling_configuration",
+        "coolDownInSeconds": 300,
+        "isEnabled": true,
+        "policies": [
+        {
+            "capacity": {
+                "max": 50,
+                "min": 10,
+                "initial": 15
+            },
+            "displayName": "example_autoscaling_policy",
+            "policyType": "threshold",
+            "rules": [
+            {
+                "action": {
+                    "type": "CHANGE_COUNT_BY",
+                    "value": 5
+                },
+                "displayName": "example_scale_out_condition",
+                "metric": {
+                    "metricType": "CPU_UTILIZATION",
+                    "threshold": {
+                        "operator": "GTE",
+                        "value": 90
+                    }
+                }
+            },
+            {
+                "action": {
+                    "type": "CHANGE_COUNT_BY",
+                    "value": -5
+                },
+                "displayName": "example_scale_in_condition",
+                "metric": {
+                    "metricType": "CPU_UTILIZATION",
+                    "threshold": {
+                        "operator": "LTE",
+                        "value": 25
+                    }
+                }
+            }
+            ]
+        }
+        ],
+        "resource": {
+            "type": "instancePool",
+            "id": "ocid1.instancepool.oc1..<var>&lt;unique_ID&gt;</var>"
+        }
+      }
