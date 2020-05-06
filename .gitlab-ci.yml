@@ -51,14 +51,14 @@ after_script:
 # `quickcheck` stage jobs
 #############################################################################
 
-quickchecks:
-  stage: quickcheck
-  tags:
-    - quickchecks
-  except:
-    - schedules
-  script:
-    - tox
+#quickchecks:
+#  stage: quickcheck
+#  tags:
+#    - quickchecks
+#  except:
+#    - schedules
+#  script:
+#    - tox
 
 #############################################################################
 # `integration_tests` stage jobs
