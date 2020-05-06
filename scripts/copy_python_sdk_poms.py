@@ -316,7 +316,12 @@ def main(python_sdk_dir, ansible_collections_repo_dir, copy_codegen_config_enabl
 
         if not ALLOW_WORK_REQUEST_SERVICE:
             remove_child_element(pom, additional_properties_xpath, ".//ns:specUsesWorkRequestService")
-        
+
+        # replace new dex-get-spec-artifact-plugin with the old plugin that downloads directly from artifactory
+        replace_element_text(pom, ".//ns:plugin[ns:artifactId='dex-get-spec-artifact-plugin']/ns:version", "2.10")
+        replace_element_text(pom, ".//ns:plugin[ns:artifactId='dex-get-spec-artifact-plugin']/ns:groupId", "org.apache.maven.plugins")
+        replace_element_text(pom, ".//ns:plugin[ns:artifactId='dex-get-spec-artifact-plugin']/ns:artifactId", "maven-dependency-plugin")
+
         if spec_name == "audit":
             replace_element_text(pom, ".//ns:hemlock-spec-spec-file", "hemlock-api-20160918.yaml")
 
