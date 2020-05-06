@@ -304,8 +304,9 @@ class BucketActionsHelperGen(OCIActionsHelperBase):
             ),
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or self.get_action_desired_states(self.module.params.get("action")),
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def reencrypt(self):
@@ -323,8 +324,7 @@ class BucketActionsHelperGen(OCIActionsHelperBase):
             ),
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_work_request_completed_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

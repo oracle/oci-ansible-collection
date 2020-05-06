@@ -233,8 +233,7 @@ class SmtpCredentialHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_active_states(),
+            wait_for_states=self.get_resource_active_states(),
         )
 
     def get_update_model_class(self):
@@ -254,8 +253,7 @@ class SmtpCredentialHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_active_states(),
+            wait_for_states=self.get_resource_active_states(),
         )
 
     def delete_resource(self):
@@ -270,8 +268,7 @@ class SmtpCredentialHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_terminated_states(),
+            wait_for_states=self.get_resource_terminated_states(),
         )
 
 

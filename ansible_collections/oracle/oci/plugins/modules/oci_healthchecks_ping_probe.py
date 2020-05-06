@@ -203,8 +203,7 @@ class PingProbeHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or self.get_resource_active_states(),
+            wait_for_states=self.get_resource_active_states(),
         )
 
 

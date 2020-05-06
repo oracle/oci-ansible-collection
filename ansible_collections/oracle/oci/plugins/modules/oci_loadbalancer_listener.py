@@ -334,8 +334,7 @@ class ListenerHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_work_request_completed_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -355,8 +354,7 @@ class ListenerHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_work_request_completed_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def delete_resource(self):
@@ -371,8 +369,7 @@ class ListenerHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.client,
             resource_helper=self,
-            wait_for_states=self.module.params.get("wait_until")
-            or oci_common_utils.get_work_request_completed_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 
