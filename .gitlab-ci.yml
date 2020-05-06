@@ -8,6 +8,9 @@ variables:
   # run during standard integration tests
   ansible_skip_tags_for_default_integ_test_job: weekly,nightly
 
+  # tag used in test playbooks to designate non_parallel tests
+  ansible_non_parallel_test_tag: non_parallel
+
 before_script:
   - echo "Running jobs for $CI_COMMIT_REF_NAME in $(pwd)"
 
@@ -29,9 +32,8 @@ before_script:
   - cat ~/.oci/config
   - cp .oci/*.pem ~/.oci/
   - source scripts/common-vars.sh
-  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | grep -v oci_generated_core | grep -v lengthy | sort)
-  - export lengthy_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep -v non_parallel | grep lengthy | sort)
-  - export non_parallel_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep non_parallel | sort)
+  - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*"  | grep -v oci_generated_core | grep -v lengthy | sort)
+  - export lengthy_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep lengthy | sort)
 
 after_script:
     # clean up all configuration artifacts so that the next run starts with a clean
@@ -70,7 +72,7 @@ quickchecks:
     - echo "Tags ${tags}"
     - echo "Set no ${set_no}"
     - echo "Total number of sets ${total_target_sets}"
-    - tox -e integration_tests -- --targets "${!targets}" --set-no "$set_no" --total-target-sets "$total_target_sets" --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job"
+    - tox -e integration_tests -- --targets "${!targets}" --set-no "$set_no" --total-target-sets "$total_target_sets" --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job,$ansible_non_parallel_test_tag"
 
 # gitlab does not support dynamic job creation. So we will have to manually divide the integration tests
 # into multiple jobs so that they can be run in parallel.
@@ -118,7 +120,7 @@ lengthy_integration_tests_set_2:
     - tags
   script:
     - echo "Running core tests with tag $tag"
-    - tox -e integration_tests -- --targets oci_generated_core --ansible-test-tags $tag --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job"
+    - tox -e integration_tests -- --targets oci_generated_core --ansible-test-tags $tag --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job,$ansible_non_parallel_test_tag"
   retry: 2
 
 core_integration_tests_set_1:
@@ -141,13 +143,23 @@ core_integration_tests_set_3:
 # run in parallel. The non parallel integration test targets should contain non_parallel in the target name.
 # For ex: oci_identity_non_parallel
 non_parallel_integration_tests_dev_set_1:
-  <<: *integration_tests_job_def
+  stage: integration_tests
   tags:
     - non_parallel
+  except:
+    - tags
+    - schedules
   variables:
     set_no: 0
-    targets: "non_parallel_integration_test_targets"
+    targets: "integration_test_targets"
     total_target_sets: 1
+  script:
+    - echo "All targets ${!targets}"
+    - echo "Tags ${tags}"
+    - echo "Set no ${set_no}"
+    - echo "Total number of sets ${total_target_sets}"
+    - tox -e integration_tests -- --targets "${!targets}" --set-no "$set_no" --total-target-sets "$total_target_sets" --ansible-test-tags "$ansible_non_parallel_test_tag" --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job"
+
 
 #############################################################################
 # `scheduled_jobs` stage jobs

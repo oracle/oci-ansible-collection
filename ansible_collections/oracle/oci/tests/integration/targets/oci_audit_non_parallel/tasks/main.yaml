@@ -200,3 +200,6 @@
 
     - fail:
         msg: "{{ ansible_failed_result }}"
+
+  tags:
+    - non_parallel

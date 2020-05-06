@@ -1,2 +1,6 @@
 ---
-- include: oci_tag_lengthy_tests.yaml
+- block:
+    - include: oci_tag_lengthy_tests.yaml
+  
+  tags:
+    - non_parallel
