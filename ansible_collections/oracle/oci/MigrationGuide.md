@@ -1,6 +1,14 @@
 ## Ansible Collections Migration Guide
 
 
+#### Audit
+
+|   old name                             |    new name                              |  migration notes
+|----------------------------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|oci_audit_configuration                 |  oci_audit_configuration                 |  breaking changes: <ul><li>`retention_period_days` option is now required</li></ul>
+|oci_audit_event_facts                   |  oci_audit_event_facts                   |  breaking changes: <ul><li>Updated to version 20190901 of the Audit API which involves signifcant changes to the schema of the `event` type returned by this module. See Audit API [release notes](https://docs.cloud.oracle.com/en-us/iaas/releasenotes/changes/56a2e183-96e8-4780-bff7-01cec0fc824f/) and [reference](https://docs.cloud.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm) for more information.</li></ul>
+
+
 #### Identity
 
 |   old name                             |    new name                              |  migration notes
@@ -39,6 +47,7 @@
 |oci_tag_namespace_facts                 |  oci_identity_tag_namespace_facts        |  no breaking changes
 |oci_tenancy_facts                       |  oci_identity_tenancy_facts              |  no breaking changes
 |oci_user                                |  oci_identity_user                       |  breaking changes: <ul><li>The following parameters no longer exist: create_or_reset_ui_password, purge_group_memberships, delete_group_memberships, blocked, user_groups<ul><li> You must use oci_identity_user_group_membership to manage group memberships</li> <li>You must use oci_identity_ui_password to perform the create_or_reset_ui_password operation</li></ul></li> <li>There is now a 'compartment_id' parameter which is required for several operations. Previously this defaulted to the tenancy ID, but now you must supply it explicitly</li><li>functionality of the "create_or_reset_ui_password" parameter is moved to new module `oci_identity_ui_password`</li></ul>
+
 
 #### Network
 
