@@ -10,7 +10,7 @@ random_suffix_1024: "{{1024 |random(seed=ansible_nodename) | string}}"
 # For IP scenarios, allocate in blocks of ten, so that any secondary vnic ip
 # addresses that are created by adding to the primary IP, will not result in
 # conflicts across machines.
-random_suffix_250: "{{ 250 | random(seed=ansible_nodename, start=5, step=10) | string }}"
+random_suffix_250: "{{ 250 | random(seed=ansible_nodename, start=5) | string }}"
 
 # For virtual circuit vlan to avoid conflicts
 random_suffix_vlan_1: "{{ 2000 | random(start=100, seed=ansible_nodename) | string }}"
