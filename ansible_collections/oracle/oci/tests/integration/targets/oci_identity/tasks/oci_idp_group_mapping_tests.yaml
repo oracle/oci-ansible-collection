@@ -1,5 +1,27 @@
 # tests for `oci_identity_idp_group_mapping` and `oci_identity_idp_group_mapping_facts`
 
+# cleanup before execution
+# ===========================================================================================
+- name: get all the identity providers
+  oci_identity_provider_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+    protocol: "{{ test_identity_provider_protocol }}"
+  register: list_for_delete_identity_providers_result
+
+- name: delete the identity providers
+  oci_identity_provider:
+    identity_provider_id: "{{ item.id }}"
+    state: absent
+  when: item.name is search(random_suffix_1024)
+  loop: "{{ list_for_delete_identity_providers_result.identity_providers }}"
+  ignore_errors: yes
+
+# this was an issue with the existing tests but they were manually triggered
+# so we rarely hit it
+- name: Wait for identity provider deletion to propagate
+  pause:
+    seconds: 3
+
 # ============================================================
 - name: Create new group in OCI
   oci_identity_group:

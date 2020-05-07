@@ -117,6 +117,11 @@ test_identity_provider_group_create_dependency_identity_provider_metadata: "{{ l
 # compartments
 dependency_parent_compartment_id: "{{ identity_create_delete_parent_compartment_ocid }}"
 
+# re-creating a compartment with the same name immediately after it was deleted can fail due to service error
+# thus, for the second compartment we create we need to use a different name
+test_compartment_create_optional_required_name: "{{ 'compartment_generated_test_' + random_suffix_1024 }}"
+test_compartment_update_optional_required_name: "{{ 'compartment_generated_test_updated_' + random_suffix_1024 }}"
+
 # api_key
 test_api_key_create_dependency_user_compartment_id: "{{tenancy_ocid}}"
 test_api_key: "{{ lookup('file', 'files/oci_api_key_public.pem') }}"
