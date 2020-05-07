@@ -9,7 +9,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.virtual_circuit_bandwidth_shapes | length > 0
+        - result['virtual_circuit_bandwidth_shapes'] | length > 0
     when: skip_virtual_circuit_bandwidth_shape_list_test is not defined
 
 
@@ -18,7 +18,7 @@
       that:
         - item.bandwidth_in_mbps is defined
         - item.name is defined
-    with_items: "{{ result.virtual_circuit_bandwidth_shapes }}"
+    with_items: "{{ result['virtual_circuit_bandwidth_shapes'] }}"
     when: skip_virtual_circuit_bandwidth_shape_list_test is not defined
 
   - name: Assert custom assertions

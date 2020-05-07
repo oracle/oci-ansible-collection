@@ -574,7 +574,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_pools | length > 0
+        - result['instance_pools'] | length > 0
     when: skip_instance_pool_list_test is not defined
 
 
@@ -588,7 +588,7 @@
         - item.lifecycle_state is defined
         - item.size is defined
         - item.time_created is defined
-    with_items: "{{ result.instance_pools }}"
+    with_items: "{{ result['instance_pools'] }}"
     when: skip_instance_pool_list_test is not defined
 
   - name: Assert custom assertions
@@ -609,7 +609,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_pools | length == 1
+        - result['instance_pools'] | length == 1
     when: skip_instance_pool_get_test is not defined
 
   - name: Assert response properties are populated
@@ -622,7 +622,7 @@
         - item.lifecycle_state is defined
         - item.size is defined
         - item.time_created is defined
-    with_items: "{{ result.instance_pools }}"
+    with_items: "{{ result['instance_pools'] }}"
     when: skip_instance_pool_get_test is not defined
 
   - name: Assert custom assertions

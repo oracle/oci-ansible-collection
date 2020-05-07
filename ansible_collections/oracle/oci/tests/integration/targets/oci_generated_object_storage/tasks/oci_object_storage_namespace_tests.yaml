@@ -8,15 +8,15 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.namespace is defined
-        - result.namespace != None
+        - result['namespace'] is defined
+        - result['namespace'] != None
     when: skip_namespace_get_test is not defined
 
   - name: Assert response properties are populated
     assert:
       that:
     with_items:
-      - "{{ result.namespace }}"
+      - "{{ result['namespace'] }}"
     when: skip_namespace_get_test is not defined
 
   - name: Assert custom assertions

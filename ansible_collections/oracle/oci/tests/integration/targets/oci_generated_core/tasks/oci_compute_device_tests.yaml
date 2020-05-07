@@ -35,7 +35,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.devices | length > 0
+        - result['devices'] | length > 0
     when: skip_device_list_test is not defined
 
 
@@ -44,7 +44,7 @@
       that:
         - item.name is defined
         - item.is_available is defined
-    with_items: "{{ result.devices }}"
+    with_items: "{{ result['devices'] }}"
     when: skip_device_list_test is not defined
 
   - name: Assert custom assertions

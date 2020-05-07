@@ -189,7 +189,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.ip_sec_connection_tunnels | length > 0
+        - result['ip_sec_connection_tunnels'] | length > 0
     when: skip_ip_sec_connection_tunnel_list_test is not defined
 
 
@@ -207,7 +207,7 @@
         - item.routing is defined
         - item.time_created is defined
         - item.time_status_updated is defined
-    with_items: "{{ result.ip_sec_connection_tunnels }}"
+    with_items: "{{ result['ip_sec_connection_tunnels'] }}"
     when: skip_ip_sec_connection_tunnel_list_test is not defined
 
   - name: Assert custom assertions
@@ -229,7 +229,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.ip_sec_connection_tunnels | length == 1
+        - result['ip_sec_connection_tunnels'] | length == 1
     when: skip_ip_sec_connection_tunnel_get_test is not defined
 
   - name: Assert response properties are populated
@@ -246,7 +246,7 @@
         - item.routing is defined
         - item.time_created is defined
         - item.time_status_updated is defined
-    with_items: "{{ result.ip_sec_connection_tunnels }}"
+    with_items: "{{ result['ip_sec_connection_tunnels'] }}"
     when: skip_ip_sec_connection_tunnel_get_test is not defined
 
   - name: Assert custom assertions

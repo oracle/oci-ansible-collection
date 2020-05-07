@@ -9,7 +9,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.ping_probe_results | length > 0
+        - result['ping_probe_results'] | length > 0
     when: skip_ping_probe_result_list_test is not defined
 
 
@@ -32,7 +32,7 @@
         - item.domain_lookup_end is defined
         - item.latency_in_ms is defined
         - item.icmp_code is defined
-    with_items: "{{ result.ping_probe_results }}"
+    with_items: "{{ result['ping_probe_results'] }}"
     when: skip_ping_probe_result_list_test is not defined
 
   - name: Assert custom assertions

@@ -263,7 +263,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.app_catalog_subscriptions | length > 0
+        - result['app_catalog_subscriptions'] | length > 0
     when: skip_app_catalog_subscription_list_test is not defined
 
 
@@ -278,7 +278,7 @@
         - item.summary is defined
         - item.compartment_id is defined
         - item.time_created is defined
-    with_items: "{{ result.app_catalog_subscriptions }}"
+    with_items: "{{ result['app_catalog_subscriptions'] }}"
     when: skip_app_catalog_subscription_list_test is not defined
 
   - name: Assert custom assertions

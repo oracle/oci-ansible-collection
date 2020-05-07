@@ -9,8 +9,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tenancy is defined
-        - result.tenancy != None
+        - result['tenancy'] is defined
+        - result['tenancy'] != None
     when: skip_tenancy_get_test is not defined
 
   - name: Assert response properties are populated
@@ -23,7 +23,7 @@
         - item.freeform_tags is defined
         - item.defined_tags is defined
     with_items:
-      - "{{ result.tenancy }}"
+      - "{{ result['tenancy'] }}"
     when: skip_tenancy_get_test is not defined
 
   - name: Assert custom assertions

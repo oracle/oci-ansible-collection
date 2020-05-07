@@ -59,7 +59,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.network_security_group_security_rules | length > 0
+        - result['network_security_group_security_rules'] | length > 0
     when: skip_network_security_group_security_rule_list_test is not defined
 
 
@@ -80,7 +80,7 @@
         - item.tcp_options is defined
         - item.time_created is defined
         - item.udp_options is defined
-    with_items: "{{ result.network_security_group_security_rules }}"
+    with_items: "{{ result['network_security_group_security_rules'] }}"
     when: skip_network_security_group_security_rule_list_test is not defined
 
   - name: Assert custom assertions

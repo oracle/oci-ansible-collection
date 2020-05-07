@@ -453,7 +453,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.nat_gateways | length > 0
+        - result['nat_gateways'] | length > 0
     when: skip_nat_gateway_list_test is not defined
 
 
@@ -470,7 +470,7 @@
         - item.nat_ip is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.nat_gateways }}"
+    with_items: "{{ result['nat_gateways'] }}"
     when: skip_nat_gateway_list_test is not defined
 
   - name: Assert custom assertions
@@ -491,7 +491,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.nat_gateways | length == 1
+        - result['nat_gateways'] | length == 1
     when: skip_nat_gateway_get_test is not defined
 
   - name: Assert response properties are populated
@@ -507,7 +507,7 @@
         - item.nat_ip is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.nat_gateways }}"
+    with_items: "{{ result['nat_gateways'] }}"
     when: skip_nat_gateway_get_test is not defined
 
   - name: Assert custom assertions

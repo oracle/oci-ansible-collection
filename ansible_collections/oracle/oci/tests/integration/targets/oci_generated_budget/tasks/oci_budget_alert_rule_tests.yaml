@@ -539,7 +539,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.budget_alert_rules | length > 0
+        - result['budget_alert_rules'] | length > 0
     when: skip_budget_alert_rule_list_test is not defined
 
 
@@ -561,7 +561,7 @@
         - item.time_updated is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.budget_alert_rules }}"
+    with_items: "{{ result['budget_alert_rules'] }}"
     when: skip_budget_alert_rule_list_test is not defined
 
   - name: Assert custom assertions
@@ -583,7 +583,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.budget_alert_rules | length == 1
+        - result['budget_alert_rules'] | length == 1
     when: skip_budget_alert_rule_get_test is not defined
 
   - name: Assert response properties are populated
@@ -604,7 +604,7 @@
         - item.time_updated is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.budget_alert_rules }}"
+    with_items: "{{ result['budget_alert_rules'] }}"
     when: skip_budget_alert_rule_get_test is not defined
 
   - name: Assert custom assertions

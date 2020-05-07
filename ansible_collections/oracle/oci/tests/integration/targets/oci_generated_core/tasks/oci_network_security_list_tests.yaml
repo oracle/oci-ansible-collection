@@ -678,7 +678,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.security_lists | length > 0
+        - result['security_lists'] | length > 0
     when: skip_security_list_list_test is not defined
 
 
@@ -695,7 +695,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.security_lists }}"
+    with_items: "{{ result['security_lists'] }}"
     when: skip_security_list_list_test is not defined
 
   - name: Assert custom assertions
@@ -716,7 +716,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.security_lists | length == 1
+        - result['security_lists'] | length == 1
     when: skip_security_list_get_test is not defined
 
   - name: Assert response properties are populated
@@ -732,7 +732,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.security_lists }}"
+    with_items: "{{ result['security_lists'] }}"
     when: skip_security_list_get_test is not defined
 
   - name: Assert custom assertions

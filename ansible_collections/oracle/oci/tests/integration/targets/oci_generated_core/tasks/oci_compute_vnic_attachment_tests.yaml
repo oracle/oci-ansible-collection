@@ -371,7 +371,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.vnic_attachments | length > 0
+        - result['vnic_attachments'] | length > 0
     when: skip_vnic_attachment_list_test is not defined
 
 
@@ -389,7 +389,7 @@
         - item.time_created is defined
         - item.vlan_tag is defined
         - item.vnic_id is defined
-    with_items: "{{ result.vnic_attachments }}"
+    with_items: "{{ result['vnic_attachments'] }}"
     when: skip_vnic_attachment_list_test is not defined
 
   - name: Assert custom assertions
@@ -410,7 +410,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.vnic_attachments | length == 1
+        - result['vnic_attachments'] | length == 1
     when: skip_vnic_attachment_get_test is not defined
 
   - name: Assert response properties are populated
@@ -427,7 +427,7 @@
         - item.time_created is defined
         - item.vlan_tag is defined
         - item.vnic_id is defined
-    with_items: "{{ result.vnic_attachments }}"
+    with_items: "{{ result['vnic_attachments'] }}"
     when: skip_vnic_attachment_get_test is not defined
 
   - name: Assert custom assertions

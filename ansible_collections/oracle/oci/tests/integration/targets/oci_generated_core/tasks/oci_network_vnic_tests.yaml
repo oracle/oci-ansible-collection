@@ -105,8 +105,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.vnic is defined
-        - result.vnic != None
+        - result['vnic'] is defined
+        - result['vnic'] != None
     when: skip_vnic_get_test is not defined
 
   - name: Assert response properties are populated
@@ -129,7 +129,7 @@
         - item.subnet_id is defined
         - item.time_created is defined
     with_items:
-      - "{{ result.vnic }}"
+      - "{{ result['vnic'] }}"
     when: skip_vnic_get_test is not defined
 
   - name: Assert custom assertions

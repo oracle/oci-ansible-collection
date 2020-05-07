@@ -722,7 +722,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instances | length > 0
+        - result['instances'] | length > 0
     when: skip_instance_list_test is not defined
 
 
@@ -750,7 +750,7 @@
         - item.time_created is defined
         - item.agent_config is defined
         - item.time_maintenance_reboot_due is defined
-    with_items: "{{ result.instances }}"
+    with_items: "{{ result['instances'] }}"
     when: skip_instance_list_test is not defined
 
   - name: Assert custom assertions
@@ -771,7 +771,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instances | length == 1
+        - result['instances'] | length == 1
     when: skip_instance_get_test is not defined
 
   - name: Assert response properties are populated
@@ -798,7 +798,7 @@
         - item.time_created is defined
         - item.agent_config is defined
         - item.time_maintenance_reboot_due is defined
-    with_items: "{{ result.instances }}"
+    with_items: "{{ result['instances'] }}"
     when: skip_instance_get_test is not defined
 
   - name: Assert custom assertions

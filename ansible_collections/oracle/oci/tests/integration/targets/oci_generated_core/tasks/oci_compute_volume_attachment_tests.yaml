@@ -364,7 +364,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.volume_attachments | length > 0
+        - result['volume_attachments'] | length > 0
     when: skip_volume_attachment_list_test is not defined
 
 
@@ -388,7 +388,7 @@
         - item.ipv4 is defined
         - item.iqn is defined
         - item.port is defined
-    with_items: "{{ result.volume_attachments }}"
+    with_items: "{{ result['volume_attachments'] }}"
     when: skip_volume_attachment_list_test is not defined
 
   - name: Assert custom assertions
@@ -409,7 +409,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.volume_attachments | length == 1
+        - result['volume_attachments'] | length == 1
     when: skip_volume_attachment_get_test is not defined
 
   - name: Assert response properties are populated
@@ -432,7 +432,7 @@
         - item.ipv4 is defined
         - item.iqn is defined
         - item.port is defined
-    with_items: "{{ result.volume_attachments }}"
+    with_items: "{{ result['volume_attachments'] }}"
     when: skip_volume_attachment_get_test is not defined
 
   - name: Assert custom assertions

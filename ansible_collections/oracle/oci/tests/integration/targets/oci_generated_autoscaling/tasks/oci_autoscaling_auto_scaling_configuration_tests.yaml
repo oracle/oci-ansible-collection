@@ -491,7 +491,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.auto_scaling_configurations | length > 0
+        - result['auto_scaling_configurations'] | length > 0
     when: skip_auto_scaling_configuration_list_test is not defined
 
 
@@ -505,7 +505,7 @@
         - item.is_enabled is defined
         - item.resource is defined
         - item.time_created is defined
-    with_items: "{{ result.auto_scaling_configurations }}"
+    with_items: "{{ result['auto_scaling_configurations'] }}"
     when: skip_auto_scaling_configuration_list_test is not defined
 
   - name: Assert custom assertions
@@ -526,7 +526,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.auto_scaling_configurations | length == 1
+        - result['auto_scaling_configurations'] | length == 1
     when: skip_auto_scaling_configuration_get_test is not defined
 
   - name: Assert response properties are populated
@@ -539,7 +539,7 @@
         - item.is_enabled is defined
         - item.resource is defined
         - item.time_created is defined
-    with_items: "{{ result.auto_scaling_configurations }}"
+    with_items: "{{ result['auto_scaling_configurations'] }}"
     when: skip_auto_scaling_configuration_get_test is not defined
 
   - name: Assert custom assertions

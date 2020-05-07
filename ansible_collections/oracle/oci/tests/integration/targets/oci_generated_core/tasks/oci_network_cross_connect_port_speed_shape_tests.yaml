@@ -9,7 +9,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cross_connect_port_speed_shapes | length > 0
+        - result['cross_connect_port_speed_shapes'] | length > 0
     when: skip_cross_connect_port_speed_shape_list_test is not defined
 
 
@@ -18,7 +18,7 @@
       that:
         - item.name is defined
         - item.port_speed_in_gbps is defined
-    with_items: "{{ result.cross_connect_port_speed_shapes }}"
+    with_items: "{{ result['cross_connect_port_speed_shapes'] }}"
     when: skip_cross_connect_port_speed_shape_list_test is not defined
 
   - name: Assert custom assertions

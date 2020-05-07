@@ -168,7 +168,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.export_sets | length > 0
+        - result['export_sets'] | length > 0
     when: skip_export_set_list_test is not defined
 
 
@@ -182,7 +182,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.export_sets }}"
+    with_items: "{{ result['export_sets'] }}"
     when: skip_export_set_list_test is not defined
 
   - name: Assert custom assertions
@@ -203,7 +203,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.export_sets | length == 1
+        - result['export_sets'] | length == 1
     when: skip_export_set_get_test is not defined
 
   - name: Assert response properties are populated
@@ -216,7 +216,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.export_sets }}"
+    with_items: "{{ result['export_sets'] }}"
     when: skip_export_set_get_test is not defined
 
   - name: Assert custom assertions

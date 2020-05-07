@@ -454,7 +454,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.mount_targets | length > 0
+        - result['mount_targets'] | length > 0
     when: skip_mount_target_list_test is not defined
 
 
@@ -472,7 +472,7 @@
         - item.time_created is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.mount_targets }}"
+    with_items: "{{ result['mount_targets'] }}"
     when: skip_mount_target_list_test is not defined
 
   - name: Assert custom assertions
@@ -493,7 +493,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.mount_targets | length == 1
+        - result['mount_targets'] | length == 1
     when: skip_mount_target_get_test is not defined
 
   - name: Assert response properties are populated
@@ -510,7 +510,7 @@
         - item.time_created is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.mount_targets }}"
+    with_items: "{{ result['mount_targets'] }}"
     when: skip_mount_target_get_test is not defined
 
   - name: Assert custom assertions

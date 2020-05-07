@@ -8,7 +8,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.peer_region_for_remote_peerings | length > 0
+        - result['peer_region_for_remote_peerings'] | length > 0
     when: skip_peer_region_for_remote_peering_list_test is not defined
 
 
@@ -16,7 +16,7 @@
     assert:
       that:
         - item.name is defined
-    with_items: "{{ result.peer_region_for_remote_peerings }}"
+    with_items: "{{ result['peer_region_for_remote_peerings'] }}"
     when: skip_peer_region_for_remote_peering_list_test is not defined
 
   - name: Assert custom assertions

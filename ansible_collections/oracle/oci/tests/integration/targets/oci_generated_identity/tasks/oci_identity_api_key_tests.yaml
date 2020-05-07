@@ -259,7 +259,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.api_keys | length > 0
+        - result['api_keys'] | length > 0
     when: skip_api_key_list_test is not defined
 
 
@@ -273,7 +273,7 @@
         - item.time_created is defined
         - item.lifecycle_state is defined
         - item.inactive_status is defined
-    with_items: "{{ result.api_keys }}"
+    with_items: "{{ result['api_keys'] }}"
     when: skip_api_key_list_test is not defined
 
   - name: Assert custom assertions

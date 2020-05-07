@@ -451,7 +451,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.clusters | length > 0
+        - result['clusters'] | length > 0
     when: skip_cluster_list_test is not defined
 
 
@@ -469,7 +469,7 @@
         - item.lifecycle_details is defined
         - item.endpoints is defined
         - item.available_kubernetes_upgrades is defined
-    with_items: "{{ result.clusters }}"
+    with_items: "{{ result['clusters'] }}"
     when: skip_cluster_list_test is not defined
 
   - name: Assert custom assertions
@@ -490,7 +490,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.clusters | length == 1
+        - result['clusters'] | length == 1
     when: skip_cluster_get_test is not defined
 
   - name: Assert response properties are populated
@@ -507,7 +507,7 @@
         - item.lifecycle_details is defined
         - item.endpoints is defined
         - item.available_kubernetes_upgrades is defined
-    with_items: "{{ result.clusters }}"
+    with_items: "{{ result['clusters'] }}"
     when: skip_cluster_get_test is not defined
 
   - name: Assert custom assertions

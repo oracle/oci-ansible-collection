@@ -70,7 +70,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_pool_instances | length > 0
+        - result['instance_pool_instances'] | length > 0
     when: skip_instance_pool_instance_list_test is not defined
 
 
@@ -88,7 +88,7 @@
         - item.state is defined
         - item.time_created is defined
         - item.load_balancer_backends is defined
-    with_items: "{{ result.instance_pool_instances }}"
+    with_items: "{{ result['instance_pool_instances'] }}"
     when: skip_instance_pool_instance_list_test is not defined
 
   - name: Assert custom assertions

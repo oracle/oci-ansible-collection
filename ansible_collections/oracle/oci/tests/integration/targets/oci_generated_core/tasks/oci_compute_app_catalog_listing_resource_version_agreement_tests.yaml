@@ -10,8 +10,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.app_catalog_listing_resource_version_agreement is defined
-        - result.app_catalog_listing_resource_version_agreement != None
+        - result['app_catalog_listing_resource_version_agreement'] is defined
+        - result['app_catalog_listing_resource_version_agreement'] != None
     when: skip_app_catalog_listing_resource_version_agreement_get_test is not defined
 
   - name: Assert response properties are populated
@@ -24,7 +24,7 @@
         - item.time_retrieved is defined
         - item.signature is defined
     with_items:
-      - "{{ result.app_catalog_listing_resource_version_agreement }}"
+      - "{{ result['app_catalog_listing_resource_version_agreement'] }}"
     when: skip_app_catalog_listing_resource_version_agreement_get_test is not defined
 
   - name: Assert custom assertions

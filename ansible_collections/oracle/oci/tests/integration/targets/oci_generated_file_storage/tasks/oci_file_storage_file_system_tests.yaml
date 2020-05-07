@@ -418,7 +418,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.file_systems | length > 0
+        - result['file_systems'] | length > 0
     when: skip_file_system_list_test is not defined
 
 
@@ -434,7 +434,7 @@
         - item.time_created is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.file_systems }}"
+    with_items: "{{ result['file_systems'] }}"
     when: skip_file_system_list_test is not defined
 
   - name: Assert custom assertions
@@ -455,7 +455,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.file_systems | length == 1
+        - result['file_systems'] | length == 1
     when: skip_file_system_get_test is not defined
 
   - name: Assert response properties are populated
@@ -470,7 +470,7 @@
         - item.time_created is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.file_systems }}"
+    with_items: "{{ result['file_systems'] }}"
     when: skip_file_system_get_test is not defined
 
   - name: Assert custom assertions

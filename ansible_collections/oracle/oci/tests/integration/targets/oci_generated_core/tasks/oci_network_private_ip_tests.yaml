@@ -444,7 +444,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.private_ips | length > 0
+        - result['private_ips'] | length > 0
     when: skip_private_ip_list_test is not defined
 
 
@@ -463,7 +463,7 @@
         - item.subnet_id is defined
         - item.time_created is defined
         - item.vnic_id is defined
-    with_items: "{{ result.private_ips }}"
+    with_items: "{{ result['private_ips'] }}"
     when: skip_private_ip_list_test is not defined
 
   - name: Assert custom assertions
@@ -484,7 +484,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.private_ips | length == 1
+        - result['private_ips'] | length == 1
     when: skip_private_ip_get_test is not defined
 
   - name: Assert response properties are populated
@@ -502,7 +502,7 @@
         - item.subnet_id is defined
         - item.time_created is defined
         - item.vnic_id is defined
-    with_items: "{{ result.private_ips }}"
+    with_items: "{{ result['private_ips'] }}"
     when: skip_private_ip_get_test is not defined
 
   - name: Assert custom assertions

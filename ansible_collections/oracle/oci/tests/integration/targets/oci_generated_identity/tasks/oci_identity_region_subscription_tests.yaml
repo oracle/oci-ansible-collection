@@ -11,7 +11,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.region_subscriptions | length > 0
+        - result['region_subscriptions'] | length > 0
     when: skip_region_subscription_list_test is not defined
 
 
@@ -22,7 +22,7 @@
         - item.region_name is defined
         - item.status is defined
         - item.is_home_region is defined
-    with_items: "{{ result.region_subscriptions }}"
+    with_items: "{{ result['region_subscriptions'] }}"
     when: skip_region_subscription_list_test is not defined
 
   - name: Assert custom assertions

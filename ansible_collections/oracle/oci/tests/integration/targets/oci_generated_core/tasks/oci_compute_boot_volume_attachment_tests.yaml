@@ -324,7 +324,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.boot_volume_attachments | length > 0
+        - result['boot_volume_attachments'] | length > 0
     when: skip_boot_volume_attachment_list_test is not defined
 
 
@@ -340,7 +340,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.is_pv_encryption_in_transit_enabled is defined
-    with_items: "{{ result.boot_volume_attachments }}"
+    with_items: "{{ result['boot_volume_attachments'] }}"
     when: skip_boot_volume_attachment_list_test is not defined
 
   - name: Assert custom assertions
@@ -361,7 +361,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.boot_volume_attachments | length == 1
+        - result['boot_volume_attachments'] | length == 1
     when: skip_boot_volume_attachment_get_test is not defined
 
   - name: Assert response properties are populated
@@ -376,7 +376,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.is_pv_encryption_in_transit_enabled is defined
-    with_items: "{{ result.boot_volume_attachments }}"
+    with_items: "{{ result['boot_volume_attachments'] }}"
     when: skip_boot_volume_attachment_get_test is not defined
 
   - name: Assert custom assertions

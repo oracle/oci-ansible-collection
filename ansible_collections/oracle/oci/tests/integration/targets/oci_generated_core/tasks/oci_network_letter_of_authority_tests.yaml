@@ -35,8 +35,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.letter_of_authority is defined
-        - result.letter_of_authority != None
+        - result['letter_of_authority'] is defined
+        - result['letter_of_authority'] != None
     when: skip_letter_of_authority_get_test is not defined
 
   - name: Assert response properties are populated
@@ -50,7 +50,7 @@
         - item.time_expires is defined
         - item.time_issued is defined
     with_items:
-      - "{{ result.letter_of_authority }}"
+      - "{{ result['letter_of_authority'] }}"
     when: skip_letter_of_authority_get_test is not defined
 
   - name: Assert custom assertions

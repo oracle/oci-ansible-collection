@@ -538,7 +538,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cluster_networks | length > 0
+        - result['cluster_networks'] | length > 0
     when: skip_cluster_network_list_test is not defined
 
 
@@ -554,7 +554,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.time_updated is defined
-    with_items: "{{ result.cluster_networks }}"
+    with_items: "{{ result['cluster_networks'] }}"
     when: skip_cluster_network_list_test is not defined
 
   - name: Assert custom assertions
@@ -575,7 +575,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cluster_networks | length == 1
+        - result['cluster_networks'] | length == 1
     when: skip_cluster_network_get_test is not defined
 
   - name: Assert response properties are populated
@@ -590,7 +590,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.time_updated is defined
-    with_items: "{{ result.cluster_networks }}"
+    with_items: "{{ result['cluster_networks'] }}"
     when: skip_cluster_network_get_test is not defined
 
   - name: Assert custom assertions

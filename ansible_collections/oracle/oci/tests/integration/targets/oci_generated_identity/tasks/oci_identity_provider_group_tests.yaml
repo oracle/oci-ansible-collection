@@ -38,7 +38,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.identity_provider_groups | length > 0
+        - result['identity_provider_groups'] | length > 0
     when: skip_identity_provider_group_list_test is not defined
 
 
@@ -51,7 +51,7 @@
         - item.external_identifier is defined
         - item.time_created is defined
         - item.time_modified is defined
-    with_items: "{{ result.identity_provider_groups }}"
+    with_items: "{{ result['identity_provider_groups'] }}"
     when: skip_identity_provider_group_list_test is not defined
 
   - name: Assert custom assertions

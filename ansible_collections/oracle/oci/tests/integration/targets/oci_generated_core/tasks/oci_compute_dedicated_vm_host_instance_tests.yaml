@@ -36,7 +36,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.dedicated_vm_host_instances | length > 0
+        - result['dedicated_vm_host_instances'] | length > 0
     when: skip_dedicated_vm_host_instance_list_test is not defined
 
 
@@ -48,7 +48,7 @@
         - item.instance_id is defined
         - item.shape is defined
         - item.time_created is defined
-    with_items: "{{ result.dedicated_vm_host_instances }}"
+    with_items: "{{ result['dedicated_vm_host_instances'] }}"
     when: skip_dedicated_vm_host_instance_list_test is not defined
 
   - name: Assert custom assertions

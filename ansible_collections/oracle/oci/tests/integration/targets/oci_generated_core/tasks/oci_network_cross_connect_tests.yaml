@@ -485,7 +485,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cross_connects | length > 0
+        - result['cross_connects'] | length > 0
     when: skip_cross_connect_list_test is not defined
 
 
@@ -504,7 +504,7 @@
         - item.port_speed_shape_name is defined
         - item.customer_reference_name is defined
         - item.time_created is defined
-    with_items: "{{ result.cross_connects }}"
+    with_items: "{{ result['cross_connects'] }}"
     when: skip_cross_connect_list_test is not defined
 
   - name: Assert custom assertions
@@ -525,7 +525,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cross_connects | length == 1
+        - result['cross_connects'] | length == 1
     when: skip_cross_connect_get_test is not defined
 
   - name: Assert response properties are populated
@@ -543,7 +543,7 @@
         - item.port_speed_shape_name is defined
         - item.customer_reference_name is defined
         - item.time_created is defined
-    with_items: "{{ result.cross_connects }}"
+    with_items: "{{ result['cross_connects'] }}"
     when: skip_cross_connect_get_test is not defined
 
   - name: Assert custom assertions

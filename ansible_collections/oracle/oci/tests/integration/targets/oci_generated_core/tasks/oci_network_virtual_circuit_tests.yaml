@@ -628,7 +628,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.virtual_circuits | length > 0
+        - result['virtual_circuits'] | length > 0
     when: skip_virtual_circuit_list_test is not defined
 
 
@@ -659,7 +659,7 @@
         - item.service_type is defined
         - item.time_created is defined
         - item.type is defined
-    with_items: "{{ result.virtual_circuits }}"
+    with_items: "{{ result['virtual_circuits'] }}"
     when: skip_virtual_circuit_list_test is not defined
 
   - name: Assert custom assertions
@@ -680,7 +680,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.virtual_circuits | length == 1
+        - result['virtual_circuits'] | length == 1
     when: skip_virtual_circuit_get_test is not defined
 
   - name: Assert response properties are populated
@@ -710,7 +710,7 @@
         - item.service_type is defined
         - item.time_created is defined
         - item.type is defined
-    with_items: "{{ result.virtual_circuits }}"
+    with_items: "{{ result['virtual_circuits'] }}"
     when: skip_virtual_circuit_get_test is not defined
 
   - name: Assert custom assertions

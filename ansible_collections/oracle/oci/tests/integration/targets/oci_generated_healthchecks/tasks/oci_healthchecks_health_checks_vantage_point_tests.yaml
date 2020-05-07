@@ -8,7 +8,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.health_checks_vantage_points | length > 0
+        - result['health_checks_vantage_points'] | length > 0
     when: skip_health_checks_vantage_point_list_test is not defined
 
 
@@ -20,7 +20,7 @@
         - item.name is defined
         - item.geo is defined
         - item.routing is defined
-    with_items: "{{ result.health_checks_vantage_points }}"
+    with_items: "{{ result['health_checks_vantage_points'] }}"
     when: skip_health_checks_vantage_point_list_test is not defined
 
   - name: Assert custom assertions

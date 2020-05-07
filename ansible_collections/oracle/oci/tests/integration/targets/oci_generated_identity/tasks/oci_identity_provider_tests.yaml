@@ -510,7 +510,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.identity_providers | length > 0
+        - result['identity_providers'] | length > 0
     when: skip_identity_provider_list_test is not defined
 
 
@@ -532,7 +532,7 @@
         - item.signing_certificate is defined
         - item.redirect_url is defined
         - item.freeform_attributes is defined
-    with_items: "{{ result.identity_providers }}"
+    with_items: "{{ result['identity_providers'] }}"
     when: skip_identity_provider_list_test is not defined
 
   - name: Assert custom assertions
@@ -553,7 +553,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.identity_providers | length == 1
+        - result['identity_providers'] | length == 1
     when: skip_identity_provider_get_test is not defined
 
   - name: Assert response properties are populated
@@ -574,7 +574,7 @@
         - item.signing_certificate is defined
         - item.redirect_url is defined
         - item.freeform_attributes is defined
-    with_items: "{{ result.identity_providers }}"
+    with_items: "{{ result['identity_providers'] }}"
     when: skip_identity_provider_get_test is not defined
 
   - name: Assert custom assertions

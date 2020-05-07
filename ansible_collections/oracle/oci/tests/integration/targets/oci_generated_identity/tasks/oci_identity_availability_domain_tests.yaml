@@ -9,7 +9,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.availability_domains | length > 0
+        - result['availability_domains'] | length > 0
     when: skip_availability_domain_list_test is not defined
 
 
@@ -19,7 +19,7 @@
         - item.name is defined
         - item.id is defined
         - item.compartment_id is defined
-    with_items: "{{ result.availability_domains }}"
+    with_items: "{{ result['availability_domains'] }}"
     when: skip_availability_domain_list_test is not defined
 
   - name: Assert custom assertions

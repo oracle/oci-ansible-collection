@@ -71,8 +71,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.namespace_metadata is defined
-        - result.namespace_metadata != None
+        - result['namespace_metadata'] is defined
+        - result['namespace_metadata'] != None
     when: skip_namespace_metadata_get_test is not defined
 
   - name: Assert response properties are populated
@@ -82,7 +82,7 @@
         - item.default_s3_compartment_id is defined
         - item.default_swift_compartment_id is defined
     with_items:
-      - "{{ result.namespace_metadata }}"
+      - "{{ result['namespace_metadata'] }}"
     when: skip_namespace_metadata_get_test is not defined
 
   - name: Assert custom assertions

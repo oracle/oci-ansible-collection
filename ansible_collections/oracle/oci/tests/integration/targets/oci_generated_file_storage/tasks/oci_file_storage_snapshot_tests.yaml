@@ -413,7 +413,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.snapshots | length > 0
+        - result['snapshots'] | length > 0
     when: skip_snapshot_list_test is not defined
 
 
@@ -427,7 +427,7 @@
         - item.time_created is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.snapshots }}"
+    with_items: "{{ result['snapshots'] }}"
     when: skip_snapshot_list_test is not defined
 
   - name: Assert custom assertions
@@ -448,7 +448,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.snapshots | length == 1
+        - result['snapshots'] | length == 1
     when: skip_snapshot_get_test is not defined
 
   - name: Assert response properties are populated
@@ -461,7 +461,7 @@
         - item.time_created is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.snapshots }}"
+    with_items: "{{ result['snapshots'] }}"
     when: skip_snapshot_get_test is not defined
 
   - name: Assert custom assertions

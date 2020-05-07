@@ -10,8 +10,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.fast_connect_provider_service_key is defined
-        - result.fast_connect_provider_service_key != None
+        - result['fast_connect_provider_service_key'] is defined
+        - result['fast_connect_provider_service_key'] != None
     when: skip_fast_connect_provider_service_key_get_test is not defined
 
   - name: Assert response properties are populated
@@ -21,7 +21,7 @@
         - item.bandwidth_shape_name is defined
         - item.peering_location is defined
     with_items:
-      - "{{ result.fast_connect_provider_service_key }}"
+      - "{{ result['fast_connect_provider_service_key'] }}"
     when: skip_fast_connect_provider_service_key_get_test is not defined
 
   - name: Assert custom assertions

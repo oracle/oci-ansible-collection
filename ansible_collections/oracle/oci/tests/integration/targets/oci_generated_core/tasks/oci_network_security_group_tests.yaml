@@ -429,7 +429,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.network_security_groups | length > 0
+        - result['network_security_groups'] | length > 0
     when: skip_network_security_group_list_test is not defined
 
 
@@ -444,7 +444,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.network_security_groups }}"
+    with_items: "{{ result['network_security_groups'] }}"
     when: skip_network_security_group_list_test is not defined
 
   - name: Assert custom assertions
@@ -465,7 +465,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.network_security_groups | length == 1
+        - result['network_security_groups'] | length == 1
     when: skip_network_security_group_get_test is not defined
 
   - name: Assert response properties are populated
@@ -479,7 +479,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.network_security_groups }}"
+    with_items: "{{ result['network_security_groups'] }}"
     when: skip_network_security_group_get_test is not defined
 
   - name: Assert custom assertions

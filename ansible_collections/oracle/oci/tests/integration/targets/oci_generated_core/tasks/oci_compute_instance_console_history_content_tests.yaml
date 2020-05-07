@@ -60,15 +60,15 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_console_history_content is defined
-        - result.instance_console_history_content != None
+        - result['instance_console_history_content'] is defined
+        - result['instance_console_history_content'] != None
     when: skip_instance_console_history_content_get_test is not defined
 
   - name: Assert response properties are populated
     assert:
       that:
     with_items:
-      - "{{ result.instance_console_history_content }}"
+      - "{{ result['instance_console_history_content'] }}"
     when: skip_instance_console_history_content_get_test is not defined
 
   - name: Assert custom assertions

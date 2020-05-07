@@ -336,7 +336,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.auth_tokens | length > 0
+        - result['auth_tokens'] | length > 0
     when: skip_auth_token_list_test is not defined
 
 
@@ -351,7 +351,7 @@
         - item.time_expires is defined
         - item.lifecycle_state is defined
         - item.inactive_status is defined
-    with_items: "{{ result.auth_tokens }}"
+    with_items: "{{ result['auth_tokens'] }}"
     when: skip_auth_token_list_test is not defined
 
   - name: Assert custom assertions

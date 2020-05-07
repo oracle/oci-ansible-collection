@@ -484,7 +484,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.boot_volumes | length > 0
+        - result['boot_volumes'] | length > 0
     when: skip_boot_volume_list_test is not defined
 
 
@@ -505,7 +505,7 @@
         - item.source_details is defined
         - item.time_created is defined
         - item.volume_group_id is defined
-    with_items: "{{ result.boot_volumes }}"
+    with_items: "{{ result['boot_volumes'] }}"
     when: skip_boot_volume_list_test is not defined
 
   - name: Assert custom assertions
@@ -526,7 +526,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.boot_volumes | length == 1
+        - result['boot_volumes'] | length == 1
     when: skip_boot_volume_get_test is not defined
 
   - name: Assert response properties are populated
@@ -546,7 +546,7 @@
         - item.source_details is defined
         - item.time_created is defined
         - item.volume_group_id is defined
-    with_items: "{{ result.boot_volumes }}"
+    with_items: "{{ result['boot_volumes'] }}"
     when: skip_boot_volume_get_test is not defined
 
   - name: Assert custom assertions

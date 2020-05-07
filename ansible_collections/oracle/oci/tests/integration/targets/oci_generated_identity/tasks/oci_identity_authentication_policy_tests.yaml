@@ -77,8 +77,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.authentication_policy is defined
-        - result.authentication_policy != None
+        - result['authentication_policy'] is defined
+        - result['authentication_policy'] != None
     when: skip_authentication_policy_get_test is not defined
 
   - name: Assert response properties are populated
@@ -87,7 +87,7 @@
         - item.password_policy is defined
         - item.compartment_id is defined
     with_items:
-      - "{{ result.authentication_policy }}"
+      - "{{ result['authentication_policy'] }}"
     when: skip_authentication_policy_get_test is not defined
 
   - name: Assert custom assertions

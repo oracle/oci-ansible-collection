@@ -35,8 +35,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cross_connect_status is defined
-        - result.cross_connect_status != None
+        - result['cross_connect_status'] is defined
+        - result['cross_connect_status'] != None
     when: skip_cross_connect_status_get_test is not defined
 
   - name: Assert response properties are populated
@@ -47,7 +47,7 @@
         - item.light_level_ind_bm is defined
         - item.light_level_indicator is defined
     with_items:
-      - "{{ result.cross_connect_status }}"
+      - "{{ result['cross_connect_status'] }}"
     when: skip_cross_connect_status_get_test is not defined
 
   - name: Assert custom assertions

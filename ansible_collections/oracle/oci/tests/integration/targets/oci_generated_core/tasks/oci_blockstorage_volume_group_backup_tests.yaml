@@ -503,7 +503,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.volume_group_backups | length > 0
+        - result['volume_group_backups'] | length > 0
     when: skip_volume_group_backup_list_test is not defined
 
 
@@ -525,7 +525,7 @@
         - item.unique_size_in_gbs is defined
         - item.volume_backup_ids is defined
         - item.volume_group_id is defined
-    with_items: "{{ result.volume_group_backups }}"
+    with_items: "{{ result['volume_group_backups'] }}"
     when: skip_volume_group_backup_list_test is not defined
 
   - name: Assert custom assertions
@@ -546,7 +546,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.volume_group_backups | length == 1
+        - result['volume_group_backups'] | length == 1
     when: skip_volume_group_backup_get_test is not defined
 
   - name: Assert response properties are populated
@@ -567,7 +567,7 @@
         - item.unique_size_in_gbs is defined
         - item.volume_backup_ids is defined
         - item.volume_group_id is defined
-    with_items: "{{ result.volume_group_backups }}"
+    with_items: "{{ result['volume_group_backups'] }}"
     when: skip_volume_group_backup_get_test is not defined
 
   - name: Assert custom assertions

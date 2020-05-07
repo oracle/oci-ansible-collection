@@ -526,7 +526,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.images | length > 0
+        - result['images'] | length > 0
     when: skip_image_list_test is not defined
 
 
@@ -548,7 +548,7 @@
         - item.agent_features is defined
         - item.size_in_mbs is defined
         - item.time_created is defined
-    with_items: "{{ result.images }}"
+    with_items: "{{ result['images'] }}"
     when: skip_image_list_test is not defined
 
   - name: Assert custom assertions
@@ -569,7 +569,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.images | length == 1
+        - result['images'] | length == 1
     when: skip_image_get_test is not defined
 
   - name: Assert response properties are populated
@@ -590,7 +590,7 @@
         - item.agent_features is defined
         - item.size_in_mbs is defined
         - item.time_created is defined
-    with_items: "{{ result.images }}"
+    with_items: "{{ result['images'] }}"
     when: skip_image_get_test is not defined
 
   - name: Assert custom assertions

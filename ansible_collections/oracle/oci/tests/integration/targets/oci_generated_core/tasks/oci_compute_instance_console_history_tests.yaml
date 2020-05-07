@@ -439,7 +439,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_console_histories | length > 0
+        - result['instance_console_histories'] | length > 0
     when: skip_instance_console_history_list_test is not defined
 
 
@@ -455,7 +455,7 @@
         - item.instance_id is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
-    with_items: "{{ result.instance_console_histories }}"
+    with_items: "{{ result['instance_console_histories'] }}"
     when: skip_instance_console_history_list_test is not defined
 
   - name: Assert custom assertions
@@ -476,7 +476,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_console_histories | length == 1
+        - result['instance_console_histories'] | length == 1
     when: skip_instance_console_history_get_test is not defined
 
   - name: Assert response properties are populated
@@ -491,7 +491,7 @@
         - item.instance_id is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
-    with_items: "{{ result.instance_console_histories }}"
+    with_items: "{{ result['instance_console_histories'] }}"
     when: skip_instance_console_history_get_test is not defined
 
   - name: Assert custom assertions

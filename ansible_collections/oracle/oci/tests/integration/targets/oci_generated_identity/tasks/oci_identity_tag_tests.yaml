@@ -404,7 +404,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tags | length > 0
+        - result['tags'] | length > 0
     when: skip_tag_list_test is not defined
 
 
@@ -421,7 +421,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.is_cost_tracking is defined
-    with_items: "{{ result.tags }}"
+    with_items: "{{ result['tags'] }}"
     when: skip_tag_list_test is not defined
 
   - name: Assert custom assertions
@@ -443,7 +443,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tags | length == 1
+        - result['tags'] | length == 1
     when: skip_tag_get_test is not defined
 
   - name: Assert response properties are populated
@@ -459,7 +459,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.is_cost_tracking is defined
-    with_items: "{{ result.tags }}"
+    with_items: "{{ result['tags'] }}"
     when: skip_tag_get_test is not defined
 
   - name: Assert custom assertions

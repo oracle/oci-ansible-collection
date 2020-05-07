@@ -473,7 +473,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.remote_peering_connections | length > 0
+        - result['remote_peering_connections'] | length > 0
     when: skip_remote_peering_connection_list_test is not defined
 
 
@@ -493,7 +493,7 @@
         - item.peer_tenancy_id is defined
         - item.peering_status is defined
         - item.time_created is defined
-    with_items: "{{ result.remote_peering_connections }}"
+    with_items: "{{ result['remote_peering_connections'] }}"
     when: skip_remote_peering_connection_list_test is not defined
 
   - name: Assert custom assertions
@@ -514,7 +514,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.remote_peering_connections | length == 1
+        - result['remote_peering_connections'] | length == 1
     when: skip_remote_peering_connection_get_test is not defined
 
   - name: Assert response properties are populated
@@ -533,7 +533,7 @@
         - item.peer_tenancy_id is defined
         - item.peering_status is defined
         - item.time_created is defined
-    with_items: "{{ result.remote_peering_connections }}"
+    with_items: "{{ result['remote_peering_connections'] }}"
     when: skip_remote_peering_connection_get_test is not defined
 
   - name: Assert custom assertions

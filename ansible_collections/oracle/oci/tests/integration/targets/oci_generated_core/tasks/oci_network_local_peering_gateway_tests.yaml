@@ -529,7 +529,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.local_peering_gateways | length > 0
+        - result['local_peering_gateways'] | length > 0
     when: skip_local_peering_gateway_list_test is not defined
 
 
@@ -550,7 +550,7 @@
         - item.route_table_id is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.local_peering_gateways }}"
+    with_items: "{{ result['local_peering_gateways'] }}"
     when: skip_local_peering_gateway_list_test is not defined
 
   - name: Assert custom assertions
@@ -571,7 +571,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.local_peering_gateways | length == 1
+        - result['local_peering_gateways'] | length == 1
     when: skip_local_peering_gateway_get_test is not defined
 
   - name: Assert response properties are populated
@@ -591,7 +591,7 @@
         - item.route_table_id is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.local_peering_gateways }}"
+    with_items: "{{ result['local_peering_gateways'] }}"
     when: skip_local_peering_gateway_get_test is not defined
 
   - name: Assert custom assertions

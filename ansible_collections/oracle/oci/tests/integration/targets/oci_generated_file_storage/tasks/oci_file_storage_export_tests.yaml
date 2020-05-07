@@ -353,7 +353,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.exports | length > 0
+        - result['exports'] | length > 0
     when: skip_export_list_test is not defined
 
 
@@ -366,7 +366,7 @@
         - item.lifecycle_state is defined
         - item.path is defined
         - item.time_created is defined
-    with_items: "{{ result.exports }}"
+    with_items: "{{ result['exports'] }}"
     when: skip_export_list_test is not defined
 
   - name: Assert custom assertions
@@ -387,7 +387,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.exports | length == 1
+        - result['exports'] | length == 1
     when: skip_export_get_test is not defined
 
   - name: Assert response properties are populated
@@ -399,7 +399,7 @@
         - item.lifecycle_state is defined
         - item.path is defined
         - item.time_created is defined
-    with_items: "{{ result.exports }}"
+    with_items: "{{ result['exports'] }}"
     when: skip_export_get_test is not defined
 
   - name: Assert custom assertions

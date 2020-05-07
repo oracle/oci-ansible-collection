@@ -65,8 +65,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.configuration is defined
-        - result.configuration != None
+        - result['configuration'] is defined
+        - result['configuration'] != None
     when: skip_configuration_get_test is not defined
 
   - name: Assert response properties are populated
@@ -74,7 +74,7 @@
       that:
         - item.retention_period_days is defined
     with_items:
-      - "{{ result.configuration }}"
+      - "{{ result['configuration'] }}"
     when: skip_configuration_get_test is not defined
 
   - name: Assert custom assertions

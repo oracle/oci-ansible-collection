@@ -59,7 +59,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.network_security_group_vnics | length > 0
+        - result['network_security_group_vnics'] | length > 0
     when: skip_network_security_group_vnic_list_test is not defined
 
 
@@ -69,7 +69,7 @@
         - item.resource_id is defined
         - item.time_associated is defined
         - item.vnic_id is defined
-    with_items: "{{ result.network_security_group_vnics }}"
+    with_items: "{{ result['network_security_group_vnics'] }}"
     when: skip_network_security_group_vnic_list_test is not defined
 
   - name: Assert custom assertions

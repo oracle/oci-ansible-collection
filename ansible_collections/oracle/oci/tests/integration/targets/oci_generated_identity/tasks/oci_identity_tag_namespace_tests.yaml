@@ -419,7 +419,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tag_namespaces | length > 0
+        - result['tag_namespaces'] | length > 0
     when: skip_tag_namespace_list_test is not defined
 
 
@@ -435,7 +435,7 @@
         - item.is_retired is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
-    with_items: "{{ result.tag_namespaces }}"
+    with_items: "{{ result['tag_namespaces'] }}"
     when: skip_tag_namespace_list_test is not defined
 
   - name: Assert custom assertions
@@ -456,7 +456,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tag_namespaces | length == 1
+        - result['tag_namespaces'] | length == 1
     when: skip_tag_namespace_get_test is not defined
 
   - name: Assert response properties are populated
@@ -471,7 +471,7 @@
         - item.is_retired is defined
         - item.lifecycle_state is defined
         - item.time_created is defined
-    with_items: "{{ result.tag_namespaces }}"
+    with_items: "{{ result['tag_namespaces'] }}"
     when: skip_tag_namespace_get_test is not defined
 
   - name: Assert custom assertions

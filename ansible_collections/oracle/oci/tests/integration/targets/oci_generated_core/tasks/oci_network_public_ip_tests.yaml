@@ -500,7 +500,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.public_ips | length > 0
+        - result['public_ips'] | length > 0
     when: skip_public_ip_list_test is not defined
 
 
@@ -521,7 +521,7 @@
         - item.private_ip_id is defined
         - item.scope is defined
         - item.time_created is defined
-    with_items: "{{ result.public_ips }}"
+    with_items: "{{ result['public_ips'] }}"
     when: skip_public_ip_list_test is not defined
 
   - name: Assert custom assertions
@@ -542,7 +542,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.public_ips | length == 1
+        - result['public_ips'] | length == 1
     when: skip_public_ip_get_test is not defined
 
   - name: Assert response properties are populated
@@ -562,7 +562,7 @@
         - item.private_ip_id is defined
         - item.scope is defined
         - item.time_created is defined
-    with_items: "{{ result.public_ips }}"
+    with_items: "{{ result['public_ips'] }}"
     when: skip_public_ip_get_test is not defined
 
   - name: Assert custom assertions

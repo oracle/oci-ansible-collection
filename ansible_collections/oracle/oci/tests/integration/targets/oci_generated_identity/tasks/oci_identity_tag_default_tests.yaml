@@ -311,7 +311,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tag_defaults | length > 0
+        - result['tag_defaults'] | length > 0
     when: skip_tag_default_list_test is not defined
 
 
@@ -326,7 +326,7 @@
         - item.value is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
-    with_items: "{{ result.tag_defaults }}"
+    with_items: "{{ result['tag_defaults'] }}"
     when: skip_tag_default_list_test is not defined
 
   - name: Assert custom assertions
@@ -347,7 +347,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.tag_defaults | length == 1
+        - result['tag_defaults'] | length == 1
     when: skip_tag_default_get_test is not defined
 
   - name: Assert response properties are populated
@@ -361,7 +361,7 @@
         - item.value is defined
         - item.time_created is defined
         - item.lifecycle_state is defined
-    with_items: "{{ result.tag_defaults }}"
+    with_items: "{{ result['tag_defaults'] }}"
     when: skip_tag_default_get_test is not defined
 
   - name: Assert custom assertions

@@ -466,7 +466,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.users | length > 0
+        - result['users'] | length > 0
     when: skip_user_list_test is not defined
 
 
@@ -487,7 +487,7 @@
         - item.defined_tags is defined
         - item.capabilities is defined
         - item.is_mfa_activated is defined
-    with_items: "{{ result.users }}"
+    with_items: "{{ result['users'] }}"
     when: skip_user_list_test is not defined
 
   - name: Assert custom assertions
@@ -508,7 +508,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.users | length == 1
+        - result['users'] | length == 1
     when: skip_user_get_test is not defined
 
   - name: Assert response properties are populated
@@ -528,7 +528,7 @@
         - item.defined_tags is defined
         - item.capabilities is defined
         - item.is_mfa_activated is defined
-    with_items: "{{ result.users }}"
+    with_items: "{{ result['users'] }}"
     when: skip_user_get_test is not defined
 
   - name: Assert custom assertions

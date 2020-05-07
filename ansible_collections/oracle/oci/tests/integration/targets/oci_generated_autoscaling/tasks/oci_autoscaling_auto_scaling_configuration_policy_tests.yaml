@@ -251,7 +251,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.auto_scaling_configuration_policies | length > 0
+        - result['auto_scaling_configuration_policies'] | length > 0
     when: skip_auto_scaling_configuration_policy_list_test is not defined
 
 
@@ -261,7 +261,7 @@
         - item.id is defined
         - item.display_name is defined
         - item.policy_type is defined
-    with_items: "{{ result.auto_scaling_configuration_policies }}"
+    with_items: "{{ result['auto_scaling_configuration_policies'] }}"
     when: skip_auto_scaling_configuration_policy_list_test is not defined
 
   - name: Assert custom assertions
@@ -283,7 +283,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.auto_scaling_configuration_policies | length == 1
+        - result['auto_scaling_configuration_policies'] | length == 1
     when: skip_auto_scaling_configuration_policy_get_test is not defined
 
   - name: Assert response properties are populated
@@ -292,7 +292,7 @@
         - item.id is defined
         - item.display_name is defined
         - item.policy_type is defined
-    with_items: "{{ result.auto_scaling_configuration_policies }}"
+    with_items: "{{ result['auto_scaling_configuration_policies'] }}"
     when: skip_auto_scaling_configuration_policy_get_test is not defined
 
   - name: Assert custom assertions

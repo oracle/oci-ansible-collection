@@ -277,7 +277,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_console_connections | length > 0
+        - result['instance_console_connections'] | length > 0
     when: skip_instance_console_connection_list_test is not defined
 
 
@@ -293,7 +293,7 @@
         - item.instance_id is defined
         - item.lifecycle_state is defined
         - item.vnc_connection_string is defined
-    with_items: "{{ result.instance_console_connections }}"
+    with_items: "{{ result['instance_console_connections'] }}"
     when: skip_instance_console_connection_list_test is not defined
 
   - name: Assert custom assertions
@@ -314,7 +314,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_console_connections | length == 1
+        - result['instance_console_connections'] | length == 1
     when: skip_instance_console_connection_get_test is not defined
 
   - name: Assert response properties are populated
@@ -329,7 +329,7 @@
         - item.instance_id is defined
         - item.lifecycle_state is defined
         - item.vnc_connection_string is defined
-    with_items: "{{ result.instance_console_connections }}"
+    with_items: "{{ result['instance_console_connections'] }}"
     when: skip_instance_console_connection_get_test is not defined
 
   - name: Assert custom assertions

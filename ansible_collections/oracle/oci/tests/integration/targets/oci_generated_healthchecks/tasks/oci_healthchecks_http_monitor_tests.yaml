@@ -558,7 +558,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.http_monitors | length > 0
+        - result['http_monitors'] | length > 0
     when: skip_http_monitor_list_test is not defined
 
 
@@ -576,7 +576,7 @@
         - item.is_enabled is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.http_monitors }}"
+    with_items: "{{ result['http_monitors'] }}"
     when: skip_http_monitor_list_test is not defined
 
   - name: Assert custom assertions
@@ -597,7 +597,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.http_monitors | length == 1
+        - result['http_monitors'] | length == 1
     when: skip_http_monitor_get_test is not defined
 
   - name: Assert response properties are populated
@@ -614,7 +614,7 @@
         - item.is_enabled is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.http_monitors }}"
+    with_items: "{{ result['http_monitors'] }}"
     when: skip_http_monitor_get_test is not defined
 
   - name: Assert custom assertions

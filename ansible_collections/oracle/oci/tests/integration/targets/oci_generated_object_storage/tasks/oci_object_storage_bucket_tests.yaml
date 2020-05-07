@@ -432,7 +432,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.buckets | length > 0
+        - result['buckets'] | length > 0
     when: skip_bucket_list_test is not defined
 
 
@@ -447,7 +447,7 @@
         - item.etag is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.buckets }}"
+    with_items: "{{ result['buckets'] }}"
     when: skip_bucket_list_test is not defined
 
   - name: Assert custom assertions
@@ -469,7 +469,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.buckets | length == 1
+        - result['buckets'] | length == 1
     when: skip_bucket_get_test is not defined
 
   - name: Assert response properties are populated
@@ -483,7 +483,7 @@
         - item.etag is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.buckets }}"
+    with_items: "{{ result['buckets'] }}"
     when: skip_bucket_get_test is not defined
 
   - name: Assert custom assertions

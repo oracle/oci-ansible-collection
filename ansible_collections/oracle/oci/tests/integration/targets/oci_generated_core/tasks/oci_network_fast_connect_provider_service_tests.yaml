@@ -9,7 +9,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.fast_connect_provider_services | length > 0
+        - result['fast_connect_provider_services'] | length > 0
     when: skip_fast_connect_provider_service_list_test is not defined
 
 
@@ -28,7 +28,7 @@
         - item.bandwith_shape_management is defined
         - item.required_total_cross_connects is defined
         - item.type is defined
-    with_items: "{{ result.fast_connect_provider_services }}"
+    with_items: "{{ result['fast_connect_provider_services'] }}"
     when: skip_fast_connect_provider_service_list_test is not defined
 
   - name: Assert custom assertions
@@ -49,7 +49,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.fast_connect_provider_services | length == 1
+        - result['fast_connect_provider_services'] | length == 1
     when: skip_fast_connect_provider_service_get_test is not defined
 
   - name: Assert response properties are populated
@@ -67,7 +67,7 @@
         - item.bandwith_shape_management is defined
         - item.required_total_cross_connects is defined
         - item.type is defined
-    with_items: "{{ result.fast_connect_provider_services }}"
+    with_items: "{{ result['fast_connect_provider_services'] }}"
     when: skip_fast_connect_provider_service_get_test is not defined
 
   - name: Assert custom assertions

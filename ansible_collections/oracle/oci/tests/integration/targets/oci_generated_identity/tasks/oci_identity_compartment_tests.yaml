@@ -426,7 +426,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.compartments | length > 0
+        - result['compartments'] | length > 0
     when: skip_compartment_list_test is not defined
 
 
@@ -443,7 +443,7 @@
         - item.is_accessible is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.compartments }}"
+    with_items: "{{ result['compartments'] }}"
     when: skip_compartment_list_test is not defined
 
   - name: Assert custom assertions
@@ -464,7 +464,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.compartments | length == 1
+        - result['compartments'] | length == 1
     when: skip_compartment_get_test is not defined
 
   - name: Assert response properties are populated
@@ -480,7 +480,7 @@
         - item.is_accessible is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.compartments }}"
+    with_items: "{{ result['compartments'] }}"
     when: skip_compartment_get_test is not defined
 
   - name: Assert custom assertions

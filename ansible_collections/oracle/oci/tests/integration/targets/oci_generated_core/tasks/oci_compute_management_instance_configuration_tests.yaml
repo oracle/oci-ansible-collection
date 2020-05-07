@@ -616,7 +616,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_configurations | length > 0
+        - result['instance_configurations'] | length > 0
     when: skip_instance_configuration_list_test is not defined
 
 
@@ -627,7 +627,7 @@
         - item.display_name is defined
         - item.id is defined
         - item.time_created is defined
-    with_items: "{{ result.instance_configurations }}"
+    with_items: "{{ result['instance_configurations'] }}"
     when: skip_instance_configuration_list_test is not defined
 
   - name: Assert custom assertions
@@ -648,7 +648,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.instance_configurations | length == 1
+        - result['instance_configurations'] | length == 1
     when: skip_instance_configuration_get_test is not defined
 
   - name: Assert response properties are populated
@@ -658,7 +658,7 @@
         - item.display_name is defined
         - item.id is defined
         - item.time_created is defined
-    with_items: "{{ result.instance_configurations }}"
+    with_items: "{{ result['instance_configurations'] }}"
     when: skip_instance_configuration_get_test is not defined
 
   - name: Assert custom assertions

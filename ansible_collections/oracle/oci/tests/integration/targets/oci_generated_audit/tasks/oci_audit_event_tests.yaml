@@ -11,7 +11,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.audit_events | length > 0
+        - result['audit_events'] | length > 0
     when: skip_audit_event_list_test is not defined
 
 
@@ -26,7 +26,7 @@
         - item.event_time is defined
         - item.content_type is defined
         - item.data is defined
-    with_items: "{{ result.audit_events }}"
+    with_items: "{{ result['audit_events'] }}"
     when: skip_audit_event_list_test is not defined
 
   - name: Assert custom assertions

@@ -34,7 +34,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.virtual_circuit_public_prefixes | length > 0
+        - result['virtual_circuit_public_prefixes'] | length > 0
     when: skip_virtual_circuit_public_prefix_list_test is not defined
 
 
@@ -43,7 +43,7 @@
       that:
         - item.cidr_block is defined
         - item.verification_state is defined
-    with_items: "{{ result.virtual_circuit_public_prefixes }}"
+    with_items: "{{ result['virtual_circuit_public_prefixes'] }}"
     when: skip_virtual_circuit_public_prefix_list_test is not defined
 
   - name: Assert custom assertions

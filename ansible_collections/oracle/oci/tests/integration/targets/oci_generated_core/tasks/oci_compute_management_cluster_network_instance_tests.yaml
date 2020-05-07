@@ -78,7 +78,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cluster_network_instances | length > 0
+        - result['cluster_network_instances'] | length > 0
     when: skip_cluster_network_instance_list_test is not defined
 
 
@@ -96,7 +96,7 @@
         - item.state is defined
         - item.time_created is defined
         - item.load_balancer_backends is defined
-    with_items: "{{ result.cluster_network_instances }}"
+    with_items: "{{ result['cluster_network_instances'] }}"
     when: skip_cluster_network_instance_list_test is not defined
 
   - name: Assert custom assertions

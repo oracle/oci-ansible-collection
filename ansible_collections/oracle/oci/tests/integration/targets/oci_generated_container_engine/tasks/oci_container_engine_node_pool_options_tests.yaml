@@ -9,8 +9,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.node_pool_options is defined
-        - result.node_pool_options != None
+        - result['node_pool_options'] is defined
+        - result['node_pool_options'] != None
     when: skip_node_pool_options_get_test is not defined
 
   - name: Assert response properties are populated
@@ -20,7 +20,7 @@
         - item.shapes is defined
         - item.images is defined
     with_items:
-      - "{{ result.node_pool_options }}"
+      - "{{ result['node_pool_options'] }}"
     when: skip_node_pool_options_get_test is not defined
 
   - name: Assert custom assertions

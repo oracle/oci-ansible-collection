@@ -488,7 +488,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.route_tables | length > 0
+        - result['route_tables'] | length > 0
     when: skip_route_table_list_test is not defined
 
 
@@ -504,7 +504,7 @@
         - item.route_rules is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.route_tables }}"
+    with_items: "{{ result['route_tables'] }}"
     when: skip_route_table_list_test is not defined
 
   - name: Assert custom assertions
@@ -525,7 +525,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.route_tables | length == 1
+        - result['route_tables'] | length == 1
     when: skip_route_table_get_test is not defined
 
   - name: Assert response properties are populated
@@ -540,7 +540,7 @@
         - item.route_rules is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.route_tables }}"
+    with_items: "{{ result['route_tables'] }}"
     when: skip_route_table_get_test is not defined
 
   - name: Assert custom assertions

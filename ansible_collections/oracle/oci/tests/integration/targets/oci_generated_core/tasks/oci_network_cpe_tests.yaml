@@ -395,7 +395,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cpes | length > 0
+        - result['cpes'] | length > 0
     when: skip_cpe_list_test is not defined
 
 
@@ -409,7 +409,7 @@
         - item.id is defined
         - item.ip_address is defined
         - item.time_created is defined
-    with_items: "{{ result.cpes }}"
+    with_items: "{{ result['cpes'] }}"
     when: skip_cpe_list_test is not defined
 
   - name: Assert custom assertions
@@ -430,7 +430,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cpes | length == 1
+        - result['cpes'] | length == 1
     when: skip_cpe_get_test is not defined
 
   - name: Assert response properties are populated
@@ -443,7 +443,7 @@
         - item.id is defined
         - item.ip_address is defined
         - item.time_created is defined
-    with_items: "{{ result.cpes }}"
+    with_items: "{{ result['cpes'] }}"
     when: skip_cpe_get_test is not defined
 
   - name: Assert custom assertions

@@ -9,8 +9,8 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.cluster_options is defined
-        - result.cluster_options != None
+        - result['cluster_options'] is defined
+        - result['cluster_options'] != None
     when: skip_cluster_options_get_test is not defined
 
   - name: Assert response properties are populated
@@ -18,7 +18,7 @@
       that:
         - item.kubernetes_versions is defined
     with_items:
-      - "{{ result.cluster_options }}"
+      - "{{ result['cluster_options'] }}"
     when: skip_cluster_options_get_test is not defined
 
   - name: Assert custom assertions

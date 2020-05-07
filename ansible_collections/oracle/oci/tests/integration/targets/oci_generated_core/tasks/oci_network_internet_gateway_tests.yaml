@@ -452,7 +452,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.internet_gateways | length > 0
+        - result['internet_gateways'] | length > 0
     when: skip_internet_gateway_list_test is not defined
 
 
@@ -468,7 +468,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.internet_gateways }}"
+    with_items: "{{ result['internet_gateways'] }}"
     when: skip_internet_gateway_list_test is not defined
 
   - name: Assert custom assertions
@@ -489,7 +489,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.internet_gateways | length == 1
+        - result['internet_gateways'] | length == 1
     when: skip_internet_gateway_get_test is not defined
 
   - name: Assert response properties are populated
@@ -504,7 +504,7 @@
         - item.lifecycle_state is defined
         - item.time_created is defined
         - item.vcn_id is defined
-    with_items: "{{ result.internet_gateways }}"
+    with_items: "{{ result['internet_gateways'] }}"
     when: skip_internet_gateway_get_test is not defined
 
   - name: Assert custom assertions

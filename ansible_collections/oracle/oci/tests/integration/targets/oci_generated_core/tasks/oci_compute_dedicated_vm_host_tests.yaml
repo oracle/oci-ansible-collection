@@ -447,7 +447,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.dedicated_vm_hosts | length > 0
+        - result['dedicated_vm_hosts'] | length > 0
     when: skip_dedicated_vm_host_list_test is not defined
 
 
@@ -464,7 +464,7 @@
         - item.time_created is defined
         - item.total_ocpus is defined
         - item.remaining_ocpus is defined
-    with_items: "{{ result.dedicated_vm_hosts }}"
+    with_items: "{{ result['dedicated_vm_hosts'] }}"
     when: skip_dedicated_vm_host_list_test is not defined
 
   - name: Assert custom assertions
@@ -485,7 +485,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.dedicated_vm_hosts | length == 1
+        - result['dedicated_vm_hosts'] | length == 1
     when: skip_dedicated_vm_host_get_test is not defined
 
   - name: Assert response properties are populated
@@ -501,7 +501,7 @@
         - item.time_created is defined
         - item.total_ocpus is defined
         - item.remaining_ocpus is defined
-    with_items: "{{ result.dedicated_vm_hosts }}"
+    with_items: "{{ result['dedicated_vm_hosts'] }}"
     when: skip_dedicated_vm_host_get_test is not defined
 
   - name: Assert custom assertions

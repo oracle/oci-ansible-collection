@@ -494,7 +494,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.ip_sec_connections | length > 0
+        - result['ip_sec_connections'] | length > 0
     when: skip_ip_sec_connection_list_test is not defined
 
 
@@ -511,7 +511,7 @@
         - item.lifecycle_state is defined
         - item.static_routes is defined
         - item.time_created is defined
-    with_items: "{{ result.ip_sec_connections }}"
+    with_items: "{{ result['ip_sec_connections'] }}"
     when: skip_ip_sec_connection_list_test is not defined
 
   - name: Assert custom assertions
@@ -532,7 +532,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.ip_sec_connections | length == 1
+        - result['ip_sec_connections'] | length == 1
     when: skip_ip_sec_connection_get_test is not defined
 
   - name: Assert response properties are populated
@@ -548,7 +548,7 @@
         - item.lifecycle_state is defined
         - item.static_routes is defined
         - item.time_created is defined
-    with_items: "{{ result.ip_sec_connections }}"
+    with_items: "{{ result['ip_sec_connections'] }}"
     when: skip_ip_sec_connection_get_test is not defined
 
   - name: Assert custom assertions

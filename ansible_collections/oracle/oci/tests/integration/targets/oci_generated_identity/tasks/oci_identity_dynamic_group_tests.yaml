@@ -433,7 +433,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.dynamic_groups | length > 0
+        - result['dynamic_groups'] | length > 0
     when: skip_dynamic_group_list_test is not defined
 
 
@@ -450,7 +450,7 @@
         - item.inactive_status is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.dynamic_groups }}"
+    with_items: "{{ result['dynamic_groups'] }}"
     when: skip_dynamic_group_list_test is not defined
 
   - name: Assert custom assertions
@@ -471,7 +471,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.dynamic_groups | length == 1
+        - result['dynamic_groups'] | length == 1
     when: skip_dynamic_group_get_test is not defined
 
   - name: Assert response properties are populated
@@ -487,7 +487,7 @@
         - item.inactive_status is defined
         - item.freeform_tags is defined
         - item.defined_tags is defined
-    with_items: "{{ result.dynamic_groups }}"
+    with_items: "{{ result['dynamic_groups'] }}"
     when: skip_dynamic_group_get_test is not defined
 
   - name: Assert custom assertions
