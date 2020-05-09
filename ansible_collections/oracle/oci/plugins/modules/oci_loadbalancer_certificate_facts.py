@@ -32,6 +32,11 @@ options:
               to be listed.
         type: str
         required: true
+    name:
+        description:
+            - The name of the certificate whose details needs to be fetched.
+            - Required to get a specific certificate.
+        type: str
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -143,7 +148,9 @@ class ResourceFactsHelper(CertificateFactsHelperCustom, CertificateFactsHelperGe
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(load_balancer_id=dict(type="str", required=True),))
+    module_args.update(
+        dict(load_balancer_id=dict(type="str", required=True), name=dict(type="str"),)
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 

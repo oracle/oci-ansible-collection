@@ -45,6 +45,7 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer to add the hostname to.
         type: str
+        aliases: ["id"]
         required: true
     state:
         description:
@@ -257,7 +258,7 @@ def main():
         dict(
             name=dict(type="str", required=True),
             hostname=dict(type="str"),
-            load_balancer_id=dict(type="str", required=True),
+            load_balancer_id=dict(aliases=["id"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

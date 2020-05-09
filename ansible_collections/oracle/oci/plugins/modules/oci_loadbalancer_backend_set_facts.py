@@ -31,6 +31,7 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
         type: str
+        aliases: ["id"]
         required: true
     backend_set_name:
         description:
@@ -38,6 +39,7 @@ options:
             - "Example: `example_backend_set`"
             - Required to get a specific backend_set.
         type: str
+        aliases: ["name"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -356,8 +358,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            load_balancer_id=dict(type="str", required=True),
-            backend_set_name=dict(type="str"),
+            load_balancer_id=dict(aliases=["id"], type="str", required=True),
+            backend_set_name=dict(aliases=["name"], type="str"),
         )
     )
 

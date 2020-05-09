@@ -287,6 +287,29 @@ autoscaling:
         }
       }
 load_balancer:
+  # CreateLoadBalancer spec example is not valid JSON
+  CreateLoadBalancer: |
+      POST /20170115/loadBalancers
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+
+        {
+          "compartmentId": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+          "displayName": "example_load_balancer",
+          "shapeName": "100Mbps",
+          "isPrivate": true,
+          "subnetIds": [
+            "ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx"
+          ]
+        }
+  UpdateLoadBalancer: |
+      # need to fix example generation to be better in these cases but applying
+      # this override so we ignore the one from the spec and generate one that is correct
+      PUT /20170115/loadBalancers/<var>&lt;load_balancer_OCID&gt;</var>
+      Host: iaas.us-phoenix-1.oraclecloud.com
+      <var>&lt;authorization and other headers&gt;</var>
+
+        {}
   CreateRuleSet: |
     POST /20170115//loadBalancers/<var>&lt;load_balancer_OCID&gt;</var>/ruleSets
     Host: iaas.us-phoenix-1.oraclecloud.com

@@ -5,7 +5,7 @@
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_rule_set_create_dependency_load_balancer_compartment_id, omit) }}"
       display_name: "{{ ('example_load_balancer' + random_suffix_1024) | oracle.oci.override(test_rule_set_create_dependency_load_balancer_display_name, omit) }}"
       shape_name: "{{ '100Mbps' | oracle.oci.override(test_rule_set_create_dependency_load_balancer_shape_name, omit) }}"
-      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_rule_set_create_dependency_load_balancer_subnet_ids, omit) }}"
+      subnet_ids: "{{ [ 'ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx' ] | oracle.oci.override(test_rule_set_create_dependency_load_balancer_subnet_ids, omit) }}"
     register: result
     when: skip_rule_set_create_dependency_load_balancer_test is not defined and skip_rule_set_dependencies is not defined
   - name: Assert resource was created
@@ -335,7 +335,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.rule_sets | length > 0
+        - result['rule_sets'] | length > 0
     when: skip_rule_set_list_test is not defined
 
 
@@ -344,7 +344,7 @@
       that:
         - item.name is defined
         - item.items is defined
-    with_items: "{{ result.rule_sets }}"
+    with_items: "{{ result['rule_sets'] }}"
     when: skip_rule_set_list_test is not defined
 
   - name: Assert custom assertions
@@ -366,7 +366,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.rule_sets | length == 1
+        - result['rule_sets'] | length == 1
     when: skip_rule_set_get_test is not defined
 
   - name: Assert response properties are populated
@@ -374,7 +374,7 @@
       that:
         - item.name is defined
         - item.items is defined
-    with_items: "{{ result.rule_sets }}"
+    with_items: "{{ result['rule_sets'] }}"
     when: skip_rule_set_get_test is not defined
 
   - name: Assert custom assertions

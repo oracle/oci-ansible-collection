@@ -668,16 +668,16 @@
           - result.changed == False
     # ===========================================================================================
     # can no longer filter by name for certificate
-    # - name: List a specific certificate
-    #   oci_loadbalancer_certificate_facts:
-    #     certificate_name: "{{certificate_name_with_passphrase}}"
-    #     load_balancer_id: "{{ public_load_balancer_id }}"
-    #   register: result
+    - name: List a specific certificate
+      oci_loadbalancer_certificate_facts:
+        name: "{{certificate_name_with_passphrase}}"
+        load_balancer_id: "{{ public_load_balancer_id }}"
+      register: result
 
-    # - name: Assert that specific certificate is listed
-    #   assert:
-    #     that:
-    #       - result.certificates[0].certificate_name == "{{certificate_name_with_passphrase}}"
+    - name: Assert that specific certificate is listed
+      assert:
+        that:
+          - result.certificates[0].certificate_name == "{{certificate_name_with_passphrase}}"
     # ===========================================================================================
     - name: List all certificates
       oci_loadbalancer_certificate_facts:
@@ -1293,6 +1293,7 @@
       assert:
         that:
           - result.changed == True
+          - result.backend_set.backends | length == 1
           - result.backend_set.backends[0].port == 8282
     
     - name: Verify that other fields aren't wiped out by update

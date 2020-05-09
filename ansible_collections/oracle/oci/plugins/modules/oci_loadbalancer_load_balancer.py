@@ -127,13 +127,21 @@ EXAMPLES = """
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     display_name: example_load_balancer
     shape_name: 100Mbps
+    is_private: true
+    subnet_ids:
+    - ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx
 
 - name: Update load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_loadbalancer_load_balancer:
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     display_name: example_load_balancer
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update load_balancer
   oci_loadbalancer_load_balancer:
+    display_name: example_load_balancer
+    freeform_tags: {'Department': 'Finance'}
     load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete load_balancer

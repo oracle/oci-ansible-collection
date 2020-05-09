@@ -339,6 +339,14 @@ extraFactsModuleParameters:
         required: false
         dataType: str
         isUsedByList: true
+  load_balancer:
+    certificate:
+      - paramName: name
+        description: The name of the certificate whose details needs to be fetched.
+        dataType: str
+        required: false
+        isUsedByGet: true
+        isRequiredForGet: true
 extraResourceModuleParameters:
   object_storage:
     object:
@@ -447,6 +455,32 @@ resourceModuleParameterValueOverrides:
         required: true
       - paramName: backend_name
         remove: true
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    backend_health_facts:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    backend_set:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    certificate:
+      - paramName: certificate_name
+        aliases:
+          - name
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    health_checker:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    hostname:
+      - paramName: load_balancer_id
+        aliases:
+          - id
     load_balancer:
       - paramName: listeners
         remove: true
@@ -460,7 +494,10 @@ resourceModuleParameterValueOverrides:
         remove: true
       - paramName: rule_sets
         remove: true
-
+    path_route_set:
+      - paramName: load_balancer_id
+        aliases:
+          - id
   object_storage:
     object:
       - paramName: put_object_body
@@ -475,3 +512,59 @@ factsModuleParameterValueOverrides:
       - paramName: fields
         allowableValues:
           values: []
+  load_balancer:
+    backend:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    backend_health:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    backend_set:
+      - paramName: backend_set_name
+        aliases:
+          - name
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    backend_set_health:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    load_balancer_health:
+      - paramName: compartment_id
+        aliases:
+          - id
+    health_checker:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    hostname:
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    path_route_set:
+      - paramName: path_route_set_name
+        aliases:
+          - name
+      - paramName: load_balancer_id
+        aliases:
+          - id
+    load_balancer_policy:
+      - paramName: compartment_id
+        aliases:
+          - id
+    load_balancer_protocol:
+      - paramName: compartment_id
+        aliases:
+          - id
+    load_balancer_shape:
+      - paramName: compartment_id
+        aliases:
+          - id
+    rule_set:
+      - paramName: rule_set_name
+        aliases:
+          - name
+    

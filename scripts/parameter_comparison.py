@@ -37,6 +37,7 @@ SERVICES_NOT_YET_IMPLEMENTED_IN_NEW_MODULES = [
 # modules from the old service
 SERVICES_IMPLEMENTED_IN_NEW_MODULES = [
     'compute',
+    'loadbalancer',
     'load_balancer',
     'blockstorage',
     'network',
@@ -61,7 +62,7 @@ NEW_REPO_MODULES_PATH = ""
 NEW_MODULES_TO_PROCESS = []
 
 # example: "oci_load_balancer"
-NEW_MODULES_TO_PROCESS_PREFIX = "oci_load_bal" #"oci_load_balancer" # oci_identity_compartment_facts" #oci_load_balancer"
+NEW_MODULES_TO_PROCESS_PREFIX = "oci_loadbal" #"oci_load_balancer" # oci_identity_compartment_facts" #oci_load_balancer"
 
 
 def strip_extension(s):
@@ -238,7 +239,8 @@ def get_old_new_module_pairs(old_repo_modules_path, new_repo_modules_path):
 
         for old_module_name in old_module_names:
             old_model_name_no_oci_prefix = strip_prefixes_safe(old_module_name, ['oci_'])
-            if old_model_name_no_oci_prefix == new_model_name_no_oci_prefix or old_model_name_no_oci_prefix == new_model_name_no_service_prefix:
+            old_model_name_no_service_prefix = strip_prefixes_safe(old_model_name_no_oci_prefix, [service_name + "_" for service_name in SERVICES_IMPLEMENTED_IN_NEW_MODULES])
+            if old_model_name_no_oci_prefix == new_model_name_no_oci_prefix or old_model_name_no_oci_prefix == new_model_name_no_service_prefix or old_model_name_no_service_prefix == new_model_name_no_service_prefix:
                 pairs.append((old_module_name, new_module_name))
                 found_match_for_new_module = True
 
@@ -270,13 +272,18 @@ def get_old_new_module_pairs(old_repo_modules_path, new_repo_modules_path):
             )
         )
 
+    unmatched_old_modules.sort()
+    unmatched_new_modules.sort()
+
     print(separator)
     print("Module matching between old and new")
     print(separator)
     print("Did not find matches for old modules: \n\t{}".format('\n\t'.join(unmatched_old_modules)))
     print("")
-    print("Did not find matches for new modules: \n\t{}".format('\n\t'.join(unmatched_old_modules)))
+    print("Did not find matches for new modules: \n\t{}".format('\n\t'.join(unmatched_new_modules)))
     print("")
+
+    full_path_pairs.sort(key=lambda p: p[0])
 
     return full_path_pairs, unmatched_old_modules, unmatched_new_modules
 

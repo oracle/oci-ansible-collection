@@ -79,6 +79,7 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer associated with the health check policy to
               be updated.
         type: str
+        aliases: ["id"]
         required: true
     backend_set_name:
         description:
@@ -276,7 +277,7 @@ def main():
             timeout_in_millis=dict(type="int", required=True),
             interval_in_millis=dict(type="int", required=True),
             response_body_regex=dict(type="str", required=True),
-            load_balancer_id=dict(type="str", required=True),
+            load_balancer_id=dict(aliases=["id"], type="str", required=True),
             backend_set_name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )

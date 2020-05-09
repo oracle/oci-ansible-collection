@@ -30,6 +30,7 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer shapes to list.
         type: str
+        aliases: ["id"]
         required: true
 author:
     - Manoj Meda (@manojmeda)
@@ -117,7 +118,10 @@ class ResourceFactsHelper(
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
-        dict(compartment_id=dict(type="str", required=True), name=dict(type="str"),)
+        dict(
+            compartment_id=dict(aliases=["id"], type="str", required=True),
+            name=dict(type="str"),
+        )
     )
 
     module = AnsibleModule(argument_spec=module_args)

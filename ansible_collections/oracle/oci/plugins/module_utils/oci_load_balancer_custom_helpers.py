@@ -72,6 +72,21 @@ class CertificateHelperCustom:
         ]
 
 
+class CertificateFactsHelperCustom:
+    def list_resources(self):
+        certificates = super(CertificateFactsHelperCustom, self).list_resources()
+
+        # if user specifies a name, then filter by that
+        if self.module.params.get("name"):
+            certificates = [
+                certificate
+                for certificate in certificates
+                if certificate.certificate_name == self.module.params.get("name")
+            ]
+
+        return certificates
+
+
 class ListenerHelperCustom:
     def get_resource(self):
         # normally get via list would be generated, but in this case the resource doesn't

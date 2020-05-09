@@ -39,6 +39,7 @@ options:
               health status information for.
             - Required to list multiple load_balancer_healths.
         type: str
+        aliases: ["id"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -191,7 +192,7 @@ def main():
     module_args.update(
         dict(
             load_balancer_id=dict(aliases=["id"], type="str"),
-            compartment_id=dict(type="str"),
+            compartment_id=dict(aliases=["id"], type="str"),
         )
     )
 

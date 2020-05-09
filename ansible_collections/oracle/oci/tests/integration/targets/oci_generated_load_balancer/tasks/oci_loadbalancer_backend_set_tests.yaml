@@ -5,7 +5,7 @@
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_backend_set_create_dependency_load_balancer_compartment_id, omit) }}"
       display_name: "{{ ('example_load_balancer' + random_suffix_1024) | oracle.oci.override(test_backend_set_create_dependency_load_balancer_display_name, omit) }}"
       shape_name: "{{ '100Mbps' | oracle.oci.override(test_backend_set_create_dependency_load_balancer_shape_name, omit) }}"
-      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_backend_set_create_dependency_load_balancer_subnet_ids, omit) }}"
+      subnet_ids: "{{ [ 'ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx' ] | oracle.oci.override(test_backend_set_create_dependency_load_balancer_subnet_ids, omit) }}"
     register: result
     when: skip_backend_set_create_dependency_load_balancer_test is not defined and skip_backend_set_dependencies is not defined
   - name: Assert resource was created
@@ -461,7 +461,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.backend_sets | length > 0
+        - result['backend_sets'] | length > 0
     when: skip_backend_set_list_test is not defined
 
 
@@ -474,7 +474,7 @@
         - item.health_checker is defined
         - item.ssl_configuration is defined
         - item.session_persistence_configuration is defined
-    with_items: "{{ result.backend_sets }}"
+    with_items: "{{ result['backend_sets'] }}"
     when: skip_backend_set_list_test is not defined
 
   - name: Assert custom assertions
@@ -496,7 +496,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.backend_sets | length == 1
+        - result['backend_sets'] | length == 1
     when: skip_backend_set_get_test is not defined
 
   - name: Assert response properties are populated
@@ -508,7 +508,7 @@
         - item.health_checker is defined
         - item.ssl_configuration is defined
         - item.session_persistence_configuration is defined
-    with_items: "{{ result.backend_sets }}"
+    with_items: "{{ result['backend_sets'] }}"
     when: skip_backend_set_get_test is not defined
 
   - name: Assert custom assertions

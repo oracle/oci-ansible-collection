@@ -9,7 +9,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.load_balancer_shapes | length > 0
+        - result['load_balancer_shapes'] | length > 0
     when: skip_load_balancer_shape_list_test is not defined
 
 
@@ -17,7 +17,7 @@
     assert:
       that:
         - item.name is defined
-    with_items: "{{ result.load_balancer_shapes }}"
+    with_items: "{{ result['load_balancer_shapes'] }}"
     when: skip_load_balancer_shape_list_test is not defined
 
   - name: Assert custom assertions

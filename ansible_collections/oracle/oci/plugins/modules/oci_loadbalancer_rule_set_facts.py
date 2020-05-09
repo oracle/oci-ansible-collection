@@ -38,6 +38,7 @@ options:
             - "Example: `example_rule_set`"
             - Required to get a specific rule_set.
         type: str
+        aliases: ["name"]
 author:
     - Manoj Meda (@manojmeda)
     - Mike Ross (@mross22)
@@ -186,7 +187,7 @@ def main():
     module_args.update(
         dict(
             load_balancer_id=dict(type="str", required=True),
-            rule_set_name=dict(type="str"),
+            rule_set_name=dict(aliases=["name"], type="str"),
         )
     )
 

@@ -5,7 +5,7 @@
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_certificate_create_dependency_load_balancer_compartment_id, omit) }}"
       display_name: "{{ ('example_load_balancer' + random_suffix_1024) | oracle.oci.override(test_certificate_create_dependency_load_balancer_display_name, omit) }}"
       shape_name: "{{ '100Mbps' | oracle.oci.override(test_certificate_create_dependency_load_balancer_shape_name, omit) }}"
-      subnet_ids: "{{ [ 'null' ] | oracle.oci.override(test_certificate_create_dependency_load_balancer_subnet_ids, omit) }}"
+      subnet_ids: "{{ [ 'ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx' ] | oracle.oci.override(test_certificate_create_dependency_load_balancer_subnet_ids, omit) }}"
     register: result
     when: skip_certificate_create_dependency_load_balancer_test is not defined and skip_certificate_dependencies is not defined
   - name: Assert resource was created
@@ -256,7 +256,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.certificates | length > 0
+        - result['certificates'] | length > 0
     when: skip_certificate_list_test is not defined
 
 
@@ -266,7 +266,7 @@
         - item.certificate_name is defined
         - item.public_certificate is defined
         - item.ca_certificate is defined
-    with_items: "{{ result.certificates }}"
+    with_items: "{{ result['certificates'] }}"
     when: skip_certificate_list_test is not defined
 
   - name: Assert custom assertions
