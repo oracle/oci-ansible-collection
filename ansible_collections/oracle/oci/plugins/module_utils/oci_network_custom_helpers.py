@@ -10,7 +10,6 @@ __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
-
 try:
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
     from oci.util import to_dict
@@ -391,9 +390,9 @@ class IpSecConnectionTunnelHelperCustom:
             IpSecConnectionTunnelHelperCustom, self
         ).get_update_model_dict_for_idempotence_check(update_model)
         key_mapping = (
-            lambda key: "bgp_session_info" if key == "bgp_session_config" else key
+            lambda arg: "bgp_session_info" if arg == "bgp_session_config" else arg
         )
-        return dict((key_mapping(key), val) for key, val in update_model_dict.items())
+        return dict((key_mapping(k), v) for k, v in update_model_dict.items())
 
 
 class PublicIpFactsHelperCustom:
