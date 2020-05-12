@@ -296,19 +296,25 @@ def compare_lists(source_list, target_list):
     return False
 
 
-def is_in_list(l, element):
+def is_in_list(target_list, element):
     if isinstance(element, dict):
-        if any([compare_dicts(element, target_element) for target_element in l]):
+        if any(
+            [compare_dicts(element, target_element) for target_element in target_list]
+        ):
             return True
     elif isinstance(element, list):
-        if any([compare_lists(element, target_element) for target_element in l]):
+        if any(
+            [compare_lists(element, target_element) for target_element in target_list]
+        ):
             return True
     else:
-        if element in l:
+        if element in target_list:
             return True
 
         _debug(
-            "element {element} is not in list: {list}".format(element=element, list=l)
+            "element {element} is not in list: {list}".format(
+                element=element, list=target_list
+            )
         )
     return False
 
