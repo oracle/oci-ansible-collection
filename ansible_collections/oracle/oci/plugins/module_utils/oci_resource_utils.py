@@ -455,6 +455,23 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             self.module.params, self.get_create_model_class()
         )
 
+    def is_resource_dead(self, resource):
+        """
+        Checks if a resource is in a dead state.
+
+        Specific resources can override this function if they require
+        non lifecycle_state based checks to determine if they are dead.
+
+        If a new resource has a lifecycle state not present in
+        oci_common_utils.DEAD_STATES consider adding it.
+        """
+        if hasattr(resource, "lifecycle_state") and (
+            resource.lifecycle_state in oci_common_utils.DEAD_STATES
+        ):
+            return True
+
+        return False
+
     def get_create_model_dict_for_idempotence_check(self, create_model):
         """This function allows any customisations that are needed in the create model for comparison during the
         idempotence check.
@@ -723,10 +740,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             )
         else:
             resource = to_dict(get_response.data)
-            if (
-                "lifecycle_state" in resource
-                and resource["lifecycle_state"] in oci_common_utils.DEAD_STATES
-            ):
+            if self.is_resource_dead(get_response.data):
                 return self.prepare_result(
                     changed=False, resource_type=self.resource_type, resource=resource
                 )

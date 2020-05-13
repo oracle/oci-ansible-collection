@@ -1,0 +1,23 @@
+# there is an OKE bug: https://jira.oci.oraclecorp.com/browse/OKE-7780
+# that prevents clusters from being updated if they were created with only the
+# required set of params
+
+- name: Create cluster with required parameters and some optional
+  oci_container_engine_cluster:
+    name: "{{ ('My Cluster' + random_suffix_1024) }}"
+    compartment_id: "{{ test_compartment_ocid }}"
+    vcn_id: "{{ dependency_vcn_id }}"
+    kubernetes_version: "{{ test_cluster_create_required_kubernetes_version }}"
+    options:
+      kubernetes_network_config:
+        pods_cidr: "10.244.0.0/16"
+        services_cidr: "10.96.0.0/16"
+  register: result
+
+- set_fact:
+    cluster_resource_id: "{{ result.cluster.id }}"
+
+- name: Assert resource was created
+  assert:
+    that:
+      - result.changed == True

@@ -217,13 +217,31 @@ class WorkRequestWaiter(BaseWaiter):
 
         return state
 
-    def _get_work_request_errors(self, work_request_response, errors_attr=None):
+    def _get_work_request_errors_from_failed_work_request(
+        self, work_request_response, errors_attr=None
+    ):
         if errors_attr:
             return getattr(work_request_response.data, errors_attr, None)
         if hasattr(work_request_response.data, "errors"):
             return work_request_response.data.errors
         if hasattr(work_request_response.data, "error_details"):
             return work_request_response.data.error_details
+        if hasattr(self.client, "list_work_request_errors"):
+            # almost all services have only 1 positional argument for list_work_request_errors
+            # the exception is container_engine which also requires compartment ID, so try all
+            # common / known signatures
+            try:
+                return self.client.list_work_request_errors(
+                    work_request_response.data.id
+                ).data
+            except TypeError:
+                try:
+                    return self.client.list_work_request_errors(
+                        work_request_response.data.compartment_id,
+                        work_request_response.data.id,
+                    ).data
+                except TypeError:
+                    pass
         return None
 
     def get_fetch_func(self):
@@ -247,7 +265,9 @@ class WorkRequestWaiter(BaseWaiter):
             self.resource_helper.module.fail_json(
                 msg="Work request {work_request_id} failed with errors: {errors}".format(
                     work_request_id=wait_response.data.id,
-                    errors=self._get_work_request_errors(wait_response),
+                    errors=self._get_work_request_errors_from_failed_work_request(
+                        wait_response
+                    ),
                 )
             )
 

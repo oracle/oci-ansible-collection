@@ -1,8 +1,18 @@
 ---
 - block:
-    - import_tasks: oci_container_engine_cluster_tests.yaml
-      tags:
-        - cluster
+    - block:
+      - import_tasks: oci_container_engine_cluster_test_setup.yaml
+        tags:
+          - cluster
+
+      - import_tasks: oci_container_engine_cluster_tests.yaml
+        tags:
+          - cluster
+
+      always:
+        - import_tasks: oci_container_engine_cluster_test_teardown.yaml
+          tags:
+            - cluster
 
     - import_tasks: oci_container_engine_cluster_options_tests.yaml
       tags:

@@ -1,5 +1,19 @@
 ---
 - block:
+  - name: Create cluster (check mode)
+    oci_container_engine_cluster:
+      name: "{{ dependency_cluster_name }}"
+      compartment_id: "{{ test_compartment_ocid }}"
+      vcn_id: "{{ common_vcn_id }}"
+      kubernetes_version: "{{ kubernetes_version }}"
+    register: result
+    check_mode: yes
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+
   - name: Create dependency cluster
     oci_container_engine_cluster:
       name: "{{ dependency_cluster_name }}"
@@ -7,14 +21,32 @@
       vcn_id: "{{ common_vcn_id }}"
       kubernetes_version: "{{ kubernetes_version }}"
     register: result
-    when: skip_node_pool_dependencies is not defined
+
   - name: Assert resource was created
     assert:
       that:
         - result.changed == True
-    when: skip_node_pool_dependencies is not defined
+
   - set_fact:
       dependency_cluster_id: "{{ result.cluster.id }}"
+
+# ==================================================================================================== #
+# This known issue will cause this upgrade to fail: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/827
+# This is a bit hacky but we are using this known failure to test retrieving work request errors for container engine
+# If this test ever fails, the first step should be to check if the linked issue has been resolved
+  - name: Upgrade cluster
+    oci_container_engine_cluster:
+      cluster_id: "{{ dependency_cluster_id }}"
+      kubernetes_version: "{{ result.cluster.available_kubernetes_upgrades[0] }}"
+    register: result
+    ignore_errors: yes
+
+  - name: Assert that error reason is properly included in response message
+    assert:
+      that:
+        - result is failed
+        - "\"failed with errors\" in (result.msg | lower)"
+        - "\"failed with errors: None\" not in (result.msg | lower)"
 
 # ==================================================================================================== #
 
@@ -120,17 +152,20 @@
         - result.changed == True
 
 # ==================================================================================================== #
-  # temporarily disabled: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831
-  # - name: Delete node_pool - idempotence
-  #   oci_container_engine_node_pool:
-  #     node_pool_id: "{{ node_pool_id }}"
-  #     state: absent
-  #   register: result
+# If investigating failures of this test see information here: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831
+# If we see more failures we should file a ticket against the OKE team asking for guidance about what we should do in
+# the scenario where the DELETE work request returns successfully but the node_pool still exists and can be fetched through
+# the control plane for some time
+  - name: Delete node_pool - idempotence
+    oci_container_engine_node_pool:
+      node_pool_id: "{{ node_pool_id }}"
+      state: absent
+    register: result
 
-  # - name: Assert that resource was not deleted
-  #   assert:
-  #     that:
-  #       - result.changed == False
+  - name: Assert that resource was not deleted
+    assert:
+      that:
+        - result.changed == False
 
 # ===========================================================================================
 # A temporary ssh public key should be generated always as part of this suite to avoid
@@ -296,17 +331,20 @@
         - result.changed == True
 
 # ==================================================================================================== #
-  # temporarily disabled: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831 
-  # - name: Delete node_pool - idempotence
-  #   oci_container_engine_node_pool:
-  #     node_pool_id: "{{ node_pool_id }}"
-  #     state: absent
-  #   register: result
+# If investigating failures of this test see information here: https://gitlab-odx.oracledx.com/oci/ansible-cloud-module/-/issues/831
+# If we see more failures we should file a ticket against the OKE team asking for guidance about what we should do in
+# the scenario where the DELETE work request returns successfully but the node_pool still exists and can be fetched through
+# the control plane for some time
+  - name: Delete node_pool - idempotence
+    oci_container_engine_node_pool:
+      node_pool_id: "{{ node_pool_id }}"
+      state: absent
+    register: result
 
-  # - name: Assert that resource was not deleted
-  #   assert:
-  #     that:
-  #       - result.changed == False
+  - name: Assert that resource was not deleted
+    assert:
+      that:
+        - result.changed == False
 
   - name: Delete dependency cluster
     oci_container_engine_cluster:
