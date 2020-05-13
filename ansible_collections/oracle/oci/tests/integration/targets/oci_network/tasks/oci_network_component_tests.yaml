@@ -1,3 +1,4 @@
+# These tests are mainly targeted at testing the idempotence and other behaviour in the utils.
 - block:
 
     - name: Create a vcn which can be used for multiple tests
@@ -13,6 +14,68 @@
         idempo_vcn_id: "{{ idempo_vcn_create_result.vcn.id }}"
         idempo_vcn_default_sec_list_id: "{{ idempo_vcn_create_result.vcn.default_security_list_id }}"
         idempo_vcn_default_route_table_id: "{{ idempo_vcn_create_result.vcn.default_route_table_id }}"
+
+    - name: Create another vcn with same attributes but with freeform tags
+      oci_network_vcn:
+        cidr_block: "10.0.0.0/16"
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "IdempotenceTestVCN-{{ random_suffix_1024 }}"
+        dns_label: "idempovcn"
+        freeform_tags:
+          key: value
+      register: vcn_with_freeform_tags_create_result
+
+    - set_fact:
+        vcn_with_freeform_tags_id: "{{ vcn_with_freeform_tags_create_result.vcn.id }}"
+
+    - name: Assert that the vcn is created
+      assert:
+        that:
+          - vcn_with_freeform_tags_create_result.changed == True
+
+    - name: Create another vcn with same attributes but with freeform tags
+      oci_network_vcn:
+        cidr_block: "10.0.0.0/16"
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "IdempotenceTestVCN-{{ random_suffix_1024 }}"
+        dns_label: "idempovcn"
+        freeform_tags:
+          anotherkey: value
+      register: vcn_with_different_freeform_tags_create_result
+
+    - set_fact:
+        vcn_with_different_freeform_tags_id: "{{ vcn_with_different_freeform_tags_create_result.vcn.id }}"
+
+    - name: Assert that the vcn is created
+      assert:
+        that:
+          - vcn_with_different_freeform_tags_create_result.changed == True
+
+    - name: Delete vcn with freeform tags
+      oci_network_vcn:
+        vcn_id: "{{ vcn_with_freeform_tags_id }}"
+        state: "absent"
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete vcn with different freeform tags
+      oci_network_vcn:
+        vcn_id: "{{ vcn_with_different_freeform_tags_id }}"
+        state: "absent"
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+
+    - name: Assert that freeform tags are considered for idempotence and vcn is created
+      assert:
+        that:
+          - vcn_with_freeform_tags_create_result.changed == True
 
     - name: Create an internet gateway for the common vcn
       oci_network_internet_gateway:
@@ -178,6 +241,20 @@
 
   rescue:
 
+    - name: Delete vcn with freeform tags
+      oci_network_vcn:
+        vcn_id: "{{ vcn_with_freeform_tags_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
+    - name: Delete vcn with different freeform tags
+      oci_network_vcn:
+        vcn_id: "{{ vcn_with_different_freeform_tags_id }}"
+        state: "absent"
+      register: result
+      ignore_errors: yes
+
     - name: Delete fourth route table
       oci_network_route_table:
         rt_id: "{{ fourth_rt_id }}"
@@ -219,11 +296,6 @@
         state: "absent"
       register: result
       ignore_errors: yes
-
-    - name: Assert that the vcn is deleted
-      assert:
-        that:
-          - result.changed == True
 
     - fail:
         msg: "{{ ansible_failed_result }}"
