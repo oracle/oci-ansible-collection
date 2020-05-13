@@ -431,7 +431,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         )
 
     def get_exclude_attributes(self):
-        return ["freeform_tags", "node_count"]
+        """Return the attributes that are not necessary to be considered for create idempotence.
+
+        There are some cases where you have to skip some parameters in idempotence logic. For ex: some modules accept
+        password during creation time but this is not available in get model. So there is no way to check this. So it
+        is probably a good idea to exclude it. Use this function to skip any parameters that don't need to be
+        considered for idempotence.
+
+        Note: Use with caution and don't exclude an attribute unless there is a good reason to do so."""
+        return []
 
     def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
         if self.module.params.get("key_by") is not None:
