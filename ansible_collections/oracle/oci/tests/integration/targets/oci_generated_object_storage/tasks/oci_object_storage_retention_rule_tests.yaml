@@ -447,14 +447,14 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.retention_rules | length > 0
+        - result['retention_rules'] | length > 0
     when: skip_retention_rule_list_test is not defined
 
 
   - name: Assert response properties are populated
     assert:
       that:
-    with_items: "{{ result.retention_rules }}"
+    with_items: "{{ result['retention_rules'] }}"
     when: skip_retention_rule_list_test is not defined
 
   - name: Assert custom assertions
@@ -477,13 +477,13 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.retention_rules | length == 1
+        - result['retention_rules'] | length == 1
     when: skip_retention_rule_get_test is not defined
 
   - name: Assert response properties are populated
     assert:
       that:
-    with_items: "{{ result.retention_rules }}"
+    with_items: "{{ result['retention_rules'] }}"
     when: skip_retention_rule_get_test is not defined
 
   - name: Assert custom assertions

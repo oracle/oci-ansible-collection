@@ -286,7 +286,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.replication_policies | length > 0
+        - result['replication_policies'] | length > 0
     when: skip_replication_policy_list_test is not defined
 
 
@@ -301,7 +301,7 @@
         - item.time_last_sync is defined
         - item.status is defined
         - item.status_message is defined
-    with_items: "{{ result.replication_policies }}"
+    with_items: "{{ result['replication_policies'] }}"
     when: skip_replication_policy_list_test is not defined
 
   - name: Assert custom assertions
@@ -324,7 +324,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.replication_policies | length == 1
+        - result['replication_policies'] | length == 1
     when: skip_replication_policy_get_test is not defined
 
   - name: Assert response properties are populated
@@ -338,7 +338,7 @@
         - item.time_last_sync is defined
         - item.status is defined
         - item.status_message is defined
-    with_items: "{{ result.replication_policies }}"
+    with_items: "{{ result['replication_policies'] }}"
     when: skip_replication_policy_get_test is not defined
 
   - name: Assert custom assertions

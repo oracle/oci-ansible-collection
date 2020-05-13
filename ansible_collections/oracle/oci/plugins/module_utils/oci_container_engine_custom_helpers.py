@@ -8,10 +8,16 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+from ansible.module_utils._text import to_text
+
 
 class KubeconfigHelperCustom:
     def get_module_resource_id(self):
         return False
 
-    def list_resources(self):
-        return []
+    def get_matching_resource(self):
+        return None
+
+    def create_resource(self):
+        response_data = super(KubeconfigHelperCustom, self).create_resource()
+        return to_text(response_data.content)

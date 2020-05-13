@@ -32,6 +32,7 @@ options:
         description:
             - The OCID of the provider service.
         type: str
+        aliases: ["id"]
         required: true
 author:
     - Manoj Meda (@manojmeda)
@@ -131,7 +132,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            provider_service_id=dict(type="str", required=True), name=dict(type="str"),
+            provider_service_id=dict(aliases=["id"], type="str", required=True),
+            name=dict(type="str"),
         )
     )
 

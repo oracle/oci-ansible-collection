@@ -1,0 +1,6 @@
+test_cluster_name: "test-cluster-{{random_suffix_1024}}"
+updated_test_cluster_name: "updated-test-cluster-{{random_suffix_1024}}"
+pods_cidr: "10.244.0.0/16"
+services_cidr: "10.96.0.0/16"
+test_node_pool_name: "test-node_pool-{{random_suffix_1024}}"
+updated_test_node_pool_name: "updated-test-node_pool-{{random_suffix_1024}}"

@@ -1,0 +1,913 @@
+# Tests for oci_container_engine_cluster module
+
+- name: Cleanup clusters before running test
+  oci_container_engine_cluster_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+  register: result
+
+- oci_container_engine_cluster:
+    id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ result.clusters }}"
+  when: item.name == updated_test_cluster_name or item.name == test_cluster_name
+  ignore_errors: yes
+
+- name: Cleanup node pools
+  oci_container_engine_node_pool_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+  register: result
+
+- oci_container_engine_node_pool:
+    id: "{{ item['id'] }}"
+    state: absent
+  with_items: "{{ result.node_pools }}"
+  when: item.name == updated_test_node_pool_name or item.name == test_node_pool_name
+  ignore_errors: yes
+
+- name: Get available cluster options
+  oci_container_engine_cluster_options_facts:
+    id: all
+  register: options
+
+- name: Print options
+  debug:
+    msg: "{{ options }}"
+
+- name: Assert cluster options are retrieved
+  assert:
+    that:
+      - options.cluster_options is defined
+
+# =====================================================================================================
+- block:
+
+    - name: Create a vcn for creating cluster
+      oci_network_vcn:
+        cidr_block: "10.0.0.0/16"
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "ClusterVCN"
+        dns_label: "clustervcn"
+      register: cluster_vcn_create_result
+
+    - set_fact:
+        cluster_vcn: "{{ cluster_vcn_create_result.vcn }}"
+        cluster_vcn_id: "{{ cluster_vcn_create_result.vcn.id }}"
+        cluster_vcn_default_sec_list_id: "{{ cluster_vcn_create_result.vcn.default_security_list_id }}"
+        cluster_vcn_default_route_table_id: "{{ cluster_vcn_create_result.vcn.default_route_table_id }}"
+
+    - name: Create an internet gateway for the cluster vcn
+      oci_network_internet_gateway:
+        compartment_id: "{{test_compartment_ocid}}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        name: "IGForClusterVCN"
+        is_enabled: yes
+      register: ig_for_cluster_vcn_create_result
+
+    - set_fact:
+        ig_for_cluster_vcn: "{{ ig_for_cluster_vcn_create_result.internet_gateway }}"
+        ig_for_cluster_vcn_id: "{{ ig_for_cluster_vcn_create_result.internet_gateway.id }}"
+
+    - name: Add route rule to default route table in common vcn
+      oci_network_route_table:
+        rt_id: "{{ cluster_vcn_default_route_table_id }}"
+        route_rules:
+          - destination: "0.0.0.0/0"
+            destination_type: "CIDR_BLOCK"
+            network_entity_id: "{{ ig_for_cluster_vcn_id }}"
+      register: add_route_rule_to_cluster_vcn_result
+
+    - name: Update default security_list
+      oci_network_security_list:
+        security_list_id: "{{ cluster_vcn_default_sec_list_id }}"
+        ingress_security_rules:
+          - protocol: 6
+            source: "10.0.0.0/16"
+        egress_security_rules:
+          - protocol: 6
+            destination: "0.0.0.0/0"
+
+    - name: Create subnet for hosting nodes in AD1
+      oci_network_subnet:
+        display_name: "AD1SubnetForNodes"
+        dns_label: "ad1nodesubnet"
+        cidr_block: "10.0.1.0/24"
+        availability_domain: "{{ test_availability_domain }}"
+        route_table_id: "{{ cluster_vcn.default_route_table_id }}"
+        security_list_ids:
+          - "{{ cluster_vcn.default_security_list_id }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+
+    - set_fact:
+        node_ad1_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Create subnet for hosting nodes in AD2
+      oci_network_subnet:
+        display_name: "AD2SubnetForNodes"
+        dns_label: "ad2nodesubnet"
+        cidr_block: "10.0.2.0/24"
+        availability_domain: "{{ test_availability_domain_2 }}"
+        route_table_id: "{{ cluster_vcn.default_route_table_id }}"
+        security_list_ids:
+          - "{{ cluster_vcn.default_security_list_id }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+
+    - set_fact:
+        node_ad2_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Create subnet for hosting nodes in AD3
+      oci_network_subnet:
+        display_name: "AD3SubnetForNodes"
+        dns_label: "ad3nodesubnet"
+        cidr_block: "10.0.3.0/24"
+        availability_domain: "{{ test_availability_domain_3 }}"
+        route_table_id: "{{ cluster_vcn.default_route_table_id }}"
+        security_list_ids:
+          - "{{ cluster_vcn.default_security_list_id }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+
+    - set_fact:
+        node_ad3_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Create subnet for hosting load balancers in AD1
+      oci_network_subnet:
+        display_name: "AD1SubnetForLB"
+        dns_label: "lbsubnetad1"
+        cidr_block: "10.0.5.0/24"
+        availability_domain: "{{ test_availability_domain }}"
+        route_table_id: "{{ cluster_vcn.default_route_table_id }}"
+        security_list_ids:
+          - "{{ cluster_vcn.default_security_list_id }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+
+    - set_fact:
+        lb_ad1_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Create subnet for hosting load balancers in AD2
+      oci_network_subnet:
+        display_name: "AD2SubnetForLB"
+        dns_label: "lbsubnetad2"
+        cidr_block: "10.0.6.0/24"
+        availability_domain: "{{ test_availability_domain_2 }}"
+        route_table_id: "{{ cluster_vcn.default_route_table_id }}"
+        security_list_ids:
+          - "{{ cluster_vcn.default_security_list_id }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+      register: result
+
+    - set_fact:
+        lb_ad2_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Create a cluster
+      oci_container_engine_cluster:
+        name: "{{ test_cluster_name }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        kubernetes_version: "{{ options.cluster_options.kubernetes_versions[0] }}"
+        options:
+          service_lb_subnet_ids:
+            - "{{ lb_ad1_subnet_id }}"
+            - "{{ lb_ad2_subnet_id }}"
+          kubernetes_network_config:
+            pods_cidr: "{{ pods_cidr }}"
+            services_cidr: "{{ services_cidr }}"
+          add_ons:
+            is_kubernetes_dashboard_enabled: True
+            is_tiller_enabled: True
+        # increase wait time to 40 minutes
+        wait_timeout: 2400
+      register: test_cluster
+
+    - set_fact:
+        test_cluster_ocid: "{{ test_cluster.cluster.id }}"
+
+    - name: Print
+      debug:
+        msg: "{{ test_cluster }}"
+
+    - name: Assert changed is True and cluster is created.
+      assert:
+        that:
+           - test_cluster.changed == True
+           - test_cluster.cluster.name == test_cluster_name
+           - test_cluster.cluster.compartment_id == test_compartment_ocid
+           - test_cluster.cluster.vcn_id == cluster_vcn_id
+           - test_cluster.cluster.kubernetes_version == options.cluster_options.kubernetes_versions[0]
+           - test_cluster.cluster.lifecycle_state == "ACTIVE"
+           - test_cluster.cluster.options.add_ons.is_kubernetes_dashboard_enabled == True
+           - test_cluster.cluster.options.add_ons.is_tiller_enabled == True
+           - test_cluster.cluster.options.kubernetes_network_config.pods_cidr == pods_cidr
+           - test_cluster.cluster.options.kubernetes_network_config.services_cidr == services_cidr
+#           - test_cluster.work_request is defined
+
+    # =====================================================================================================
+
+    - name: Reattempt creating a cluster
+      oci_container_engine_cluster:
+        name: "{{ test_cluster_name }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        vcn_id: "{{ cluster_vcn_id }}"
+        kubernetes_version: "{{ options.cluster_options.kubernetes_versions[0] }}"
+        options:
+          service_lb_subnet_ids:
+            - "{{ lb_ad2_subnet_id }}"
+            - "{{ lb_ad1_subnet_id }}"
+          kubernetes_network_config:
+            pods_cidr: "{{ pods_cidr }}"
+            services_cidr: "{{ services_cidr }}"
+          add_ons:
+            is_kubernetes_dashboard_enabled: True
+            is_tiller_enabled: True
+      register: result
+
+    - name: Assert cluster create operation is idempotent, previously created cluster is returned and changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.cluster.id == test_cluster_ocid
+
+    # =====================================================================================================
+
+    - name: Update a cluster to the first available kubernetes upgrade
+      oci_container_engine_cluster:
+        id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ test_cluster.cluster.available_kubernetes_upgrades[0] }}"
+        name: "{{ updated_test_cluster_name }}"
+        wait_timeout: 2400
+      register: result
+
+    - name: Assert changed is True and cluster is updated
+      assert:
+        that:
+          - result.changed == True
+          - result.cluster.kubernetes_version == test_cluster.cluster.available_kubernetes_upgrades[0]
+          - result.cluster.name == updated_test_cluster_name
+          - result.cluster.lifecycle_state == "ACTIVE"
+#          - result.work_request is defined
+
+    # =====================================================================================================
+
+    - name: Reattempt updating a cluster
+      oci_container_engine_cluster:
+        id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ test_cluster.cluster.available_kubernetes_upgrades[0] }}"
+        name: "{{ updated_test_cluster_name }}"
+      register: result
+
+    - name: Assert changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.cluster.id == test_cluster_ocid
+
+    # =====================================================================================================
+
+    - name: Get all clusters
+      oci_container_engine_cluster_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_cluster: "{{item}}"
+      with_items: "{{result.clusters}}"
+      when: item.id == test_cluster_ocid
+    - debug: msg="{{facts_of_test_cluster}}"
+    - name: Assert that test cluster is retrieved
+      assert:
+        that:
+          - facts_of_test_cluster is defined
+
+    - name: Get all ACTIVE clusters
+      oci_container_engine_cluster_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        lifecycle_state: ['ACTIVE']
+      register: result
+
+    - set_fact:
+        facts_of_test_cluster: "{{item}}"
+      with_items: "{{result.clusters}}"
+      when: item.id == test_cluster_ocid
+    - debug: msg="{{facts_of_test_cluster}}"
+    - name: Assert that test cluster is retrieved
+      assert:
+        that:
+          - facts_of_test_cluster is defined
+          - facts_of_test_cluster.lifecycle_state == "ACTIVE"
+
+
+    # =====================================================================================================
+
+    # This will test ability to retrieve a resource using `name` when the list call by sdk supports filtering based on name.
+    - name: Get cluster using name, list_clusters supports filter by name
+      oci_container_engine_cluster_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        name: "{{ updated_test_cluster_name }}"
+      register: result
+
+    - name: Assert that only clusters with {{ updated_test_cluster_name }} are retrieved
+      assert:
+        that:
+          - item.name == updated_test_cluster_name
+      with_items: "{{result.clusters}}"
+
+    # =====================================================================================================
+
+    - name: Get a specific cluster
+      oci_container_engine_cluster_facts:
+        cluster_id: '{{ test_cluster_ocid }}'
+      register: result
+
+    - name: Assert that test cluster is retrieved
+      assert:
+        that:
+          - result.clusters[0].id == test_cluster_ocid
+
+    # =====================================================================================================
+
+    - name: Get available node pool options
+      oci_container_engine_node_pool_options_facts:
+        id: '{{ test_cluster_ocid }}'
+      register: npoptions
+
+    # =====================================================================================================
+    - set_fact:
+        count_of_nodes: 2
+
+    - name: Create a node pool
+      oci_container_engine_node_pool:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        subnet_ids:
+          - "{{ node_ad2_subnet_id }}"
+          - "{{ node_ad3_subnet_id }}"
+        quantity_per_subnet: 1
+#        count_of_nodes_to_wait: "{{ count_of_nodes }}"
+        initial_node_labels:
+          - key: "stage"
+            value: "dev"
+          - key: "vm_type"
+            value: "standard"
+          - key: "image"
+            value: "OL"
+      register: result
+
+    - set_fact:
+        test_node_pool_ocid: "{{ result.node_pool.id }}"
+
+    - name: Print
+      debug:
+        msg: "{{ result }}"
+
+    - name: Assert changed is True and new node pool is created
+      assert:
+        that:
+          - result.changed == True
+          - result.node_pool.compartment_id == test_compartment_ocid
+          - result.node_pool.name == test_node_pool_name
+          - result.node_pool.cluster_id == test_cluster_ocid
+          - result.node_pool.kubernetes_version == npoptions.node_pool_options.kubernetes_versions[0]
+          - result.node_pool.node_image_name == "Oracle-Linux-7.4"
+          - result.node_pool.node_shape == test_instance_shape
+          - ( result.node_pool.subnet_ids[0] == node_ad2_subnet_id and result.node_pool.subnet_ids[1] == node_ad3_subnet_id ) or ( result.node_pool.subnet_ids[0] == node_ad3_subnet_id and result.node_pool.subnet_ids[1] == node_ad2_subnet_id )
+          - result.node_pool.quantity_per_subnet == 1
+          - result.node_pool.initial_node_labels[0]['key'] == 'stage'
+          - result.node_pool.initial_node_labels[0]['value'] == 'dev'
+          - result.node_pool.initial_node_labels[1]['key'] == 'vm_type'
+          - result.node_pool.initial_node_labels[1]['value'] == 'standard'
+#          - result.node_pool.nodes[0].id is defined
+#          - result.work_request is defined
+
+    # =========================================================================================
+
+    # Check if specified number of nodes are active
+#    - set_fact:
+#        active_node_count: 0
+#    - set_fact:
+#        active_node_count: "{{ active_node_count | int + 1 }}"
+#      with_items: "{{ result.node_pool.nodes }}"
+#      when: item.lifecycle_state == "ACTIVE"
+
+#    - name: Assert that active_node_count is at least as expected
+#      assert:
+#        that:
+#          - ( active_node_count | int) >= ( count_of_nodes | int )
+
+    # =========================================================================================
+
+    - name: Attempt to recreate node pool
+      oci_container_engine_node_pool:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        subnet_ids:
+          - "{{ node_ad2_subnet_id }}"
+          - "{{ node_ad3_subnet_id }}"
+        quantity_per_subnet: 1
+        initial_node_labels:
+          - key: "stage"
+            value: "dev"
+          - key: "image"
+            value: "OL"
+          - key: "vm_type"
+            value: "standard"
+      register: result
+
+
+    - name: Assert node pool create operation is idempotent, previously created node pool is returned and changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.node_pool.id == test_node_pool_ocid
+
+    # =========================================================================================
+
+    - name: Attempt to recreate node pool with diff order for node labels
+      oci_container_engine_node_pool:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        subnet_ids:
+          - "{{ node_ad2_subnet_id }}"
+          - "{{ node_ad3_subnet_id }}"
+        quantity_per_subnet: 1
+        initial_node_labels:
+          - key: "image"
+            value: "OL"
+          - key: "stage"
+            value: "dev"
+          - key: "vm_type"
+            value: "standard"
+      register: result
+
+
+    - name: Assert node pool create operation is idempotent, previously created node pool is returned and changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.node_pool.id == test_node_pool_ocid
+
+    # =========================================================================================
+
+    - name: Create a node pool using placement configurations
+      oci_container_engine_node_pool:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        node_config_details:
+          size: "{{count_of_nodes}}"
+          placement_configs:
+            - availability_domain: "{{ test_availability_domain }}"
+              subnet_id: "{{ node_ad1_subnet_id }}"
+            - availability_domain: "{{ test_availability_domain_2 }}"
+              subnet_id: "{{ node_ad2_subnet_id }}"
+#        count_of_nodes_to_wait: "{{ count_of_nodes }}"
+        initial_node_labels:
+          - key: "stage"
+            value: "dev"
+          - key: "vm_type"
+            value: "standard"
+          - key: "image"
+            value: "OL"
+      register: result
+
+    - set_fact:
+        test_node_pool_placement_configs_ocid: "{{ result.node_pool.id }}"
+
+    - name: Print
+      debug:
+        msg: "{{ result }}"
+
+    - name: Assert changed is True and new node pool is created
+      assert:
+        that:
+          - result.changed == True
+          - result.node_pool.compartment_id == test_compartment_ocid
+          - result.node_pool.name == test_node_pool_name
+          - result.node_pool.cluster_id == test_cluster_ocid
+          - result.node_pool.kubernetes_version == npoptions.node_pool_options.kubernetes_versions[0]
+          - result.node_pool.node_image_name == "Oracle-Linux-7.4"
+          - result.node_pool.node_shape == test_instance_shape
+          - result.node_pool.node_config_details.placement_configs | length == 2
+          - result.node_pool.initial_node_labels[0]['key'] == 'stage'
+          - result.node_pool.initial_node_labels[0]['value'] == 'dev'
+          - result.node_pool.initial_node_labels[1]['key'] == 'vm_type'
+          - result.node_pool.initial_node_labels[1]['value'] == 'standard'
+#          - result.node_pool.nodes[0].id is defined
+#          - result.work_request is defined
+
+    - name: Assert placement configs are correct
+      assert:
+        that:
+          - "{{ (item.subnet_id == node_ad1_subnet_id) or (item.subnet_id == node_ad2_subnet_id) }}"
+      with_items: "{{ result.node_pool.node_config_details.placement_configs }}"
+
+    # =========================================================================================
+
+    # Check if specified number of nodes are active
+#    - set_fact:
+#        active_node_count: 0
+#    - set_fact:
+#        active_node_count: "{{ active_node_count | int + 1 }}"
+#      with_items: "{{ result.node_pool.nodes }}"
+#      when: item.lifecycle_state == "ACTIVE"
+
+#    - name: Assert that active_node_count is at least as expected
+#      assert:
+#        that:
+#          - ( active_node_count | int) >= ( count_of_nodes | int )
+
+    # =========================================================================================
+
+    - name: Attempt to recreate node pool using placement configurations
+      oci_container_engine_node_pool:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        node_config_details:
+          size: "{{count_of_nodes}}"
+          placement_configs:
+            - availability_domain: "{{ test_availability_domain }}"
+              subnet_id: "{{ node_ad1_subnet_id }}"
+            - availability_domain: "{{ test_availability_domain_2 }}"
+              subnet_id: "{{ node_ad2_subnet_id }}"
+        initial_node_labels:
+          - key: "stage"
+            value: "dev"
+          - key: "image"
+            value: "OL"
+          - key: "vm_type"
+            value: "standard"
+      register: result
+
+
+    - name: Assert node pool create operation is idempotent, previously created node pool is returned and changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.node_pool.id == test_node_pool_placement_configs_ocid
+
+    # =========================================================================================
+
+    - name: Attempt to recreate node pool with diff order for placement configurations
+      oci_container_engine_node_pool:
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        node_config_details:
+          size: "{{count_of_nodes}}"
+          placement_configs:
+            - availability_domain: "{{ test_availability_domain_2 }}"
+              subnet_id: "{{ node_ad2_subnet_id }}"
+            - availability_domain: "{{ test_availability_domain }}"
+              subnet_id: "{{ node_ad1_subnet_id }}"
+        initial_node_labels:
+          - key: "image"
+            value: "OL"
+          - key: "stage"
+            value: "dev"
+          - key: "vm_type"
+            value: "standard"
+      register: result
+
+
+    - name: Assert node pool create operation is idempotent, previously created node pool is returned and changed is false
+      assert:
+        that:
+          - result.changed == False
+          - result.node_pool.id == test_node_pool_placement_configs_ocid
+
+    # =========================================================================================
+
+    - name: Update placement configurations
+      oci_container_engine_node_pool:
+        node_pool_id: "{{ test_node_pool_placement_configs_ocid }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{ test_node_pool_name }}"
+        cluster_id: "{{ test_cluster_ocid }}"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        node_image_name: "Oracle-Linux-7.4"
+        node_shape: "{{ test_instance_shape }}"
+        node_config_details:
+          size: "{{count_of_nodes}}"
+          placement_configs:
+            - availability_domain: "{{ test_availability_domain_3 }}"
+              subnet_id: "{{ node_ad3_subnet_id }}"
+      register: result
+
+    - name: Assert placement configs were updated
+      assert:
+        that:
+          - result.changed == True
+          - result.node_pool.node_config_details.placement_configs | length == 1
+          - result.node_pool.id == test_node_pool_placement_configs_ocid
+#          - result.node_pool.nodes[0].id is defined
+#          - result.work_request is defined
+
+    # =========================================================================================
+
+    - name: Wait to allow time for update to start
+      wait_for:
+        timeout: 90
+
+    # =========================================================================================
+
+    - name: Wait until node pool is actually updated
+      oci_container_engine_node_pool_facts:
+        node_pool_id: "{{ test_node_pool_placement_configs_ocid }}"
+      register: result
+
+    - debug:
+        msg: "{{result}}"
+
+    - name: Wait until node pool is actually updated and each node has reached a final state
+      oci_container_engine_node_pool_facts:
+        node_pool_id: "{{ test_node_pool_placement_configs_ocid }}"
+      register: result
+      until: >
+        result.node_pools[0].nodes | length == 2 and
+        (result.node_pools[0].nodes[0].lifecycle_state == "ACTIVE") and
+        (result.node_pools[0].nodes[1].lifecycle_state == "ACTIVE")
+      retries: 20
+      delay: 30
+
+    - name: Assert nodes are in expected state
+      assert:
+        that:
+          - result.node_pools[0].nodes | length == 2
+          - result.node_pools[0].nodes[0].lifecycle_state == "ACTIVE"
+          - result.node_pools[0].nodes[1].lifecycle_state == "ACTIVE"
+
+    # =========================================================================================
+
+    - name: Get all node pools
+      oci_container_engine_node_pool_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+      register: result
+
+    - set_fact:
+        facts_of_test_node_pool: "{{item}}"
+      with_items: "{{result.node_pools}}"
+      when: item.id == test_node_pool_ocid
+
+    - name: Assert that test node pool is retrieved
+      assert:
+        that:
+          - facts_of_test_node_pool is defined
+
+    # =========================================================================================
+
+    - name: Get a specific node pool
+      oci_container_engine_node_pool_facts:
+        node_pool_id: '{{ test_node_pool_ocid }}'
+      register: result
+
+    - name: Assert that test node pool is retrieved
+      assert:
+        that:
+          - result.node_pools[0].id == test_node_pool_ocid
+
+    # =========================================================================================
+
+    - name: Get all node pools and filter by cluster
+      oci_container_engine_node_pool_facts:
+        compartment_id: "{{test_compartment_ocid}}"
+        cluster_id: "{{ test_cluster_ocid }}"
+      register: result
+
+    - set_fact:
+        facts_of_test_node_pool: "{{item}}"
+      with_items: "{{result.node_pools}}"
+      when: item.id == test_node_pool_ocid
+
+    - name: Assert that test node pool is retrieved
+      assert:
+        that:
+          - facts_of_test_node_pool is defined
+
+    # =========================================================================================
+
+    - name: Update node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_ocid }}"
+        initial_node_labels:
+          - key: "stage"
+            value: "test"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        name: "{{ updated_test_node_pool_name }}"
+        quantity_per_subnet: 1
+        subnet_ids:
+          - "{{ node_ad1_subnet_id }}"
+          - "{{ node_ad2_subnet_id }}"
+#        count_of_nodes_to_wait: "{{ count_of_nodes }}"
+      register: result
+
+#    - set_fact:
+#        work_request_ocid: "{{ result.work_request.id }}"
+
+    - name: Assert changed is True and node pool is updated
+      assert:
+        that:
+          - result.changed == True
+          - result.node_pool.kubernetes_version ==  npoptions.node_pool_options.kubernetes_versions[0]
+          - result.node_pool.initial_node_labels[0]['key'] == 'stage'
+          - result.node_pool.initial_node_labels[0]['value'] == 'test'
+          - result.node_pool.name == updated_test_node_pool_name
+          - result.node_pool.quantity_per_subnet == 1
+          - result.node_pool.subnet_ids[0] == node_ad1_subnet_id or result.node_pool.subnet_ids[0] == node_ad2_subnet_id
+          - result.node_pool.subnet_ids[1] == node_ad2_subnet_id or result.node_pool.subnet_ids[1] == node_ad1_subnet_id
+#          - result.work_request is defined
+
+    # =========================================================================================
+
+    # Check if specified number of nodes are active
+    - set_fact:
+        updated_node_count: 0
+    - set_fact:
+        updated_node_count: "{{ updated_node_count | int + 1 }}"
+      with_items: "{{ result.node_pool.nodes }}"
+      when: item.lifecycle_state == "ACTIVE"
+
+#    - name: Assert that updated_node_count is at least as expected
+#      assert:
+#        that:
+#          - ( updated_node_count | int) >= ( count_of_nodes | int )
+
+    # =========================================================================================
+
+    - name: Atttempt again to update node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_ocid }}"
+        initial_node_labels:
+          - key: "stage"
+            value: "test"
+        kubernetes_version: "{{ npoptions.node_pool_options.kubernetes_versions[0] }}"
+        name: "{{ updated_test_node_pool_name }}"
+        quantity_per_subnet: 1
+        subnet_ids:
+          - "{{ node_ad2_subnet_id }}"
+          - "{{ node_ad1_subnet_id }}"
+      register: result
+
+    - name: Assert changed is False
+      assert:
+        that:
+          - result.changed == False
+          - result.node_pool.id == test_node_pool_ocid
+
+    # =========================================================================================
+
+    - name: Create kubeconfig
+      oci_container_engine_kubeconfig:
+        cluster_id: "{{ test_cluster_ocid }}"
+        expiration: 600
+        token_version: "2.0.0"
+      register: result
+
+    - name: Assert changed is True, kubeconfig is returned and file is created
+      assert:
+        that:
+          - result.changed == True
+          - result.kubeconfig is defined
+          - "'apiVersion' in result.kubeconfig"
+          - "'certificate-authority-data' in result.kubeconfig"
+
+    - name: Delete node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert changed is True for node pool delete task
+      assert:
+        that:
+          - result.changed == True
+          - result.node_pool.id == test_node_pool_ocid
+#          - result.work_request is defined
+
+    # =========================================================================================
+
+    - name: Try to delete node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert changed is False
+      assert:
+        that:
+          - result.changed == False
+
+    # =========================================================================================
+
+    - name: Delete second node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_placement_configs_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert changed is True for node pool delete task
+      assert:
+        that:
+          - result.changed == True
+          - result.node_pool.id == test_node_pool_placement_configs_ocid
+#          - result.work_request is defined
+
+    # =========================================================================================
+
+
+    - name: Delete cluster
+      oci_container_engine_cluster:
+        id: "{{ test_cluster_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert changed is True and cluster is deleted
+      assert:
+        that:
+          - result.changed == True
+          - result.cluster.lifecycle_state == "DELETED"
+#          - result.work_request is defined
+
+    # =====================================================================================================
+
+    - name: Reattempt deleting cluster
+      oci_container_engine_cluster:
+        id: "{{ test_cluster_ocid }}"
+        state: absent
+      register: result
+
+    - name: Assert changed is False and cluster delete operation is idempotent
+      assert:
+        that:
+          - result.changed == False
+
+    - name: Get node pool options
+      oci_container_engine_node_pool_options_facts:
+        id: all
+      register: result
+
+    - name: Print options
+      debug:
+        msg: "{{ result  }}"
+
+    - name: Assert node pool options are retrieved
+      assert:
+        that:
+          - result.node_pool_options is defined
+
+    # =====================================================================================================
+    ## Todo: Explore default values of pods_cidr and services_cidr.
+    ## Try the tests with wait as false when work request module is available.
+
+  rescue:
+
+    - name: Delete node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete second node pool
+      oci_container_engine_node_pool:
+        id: "{{ test_node_pool_placement_configs_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - name: Delete cluster
+      oci_container_engine_cluster:
+        id: "{{ test_cluster_ocid }}"
+        state: absent
+      register: result
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"

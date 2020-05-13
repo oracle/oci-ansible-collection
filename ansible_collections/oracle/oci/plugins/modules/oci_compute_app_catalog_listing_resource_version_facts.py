@@ -31,6 +31,7 @@ options:
         description:
             - The OCID of the listing.
         type: str
+        aliases: ["id"]
         required: true
     resource_version:
         description:
@@ -205,7 +206,7 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            listing_id=dict(type="str", required=True),
+            listing_id=dict(aliases=["id"], type="str", required=True),
             resource_version=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

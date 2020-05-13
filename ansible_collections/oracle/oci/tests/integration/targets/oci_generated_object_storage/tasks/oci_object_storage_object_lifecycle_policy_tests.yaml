@@ -108,7 +108,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.object_lifecycle_policies | length == 1
+        - result['object_lifecycle_policies'] | length == 1
     when: skip_object_lifecycle_policy_get_test is not defined
 
   - name: Assert response properties are populated
@@ -116,7 +116,7 @@
       that:
         - item.time_created is defined
         - item.items is defined
-    with_items: "{{ result.object_lifecycle_policies }}"
+    with_items: "{{ result['object_lifecycle_policies'] }}"
     when: skip_object_lifecycle_policy_get_test is not defined
 
   - name: Assert custom assertions

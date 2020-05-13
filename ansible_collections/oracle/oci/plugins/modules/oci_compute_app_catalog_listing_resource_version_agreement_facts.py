@@ -30,11 +30,13 @@ options:
         description:
             - The OCID of the listing.
         type: str
+        aliases: ["id"]
         required: true
     resource_version:
         description:
             - Listing Resource Version.
         type: str
+        aliases: ["version"]
         required: true
 author:
     - Manoj Meda (@manojmeda)
@@ -155,8 +157,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            listing_id=dict(type="str", required=True),
-            resource_version=dict(type="str", required=True),
+            listing_id=dict(aliases=["id"], type="str", required=True),
+            resource_version=dict(aliases=["version"], type="str", required=True),
         )
     )
 

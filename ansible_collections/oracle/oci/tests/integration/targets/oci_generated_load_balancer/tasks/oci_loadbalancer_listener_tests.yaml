@@ -50,37 +50,28 @@
 
 # ==================================================================================================== #
 
-  - set_fact:
-      test_listener_create_dependency_rule_set_items:
-      - action: "{{ 'ADD_HTTP_REQUEST_HEADER' | oracle.oci.override(test_listener_create_dependency_rule_set_items_action, omit) }}"
-        header: "{{ 'example_header_name' | oracle.oci.override(test_listener_create_dependency_rule_set_items_header, omit) }}"
-        value: "{{ 'example_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_value, omit) }}"
-        prefix: "{{ 'example_prefix_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_prefix, omit) }}"
-        suffix: "{{ 'example_suffix_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_suffix, omit) }}"
-    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and test_listener_create_dependency_rule_set_items is not defined
-
-  - name: Create dependency rule_set with required parameters
-    oci_loadbalancer_rule_set:
-      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_rule_set_load_balancer_id, omit) }}"
-      name: "{{ ('example_rule_set' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_rule_set_name, omit) }}"
-      items: "{{ '[]' | oracle.oci.override(test_listener_create_dependency_rule_set_items, omit) }}"
+  - name: Create dependency hostname with required parameters
+    oci_loadbalancer_hostname:
+      name: "{{ ('example_hostname_001' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_hostname_name, omit) }}"
+      hostname: "{{ 'app.example.com' | oracle.oci.override(test_listener_create_dependency_hostname_hostname, omit) }}"
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_hostname_load_balancer_id, omit) }}"
     register: result
-    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
   - name: Assert resource was created
     assert:
       that:
         - result.changed == True
-    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
   - set_fact:
-      dependency_rule_set: "{{ result.rule_set }}"
-      dependency_rule_set_name: "{{ result.rule_set.name }}"
-    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
+      dependency_hostname: "{{ result.hostname }}"
+      dependency_hostname_name: "{{ result.hostname.name }}"
+    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
   - name: Assert custom assertions
     assert:
       that:
         - "{{ item }}"
-    with_items: "{{ listener_create_dependency_rule_set_custom_assertions }}"
-    when: listener_create_dependency_rule_set_custom_assertions is defined
+    with_items: "{{ listener_create_dependency_hostname_custom_assertions }}"
+    when: listener_create_dependency_hostname_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -122,28 +113,37 @@
 
 # ==================================================================================================== #
 
-  - name: Create dependency hostname with required parameters
-    oci_loadbalancer_hostname:
-      name: "{{ ('example_hostname_001' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_hostname_name, omit) }}"
-      hostname: "{{ 'app.example.com' | oracle.oci.override(test_listener_create_dependency_hostname_hostname, omit) }}"
-      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_hostname_load_balancer_id, omit) }}"
+  - set_fact:
+      test_listener_create_dependency_rule_set_items:
+      - action: "{{ 'ADD_HTTP_REQUEST_HEADER' | oracle.oci.override(test_listener_create_dependency_rule_set_items_action, omit) }}"
+        header: "{{ 'example_header_name' | oracle.oci.override(test_listener_create_dependency_rule_set_items_header, omit) }}"
+        value: "{{ 'example_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_value, omit) }}"
+        prefix: "{{ 'example_prefix_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_prefix, omit) }}"
+        suffix: "{{ 'example_suffix_value' | oracle.oci.override(test_listener_create_dependency_rule_set_items_suffix, omit) }}"
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and test_listener_create_dependency_rule_set_items is not defined
+
+  - name: Create dependency rule_set with required parameters
+    oci_loadbalancer_rule_set:
+      load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_create_dependency_rule_set_load_balancer_id, omit) }}"
+      name: "{{ ('example_rule_set' + random_suffix_1024) | oracle.oci.override(test_listener_create_dependency_rule_set_name, omit) }}"
+      items: "{{ '[]' | oracle.oci.override(test_listener_create_dependency_rule_set_items, omit) }}"
     register: result
-    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
   - name: Assert resource was created
     assert:
       that:
         - result.changed == True
-    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
   - set_fact:
-      dependency_hostname: "{{ result.hostname }}"
-      dependency_hostname_name: "{{ result.hostname.name }}"
-    when: skip_listener_create_dependency_hostname_test is not defined and skip_listener_dependencies is not defined
+      dependency_rule_set: "{{ result.rule_set }}"
+      dependency_rule_set_name: "{{ result.rule_set.name }}"
+    when: skip_listener_create_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined
   - name: Assert custom assertions
     assert:
       that:
         - "{{ item }}"
-    with_items: "{{ listener_create_dependency_hostname_custom_assertions }}"
-    when: listener_create_dependency_hostname_custom_assertions is defined
+    with_items: "{{ listener_create_dependency_rule_set_custom_assertions }}"
+    when: listener_create_dependency_rule_set_custom_assertions is defined
 
 # ==================================================================================================== #
 
@@ -577,13 +577,13 @@
       ignore_errors: yes
       when: skip_listener_delete_dependency_path_route_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
 
-    - name: Delete dependency hostname
-      oci_loadbalancer_hostname:
-        name: "{{ dependency_hostname_name }}"
-        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_hostname_load_balancer_id, omit) }}"
+    - name: Delete dependency rule_set
+      oci_loadbalancer_rule_set:
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_rule_set_load_balancer_id, omit) }}"
+        name: "{{ dependency_rule_set_name }}"
         state: absent
       ignore_errors: yes
-      when: skip_listener_delete_dependency_hostname_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
+      when: skip_listener_delete_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
 
     - name: Delete dependency backend_set
       oci_loadbalancer_backend_set:
@@ -593,13 +593,13 @@
       ignore_errors: yes
       when: skip_listener_delete_dependency_backend_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
 
-    - name: Delete dependency rule_set
-      oci_loadbalancer_rule_set:
-        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_rule_set_load_balancer_id, omit) }}"
-        name: "{{ dependency_rule_set_name }}"
+    - name: Delete dependency hostname
+      oci_loadbalancer_hostname:
+        name: "{{ dependency_hostname_name }}"
+        load_balancer_id: "{{ dependency_load_balancer_id | oracle.oci.override(test_listener_delete_dependency_hostname_load_balancer_id, omit) }}"
         state: absent
       ignore_errors: yes
-      when: skip_listener_delete_dependency_rule_set_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
+      when: skip_listener_delete_dependency_hostname_test is not defined and skip_listener_dependencies is not defined and dependency_path_route_set_name is defined
 
     - name: Delete dependency certificate
       oci_loadbalancer_certificate:

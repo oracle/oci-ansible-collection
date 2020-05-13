@@ -567,4 +567,28 @@ factsModuleParameterValueOverrides:
       - paramName: rule_set_name
         aliases:
           - name
+  core:
+    fast_connect_provider_service_virtual_circuit_bandwidth_shape:
+      - paramName: provider_service_id
+        aliases:
+          - id
+    virtual_circuit_public_prefix:
+      - paramName: virtual_circuit_id
+        aliases:
+          - id
+    app_catalog_listing_resource_version:
+      - paramName: listing_id
+        aliases:
+          - id
+    app_catalog_listing_resource_version_agreement:
+      - paramName: listing_id
+        aliases:
+          - id
+      - paramName: resource_version
+        aliases:
+          - version
+    instance_pool_instance:
+      - paramName: instance_pool_id
+        aliases:
+          - id
     

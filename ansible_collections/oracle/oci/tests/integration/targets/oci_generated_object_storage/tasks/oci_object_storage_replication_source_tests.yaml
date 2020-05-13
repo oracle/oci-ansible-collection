@@ -35,7 +35,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.replication_sources | length > 0
+        - result['replication_sources'] | length > 0
     when: skip_replication_source_list_test is not defined
 
 
@@ -45,7 +45,7 @@
         - item.policy_name is defined
         - item.source_region_name is defined
         - item.source_bucket_name is defined
-    with_items: "{{ result.replication_sources }}"
+    with_items: "{{ result['replication_sources'] }}"
     when: skip_replication_source_list_test is not defined
 
   - name: Assert custom assertions

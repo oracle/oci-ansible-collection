@@ -35,6 +35,7 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
         type: str
+        aliases: ["id"]
         required: true
     display_name:
         description:
@@ -256,7 +257,7 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            instance_pool_id=dict(type="str", required=True),
+            instance_pool_id=dict(aliases=["id"], type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

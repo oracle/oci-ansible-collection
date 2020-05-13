@@ -31,6 +31,7 @@ options:
         description:
             - The OCID of the virtual circuit.
         type: str
+        aliases: ["id"]
         required: true
     verification_state:
         description:
@@ -139,7 +140,7 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            virtual_circuit_id=dict(type="str", required=True),
+            virtual_circuit_id=dict(aliases=["id"], type="str", required=True),
             verification_state=dict(
                 type="str", choices=["IN_PROGRESS", "COMPLETED", "FAILED"]
             ),

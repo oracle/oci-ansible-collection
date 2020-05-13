@@ -35,7 +35,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.object_versions | length > 0
+        - result['object_versions'] | length > 0
     when: skip_object_version_list_test is not defined
 
 
@@ -50,7 +50,7 @@
         - item.etag is defined
         - item.version_id is defined
         - item.is_delete_marker is defined
-    with_items: "{{ result.object_versions }}"
+    with_items: "{{ result['object_versions'] }}"
     when: skip_object_version_list_test is not defined
 
   - name: Assert custom assertions

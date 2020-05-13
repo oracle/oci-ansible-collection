@@ -278,7 +278,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.preauthenticated_requests | length > 0
+        - result['preauthenticated_requests'] | length > 0
     when: skip_preauthenticated_request_list_test is not defined
 
 
@@ -291,7 +291,7 @@
         - item.access_type is defined
         - item.time_expires is defined
         - item.time_created is defined
-    with_items: "{{ result.preauthenticated_requests }}"
+    with_items: "{{ result['preauthenticated_requests'] }}"
     when: skip_preauthenticated_request_list_test is not defined
 
   - name: Assert custom assertions
@@ -314,7 +314,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.preauthenticated_requests | length == 1
+        - result['preauthenticated_requests'] | length == 1
     when: skip_preauthenticated_request_get_test is not defined
 
   - name: Assert response properties are populated
@@ -326,7 +326,7 @@
         - item.access_type is defined
         - item.time_expires is defined
         - item.time_created is defined
-    with_items: "{{ result.preauthenticated_requests }}"
+    with_items: "{{ result['preauthenticated_requests'] }}"
     when: skip_preauthenticated_request_get_test is not defined
 
   - name: Assert custom assertions

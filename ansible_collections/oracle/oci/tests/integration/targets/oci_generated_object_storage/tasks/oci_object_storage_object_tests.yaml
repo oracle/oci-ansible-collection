@@ -119,7 +119,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.objects | length > 0
+        - result['objects'] | length > 0
     when: skip_object_list_test is not defined
 
 
@@ -132,7 +132,7 @@
         - item.time_created is defined
         - item.etag is defined
         - item.time_modified is defined
-    with_items: "{{ result.objects }}"
+    with_items: "{{ result['objects'] }}"
     when: skip_object_list_test is not defined
 
   - name: Assert custom assertions
@@ -155,7 +155,7 @@
   - name: Assert resource was listed
     assert:
       that:
-        - result.objects | length == 1
+        - result['objects'] | length == 1
     when: skip_object_get_test is not defined
 
   - name: Assert response properties are populated
@@ -167,7 +167,7 @@
         - item.time_created is defined
         - item.etag is defined
         - item.time_modified is defined
-    with_items: "{{ result.objects }}"
+    with_items: "{{ result['objects'] }}"
     when: skip_object_get_test is not defined
 
   - name: Assert custom assertions
