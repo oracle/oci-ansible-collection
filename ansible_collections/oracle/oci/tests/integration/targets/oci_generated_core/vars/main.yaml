@@ -207,7 +207,7 @@ test_instance_update_using_name_optional_required_display_name: "{{ test_instanc
 skip_instance_delete_required_test: yes
 skip_instance_delete_required_idempotency_test: yes
 test_instance_create_optional_required_display_name: "ansible-gen-test-instance-{{random_suffix_1024}}"
-test_instance_create_optional_required_shape: "{{test_instance_shape}}"
+test_instance_create_optional_required_shape: 'VM.Standard.E3.Flex'
 test_instance_create_optional_required_hostname_label: null
 test_instance_create_optional_required_create_vnic_details:
   subnet_id: "{{dependency_subnet_id}}"
@@ -218,10 +218,16 @@ test_instance_create_optional_required_metadata: null
 test_instance_create_optional_required_dedicated_vm_host_id: null
 test_instance_create_optional_required_source_details:
   source_type: "image"
-  image_id: "{{image_ocid}}"
+  image_id: "{{ oracle_linux_image_ocid }}"
 test_instance_create_optional_required_subnet_id: null
 test_instance_update_optional_required_display_name: "updated-ansible-gen-test-instance-{{random_suffix_1024}}"
 test_instance_update_optional_required_agent_config_is_monitoring_disabled: false
+test_instance_create_optional_required_shape_config_ocpus: 1
+test_instance_update_optional_required_shape_config_ocpus: 4
+skip_instance_update_using_name_optional_required_test: true
+skip_instance_update_using_name_optional_required_idempotence_test: true
+test_instance_create_optional_required_availability_domain: "{{ test_availability_domain_2 }}"
+test_instance_create_optional_required_fault_domain: null
 
 # variables for oci_compute_instance_console_connection_tests.yaml
 skip_instance_console_connection_dependencies: yes

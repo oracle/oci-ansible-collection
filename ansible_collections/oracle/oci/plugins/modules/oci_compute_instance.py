@@ -309,6 +309,15 @@ options:
             - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
             - Required for create using I(state=present).
         type: str
+    shape_config:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            ocpus:
+                description:
+                    - The total number of OCPUs available to the instance.
+                type: float
     source_details:
         description:
             - Details for creating an instance.
@@ -662,6 +671,75 @@ instance:
             returned: on success
             type: string
             sample: shape_example
+        shape_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs available to the instance.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory, in gigabytes, available to the instance.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                processor_description:
+                    description:
+                        - A short description of the processors available to the instance.
+                    returned: on success
+                    type: string
+                    sample: processor_description_example
+                networking_bandwidth_in_gbps:
+                    description:
+                        - The networking bandwidth, in gigabits per second, available to the instance.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max_vnic_attachments:
+                    description:
+                        - The maximum number of VNIC attachments for the instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                gpus:
+                    description:
+                        - The number of GPUs available to this instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                gpu_description:
+                    description:
+                        - A short description of the GPUs available to this instance.
+                          This field is `null` if `gpus` is `0`.
+                    returned: on success
+                    type: string
+                    sample: gpu_description_example
+                local_disks:
+                    description:
+                        - The number of local disks available to the instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                local_disks_total_size_in_gbs:
+                    description:
+                        - The size of the local disks, aggregated, in gigabytes.
+                          This field is `null` if `localDisks` is equal to `0`.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                local_disk_description:
+                    description:
+                        - A short description of the local disks available to this instance.
+                          This field is `null` if `localDisks` is equal to `0`.
+                    returned: on success
+                    type: string
+                    sample: local_disk_description_example
         source_details:
             description:
                 - Details for creating an instance
@@ -759,6 +837,18 @@ instance:
         "metadata": {},
         "region": "region_example",
         "shape": "shape_example",
+        "shape_config": {
+            "ocpus": 3.4,
+            "memory_in_gbs": 3.4,
+            "processor_description": "processor_description_example",
+            "networking_bandwidth_in_gbps": 3.4,
+            "max_vnic_attachments": 56,
+            "gpus": 56,
+            "gpu_description": "gpu_description_example",
+            "local_disks": 56,
+            "local_disks_total_size_in_gbs": 3.4,
+            "local_disk_description": "local_disk_description_example"
+        },
         "source_details": {
             "source_type": "source_type_example",
             "boot_volume_size_in_gbs": 56,
@@ -934,6 +1024,7 @@ def main():
                 type="dict", options=dict(is_monitoring_disabled=dict(type="bool"))
             ),
             shape=dict(type="str"),
+            shape_config=dict(type="dict", options=dict(ocpus=dict(type="float"))),
             source_details=dict(
                 type="dict",
                 options=dict(

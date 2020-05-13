@@ -69,8 +69,192 @@ shapes:
             returned: on success
             type: string
             sample: shape_example
+        processor_description:
+            description:
+                - A short description of the processors available to an instance of this shape.
+            returned: on success
+            type: string
+            sample: processor_description_example
+        ocpus:
+            description:
+                - The default number of OCPUs available to an instance of this shape.
+            returned: on success
+            type: float
+            sample: 3.4
+        memory_in_gbs:
+            description:
+                - The default amount of memory, in gigabytes, available to an instance of this shape.
+            returned: on success
+            type: float
+            sample: 3.4
+        networking_bandwidth_in_gbps:
+            description:
+                - The networking bandwidth, in gigabits per second, available to an instance of this shape.
+            returned: on success
+            type: float
+            sample: 3.4
+        max_vnic_attachments:
+            description:
+                - The maximum number of VNIC attachments available to an instance of this shape.
+            returned: on success
+            type: int
+            sample: 56
+        gpus:
+            description:
+                - The number of GPUs available to an instance of this shape.
+            returned: on success
+            type: int
+            sample: 56
+        gpu_description:
+            description:
+                - A short description of the GPUs available to instances of this shape.
+                  This field is `null` if `gpus` is `0`.
+            returned: on success
+            type: string
+            sample: gpu_description_example
+        local_disks:
+            description:
+                - The number of local disks available to the instance.
+            returned: on success
+            type: int
+            sample: 56
+        local_disks_total_size_in_gbs:
+            description:
+                - The size of the local disks, aggregated, in gigabytes.
+                  This field is `null` if `localDisks` is equal to `0`.
+            returned: on success
+            type: float
+            sample: 3.4
+        local_disk_description:
+            description:
+                - A short description of the local disks available to instances of this shape.
+                  This field is `null` if `localDisks` is equal to `0`.
+            returned: on success
+            type: string
+            sample: local_disk_description_example
+        ocpu_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min:
+                    description:
+                        - The minimum number of OCPUs.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max:
+                    description:
+                        - The maximum number of OCPUs.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+        memory_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min_in_g_bs:
+                    description:
+                        - The minimum amount of memory, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max_in_g_bs:
+                    description:
+                        - The maximum amount of memory, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                default_per_ocpu_in_g_bs:
+                    description:
+                        - The default amount of memory, in gigabytes, per OCPU available to an instance
+                          of this shape.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+        networking_bandwidth_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min_in_gbps:
+                    description:
+                        - The minimum amount of networking bandwidth, in gigabits per second.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max_in_gbps:
+                    description:
+                        - The maximum amount of networking bandwidth, in gigabits per second.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                default_per_ocpu_in_gbps:
+                    description:
+                        - The default amount of networking bandwidth, in gigabits per second,
+                          per OCPU.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+        max_vnic_attachment_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min:
+                    description:
+                        - The lowest maximum value of VNIC attachments.
+                    returned: on success
+                    type: int
+                    sample: 56
+                max:
+                    description:
+                        - The highest maximum value of VNIC attachments.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                default_per_ocpu:
+                    description:
+                        - The default number of VNIC attachments allowed per OCPU.
+                    returned: on success
+                    type: float
+                    sample: 3.4
     sample: [{
-        "shape": "shape_example"
+        "shape": "shape_example",
+        "processor_description": "processor_description_example",
+        "ocpus": 3.4,
+        "memory_in_gbs": 3.4,
+        "networking_bandwidth_in_gbps": 3.4,
+        "max_vnic_attachments": 56,
+        "gpus": 56,
+        "gpu_description": "gpu_description_example",
+        "local_disks": 56,
+        "local_disks_total_size_in_gbs": 3.4,
+        "local_disk_description": "local_disk_description_example",
+        "ocpu_options": {
+            "min": 3.4,
+            "max": 3.4
+        },
+        "memory_options": {
+            "min_in_g_bs": 3.4,
+            "max_in_g_bs": 3.4,
+            "default_per_ocpu_in_g_bs": 3.4
+        },
+        "networking_bandwidth_options": {
+            "min_in_gbps": 3.4,
+            "max_in_gbps": 3.4,
+            "default_per_ocpu_in_gbps": 3.4
+        },
+        "max_vnic_attachment_options": {
+            "min": 56,
+            "max": 3.4,
+            "default_per_ocpu": 3.4
+        }
     }]
 """
 

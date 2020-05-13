@@ -197,6 +197,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -247,6 +248,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -267,6 +269,11 @@
         is_monitoring_disabled: "{{ true | oracle.oci.override(test_instance_update_using_name_optional_required_agent_config_is_monitoring_disabled, omit) }}"
     when: test_instance_update_using_name_optional_required_agent_config is not defined
 
+  - set_fact:
+      test_instance_update_using_name_optional_required_shape_config:
+        ocpus: "{{ 6.8 | oracle.oci.override(test_instance_update_using_name_optional_required_shape_config_ocpus, omit) }}"
+    when: test_instance_update_using_name_optional_required_shape_config is not defined
+
   - name: Update instance using name with optional + required parameters
     oci_compute_instance:
       compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_instance_update_using_name_optional_required_compartment_id, omit) }}"
@@ -274,6 +281,7 @@
       display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_update_using_name_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_update_using_name_optional_required_freeform_tags, omit) }}"
       agent_config: "{{ '{}' | oracle.oci.override(test_instance_update_using_name_optional_required_agent_config, omit) }}"
+      shape_config: "{{ '{}' | oracle.oci.override(test_instance_update_using_name_optional_required_shape_config, omit) }}"
     environment:
       OCI_USE_NAME_AS_IDENTIFIER: 1
     register: result
@@ -305,6 +313,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -327,6 +336,7 @@
       display_name: "{{ ('myinstance1' + random_suffix_1024) | oracle.oci.override(test_instance_update_using_name_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_update_using_name_optional_required_freeform_tags, omit) }}"
       agent_config: "{{ '{}' | oracle.oci.override(test_instance_update_using_name_optional_required_agent_config, omit) }}"
+      shape_config: "{{ '{}' | oracle.oci.override(test_instance_update_using_name_optional_required_shape_config, omit) }}"
     environment:
       OCI_USE_NAME_AS_IDENTIFIER: 1
     register: result
@@ -358,6 +368,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -409,6 +420,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -467,6 +479,11 @@
     when: test_instance_create_optional_required_agent_config is not defined
 
   - set_fact:
+      test_instance_create_optional_required_shape_config:
+        ocpus: "{{ 3.4 | oracle.oci.override(test_instance_create_optional_required_shape_config_ocpus, omit) }}"
+    when: test_instance_create_optional_required_shape_config is not defined
+
+  - set_fact:
       test_instance_create_optional_required_source_details:
         source_type: "{{ 'image' | oracle.oci.override(test_instance_create_optional_required_source_details_source_type, omit) }}"
         boot_volume_size_in_gbs: "{{ 100 | oracle.oci.override(test_instance_create_optional_required_source_details_boot_volume_size_in_gbs, omit) }}"
@@ -491,6 +508,7 @@
       metadata: "{{ null | oracle.oci.override(test_instance_create_optional_required_metadata, omit) }}"
       agent_config: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_agent_config, omit) }}"
       shape: "{{ 'VM.Standard2.1' | oracle.oci.override(test_instance_create_optional_required_shape, omit) }}"
+      shape_config: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_shape_config, omit) }}"
       source_details: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_source_details, omit) }}"
       subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_instance_create_optional_required_subnet_id, omit) }}"
       is_pv_encryption_in_transit_enabled: "{{ true | oracle.oci.override(test_instance_create_optional_required_is_pv_encryption_in_transit_enabled, omit) }}"
@@ -527,6 +545,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -559,6 +578,7 @@
       metadata: "{{ null | oracle.oci.override(test_instance_create_optional_required_metadata, omit) }}"
       agent_config: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_agent_config, omit) }}"
       shape: "{{ 'VM.Standard2.1' | oracle.oci.override(test_instance_create_optional_required_shape, omit) }}"
+      shape_config: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_shape_config, omit) }}"
       source_details: "{{ '{}' | oracle.oci.override(test_instance_create_optional_required_source_details, omit) }}"
       subnet_id: "{{ dependency_subnet_id | oracle.oci.override(test_instance_create_optional_required_subnet_id, omit) }}"
       is_pv_encryption_in_transit_enabled: "{{ true | oracle.oci.override(test_instance_create_optional_required_is_pv_encryption_in_transit_enabled, omit) }}"
@@ -591,6 +611,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -611,12 +632,18 @@
         is_monitoring_disabled: "{{ true | oracle.oci.override(test_instance_update_optional_required_agent_config_is_monitoring_disabled, omit) }}"
     when: test_instance_update_optional_required_agent_config is not defined
 
+  - set_fact:
+      test_instance_update_optional_required_shape_config:
+        ocpus: "{{ 6.8 | oracle.oci.override(test_instance_update_optional_required_shape_config_ocpus, omit) }}"
+    when: test_instance_update_optional_required_shape_config is not defined
+
   - name: Update instance with optional + required parameters
     oci_compute_instance:
       defined_tags: "{{ test_default_updated_defined_tags | oracle.oci.override(test_instance_update_optional_required_defined_tags, omit) }}"
       display_name: "{{ ('myinstance1updated' + random_suffix_1024) | oracle.oci.override(test_instance_update_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_update_optional_required_freeform_tags, omit) }}"
       agent_config: "{{ '{}' | oracle.oci.override(test_instance_update_optional_required_agent_config, omit) }}"
+      shape_config: "{{ '{}' | oracle.oci.override(test_instance_update_optional_required_shape_config, omit) }}"
       instance_id: "{{ instance_resource_id | oracle.oci.override(test_instance_update_optional_required_instance_id, omit) }}"
     register: result
     when: skip_instance_update_optional_required_test is not defined
@@ -647,6 +674,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -668,6 +696,7 @@
       display_name: "{{ ('myinstance1updated' + random_suffix_1024) | oracle.oci.override(test_instance_update_optional_required_display_name, omit) }}"
       freeform_tags: "{{ test_default_updated_freeform_tags | oracle.oci.override(test_instance_update_optional_required_freeform_tags, omit) }}"
       agent_config: "{{ '{}' | oracle.oci.override(test_instance_update_optional_required_agent_config, omit) }}"
+      shape_config: "{{ '{}' | oracle.oci.override(test_instance_update_optional_required_shape_config, omit) }}"
       instance_id: "{{ instance_resource_id | oracle.oci.override(test_instance_update_optional_required_instance_id, omit) }}"
     register: result
     when: skip_instance_update_optional_required_idempotence_test is not defined
@@ -698,6 +727,7 @@
         - result.instance.metadata is defined
         - result.instance.region is defined
         - result.instance.shape is defined
+        - result.instance.shape_config is defined
         - result.instance.source_details is defined
         - result.instance.time_created is defined
         - result.instance.agent_config is defined
@@ -746,6 +776,7 @@
         - item.metadata is defined
         - item.region is defined
         - item.shape is defined
+        - item.shape_config is defined
         - item.source_details is defined
         - item.time_created is defined
         - item.agent_config is defined
@@ -794,6 +825,7 @@
         - item.metadata is defined
         - item.region is defined
         - item.shape is defined
+        - item.shape_config is defined
         - item.source_details is defined
         - item.time_created is defined
         - item.agent_config is defined

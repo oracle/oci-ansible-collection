@@ -21,6 +21,8 @@ udx-802
 udx-810
 udx-1215
 udx-1151
+udx-2222
+udx-2222-ux
 
 # network security groups
 udx-1764
