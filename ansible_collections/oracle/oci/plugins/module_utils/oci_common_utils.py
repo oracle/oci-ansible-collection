@@ -10,8 +10,6 @@ __metaclass__ = type
 from ansible.module_utils import six
 from ansible.module_utils.six.moves import http_client
 from datetime import datetime
-from dateutil.parser import parse
-from dateutil import tz
 import tempfile
 import logging
 import os
@@ -591,9 +589,7 @@ def setup_logging(
         _httpclient_debug_logging_patch()
 
     log_level = logging.getLevelName(log_level_str)
-
     log_file_path = os.path.join(log_path, "oci_ansible_module.log")
-
     logging.basicConfig(filename=log_file_path, filemode="a", level=log_level)
     return logging
 
@@ -602,7 +598,7 @@ def pretty_print_json(data):
     return json.dumps(data, indent=2)
 
 
-def deserialize_datetime(self, string):
+def deserialize_datetime(string):
     """
     Deserializes string to datetime.
 
@@ -612,15 +608,27 @@ def deserialize_datetime(self, string):
     :return: datetime.
     """
     try:
+        if not string:
+            return string
+        if not isinstance(string, six.string_types):
+            return string
+        date_string_utc = string.replace("+00:00", "Z")
         # If this parser creates a date without raising an exception
         # then the time zone is utc and needs to be set.
-        naivedatetime = datetime.strptime(string, "%Y-%m-%dT%H:%M:%S.%fZ")
-        awaredatetime = naivedatetime.replace(tzinfo=tz.tzutc())
-        return awaredatetime
+        naivedatetime = datetime.strptime(date_string_utc, "%Y-%m-%dT%H:%M:%S.%fZ")
+        try:
+            from dateutil import tz
+        except ImportError:
+            return naivedatetime
+        else:
+            awaredatetime = naivedatetime.replace(tzinfo=tz.tzutc())
+            return awaredatetime
 
     except ValueError:
         try:
-            return parse(string)
+            from dateutil.parser import parse
+
+            return parse(date_string_utc)
         except ImportError:
             return string
         except ValueError:
@@ -629,8 +637,6 @@ def deserialize_datetime(self, string):
                     string
                 )
             )
-    except ImportError:
-        return string
 
 
 logger = get_logger("oci_common_utils")

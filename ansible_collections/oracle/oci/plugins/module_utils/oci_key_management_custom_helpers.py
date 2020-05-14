@@ -102,7 +102,7 @@ def is_action_necessary(self, action, resource):
         and self.module.params.get("time_of_deletion") is not None
     ):
         if resource.time_of_deletion == oci_common_utils.deserialize_datetime(
-            self, self.module.params["time_of_deletion"]
+            self.module.params["time_of_deletion"]
         ):
             return False
         else:
