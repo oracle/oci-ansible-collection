@@ -198,9 +198,8 @@ class CompartmentFactsHelperCustom:
 
 
 class MfaTotpDeviceActionsHelperCustom:
-    def is_action_necessary(self, action):
+    def is_action_necessary(self, action, resource):
         if action.upper() == "ACTIVATE":
-            resource = self.get_resource().data
             if resource.is_activated:
                 return False
             return True

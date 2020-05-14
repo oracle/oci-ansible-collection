@@ -1,0 +1,212 @@
+---
+- block:
+  - set_fact:
+      test_generated_key_create_dependency_key_key_shape:
+        algorithm: "{{ 'AES' | oracle.oci.override(test_generated_key_create_dependency_key_key_shape_algorithm, omit) }}"
+        length: "{{ 16 | oracle.oci.override(test_generated_key_create_dependency_key_key_shape_length, omit) }}"
+    when: skip_generated_key_create_dependency_key_test is not defined and skip_generated_key_dependencies is not defined and test_generated_key_create_dependency_key_key_shape is not defined
+
+  - name: Create dependency key with required parameters
+    oci_key_management_key:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_generated_key_create_dependency_key_compartment_id, omit) }}"
+      display_name: "{{ ('Key C' + random_suffix_1024) | oracle.oci.override(test_generated_key_create_dependency_key_display_name, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_generated_key_create_dependency_key_key_shape, omit) }}"
+      service_endpoint: "{{ test_key_management_service_endpoint | oracle.oci.override(test_generated_key_create_dependency_key_service_endpoint, omit) }}"
+    register: result
+    when: skip_generated_key_create_dependency_key_test is not defined and skip_generated_key_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_generated_key_create_dependency_key_test is not defined and skip_generated_key_dependencies is not defined
+  - set_fact:
+      dependency_key: "{{ result.key }}"
+      dependency_key_id: "{{ result.key.id }}"
+    when: skip_generated_key_create_dependency_key_test is not defined and skip_generated_key_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ generated_key_create_dependency_key_custom_assertions }}"
+    when: generated_key_create_dependency_key_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_generated_key_create_required_key_shape:
+        algorithm: "{{ 'AES' | oracle.oci.override(test_generated_key_create_required_key_shape_algorithm, omit) }}"
+        length: "{{ 16 | oracle.oci.override(test_generated_key_create_required_key_shape_length, omit) }}"
+    when: test_generated_key_create_required_key_shape is not defined
+
+  - name: Create generated_key (check mode)
+    oci_key_management_generated_key:
+      include_plaintext_key: "{{ true | oracle.oci.override(test_generated_key_create_required_include_plaintext_key, omit) }}"
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_generated_key_create_required_key_id, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_generated_key_create_required_key_shape, omit) }}"
+      service_endpoint: "{{ test_kmscrypto_service_endpoint | oracle.oci.override(test_generated_key_create_check_mode_service_endpoint, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_generated_key_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_generated_key_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ generated_key_create_check_mode_custom_assertions }}"
+    when: generated_key_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create generated_key with required parameters
+    oci_key_management_generated_key:
+      include_plaintext_key: "{{ true | oracle.oci.override(test_generated_key_create_required_include_plaintext_key, omit) }}"
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_generated_key_create_required_key_id, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_generated_key_create_required_key_shape, omit) }}"
+      service_endpoint: "{{ test_kmscrypto_service_endpoint | oracle.oci.override(test_generated_key_create_required_original_service_endpoint, omit) }}"
+    register: result
+    when: skip_generated_key_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_generated_key_create_required_original_test is not defined
+
+  - set_fact:
+      generated_key: "{{ result.generated_key }}"
+    when: skip_generated_key_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.generated_key.ciphertext is defined
+        - result.generated_key.plaintext is defined
+        - result.generated_key.plaintext_checksum is defined
+    when: skip_generated_key_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ generated_key_create_required_original_custom_assertions }}"
+    when: generated_key_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create generated_key with required parameters(idempotency)
+    oci_key_management_generated_key:
+      include_plaintext_key: "{{ true | oracle.oci.override(test_generated_key_create_required_include_plaintext_key, omit) }}"
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_generated_key_create_required_key_id, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_generated_key_create_required_key_shape, omit) }}"
+      service_endpoint: "{{ test_kmscrypto_service_endpoint | oracle.oci.override(test_generated_key_create_required_idempotency_service_endpoint, omit) }}"
+    register: result
+    when: skip_generated_key_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_generated_key_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.generated_key.ciphertext is defined
+        - result.generated_key.plaintext is defined
+        - result.generated_key.plaintext_checksum is defined
+    when: skip_generated_key_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ generated_key_create_required_idempotency_custom_assertions }}"
+    when: generated_key_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - set_fact:
+      test_generated_key_create_optional_required_key_shape:
+        algorithm: "{{ 'AES' | oracle.oci.override(test_generated_key_create_optional_required_key_shape_algorithm, omit) }}"
+        length: "{{ 16 | oracle.oci.override(test_generated_key_create_optional_required_key_shape_length, omit) }}"
+    when: test_generated_key_create_optional_required_key_shape is not defined
+
+  - name: Create generated_key with optional + required parameters
+    oci_key_management_generated_key:
+      associated_data: "{{ null | oracle.oci.override(test_generated_key_create_optional_required_associated_data, omit) }}"
+      include_plaintext_key: "{{ true | oracle.oci.override(test_generated_key_create_optional_required_include_plaintext_key, omit) }}"
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_generated_key_create_optional_required_key_id, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_generated_key_create_optional_required_key_shape, omit) }}"
+      logging_context: "{{ null | oracle.oci.override(test_generated_key_create_optional_required_logging_context, omit) }}"
+      service_endpoint: "{{ test_kmscrypto_service_endpoint | oracle.oci.override(test_generated_key_create_optional_required_original_service_endpoint, omit) }}"
+    register: result
+    when: skip_generated_key_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_generated_key_create_optional_required_original_test is not defined
+
+  - set_fact:
+      generated_key: "{{ result.generated_key }}"
+    when: skip_generated_key_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.generated_key.ciphertext is defined
+        - result.generated_key.plaintext is defined
+        - result.generated_key.plaintext_checksum is defined
+    when: skip_generated_key_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ generated_key_create_optional_required_original_custom_assertions }}"
+    when: generated_key_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create generated_key with optional + required parameters (idempotence)
+    oci_key_management_generated_key:
+      associated_data: "{{ null | oracle.oci.override(test_generated_key_create_optional_required_associated_data, omit) }}"
+      include_plaintext_key: "{{ true | oracle.oci.override(test_generated_key_create_optional_required_include_plaintext_key, omit) }}"
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_generated_key_create_optional_required_key_id, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_generated_key_create_optional_required_key_shape, omit) }}"
+      logging_context: "{{ null | oracle.oci.override(test_generated_key_create_optional_required_logging_context, omit) }}"
+      service_endpoint: "{{ test_kmscrypto_service_endpoint | oracle.oci.override(test_generated_key_create_optional_required_idempotence_service_endpoint, omit) }}"
+    register: result
+    when: skip_generated_key_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_generated_key_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.generated_key.ciphertext is defined
+        - result.generated_key.plaintext is defined
+        - result.generated_key.plaintext_checksum is defined
+    when: skip_generated_key_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ generated_key_create_optional_required_idempotence_custom_assertions }}"
+    when: generated_key_create_optional_required_idempotence_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

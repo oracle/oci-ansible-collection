@@ -11,6 +11,8 @@ from ansible.module_utils import six
 from ansible.module_utils.six.moves import http_client
 from ansible.module_utils._text import to_bytes
 from datetime import datetime
+from dateutil.parser import parse
+from dateutil import tz
 import tempfile
 import logging
 import logging.config
@@ -37,6 +39,7 @@ DEAD_STATES = [
     "FAILED",
     "DELETING",
     "DELETED",
+    "PENDING_DELETION",
     "UNKNOWN_ENUM_VALUE",
     "DETACHING",
     "DETACHED",
@@ -50,6 +53,7 @@ DEFAULT_READY_STATES = [
     "PROVISIONED",
     "ATTACHED",
     "ASSIGNED",
+    "ENABLED",
     "SUCCEEDED",
     "PENDING_PROVIDER",
 ]
@@ -63,13 +67,29 @@ WORK_REQUEST_FAILED_STATES = ["FAILED"]
 # If a resource is in one of these states, it would be considered deleted
 DEFAULT_TERMINATED_STATES = ["TERMINATED", "DETACHED", "DELETED"]
 
-ACTION_IDEMPOTENT_STATES = {"START": DEFAULT_READY_STATES, "STOP": ["STOPPED"]}
+ACTION_IDEMPOTENT_STATES = {
+    "START": DEFAULT_READY_STATES,
+    "STOP": ["STOPPED"],
+    "DISABLE": ["DISABLED"],
+    "ENABLE": ["ENABLED"],
+    "CANCEL_KEY_DELETION": DEFAULT_READY_STATES,
+    "CANCEL_KEY_VERSION_DELETION": DEFAULT_READY_STATES,
+    "CANCEL_VAULT_DELETION": DEFAULT_READY_STATES,
+}
 
 ACTION_DESIRED_STATES = {
     "START": DEFAULT_READY_STATES,
     "STOP": ["STOPPED"],
     "SOFTRESET": DEFAULT_READY_STATES,
     "RESET": DEFAULT_READY_STATES,
+    "DISABLE": ["DISABLED"],
+    "ENABLE": ["ENABLED"],
+    "SCHEDULE_KEY_DELETION": DEAD_STATES,
+    "CANCEL_KEY_DELETION": DEFAULT_READY_STATES,
+    "SCHEDULE_KEY_VERSION_DELETION": DEAD_STATES,
+    "CANCEL_KEY_VERSION_DELETION": DEFAULT_READY_STATES,
+    "SCHEDULE_VAULT_DELETION": DEAD_STATES,
+    "CANCEL_VAULT_DELETION": DEFAULT_READY_STATES,
 }
 
 ALWAYS_PERFORM_ACTIONS = ["RESET", "SOFTRESET", "EXPORT"]
@@ -600,6 +620,37 @@ def setup_logging(
 
 def pretty_print_json(data):
     return json.dumps(data, indent=2)
+
+
+def deserialize_datetime(self, string):
+    """
+    Deserializes string to datetime.
+
+    The string should be in iso8601 datetime format.
+
+    :param string: str.
+    :return: datetime.
+    """
+    try:
+        # If this parser creates a date without raising an exception
+        # then the time zone is utc and needs to be set.
+        naivedatetime = datetime.strptime(string, "%Y-%m-%dT%H:%M:%S.%fZ")
+        awaredatetime = naivedatetime.replace(tzinfo=tz.tzutc())
+        return awaredatetime
+
+    except ValueError:
+        try:
+            return parse(string)
+        except ImportError:
+            return string
+        except ValueError:
+            raise Exception(
+                "Incorrect date format `{0}`. It should be YYYY-MM-DD HH:MM:SS".format(
+                    string
+                )
+            )
+    except ImportError:
+        return string
 
 
 logger = get_logger("oci_common_utils")

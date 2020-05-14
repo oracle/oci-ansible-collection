@@ -60,13 +60,14 @@ class BucketFactsHelperCustom:
 
 
 class BucketActionsHelperCustom:
-    def is_action_necessary(self, action):
+    def is_action_necessary(self, action, resource):
         if action == "make_bucket_writable":
-            bucket = self.get_resource().data
-            if bucket.is_read_only:
+            if resource.is_read_only:
                 return True
             return False
-        return super(BucketActionsHelperCustom, self).is_action_necessary(action)
+        return super(BucketActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 def get_object_summary_response_fields_to_retrieve():

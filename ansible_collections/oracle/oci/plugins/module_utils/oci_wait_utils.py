@@ -150,9 +150,15 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
                 "Error getting the resource identifier."
             )
         try:
-            id_orig = self.resource_helper.module.params[
+            if (self.resource_helper.get_module_resource_id_param() is not None) and (
                 self.resource_helper.get_module_resource_id_param()
-            ]
+                in self.resource_helper.module.params
+            ):
+                id_orig = self.resource_helper.module.params[
+                    self.resource_helper.get_module_resource_id_param()
+                ]
+            else:
+                id_orig = None
         except NotImplementedError:
             return lambda **kwargs: self.resource_helper.get_resource()
 
@@ -161,9 +167,10 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
                 self.resource_helper.get_module_resource_id_param()
             ] = identifier
             get_response = self.resource_helper.get_resource()
-            self.resource_helper.module.params[
-                self.resource_helper.get_module_resource_id_param()
-            ] = id_orig
+            if id_orig is not None:
+                self.resource_helper.module.params[
+                    self.resource_helper.get_module_resource_id_param()
+                ] = id_orig
             return get_response
 
         return fetch_func

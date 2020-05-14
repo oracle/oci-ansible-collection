@@ -1,0 +1,61 @@
+---
+- block:
+    # Note: The vault cannot be deleted if it contains keys already scheduled for deletion
+    # after the specified vault deletion date.
+    - name: Perform action schedule_vault_deletion on vault
+      oci_key_management_vault_actions:
+        time_of_deletion: "{{ current_date_time }}"
+        vault_id: "{{ vault_resource_id }}"
+        action: schedule_vault_deletion
+      register: result
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.vault.id == vault_resource_id
+        - result.vault.lifecycle_state == "PENDING_DELETION"
+
+    # Idempotency works only when delete date is the same as original
+    - name: Perform action schedule_vault_deletion on vault - idempotency check
+      oci_key_management_vault_actions:
+        time_of_deletion: "{{ current_date_time }}"
+        vault_id: "{{ vault_resource_id }}"
+        action: schedule_vault_deletion
+      register: result
+    - name: Assert that changed is false
+      assert:
+        that:
+        - result.changed == False
+        - result.vault.id == vault_resource_id
+        - result.vault.lifecycle_state == "PENDING_DELETION"
+
+    - name: Perform action cancel_vault_deletion on vault
+      oci_key_management_vault_actions:
+        vault_id: "{{ vault_resource_id }}"
+        action: cancel_vault_deletion
+      register: result
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.vault.id == vault_resource_id
+        - result.vault.lifecycle_state == "ACTIVE"
+
+    - name: Perform action cancel_vault_deletion on vault  - idempotency check
+      oci_key_management_vault_actions:
+        vault_id: "{{ vault_resource_id }}"
+        action: cancel_vault_deletion
+      register: result
+    - name: Assert that changed is False
+      assert:
+        that:
+        - result.changed == False
+        - result.vault.id == vault_resource_id
+        - result.vault.lifecycle_state == "ACTIVE"
+  always:
+    - name: Perform action schedule_vault_deletion on vault
+      oci_key_management_vault_actions:
+        time_of_deletion: "{{ current_date_time }}"
+        vault_id: "{{ vault_resource_id }}"
+        action: schedule_vault_deletion
+      ignore_errors: yes

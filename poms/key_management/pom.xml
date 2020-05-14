@@ -106,8 +106,8 @@
                 <specName>key_management</specName>
                 <generateInitFile>true</generateInitFile>
                 <endpoint>https://kms.{domain}</endpoint>
-                <isRegionalClient.kms_crypto>false</isRegionalClient.kms_crypto>
-                <isRegionalClient.kms_management>false</isRegionalClient.kms_management>
+                <isRegionalClient.KmsCryptoClient>false</isRegionalClient.KmsCryptoClient>
+                <isRegionalClient.KmsManagementClient>false</isRegionalClient.KmsManagementClient>
                 <moduleWhitelistPath>${module-whitelist-file}</moduleWhitelistPath>
                 <moduleRenameConfigPath>${module-rename-file}</moduleRenameConfigPath>
                 <supplementalExamplesConfigPath>${supplemental-examples-file}</supplementalExamplesConfigPath>

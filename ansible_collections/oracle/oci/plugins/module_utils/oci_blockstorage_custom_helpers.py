@@ -22,7 +22,7 @@ except ImportError:
 
 
 class BootVolumeBackupActionsHelperCustom:
-    def is_action_necessary(self, action, *args, **kwargs):
+    def is_action_necessary(self, action, resource, *args, **kwargs):
         if action.upper() == "COPY":
             # boot_volume_backup copied from another backup will have the source backup in source_boot_volume_backup_id
             # parameter. Use it to find if the copy already exists in the destination region.
@@ -30,7 +30,7 @@ class BootVolumeBackupActionsHelperCustom:
                 self.module.fail_json(
                     msg="destination_required parameter required for copying the backup."
                 )
-            this_backup = self.get_resource().data
+            this_backup = resource
             destination_region_client = BlockstorageClient(
                 dict(
                     self.client._config, region=self.module.params["destination_region"]
@@ -61,7 +61,7 @@ class BootVolumeBackupActionsHelperCustom:
                     )
             return True
         return super(BootVolumeBackupActionsHelperCustom, self).is_action_necessary(
-            action, *args, **kwargs
+            action, resource, *args, **kwargs
         )
 
     def copy(self, *args, **kwargs):
@@ -91,7 +91,7 @@ class BootVolumeBackupActionsHelperCustom:
 
 
 class VolumeBackupActionsHelperCustom:
-    def is_action_necessary(self, action, *args, **kwargs):
+    def is_action_necessary(self, action, resource, *args, **kwargs):
         if action.upper() == "COPY":
             # volume_backup copied from another backup will have the source backup in source_volume_backup_id parameter.
             # Use it to find if the copy already exists in the destination region.
@@ -99,7 +99,7 @@ class VolumeBackupActionsHelperCustom:
                 self.module.fail_json(
                     msg="destination_required parameter required for copying the backup."
                 )
-            this_backup = self.get_resource().data
+            this_backup = resource
             destination_region_client = BlockstorageClient(
                 dict(
                     self.client._config, region=self.module.params["destination_region"]
@@ -127,7 +127,7 @@ class VolumeBackupActionsHelperCustom:
                     )
             return True
         return super(VolumeBackupActionsHelperCustom, self).is_action_necessary(
-            action, *args, **kwargs
+            action, resource, *args, **kwargs
         )
 
     def copy(self, *args, **kwargs):

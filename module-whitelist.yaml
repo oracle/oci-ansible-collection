@@ -249,6 +249,18 @@ moduleWhitelist:
   - oci_object_storage_replication_source_facts
   - oci_object_storage_replication_policy
   - oci_object_storage_replication_policy_facts
+  - oci_key_management_decrypted_data
+  - oci_key_management_encrypted_data
+  - oci_key_management_generated_key
+  - oci_key_management_key
+  - oci_key_management_key_actions
+  - oci_key_management_key_facts
+  - oci_key_management_key_version
+  - oci_key_management_key_version_actions
+  - oci_key_management_key_version_facts
+  - oci_key_management_vault
+  - oci_key_management_vault_actions
+  - oci_key_management_vault_facts
 
 modulePathOverrides:
   # backwards compatibility
@@ -320,7 +332,10 @@ operationIdBlacklist:
   # overlaps with get_cpe
   - get_cpe_device_config_content
   # overlaps with ipsec_cpe_device
-  - get_ipsec_cpe_device_config_content 
+  - get_ipsec_cpe_device_config_content
+  # should be an action for keys
+  - import_key
+  - import_key_version
 
 extraFactsModuleParameters:
   core:

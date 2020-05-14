@@ -1,0 +1,93 @@
+---
+- block:
+  # Tests below require service_endpoint
+  - name: Get vault
+    oci_key_management_vault_facts:
+      vault_id: "{{ test_vault_id | oracle.oci.override(test_vault_get_vault_id, omit) }}"
+    register: result
+  - set_fact:
+      test_kmsmanagement_service_endpoint: "{{ result.vaults[0].management_endpoint }}"
+      test_kmscrypto_service_endpoint: "{{ result.vaults[0].crypto_endpoint }}"
+
+  - import_tasks: oci_key_management_key_tests.yaml
+    tags:
+      - master_key
+
+  # Tests below have a master key dependency
+  - name: Create dependency key or use exsiting one created from key tests
+    oci_key_management_key:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_encrypted_data_create_dependency_key_compartment_id, omit) }}"
+      display_name: "{{ ('Key C' + random_suffix_1024) | oracle.oci.override(test_encrypted_data_create_dependency_key_display_name, omit) }}"
+      key_shape: "{{ test_encrypted_data_key_shape }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_encrypted_data_create_dependency_key_service_endpoint, omit) }}"
+    register: result
+
+  - set_fact:
+      dependency_key: "{{ result.key }}"
+      dependency_key_id: "{{ result.key.id }}"
+
+  - import_tasks: oci_key_management_generated_key_tests.yaml
+    tags:
+      - generated_key
+
+  - import_tasks: oci_key_management_key_version_tests.yaml
+    tags:
+      - key_version
+
+  - import_tasks: oci_key_management_key_version_actions_tests.yaml
+    tags:
+      - key_version_actions
+
+  - import_tasks: oci_key_management_encrypted_data_tests.yaml
+    tags:
+      - encrypted_data
+
+  - import_tasks: oci_key_management_decrypted_data_tests.yaml
+    tags:
+      - decrypted_data
+    vars:
+      # The encrypted_data.ciphertext has the value from the last task that contains the optional_required params
+      test_decrypted_data_create_optional_required_ciphertext: "{{ encrypted_data.ciphertext }}"
+
+  - import_tasks: oci_key_management_key_actions_tests.yaml
+    tags:
+      - master_key_actions
+
+  always:
+    - name: Perform action schedule_key_deletion on key
+      oci_key_management_key_actions:
+        time_of_deletion: "{{ current_date_time }}"
+        key_id: "{{ dependency_key_id }}"
+        action: schedule_key_deletion
+        service_endpoint: "{{ test_kmsmanagement_service_endpoint }}"
+      ignore_errors: yes
+
+    # Delete the second key created from key tests
+    - name: Perform action schedule_key_deletion on key
+      oci_key_management_key_actions:
+        time_of_deletion: "{{ current_date_time }}"
+        key_id: "{{ key_resource_id }}"
+        action: schedule_key_deletion
+        service_endpoint: "{{ test_kmsmanagement_service_endpoint }}"
+      ignore_errors: yes
+
+# ==================================================================================================== #
+
+- block:
+    - import_tasks: oci_key_management_vault_tests.yaml
+      tags:
+        - vault
+        - weekly
+
+    # Vault action tests use the vault_resource_id from previous task
+    - import_tasks: oci_key_management_vault_actions_tests.yaml
+      tags:
+        - vault_actions
+        - weekly
+  always:
+    - name: Perform action schedule_vault_deletion on vault
+      oci_key_management_vault_actions:
+        time_of_deletion: "{{ current_date_time }}"
+        vault_id: "{{ vault_resource_id }}"
+        action: schedule_vault_deletion
+      ignore_errors: yes

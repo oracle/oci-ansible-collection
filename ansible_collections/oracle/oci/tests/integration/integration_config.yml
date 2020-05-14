@@ -62,3 +62,6 @@ test_app_catalog_instance_shape: "VM.Standard2.2"
 
 # Some tests need a second region. For ex: copying volume backup to a different region.
 region2_name: "us-phoenix-1"
+
+# Vault for testing KMS in Ansible test compartment
+test_vault_id: "ocid1.vault.oc1.iad.bbpi7ircaaeug.abuwcljs3epx7qboy2b2itvbe5ljnln7jwihqr5merpwpzjgrd7txndohfaq"

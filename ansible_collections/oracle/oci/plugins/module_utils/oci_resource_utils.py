@@ -169,10 +169,10 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             return None
         return action_fn
 
-    def is_action_necessary(self, action):
+    def is_action_necessary(self, action, resource=None):
         if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
             return True
-        resource = self.get_resource().data
+
         if hasattr(
             resource, "lifecycle_state"
         ) and resource.lifecycle_state in self.get_action_idempotent_states(action):
@@ -201,8 +201,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             )
         else:
             resource = to_dict(get_response.data)
-
-        is_action_necessary = self.is_action_necessary(action)
+        is_action_necessary = self.is_action_necessary(action, get_response.data)
         if not is_action_necessary:
             return self.prepare_result(
                 changed=False, resource_type=self.resource_type, resource=resource
@@ -247,6 +246,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         self.module = module
         self.resource_type = resource_type
         self.service_client_class = service_client_class
+
         self.client = oci_config_utils.create_service_client(
             self.module, self.service_client_class
         )
@@ -902,6 +902,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_compute_management_custom_helpers,
     oci_audit_custom_helpers,
     oci_object_storage_custom_helpers,
+    oci_key_management_custom_helpers,
     oci_file_storage_custom_helpers,
     oci_healthchecks_custom_helpers,
     oci_container_engine_custom_helpers,
@@ -917,6 +918,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_compute_management_custom_helpers,
         oci_audit_custom_helpers,
         oci_object_storage_custom_helpers,
+        oci_key_management_custom_helpers,
         oci_file_storage_custom_helpers,
         oci_healthchecks_custom_helpers,
         oci_container_engine_custom_helpers,

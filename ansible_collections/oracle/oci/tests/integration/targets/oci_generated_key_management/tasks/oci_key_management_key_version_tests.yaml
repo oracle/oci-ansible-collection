@@ -1,0 +1,280 @@
+---
+- block:
+  - set_fact:
+      test_key_version_create_dependency_key_key_shape:
+        algorithm: "{{ 'AES' | oracle.oci.override(test_key_version_create_dependency_key_key_shape_algorithm, omit) }}"
+        length: "{{ 16 | oracle.oci.override(test_key_version_create_dependency_key_key_shape_length, omit) }}"
+    when: skip_key_version_create_dependency_key_test is not defined and skip_key_version_dependencies is not defined and test_key_version_create_dependency_key_key_shape is not defined
+
+  - name: Create dependency key with required parameters
+    oci_key_management_key:
+      compartment_id: "{{ test_compartment_ocid | oracle.oci.override(test_key_version_create_dependency_key_compartment_id, omit) }}"
+      display_name: "{{ ('Key C' + random_suffix_1024) | oracle.oci.override(test_key_version_create_dependency_key_display_name, omit) }}"
+      key_shape: "{{ '{}' | oracle.oci.override(test_key_version_create_dependency_key_key_shape, omit) }}"
+      service_endpoint: "{{ test_key_management_service_endpoint | oracle.oci.override(test_key_version_create_dependency_key_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_create_dependency_key_test is not defined and skip_key_version_dependencies is not defined
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_key_version_create_dependency_key_test is not defined and skip_key_version_dependencies is not defined
+  - set_fact:
+      dependency_key: "{{ result.key }}"
+      dependency_key_id: "{{ result.key.id }}"
+    when: skip_key_version_create_dependency_key_test is not defined and skip_key_version_dependencies is not defined
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_create_dependency_key_custom_assertions }}"
+    when: key_version_create_dependency_key_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create key_version (check mode)
+    oci_key_management_key_version:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_create_required_key_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_create_check_mode_service_endpoint, omit) }}"
+    register: result
+    check_mode: yes
+    when: skip_key_version_create_check_mode_test is not defined
+
+  - name: Assert resource would have been created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_key_version_create_check_mode_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_create_check_mode_custom_assertions }}"
+    when: key_version_create_check_mode_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create key_version with required parameters
+    oci_key_management_key_version:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_create_required_key_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_create_required_original_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_create_required_original_test is not defined
+
+  - name: Assert resource was created
+    assert:
+      that:
+        - result.changed == True
+    when: skip_key_version_create_required_original_test is not defined
+
+  - set_fact:
+      key_version_resource_id: "{{ result.key_version.id }}"
+    when: skip_key_version_create_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.key_version.compartment_id is defined
+        - result.key_version.id is defined
+        - result.key_version.key_id is defined
+        - result.key_version.lifecycle_state is defined
+        - result.key_version.origin is defined
+        - result.key_version.time_created is defined
+        - result.key_version.time_of_deletion is defined
+        - result.key_version.vault_id is defined
+    when: skip_key_version_create_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_create_required_original_custom_assertions }}"
+    when: key_version_create_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create key_version with required parameters(idempotency)
+    oci_key_management_key_version:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_create_required_key_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_create_required_idempotency_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_create_required_idempotency_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_key_version_create_required_idempotency_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.key_version.compartment_id is defined
+        - result.key_version.id is defined
+        - result.key_version.key_id is defined
+        - result.key_version.lifecycle_state is defined
+        - result.key_version.origin is defined
+        - result.key_version.time_created is defined
+        - result.key_version.time_of_deletion is defined
+        - result.key_version.vault_id is defined
+    when: skip_key_version_create_required_idempotency_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_create_required_idempotency_custom_assertions }}"
+    when: key_version_create_required_idempotency_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Create key_version with optional + required parameters
+    oci_key_management_key_version:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_create_optional_required_key_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_create_optional_required_original_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_create_optional_required_original_test is not defined
+
+  - name: Assert changed is True
+    assert:
+      that:
+        - result.changed == True
+    when: skip_key_version_create_optional_required_original_test is not defined
+
+  - set_fact:
+      key_version_resource_id: "{{ result.key_version.id }}"
+    when: skip_key_version_create_optional_required_original_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.key_version.compartment_id is defined
+        - result.key_version.id is defined
+        - result.key_version.key_id is defined
+        - result.key_version.lifecycle_state is defined
+        - result.key_version.origin is defined
+        - result.key_version.time_created is defined
+        - result.key_version.time_of_deletion is defined
+        - result.key_version.vault_id is defined
+    when: skip_key_version_create_optional_required_original_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_create_optional_required_original_custom_assertions }}"
+    when: key_version_create_optional_required_original_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Re-create key_version with optional + required parameters (idempotence)
+    oci_key_management_key_version:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_create_optional_required_key_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_create_optional_required_idempotence_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_create_optional_required_idempotence_test is not defined
+
+  - name: Assert changed is False
+    assert:
+      that:
+        - result.changed == False
+    when: skip_key_version_create_optional_required_idempotence_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - result.key_version.compartment_id is defined
+        - result.key_version.id is defined
+        - result.key_version.key_id is defined
+        - result.key_version.lifecycle_state is defined
+        - result.key_version.origin is defined
+        - result.key_version.time_created is defined
+        - result.key_version.time_of_deletion is defined
+        - result.key_version.vault_id is defined
+    when: skip_key_version_create_optional_required_idempotence_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_create_optional_required_idempotence_custom_assertions }}"
+    when: key_version_create_optional_required_idempotence_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: List key_versions
+    oci_key_management_key_version_facts:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_list_key_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_list_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_list_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result['key_versions'] | length > 0
+    when: skip_key_version_list_test is not defined
+
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.key_id is defined
+        - item.lifecycle_state is defined
+        - item.origin is defined
+        - item.time_created is defined
+        - item.time_of_deletion is defined
+        - item.vault_id is defined
+    with_items: "{{ result['key_versions'] }}"
+    when: skip_key_version_list_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_list_custom_assertions }}"
+    when: key_version_list_custom_assertions is defined
+
+# ==================================================================================================== #
+
+  - name: Get key_version
+    oci_key_management_key_version_facts:
+      key_id: "{{ dependency_key_id | oracle.oci.override(test_key_version_get_key_id, omit) }}"
+      key_version_id: "{{ key_version_resource_id | oracle.oci.override(test_key_version_get_key_version_id, omit) }}"
+      service_endpoint: "{{ test_kmsmanagement_service_endpoint | oracle.oci.override(test_key_version_get_service_endpoint, omit) }}"
+    register: result
+    when: skip_key_version_get_test is not defined
+
+  - name: Assert resource was listed
+    assert:
+      that:
+        - result['key_versions'] | length == 1
+    when: skip_key_version_get_test is not defined
+
+  - name: Assert response properties are populated
+    assert:
+      that:
+        - item.compartment_id is defined
+        - item.id is defined
+        - item.key_id is defined
+        - item.lifecycle_state is defined
+        - item.origin is defined
+        - item.time_created is defined
+        - item.time_of_deletion is defined
+        - item.vault_id is defined
+    with_items: "{{ result['key_versions'] }}"
+    when: skip_key_version_get_test is not defined
+
+  - name: Assert custom assertions
+    assert:
+      that:
+        - "{{ item }}"
+    with_items: "{{ key_version_get_custom_assertions }}"
+    when: key_version_get_custom_assertions is defined
+
+  always:
+    - debug:
+        msg: "Nothing to clean up since this resource does not have delete operation and also no dependencies."

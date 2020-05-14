@@ -136,7 +136,10 @@ def create_service_client(module, service_client_class, config=None):
     :return: A fully configured client
     """
     config = config or get_oci_config(module, service_client_class)
+
     kwargs = {}
+    if "service_endpoint" in module.params.keys():
+        kwargs["service_endpoint"] = module.params.get("service_endpoint")
 
     if _is_instance_principal_auth(module):
         kwargs["signer"] = _create_instance_principal_signer(module)

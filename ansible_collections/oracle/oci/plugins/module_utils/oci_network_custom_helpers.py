@@ -203,13 +203,11 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
 
 
 class ServiceGatewayActionsHelperCustom:
-    def is_action_necessary(self, action):
+    def is_action_necessary(self, action, resource):
         service_id = self.module.params.get("service_id")
         if not service_id:
             return False
-        existing_service_ids = [
-            service.service_id for service in self.get_resource().data.services
-        ]
+        existing_service_ids = [service.service_id for service in resource.services]
         if action == "attach_service_id":
             if service_id in existing_service_ids:
                 return False
@@ -222,8 +220,8 @@ class ServiceGatewayActionsHelperCustom:
 
 
 class LocalPeeringGatewayActionsHelperCustom:
-    def is_action_necessary(self, action):
-        this_lpg = self.get_resource().data
+    def is_action_necessary(self, action, resource):
+        this_lpg = resource
         peer_lpg = self.client.get_local_peering_gateway(
             local_peering_gateway_id=self.module.params.get("peer_id")
         ).data
@@ -244,8 +242,8 @@ class LocalPeeringGatewayActionsHelperCustom:
 
 
 class RemotePeeringConnectionActionsHelperCustom:
-    def is_action_necessary(self, action):
-        this_rpc = self.get_resource().data
+    def is_action_necessary(self, action, resource):
+        this_rpc = resource
         if (
             this_rpc.peering_status == "PEERED"
             and this_rpc.peer_id == self.module.params.get("peer_id")
