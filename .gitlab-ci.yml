@@ -1,7 +1,10 @@
 stages:
+  - .pre
   - quickcheck
   - integration_tests
+  - push_to_github
   - scheduled_jobs
+  - .post
 
 variables:
   # as we add more tags for periodic pipelines, add them here so they do not get
@@ -65,8 +68,8 @@ quickchecks:
   tags:
     - integration
   except:
-    - tags
     - schedules
+    - tags
   script:
     - echo "All targets ${!targets}"
     - echo "Tags ${tags}"
@@ -147,8 +150,8 @@ non_parallel_integration_tests_dev_set_1:
   tags:
     - non_parallel
   except:
-    - tags
     - schedules
+    - tags
   variables:
     set_no: 0
     targets: "integration_test_targets"
@@ -160,6 +163,164 @@ non_parallel_integration_tests_dev_set_1:
     - echo "Total number of sets ${total_target_sets}"
     - tox -e integration_tests -- --targets "${!targets}" --set-no "$set_no" --total-target-sets "$total_target_sets" --ansible-test-tags "$ansible_non_parallel_test_tag" --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job"
 
+
+
+# release pipeline integration tests - this template runs the whitelist first and then
+# installs to ensure integration tests are running on the whitelisted collections
+.release_integration_tests_job_template: &release_integration_tests_job_def
+  stage: integration_tests
+  tags:
+    - integration
+  only:
+    - tags
+  script:
+    - source scripts/common-vars.sh
+    # run whitelist
+    - chmod u+r+x scripts/run_whitelist.sh
+    - scripts/run_whitelist.sh
+    # install the whitelisted collections
+    - chmod u+r+x "$TEMP_SCRIPTS"/install_collection.sh
+    - $TEMP_SCRIPTS/install_collection.sh
+    # setup for running the integration tests
+    - echo "All targets ${!targets}"
+    - echo "Tags ${tags}"
+    - echo "Set no ${set_no}"
+    - echo "Total number of sets ${total_target_sets}"
+    - tox -e integration_tests -- --targets "${!targets}" --set-no "$set_no" --total-target-sets "$total_target_sets" --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job,$ansible_non_parallel_test_tag"
+    - echo "integration_test execution complete"
+
+release_integration_tests_set_1:
+  <<: *release_integration_tests_job_def
+  variables:
+    set_no: 0
+    targets: "integration_test_targets"
+    total_target_sets: 3
+
+release_integration_tests_set_2:
+  <<: *release_integration_tests_job_def
+  variables:
+    set_no: 1
+    targets: "integration_test_targets"
+    total_target_sets: 3
+
+release_integration_tests_set_3:
+  <<: *release_integration_tests_job_def
+  variables:
+    set_no: 2
+    targets: "integration_test_targets"
+    total_target_sets: 3
+
+release_lengthy_integration_tests_set_1:
+  <<: *release_integration_tests_job_def
+  variables:
+    set_no: 0
+    targets: "lengthy_integration_test_targets"
+    total_target_sets: 2
+
+release_lengthy_integration_tests_set_2:
+  <<: *release_integration_tests_job_def
+  variables:
+    set_no: 1
+    targets: "lengthy_integration_test_targets"
+    total_target_sets: 2
+
+.release_core_integration_tests_job_template: &release_core_integration_tests_job_def
+  stage: integration_tests
+  tags:
+    - integration
+  only:
+    - tags
+  script:
+    - source scripts/common-vars.sh
+    # run whitelist
+    - chmod u+r+x scripts/run_whitelist.sh
+    - scripts/run_whitelist.sh
+    # install the whitelisted collections
+    - chmod u+r+x "$TEMP_SCRIPTS"/install_collection.sh
+    - $TEMP_SCRIPTS/install_collection.sh
+    # setup for running the integration tests
+    - echo "Running core tests with tag $tag"
+    - tox -e integration_tests -- --targets oci_generated_core --ansible-test-tags $tag --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job,$ansible_non_parallel_test_tag"
+  retry: 2
+
+release_core_integration_tests_set_1:
+  <<: *release_core_integration_tests_job_def
+  variables:
+    tag: "core_set_1"
+
+release_core_integration_tests_set_2:
+  <<: *release_core_integration_tests_job_def
+  variables:
+    tag: "core_set_2"
+
+release_core_integration_tests_set_3:
+  <<: *release_core_integration_tests_job_def
+  variables:
+    tag: "core_set_3"
+
+# There are some integration tests that cannot be run in parallel due to various constraints like tests which update
+# a global resource, limit issues etc. So we separate these tests and run them in a single runner so that they cannot
+# run in parallel. The non parallel integration test targets should contain non_parallel in the target name.
+# For ex: oci_identity_non_parallel
+release_non_parallel_integration_tests_dev_set_1:
+  stage: integration_tests
+  tags:
+    - non_parallel
+  only:
+    - tags
+  variables:
+    set_no: 0
+    targets: "integration_test_targets"
+    total_target_sets: 1
+  script:
+    - source scripts/common-vars.sh
+    # run whitelist
+    - chmod u+r+x scripts/run_whitelist.sh
+    - scripts/run_whitelist.sh
+    # install the whitelisted collections
+    - chmod u+r+x "$TEMP_SCRIPTS"/install_collection.sh
+    - $TEMP_SCRIPTS/install_collection.sh
+    # setup for running the integration tests
+    - echo "All targets ${!targets}"
+    - echo "Tags ${tags}"
+    - echo "Set no ${set_no}"
+    - echo "Total number of sets ${total_target_sets}"
+    - tox -e integration_tests -- --targets "${!targets}" --set-no "$set_no" --total-target-sets "$total_target_sets" --ansible-test-tags "$ansible_non_parallel_test_tag" --ansible-test-skip-tags "$ansible_skip_tags_for_default_integ_test_job"
+
+ansible_doc_tests:
+  stage: integration_tests
+  tags:
+    - integration
+  only:
+    - tags
+  script:
+    - source scripts/common-vars.sh
+    # run whitelist
+    - chmod u+r+x scripts/run_whitelist.sh
+    - scripts/run_whitelist.sh
+    # install the whitelisted collections
+    - chmod u+r+x "$TEMP_SCRIPTS"/install_collection.sh
+    - $TEMP_SCRIPTS/install_collection.sh
+    # running an ansible-doc command to verify if module docs are getting picked up
+    - ansible-doc oracle.oci.oci_identity_group
+
+#############################################################################
+# `push_to_github` stage jobs
+#############################################################################
+push_to_github:
+  stage: push_to_github
+  tags:
+    - integration
+  only:
+    - tags
+  script:
+    - source scripts/common-vars.sh
+    # run whitelist
+    - chmod u+r+x scripts/run_whitelist.sh
+    - scripts/run_whitelist.sh
+    # push to github
+    - chmod u+r+x "$TEMP_SCRIPTS"/push_to_github.sh
+    - $TEMP_SCRIPTS/push_to_github.sh
 
 #############################################################################
 # `scheduled_jobs` stage jobs

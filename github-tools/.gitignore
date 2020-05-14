@@ -1,0 +1,17 @@
+# env control
+.python-version
+.DS_Store
+.idea/
+
+# cached bytecode
+*.pyc
+__pycache__/
+
+# build artifacts
+*.egg-info/
+build/
+dist/
+
+# testing
+.tox/
+.cache/
