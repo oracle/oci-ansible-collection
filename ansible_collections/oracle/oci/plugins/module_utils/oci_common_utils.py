@@ -9,15 +9,12 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 from ansible.module_utils import six
 from ansible.module_utils.six.moves import http_client
-from ansible.module_utils._text import to_bytes
 from datetime import datetime
 from dateutil.parser import parse
 from dateutil import tz
 import tempfile
 import logging
-import logging.config
 import os
-import yaml
 import re
 import sys
 import json
@@ -580,41 +577,24 @@ def _httpclient_debug_logging_patch():
 
 
 def setup_logging(
-    default_config_file="/etc/ansible/oci_logging.yaml",
-    default_level="INFO",
-    default_log_path=tempfile.gettempdir(),
+    default_level="INFO", default_log_path=tempfile.gettempdir(),
 ):
     """Setup logging configuration"""
-    env_config_file = "LOG_CONFIG"
     env_log_path = "LOG_PATH"
     env_log_level = "LOG_LEVEL"
 
-    config_file = os.getenv(env_config_file, default_config_file)
     log_path = os.getenv(env_log_path, default_log_path)
 
-    files_handlers = ["debug_file_handler", "error_file_handler", "info_file_handler"]
+    log_level_str = os.getenv(env_log_level, default_level)
 
-    if os.path.exists(config_file):
-        with open(to_bytes(config_file), "rt") as f:
-            config = yaml.safe_load(f.read())
-            for files_handler in files_handlers:
-                config["handlers"][files_handler]["filename"] = config["handlers"][
-                    files_handler
-                ]["filename"].format(
-                    path=log_path, date=datetime.today().strftime("%d-%m-%Y")
-                )
-        logging.config.dictConfig(config)
-    else:
-        log_level_str = os.getenv(env_log_level, default_level)
+    if log_level_str.lower() == "debug":
+        _httpclient_debug_logging_patch()
 
-        if log_level_str.lower() == "debug":
-            _httpclient_debug_logging_patch()
+    log_level = logging.getLevelName(log_level_str)
 
-        log_level = logging.getLevelName(log_level_str)
+    log_file_path = os.path.join(log_path, "oci_ansible_module.log")
 
-        log_file_path = os.path.join(log_path, "oci_ansible_module.log")
-
-        logging.basicConfig(filename=log_file_path, filemode="a", level=log_level)
+    logging.basicConfig(filename=log_file_path, filemode="a", level=log_level)
     return logging
 
 
