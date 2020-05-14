@@ -35,6 +35,7 @@ before_script:
   - cat ~/.oci/config
   - cp .oci/*.pem ~/.oci/
   - source scripts/common-vars.sh
+  - 'echo "PROJECT_ROOT: $CI_PROJECT_DIR" >> $CI_PROJECT_DIR/ansible_collections/oracle/oci/tests/integration/integration_config.yml'
   - export integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*"  | grep -v oci_generated_core | grep -v lengthy | sort)
   - export lengthy_integration_test_targets=$(find "$CI_PROJECT_DIR"/ansible_collections/oracle/oci -type d -name "oci_*" | grep lengthy | sort)
 

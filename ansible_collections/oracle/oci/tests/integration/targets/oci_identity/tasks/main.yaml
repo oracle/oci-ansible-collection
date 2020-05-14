@@ -50,3 +50,7 @@
 - import_tasks: oci_api_key_tests.yaml
   tags:
     - api_key
+- import_tasks: oci_instance_principal_tests.yaml
+  tags:
+    - instance_principal
+    - lengthy

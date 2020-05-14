@@ -1,0 +1,373 @@
+---
+# Copyright (c) 2020, Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+## Cleanup before test run
+- name: Get facts about all compute instances in compartment
+  oci_compute_instance_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+    availability_domain: "{{test_availability_domain}}"
+  register: currinstances
+
+- set_fact:
+    todeleteinstance_id: "{{item.id}}"
+  when: item.display_name == instance_hostname and item.lifecycle_state != "TERMINATED"
+  with_items: "{{currinstances.instances}}"
+  ignore_errors: yes
+
+- debug:
+    msg: "Instance to delete: {{todeleteinstance_id}}"
+  ignore_errors: yes
+
+- name: Delete the instance
+  oci_compute_instance:
+      id: "{{todeleteinstance_id}}"
+      state: 'absent'
+  ignore_errors: yes
+
+## Setup
+# get OEL 7.6 Image ID for this region
+- name: Get OEL Image ID
+  oci_compute_image_facts:
+    compartment_id: "{{test_compartment_ocid}}"
+    operating_system: "{{image_operating_system}}"
+    operating_system_version: "{{image_operating_system_version}}"
+    shape: "{{instance_shape}}"
+  register: oci_images
+- set_fact:
+    sample_image_ocid: "{{oci_images.images[0].id}}"
+
+- block:
+    # Create a Dynamic group. In this dynamic group we provide the matching rules to ensure that all instances under
+    # compartment test_compartment_ocid are allowed to make API calls against OCI Services
+    - name: Create a dynamic group for instances under test_compartment_ocid
+      oci_identity_dynamic_group:
+        name: "{{ instance_principals_dynamic_group_name }}"
+        description: "A group that ensures that all instances in compartment {{ test_compartment_ocid }} can make API calls against OCI Services"
+        matching_rule: "instance.compartment.id = '{{ test_compartment_ocid }}'"
+        compartment_id: "{{ tenancy_ocid }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+    - set_fact:
+        dynamic_group_ocid: "{{ result.dynamic_group.id }}"
+
+    - name: Create a policy granting to the created dynamic group to inspect all resources and read information about instances in test_compartment_ocid
+      oci_identity_policy:
+        name: "{{ policy_name }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        description: "Allow all specified by the dynamic group {{instance_principals_dynamic_group_name}} to access compute API in {{test_compartment_ocid}}"
+        statements: ["Allow dynamic-group {{instance_principals_dynamic_group_name}} to inspect all-resources in compartment id {{test_compartment_ocid}}",
+                    "Allow dynamic-group {{instance_principals_dynamic_group_name}} to read instances in compartment id {{test_compartment_ocid}}"]
+      register: result
+    - debug:
+        msg: "{{ result }}"
+    - set_fact:
+        policy_ocid: "{{ result.policy.id }}"
+
+    - name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance
+      tempfile:
+        state: directory
+        suffix: cert
+      register: result
+    - set_fact:
+        temp_certificates_path: "{{ result.path }}"
+    - name: Generate a Private Key
+      openssl_privatekey:
+        path: "{{ temp_certificates_path }}/private_key.pem"
+        type: RSA
+        size: 2048
+    - set_fact:
+        my_test_public_key: "{{ temp_certificates_path }}/public_key.pem"
+    - name: Generate a Public Key
+      openssl_publickey:
+        path: "{{ my_test_public_key }}"
+        privatekey_path: "{{ temp_certificates_path }}/private_key.pem"
+        format: OpenSSH
+
+    - name: Create a VCN
+      oci_network_vcn:
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "{{ vcn_name }}"
+        cidr_block: "{{ vcn_cidr_block }}"
+        dns_label: "{{ vcn_dns_label }}"
+      register: result
+    - set_fact:
+        vcn_id: "{{ result.vcn.id }}"
+
+    - name: Create a new Internet Gateway
+      oci_network_internet_gateway:
+        compartment_id: "{{ test_compartment_ocid }}"
+        vcn_id: "{{ vcn_id }}"
+        name: "{{ ig_name }}"
+        is_enabled: 'yes'
+        state: 'present'
+      register: result
+    - set_fact:
+        ig_id: "{{ result.internet_gateway.id }}"
+
+    - name: Create route table to connect internet gateway to the VCN
+      oci_network_route_table:
+        compartment_id: "{{ test_compartment_ocid }}"
+        vcn_id: "{{ vcn_id }}"
+        name: "{{ route_table_name }}"
+        route_rules: "{{ route_table_rules }}"
+        state: 'present'
+      register: result
+    - set_fact:
+        rt_id: "{{ result.route_table.id }}"
+
+    - name: Create a security list for allowing access to public instance
+      oci_network_security_list:
+        name: "{{ securitylist_name }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        vcn_id: '{{ vcn_id }}'
+        ingress_security_rules:
+          - source: "0.0.0.0/0"
+            protocol: "6"
+            tcp_options:
+              destination_port_range:
+                min: 22
+                max: 22
+        egress_security_rules:
+          # Allow access to HTTP(S) for cloud-init (yum, pip to work)
+          - destination: "0.0.0.0/0"
+            protocol: "6"
+            tcp_options:
+              destination_port_range:
+                min: 80
+                max: 80
+          - destination: "0.0.0.0/0"
+            protocol: "6"
+            tcp_options:
+              destination_port_range:
+                min: 443
+                max: 443
+      register: result
+    - set_fact:
+        instance_security_list_ocid: "{{ result.security_list.id }}"
+
+    - name: Create a subnet to host the public instance. Link security_list and route_table.
+      oci_network_subnet:
+        availability_domain: "{{ test_availability_domain }}"
+        cidr_block: "{{ subnet_cidr }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        display_name: "{{ subnet_name }}"
+        prohibit_public_ip_on_vnic: false
+        route_table_id: "{{ rt_id }}"
+        security_list_ids: [ "{{ instance_security_list_ocid }}" ]
+        vcn_id: '{{ vcn_id }}'
+        dns_label: "{{ subnet_dns_label }}"
+      register: result
+    - set_fact:
+        instance_subnet_id: "{{ result.subnet.id }}"
+
+    - name: Launch a compute instance in {{test_compartment_ocid}} to test instance_principal based authentication
+      oci_compute_instance:
+        availability_domain: "{{ test_availability_domain }}"
+        compartment_id: "{{ test_compartment_ocid }}"
+        name: "{{instance_hostname}}"
+        image_id: "{{ sample_image_ocid }}"
+        shape: "{{ instance_shape }}"
+        create_vnic_details:
+            assign_public_ip: True
+            hostname_label: "{{ instance_hostname }}"
+            subnet_id: "{{ instance_subnet_id }}"
+        metadata:
+            ssh_authorized_keys: "{{ lookup('file',  my_test_public_key ) }}"
+      register: result
+
+    - name: Print instance details
+      debug:
+        msg: "Launched a new instance {{ result }}"
+    - set_fact:
+        instance_id: "{{result.instance.id }}"
+
+    - name: Get the VNIC attachment details of instance
+      oci_compute_vnic_attachment_facts:
+        compartment_id: "{{ test_compartment_ocid }}"
+        instance_id: "{{ instance_id }}"
+      register: result
+
+    - name: Get details of the VNIC
+      oci_network_vnic_facts:
+        id: "{{ result.vnic_attachments[0].vnic_id }}"
+      register: result
+    - set_fact:
+        instance_public_ip: "{{result.vnic.public_ip}}"
+
+    - name: Print the public ip of the newly launched instance
+      debug:
+        msg: 'Public IP of launched instance {{ instance_public_ip }}. Connect to it using ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }}'
+
+    - name: Wait (upto 5 minutes) for port 22 to become open
+      wait_for:
+        port: 22
+        host: '{{ instance_public_ip }}'
+        state: started
+        delay: 10
+      vars:
+        ansible_connection: local
+
+    - name: Test a ssh connection to the newly launced instance
+      # Use "opc" user as this is an OL image
+      # Disable SSH's strict host key checking just for this one command invocation
+      command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }} uname -a
+      retries: 3
+      delay: 5
+      register: result
+      until: result.rc == 0
+
+    - name: Print SSH response from launched instance now that the instance is ready
+      debug:
+        msg: "SSH response from instance -> {{ result.stdout_lines }}"
+
+    - name: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }}
+      debug: msg="The setup is complete, and an instance is running and can be connected to, with the command in this task's title above. To check if instance-principal based authentication is working, copy over the script, instance-principal-test.sh, to the provisioned instance, and execute the script in that instance"
+
+    - name: Zip local repo changes
+      local_action: command chdir="{{ PROJECT_ROOT }}/ansible_collections/oracle/oci" tar czf /tmp/oci-ansible-collections.tar.gz .
+
+    - name: Copy zip of local repo to new instance
+      local_action: command scp -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem /tmp/oci-ansible-collections.tar.gz opc@{{ instance_public_ip }}:/home/opc/
+
+    - name: Copy instances principals test script to instance
+      local_action: command scp -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem "{{ role_path }}"/files/instance-principal-test.sh opc@{{ instance_public_ip }}:/home/opc/
+
+    - name: Run instance principals test script remotely on instance
+      local_action: command ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }} /home/opc/instance-principal-test.sh
+
+    - name: Terminate the instance
+      oci_compute_instance:
+        id: "{{ instance_id }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the subnet
+      oci_network_subnet:
+        id: "{{ instance_subnet_id }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the security list
+      oci_network_security_list:
+        id: "{{ instance_security_list_ocid }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the route table
+      oci_network_route_table:
+        id: "{{ rt_id }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the Internet Gateway
+      oci_network_internet_gateway:
+        id: "{{ ig_id }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the VCN
+      oci_network_vcn:
+        vcn_id: "{{ vcn_id }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the policy
+      oci_identity_policy:
+        policy_id: "{{ policy_ocid }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+    - name: Delete the dynamic group
+      oci_identity_dynamic_group:
+        dynamic_group_id: "{{ dynamic_group_ocid }}"
+        state: absent
+      register: result
+
+    - assert:
+        that:
+          - result.changed == True
+
+  rescue:
+    - name: Terminate the instance
+      oci_compute_instance:
+        id: "{{ instance_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the subnet
+      oci_network_subnet:
+        id: "{{ instance_subnet_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the security list
+      oci_network_security_list:
+        id: "{{ instance_security_list_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the route table
+      oci_network_route_table:
+        id: "{{ rt_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the Internet Gateway
+      oci_network_internet_gateway:
+        id: "{{ ig_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the VCN
+      oci_network_vcn:
+        vcn_id: "{{ vcn_id }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the policy
+      oci_identity_policy:
+        policy_id: "{{ policy_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Delete the dynamic group
+      oci_identity_dynamic_group:
+        dynamic_group_id: "{{ dynamic_group_ocid }}"
+        state: absent
+      ignore_errors: yes
+
+    - fail:
+        msg: "{{ ansible_failed_result }}"
