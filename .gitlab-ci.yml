@@ -74,6 +74,11 @@ malware_analysis:
         - report.txt
       expire_in: 1 week
   script:
+    - source scripts/common-vars.sh
+    # run whitelist
+    - chmod u+r+x scripts/run_whitelist.sh
+    - scripts/run_whitelist.sh
+    # run malware analysis
     - scripts/run-malware-analysis.sh
 
 #############################################################################
