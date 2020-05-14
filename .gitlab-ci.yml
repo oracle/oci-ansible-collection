@@ -2,6 +2,7 @@ stages:
   - .pre
   - quickcheck
   - integration_tests
+  - malware_analysis
   - push_to_github
   - scheduled_jobs
   - .post
@@ -51,14 +52,29 @@ after_script:
 # `quickcheck` stage jobs
 #############################################################################
 
-#quickchecks:
-#  stage: quickcheck
-#  tags:
-#    - quickchecks
-#  except:
-#    - schedules
-#  script:
-#    - tox
+quickchecks:
+  stage: quickcheck
+  tags:
+    - quickchecks
+  except:
+    - schedules
+  script:
+    - tox
+#############################################################################
+# `malware_analysis` stage jobs
+#############################################################################
+malware_analysis:
+  stage: malware_analysis
+  tags:
+    - malware
+  only:
+    - tags
+  artifacts:
+      paths:
+        - report.txt
+      expire_in: 1 week
+  script:
+    - scripts/run-malware-analysis.sh
 
 #############################################################################
 # `integration_tests` stage jobs
