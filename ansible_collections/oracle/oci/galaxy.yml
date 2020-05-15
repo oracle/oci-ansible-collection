@@ -9,7 +9,7 @@ namespace: oracle
 name: oci
 
 # The version of the collection. Must be compatible with semantic versioning
-version: 2.0.0-dev
+version: 2.0.0-beta
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
@@ -17,26 +17,30 @@ readme: README.md
 # A list of the collection's content authors. Can be just the name or in the format 'Full Name <email> (url)
 # @nicks:irc/im.site#channel'
 authors:
-- your name <example@domain.com>
-
+- AmeyaLokre
+- manojmeda
+- mross22
+- nalsaber
+- ruturajmolawade
 
 ### OPTIONAL but strongly recommended
 
 # A short summary description of the collection
-description: your collection description
+description: Oracle Cloud Infrastructure modules provides an easy way to create and provision resources.
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
 license:
-- GPL-2.0-or-later
+- GPL-3.0-or-later
+- Apache License v2.0
 
 # The path to the license file for the collection. This path is relative to the root of the collection. This key is
 # mutually exclusive with 'license'
-license_file: ''
+license_file: 'LICENSE.txt'
 
 # A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
 # requirements as 'namespace' and 'name'
-tags: []
+tags: [Oracle, cloud, oci]
 
 # Collections that this collection requires to be installed for it to be usable. The key of the dict is the
 # collection label 'namespace.name'. The value is a version range
@@ -45,13 +49,13 @@ tags: []
 dependencies: {}
 
 # The URL of the originating SCM repository
-repository: http://example.com/repository
+repository: https://github.com/oracle/oci-ansible-collections/
 
 # The URL to any online docs
-documentation: http://docs.example.com
+documentation: https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/ansible.htm
 
 # The URL to the homepage of the collection/project
-homepage: http://example.com
+homepage: https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/ansible.htm
 
 # The URL to the collection issue tracker
-issues: http://example.com/issue/tracker
+issues: https://github.com/oracle/oci-ansible-collections/issues
