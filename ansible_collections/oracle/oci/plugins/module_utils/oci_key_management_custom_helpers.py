@@ -93,11 +93,16 @@ class KeyVersionActionsHelperCustom:
 
 
 def is_action_necessary(self, action, resource):
-    # Idempotency for modules with delete date like KMS
+    # Idempotency for modules with delete date like KMS (consider only in deleted lifecycle_state)
     # If the deleted date is equal to the request delete date, we should not execute the action (changed=false)
     # If the deleted date is different, we will execute the action and return server errors
     if (
-        hasattr(resource, "time_of_deletion")
+        hasattr(resource, "lifecycle_state")
+        and (
+            resource.lifecycle_state == "PENDING_DELETION"
+            or resource.lifecycle_state == "DELETED"
+        )
+        and hasattr(resource, "time_of_deletion")
         and resource.time_of_deletion is not None
         and self.module.params.get("time_of_deletion") is not None
     ):

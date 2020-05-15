@@ -121,10 +121,16 @@
         - result.key.lifecycle_state == "ENABLED"
 
   always:
-    - name: Perform action schedule_key_deletion on key
+    - name: Perform final action schedule_key_deletion on key
       oci_key_management_key_actions:
         time_of_deletion: "{{ current_date_time }}"
         key_id: "{{ dependency_key_id }}"
         action: schedule_key_deletion
         service_endpoint: "{{ test_kmsmanagement_service_endpoint }}"
-      ignore_errors: yes
+      register: result
+    - name: Assert that changed is true
+      assert:
+        that:
+        - result.changed == True
+        - result.key.id == dependency_key_id
+        - result.key.lifecycle_state == "PENDING_DELETION"
