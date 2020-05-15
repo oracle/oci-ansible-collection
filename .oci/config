@@ -1,8 +1,0 @@
-[DEFAULT]
-user=${CI_OCI_USER_OCID}
-fingerprint=${CI_OCI_USER_FINGERPRINT}
-key_file=~/.oci/oci_api_key.pem
-tenancy=${CI_OCI_TENANCY_OCID}
-region=${CI_OCI_TENANCY_HOME_REGION}
-pass_phrase=${CI_OCI_TENANCY_PASSPHRASE}
-

@@ -1,8 +1,0 @@
-- name: Delete setup load balancer
-  oci_loadbalancer_load_balancer:
-    load_balancer_id: "{{ dependency_load_balancer_id }}"
-    state: absent
-  register: result
-  # generated test logic should clean up LB, but if something goes
-  # wrong before that we still might need to clean up
-  ignore_errors: yes

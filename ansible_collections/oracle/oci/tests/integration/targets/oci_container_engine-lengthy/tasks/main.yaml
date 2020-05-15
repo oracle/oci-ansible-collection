@@ -1,6 +1,0 @@
----
-
-- import_tasks: oci_ce_tests.yaml
-  tags:
-    - container_engine
-    - lengthy

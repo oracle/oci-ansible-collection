@@ -1,2 +1,0 @@
-click==6.7
-pathlib==1.0.1

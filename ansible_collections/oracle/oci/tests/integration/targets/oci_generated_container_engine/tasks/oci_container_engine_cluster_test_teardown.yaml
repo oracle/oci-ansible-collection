@@ -1,5 +1,0 @@
-- name: Delete cluster if exists
-  oci_container_engine_cluster:
-    cluster_id: "{{ cluster_resource_id }}"
-    state: absent
-  register: result

@@ -1,5 +1,0 @@
-- name: Delete setup volume
-  oci_blockstorage_volume:
-    volume_id: "{{ setup_volume_id }}"
-    state: absent
-  register: result

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-black $1
-
-exit 0

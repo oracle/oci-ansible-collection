@@ -1,7 +1,0 @@
----
-- block:
-    - import_tasks: oci_container_engine_node_pool_tests.yaml
-      tags:
-        - node_pool
-  tags:
-    - non_parallel

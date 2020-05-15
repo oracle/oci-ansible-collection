@@ -1,8 +1,0 @@
-# variables for oci_file_storage_mount_target_tests.yaml
-dependency_subnet_id: "{{ common_subnet_id }}"
-test_mount_target_create_optional_required_ip_address: "10.0.1.4"
-
-# Mount targets do not have Internet-routable IP addresses. Therefore they will not be reachable from the Internet, even if an associated source is 0.0.0.0/0
-test_export_create_optional_required_export_options_source: "0.0.0.0/0"
-test_export_update_optional_required_export_options_source: "0.0.0.0/0"
-skip_export_list_test: True
