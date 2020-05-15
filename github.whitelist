@@ -6,5 +6,6 @@
 ^ansible_collections/oracle/oci/galaxy.yml
 ^ansible_collections/oracle/oci/LICENSE.txt
 ^ansible_collections/oracle/oci/MigrationGuide.md
+^ansible_collections/oracle/oci/UserGuide.md
 ^ansible_collections/oracle/oci/README.md
 ^ansible_collections/oracle/oci/THIRD_PARTY_LICENSES.txt

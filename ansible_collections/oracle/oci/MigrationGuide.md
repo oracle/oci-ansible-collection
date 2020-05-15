@@ -1,4 +1,60 @@
-## Ansible Collections Migration Guide
+# Oracle Cloud Infrastructure Ansible Collection Migration Guide
+
+This guide explains how to transition from the legacy modules to the new collection modules. The new modules have some breaking changes as listed in the table below. They are also renamed to use the service name as a prefix. This naming convention makes it easier to organize and discover modules.
+
+The new modules follow the pattern of our other OCI developer tools in that they are primarily generated based on OCI service API specifications. This results in breaking changes from our legacy modules in places where we previously added significant customizations on top of what is in the API specification. The trade-off for this cost of breaking changes is that we will be able to significantly increase our cadence of releasing new modules and features to stay up to date with OCI services. We are very open to feedback from our users, if there are features from the legacy modules that were very important to your workload please file a feature enhancement request as a Github issue and we will consider porting old features forward on a case by case basis.
+
+## Using the new collection modules and legacy modules
+Users can transition slowly to the new modules if there are some breaking changes. 
+It is possible to use both (new and legacy) modules in your playbooks as explained below.  
+
+#### Installation
+Both can be installed at the same time. The collection will be installed at different path.
+
+You can install the new collection [release tarball](https://github.com/oracle/oci-ansible-collections/releases) from Github:
+  ``` bash
+  $ ansible-galaxy collection install oracle-oci-{version}.tar.gz
+  ```
+
+
+#### Using collection modules and legacy modules in a Playbook
+If the collection is imported at the top of the file, Ansible will first search for the module in collection path if it is not found it will search in the legacy modules path. If both modules have the same name, the module from the collection will take precedence.
+
+
+```
+- hosts: all
+  collections:
+   - oracle.oci
+  tasks:
+    # Module in collection
+    - oci_identity_policy:
+        option1: value
+    # Module in legacy modules
+    - oci_policy_facts:
+        option1: value
+```
+
+You can also reference a collection content by its fully qualified collection name (FQCN):
+
+```
+- hosts: all
+  tasks:
+    - oracle.oci.oci_identity_policy:
+        option1: value
+```
+
+
+## Differences in general behavior between legacy and new modules
+* All experimental features (enabled using OCI_ANSIBLE_EXPERIMENTAL env var) have been deprecated and are not included in this new set of modules.
+  * Most of these features were a matter of convenience and are still achievable with the new modules. For example, the `lookup_all_attached_instances` parameter on oci_volume is removed, but users can still use the `oci_compute_volume_attachment_facts` and `oci_compute_instance_facts` modules to retrieve the same information.
+* Options to `purge` or `delete` items from lists on resources are no longer supported (examples: oci_security_list, oci_load_balancer_backend_set, etc).
+  * The default behavior for these fields has always been `purge_{resource_name}` = True, which remains true for the new modules. But there is no longer an option to specify `purge_{resource_name}` = False and only append new entries to the list. Thus, if you want to update a list you will need to supply the entire list, if you supply a subset of items they will completely replace the existing list.
+*  New modules consider `freeform_tags` (if specified) for idempotence unlike legacy modules which excludes them
+* The `wait_until` parameter has been removed in favor of keeping all specific state waiting logic internal to the modules.
+  * The default behavior remains the same as in the legacy modules, it is just no longer possible to override the specific state you want to wait on.  Users can still turn waiting logic off completely for a play using `wait: false`.
+* Default values have been removed in some cases which makes idempotency matching less strict.  See the section "Avoiding reliance on server side default values" in the User Guide for more information.
+
+## Module Backward Compatibility Reference
 
 #### Account Management (Budget)
 
