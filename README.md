@@ -1,4 +1,6 @@
 # Oracle Cloud Infrastructure Ansible Collection - Beta
+While we are in beta, you **must** specify the version while installing oracle.oci `ansible-galaxy collection install oracle.oci:<version>`. To install the latest version (2.1.2-beta), use the following command:
+> **ansible-galaxy collection install oracle.oci:2.1.2-beta**
 
 
 Oracle Cloud Infrastructure Ansible Collection provides an easy way to provision and manage resources in Oracle Cloud using Ansible.
@@ -44,7 +46,7 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 
 You can install it from [Ansible Galaxy](https://galaxy.ansible.com/oracle) using the command:
   ``` bash
-  $ ansible-galaxy collection install oracle.oci
+  $ ansible-galaxy collection install oracle.oci:2.1.2-beta
   ```
 Notes:
 * Collections is supported in Ansible 2.9+.
