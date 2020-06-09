@@ -173,6 +173,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
             return True
 
+        resource = resource or self.get_resource()
         if hasattr(
             resource, "lifecycle_state"
         ) and resource.lifecycle_state in self.get_action_idempotent_states(action):
@@ -185,6 +186,15 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
     def get_action_desired_states(self, action):
         return oci_common_utils.ACTION_DESIRED_STATES.get(
             action.upper(), oci_common_utils.DEFAULT_READY_STATES
+        )
+
+    def get_default_module_wait_timeout(self):
+        """Can be overridden in specfic modules that require longer or shorter wait times"""
+        return oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
+
+    def get_wait_timeout(self):
+        return self.module.params.get(
+            "wait_timeout", self.get_default_module_wait_timeout()
         )
 
     def perform_action(self, action):
@@ -310,6 +320,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def get_resource_terminated_states(self):
         return oci_common_utils.DEFAULT_TERMINATED_STATES
+
+    def get_default_module_wait_timeout(self):
+        """Can be overridden in specfic modules that require longer or shorter wait times"""
+        return oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
+
+    def get_wait_timeout(self):
+        return self.module.params.get(
+            "wait_timeout", self.get_default_module_wait_timeout()
+        )
 
     def _has_name_parameter(self):
         if any(
@@ -907,6 +926,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_healthchecks_custom_helpers,
     oci_container_engine_custom_helpers,
     oci_load_balancer_custom_helpers,
+    oci_database_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -923,6 +943,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_healthchecks_custom_helpers,
         oci_container_engine_custom_helpers,
         oci_load_balancer_custom_helpers,
+        oci_database_custom_helpers,
     ]
 )
 

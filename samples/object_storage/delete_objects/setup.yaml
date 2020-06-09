@@ -1,0 +1,36 @@
+---
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_COMPARTMENT_OCID"
+    - "SAMPLE_OBJECT_NS_NAME"
+
+- name: Create a bucket in OCI to create sample objects
+  oci_object_storage_bucket:
+    namespace_name: "{{namespace_name}}"
+    compartment_id: "{{compartment_id}}"
+    name: "{{sample_bucket_name}}"
+
+- name: Create a temporary sample file to upload
+  tempfile:
+  register: tmpfile1
+
+- name: Put content in the temporary sample file
+  copy:
+    content: "This is content for the sample file."
+    dest: "{{ tmpfile1.path }}"
+
+- name: Create an OCI object
+  oci_object_storage_object:
+    namespace_name: "{{namespace_name}}"
+    bucket_name: "{{sample_bucket_name}}"
+    object_name: "{{sample_object_name}}"
+    src: "{{ tmpfile1.path }}"

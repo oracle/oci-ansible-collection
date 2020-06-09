@@ -268,6 +268,12 @@ image:
                     returned: on success
                     type: bool
                     sample: true
+                is_management_supported:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins
+                    returned: on success
+                    type: bool
+                    sample: true
         size_in_mbs:
             description:
                 - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
@@ -304,7 +310,8 @@ image:
         "operating_system": "Oracle Linux",
         "operating_system_version": "7.2",
         "agent_features": {
-            "is_monitoring_supported": true
+            "is_monitoring_supported": true,
+            "is_management_supported": true
         },
         "size_in_mbs": 47694,
         "time_created": "2016-08-25T21:10:29.600Z"
@@ -322,6 +329,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeClient
     from oci.core.models import ExportImageDetails
 
@@ -335,6 +343,12 @@ class ImageActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         export
     """
+
+    def __init__(self, *args, **kwargs):
+        super(ImageActionsHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     @staticmethod
     def get_module_resource_id_param():
@@ -362,16 +376,14 @@ class ImageActionsHelperGen(OCIActionsHelperBase):
                 image_id=self.module.params.get("image_id"),
                 export_image_details=action_details,
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

@@ -32,6 +32,16 @@ except ImportError:
 agent_name = "Oracle-Ansible/"
 inventory_agent_name = "Oracle-Ansible-Inv/"
 
+logger = oci_common_utils.get_logger("oci_config_utils")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
+
 
 def get_oci_config(module, service_client_class=None):
     """Return the OCI configuration to use for all OCI API calls. The effective OCI configuration is derived by merging
@@ -122,9 +132,14 @@ def get_oci_config(module, service_client_class=None):
 
 def set_db_test_flag(service_client):
     # This flag helps in quickly testing the Database
-    if service_client == DatabaseClient and os.environ.get("OCI_DB_MOCK") is not None:
-        service_client.client.base_client.session.headers.update(
-            {"opc-host-serial": "FakeHostSerial"}
+    if (
+        isinstance(service_client, DatabaseClient)
+        and os.environ.get("OCI_DB_MOCK") is not None
+        and os.environ.get("OCI_DB_MOCK").lower() in ["true", "1"]
+    ):
+        _debug("Adding mock db flag")
+        service_client.base_client.session.headers.update(
+            {"opc-host-serial": "FAKEHOSTSERIAL"}
         )
 
 
@@ -187,7 +202,8 @@ def create_service_client(module, service_client_class, config=None):
         home_region = home_regions[0]
 
         client.base_client.set_region(home_region)
-        set_db_test_flag(client)
+
+    set_db_test_flag(client)
 
     return client
 

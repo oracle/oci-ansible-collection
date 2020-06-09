@@ -114,8 +114,9 @@ def get_primary_ips(compute_client, network_client, instance):
                 except ServiceError as ex:
                     if ex.status == 404:
                         _debug(
-                            "Either VNIC with ID %s does not exist or you are not authorized to access it.",
-                            vnic_attachment.vnic_id,
+                            "Either VNIC with ID {0} does not exist or you are not authorized to access it.".format(
+                                vnic_attachment.vnic_id
+                            )
                         )
 
     return primary_public_ip, primary_private_ip
@@ -183,6 +184,9 @@ class InstanceHelperCustom:
                         "is_pv_encryption_in_transit_enabled"
                     )
                 )
+        # kms_key_id comes as null from get_instance even when instance has it. So ignore for idempotence.
+        if create_model_dict.get("source_details"):
+            create_model_dict["source_details"].pop("kms_key_id", None)
         return create_model_dict
 
     def prepare_result(self, *args, **kwargs):

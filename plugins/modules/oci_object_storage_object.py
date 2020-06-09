@@ -81,6 +81,37 @@ options:
               what decoding mechanisms need to be applied to obtain the media-type specified by the Content-Type header of
               the object.
         type: str
+    content_disposition:
+        description:
+            - The optional Content-Disposition header that defines presentational information for the object to be
+              returned in GetObject and HeadObject responses. Specifying values for this header has no effect on Object
+              Storage behavior. Programs that read the object determine what to do based on the value provided.
+              For example, you could use this header to let users download objects with custom filenames in a browser.
+        type: str
+    cache_control:
+        description:
+            - The optional Cache-Control header that defines the caching behavior value to be returned in GetObject and
+              HeadObject responses. Specifying values for this header has no effect on Object Storage behavior. Programs
+              that read the object determine what to do based on the value provided.
+              For example, you could use this header to identify objects that require caching restrictions.
+        type: str
+    opc_sse_customer_algorithm:
+        description:
+            - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+        type: str
+    opc_sse_customer_key:
+        description:
+            - The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
+              decrypt the data. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+        type: str
+    opc_sse_customer_key_sha256:
+        description:
+            - The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
+              value is used to check the integrity of the encryption key. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+        type: str
     opc_meta:
         description:
             - Optional user-defined metadata key and value.
@@ -287,6 +318,15 @@ class ObjectHelperGen(OCIResourceHelperBase):
                 content_type=self.module.params.get("content_type"),
                 content_language=self.module.params.get("content_language"),
                 content_encoding=self.module.params.get("content_encoding"),
+                content_disposition=self.module.params.get("content_disposition"),
+                cache_control=self.module.params.get("cache_control"),
+                opc_sse_customer_algorithm=self.module.params.get(
+                    "opc_sse_customer_algorithm"
+                ),
+                opc_sse_customer_key=self.module.params.get("opc_sse_customer_key"),
+                opc_sse_customer_key_sha256=self.module.params.get(
+                    "opc_sse_customer_key_sha256"
+                ),
                 opc_meta=self.module.params.get("opc_meta"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
@@ -336,6 +376,11 @@ def main():
             content_type=dict(type="str"),
             content_language=dict(type="str"),
             content_encoding=dict(type="str"),
+            content_disposition=dict(type="str"),
+            cache_control=dict(type="str"),
+            opc_sse_customer_algorithm=dict(type="str"),
+            opc_sse_customer_key=dict(type="str"),
+            opc_sse_customer_key_sha256=dict(type="str"),
             opc_meta=dict(type="dict"),
             version_id=dict(type="str"),
             src=dict(type="str"),

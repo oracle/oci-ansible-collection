@@ -8,20 +8,34 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_common_utils,
+    oci_config_utils,
+)
 
 try:
     import oci
     from oci.util import to_dict
     from oci.exceptions import ServiceError
+    from oci.core import ComputeClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
 
+WORK_REQUEST_HEADER = "opc-work-request-id"
+
 LIFECYCLE_STATE_WAITER_KEY = "LIFECYCLE_STATE_WAITER"
 WORK_REQUEST_WAITER_KEY = "WORK_REQUEST_WAITER"
 NONE_WAITER_KEY = "NONE_WAITER_KEY"
+
+# Services where if no opc-work-request-id is returned we will fallback to waiting
+# via lifecycle state
+# This is something that ideally services should fix, but we want our modules to continue
+# working before that happens
+# If we can reliably determine that no opc-work-request returned indicates immediate completion
+# and no waiting is necessary then we can build that case into WorkRequestWaiter
+SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING = ["database"]
 
 
 logger = oci_common_utils.get_logger("oci_wait_utils")
@@ -81,9 +95,7 @@ class BaseWaiter(Waiter):
             self.client,
             initial_response,
             evaluate_response=self.get_evaluate_response_lambda(),
-            max_wait_seconds=self.resource_helper.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.resource_helper.get_wait_timeout(),
             fetch_func=fetch_func,
         )
 
@@ -254,7 +266,7 @@ class WorkRequestWaiter(BaseWaiter):
     def get_fetch_func(self):
         return lambda **kwargs: oci_common_utils.call_with_backoff(
             self.client.get_work_request,
-            self.operation_response.headers["opc-work-request-id"],
+            self.operation_response.headers[WORK_REQUEST_HEADER],
         )
 
     def get_evaluate_response_lambda(self):
@@ -300,7 +312,7 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
             for resource in wait_response.data.resources:
                 if (
                     hasattr(resource, "entity_type")
-                    and getattr(resource, "entity_type") == entity_type
+                    and getattr(resource, "entity_type").lower() == entity_type.lower()
                 ):
                     identifier = resource.identifier
         elif hasattr(
@@ -408,6 +420,32 @@ class VolumeCreateWaitUntilCopyIsDoneWaiter(CreateOperationLifecycleStateWaiter)
 class CopyObjectWorkRequestWaiter(WorkRequestWaiter):
     def get_resource_from_wait_response(self, wait_response):
         return wait_response.data
+
+
+class InstanceConfigurationLaunchInstanceWorkRequestWaiter(WorkRequestWaiter):
+    def get_resource_from_wait_response(self, wait_response):
+        if not (
+            hasattr(wait_response.data, "resources") and wait_response.data.resources
+        ):
+            self.resource_helper.module.fail_json(
+                msg="Could not get instance id from work request response {data}".format(
+                    data=wait_response.data
+                )
+            )
+        instance_id = None
+        for resource in wait_response.data.resources:
+            if resource.entity_type.lower() == "instance":
+                instance_id = resource.identifier
+        if not instance_id:
+            self.resource_helper.module.fail_json(
+                msg="Could not get instance id from work request response {data}".format(
+                    data=wait_response.data
+                )
+            )
+        compute_client = oci_config_utils.create_service_client(
+            self.resource_helper.module, ComputeClient
+        )
+        return compute_client.get_instance(instance_id=instance_id).data
 
 
 # A map specifying the overrides for the default waiters.
@@ -541,6 +579,39 @@ _WAITER_OVERRIDE_MAP = {
         "object",
         "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
     ): CopyObjectWorkRequestWaiter,
+    (
+        "vault",
+        "secret",
+        "{0}_{1}".format(
+            "CANCEL_SECRET_DELETION", oci_common_utils.ACTION_OPERATION_KEY
+        ),
+    ): LifecycleStateWaiter,
+    (
+        "vault",
+        "secret",
+        "{0}_{1}".format(
+            "SCHEDULE_SECRET_DELETION", oci_common_utils.ACTION_OPERATION_KEY
+        ),
+    ): LifecycleStateWaiter,
+    (
+        "core",
+        "instance_configuration",
+        "{0}_{1}".format("LAUNCH", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): InstanceConfigurationLaunchInstanceWorkRequestWaiter,
+    # (
+    #     "core",
+    #     "instance_pool",
+    #     "{0}_{1}".format(
+    #         "ATTACH_LOAD_BALANCER", oci_common_utils.ACTION_OPERATION_KEY,
+    #     ),
+    # ): WorkRequestWaiter,
+    # (
+    #     "core",
+    #     "instance_pool",
+    #     "{0}_{1}".format(
+    #         "DETACH_LOAD_BALANCER", oci_common_utils.ACTION_OPERATION_KEY,
+    #     ),
+    # ): WorkRequestWaiter,
 }
 
 
@@ -554,6 +625,7 @@ def get_waiter_override(namespace, resource_type, operation):
     waiter_override_key = (namespace, resource_type, oci_common_utils.ANY_OPERATION_KEY)
     if waiter_override_key in _WAITER_OVERRIDE_MAP:
         return _WAITER_OVERRIDE_MAP.get(waiter_override_key)
+
     return None
 
 
@@ -563,12 +635,36 @@ def get_waiter(
     """Return appropriate waiter object based on type and the operation."""
     # First check if there is any custom override for the waiter class. If exists, use it.
     waiter_override_class = get_waiter_override(
-        resource_helper.namespace, resource_helper.resource_type, operation
+        resource_helper.namespace, resource_helper.resource_type, operation,
     )
     if waiter_override_class:
         return waiter_override_class(
             client, resource_helper, operation_response, wait_for_states
         )
+
+    if (
+        resource_helper.namespace
+        in SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING
+        and waiter_type == WORK_REQUEST_WAITER_KEY
+        and operation_response
+        and operation_response.headers
+        and WORK_REQUEST_HEADER not in operation_response.headers
+    ):
+        # this is a work request operation but no opc-work-request-id was returned
+        # some services (e.g. dbaas) have this known implementation issue so we allow
+        # falling back to lifecycle based waiting
+        _debug(
+            "Operation {resource_type} {operation} did not return work request id. Falling back to lifecycle state based waiting".format(
+                operation=operation, resource_type=resource_helper.resource_type
+            )
+        )
+        waiter_type = LIFECYCLE_STATE_WAITER_KEY
+        wait_for_states = (
+            resource_helper.get_resource_terminated_states()
+            if operation == oci_common_utils.DELETE_OPERATION_KEY
+            else resource_helper.get_resource_active_states()
+        )
+
     if waiter_type == LIFECYCLE_STATE_WAITER_KEY:
         if operation == oci_common_utils.CREATE_OPERATION_KEY:
             return CreateOperationLifecycleStateWaiter(

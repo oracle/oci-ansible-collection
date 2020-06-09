@@ -131,6 +131,14 @@ volume_attachments:
             returned: on success
             type: bool
             sample: true
+        is_shareable:
+            description:
+                - Whether the attachment should be created in shareable mode. If an attachment is created in shareable mode, then other instances can attach the
+                  same volume, provided that they also create their attachments in shareable mode. Only certain volume types can be attached in shareable mode.
+                  Defaults to false if not specified.
+            returned: on success
+            type: bool
+            sample: true
         lifecycle_state:
             description:
                 - The current state of the volume attachment.
@@ -213,6 +221,7 @@ volume_attachments:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_read_only": true,
+        "is_shareable": true,
         "lifecycle_state": "ATTACHING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "volume_id": "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx",

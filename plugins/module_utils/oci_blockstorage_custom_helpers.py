@@ -14,11 +14,22 @@ try:
     import oci
     from oci.util import to_dict
     from oci.core import BlockstorageClient
+    from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 
 except ImportError:
     HAS_OCI_PY_SDK = False
+
+logger = oci_common_utils.get_logger("oci_blockstorage_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
 
 
 class BootVolumeBackupActionsHelperCustom:
@@ -84,9 +95,7 @@ class BootVolumeBackupActionsHelperCustom:
             ),
             evaluate_response=lambda r: r.data.lifecycle_state
             in oci_common_utils.DEFAULT_READY_STATES,
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.get_wait_timeout(),
         ).data
 
 
@@ -150,7 +159,157 @@ class VolumeBackupActionsHelperCustom:
             ),
             evaluate_response=lambda r: r.data.lifecycle_state
             in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.get_wait_timeout(),
+        ).data
+
+
+class BootVolumeKmsKeyHelperCustom:
+    # When a boot volume is not mapped to a kms key, the get operation returns a 404. The base class update requires
+    # the get operation to work. In most of the cases, it is the right assumption to make as we expect the resource
+    # to exist when we are trying to update it. This is a special case where it is a mapping (boot volume and kms). This
+    # works mostly like create. But to use create logic, we will have to override a bunch of methods used by create and
+    # also it might cause unnecessary side effects if there is any change in create logic. So overriding update method
+    # to handle the special case.
+    def update(self):
+
+        try:
+            resource = self.get_resource().data
+        except ServiceError as se:
+            if se.status != 404:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {error}".format(
+                        error=se.message
+                    )
+                )
+        else:
+            if resource.kms_key_id == self.module.params.get("kms_key_id"):
+                return self.prepare_result(
+                    changed=False,
+                    resource_type=self.resource_type,
+                    resource=to_dict(resource),
+                )
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=dict(),
+            )
+        self.update_resource()
+        # The super update_resource method has a none waiter. But the boot volume does not come to ready state
+        # immediately. So wait until the boot volume comes to proper state.
+        oci.wait_until(
+            self.client,
+            self.client.get_boot_volume(
+                boot_volume_id=self.module.params.get("boot_volume_id")
+            ),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
             max_wait_seconds=self.module.params.get(
                 "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
             ),
+        )
+        return self.prepare_result(
+            changed=True,
+            resource_type=self.resource_type,
+            resource=to_dict(self.get_resource().data),
+        )
+
+
+class VolumeKmsKeyHelperCustom:
+    # When a volume is not mapped to a kms key, the get operation returns a 404. The base class update requires
+    # the get operation to work. In most of the cases, it is the right assumption to make as we expect the resource
+    # to exist when we are trying to update it. This is a special case where it is a mapping (volume and kms). This
+    # works mostly like create. But to use create logic, we will have to override a bunch of methods used by create and
+    # also it might cause unnecessary side effects if there is any change in create logic. So overriding update method
+    # to handle the special case.
+    def update(self):
+
+        try:
+            resource = self.get_resource().data
+        except ServiceError as se:
+            if se.status != 404:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {error}".format(
+                        error=se.message
+                    )
+                )
+        else:
+            if resource.kms_key_id == self.module.params.get("kms_key_id"):
+                return self.prepare_result(
+                    changed=False,
+                    resource_type=self.resource_type,
+                    resource=to_dict(resource),
+                )
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=dict(),
+            )
+        self.update_resource()
+        # The super update_resource method has a none waiter. But the volume does not come to ready state immediately.
+        # So wait until the volume comes to proper state.
+        oci.wait_until(
+            self.client,
+            self.client.get_volume(volume_id=self.module.params.get("volume_id")),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.module.params.get(
+                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
+            ),
+        )
+        return self.prepare_result(
+            changed=True,
+            resource_type=self.resource_type,
+            resource=to_dict(self.get_resource().data),
+        )
+
+
+def get_volume_backup_policy_asset_assignment(client, asset_id):
+    try:
+        volume_backup_policy_asset_assignment = client.get_volume_backup_policy_asset_assignment(
+            asset_id=asset_id
         ).data
+    except ServiceError as se:
+        if se.status != 404:
+            raise
+        return None
+    else:
+        if not volume_backup_policy_asset_assignment:
+            return None
+        # Currently a volume can only have one backup policy attached to it
+        return volume_backup_policy_asset_assignment[0].policy_id
+
+
+class BootVolumeHelperCustom:
+    def get_existing_resource_dict_for_idempotence_check(self, resource):
+        resource_dict = super(
+            BootVolumeHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(resource)
+        if not self.module.params.get("backup_policy_id"):
+            return resource_dict
+        if self.module.params.get(
+            "key_by"
+        ) is not None and "backup_policy_id" not in self.module.params.get("key_by"):
+            return resource_dict
+        # user has provided the backup_policy_id during volume creation. But the get model does not return this
+        # value. So we have to make an extra call to get this information.
+        resource_dict["backup_policy_id"] = get_volume_backup_policy_asset_assignment(
+            self.client, resource.id
+        )
+        return resource_dict
+
+
+class VolumeHelperCustom:
+    def get_existing_resource_dict_for_idempotence_check(self, resource):
+        resource_dict = super(
+            VolumeHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(resource)
+        if not self.module.params.get("backup_policy_id"):
+            return resource_dict
+        if self.module.params.get(
+            "key_by"
+        ) is not None and "backup_policy_id" not in self.module.params.get("key_by"):
+            return resource_dict
+        # user has provided the backup_policy_id during volume creation. But the get model does not return this
+        # value. So we have to make an extra call to get this information.
+        resource_dict["backup_policy_id"] = get_volume_backup_policy_asset_assignment(
+            self.client, resource.id
+        )
+        return resource_dict

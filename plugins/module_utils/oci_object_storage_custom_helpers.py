@@ -265,6 +265,15 @@ class ObjectHelperCustom:
                 content_length=self.module.params.get("content_length"),
                 content_md5=self.module.params.get("content_md5"),
                 content_type=self.module.params.get("content_type"),
+                content_disposition=self.module.params.get("content_disposition"),
+                cache_control=self.module.params.get("cache_control"),
+                opc_sse_customer_algorithm=self.module.params.get(
+                    "opc_sse_customer_algorithm"
+                ),
+                opc_sse_customer_key=self.module.params.get("opc_sse_customer_key"),
+                opc_sse_customer_key_sha256=self.module.params.get(
+                    "opc_sse_customer_key_sha256"
+                ),
                 opc_meta=self.module.params.get("opc_meta"),
                 file_path=src,
             )

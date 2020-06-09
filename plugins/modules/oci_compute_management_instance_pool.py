@@ -77,6 +77,19 @@ options:
                     - "Example: `Uocm:PHX-AD-1`"
                 type: str
                 required: true
+            fault_domains:
+                description:
+                    - The fault domains to place instances.
+                    - If you don't provide any values, the system makes a best effort to distribute
+                      instances across all fault domains based on capacity.
+                    - To distribute the instances evenly across selected fault domains, provide a
+                      set of fault domains. For example, you might want instances to be evenly
+                      distributed if your applications require high availability.
+                    - To get a list of fault domains, use the
+                      L(ListFaultDomains,https://docs.cloud.oracle.com/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation
+                      in the Identity and Access Management Service API.
+                    - "Example: `[FAULT-DOMAIN-1, FAULT-DOMAIN-2, FAULT-DOMAIN-3]`"
+                type: list
             primary_subnet_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
@@ -291,6 +304,21 @@ instance_pool:
                     returned: on success
                     type: string
                     sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                fault_domains:
+                    description:
+                        - The fault domains to place instances.
+                        - If you don't provide any values, the system makes a best effort to distribute
+                          instances across all fault domains based on capacity.
+                        - To distribute the instances evenly across selected fault domains, provide a
+                          set of fault domains. For example, you might want instances to be evenly
+                          distributed if your applications require high availability.
+                        - To get a list of fault domains, use the
+                          L(ListFaultDomains,https://docs.cloud.oracle.com/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation
+                          in the Identity and Access Management Service API.
+                        - "Example: `[FAULT-DOMAIN-1, FAULT-DOMAIN-2, FAULT-DOMAIN-3]`"
+                    returned: on success
+                    type: list
+                    sample: []
                 secondary_vnic_subnets:
                     description:
                         - The set of secondary VNIC data for instances in the pool.
@@ -385,6 +413,7 @@ instance_pool:
         "placement_configurations": [{
             "availability_domain": "Uocm:PHX-AD-1",
             "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "fault_domains": [],
             "secondary_vnic_subnets": [{
                 "display_name": "display_name_example",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -544,6 +573,7 @@ def main():
                 elements="dict",
                 options=dict(
                     availability_domain=dict(type="str", required=True),
+                    fault_domains=dict(type="list"),
                     primary_subnet_id=dict(type="str", required=True),
                     secondary_vnic_subnets=dict(
                         type="list",

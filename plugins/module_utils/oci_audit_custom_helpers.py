@@ -8,8 +8,6 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
-
 
 try:
     import oci
@@ -37,8 +35,6 @@ class ConfigurationHelperCustom:
             get_response,
             evaluate_response=lambda r: r.data.retention_period_days
             == self.module.params.get("retention_period_days"),
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.get_wait_timeout(),
         )
         return waiter_response.data

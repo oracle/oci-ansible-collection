@@ -32,6 +32,17 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
+logger = oci_common_utils.get_logger("oci_network_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
+
+
 class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
     ADD_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION = "add"
     UPDATE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION = "update"
@@ -421,3 +432,96 @@ class PublicIpFactsHelperCustom:
                     self.module.params, GetPublicIpByIpAddressDetails
                 ),
             )
+
+
+class SecurityListHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(SecurityListHelperCustom, self).__init__(*args, **kwargs)
+        try:
+            # since the purge and delete options have default values we cannot check directly if a user has provided
+            # value for it or not. _load_params returns only the params that user has provided.
+            from ansible.module_utils.basic import _load_params
+
+            user_provided_params = _load_params()
+            if (
+                user_provided_params.get("purge_security_rules") is not None
+                and user_provided_params.get("delete_security_rules") is not None
+            ):
+                self.module.fail_json(
+                    msg="purge_security_rules and delete_security_rules are mutually exclusive"
+                )
+        except Exception as ex:
+            _debug(
+                "Error checking the load params for purge and delete validation: {0}. Skipping validation.".format(
+                    str(ex)
+                )
+            )
+            pass
+
+    def get_update_model(self):
+        update_model = super(SecurityListHelperCustom, self).get_update_model()
+        existing_security_list = self.get_resource().data
+        existing_ingress_security_rules = existing_security_list.ingress_security_rules
+        existing_ingress_security_rules_dict = to_dict(existing_ingress_security_rules)
+        existing_egress_security_rules = existing_security_list.egress_security_rules
+        existing_egress_security_rules_dict = to_dict(existing_egress_security_rules)
+        if self.module.params.get("purge_security_rules") is False:
+            if existing_ingress_security_rules:
+                update_model.ingress_security_rules = (
+                    update_model.ingress_security_rules or []
+                )
+                update_model.ingress_security_rules = (
+                    existing_ingress_security_rules
+                    + [
+                        security_rule
+                        for security_rule in update_model.ingress_security_rules
+                        if not oci_common_utils.is_in_list(
+                            existing_ingress_security_rules_dict, to_dict(security_rule)
+                        )
+                    ]
+                )
+            if existing_egress_security_rules:
+                update_model.egress_security_rules = (
+                    update_model.egress_security_rules or []
+                )
+                update_model.egress_security_rules = existing_egress_security_rules + [
+                    security_rule
+                    for security_rule in update_model.egress_security_rules
+                    if not oci_common_utils.is_in_list(
+                        existing_egress_security_rules_dict, to_dict(security_rule)
+                    )
+                ]
+        elif self.module.params.get("delete_security_rules") is True:
+            if update_model.ingress_security_rules is None:
+                update_model.ingress_security_rules = existing_ingress_security_rules
+            else:
+                existing_ingress_security_rules = existing_ingress_security_rules or []
+                update_model.ingress_security_rules = [
+                    existing_security_rule
+                    for existing_security_rule in existing_ingress_security_rules
+                    if not any(
+                        [
+                            oci_common_utils.compare_dicts(
+                                to_dict(security_rule), to_dict(existing_security_rule)
+                            )
+                            for security_rule in update_model.ingress_security_rules
+                        ]
+                    )
+                ]
+            if update_model.egress_security_rules is None:
+                update_model.egress_security_rules = existing_egress_security_rules
+            else:
+                existing_egress_security_rules = existing_egress_security_rules or []
+                update_model.egress_security_rules = [
+                    existing_security_rule
+                    for existing_security_rule in existing_egress_security_rules
+                    if not any(
+                        [
+                            oci_common_utils.compare_dicts(
+                                to_dict(security_rule), to_dict(existing_security_rule)
+                            )
+                            for security_rule in update_model.egress_security_rules
+                        ]
+                    )
+                ]
+        return update_model

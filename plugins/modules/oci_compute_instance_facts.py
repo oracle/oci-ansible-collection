@@ -76,6 +76,7 @@ options:
             - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
         type: str
         choices:
+            - "MOVING"
             - "PROVISIONING"
             - "RUNNING"
             - "STARTING"
@@ -289,7 +290,7 @@ instances:
                 - The current state of the instance.
             returned: on success
             type: string
-            sample: PROVISIONING
+            sample: MOVING
         metadata:
             description:
                 - Custom metadata that you provide.
@@ -408,6 +409,12 @@ instances:
                     returned: on success
                     type: string
                     sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                kms_key_id:
+                    description:
+                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    returned: on success
+                    type: string
+                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
@@ -430,6 +437,12 @@ instances:
                 is_monitoring_disabled:
                     description:
                         - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_management_disabled:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true
@@ -475,7 +488,7 @@ instances:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
-        "lifecycle_state": "PROVISIONING",
+        "lifecycle_state": "MOVING",
         "metadata": {},
         "region": "region_example",
         "shape": "shape_example",
@@ -495,11 +508,13 @@ instances:
             "source_type": "source_type_example",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
-            "is_monitoring_disabled": true
+            "is_monitoring_disabled": true,
+            "is_management_disabled": true
         },
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
         "primary_private_ip": 10.0.0.10,
@@ -580,6 +595,7 @@ def main():
             lifecycle_state=dict(
                 type="str",
                 choices=[
+                    "MOVING",
                     "PROVISIONING",
                     "RUNNING",
                     "STARTING",

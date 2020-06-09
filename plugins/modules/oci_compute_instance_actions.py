@@ -23,13 +23,17 @@ module: oci_compute_instance_actions
 short_description: Perform actions on an Instance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Instance resource in Oracle Cloud Infrastructure
-    - Performs one of the power actions (start, stop, softreset, reset or validatelivemigrate)
-      on the specified instance.
-    - "**start** - power on"
-    - "**stop** - power off"
-    - "**softreset** - ACPI shutdown and power on"
-    - "**reset** - power off and power on"
-    - For more information see L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
+    - "Performs one of the following power actions on the specified instance:"
+    - "- **START** - Powers on the instance."
+    - "- **STOP** - Powers off the instance."
+    - "- **RESET** - Powers off the instance and then powers it back on."
+    - "- **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system.
+      If the applications that run on the instance take a long time to shut down, they could be improperly stopped, resulting
+      in data corruption. To avoid this, shut down the instance using the commands available in the OS before you softstop the
+      instance."
+    - "- **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system, and
+      then powers the instance back on."
+    - For more information, see L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
 version_added: "2.5"
 options:
     instance_id:
@@ -47,6 +51,7 @@ options:
             - "start"
             - "softreset"
             - "reset"
+            - "softstop"
         required: true
 author:
     - Manoj Meda (@manojmeda)
@@ -250,7 +255,7 @@ instance:
                 - The current state of the instance.
             returned: on success
             type: string
-            sample: PROVISIONING
+            sample: MOVING
         metadata:
             description:
                 - Custom metadata that you provide.
@@ -369,6 +374,12 @@ instance:
                     returned: on success
                     type: string
                     sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                kms_key_id:
+                    description:
+                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    returned: on success
+                    type: string
+                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
@@ -391,6 +402,12 @@ instance:
                 is_monitoring_disabled:
                     description:
                         - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_management_disabled:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true
@@ -424,7 +441,7 @@ instance:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
-        "lifecycle_state": "PROVISIONING",
+        "lifecycle_state": "MOVING",
         "metadata": {},
         "region": "region_example",
         "shape": "shape_example",
@@ -444,11 +461,13 @@ instance:
             "source_type": "source_type_example",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
-            "is_monitoring_disabled": true
+            "is_monitoring_disabled": true,
+            "is_management_disabled": true
         },
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z"
     }
@@ -569,6 +588,25 @@ class InstanceActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def softstop(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.instance_action,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_id=self.module.params.get("instance_id"), action="SOFTSTOP",
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.client,
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 InstanceActionsHelperCustom = get_custom_class("InstanceActionsHelperCustom")
 
@@ -587,7 +625,7 @@ def main():
             action=dict(
                 type="str",
                 required=True,
-                choices=["stop", "start", "softreset", "reset"],
+                choices=["stop", "start", "softreset", "reset", "softstop"],
             ),
         )
     )

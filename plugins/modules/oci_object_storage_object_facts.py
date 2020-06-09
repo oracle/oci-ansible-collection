@@ -56,6 +56,23 @@ options:
             - Optional byte range to fetch, as described in L(RFC 7233,https://tools.ietf.org/html/rfc7233#section-2.1).
               Note that only a single range of bytes is supported.
         type: str
+    opc_sse_customer_algorithm:
+        description:
+            - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+        type: str
+    opc_sse_customer_key:
+        description:
+            - The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
+              decrypt the data. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+        type: str
+    opc_sse_customer_key_sha256:
+        description:
+            - The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
+              value is used to check the integrity of the encryption key. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+        type: str
     prefix:
         description:
             - The string to use for matching against the start of object names in a list query.
@@ -194,6 +211,9 @@ class ObjectFactsHelperGen(OCIResourceFactsHelperBase):
         optional_get_method_params = [
             "version_id",
             "range",
+            "opc_sse_customer_algorithm",
+            "opc_sse_customer_key",
+            "opc_sse_customer_key_sha256",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -245,6 +265,9 @@ def main():
             object_name=dict(type="str"),
             version_id=dict(type="str"),
             range=dict(type="str"),
+            opc_sse_customer_algorithm=dict(type="str"),
+            opc_sse_customer_key=dict(type="str"),
+            opc_sse_customer_key_sha256=dict(type="str"),
             prefix=dict(type="str"),
             start=dict(type="str"),
             end=dict(type="str"),

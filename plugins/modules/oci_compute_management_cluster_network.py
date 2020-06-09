@@ -299,6 +299,21 @@ cluster_network:
                             returned: on success
                             type: string
                             sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                        fault_domains:
+                            description:
+                                - The fault domains to place instances.
+                                - If you don't provide any values, the system makes a best effort to distribute
+                                  instances across all fault domains based on capacity.
+                                - To distribute the instances evenly across selected fault domains, provide a
+                                  set of fault domains. For example, you might want instances to be evenly
+                                  distributed if your applications require high availability.
+                                - To get a list of fault domains, use the
+                                  L(ListFaultDomains,https://docs.cloud.oracle.com/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation
+                                  in the Identity and Access Management Service API.
+                                - "Example: `[FAULT-DOMAIN-1, FAULT-DOMAIN-2, FAULT-DOMAIN-3]`"
+                            returned: on success
+                            type: list
+                            sample: []
                         secondary_vnic_subnets:
                             description:
                                 - The set of secondary VNIC data for instances in the pool.
@@ -459,6 +474,7 @@ cluster_network:
             "placement_configurations": [{
                 "availability_domain": "Uocm:PHX-AD-1",
                 "primary_subnet_id": "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "fault_domains": [],
                 "secondary_vnic_subnets": [{
                     "display_name": "display_name_example",
                     "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -501,6 +517,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeManagementClient
     from oci.core.models import CreateClusterNetworkDetails
     from oci.core.models import UpdateClusterNetworkDetails
@@ -512,6 +529,12 @@ except ImportError:
 
 class ClusterNetworkHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def __init__(self, *args, **kwargs):
+        super(ClusterNetworkHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     def get_module_resource_id_param(self):
         return "cluster_network_id"
@@ -566,11 +589,11 @@ class ClusterNetworkHelperGen(OCIResourceHelperBase):
             call_fn=self.client.create_cluster_network,
             call_fn_args=(),
             call_fn_kwargs=dict(create_cluster_network_details=create_details,),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -599,11 +622,11 @@ class ClusterNetworkHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 cluster_network_id=self.module.params.get("cluster_network_id"),
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_terminated_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

@@ -141,80 +141,6 @@ options:
             - "EMULATED"
             - "PARAVIRTUALIZED"
             - "CUSTOM"
-    launch_options:
-        description:
-            - When launchMode is `CUSTOM`, this parameter is required, otherwise it is disallowed.
-        type: dict
-        suboptions:
-            boot_volume_type:
-                description:
-                    - "Emulation type for volume.
-                      * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                      Storage volumes on Oracle provided images.
-                      * `SCSI` - Emulated SCSI disk.
-                      * `IDE` - Emulated IDE disk.
-                      * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                      volumes on Oracle provided images.
-                      * `PARAVIRTUALIZED` - Paravirtualized disk."
-                type: str
-                choices:
-                    - "ISCSI"
-                    - "SCSI"
-                    - "IDE"
-                    - "VFIO"
-                    - "PARAVIRTUALIZED"
-                required: true
-            firmware:
-                description:
-                    - "Firmware used to boot VM.  Select the option that matches your operating system.
-                      * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
-                      systems that boot using MBR style bootloaders.
-                      * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
-                      default for Oracle provided images."
-                type: str
-                choices:
-                    - "BIOS"
-                    - "UEFI_64"
-                required: true
-            network_type:
-                description:
-                    - "Emulation type for the physical network interface card (NIC).
-                      * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
-                      * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
-                      when you launch an instance using hardware-assisted (SR-IOV) networking.
-                      * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers."
-                type: str
-                choices:
-                    - "E1000"
-                    - "VFIO"
-                    - "PARAVIRTUALIZED"
-                required: true
-            remote_data_volume_type:
-                description:
-                    - "Emulation type for volume.
-                      * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                      Storage volumes on Oracle provided images.
-                      * `SCSI` - Emulated SCSI disk.
-                      * `IDE` - Emulated IDE disk.
-                      * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                      volumes on Oracle provided images.
-                      * `PARAVIRTUALIZED` - Paravirtualized disk."
-                type: str
-                choices:
-                    - "ISCSI"
-                    - "SCSI"
-                    - "IDE"
-                    - "VFIO"
-                    - "PARAVIRTUALIZED"
-                required: true
-            is_pv_encryption_in_transit_enabled:
-                description:
-                    - Whether to enable in-transit encryption for the boot volume's paravirtualized attachment. The default value is false.
-                type: bool
-            is_consistent_volume_naming_enabled:
-                description:
-                    - Whether to enable consistent volume naming feature. Defaults to false.
-                type: bool
     image_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
@@ -458,6 +384,12 @@ image:
                     returned: on success
                     type: bool
                     sample: true
+                is_management_supported:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins
+                    returned: on success
+                    type: bool
+                    sample: true
         size_in_mbs:
             description:
                 - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
@@ -494,7 +426,8 @@ image:
         "operating_system": "Oracle Linux",
         "operating_system_version": "7.2",
         "agent_features": {
-            "is_monitoring_supported": true
+            "is_monitoring_supported": true,
+            "is_management_supported": true
         },
         "size_in_mbs": 47694,
         "time_created": "2016-08-25T21:10:29.600Z"
@@ -512,6 +445,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeClient
     from oci.core.models import CreateImageDetails
     from oci.core.models import UpdateImageDetails
@@ -523,6 +457,12 @@ except ImportError:
 
 class ImageHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def __init__(self, *args, **kwargs):
+        super(ImageHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     def get_module_resource_id_param(self):
         return "image_id"
@@ -576,11 +516,11 @@ class ImageHelperGen(OCIResourceHelperBase):
             call_fn=self.client.create_image,
             call_fn_args=(),
             call_fn_kwargs=dict(create_image_details=create_details,),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -652,31 +592,6 @@ def main():
             instance_id=dict(type="str"),
             launch_mode=dict(
                 type="str", choices=["NATIVE", "EMULATED", "PARAVIRTUALIZED", "CUSTOM"]
-            ),
-            launch_options=dict(
-                type="dict",
-                options=dict(
-                    boot_volume_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
-                    ),
-                    firmware=dict(
-                        type="str", required=True, choices=["BIOS", "UEFI_64"]
-                    ),
-                    network_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["E1000", "VFIO", "PARAVIRTUALIZED"],
-                    ),
-                    remote_data_volume_type=dict(
-                        type="str",
-                        required=True,
-                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
-                    ),
-                    is_pv_encryption_in_transit_enabled=dict(type="bool"),
-                    is_consistent_volume_naming_enabled=dict(type="bool"),
-                ),
             ),
             image_id=dict(aliases=["id"], type="str"),
             operating_system=dict(type="str"),

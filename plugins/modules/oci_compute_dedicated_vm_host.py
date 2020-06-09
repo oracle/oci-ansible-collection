@@ -257,6 +257,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeClient
     from oci.core.models import CreateDedicatedVmHostDetails
     from oci.core.models import UpdateDedicatedVmHostDetails
@@ -268,6 +269,12 @@ except ImportError:
 
 class DedicatedVmHostHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def __init__(self, *args, **kwargs):
+        super(DedicatedVmHostHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     def get_module_resource_id_param(self):
         return "dedicated_vm_host_id"
@@ -323,11 +330,11 @@ class DedicatedVmHostHelperGen(OCIResourceHelperBase):
             call_fn=self.client.create_dedicated_vm_host,
             call_fn_args=(),
             call_fn_kwargs=dict(create_dedicated_vm_host_details=create_details,),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -356,11 +363,11 @@ class DedicatedVmHostHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 dedicated_vm_host_id=self.module.params.get("dedicated_vm_host_id"),
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_terminated_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

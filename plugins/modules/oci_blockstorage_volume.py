@@ -151,6 +151,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    size_in_gbs: 56
 
 - name: Update volume
   oci_blockstorage_volume:
@@ -215,6 +216,13 @@ volume:
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         id:
             description:
                 - The OCID of the volume.
@@ -288,6 +296,7 @@ volume:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
+        "system_tags": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hydrated": true,
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",

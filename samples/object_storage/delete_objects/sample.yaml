@@ -1,0 +1,48 @@
+---
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Delete old objects from sample bucket
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    # common vars
+    sample_bucket_name: "sample_bucket"
+    sample_object_name: "sample_object"
+
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable 
+    #########################################
+    compartment_id: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    namespace_name: "{{ lookup('env', 'SAMPLE_OBJECT_NS_NAME') }}"
+
+  tasks:
+    # Create a sample bucket and put sample objects in the sample bucket.
+    - import_tasks: setup.yaml
+
+    - name: Get all objects from bucket
+      oci_object_storage_object_facts:
+        namespace_name: "{{ namespace_name }}"
+        bucket_name: "{{ sample_bucket_name }}"
+      register: output
+    - name: Print objects list
+      debug:
+        msg: "{{ output }}"
+
+    - name: Task to DELETE all objects created in bucket
+      oci_object_storage_object:
+        namespace_name: "{{ namespace_name }}"
+        bucket_name: "{{ sample_bucket_name }}"
+        object_name: "{{ item.name }}"
+        state: absent
+      with_items:
+        - "{{ output.objects }}"
+
+    # Delete sample bucket.
+    - import_tasks: cleanup.yaml
