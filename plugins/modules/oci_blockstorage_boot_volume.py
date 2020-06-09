@@ -37,6 +37,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    backup_policy_id:
+        description:
+            - If provided, specifies the ID of the boot volume backup policy to assign to the newly
+              created boot volume. If omitted, no policy will be assigned.
+        type: str
     compartment_id:
         description:
             - The OCID of the compartment that contains the boot volume.
@@ -133,6 +138,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    size_in_gbs: 56
 
 - name: Update boot_volume
   oci_blockstorage_boot_volume:
@@ -182,6 +188,13 @@ boot_volume:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -266,10 +279,17 @@ boot_volume:
             returned: on success
             type: string
             sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+        kms_key_id:
+            description:
+                - The OCID of the Key Management master encryption key assigned to the boot volume.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -283,7 +303,8 @@ boot_volume:
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -417,6 +438,7 @@ def main():
     module_args.update(
         dict(
             availability_domain=dict(type="str"),
+            backup_policy_id=dict(type="str"),
             compartment_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),

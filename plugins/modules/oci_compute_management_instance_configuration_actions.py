@@ -615,7 +615,7 @@ instance:
                 - The current state of the instance.
             returned: on success
             type: string
-            sample: PROVISIONING
+            sample: MOVING
         metadata:
             description:
                 - Custom metadata that you provide.
@@ -734,6 +734,12 @@ instance:
                     returned: on success
                     type: string
                     sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                kms_key_id:
+                    description:
+                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    returned: on success
+                    type: string
+                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
@@ -756,6 +762,12 @@ instance:
                 is_monitoring_disabled:
                     description:
                         - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_management_disabled:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true
@@ -789,7 +801,7 @@ instance:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
-        "lifecycle_state": "PROVISIONING",
+        "lifecycle_state": "MOVING",
         "metadata": {},
         "region": "region_example",
         "shape": "shape_example",
@@ -809,11 +821,13 @@ instance:
             "source_type": "source_type_example",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
-            "is_monitoring_disabled": true
+            "is_monitoring_disabled": true,
+            "is_management_disabled": true
         },
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z"
     }
@@ -830,6 +844,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeManagementClient
     from oci.core.models import InstanceConfigurationInstanceDetails
 
@@ -843,6 +858,12 @@ class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         launch
     """
+
+    def __init__(self, *args, **kwargs):
+        super(InstanceConfigurationActionsHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     @staticmethod
     def get_module_resource_id_param():
@@ -875,16 +896,14 @@ class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
                 ),
                 instance_configuration=action_details,
             ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

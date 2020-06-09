@@ -24,6 +24,8 @@ try:
         InstanceConfigurationCreateVnicDetails,
         InstanceConfigurationAttachVolumeDetails,
         InstanceConfigurationCreateVolumeDetails,
+        AttachLoadBalancerDetails,
+        DetachLoadBalancerDetails,
     )
 
     HAS_OCI_PY_SDK = True
@@ -148,21 +150,19 @@ class InstanceConfigurationHelperCustom:
 class InstanceConfigurationActionsHelperCustom:
     # Launch method creates an instance but the generated method does not wait until the instance is in running state.
     # Override and wait until the instance reaches the ready state.
-    def launch(self):
-        instance = super(InstanceConfigurationActionsHelperCustom, self).launch()
-        compute_client = oci_config_utils.create_service_client(
-            self.module, ComputeClient
-        )
-        wait_response = oci.wait_until(
-            self.client,
-            compute_client.get_instance(instance_id=instance.id),
-            evaluate_response=lambda response: response.data.lifecycle_state
-            in oci_common_utils.DEFAULT_READY_STATES,
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
-        )
-        return wait_response.data
+    # def launch(self):
+    #     instance = super(InstanceConfigurationActionsHelperCustom, self).launch()
+    #     compute_client = oci_config_utils.create_service_client(
+    #         self.module, ComputeClient
+    #     )
+    #     wait_response = oci.wait_until(
+    #         self.client,
+    #         compute_client.get_instance(instance_id=instance.id),
+    #         evaluate_response=lambda response: response.data.lifecycle_state
+    #         in oci_common_utils.DEFAULT_READY_STATES,
+    #         max_wait_seconds=self.get_wait_timeout(),
+    #     )
+    #     return wait_response.data
 
     # instance_configuration launch action returns an instance and not instance_configuration. Currently the base
     # classes do not support custom return field names and use the resource types. Until the feature is added
@@ -184,3 +184,139 @@ class InstancePoolHelperCustom:
             self.get_get_fn()(instance_pool_id=instance_pool.id).data
             for instance_pool in super(InstancePoolHelperCustom, self).list_resources()
         ]
+
+
+class InstancePoolActionsHelperCustom:
+    LIFECYCLE_STATE_ATTACHED = "ATTACHED"
+    LIFECYCLE_STATE_DETACHED = "DETACHED"
+
+    def is_attach_load_balancer_necessary(self, instance_pool):
+        if not instance_pool.load_balancers:
+            return True
+        user_load_balancer_attachment_details = to_dict(
+            oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, AttachLoadBalancerDetails
+            )
+        )
+        for existing_load_balancer_attachment in instance_pool.load_balancers:
+            if (
+                existing_load_balancer_attachment.lifecycle_state
+                in oci_common_utils.DEAD_STATES
+            ):
+                continue
+            if oci_common_utils.compare_dicts(
+                user_load_balancer_attachment_details,
+                to_dict(existing_load_balancer_attachment),
+            ):
+                return False
+        return True
+
+    def is_detach_load_balancer_necessary(self, instance_pool):
+        if not instance_pool.load_balancers:
+            return False
+        user_load_balancer_detachment_details = to_dict(
+            oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, DetachLoadBalancerDetails
+            )
+        )
+        for existing_load_balancer_attachment in instance_pool.load_balancers:
+            if (
+                existing_load_balancer_attachment.lifecycle_state
+                in oci_common_utils.DEAD_STATES
+            ):
+                continue
+            if oci_common_utils.compare_dicts(
+                user_load_balancer_detachment_details,
+                to_dict(existing_load_balancer_attachment),
+            ):
+                return True
+        return False
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource()
+        if action == "attach_load_balancer":
+            return self.is_attach_load_balancer_necessary(resource)
+        elif action == "detach_load_balancer":
+            return self.is_detach_load_balancer_necessary(resource)
+        return super(InstancePoolActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+    def attach_load_balancer(self):
+        instance_pool = super(
+            InstancePoolActionsHelperCustom, self
+        ).attach_load_balancer()
+        # wait until the load balancer attachment comes to a proper state
+
+        def evaluate_response_for_load_balancer_attachment(response):
+            if not response.data.load_balancers:
+                return False
+            user_load_balancer_attachment_details = to_dict(
+                oci_common_utils.convert_input_data_to_model_class(
+                    self.module.params, AttachLoadBalancerDetails
+                )
+            )
+            for existing_load_balancer_attachment in response.data.load_balancers:
+                if (
+                    existing_load_balancer_attachment.lifecycle_state
+                    in oci_common_utils.DEAD_STATES
+                ):
+                    continue
+                if (
+                    oci_common_utils.compare_dicts(
+                        user_load_balancer_attachment_details,
+                        to_dict(existing_load_balancer_attachment),
+                    )
+                    and existing_load_balancer_attachment.lifecycle_state
+                    == self.LIFECYCLE_STATE_ATTACHED
+                ):
+                    return True
+            return False
+
+        wait_response = oci.wait_until(
+            self.client,
+            self.client.get_instance_pool(instance_pool.id),
+            evaluate_response=evaluate_response_for_load_balancer_attachment,
+            max_wait_seconds=self.module.params.get(
+                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
+            ),
+            fetch_func=lambda **kwargs: self.get_resource(),
+        )
+        return wait_response.data
+
+    def detach_load_balancer(self):
+        instance_pool = super(
+            InstancePoolActionsHelperCustom, self
+        ).detach_load_balancer()
+        # wait until the load balancer is detached
+
+        def evaluate_response_for_load_balancer_detachment(response):
+            if not response.data.load_balancers:
+                return True
+            user_load_balancer_detachment_details = to_dict(
+                oci_common_utils.convert_input_data_to_model_class(
+                    self.module.params, DetachLoadBalancerDetails
+                )
+            )
+            for existing_load_balancer_attachment in response.data.load_balancers:
+                if (
+                    oci_common_utils.compare_dicts(
+                        user_load_balancer_detachment_details,
+                        to_dict(existing_load_balancer_attachment),
+                    )
+                    and existing_load_balancer_attachment.lifecycle_state
+                    == self.LIFECYCLE_STATE_DETACHED
+                ):
+                    return True
+            return False
+
+        wait_response = oci.wait_until(
+            self.client,
+            self.client.get_instance_pool(instance_pool.id),
+            evaluate_response=evaluate_response_for_load_balancer_detachment,
+            max_wait_seconds=self.module.params.get(
+                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
+            ),
+            fetch_func=lambda **kwargs: self.get_resource(),
+        )
+        return wait_response.data

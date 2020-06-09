@@ -128,6 +128,13 @@ boot_volume_backups:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         display_name:
             description:
                 - A user-friendly name for the boot volume backup. Does not have to be unique and it's changeable.
@@ -220,6 +227,7 @@ boot_volume_backups:
         "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "display_name": "display_name_example",
         "expiration_time": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

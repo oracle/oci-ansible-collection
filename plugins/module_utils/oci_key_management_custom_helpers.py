@@ -69,7 +69,7 @@ class DecryptedDataHelperCustom:
 
 class VaultActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        if is_action_necessary(self, action, resource) is False:
+        if kms_is_action_necessary(self, action, resource) is False:
             return False
         return super(VaultActionsHelperCustom, self).is_action_necessary(
             action, resource
@@ -78,21 +78,21 @@ class VaultActionsHelperCustom:
 
 class KeyActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        if is_action_necessary(self, action, resource) is False:
+        if kms_is_action_necessary(self, action, resource) is False:
             return False
         return super(KeyActionsHelperCustom, self).is_action_necessary(action, resource)
 
 
 class KeyVersionActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        if is_action_necessary(self, action, resource) is False:
+        if kms_is_action_necessary(self, action, resource) is False:
             return False
         return super(KeyVersionActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
 
 
-def is_action_necessary(self, action, resource):
+def kms_is_action_necessary(resource_helper, action, resource):
     # Idempotency for modules with delete date like KMS (consider only in deleted lifecycle_state)
     # If the deleted date is equal to the request delete date, we should not execute the action (changed=false)
     # If the deleted date is different, we will execute the action and return server errors
@@ -104,18 +104,36 @@ def is_action_necessary(self, action, resource):
         )
         and hasattr(resource, "time_of_deletion")
         and resource.time_of_deletion is not None
-        and self.module.params.get("time_of_deletion") is not None
+        and resource_helper.module.params.get("time_of_deletion") is not None
     ):
         if resource.time_of_deletion == oci_common_utils.deserialize_datetime(
-            self.module.params["time_of_deletion"]
+            resource_helper.module.params["time_of_deletion"]
         ):
             return False
         else:
-            self.module.warn(
+            resource_helper.module.warn(
                 "This resource was deleted on: {0}. To change the deletion date, "
                 "cancel the current deletion and delete this resource again using the new requested date {1}".format(
                     resource.time_of_deletion.isoformat(sep="T"),
-                    self.module.params["time_of_deletion"],
+                    resource_helper.module.params["time_of_deletion"],
                 )
             )
     return True
+
+
+class SecretHelperCustom:
+    # No idempotency for secret_content because it is not returned in the get call
+    def get_exclude_attributes(self):
+        exclude_attributes = super(SecretHelperCustom, self).get_exclude_attributes()
+        return exclude_attributes + [
+            "secret_content",
+        ]
+
+
+class SecretActionsHelperCustom:
+    def is_action_necessary(self, action, resource):
+        if kms_is_action_necessary(self, action, resource) is False:
+            return False
+        return super(SecretActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

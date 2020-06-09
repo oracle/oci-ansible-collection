@@ -24,6 +24,7 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 ### Currently Supported Services 
 - Block Volume
 - Compute/Compute Management
+- Database
 - Networking
 - Container Engine for Kubernetes Service (OKE)
 - Identity and Access Management (IAM)
@@ -34,19 +35,18 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 - Autoscaling
 - Budget/Account management
 - Health Checks
-- Vault Key Management (KMS)
+- Vault Secret and Key Management (KMS)
 
 
 ## Installation
 
 #### 1) Installing collections
 
-You can use the [release tarball](https://github.com/oracle/oci-ansible-collections/releases) from Github:
+You can install it from [Ansible Galaxy](https://galaxy.ansible.com/oracle) using the command:
   ``` bash
-  $ ansible-galaxy collection install oracle-oci-{version}.tar.gz
+  $ ansible-galaxy collection install oracle.oci
   ```
 Notes:
-* Oracle Cloud collection will be released on Galaxy soon.
 * Collections is supported in Ansible 2.9+.
 * For more information about collections, please check [Ansible Collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
 
@@ -57,6 +57,8 @@ The Oracle Cloud Ansible modules are built using the [Oracle Cloud Infrastructur
 [Install OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/installation.html#downloading-and-installing-the-sdk):
 
   ``` bash
+  $ yum -y install oraclelinux-developer-release-el7 && yum -y install python-oci-sdk
+  or
   $ pip install oci
   ```
 The modules honor the [SDK configuration](https://docs.us-phoenix-1.oraclecloud.com/Content/ToolsConfig.htm) when available.
@@ -69,7 +71,10 @@ with Oracle Cloud Infrastructure services under [the samples directory on GitHub
 Begin by reviewing the Readme.md file that you will find in each sample's root directory.
 
 ## Documentation
-
+To view the module documentation, use this command:
+  ``` bash
+ansible-doc oracle.oci.[module_name]
+  ```
 General documentation for legacy and new modules can be found [here](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/ansible.htm).
 
 

@@ -376,6 +376,24 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    purge_security_rules:
+        description:
+            - Purge security rules  from security list which are not present in the provided group security list.
+              If I(purge_security_rules=no), provided security rules would be appended to existing security
+              rules. I(purge_security_rules) and I(delete_security_rules) are mutually exclusive.
+        type: bool
+        default: "true"
+    delete_security_rules:
+        description:
+            - Delete security rules from existing security list which are present in the
+              security rules provided by I(ingress_security_rules) and/or I(egress_security_rules).
+              If I(delete_security_rules=yes), security rules provided by I(ingress_security_rules)
+              and/or I(egress_security_rules) would be deleted to existing security list, if they
+              are part of existing security list. If they are not part of existing security list,
+              they will be ignored. I(purge_security_rules) and I(delete_security_rules) are mutually
+              exclusive.
+        type: bool
+        default: "false"
     state:
         description:
             - The state of the SecurityList.
@@ -432,6 +450,8 @@ EXAMPLES = """
     - protocol: 6
       source: 10.0.1.0/24
     vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
+    purge_security_rules: false
+    delete_security_rules: true
 
 - name: Update security_list
   oci_network_security_list:
@@ -1185,6 +1205,8 @@ def main():
             ),
             vcn_id=dict(type="str"),
             security_list_id=dict(aliases=["id"], type="str"),
+            purge_security_rules=dict(type="bool", default="true"),
+            delete_security_rules=dict(type="bool", default="false"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

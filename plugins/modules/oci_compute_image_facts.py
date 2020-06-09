@@ -277,6 +277,12 @@ images:
                     returned: on success
                     type: bool
                     sample: true
+                is_management_supported:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins
+                    returned: on success
+                    type: bool
+                    sample: true
         size_in_mbs:
             description:
                 - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
@@ -313,7 +319,8 @@ images:
         "operating_system": "Oracle Linux",
         "operating_system_version": "7.2",
         "agent_features": {
-            "is_monitoring_supported": true
+            "is_monitoring_supported": true,
+            "is_management_supported": true
         },
         "size_in_mbs": 47694,
         "time_created": "2016-08-25T21:10:29.600Z"

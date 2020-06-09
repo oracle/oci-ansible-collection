@@ -70,6 +70,7 @@ ACTION_IDEMPOTENT_STATES = {
     "CANCEL_KEY_DELETION": DEFAULT_READY_STATES,
     "CANCEL_KEY_VERSION_DELETION": DEFAULT_READY_STATES,
     "CANCEL_VAULT_DELETION": DEFAULT_READY_STATES,
+    "CANCEL_SECRET_DELETION": DEFAULT_READY_STATES,
 }
 
 ACTION_DESIRED_STATES = {
@@ -85,6 +86,8 @@ ACTION_DESIRED_STATES = {
     "CANCEL_KEY_VERSION_DELETION": DEFAULT_READY_STATES,
     "SCHEDULE_VAULT_DELETION": DEAD_STATES,
     "CANCEL_VAULT_DELETION": DEFAULT_READY_STATES,
+    "SCHEDULE_SECRET_DELETION": DEAD_STATES,
+    "CANCEL_SECRET_DELETION": DEFAULT_READY_STATES,
 }
 
 ALWAYS_PERFORM_ACTIONS = ["RESET", "SOFTRESET", "EXPORT"]
@@ -269,6 +272,9 @@ def compare_dicts(
             if not compare_lists(source_val, target_val):
                 return False
         elif source_val != target_val:
+            if "time" in attr:
+                if deserialize_datetime(source_val) == deserialize_datetime(target_val):
+                    return True
             _debug(
                 "dict is not subset because attribute '{attr}' value in source: {source_val} does not match target: {target_val}".format(
                     attr=attr, source_val=source_val, target_val=target_val

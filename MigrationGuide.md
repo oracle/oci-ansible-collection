@@ -11,9 +11,9 @@ It is possible to use both (new and legacy) modules in your playbooks as explain
 #### Installation
 Both can be installed at the same time. The collection will be installed at different path.
 
-You can install the new collection [release tarball](https://github.com/oracle/oci-ansible-collections/releases) from Github:
+You can install the new collection:
   ``` bash
-  $ ansible-galaxy collection install oracle-oci-{version}.tar.gz
+  $ ansible-galaxy collection install oracle.oci
   ```
 
 
@@ -47,8 +47,9 @@ You can also reference a collection content by its fully qualified collection na
 ## Differences in general behavior between legacy and new modules
 * All experimental features (enabled using OCI_ANSIBLE_EXPERIMENTAL env var) have been deprecated and are not included in this new set of modules.
   * Most of these features were a matter of convenience and are still achievable with the new modules. For example, the `lookup_all_attached_instances` parameter on oci_volume is removed, but users can still use the `oci_compute_volume_attachment_facts` and `oci_compute_instance_facts` modules to retrieve the same information.
-* Options to `purge` or `delete` items from lists on resources are no longer supported (examples: oci_security_list, oci_load_balancer_backend_set, etc).
+* Options to `purge` or `delete` items from lists on resources are no longer supported in majority of modules (examples: oci_identity_group, oci_load_balancer_backend_set, etc).
   * The default behavior for these fields has always been `purge_{resource_name}` = True, which remains true for the new modules. But there is no longer an option to specify `purge_{resource_name}` = False and only append new entries to the list. Thus, if you want to update a list you will need to supply the entire list, if you supply a subset of items they will completely replace the existing list.
+  * This module, as an exception, supports purge and delete: oci_network_security_list.
 *  New modules consider `freeform_tags` (if specified) for idempotence unlike legacy modules which excludes them
 * The `wait_until` parameter has been removed in favor of keeping all specific state waiting logic internal to the modules.
   * The default behavior remains the same as in the legacy modules, it is just no longer possible to override the specific state you want to wait on.  Users can still turn waiting logic off completely for a play using `wait: false`.
@@ -141,6 +142,43 @@ No breaking changes
 |oci_node_pool                |  oci_container_engine_node_pool                 |  Breaking changes: <ul><li> `count_of_nodes_to_wait` option is no longer supported. The module will return as soon as the create node pool work request completes, at which point not all nodes are guaranteed to be active.  If you need to wait until all nodes are active you can write a basic play to iterate over the nodes and check the `lifecycle_state`.</li> <li>`work_request` is no longer returned in the new module</li></ul>
 |oci_node_pool_facts          |  oci_container_engine_node_pool_facts           |  Module name is the only breaking change
 |oci_node_pool_options_facts  |  oci_container_engine_node_pool_options_facts   |  Module name is the only breaking change
+
+#### Database
+
+|old name                                 |  new name                                         |  migration notes
+|-----------------------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|oci_database                             | oci_database_database                             | Breaking changes: <ul><li>`state: update` has been replaced by `state: present`</li><li>`state: restore` has been removed.  Restoring a database can now be done through the `oci_database_database_actions` module.<ul><li>All `restore` related parameters are therefore removed: `database_scn`, `latest`, `timestamp`</li></ul></li></ul>
+|oci_database_facts                       | oci_database_database_facts                       | Module name is the only breaking change
+|oci_backup                               | oci_database_backup                               | Breaking changes: <ul><li>`id` alias has been removed from the `database_id` parameter, and added to the `backup_id` parameter</li></ul>
+|oci_backup_facts                         | oci_database_backup_facts                         | Breaking changes: <ul><li>`id` alias has been removed from the `database_id` parameter, and added to the `backup_id` parameter</li></ul>
+|oci_db_home                              | oci_database_db_home                              | Breaking changes: <ul><li>`compartment_id` parameter has been added and is required for creating a db_home</li></ul>
+|oci_db_home_facts                        | oci_database_db_home_facts                        | Module name is the only breaking change
+|oci_db_home_patch_facts                  | oci_database_db_home_patch_facts                  | Module name is the only breaking change
+|oci_db_home_patch_history_entry_facts    | oci_database_db_home_patch_history_facts          | Module name is the only breaking change
+|oci_db_node                              | oci_database_db_node_actions                      | Breaking changes: <ul><li>`state` parameter has been replaced by `action`</li></ul>
+|oci_db_node_facts                        | oci_database_db_node_facts                        | Module name is the only breaking change
+|oci_db_system                            | oci_database_db_system                            | Breaking changes: <ul><li>`purge_ssh_public_keys<` parameter is deprecated</li><li>`initial_data_storage_size_in_gb` is now an alias for `data_storage_size_in_gbs` instead of a standalone parameter<ul><li>`initial_data_storage_size_in_gb` is maintained as an alias for backwards compatibility and will continue to work for specifying the size of db system to create</li><li>We recommend that users use `data_storage_size_in_gbs` now that is supported for creating and updating db systems (previously it was only supported for updates)</li><li>The only practical effect of this change is that now `data_storage_size_in_gbs` / `initial_data_storage_size_in_gb` will be considered in the idempotency check when deciding to match an existing DB system or create a new one. Previously `initial_data_storage_size_in_gb` was ignored in this check.</li></ul></li></ul>
+|oci_db_system_facts                      | oci_database_db_system_facts                      | Module name is the only breaking change
+|oci_db_system_patch_facts                | oci_database_db_system_patch_facts                | Module name is the only breaking change
+|oci_db_system_patch_history_entry_facts  | oci_database_db_system_patch_history_entry_facts  | Module name is the only breaking change
+|oci_db_system_shape_facts                | oci_database_db_system_shape_facts                | Module name is the only breaking change
+|oci_db_version_facts                     | oci_database_db_version_facts                     | Module name is the only breaking change
+
+#### Autonomous Database
+
+|old name                                           |  new name                                                         |  migration notes
+|---------------------------------------------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|oci_autonomous_data_warehouse                      |  deprecated                                                       |  This module is deprecated. You should use `oci_database_autonomous_database` with the warehouse workload type.(`db_workload`: `DW`)
+|oci_autonomous_data_warehouse_backup               |  deprecated                                                       |  This module is deprecated. You should use `oci_database_autonomous_database_backup` instead.
+|oci_autonomous_data_warehouse_backup_facts         |  deprecated                                                       |  This module is deprecated. You should use `oci_database_autonomous_database_backup_facts` instead.
+|oci_autonomous_data_warehouse_facts                |  deprecated                                                       |  This module is deprecated. You should use `oci_database_autonomous_database_facts` with DW as the workload type.(`db_workload`: `DW`)
+|oci_autonomous_database                            |  oci_database_autonomous_database                                 |  breaking changes: <ul><li> Autonomous database actions (start, stop, restart, generate wallet, etc) are moved to the new module - `oci_database_autonomous_database_actions`.</li><li> Parameter `state` will be no longer used to take actions.</li></ul>
+|oci_autonomous_database_backup                     |  oci_database_autonomous_database_backup                          |  Module name is the only breaking change
+|oci_autonomous_database_backup_facts               |  oci_database_autonomous_database_backup_facts                    |  Module name is the only breaking change
+|oci_autonomous_database_facts                      |  oci_database_autonomous_database_facts                           |  Module name is the only breaking change
+|oci_autonomous_exadata_infrastructure              |  oci_database_autonomous_exadata_infrastructure                   |  Breaking changes due to service API change: <ul><li>`hostname` option is not present as an input option</li> <li>`maintenance_window_details` option is not a required option. This option has additional suboptions available which are `preference`, `months` and `weeks_of_month` in input and returned values</li> <li>return values include the ocids `last_maintenance_run_id` and `next_maintenance_run_id` instead of `last_maintenance_run` and `next_maintenance_run`</li></ul>
+|oci_autonomous_exadata_infrastructure_facts        |  oci_database_autonomous_exadata_infrastructure_facts             |  Breaking changes due to service API change: <ul><li>`maintenance_window_details` option has additional suboptions available which are `preference`, `months` and `weeks_of_month` in returned values</li> <li>return values include the ocids `last_maintenance_run_id` and `next_maintenance_run_id` instead of `last_maintenance_run` and `next_maintenance_run`</li></ul>
+|oci_autonomous_exadata_infrastructure_shape_facts  |  oci_database_autonomous_exadata_infrastructure_shape_facts       |  Module name is the only breaking change
 
 #### File Storage
 
@@ -268,7 +306,7 @@ No breaking changes
 |oci_remote_peering_connection_facts                              |  oci_network_remote_peering_connection_facts                                      |  Module name is the only breaking change                                                                                                                                                 |
 |oci_route_table                                                  |  oci_network_route_table                                                          |  Breaking changes: <ul><li>The following parameters no longer exist: `purge_route_rules`, `delete_route_rules`</li></ul>                                                                                                                                                 |
 |oci_route_table_facts                                            |  oci_network_route_table_facts                                                    |  Module name is the only breaking change                                                                                                                                                 |
-|oci_security_list                                                |  oci_network_security_list                                                        |  Breaking changes: <ul><li>The following parameters no longer exist: `purge_security_rules`, `delete_security_rules`</li></ul>                                                                                                                                                  |
+|oci_security_list                                                |  oci_network_security_list                                                        |  Module name is the only breaking change                                                                                                                                                 |
 |oci_security_list_facts                                          |  oci_network_security_list_facts                                                  |  Module name is the only breaking change                                                                                                                                                 |
 |oci_security_rule_actions                                        |  oci_network_security_rule_actions                                                |  Module name is the only breaking change                                                                                                                                                 |
 |oci_security_rule_facts                                          |  oci_network_security_rule_facts                                                  |  Module name is the only breaking change                                                                                                                                                 |

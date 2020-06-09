@@ -23,8 +23,6 @@ module: oci_compute_instance_credentials_facts
 short_description: Fetches details about a InstanceCredentials resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a InstanceCredentials resource in Oracle Cloud Infrastructure
-    - Deprecated. Use L(GetInstanceDefaultCredentials,https://docs.cloud.oracle.com/#/en/iaas/20160918/InstanceCredentials/GetInstanceDefaultCredentials)
-      instead.
     - Gets the generated credentials for the instance. Only works for instances that require a password to log in, such as Windows.
       For certain operating systems, users will be forced to change the initial credentials.
 version_added: "2.5"

@@ -97,6 +97,48 @@ options:
               object will inherit any existing metadata values associated with the source object."
             - Applicable only for I(action=copy).
         type: dict
+    opc_sse_customer_algorithm:
+        description:
+            - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+            - Applicable only for I(action=copy).
+        type: str
+    opc_sse_customer_key:
+        description:
+            - The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
+              decrypt the data. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+            - Applicable only for I(action=copy).
+        type: str
+    opc_sse_customer_key_sha256:
+        description:
+            - The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
+              value is used to check the integrity of the encryption key. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+            - Applicable only for I(action=copy).
+        type: str
+    opc_source_sse_customer_algorithm:
+        description:
+            - "The optional header that specifies \\"AES256\\" as the encryption algorithm to use to decrypt the source
+              object. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+            - Applicable only for I(action=copy).
+        type: str
+    opc_source_sse_customer_key:
+        description:
+            - The optional header that specifies the base64-encoded 256-bit encryption key to use to decrypt
+              the source object. For more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+            - Applicable only for I(action=copy).
+        type: str
+    opc_source_sse_customer_key_sha256:
+        description:
+            - The optional header that specifies the base64-encoded SHA256 hash of the encryption key used to
+              decrypt the source object. This value is used to check the integrity of the encryption key. For
+              more information, see
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+            - Applicable only for I(action=copy).
+        type: str
     source_name:
         description:
             - The name of the source object to be renamed.
@@ -300,6 +342,22 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
                 namespace_name=self.module.params.get("namespace_name"),
                 bucket_name=self.module.params.get("bucket_name"),
                 copy_object_details=action_details,
+                opc_sse_customer_algorithm=self.module.params.get(
+                    "opc_sse_customer_algorithm"
+                ),
+                opc_sse_customer_key=self.module.params.get("opc_sse_customer_key"),
+                opc_sse_customer_key_sha256=self.module.params.get(
+                    "opc_sse_customer_key_sha256"
+                ),
+                opc_source_sse_customer_algorithm=self.module.params.get(
+                    "opc_source_sse_customer_algorithm"
+                ),
+                opc_source_sse_customer_key=self.module.params.get(
+                    "opc_source_sse_customer_key"
+                ),
+                opc_source_sse_customer_key_sha256=self.module.params.get(
+                    "opc_source_sse_customer_key_sha256"
+                ),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -385,6 +443,12 @@ def main():
             destination_object_if_match_e_tag=dict(type="str"),
             destination_object_if_none_match_e_tag=dict(type="str"),
             destination_object_metadata=dict(type="dict"),
+            opc_sse_customer_algorithm=dict(type="str"),
+            opc_sse_customer_key=dict(type="str"),
+            opc_sse_customer_key_sha256=dict(type="str"),
+            opc_source_sse_customer_algorithm=dict(type="str"),
+            opc_source_sse_customer_key=dict(type="str"),
+            opc_source_sse_customer_key_sha256=dict(type="str"),
             source_name=dict(type="str"),
             new_name=dict(type="str"),
             src_obj_if_match_e_tag=dict(type="str"),

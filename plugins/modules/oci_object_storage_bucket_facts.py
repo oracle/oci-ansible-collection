@@ -211,6 +211,12 @@ buckets:
             returned: on success
             type: bool
             sample: true
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the bucket.
+            returned: on success
+            type: string
+            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         versioning:
             description:
                 - The versioning status on the bucket. A bucket is created with versioning `Disabled` by default.
@@ -238,6 +244,7 @@ buckets:
         "approximate_size": 56,
         "replication_enabled": true,
         "is_read_only": true,
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "versioning": "Enabled"
     }]
 """

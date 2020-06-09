@@ -49,7 +49,7 @@ description:
       L(GetVnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/GetVnic) with the VNIC ID."
     - You can later add secondary VNICs to an instance. For more information, see
       L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
-    - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset."
+    - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset, softstop."
 version_added: "2.5"
 options:
     availability_domain:
@@ -302,6 +302,11 @@ options:
                     - Whether the agent running on the instance can gather performance metrics and monitor the instance.
                       Default value is false.
                 type: bool
+            is_management_disabled:
+                description:
+                    - Whether the agent running on the instance can run all the available management plugins.
+                      Default value is false.
+                type: bool
     shape:
         description:
             - The shape of an instance. The shape determines the number of CPUs, amount of memory,
@@ -343,6 +348,11 @@ options:
                 description:
                     - The OCID of the image used to boot the instance.
                     - Required when source_type is 'image'
+                type: str
+            kms_key_id:
+                description:
+                    - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    - Applicable when source_type is 'image'
                 type: str
             boot_volume_id:
                 description:
@@ -647,7 +657,7 @@ instance:
                 - The current state of the instance.
             returned: on success
             type: string
-            sample: PROVISIONING
+            sample: MOVING
         metadata:
             description:
                 - Custom metadata that you provide.
@@ -766,6 +776,12 @@ instance:
                     returned: on success
                     type: string
                     sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                kms_key_id:
+                    description:
+                        - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    returned: on success
+                    type: string
+                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
@@ -788,6 +804,12 @@ instance:
                 is_monitoring_disabled:
                     description:
                         - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_management_disabled:
+                    description:
+                        - Whether the agent running on the instance can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true
@@ -833,7 +855,7 @@ instance:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
-        "lifecycle_state": "PROVISIONING",
+        "lifecycle_state": "MOVING",
         "metadata": {},
         "region": "region_example",
         "shape": "shape_example",
@@ -853,11 +875,13 @@ instance:
             "source_type": "source_type_example",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
-            "is_monitoring_disabled": true
+            "is_monitoring_disabled": true,
+            "is_management_disabled": true
         },
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
         "primary_private_ip": 10.0.0.10,
@@ -876,6 +900,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeClient
     from oci.core.models import LaunchInstanceDetails
     from oci.core.models import UpdateInstanceDetails
@@ -887,6 +912,12 @@ except ImportError:
 
 class InstanceHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def __init__(self, *args, **kwargs):
+        super(InstanceHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     def get_module_resource_id_param(self):
         return "instance_id"
@@ -939,11 +970,11 @@ class InstanceHelperGen(OCIResourceHelperBase):
             call_fn=self.client.launch_instance,
             call_fn_args=(),
             call_fn_kwargs=dict(launch_instance_details=create_details,),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -1021,7 +1052,11 @@ def main():
             ipxe_script=dict(type="str"),
             metadata=dict(type="dict"),
             agent_config=dict(
-                type="dict", options=dict(is_monitoring_disabled=dict(type="bool"))
+                type="dict",
+                options=dict(
+                    is_monitoring_disabled=dict(type="bool"),
+                    is_management_disabled=dict(type="bool"),
+                ),
             ),
             shape=dict(type="str"),
             shape_config=dict(type="dict", options=dict(ocpus=dict(type="float"))),
@@ -1033,6 +1068,7 @@ def main():
                     ),
                     boot_volume_size_in_gbs=dict(type="int"),
                     image_id=dict(type="str"),
+                    kms_key_id=dict(type="str"),
                     boot_volume_id=dict(type="str"),
                 ),
             ),
