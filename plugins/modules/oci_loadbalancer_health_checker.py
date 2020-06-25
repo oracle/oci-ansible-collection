@@ -23,7 +23,8 @@ module: oci_loadbalancer_health_checker
 short_description: Manage a HealthChecker resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a HealthChecker resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     protocol:
         description:
@@ -95,10 +96,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

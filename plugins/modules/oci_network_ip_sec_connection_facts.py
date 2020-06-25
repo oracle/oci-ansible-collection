@@ -47,10 +47,7 @@ options:
         description:
             - The OCID of the CPE.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -126,6 +123,27 @@ ip_sec_connections:
             returned: on success
             type: string
             sample: PROVISIONING
+        cpe_local_identifier:
+            description:
+                - Your identifier for your CPE device. Can be either an IP address or a hostname (specifically,
+                  the fully qualified domain name (FQDN)). The type of identifier here must correspond
+                  to the value for `cpeLocalIdentifierType`.
+                - If you don't provide a value when creating the IPSec connection, the `ipAddress` attribute
+                  for the L(Cpe,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/) object specified by `cpeId` is used as the `cpeLocalIdentifier`.
+                - For information about why you'd provide this value, see
+                  L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
+                - "Example IP address: `10.0.3.3`"
+                - "Example hostname: `cpe.example.com`"
+            returned: on success
+            type: string
+            sample: cpe_local_identifier_example
+        cpe_local_identifier_type:
+            description:
+                - The type of identifier for your CPE device. The value here must correspond to the value
+                  for `cpeLocalIdentifier`.
+            returned: on success
+            type: string
+            sample: IP_ADDRESS
         static_routes:
             description:
                 - Static routes to the CPE. The CIDR must not be a
@@ -154,6 +172,8 @@ ip_sec_connections:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
+        "cpe_local_identifier": "cpe_local_identifier_example",
+        "cpe_local_identifier_type": "IP_ADDRESS",
         "static_routes": [],
         "time_created": "2016-08-25T21:10:29.600Z"
     }]

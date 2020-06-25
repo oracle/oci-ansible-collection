@@ -48,11 +48,9 @@ options:
             - The action to perform on the LocalPeeringGateway.
         type: str
         required: true
-        choices: ["connect"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "connect"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -158,7 +156,7 @@ local_peering_gateway:
             description:
                 - The OCID of the route table the LPG is using.
                 - "For information about why you would associate a route table with an LPG, see
-                  L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
+                  L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx

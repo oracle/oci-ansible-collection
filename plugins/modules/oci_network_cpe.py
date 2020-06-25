@@ -35,7 +35,8 @@ description:
       L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/Content/Network/Tasks/configuringCPE.htm).
     - "You may optionally specify a *display name* for the CPE, otherwise a default is provided. It does not have to
       be unique, and you can change it. Avoid entering confidential information."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -69,6 +70,19 @@ options:
             - "Example: `143.19.23.16`"
             - Required for create using I(state=present).
         type: str
+    cpe_device_shape_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
+              a value if you want to later generate CPE device configuration content for IPSec connections
+              that use this CPE. You can also call L(UpdateCpe,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/UpdateCpe) later to
+              provide a value. For a list of possible values, see
+              L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+            - "For more information about generating CPE device configuration content, see:"
+            - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+        type: str
     cpe_id:
         description:
             - The OCID of the CPE.
@@ -85,10 +99,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
 """
 
@@ -105,6 +115,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyCpe
     freeform_tags: {'Department': 'Finance'}
+    cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Update cpe
   oci_network_cpe:
@@ -174,6 +185,23 @@ cpe:
             returned: on success
             type: string
             sample: ip_address_example
+        cpe_device_shape_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE's device type.
+                  The Networking service maintains a general list of CPE device types (for example,
+                  Cisco ASA). For each type, Oracle provides CPE configuration content that can help
+                  a network engineer configure the CPE. The OCID uniquely identifies the type of
+                  device. To get the OCIDs for the device types on the list, see
+                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+                - "For information about how to generate CPE configuration content for a
+                  CPE device type, see:"
+                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+            returned: on success
+            type: string
+            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
                 - The date and time the CPE was created, in the format defined by RFC3339.
@@ -188,6 +216,7 @@ cpe:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ip_address": "ip_address_example",
+        "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z"
     }
 """
@@ -229,29 +258,23 @@ class CpeHelperGen(OCIResourceHelperBase):
             self.client.get_cpe, cpe_id=self.module.params.get("cpe_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(self.client.list_cpes, **kwargs)
 
     def get_create_model_class(self):
@@ -320,6 +343,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             ip_address=dict(type="str"),
+            cpe_device_shape_id=dict(type="str"),
             cpe_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

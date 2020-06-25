@@ -18,12 +18,12 @@
     # variables
     #########################################
     compartment_ocid: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
-    cpu_core_count: "{{ lookup('env', 'SAMPLE_CPU_CORE_COUNT') }}" # sample value, cpu_core_count: 1
-    display_name: "{{ lookup('env', 'SAMPLE_DB_DISPLAY_NAME') }}" # sample value, display_name: 'sample_autonomous_db'
-    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') }}" # sample value, admin_password: 'BEstr0ng_#11'
-    db_name: "{{ lookup('env', 'SAMPLE_DB_NAME') }}" # sample value, db_name: 'autonomousdb' (Maximum 14 alphanumeric characters)
-    data_storage_size_in_tbs: "{{ lookup('env', 'SAMPLE_DATA_STORAGE_SIZE_IN_TBS') }}" # sample value, data_storage_size_in_tbs: 1
-    license_model: "{{ lookup('env', 'SAMPLE_LICENSE_MODEL') }}" #sample value, license_model: 'LICENSE_INCLUDED'
+    cpu_core_count: "{{ lookup('env', 'SAMPLE_CPU_CORE_COUNT') | default(1, true) }}" # sample value, cpu_core_count: 1
+    display_name: "{{ lookup('env', 'SAMPLE_DB_DISPLAY_NAME') | default('sample_autonomous_db', true) }}" # sample value, display_name: 'sample_autonomous_db'
+    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') | default('BEstr0ng_#11', true) }}" # sample value, admin_password: 'BEstr0ng_#11'
+    db_name: "{{ lookup('env', 'SAMPLE_DB_NAME') | default('autonomousdb', true) }}" # sample value, db_name: 'autonomousdb' (Maximum 14 alphanumeric characters)
+    data_storage_size_in_tbs: "{{ lookup('env', 'SAMPLE_DATA_STORAGE_SIZE_IN_TBS') | default(1, true) }}" # sample value, data_storage_size_in_tbs: 1
+    license_model: "{{ lookup('env', 'SAMPLE_LICENSE_MODEL') | default('LICENSE_INCLUDED', true) }}" #sample value, license_model: 'LICENSE_INCLUDED'
 
   tasks:
     - block:
@@ -34,12 +34,6 @@
           when: item not in ansible_env
           with_items:
             - "SAMPLE_COMPARTMENT_OCID"
-            - "SAMPLE_CPU_CORE_COUNT"
-            - "SAMPLE_DB_DISPLAY_NAME"
-            - "SAMPLE_ADMIN_PASSWORD"
-            - "SAMPLE_DB_NAME"
-            - "SAMPLE_DATA_STORAGE_SIZE_IN_TBS"
-            - "SAMPLE_LICENSE_MODEL"
 
         - name: Create a new Autonomous Database
           oci_database_autonomous_database:

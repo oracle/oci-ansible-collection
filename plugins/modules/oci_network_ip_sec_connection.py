@@ -46,7 +46,8 @@ description:
     - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret
       (that is, the pre-shared key). For more information, see
       L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/Content/Network/Tasks/configuringCPE.htm).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -84,6 +85,26 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
         type: dict
+    cpe_local_identifier:
+        description:
+            - Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the
+              fully qualified domain name (FQDN)). The type of identifier you provide here must correspond
+              to the value for `cpeLocalIdentifierType`.
+            - If you don't provide a value, the `ipAddress` attribute for the L(Cpe,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/)
+              object specified by `cpeId` is used as the `cpeLocalIdentifier`.
+            - For information about why you'd provide this value, see
+              L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
+            - "Example IP address: `10.0.3.3`"
+            - "Example hostname: `cpe.example.com`"
+        type: str
+    cpe_local_identifier_type:
+        description:
+            - The type of identifier for your CPE device. The value you provide here must correspond to the value
+              for `cpeLocalIdentifier`.
+        type: str
+        choices:
+            - "IP_ADDRESS"
+            - "HOSTNAME"
     static_routes:
         description:
             - Static routes to the CPE. A static route's CIDR must not be a
@@ -116,6 +137,13 @@ options:
                 choices:
                     - "BGP"
                     - "STATIC"
+            ike_version:
+                description:
+                    - Internet Key Exchange protocol version.
+                type: str
+                choices:
+                    - "V1"
+                    - "V2"
             shared_secret:
                 description:
                     - The shared secret (pre-shared key) to use for the IPSec tunnel. Only numbers, letters, and
@@ -181,10 +209,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -204,6 +228,9 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
     freeform_tags: {'Department': 'Finance'}
+    cpe_local_identifier: cpe_local_identifier_example
+    cpe_local_identifier_type: IP_ADDRESS
+    static_routes: [ "172.16.10.0/24" ]
 
 - name: Update ip_sec_connection
   oci_network_ip_sec_connection:
@@ -285,6 +312,27 @@ ip_sec_connection:
             returned: on success
             type: string
             sample: PROVISIONING
+        cpe_local_identifier:
+            description:
+                - Your identifier for your CPE device. Can be either an IP address or a hostname (specifically,
+                  the fully qualified domain name (FQDN)). The type of identifier here must correspond
+                  to the value for `cpeLocalIdentifierType`.
+                - If you don't provide a value when creating the IPSec connection, the `ipAddress` attribute
+                  for the L(Cpe,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/) object specified by `cpeId` is used as the `cpeLocalIdentifier`.
+                - For information about why you'd provide this value, see
+                  L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
+                - "Example IP address: `10.0.3.3`"
+                - "Example hostname: `cpe.example.com`"
+            returned: on success
+            type: string
+            sample: cpe_local_identifier_example
+        cpe_local_identifier_type:
+            description:
+                - The type of identifier for your CPE device. The value here must correspond to the value
+                  for `cpeLocalIdentifier`.
+            returned: on success
+            type: string
+            sample: IP_ADDRESS
         static_routes:
             description:
                 - Static routes to the CPE. The CIDR must not be a
@@ -313,6 +361,8 @@ ip_sec_connection:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
+        "cpe_local_identifier": "cpe_local_identifier_example",
+        "cpe_local_identifier_type": "IP_ADDRESS",
         "static_routes": [],
         "time_created": "2016-08-25T21:10:29.600Z"
     }
@@ -356,32 +406,36 @@ class IpSecConnectionHelperGen(OCIResourceHelperBase):
             ipsc_id=self.module.params.get("ipsc_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "drg_id",
-            "cpe_id",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["drg_id", "cpe_id"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_ip_sec_connections, **kwargs
         )
@@ -453,6 +507,10 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             drg_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
+            cpe_local_identifier=dict(type="str"),
+            cpe_local_identifier_type=dict(
+                type="str", choices=["IP_ADDRESS", "HOSTNAME"]
+            ),
             static_routes=dict(type="list"),
             tunnel_configuration=dict(
                 type="list",
@@ -460,6 +518,7 @@ def main():
                 options=dict(
                     display_name=dict(aliases=["name"], type="str"),
                     routing=dict(type="str", choices=["BGP", "STATIC"]),
+                    ike_version=dict(type="str", choices=["V1", "V2"]),
                     shared_secret=dict(type="str"),
                     bgp_session_config=dict(
                         type="dict",

@@ -75,10 +75,7 @@ options:
         description:
             - A filter to return only resources that match the entire database name given. The match is not case sensitive.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

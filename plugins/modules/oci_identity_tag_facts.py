@@ -46,10 +46,7 @@ options:
             - "INACTIVE"
             - "DELETING"
             - "DELETED"
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

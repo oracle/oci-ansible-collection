@@ -84,12 +84,15 @@ options:
             - The action to perform on the AutonomousDatabase.
         type: str
         required: true
-        choices: ["deregister_autonomous_database_data_safe", "generate_autonomous_database_wallet",
-                  "register_autonomous_database_data_safe", "restart", "restore", "start", "stop"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "deregister_autonomous_database_data_safe"
+            - "generate_autonomous_database_wallet"
+            - "register_autonomous_database_data_safe"
+            - "restart"
+            - "restore"
+            - "start"
+            - "stop"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

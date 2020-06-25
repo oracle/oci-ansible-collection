@@ -32,7 +32,8 @@ description:
     - For the purposes of access control, the DRG attachment is automatically placed into the same compartment
       as the VCN. For more information about compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     display_name:
         description:
@@ -51,8 +52,9 @@ options:
             - If you don't specify a route table here, the DRG attachment is created without an associated route
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the DRG attachment.
-            - "For information about why you would associate a route table with a DRG attachment, see
-              L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
+            - "For information about why you would associate a route table with a DRG attachment, see:"
+            - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
+                * L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
         type: str
     vcn_id:
         description:
@@ -82,10 +84,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -162,8 +160,10 @@ drg_attachment:
         route_table_id:
             description:
                 - The OCID of the route table the DRG attachment is using.
-                - "For information about why you would associate a route table with a DRG attachment, see
-                  L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
+                - "For information about why you would associate a route table with a DRG attachment, see:"
+                - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
+                    * L(Transit Routing: Private Access to Oracle
+                    Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
@@ -230,32 +230,36 @@ class DrgAttachmentHelperGen(OCIResourceHelperBase):
             drg_attachment_id=self.module.params.get("drg_attachment_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "vcn_id",
-            "drg_id",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["vcn_id", "drg_id"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_drg_attachments, **kwargs
         )

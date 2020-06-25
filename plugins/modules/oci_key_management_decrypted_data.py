@@ -25,7 +25,8 @@ description:
     - This module allows the user to create a DecryptedData resource in Oracle Cloud Infrastructure
     - For I(state=present), decrypts data using the given L(DecryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/DecryptDataDetails)
       resource.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     associated_data:
         description:
@@ -60,10 +61,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
 """
 
@@ -121,6 +118,13 @@ except ImportError:
 
 class DecryptedDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
+
+    def get_module_resource_id(self):
+        return None
+
+    # There is no idempotency for this module (no get or list ops)
+    def get_matching_resource(self):
+        return None
 
     def get_create_model_class(self):
         return DecryptDataDetails

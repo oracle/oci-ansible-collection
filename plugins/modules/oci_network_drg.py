@@ -33,7 +33,8 @@ description:
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the DRG, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -77,10 +78,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -220,29 +217,23 @@ class DrgHelperGen(OCIResourceHelperBase):
             self.client.get_drg, drg_id=self.module.params.get("drg_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(self.client.list_drgs, **kwargs)
 
     def get_create_model_class(self):

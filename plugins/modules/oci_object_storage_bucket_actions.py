@@ -59,11 +59,10 @@ options:
             - The action to perform on the Bucket.
         type: str
         required: true
-        choices: ["make_bucket_writable", "reencrypt"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "make_bucket_writable"
+            - "reencrypt"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

@@ -48,11 +48,10 @@ options:
             - The action to perform on the MfaTotpDevice.
         type: str
         required: true
-        choices: ["activate", "generate_totp_seed"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "activate"
+            - "generate_totp_seed"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

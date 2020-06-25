@@ -73,10 +73,7 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -149,6 +146,14 @@ service_gateways:
             returned: on success
             type: string
             sample: PROVISIONING
+        route_table_id:
+            description:
+                - "The OCID of the route table the service gateway is using.
+                  For information about why you would associate a route table with a service gateway, see
+                  L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)."
+            returned: on success
+            type: string
+            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         services:
             description:
                 - List of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
@@ -192,6 +197,7 @@ service_gateways:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "services": [{
             "service_id": "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx",
             "service_name": "service_name_example"

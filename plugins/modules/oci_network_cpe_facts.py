@@ -38,10 +38,7 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple cpes.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -105,6 +102,23 @@ cpes:
             returned: on success
             type: string
             sample: ip_address_example
+        cpe_device_shape_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE's device type.
+                  The Networking service maintains a general list of CPE device types (for example,
+                  Cisco ASA). For each type, Oracle provides CPE configuration content that can help
+                  a network engineer configure the CPE. The OCID uniquely identifies the type of
+                  device. To get the OCIDs for the device types on the list, see
+                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+                - "For information about how to generate CPE configuration content for a
+                  CPE device type, see:"
+                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+            returned: on success
+            type: string
+            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
                 - The date and time the CPE was created, in the format defined by RFC3339.
@@ -119,6 +133,7 @@ cpes:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ip_address": "ip_address_example",
+        "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z"
     }]
 """

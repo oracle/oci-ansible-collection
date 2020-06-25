@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete a DbHome resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Database Home in the specified DB system based on the request parameters you provide. Applies only to bare metal and
       Exadata DB systems.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     display_name:
         description:
@@ -205,10 +206,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -367,33 +364,36 @@ class DbHomeHelperGen(OCIResourceHelperBase):
             self.client.get_db_home, db_home_id=self.module.params.get("db_home_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "db_system_id",
-            "vm_cluster_id",
-            "display_name",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["db_system_id", "vm_cluster_id", "display_name"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(self.client.list_db_homes, **kwargs)
 
     def get_create_model_class(self):
@@ -473,8 +473,8 @@ def main():
                 type="dict",
                 options=dict(
                     backup_id=dict(type="str"),
-                    backup_tde_password=dict(type="str"),
-                    admin_password=dict(type="str", required=True),
+                    backup_tde_password=dict(type="str", no_log=True),
+                    admin_password=dict(type="str", required=True, no_log=True),
                     db_unique_name=dict(type="str"),
                     db_name=dict(type="str"),
                     pdb_name=dict(type="str"),

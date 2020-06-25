@@ -38,10 +38,7 @@ options:
             - Required to get a specific ip_sec_connection_tunnel.
         type: str
         aliases: ["id"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -96,6 +93,12 @@ ip_sec_connection_tunnels:
             returned: on success
             type: string
             sample: UP
+        ike_version:
+            description:
+                - Internet Key Exchange protocol version.
+            returned: on success
+            type: string
+            sample: V1
         lifecycle_state:
             description:
                 - The tunnel's lifecycle state.
@@ -190,6 +193,7 @@ ip_sec_connection_tunnels:
         "vpn_ip": "192.0.2.5",
         "cpe_ip": "192.0.2.157",
         "status": "UP",
+        "ike_version": "V1",
         "lifecycle_state": "PROVISIONING",
         "display_name": "display_name_example",
         "bgp_session_info": {

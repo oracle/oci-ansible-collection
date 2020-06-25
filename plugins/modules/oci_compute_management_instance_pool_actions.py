@@ -67,11 +67,14 @@ options:
             - The action to perform on the InstancePool.
         type: str
         required: true
-        choices: ["attach_load_balancer", "detach_load_balancer", "reset", "softreset", "start", "stop"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "attach_load_balancer"
+            - "detach_load_balancer"
+            - "reset"
+            - "softreset"
+            - "start"
+            - "stop"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

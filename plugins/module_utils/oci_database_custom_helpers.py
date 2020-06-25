@@ -163,16 +163,17 @@ class DbSystemHelperCustom:
             "db_home",
         ]
 
-    def is_update_necessary(self):
-        needs_update = super(DbSystemHelperCustom, self).is_update_necessary()
+    def is_update_necessary(self, existing_resource_dict):
+        needs_update = super(DbSystemHelperCustom, self).is_update_necessary(
+            existing_resource_dict
+        )
         if not needs_update:
-            current_resource = self.get_resource().data
             update_model = self.get_update_model()
             needs_update = is_patch_necessary(
                 patch_getter_method=self.client.get_db_system_patch,
-                current_version=current_resource.version,
+                current_version=existing_resource_dict.get("version"),
                 requested_patch_details=update_model.version,
-                db_system_id=current_resource.id,
+                db_system_id=existing_resource_dict.get("id"),
             )
 
         return needs_update
@@ -222,18 +223,70 @@ class DbHomeHelperCustom:
 
         return update_model_dict
 
-    def is_update_necessary(self):
+    def is_update_necessary(self, resource=None):
         # dbVersion is the only updatable field so it is the only thing we need to check to determine
         # if an update is necessary
-        current_resource = self.get_resource().data
         update_model = self.get_update_model()
         needs_update = is_patch_necessary(
             patch_getter_method=self.client.get_db_home_patch,
-            current_version=current_resource.db_version,
+            current_version=resource["db_version"],
             requested_patch_details=update_model.db_version,
-            db_home_id=current_resource.id,
+            db_home_id=resource["id"],
         )
         return needs_update
+
+
+class DataGuardAssociationHelperCustom:
+    def get_module_resource_id(self):
+        return None
+
+    def get_module_resource_id_param(self):
+        return None
+
+    def get_get_model_from_summary_model(self, summary_model):
+        return self.client.get_data_guard_association(
+            database_id=self.module.params["database_id"],
+            data_guard_association_id=summary_model.id,
+        ).data
+
+    def get_get_fn(self):
+        def get_fn(data_guard_association_id):
+            return self.client.get_data_guard_association(
+                data_guard_association_id=data_guard_association_id,
+                database_id=self.module.params["database_id"],
+            )
+
+        return get_fn
+        # return self.client.get_data_guard_association
+
+    def get_exclude_attributes(self):
+        exclude_attributes = super(
+            DataGuardAssociationHelperCustom, self
+        ).get_exclude_attributes()
+        return exclude_attributes + [
+            # not returned by GET model
+            "database_admin_password",
+            # discriminator, not returned by GET (existing vs new db system)
+            "creation_type",
+        ]
+
+
+class DataGuardAssociationActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        data_guard_association = resource or self.get_resource().data
+
+        # This mirrors the old behavior
+        if action == "switchover" and data_guard_association.role == "PRIMARY":
+            return True
+        if action == "failover" and data_guard_association.role == "STANDBY":
+            return True
+        if (
+            action == "reinstate"
+            and data_guard_association.peer_role == "DISABLED_STANDBY"
+        ):
+            return True
+
+        return False
 
 
 def is_patch_necessary(

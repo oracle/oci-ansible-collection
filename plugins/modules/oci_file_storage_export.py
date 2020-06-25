@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete an Export resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new export in the specified export set, path, and
       file system.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     export_options:
         description:
@@ -131,10 +132,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -338,30 +335,30 @@ class ExportHelperGen(OCIResourceHelperBase):
             self.client.get_export, export_id=self.module.params.get("export_id"),
         )
 
-    def list_resources(self):
-        required_list_method_params = []
+    def get_required_kwargs_for_list(self):
+        return dict()
 
-        optional_list_method_params = [
-            "export_set_id",
-            "file_system_id",
-        ]
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["export_set_id", "file_system_id"]
 
-        required_kwargs = dict(
-            (param, self.module.params[param]) for param in required_list_method_params
-        )
-
-        optional_kwargs = dict(
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(self.client.list_exports, **kwargs)
 
     def get_create_model_class(self):

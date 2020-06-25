@@ -23,7 +23,8 @@ module: oci_blockstorage_volume_kms_key
 short_description: Manage a VolumeKmsKey resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete a VolumeKmsKey resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     volume_id:
         description:
@@ -46,10 +47,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -26,10 +26,7 @@ description:
     - Gets the Autonomous Database regional wallet details.
 version_added: "2.5"
 options: {}
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

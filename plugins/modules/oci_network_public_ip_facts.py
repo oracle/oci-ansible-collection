@@ -88,10 +88,7 @@ options:
         description:
             - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

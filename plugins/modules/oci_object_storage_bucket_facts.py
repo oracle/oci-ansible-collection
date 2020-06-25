@@ -57,10 +57,7 @@ options:
             - The ID of the compartment in which to list buckets.
             - Required to list multiple buckets.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

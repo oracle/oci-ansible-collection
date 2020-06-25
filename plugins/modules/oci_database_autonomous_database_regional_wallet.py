@@ -23,7 +23,8 @@ module: oci_database_autonomous_database_regional_wallet
 short_description: Manage an AutonomousDatabaseRegionalWallet resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an AutonomousDatabaseRegionalWallet resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     should_rotate:
         description:
@@ -37,10 +38,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

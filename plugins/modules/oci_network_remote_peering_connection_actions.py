@@ -54,11 +54,9 @@ options:
             - The action to perform on the RemotePeeringConnection.
         type: str
         required: true
-        choices: ["connect"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "connect"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

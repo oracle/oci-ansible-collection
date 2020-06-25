@@ -185,11 +185,11 @@ options:
             - The action to perform on the Object.
         type: str
         required: true
-        choices: ["copy", "rename", "restore"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "copy"
+            - "rename"
+            - "restore"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

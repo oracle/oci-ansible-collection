@@ -24,7 +24,8 @@ short_description: Manage a Kubeconfig resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a Kubeconfig resource in Oracle Cloud Infrastructure
     - For I(state=present), create the Kubeconfig YAML for a cluster.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     cluster_id:
         description:
@@ -33,12 +34,11 @@ options:
         required: true
     token_version:
         description:
-            - The version of the kubeconfig token. Supported values 1.0.0 and 2.0.0
+            - The version of the kubeconfig token. Supported value 2.0.0
         type: str
     expiration:
         description:
-            - The desired expiration, in seconds, to use for the kubeconfig token.
-              Important Note, expiration field is only honored for token version 1.0.0
+            - Deprecated. This field is no longer used.
         type: int
     state:
         description:
@@ -48,10 +48,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
 """
 
@@ -92,6 +88,13 @@ except ImportError:
 
 class KubeconfigHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
+
+    def get_module_resource_id(self):
+        return None
+
+    # There is no idempotency for this module (no get or list ops)
+    def get_matching_resource(self):
+        return None
 
     def get_create_model_class(self):
         return CreateClusterKubeconfigContentDetails

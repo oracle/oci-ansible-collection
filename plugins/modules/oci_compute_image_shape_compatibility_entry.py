@@ -23,7 +23,8 @@ module: oci_compute_image_shape_compatibility_entry
 short_description: Manage an ImageShapeCompatibilityEntry resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an ImageShapeCompatibilityEntry resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     image_id:
         description:
@@ -35,6 +36,19 @@ options:
             - Shape name.
         type: str
         required: true
+    ocpu_constraints:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            min:
+                description:
+                    - The minimum number of OCPUs supported for this image and shape.
+                type: int
+            max:
+                description:
+                    - The maximum number of OCPUs supported for this image and shape.
+                type: int
     state:
         description:
             - The state of the ImageShapeCompatibilityEntry.
@@ -44,10 +58,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -84,9 +94,31 @@ image_shape_compatibility_entry:
             returned: on success
             type: string
             sample: shape_example
+        ocpu_constraints:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min:
+                    description:
+                        - The minimum number of OCPUs supported for this image and shape.
+                    returned: on success
+                    type: int
+                    sample: 56
+                max:
+                    description:
+                        - The maximum number of OCPUs supported for this image and shape.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: {
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-        "shape": "shape_example"
+        "shape": "shape_example",
+        "ocpu_constraints": {
+            "min": 56,
+            "max": 56
+        }
     }
 """
 
@@ -102,6 +134,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.core import ComputeClient
+    from oci.core.models import AddImageShapeCompatibilityEntryDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -109,13 +142,44 @@ except ImportError:
 
 
 class ImageShapeCompatibilityEntryHelperGen(OCIResourceHelperBase):
-    """Supported operations: update and delete"""
+    """Supported operations: update, get, list and delete"""
 
     def get_module_resource_id_param(self):
         return "shape_name"
 
     def get_module_resource_id(self):
         return self.module.params.get("shape_name")
+
+    def get_get_fn(self):
+        return self.client.get_image_shape_compatibility_entry
+
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_image_shape_compatibility_entry,
+            image_id=self.module.params.get("image_id"),
+            shape_name=self.module.params.get("shape_name"),
+        )
+
+    def get_required_kwargs_for_list(self):
+        required_list_method_params = [
+            "image_id",
+        ]
+
+        return dict(
+            (param, self.module.params[param]) for param in required_list_method_params
+        )
+
+    def get_optional_kwargs_for_list(self):
+        return dict()
+
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+        return oci_common_utils.list_all_resources(
+            self.client.list_image_shape_compatibility_entries, **kwargs
+        )
 
     def is_update(self):
         if not self.module.params.get("state") == "present":
@@ -129,13 +193,18 @@ class ImageShapeCompatibilityEntryHelperGen(OCIResourceHelperBase):
 
         return not self.does_resource_exist()
 
+    def get_update_model_class(self):
+        return AddImageShapeCompatibilityEntryDetails
+
     def update_resource(self):
+        update_details = self.get_update_model()
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.add_image_shape_compatibility_entry,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 image_id=self.module.params.get("image_id"),
                 shape_name=self.module.params.get("shape_name"),
+                add_image_shape_compatibility_entry_details=update_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -179,6 +248,9 @@ def main():
         dict(
             image_id=dict(type="str", required=True),
             shape_name=dict(type="str", required=True),
+            ocpu_constraints=dict(
+                type="dict", options=dict(min=dict(type="int"), max=dict(type="int"))
+            ),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

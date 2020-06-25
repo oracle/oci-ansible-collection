@@ -17,7 +17,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 try:
     from oci.core import VirtualNetworkClient
     from oci.util import to_dict
-    from oci.core.models import ImageShapeCompatibilityEntry
     from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
@@ -249,22 +248,30 @@ class ImageHelperCustom:
 
 
 class ImageShapeCompatibilityEntryHelperCustom:
-    def get_resource(self):
-        # This resource does not have a get or list method. `update` and `delete` does not return anything and
-        # updating even if the entry exists does not throw any error. Same with delete. So choosing to make the API
-        # call always. The customisation for `get_resource` is only to make the other functions work and to return
-        # some data to the user.
-        return oci_common_utils.get_default_response_from_resource(
-            resource=oci_common_utils.convert_input_data_to_model_class(
-                self.module.params, ImageShapeCompatibilityEntry
-            )
-        )
+    def is_update(self):
+        if not self.module.params.get("state") == "present":
+            return False
 
-    def is_update_necessary(self):
-        # This resource does not have a get or list method. So no way to check if it already exists or not. So always
-        # update. Also making the API call even if the entry exists does not throw any error. So choosing to make
-        # the API call always.
         return True
+
+    def get_existing_resource_dict_for_update(self):
+        try:
+            get_response = self.get_resource()
+        except ServiceError as se:
+            if se.status != 404:
+                raise
+            return dict()
+        else:
+            return to_dict(get_response.data)
+
+    def is_update_necessary(self, existing_resource_dict):
+
+        if not existing_resource_dict:
+            return True
+
+        return super(
+            ImageShapeCompatibilityEntryHelperCustom, self
+        ).is_update_necessary(existing_resource_dict)
 
 
 class VnicAttachmentHelperCustom:

@@ -37,11 +37,9 @@ options:
             - The action to perform on the AutonomousContainerDatabase.
         type: str
         required: true
-        choices: ["restart"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "restart"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -194,6 +192,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
 
     HAS_OCI_PY_SDK = True
@@ -206,6 +205,14 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         restart
     """
+
+    def __init__(self, *args, **kwargs):
+        super(AutonomousContainerDatabaseActionsHelperGen, self).__init__(
+            *args, **kwargs
+        )
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     @staticmethod
     def get_module_resource_id_param():
@@ -234,16 +241,14 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
                     "autonomous_container_database_id"
                 ),
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

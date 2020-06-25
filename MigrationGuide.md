@@ -155,6 +155,8 @@ No breaking changes
 |oci_database_facts                       | oci_database_database_facts                       | Module name is the only breaking change
 |oci_backup                               | oci_database_backup                               | Breaking changes: <ul><li>`id` alias has been removed from the `database_id` parameter, and added to the `backup_id` parameter</li></ul>
 |oci_backup_facts                         | oci_database_backup_facts                         | Breaking changes: <ul><li>`id` alias has been removed from the `database_id` parameter, and added to the `backup_id` parameter</li></ul>
+|oci_data_guard_association               | oci_database_data_guard_association               | Breaking changes: <ul><li>The following values for `state` have been removed: `failover`, `swichover`, `reinstate`. <ul><li>These actions should be performed using the `oci_database_data_guard_association_actions` module.</li><li>The `data_guard_association_id` parameter is also moved to the corresponding actions module.</li></ul></li></ul>
+|oci_data_guard_association_facts         | oci_database_data_guard_association_facts         | Module name is the only breaking change
 |oci_db_home                              | oci_database_db_home                              | Breaking changes: <ul><li>`compartment_id` parameter has been added and is required for creating a db_home</li></ul>
 |oci_db_home_facts                        | oci_database_db_home_facts                        | Module name is the only breaking change
 |oci_db_home_patch_facts                  | oci_database_db_home_patch_facts                  | Module name is the only breaking change
@@ -183,6 +185,15 @@ No breaking changes
 |oci_autonomous_exadata_infrastructure              |  oci_database_autonomous_exadata_infrastructure                   |  Breaking changes due to service API change: <ul><li>`hostname` option is not present as an input option</li> <li>`maintenance_window_details` option is not a required option. This option has additional suboptions available which are `preference`, `months` and `weeks_of_month` in input and returned values</li> <li>return values include the ocids `last_maintenance_run_id` and `next_maintenance_run_id` instead of `last_maintenance_run` and `next_maintenance_run`</li></ul>
 |oci_autonomous_exadata_infrastructure_facts        |  oci_database_autonomous_exadata_infrastructure_facts             |  Breaking changes due to service API change: <ul><li>`maintenance_window_details` option has additional suboptions available which are `preference`, `months` and `weeks_of_month` in returned values</li> <li>return values include the ocids `last_maintenance_run_id` and `next_maintenance_run_id` instead of `last_maintenance_run` and `next_maintenance_run`</li></ul>
 |oci_autonomous_exadata_infrastructure_shape_facts  |  oci_database_autonomous_exadata_infrastructure_shape_facts       |  Module name is the only breaking change
+
+#### Email
+
+|old name               |  new name                     |  migration notes
+|-----------------------|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|oci_sender             |  oci_email_sender             |  Module name is the only breaking change
+|oci_sender_facts       |  oci_email_sender_facts       |  Module name is the only breaking change
+|oci_suppression        |  oci_email_suppression        |  Module name is the only breaking change
+|oci_suppression_facts  |  oci_email_suppression_facts  |  Module name is the only breaking change
 
 #### File Storage
 
@@ -343,3 +354,16 @@ No breaking changes
 |oci_object_storage_object_lifecycle_policy_facts |  oci_object_storage_object_lifecycle_policy_facts   |  Module name is the only breaking change
 |oci_preauthenticated_request                     |  oci_object_storage_preauthenticated_request        |  Breaking changes: <ul><li>Creating a preauthetincated request in the new module is not idempotent.</li></ul>
 |oci_preauthenticated_request_facts               |  oci_object_storage_preauthenticated_request_facts  |  Module name is the only breaking change
+
+#### DNS
+
+|old name                                         |  new name                                           |  migration notes
+|-------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------
+|oci_zone                                         |  oci_dns_zone                                       |  Breaking changes: <ul><li>Deleting a zone using `name` parameter is not supported in the new module when environment variable `OCI_USE_NAME_AS_IDENTIFIER` is not set. You can delete a zone using `zone_name_or_id` parameter or `name` parameter when `OCI_USE_NAME_AS_IDENTIFIER` is set in the new module.</li></ul>
+|oci_zone_facts                                   |  oci_dns_zone_facts                                 |  Module name is the only breaking change
+|oci_zone_records                                 |  oci_dns_zone_records                               |  Module name is the only breaking change
+|oci_zone_records_facts                           |  oci_dns_zone_records_facts                         |  Module name is the only breaking change
+|oci_domain_records                               |  oci_dns_domain_records                             |  Module name is the only breaking change
+|oci_domain_records_facts                         |  oci_dns_domain_records_facts                       |  Module name is the only breaking change
+|oci_rrset                                        |  oci_dns_rrset                                      |  Module name is the only breaking change
+|oci_rrset_facts                                  |  oci_dns_rrset_facts                                |  Module name is the only breaking change

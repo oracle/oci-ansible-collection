@@ -56,11 +56,10 @@ options:
             - The action to perform on the VirtualCircuit.
         type: str
         required: true
-        choices: ["bulk_add_virtual_circuit_public_prefixes", "bulk_delete_virtual_circuit_public_prefixes"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "bulk_add_virtual_circuit_public_prefixes"
+            - "bulk_delete_virtual_circuit_public_prefixes"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -177,11 +176,19 @@ virtual_circuit:
                     sample: 200
         customer_bgp_asn:
             description:
-                - The BGP ASN of the network at the other end of the BGP
+                - Deprecated. Instead use `customerAsn`.
+                  If you specify values for both, the request will be rejected.
+            returned: on success
+            type: int
+            sample: 56
+        customer_asn:
+            description:
+                - "The BGP ASN of the network at the other end of the BGP
                   session from Oracle. If the session is between the customer's
                   edge router and Oracle, the value is the customer's ASN. If the BGP
                   session is between the provider's edge router and Oracle, the value
                   is the provider's ASN.
+                  Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
             returned: on success
             type: int
             sample: 56
@@ -325,6 +332,7 @@ virtual_circuit:
             "vlan": 200
         }],
         "customer_bgp_asn": 56,
+        "customer_asn": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},

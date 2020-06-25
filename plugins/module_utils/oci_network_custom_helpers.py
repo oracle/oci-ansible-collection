@@ -9,6 +9,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+from ansible.module_utils._text import to_text
 
 try:
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
@@ -525,3 +526,81 @@ class SecurityListHelperCustom:
                     )
                 ]
         return update_model
+
+
+def patch_base_client_call_api(client):
+    if not client:
+        return
+    if not hasattr(client, "base_client"):
+        return
+    if not hasattr(client.base_client, "call_api"):
+        return
+    original_call_api = client.base_client.call_api
+
+    def call_api(*args, **kwargs):
+        header_params = kwargs.pop("header_params", {})
+        _debug(header_params)
+        for header_key in header_params:
+            if (
+                header_key == "accept"
+                and header_params[header_key] == "text/plain; charset&#x3D;utf-8"
+            ):
+                header_params[header_key] = "*/*"
+        _debug(header_params)
+        return original_call_api(*args, header_params=header_params, **kwargs)
+
+    client.base_client.call_api = call_api
+
+
+class CpeConfigContentFactsHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(CpeConfigContentFactsHelperCustom, self).__init__(*args, **kwargs)
+        # Currently the server throws an error with the default Accept header added by the SDK. But if we remove the
+        # charset parameter from the header, it works fine.
+        # TODO: Remove this once the issue with API is fixed
+        patch_base_client_call_api(self.client)
+
+    def get(self):
+        response_data = self.get_resource().data
+        return to_text(response_data.content)
+
+
+class IpSecConnectionCpeConfigContentFactsHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(IpSecConnectionCpeConfigContentFactsHelperCustom, self).__init__(
+            *args, **kwargs
+        )
+        # Currently the server throws an error with the default Accept header added by the SDK. But if we remove the
+        # charset parameter from the header, it works fine.
+        # TODO: Remove this once the issue with API is fixed
+        patch_base_client_call_api(self.client)
+
+    def get(self):
+        response_data = self.get_resource().data
+        return to_text(response_data.content)
+
+
+class IpSecConnectionTunnelCpeDeviceConfigHelperCustom:
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        # The device config param has different names in update model (tunnel_cpe_device_config) and get model
+        # (tunnel_cpe_device_config_parameter). So update the name in the update model for idempotence logic to work.
+        update_model_dict = to_dict(update_model)
+        update_model_dict["tunnel_cpe_device_config_parameter"] = update_model_dict.pop(
+            "tunnel_cpe_device_config", None
+        )
+        return update_model_dict
+
+
+class IpSecConnectionTunnelCpeDeviceConfigContentFactsHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(
+            IpSecConnectionTunnelCpeDeviceConfigContentFactsHelperCustom, self
+        ).__init__(*args, **kwargs)
+        # Currently the server throws an error with the default Accept header added by the SDK. But if we remove the
+        # charset parameter from the header, it works fine.
+        # TODO: Remove this once the issue with API is fixed
+        patch_base_client_call_api(self.client)
+
+    def get(self):
+        response_data = self.get_resource().data
+        return to_text(response_data.content)

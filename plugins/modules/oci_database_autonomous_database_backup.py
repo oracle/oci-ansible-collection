@@ -24,7 +24,8 @@ short_description: Manage an AutonomousDatabaseBackup resource in Oracle Cloud I
 description:
     - This module allows the user to create an AutonomousDatabaseBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Database backup for the specified database based on the provided request parameters.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     display_name:
         description:
@@ -45,10 +46,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -195,30 +192,30 @@ class AutonomousDatabaseBackupHelperGen(OCIResourceHelperBase):
             ),
         )
 
-    def list_resources(self):
-        required_list_method_params = []
+    def get_required_kwargs_for_list(self):
+        return dict()
 
-        optional_list_method_params = [
-            "autonomous_database_id",
-            "display_name",
-        ]
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["autonomous_database_id", "display_name"]
 
-        required_kwargs = dict(
-            (param, self.module.params[param]) for param in required_list_method_params
-        )
-
-        optional_kwargs = dict(
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_autonomous_database_backups, **kwargs
         )

@@ -24,7 +24,8 @@ short_description: Manage a Backend resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Backend resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a backend server to a backend set.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ip_address:
         description:
@@ -92,10 +93,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -239,30 +236,24 @@ class BackendHelperGen(OCIResourceHelperBase):
             backend_name=self.module.params.get("backend_name"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "load_balancer_id",
             "backend_set_name",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(self.client.list_backends, **kwargs)
 
     def get_create_model_class(self):

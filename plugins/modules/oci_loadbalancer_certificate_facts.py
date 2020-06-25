@@ -37,10 +37,7 @@ options:
             - The name of the certificate whose details needs to be fetched.
             - Required to get a specific certificate.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

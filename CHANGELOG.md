@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2020-6-25
+
+### Added:
+- Added Domain Name System (DNS) modules
+- Added Email modules
+- Added Marketplace modules
+- Added Monitoring modules
+- Added Notifications modules
+- Added Streaming modules
+- Added Functions modules
+- Added Database Data Guard modules
+- Added new modules for Compute and Network
+- Added subparameter `admission_controller_options` in the options parameter of module `oci_container_engine_cluster`
+- Added `node_source_details` parameter in the `oci_container_engine_node_pool module`
+
+### Changed:
+- Please update to the latest version of OCI Python SDK.
+- `compartment_id` parameter removed from `oci_database_maintenance_run.py`
+  - This parameter was optional and was unused by the module so is being removed
+
 ## [2.1.2-Beta] - 2020-6-9
 
 ### Changed:

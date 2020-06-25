@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete a LocalPeeringGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new local peering gateway (LPG) for the specified VCN.
     - "This resource has the following action operations in the M(oci_local_peering_gateway_actions) module: connect."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -61,7 +62,7 @@ options:
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the LPG.
             - "For information about why you would associate a route table with an LPG, see
-              L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
+              L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
         type: str
     vcn_id:
         description:
@@ -86,10 +87,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -221,7 +218,7 @@ local_peering_gateway:
             description:
                 - The OCID of the route table the LPG is using.
                 - "For information about why you would associate a route table with an LPG, see
-                  L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
+                  L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
@@ -294,30 +291,24 @@ class LocalPeeringGatewayHelperGen(OCIResourceHelperBase):
             local_peering_gateway_id=self.module.params.get("local_peering_gateway_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
             "vcn_id",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(
             self.client.list_local_peering_gateways, **kwargs
         )
