@@ -32,18 +32,6 @@ class MountTargetFactsHelperCustom:
 
 
 class MountTargetHelperCustom:
-    def list_resources(self):
-        existing_mount_targets_summary = to_dict(
-            super(MountTargetHelperCustom, self).list_resources()
-        )
-        result = [
-            oci_common_utils.call_with_backoff(
-                self.client.get_mount_target, mount_target_id=mount_target["id"],
-            ).data
-            for mount_target in existing_mount_targets_summary
-        ]
-        return result
-
     def get_exclude_attributes(self):
         exclude_attributes = super(
             MountTargetHelperCustom, self
@@ -52,17 +40,3 @@ class MountTargetHelperCustom:
             "hostname_label",
             "ip_address",
         ]
-
-
-class ExportHelperCustom:
-    def list_resources(self):
-        existing_exports_summary = to_dict(
-            super(ExportHelperCustom, self).list_resources()
-        )
-        result = [
-            oci_common_utils.call_with_backoff(
-                self.client.get_export, export_id=export["id"]
-            ).data
-            for export in existing_exports_summary
-        ]
-        return result

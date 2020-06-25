@@ -241,11 +241,11 @@ options:
             - The action to perform on the NetworkSecurityGroupSecurityRule.
         type: str
         required: true
-        choices: ["add", "remove", "update"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "add"
+            - "remove"
+            - "update"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

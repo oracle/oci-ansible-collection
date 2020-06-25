@@ -46,17 +46,6 @@ class InstanceConfigurationHelperCustom:
             self.module, BlockstorageClient
         )
 
-    def list_resources(self):
-        # list only returns summary objects which have very little information. This causes false positives since we
-        # compare only a handful of basic parameters. So do a get call and get the full
-        # model objects for idempotence check.
-        return [
-            self.get_get_fn()(instance_configuration_id=instance_configuration.id).data
-            for instance_configuration in super(
-                InstanceConfigurationHelperCustom, self
-            ).list_resources()
-        ]
-
     def get_instance_configuration_launch_details_from_instance(self, instance):
         launch_details = oci_common_utils.convert_input_data_to_model_class(
             to_dict(instance), InstanceConfigurationLaunchInstanceDetails
@@ -148,21 +137,6 @@ class InstanceConfigurationHelperCustom:
 
 
 class InstanceConfigurationActionsHelperCustom:
-    # Launch method creates an instance but the generated method does not wait until the instance is in running state.
-    # Override and wait until the instance reaches the ready state.
-    # def launch(self):
-    #     instance = super(InstanceConfigurationActionsHelperCustom, self).launch()
-    #     compute_client = oci_config_utils.create_service_client(
-    #         self.module, ComputeClient
-    #     )
-    #     wait_response = oci.wait_until(
-    #         self.client,
-    #         compute_client.get_instance(instance_id=instance.id),
-    #         evaluate_response=lambda response: response.data.lifecycle_state
-    #         in oci_common_utils.DEFAULT_READY_STATES,
-    #         max_wait_seconds=self.get_wait_timeout(),
-    #     )
-    #     return wait_response.data
 
     # instance_configuration launch action returns an instance and not instance_configuration. Currently the base
     # classes do not support custom return field names and use the resource types. Until the feature is added
@@ -174,16 +148,6 @@ class InstanceConfigurationActionsHelperCustom:
         ).prepare_result(*args, **kwargs)
         super_result["instance"] = super_result.pop("instance_configuration", None)
         return super_result
-
-
-class InstancePoolHelperCustom:
-    def list_resources(self):
-        # list only returns summary objects which does not have all the information in the create model. This causes
-        # false positives. So do a get call and get the full model objects for idempotence check.
-        return [
-            self.get_get_fn()(instance_pool_id=instance_pool.id).data
-            for instance_pool in super(InstancePoolHelperCustom, self).list_resources()
-        ]
 
 
 class InstancePoolActionsHelperCustom:

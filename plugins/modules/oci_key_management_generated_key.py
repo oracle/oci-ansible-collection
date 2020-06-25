@@ -24,7 +24,8 @@ short_description: Manage a GeneratedKey resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a GeneratedKey resource in Oracle Cloud Infrastructure
     - For I(state=present), generates a key that you can use to encrypt or decrypt data.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     associated_data:
         description:
@@ -79,10 +80,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
 """
 
@@ -155,6 +152,13 @@ except ImportError:
 
 class GeneratedKeyHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
+
+    def get_module_resource_id(self):
+        return None
+
+    # There is no idempotency for this module (no get or list ops)
+    def get_matching_resource(self):
+        return None
 
     def get_create_model_class(self):
         return GenerateKeyDetails

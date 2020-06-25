@@ -39,10 +39,7 @@ options:
             - "Example: `example_hostname_001`"
             - Required to get a specific hostname.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

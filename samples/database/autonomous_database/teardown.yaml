@@ -5,15 +5,21 @@
 # Apache License v2.0
 # See LICENSE.TXT for details.
 
+# NOTE: Running `teardown.yaml` alone will not delete the autonomous db created in `sample.yaml`. This playbook uses the
+# `autonomous_database_id` parameter that is being set in `sample.yaml`. Please provide the database_id of a database that
+# you intend to delete.
+
 # Delete Autonomous Database
 - name: Delete Autonomous Database
   oci_database_autonomous_database:
      autonomous_database_id: "{{ autonomous_database_id }}"
      state: 'absent'
   register: result
+  when: autonomous_database_id is defined
 
 - name: Assert that specified Autonomous Database is deleted
   assert:
          that:
             - result.changed == True
             - result.autonomous_database.display_name == display_name
+  when: autonomous_database_id is defined

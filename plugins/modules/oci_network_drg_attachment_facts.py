@@ -47,10 +47,7 @@ options:
         description:
             - The OCID of the DRG.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -106,8 +103,10 @@ drg_attachments:
         route_table_id:
             description:
                 - The OCID of the route table the DRG attachment is using.
-                - "For information about why you would associate a route table with a DRG attachment, see
-                  L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)."
+                - "For information about why you would associate a route table with a DRG attachment, see:"
+                - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
+                    * L(Transit Routing: Private Access to Oracle
+                    Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx

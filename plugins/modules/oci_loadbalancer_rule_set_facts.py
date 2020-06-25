@@ -39,10 +39,7 @@ options:
             - Required to get a specific rule_set.
         type: str
         aliases: ["name"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

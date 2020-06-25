@@ -74,32 +74,12 @@ class CompartmentHelperCustom:
             params_copy, self.get_create_model_class()
         )
 
-    def list_resources(self):
-        optional_list_method_params = []
-
+    def get_required_kwargs_for_list(self):
         # the module 'compartment_id' parameter represents the unique identifier for a compartment
         # to be used by update and delete
         # any time we are listing compartments to do an idempotency check or to find a resource by name
         # we want to use 'parent_compartment_id'
-        required_kwargs = {
-            "compartment_id": self.module.params.get("parent_compartment_id")
-        }
-
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
-
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
-        return oci_common_utils.list_all_resources(
-            self.client.list_compartments, **kwargs
-        )
+        return {"compartment_id": self.module.params.get("parent_compartment_id")}
 
 
 class CompartmentFactsHelperCustom:
@@ -261,11 +241,20 @@ class IdentityProviderHelperCustom:
 
 
 class UiPasswordHelperCustom:
-
-    # there is no concept of idempotency for this module
-    # it re-executes create / reset password every time module is invoked
-    def get_matching_resource(self):
-        return None
-
     def is_create(self):
         return True
+
+
+class TagHelperCustom:
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            TagHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        resource = self.get_resource().data
+        if (
+            update_model_dict["validator"]
+            and update_model_dict["validator"]["validator_type"] == "DEFAULT"
+            and resource.validator is None
+        ):
+            update_model_dict["validator"] = None
+        return update_model_dict

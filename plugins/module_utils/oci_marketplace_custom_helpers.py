@@ -3,31 +3,15 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
 # See LICENSE.TXT for details.
-
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
 
-try:
-
-    HAS_OCI_PY_SDK = True
-
-except ImportError:
-    HAS_OCI_PY_SDK = False
-
-
-class HttpProbeHelperCustom:
-    def get_module_resource_id(self):
-        return None
-
-    def list_resources(self):
-        return []
-
-
-class PingProbeHelperCustom:
-    def get_module_resource_id(self):
-        return None
-
-    def list_resources(self):
-        return []
+class AcceptedAgreementHelperCustom:
+    # get model doesn't return `signature` of accepted aggreement. Thus, excluding
+    # `signature` for idempotency.
+    def get_exclude_attributes(self):
+        return super(AcceptedAgreementHelperCustom, self).get_exclude_attributes() + [
+            "signature",
+        ]

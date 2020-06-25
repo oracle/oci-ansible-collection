@@ -30,7 +30,8 @@ description:
     - "- L(Bare metal and virtual machine DB system default
       options,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)
       - L(Exadata DB system default options,https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)"
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -85,9 +86,11 @@ options:
         type: str
     nsg_ids:
         description:
-            - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
               resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
               see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+              **NsgIds restrictions:**
+              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
         type: list
     backup_network_nsg_ids:
         description:
@@ -373,10 +376,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -553,9 +552,11 @@ db_system:
             sample: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
         nsg_ids:
             description:
-                - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
                   resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
                   NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                  **NsgIds restrictions:**
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
             returned: on success
             type: list
             sample: []
@@ -839,32 +840,36 @@ class DbSystemHelperGen(OCIResourceHelperBase):
             db_system_id=self.module.params.get("db_system_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "availability_domain",
-            "display_name",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["availability_domain", "display_name"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_db_systems, **kwargs
         )
@@ -966,7 +971,7 @@ def main():
                             db_name=dict(type="str"),
                             db_unique_name=dict(type="str"),
                             pdb_name=dict(type="str"),
-                            admin_password=dict(type="str", required=True),
+                            admin_password=dict(type="str", required=True, no_log=True),
                             character_set=dict(type="str"),
                             ncharacter_set=dict(type="str"),
                             db_workload=dict(type="str", choices=["OLTP", "DSS"]),
@@ -980,7 +985,7 @@ def main():
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
                             backup_id=dict(type="str"),
-                            backup_tde_password=dict(type="str"),
+                            backup_tde_password=dict(type="str", no_log=True),
                         ),
                     ),
                 ),

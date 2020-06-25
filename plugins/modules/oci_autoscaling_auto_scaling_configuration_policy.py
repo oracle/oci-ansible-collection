@@ -23,7 +23,8 @@ module: oci_autoscaling_auto_scaling_configuration_policy
 short_description: Manage an AutoScalingConfigurationPolicy resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an AutoScalingConfigurationPolicy resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     auto_scaling_configuration_id:
         description:
@@ -144,10 +145,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -382,31 +379,36 @@ class AutoScalingConfigurationPolicyHelperGen(OCIResourceHelperBase):
             auto_scaling_policy_id=self.module.params.get("auto_scaling_policy_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "auto_scaling_configuration_id",
         ]
 
-        optional_list_method_params = [
-            "display_name",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["display_name"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_auto_scaling_policies, **kwargs
         )

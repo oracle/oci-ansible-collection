@@ -43,7 +43,8 @@ description:
       L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm)."
     - "This resource has the following action operations in the M(oci_virtual_circuit_actions) module: bulk_add_virtual_circuit_public_prefixes,
       bulk_delete_virtual_circuit_public_prefixes."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     bandwidth_shape_name:
         description:
@@ -108,9 +109,16 @@ options:
                 type: int
     customer_bgp_asn:
         description:
-            - Your BGP ASN (either public or private). Provide this value only if
+            - Deprecated. Instead use `customerAsn`.
+              If you specify values for both, the request will be rejected.
+        type: int
+    customer_asn:
+        description:
+            - "Your BGP ASN (either public or private). Provide this value only if
               there's a BGP session that goes from your edge router to Oracle.
               Otherwise, leave this empty or null.
+              Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
+            - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
         type: int
     defined_tags:
         description:
@@ -220,10 +228,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -238,6 +242,7 @@ EXAMPLES = """
     bandwidth_shape_name: 10 Gbps
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     customer_bgp_asn: 56
+    customer_asn: 12345
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -360,11 +365,19 @@ virtual_circuit:
                     sample: 200
         customer_bgp_asn:
             description:
-                - The BGP ASN of the network at the other end of the BGP
+                - Deprecated. Instead use `customerAsn`.
+                  If you specify values for both, the request will be rejected.
+            returned: on success
+            type: int
+            sample: 56
+        customer_asn:
+            description:
+                - "The BGP ASN of the network at the other end of the BGP
                   session from Oracle. If the session is between the customer's
                   edge router and Oracle, the value is the customer's ASN. If the BGP
                   session is between the provider's edge router and Oracle, the value
                   is the provider's ASN.
+                  Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
             returned: on success
             type: int
             sample: 56
@@ -508,6 +521,7 @@ virtual_circuit:
             "vlan": 200
         }],
         "customer_bgp_asn": 56,
+        "customer_asn": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -567,31 +581,36 @@ class VirtualCircuitHelperGen(OCIResourceHelperBase):
             virtual_circuit_id=self.module.params.get("virtual_circuit_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "display_name",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["display_name"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_virtual_circuits, **kwargs
         )
@@ -673,6 +692,7 @@ def main():
                 ),
             ),
             customer_bgp_asn=dict(type="int"),
+            customer_asn=dict(type="int"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),

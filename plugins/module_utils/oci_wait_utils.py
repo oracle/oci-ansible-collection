@@ -128,6 +128,18 @@ class LifecycleStateWaiterBase(BaseWaiter):
             and getattr(r.data, "lifecycle_state").lower() in lowered_wait_for_states
         )
 
+    def verify_operation_succeeded(self, wait_response):
+        if wait_response.data and hasattr(wait_response.data, "lifecycle_state"):
+            if (
+                wait_response.data.lifecycle_state
+                in self.resource_helper.get_resource_failed_states()
+            ):
+                self.resource_helper.module.fail_json(
+                    msg="Operation failed as resource entered into a failure state: {failure_state}".format(
+                        failure_state=wait_response.data.lifecycle_state
+                    )
+                )
+
     def get_resource_from_wait_response(self, wait_response):
         return wait_response.data
 
@@ -423,6 +435,8 @@ class CopyObjectWorkRequestWaiter(WorkRequestWaiter):
 
 
 class InstanceConfigurationLaunchInstanceWorkRequestWaiter(WorkRequestWaiter):
+    # launch action creates an instance. So it makes more sense to return the created instance but the default
+    # implementation returns the instance_configuration. So override to return the created instance instead.
     def get_resource_from_wait_response(self, wait_response):
         if not (
             hasattr(wait_response.data, "resources") and wait_response.data.resources
@@ -684,6 +698,16 @@ def get_waiter(
     return NoneWaiter(client, resource_helper, operation_response, wait_for_states)
 
 
+def get_wait_for_states_with_failed_states(wait_for_states, resource_helper):
+    try:
+        resource_failure_states = resource_helper.get_resource_failed_states()
+        if resource_failure_states:
+            wait_for_states = list(set(wait_for_states + resource_failure_states))
+    except NotImplementedError:
+        pass
+    return wait_for_states
+
+
 def call_and_wait(
     call_fn,
     call_fn_args,
@@ -698,6 +722,12 @@ def call_and_wait(
     operation_response = oci_common_utils.call_with_backoff(
         call_fn, *call_fn_args, **call_fn_kwargs
     )
+    # Add the failure states so that when an operation fails and the resource goes into failed state we fail and don't
+    # wait until the timeout. This seems to be a good place to put this instead of duplicating it in multiple places.
+    if waiter_type == LIFECYCLE_STATE_WAITER_KEY:
+        wait_for_states = get_wait_for_states_with_failed_states(
+            wait_for_states, resource_helper
+        )
     waiter = get_waiter(
         waiter_type,
         operation,

@@ -24,7 +24,8 @@ short_description: Manage a Database resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Database resource in Oracle Cloud Infrastructure
     - "This resource has the following action operations in the M(oci_database_actions) module: restore."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     database_id:
         description:
@@ -69,10 +70,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -298,6 +295,26 @@ class DatabaseHelperGen(OCIResourceHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_database, database_id=self.module.params.get("database_id"),
         )
+
+    def get_required_kwargs_for_list(self):
+        required_list_method_params = [
+            "compartment_id",
+            "db_home_id",
+        ]
+
+        return dict(
+            (param, self.module.params[param]) for param in required_list_method_params
+        )
+
+    def get_optional_kwargs_for_list(self):
+        return dict()
+
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+        return oci_common_utils.list_all_resources(self.client.list_databases, **kwargs)
 
     def get_update_model_class(self):
         return UpdateDatabaseDetails

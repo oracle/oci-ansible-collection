@@ -66,11 +66,10 @@ options:
             - The action to perform on the KeyVersion.
         type: str
         required: true
-        choices: ["cancel_key_version_deletion", "schedule_key_version_deletion"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "cancel_key_version_deletion"
+            - "schedule_key_version_deletion"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

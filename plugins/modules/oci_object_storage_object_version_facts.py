@@ -68,10 +68,7 @@ options:
               Value of this parameter should be a comma-separated, case-insensitive list of those field names.
               For example 'name,etag,timeCreated,md5,timeModified'
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

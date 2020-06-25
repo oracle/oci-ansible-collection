@@ -23,7 +23,8 @@ module: oci_object_storage_object_lifecycle_policy
 short_description: Manage an ObjectLifecyclePolicy resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an ObjectLifecyclePolicy resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -134,10 +135,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

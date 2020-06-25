@@ -40,10 +40,7 @@ options:
             - The OCID of an asset (e.g. a volume).
             - Required to list multiple volume_backup_policy_assignments.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

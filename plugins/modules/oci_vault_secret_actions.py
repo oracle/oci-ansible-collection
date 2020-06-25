@@ -46,11 +46,10 @@ options:
             - The action to perform on the Secret.
         type: str
         required: true
-        choices: ["cancel_secret_deletion", "schedule_secret_deletion"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "cancel_secret_deletion"
+            - "schedule_secret_deletion"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -45,10 +45,7 @@ options:
             - "Example: `10.0.0.3:8080`"
         type: str
         required: true
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

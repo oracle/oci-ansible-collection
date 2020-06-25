@@ -23,7 +23,8 @@ module: oci_database_maintenance_run
 short_description: Manage a MaintenanceRun resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a MaintenanceRun resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     maintenance_run_id:
         description:
@@ -35,10 +36,6 @@ options:
         description:
             - If set to false, skips the Maintenance Run.
         type: bool
-    compartment_id:
-        description:
-            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
     state:
         description:
             - The state of the MaintenanceRun.
@@ -47,10 +44,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -201,29 +194,23 @@ class MaintenanceRunHelperGen(OCIResourceHelperBase):
             maintenance_run_id=self.module.params.get("maintenance_run_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(
             self.client.list_maintenance_runs, **kwargs
         )
@@ -263,7 +250,6 @@ def main():
         dict(
             maintenance_run_id=dict(aliases=["id"], type="str", required=True),
             is_enabled=dict(type="bool"),
-            compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

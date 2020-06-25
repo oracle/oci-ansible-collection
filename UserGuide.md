@@ -62,3 +62,6 @@ There would be no ambiguity and it would only ever match the 50 GB block volume.
 It is important to note that matching these extra fields only comes into play if *all* other fields match *and* you did not specify optional values with defaults.  Thus, this corner case can be avoided very easily by doing either of the following:
 - Use unique attributes or tags for resources of the same type so there is no potential for ambiguity in matching resources
 - Specify optional values that you care about instead of relying on server side defaults
+
+### Support for `key_by` option
+All modules support the key_by option. It takes a list of comma-separated attributes of the resource which should be used to uniquely identify the resource. By default, all the attributes of a resource are used to uniquely identify a resource.

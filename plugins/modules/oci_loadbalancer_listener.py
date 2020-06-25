@@ -24,7 +24,8 @@ short_description: Manage a Listener resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Listener resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a listener to a load balancer.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     default_backend_set_name:
         description:
@@ -121,10 +122,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 

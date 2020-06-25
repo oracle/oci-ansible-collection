@@ -26,7 +26,8 @@ description:
     - For I(state=present), encrypts data using the given L(EncryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/EncryptDataDetails)
       resource.
       Plaintext included in the example request is a base64-encoded value of a UTF-8 string.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     associated_data:
         description:
@@ -62,10 +63,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
 """
 
@@ -117,6 +114,13 @@ except ImportError:
 
 class EncryptedDataHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
+
+    def get_module_resource_id(self):
+        return None
+
+    # There is no idempotency for this module (no get or list ops)
+    def get_matching_resource(self):
+        return None
 
     def get_create_model_class(self):
         return EncryptDataDetails

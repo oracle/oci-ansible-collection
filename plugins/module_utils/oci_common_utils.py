@@ -54,10 +54,11 @@ DEFAULT_READY_STATES = [
 ]
 
 CANCELLED_STATES = ["CANCELLED"]
+FAILED_STATES = ["FAILED"]
 
 WORK_REQUEST_COMPLETED_STATES = ["SUCCEEDED", "SUCCESS", "FAILED", "COMPLETED"]
 WORK_REQUEST_SUCCESS_STATES = ["SUCCEEDED", "SUCCESS"]
-WORK_REQUEST_FAILED_STATES = ["FAILED"]
+WORK_REQUEST_FAILED_STATES = FAILED_STATES
 
 # If a resource is in one of these states, it would be considered deleted
 DEFAULT_TERMINATED_STATES = ["TERMINATED", "DETACHED", "DELETED"]
@@ -96,6 +97,7 @@ RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {"waas_policy": "waas"}
 
 CREATE_OPERATION_KEY = "CREATE"
 UPDATE_OPERATION_KEY = "UPDATE"
+PATCH_OPERATION_KEY = "PATCH"
 DELETE_OPERATION_KEY = "DELETE"
 ACTION_OPERATION_KEY = "ACTION"
 ANY_OPERATION_KEY = "ANY"
@@ -199,7 +201,7 @@ def list_all_resources(target_fn, **kwargs):
 # compare_dicts is used to compare create and update model dicts with the existing resource. Since the existing
 # resource might have more parameters (for ex: OCID, time_created etc) than the information we provide during the
 # creation, we do a subset match of the dictionary.
-# But if a parameter present in create/update model and not in existing resource, it is considered a mismatch by default
+# But if a parameter present in the create/update model and not in existing resource, it is considered a mismatch by default
 # This behaviour can be changed by setting the flag `ignore_attr_if_not_in_target`.
 def compare_dicts(
     source_dict, target_dict, attrs=None, ignore_attr_if_not_in_target=False
@@ -284,7 +286,7 @@ def compare_dicts(
     return True
 
 
-def compare_lists(source_list, target_list):
+def compare_lists(source_list, target_list, ignore_attr_if_not_in_target=False):
     if source_list is None or target_list is None:
         _debug(
             "list is not subset because source list: {source_list} or target list: {target_list} is None".format(
@@ -308,7 +310,16 @@ def compare_lists(source_list, target_list):
         )
         return False
 
-    if all([is_in_list(target_list, element) for element in source_list]):
+    if all(
+        [
+            is_in_list(
+                target_list,
+                element,
+                ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+            )
+            for element in source_list
+        ]
+    ):
         return True
 
     _debug(
@@ -317,15 +328,29 @@ def compare_lists(source_list, target_list):
     return False
 
 
-def is_in_list(target_list, element):
+def is_in_list(target_list, element, ignore_attr_if_not_in_target=False):
     if isinstance(element, dict):
         if any(
-            [compare_dicts(element, target_element) for target_element in target_list]
+            [
+                compare_dicts(
+                    element,
+                    target_element,
+                    ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+                )
+                for target_element in target_list
+            ]
         ):
             return True
     elif isinstance(element, list):
         if any(
-            [compare_lists(element, target_element) for target_element in target_list]
+            [
+                compare_lists(
+                    element,
+                    target_element,
+                    ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+                )
+                for target_element in target_list
+            ]
         ):
             return True
     else:

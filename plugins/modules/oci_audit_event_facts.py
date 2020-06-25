@@ -53,10 +53,7 @@ options:
               granularity to the minute. Seconds (and milliseconds, if included) must be set to `0`.
         type: str
         required: true
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

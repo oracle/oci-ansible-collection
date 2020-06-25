@@ -23,7 +23,8 @@ module: oci_network_ip_sec_connection_tunnel
 short_description: Manage an IpSecConnectionTunnel resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an IpSecConnectionTunnel resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
@@ -50,6 +51,13 @@ options:
         choices:
             - "BGP"
             - "STATIC"
+    ike_version:
+        description:
+            - Internet Key Exchange protocol version.
+        type: str
+        choices:
+            - "V1"
+            - "V2"
     bgp_session_config:
         description:
             - Information for establishing a BGP session for the IPSec tunnel.
@@ -99,10 +107,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -112,6 +116,7 @@ EXAMPLES = """
     ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
     display_name: display_name_example
     routing: BGP
+    ike_version: V1
 
 - name: Update ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel:
@@ -159,6 +164,12 @@ ip_sec_connection_tunnel:
             returned: on success
             type: string
             sample: UP
+        ike_version:
+            description:
+                - Internet Key Exchange protocol version.
+            returned: on success
+            type: string
+            sample: V1
         lifecycle_state:
             description:
                 - The tunnel's lifecycle state.
@@ -253,6 +264,7 @@ ip_sec_connection_tunnel:
         "vpn_ip": "192.0.2.5",
         "cpe_ip": "192.0.2.157",
         "status": "UP",
+        "ike_version": "V1",
         "lifecycle_state": "PROVISIONING",
         "display_name": "display_name_example",
         "bgp_session_info": {
@@ -306,29 +318,23 @@ class IpSecConnectionTunnelHelperGen(OCIResourceHelperBase):
             tunnel_id=self.module.params.get("tunnel_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "ipsc_id",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(
             self.client.list_ip_sec_connection_tunnels, **kwargs
         )
@@ -373,6 +379,7 @@ def main():
             tunnel_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             routing=dict(type="str", choices=["BGP", "STATIC"]),
+            ike_version=dict(type="str", choices=["V1", "V2"]),
             bgp_session_config=dict(
                 type="dict",
                 options=dict(

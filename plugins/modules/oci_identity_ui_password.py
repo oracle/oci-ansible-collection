@@ -32,7 +32,8 @@ description:
       user.
     - "**Note:** The user's Console login is the unique name you specified when you created the user
       (see L(CreateUser,https://docs.cloud.oracle.com/#/en/identity/20160918/User/CreateUser))."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     user_id:
         description:
@@ -47,10 +48,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource ]
 """
 
@@ -129,6 +126,13 @@ except ImportError:
 
 class UiPasswordHelperGen(OCIResourceHelperBase):
     """Supported operations: create"""
+
+    def get_module_resource_id(self):
+        return None
+
+    # There is no idempotency for this module (no get or list ops)
+    def get_matching_resource(self):
+        return None
 
     def create_resource(self):
         return oci_wait_utils.call_and_wait(

@@ -35,7 +35,8 @@ description:
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
     - New policies take effect typically within 10 seconds.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -97,10 +98,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -278,29 +275,23 @@ class PolicyHelperGen(OCIResourceHelperBase):
             self.client.get_policy, policy_id=self.module.params.get("policy_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = []
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_list_method_params
-            if self.module.params.get(param) is not None
-            and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
-            )
-        )
+    def get_optional_kwargs_for_list(self):
+        return dict()
 
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
         kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
-
         return oci_common_utils.list_all_resources(self.client.list_policies, **kwargs)
 
     def get_create_model_class(self):

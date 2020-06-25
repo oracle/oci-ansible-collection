@@ -40,33 +40,6 @@ class KeyVersionHelperCustom:
         return True
 
 
-class GeneratedKeyHelperCustom:
-    def get_module_resource_id(self):
-        return None
-
-    # there is no concept of idempotency for this module
-    def get_matching_resource(self):
-        return None
-
-
-class EncryptedDataHelperCustom:
-    def get_module_resource_id(self):
-        return None
-
-    # there is no concept of idempotency for this module
-    def get_matching_resource(self):
-        return None
-
-
-class DecryptedDataHelperCustom:
-    def get_module_resource_id(self):
-        return None
-
-    # there is no concept of idempotency for this module
-    def get_matching_resource(self):
-        return None
-
-
 class VaultActionsHelperCustom:
     def is_action_necessary(self, action, resource):
         if kms_is_action_necessary(self, action, resource) is False:

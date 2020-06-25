@@ -11,13 +11,13 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
     oci_common_utils,
+    oci_custom_helpers_utils,
 )
 
 from ansible_collections.oracle.oci.plugins.module_utils.oci_common_utils import (
     pretty_print_json,
 )
 
-import inspect
 import os
 
 try:
@@ -63,6 +63,9 @@ class OCIResourceCommonBase:
             return False
         return False
 
+    def get_resource_failed_states(self):
+        return oci_common_utils.FAILED_STATES
+
 
 class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
@@ -87,6 +90,18 @@ class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def get_resource(self):
         """Expected to be generated inside the module."""
         raise NotImplementedError("get not supported by {0}".format(self.resource_type))
+
+    def get_required_kwargs_for_list(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError(
+            "list not supported by {0}".format(self.resource_type)
+        )
+
+    def get_optional_kwargs_for_list(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError(
+            "list not supported by {0}".format(self.resource_type)
+        )
 
     def list_resources(self):
         """Expected to be generated inside the module."""
@@ -283,6 +298,18 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         """Expected to be generated inside the module."""
         raise NotImplementedError("get not supported by {0}".format(self.resource_type))
 
+    def get_required_kwargs_for_list(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError(
+            "list not supported by {0}".format(self.resource_type)
+        )
+
+    def get_optional_kwargs_for_list(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError(
+            "list not supported by {0}".format(self.resource_type)
+        )
+
     def list_resources(self):
         """Expected to be generated inside the module."""
         raise NotImplementedError(
@@ -301,6 +328,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             "update not supported by {0}".format(self.resource_type)
         )
 
+    def patch_resource(self):
+        """Expected to be generated inside the module."""
+        raise NotImplementedError(
+            "patch not supported by {0}".format(self.resource_type)
+        )
+
     def delete_resource(self):
         """Expected to be generated inside the module."""
         raise NotImplementedError(
@@ -312,6 +345,10 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         pass
 
     def get_update_model_class(self):
+        """Expected to be generated inside the module."""
+        pass
+
+    def get_patch_model_class(self):
         """Expected to be generated inside the module."""
         pass
 
@@ -367,6 +404,13 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         return True
 
     def is_update(self):
+        if not self.module.params.get("state") == "present":
+            return False
+        if not self.get_module_resource_id():
+            return False
+        return True
+
+    def is_patch(self):
         if not self.module.params.get("state") == "present":
             return False
         if not self.get_module_resource_id():
@@ -515,8 +559,22 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             self.module.params, self.get_update_model_class()
         )
 
+    def get_patch_model(self):
+        return oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, self.get_patch_model_class()
+        )
+
     def get_update_model_dict_for_idempotence_check(self, update_model):
         """This function allows any customisations that are needed in the update model for comparison during the
+        idempotence check.
+
+        This can be done for many reasons. For ex: some resource have different names for same parameter in update
+        and get model making the idempotence logic to fail or we may need to update a value since the server computes
+        and stores it differently etc."""
+        return to_dict(update_model)
+
+    def get_patch_model_dict_for_idempotence_check(self, update_model):
+        """This function allows any customisations that are needed in the patch model for comparison during the
         idempotence check.
 
         This can be done for many reasons. For ex: some resource have different names for same parameter in update
@@ -674,14 +732,24 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 resource=to_dict(created_resource),
             )
 
-    def is_update_necessary(self):
-        current_resource_dict = to_dict(self.get_resource().data)
+    def get_existing_resource_dict_for_update(self):
+        try:
+            get_response = self.get_resource()
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: {0}".format(se.message)
+            )
+        else:
+            return to_dict(get_response.data)
+
+    def is_update_necessary(self, existing_resource_dict):
+
         update_model = self.get_update_model()
         update_model_dict = self.get_update_model_dict_for_idempotence_check(
             update_model
         )
         update_is_necessary = not oci_common_utils.compare_dicts(
-            update_model_dict, current_resource_dict
+            update_model_dict, existing_resource_dict
         )
 
         _debug(
@@ -693,18 +761,26 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
         return update_is_necessary
 
+    def is_patch_necessary(self, existing_resource_dict):
+
+        patch_model = self.get_patch_model()
+        patch_model_dict = self.get_patch_model_dict_for_idempotence_check(patch_model)
+        patch_is_necessary = not oci_common_utils.compare_dicts(
+            patch_model_dict, existing_resource_dict
+        )
+
+        _debug(
+            "is patch necessary for {resource_type}: {patch_is_necessary}".format(
+                resource_type=self.resource_type, patch_is_necessary=patch_is_necessary,
+            )
+        )
+
+        return patch_is_necessary
+
     def update(self):
 
-        try:
-            get_response = self.get_resource()
-        except ServiceError as se:
-            self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message)
-            )
-        else:
-            resource = to_dict(get_response.data)
-
-        is_update_necessary = self.is_update_necessary()
+        resource = self.get_existing_resource_dict_for_update()
+        is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
                 changed=False, resource_type=self.resource_type, resource=resource
@@ -728,6 +804,43 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 changed=True,
                 resource_type=self.resource_type,
                 resource=to_dict(updated_resource),
+            )
+
+    def patch(self):
+
+        try:
+            get_response = self.get_resource()
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: {0}".format(se.message)
+            )
+        else:
+            resource = to_dict(get_response.data)
+
+        is_update_necessary = self.is_patch_necessary(resource)
+        if not is_update_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=resource
+            )
+
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=resource
+            )
+
+        try:
+            patched_resource = self.patch_resource()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Patching resource failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(patched_resource),
             )
 
     def delete(self):
@@ -815,7 +928,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             resource = to_dict(get_response.data)
 
         self.set_required_ids_in_module_when_name_is_identifier(resource)
-        is_update_necessary = self.is_update_necessary()
+        is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
                 changed=False, resource_type=self.resource_type, resource=resource
@@ -839,6 +952,44 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 changed=True,
                 resource_type=self.resource_type,
                 resource=to_dict(updated_resource),
+            )
+
+    def patch_using_name(self):
+
+        try:
+            get_response = self.get_resource_using_name()
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Getting resource failed with exception: {0}".format(se.message)
+            )
+        else:
+            resource = to_dict(get_response.data)
+
+        self.set_required_ids_in_module_when_name_is_identifier(resource)
+        is_patch_necessary = self.is_patch_necessary(resource)
+        if not is_patch_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=resource
+            )
+
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=resource
+            )
+
+        try:
+            patched_resource = self.patch_resource()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Patching resource failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(patched_resource),
             )
 
     def delete_using_name(self):
@@ -895,66 +1046,13 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             )
 
 
-def get_custom_class_mapping(modules):
-    """Find the custom classes in the given modules and return a mapping with class name as key and class as value"""
-    custom_class_mapping = {}
-    for module in modules:
-        for obj_name in dir(module):
-            if not obj_name.endswith("Custom"):
-                continue
-            obj = getattr(module, obj_name)
-            if inspect.isclass(obj):
-                custom_class_mapping[obj_name] = obj
-    return custom_class_mapping
-
-
-# Due to the generalisations made about the resource APIs or because of the ease of use enhancements, the generated
-# modules might not always be perfect. The custom behaviour is handled by having a custom class which is used to
-# override the generated behaviour. Create a mapping of those custom classes so that we can dynamically override
-# the behaviour.
-# import the customisation files.
-from ansible_collections.oracle.oci.plugins.module_utils import (
-    oci_identity_custom_helpers,
-    oci_network_custom_helpers,
-    oci_compute_custom_helpers,
-    oci_blockstorage_custom_helpers,
-    oci_compute_management_custom_helpers,
-    oci_audit_custom_helpers,
-    oci_object_storage_custom_helpers,
-    oci_key_management_custom_helpers,
-    oci_file_storage_custom_helpers,
-    oci_healthchecks_custom_helpers,
-    oci_container_engine_custom_helpers,
-    oci_load_balancer_custom_helpers,
-    oci_database_custom_helpers,
-)  # noqa
-
-custom_helper_mapping = get_custom_class_mapping(
-    [
-        oci_identity_custom_helpers,
-        oci_network_custom_helpers,
-        oci_compute_custom_helpers,
-        oci_blockstorage_custom_helpers,
-        oci_compute_management_custom_helpers,
-        oci_audit_custom_helpers,
-        oci_object_storage_custom_helpers,
-        oci_key_management_custom_helpers,
-        oci_file_storage_custom_helpers,
-        oci_healthchecks_custom_helpers,
-        oci_container_engine_custom_helpers,
-        oci_load_balancer_custom_helpers,
-        oci_database_custom_helpers,
-    ]
-)
-
-
 class DefaultHelperCustom:
     """Default class with no customizations"""
 
 
 def get_custom_class(custom_class_name):
     """Return the custom class from mapping using the given name if exists, else return the default custom class."""
-    custom_class = custom_helper_mapping.get(custom_class_name)
+    custom_class = oci_custom_helpers_utils.custom_helper_mapping.get(custom_class_name)
     if not custom_class:
         return DefaultHelperCustom
     return custom_class

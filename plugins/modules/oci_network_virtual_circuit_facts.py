@@ -77,10 +77,7 @@ options:
             - "INACTIVE"
             - "TERMINATING"
             - "TERMINATED"
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -191,11 +188,19 @@ virtual_circuits:
                     sample: 200
         customer_bgp_asn:
             description:
-                - The BGP ASN of the network at the other end of the BGP
+                - Deprecated. Instead use `customerAsn`.
+                  If you specify values for both, the request will be rejected.
+            returned: on success
+            type: int
+            sample: 56
+        customer_asn:
+            description:
+                - "The BGP ASN of the network at the other end of the BGP
                   session from Oracle. If the session is between the customer's
                   edge router and Oracle, the value is the customer's ASN. If the BGP
                   session is between the provider's edge router and Oracle, the value
                   is the provider's ASN.
+                  Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
             returned: on success
             type: int
             sample: 56
@@ -339,6 +344,7 @@ virtual_circuits:
             "vlan": 200
         }],
         "customer_bgp_asn": 56,
+        "customer_asn": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},

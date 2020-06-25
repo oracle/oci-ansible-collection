@@ -411,11 +411,9 @@ options:
             - The action to perform on the InstanceConfiguration.
         type: str
         required: true
-        choices: ["launch"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "launch"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

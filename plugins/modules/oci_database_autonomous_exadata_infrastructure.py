@@ -24,7 +24,8 @@ short_description: Manage an AutonomousExadataInfrastructure resource in Oracle 
 description:
     - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), launches a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -171,10 +172,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -419,6 +416,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import LaunchAutonomousExadataInfrastructureDetails
     from oci.database.models import UpdateAutonomousExadataInfrastructureDetails
@@ -430,6 +428,12 @@ except ImportError:
 
 class AutonomousExadataInfrastructureHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def __init__(self, *args, **kwargs):
+        super(AutonomousExadataInfrastructureHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     def get_module_resource_id_param(self):
         return "autonomous_exadata_infrastructure_id"
@@ -448,32 +452,36 @@ class AutonomousExadataInfrastructureHelperGen(OCIResourceHelperBase):
             ),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "availability_domain",
-            "display_name",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["availability_domain", "display_name"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_autonomous_exadata_infrastructures, **kwargs
         )
@@ -489,11 +497,11 @@ class AutonomousExadataInfrastructureHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 launch_autonomous_exadata_infrastructure_details=create_details,
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -510,11 +518,11 @@ class AutonomousExadataInfrastructureHelperGen(OCIResourceHelperBase):
                 ),
                 update_autonomous_exadata_infrastructures_details=update_details,
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def delete_resource(self):
@@ -526,11 +534,11 @@ class AutonomousExadataInfrastructureHelperGen(OCIResourceHelperBase):
                     "autonomous_exadata_infrastructure_id"
                 ),
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_terminated_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
 

@@ -21,7 +21,7 @@ class ModuleDocFragment(object):
             type: bool
         key_by:
             description: The list of comma-separated attributes of this resource which should be used to uniquely
-                         identify an instance of the resource. By default, all the attributes of a resource except
-                         I(freeform_tags) are used to uniquely identify a resource.
+                         identify an instance of the resource. By default, all the attributes of a resource are
+                         used to uniquely identify a resource.
             type: list
     """

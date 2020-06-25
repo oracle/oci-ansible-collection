@@ -37,11 +37,9 @@ options:
             - The action to perform on the IdentityProvider.
         type: str
         required: true
-        choices: ["reset_idp_scim_client"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "reset_idp_scim_client"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

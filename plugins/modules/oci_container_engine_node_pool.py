@@ -24,7 +24,8 @@ short_description: Manage a NodePool resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a NodePool resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new node pool.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -55,9 +56,28 @@ options:
         type: dict
     node_image_name:
         description:
-            - The name of the image running on the nodes in the node pool.
-            - Required for create using I(state=present).
+            - Deprecated. Use `nodeSourceDetails` instead.
+              If you specify values for both, this value is ignored.
+              The name of the image running on the nodes in the node pool.
         type: str
+    node_source_details:
+        description:
+            - Specify the source to use to launch nodes in the node pool. Currently, image is the only supported source.
+        type: dict
+        suboptions:
+            source_type:
+                description:
+                    - The source type for the node.
+                      Use `IMAGE` when specifying an OCID of an image.
+                type: str
+                choices:
+                    - "IMAGE"
+                required: true
+            image_id:
+                description:
+                    - The OCID of the image used to boot the node.
+                type: str
+                required: true
     node_shape:
         description:
             - The name of the node shape of the nodes in the node pool.
@@ -137,10 +157,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -151,7 +167,6 @@ EXAMPLES = """
     cluster_id: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
     name: My Node Pool
     kubernetes_version: v1.9.4
-    node_image_name: Oracle-Linux-7.4
     node_shape: VM.Standard2.4
 
 - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -225,16 +240,41 @@ node_pool:
             sample: {}
         node_image_id:
             description:
-                - The OCID of the image running on the nodes in the node pool.
+                - Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
             returned: on success
             type: string
             sample: ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa
         node_image_name:
             description:
-                - The name of the image running on the nodes in the node pool.
+                - Deprecated. see `nodeSource`. The name of the image running on the nodes in the node pool.
             returned: on success
             type: string
             sample: Oracle-Linux-7.4
+        node_source:
+            description:
+                - Source running on the nodes in the node pool.
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - The source type of this option.
+                          `IMAGE` means the OCID is of an image.
+                    returned: on success
+                    type: string
+                    sample: IMAGE
+                source_name:
+                    description:
+                        - The user-friendly name of the entity corresponding to the OCID.
+                    returned: on success
+                    type: string
+                    sample: source_name_example
+                image_id:
+                    description:
+                        - The OCID of the image.
+                    returned: on success
+                    type: string
+                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
         node_shape:
             description:
                 - The name of the node shape of the nodes in the node pool.
@@ -313,6 +353,18 @@ node_pool:
                     returned: on success
                     type: string
                     sample: ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                fault_domain:
+                    description:
+                        - The fault domain of this node.
+                    returned: on success
+                    type: string
+                    sample: FAULT-DOMAIN-1
+                private_ip:
+                    description:
+                        - The private IP address of this node.
+                    returned: on success
+                    type: string
+                    sample: 10.0.1.1
                 public_ip:
                     description:
                         - The public IP address of this node.
@@ -407,6 +459,11 @@ node_pool:
         "node_metadata": {},
         "node_image_id": "ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa",
         "node_image_name": "Oracle-Linux-7.4",
+        "node_source": {
+            "source_type": "IMAGE",
+            "source_name": "source_name_example",
+            "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "node_shape": "VM.Standard2.4",
         "initial_node_labels": [{
             "key": "mykey",
@@ -421,6 +478,8 @@ node_pool:
             "availability_domain": "Uocm:PHX-AD-1",
             "subnet_id": "ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit",
             "node_pool_id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
+            "fault_domain": "FAULT-DOMAIN-1",
+            "private_ip": "10.0.1.1",
             "public_ip": "129.1.2.3",
             "node_error": {
                 "code": "LimitExceeded",
@@ -479,32 +538,36 @@ class NodePoolHelperGen(OCIResourceHelperBase):
             node_pool_id=self.module.params.get("node_pool_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "cluster_id",
-            "name",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["cluster_id", "name"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_node_pools, **kwargs
         )
@@ -576,6 +639,13 @@ def main():
             kubernetes_version=dict(type="str"),
             node_metadata=dict(type="dict"),
             node_image_name=dict(type="str"),
+            node_source_details=dict(
+                type="dict",
+                options=dict(
+                    source_type=dict(type="str", required=True, choices=["IMAGE"]),
+                    image_id=dict(type="str", required=True),
+                ),
+            ),
             node_shape=dict(type="str"),
             initial_node_labels=dict(
                 type="list",

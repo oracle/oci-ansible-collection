@@ -31,7 +31,8 @@ description:
     - "You may optionally specify a *display name* for the service gateway, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_service_gateway_actions) module: attach_service_id, detach_service_id."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -60,6 +61,15 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
         type: dict
+    route_table_id:
+        description:
+            - The OCID of the route table the service gateway will use.
+            - If you don't specify a route table here, the service gateway is created without an associated route
+              table. The Networking service does NOT automatically associate the attached VCN's default route table
+              with the service gateway.
+            - "For information about why you would associate a route table with a service gateway, see
+              L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)."
+        type: str
     services:
         description:
             - List of the OCIDs of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects to
@@ -106,10 +116,6 @@ options:
         required: false
         default: 'present'
         choices: ["present", "absent"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable_resource, oracle.oci.oracle_wait_options ]
 """
 
@@ -127,6 +133,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
     services:
     - service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
     block_traffic: true
@@ -208,6 +215,14 @@ service_gateway:
             returned: on success
             type: string
             sample: PROVISIONING
+        route_table_id:
+            description:
+                - "The OCID of the route table the service gateway is using.
+                  For information about why you would associate a route table with a service gateway, see
+                  L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)."
+            returned: on success
+            type: string
+            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         services:
             description:
                 - List of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
@@ -251,6 +266,7 @@ service_gateway:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "services": [{
             "service_id": "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx",
             "service_name": "service_name_example"
@@ -298,31 +314,36 @@ class ServiceGatewayHelperGen(OCIResourceHelperBase):
             service_gateway_id=self.module.params.get("service_gateway_id"),
         )
 
-    def list_resources(self):
+    def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
         ]
 
-        optional_list_method_params = [
-            "vcn_id",
-        ]
-
-        required_kwargs = dict(
+        return dict(
             (param, self.module.params[param]) for param in required_list_method_params
         )
 
-        optional_kwargs = dict(
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["vcn_id"]
+
+        return dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
             if self.module.params.get(param) is not None
             and (
-                not self.module.params.get("key_by")
-                or param in self.module.params.get("key_by")
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
             )
         )
 
-        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+    def list_resources(self):
 
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
         return oci_common_utils.list_all_resources(
             self.client.list_service_gateways, **kwargs
         )
@@ -394,6 +415,7 @@ def main():
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
+            route_table_id=dict(type="str"),
             services=dict(
                 type="list",
                 elements="dict",

@@ -63,10 +63,7 @@ options:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
         type: str
         required: true
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

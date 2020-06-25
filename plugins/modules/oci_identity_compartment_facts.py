@@ -71,10 +71,7 @@ options:
               and all compartments and subcompartments in the tenancy are
               returned depending on the the setting of `accessLevel`.
         type: bool
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

@@ -23,7 +23,8 @@ module: oci_network_ip_sec_connection_tunnel_shared_secret
 short_description: Manage an IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
@@ -50,10 +51,6 @@ options:
         required: false
         default: 'present'
         choices: ["present"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

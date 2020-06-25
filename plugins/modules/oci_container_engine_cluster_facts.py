@@ -68,10 +68,7 @@ options:
             - "ID"
             - "NAME"
             - "TIME_CREATED"
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -177,6 +174,18 @@ clusters:
                             returned: on success
                             type: bool
                             sample: true
+                admission_controller_options:
+                    description:
+                        - Configurable cluster admission controllers
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_pod_security_policy_enabled:
+                            description:
+                                - Whether or not to enable the Pod Security Policy admission controller.
+                            returned: on success
+                            type: bool
+                            sample: false
         metadata:
             description:
                 - Metadata about the cluster.
@@ -283,6 +292,9 @@ clusters:
             "add_ons": {
                 "is_kubernetes_dashboard_enabled": true,
                 "is_tiller_enabled": true
+            },
+            "admission_controller_options": {
+                "is_pod_security_policy_enabled": false
             }
         },
         "metadata": {

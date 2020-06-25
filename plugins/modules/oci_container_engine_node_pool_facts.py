@@ -61,10 +61,7 @@ options:
             - "ID"
             - "NAME"
             - "TIME_CREATED"
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -124,16 +121,41 @@ node_pools:
             sample: {}
         node_image_id:
             description:
-                - The OCID of the image running on the nodes in the node pool.
+                - Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
             returned: on success
             type: string
             sample: ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa
         node_image_name:
             description:
-                - The name of the image running on the nodes in the node pool.
+                - Deprecated. see `nodeSource`. The name of the image running on the nodes in the node pool.
             returned: on success
             type: string
             sample: Oracle-Linux-7.4
+        node_source:
+            description:
+                - Source running on the nodes in the node pool.
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - The source type of this option.
+                          `IMAGE` means the OCID is of an image.
+                    returned: on success
+                    type: string
+                    sample: IMAGE
+                source_name:
+                    description:
+                        - The user-friendly name of the entity corresponding to the OCID.
+                    returned: on success
+                    type: string
+                    sample: source_name_example
+                image_id:
+                    description:
+                        - The OCID of the image.
+                    returned: on success
+                    type: string
+                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
         node_shape:
             description:
                 - The name of the node shape of the nodes in the node pool.
@@ -212,6 +234,18 @@ node_pools:
                     returned: on success
                     type: string
                     sample: ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                fault_domain:
+                    description:
+                        - The fault domain of this node.
+                    returned: on success
+                    type: string
+                    sample: FAULT-DOMAIN-1
+                private_ip:
+                    description:
+                        - The private IP address of this node.
+                    returned: on success
+                    type: string
+                    sample: 10.0.1.1
                 public_ip:
                     description:
                         - The public IP address of this node.
@@ -306,6 +340,11 @@ node_pools:
         "node_metadata": {},
         "node_image_id": "ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa",
         "node_image_name": "Oracle-Linux-7.4",
+        "node_source": {
+            "source_type": "IMAGE",
+            "source_name": "source_name_example",
+            "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "node_shape": "VM.Standard2.4",
         "initial_node_labels": [{
             "key": "mykey",
@@ -320,6 +359,8 @@ node_pools:
             "availability_domain": "Uocm:PHX-AD-1",
             "subnet_id": "ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit",
             "node_pool_id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
+            "fault_domain": "FAULT-DOMAIN-1",
+            "private_ip": "10.0.1.1",
             "public_ip": "129.1.2.3",
             "node_error": {
                 "code": "LimitExceeded",

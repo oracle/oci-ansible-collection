@@ -36,10 +36,7 @@ options:
         description:
             - The OCID of the compartment.
         type: str
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -75,14 +72,46 @@ node_pool_options:
             sample: []
         images:
             description:
-                - Available image names.
+                - Deprecated. See sources.
+                  When creating a node pool using the `CreateNodePoolDetails` object, only image names contained in this
+                  property can be passed to the `nodeImageName` property.
             returned: on success
             type: list
             sample: []
+        sources:
+            description:
+                - Available source of the node.
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - The source type of this option.
+                          `IMAGE` means the OCID is of an image.
+                    returned: on success
+                    type: string
+                    sample: IMAGE
+                source_name:
+                    description:
+                        - The user-friendly name of the entity corresponding to the OCID.
+                    returned: on success
+                    type: string
+                    sample: source_name_example
+                image_id:
+                    description:
+                        - The OCID of the image.
+                    returned: on success
+                    type: string
+                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "kubernetes_versions": [],
         "shapes": [],
-        "images": []
+        "images": [],
+        "sources": [{
+            "source_type": "IMAGE",
+            "source_name": "source_name_example",
+            "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        }]
     }
 """
 

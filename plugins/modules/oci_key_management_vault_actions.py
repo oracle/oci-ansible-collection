@@ -62,11 +62,10 @@ options:
             - The action to perform on the Vault.
         type: str
         required: true
-        choices: ["cancel_vault_deletion", "schedule_vault_deletion"]
-author:
-    - Manoj Meda (@manojmeda)
-    - Mike Ross (@mross22)
-    - Nabeel Al-Saber (@nalsaber)
+        choices:
+            - "cancel_vault_deletion"
+            - "schedule_vault_deletion"
+author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
