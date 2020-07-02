@@ -24,7 +24,8 @@ short_description: Fetches details about a NodePoolOptions resource in Oracle Cl
 description:
     - Fetches details about a NodePoolOptions resource in Oracle Cloud Infrastructure
     - Get options available for node pools.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     node_pool_option_id:
         description:
@@ -36,7 +37,6 @@ options:
         description:
             - The OCID of the compartment.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

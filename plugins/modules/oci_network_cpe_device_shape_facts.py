@@ -33,9 +33,9 @@ description:
     - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
         * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
         * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)"
-version_added: "2.5"
-options: {}
+version_added: "2.9"
 author: Oracle (@oracle)
+options: {}
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -30,7 +30,8 @@ description:
       Oracle-provided images, then all custom images.
     - The order of images returned may change when new images are released.
     - If I(image_id) is specified, the details of a single Image will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     image_id:
         description:
@@ -94,7 +95,6 @@ options:
             - "EXPORTING"
             - "DISABLED"
             - "DELETED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

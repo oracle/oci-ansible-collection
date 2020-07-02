@@ -27,7 +27,8 @@ description:
     - For I(action=schedule_secret_version_deletion), schedules the deletion of the specified secret version. This deletes it after the specified retention
       period ends. You can only
       delete a secret version if the secret version rotation state is marked as `DEPRECATED`.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     secret_id:
         description:
@@ -53,7 +54,6 @@ options:
         choices:
             - "cancel_secret_version_deletion"
             - "schedule_secret_version_deletion"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

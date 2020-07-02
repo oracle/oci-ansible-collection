@@ -24,14 +24,14 @@ short_description: Fetches details about one or multiple IdentityProviderGroup r
 description:
     - Fetches details about one or multiple IdentityProviderGroup resources in Oracle Cloud Infrastructure
     - Lists the identity provider groups.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     identity_provider_id:
         description:
             - The OCID of the identity provider.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

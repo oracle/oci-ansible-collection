@@ -26,7 +26,8 @@ description:
     - Gets a list of the DB systems in the specified compartment. You can specify a backupId to list only the DB systems that support creating a database using
       this backup in this compartment.
     - If I(db_system_id) is specified, the details of a single DbSystem will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     db_system_id:
         description:
@@ -80,7 +81,6 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

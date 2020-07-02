@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple InstancePool resources in Oracle Cloud Infrastructure
     - Lists the instance pools in the specified compartment.
     - If I(instance_pool_id) is specified, the details of a single InstancePool will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_pool_id:
         description:
@@ -77,7 +78,6 @@ options:
             - "STOPPED"
             - "TERMINATED"
             - "RUNNING"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

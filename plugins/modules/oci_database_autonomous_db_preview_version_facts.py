@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple AutonomousDbPreviewVersion resources in Oracle Cloud Infrastructure
     - Gets a list of supported Autonomous Database versions. Note that preview version software is only available for
       databases with L(shared Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -46,7 +47,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

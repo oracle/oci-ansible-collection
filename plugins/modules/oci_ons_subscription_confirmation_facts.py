@@ -25,7 +25,8 @@ description:
     - Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
     - Gets the confirmation details for the specified subscription.
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     id:
         description:
@@ -50,7 +51,6 @@ options:
               L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Tag resources in Oracle Cloud Infrastructure
     - Lists the tag definitions in the specified tag namespace.
     - If I(tag_name) is specified, the details of a single Tag will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     tag_namespace_id:
         description:
@@ -46,7 +47,6 @@ options:
             - "INACTIVE"
             - "DELETING"
             - "DELETED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -384,7 +384,9 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
         api_user_key_file=dict(type="str"),
         api_user_key_pass_phrase=dict(type="str", no_log=True),
         auth_type=dict(
-            type="str", choices=["api_key", "instance_principal"], default="api_key"
+            type="str",
+            choices=["api_key", "instance_principal", "instance_obo_user"],
+            default="api_key",
         ),
         tenancy=dict(type="str"),
         region=dict(type="str"),

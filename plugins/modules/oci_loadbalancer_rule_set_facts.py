@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple RuleSet resources in Oracle Cloud Infrastructure
     - Lists all rule sets associated with the specified load balancer.
     - If I(rule_set_name) is specified, the details of a single RuleSet will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -39,7 +40,6 @@ options:
             - Required to get a specific rule_set.
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

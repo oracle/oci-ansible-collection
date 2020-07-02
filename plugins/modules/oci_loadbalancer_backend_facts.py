@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Backend resources in Oracle Cloud Infrastructure
     - Lists the backend servers for a given load balancer and backend set.
     - If I(backend_name) is specified, the details of a single Backend will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -46,7 +47,6 @@ options:
             - "Example: `10.0.0.3:8080`"
             - Required to get a specific backend.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

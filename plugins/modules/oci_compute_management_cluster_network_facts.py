@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple ClusterNetwork resources in Oracle Cloud Infrastructure
     - Lists the cluster networks in the specified compartment.
     - If I(cluster_network_id) is specified, the details of a single ClusterNetwork will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     cluster_network_id:
         description:
@@ -78,7 +79,6 @@ options:
             - "STOPPED"
             - "TERMINATED"
             - "RUNNING"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

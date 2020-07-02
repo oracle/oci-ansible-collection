@@ -27,7 +27,8 @@ description:
     - "* L(GetIPSecConnectionTunnel,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnectionTunnel/GetIPSecConnectionTunnel)
       * L(GetIPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/GetIPSecConnectionTunnelShared
       Secret)"
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
@@ -35,7 +36,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

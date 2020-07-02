@@ -27,7 +27,8 @@ description:
       You can filter the results by specifying an instance name (the list will include all the identically-named
       instances in the compartment).
     - If I(instance_id) is specified, the details of a single Instance will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_id:
         description:
@@ -85,7 +86,6 @@ options:
             - "CREATING_IMAGE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

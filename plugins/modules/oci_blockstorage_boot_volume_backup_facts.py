@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple BootVolumeBackup resources in Oracle Cloud Infrastructure
     - Lists the boot volume backups in the specified compartment. You can filter the results by boot volume.
     - If I(boot_volume_backup_id) is specified, the details of a single BootVolumeBackup will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     boot_volume_backup_id:
         description:
@@ -83,7 +84,6 @@ options:
             - "TERMINATED"
             - "FAULTY"
             - "REQUEST_RECEIVED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

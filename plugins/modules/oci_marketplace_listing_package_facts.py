@@ -40,7 +40,8 @@ description:
       Lastly, to launch the instance, use the image ID of the listing resource version to issue a L(LaunchInstance,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance) API call.
     - If I(package_version) is specified, the details of a single ListingPackage will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     listing_id:
         description:
@@ -75,7 +76,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

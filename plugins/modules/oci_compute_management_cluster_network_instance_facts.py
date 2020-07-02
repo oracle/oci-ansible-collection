@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple ClusterNetworkInstance 
 description:
     - Fetches details about one or multiple ClusterNetworkInstance resources in Oracle Cloud Infrastructure
     - Lists the instances in the specified cluster network.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -62,7 +63,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple HealthChecksVantagePoin
 description:
     - Fetches details about one or multiple HealthChecksVantagePoint resources in Oracle Cloud Infrastructure
     - Gets information about all vantage points available to the user.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     sort_by:
         description:
@@ -48,8 +49,6 @@ options:
         description:
             - Filters results that exactly match the `displayName` field.
         type: str
-        aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -260,7 +259,7 @@ def main():
             sort_by=dict(type="str", choices=["name", "displayName"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             name=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
+            display_name=dict(type="str"),
         )
     )
 

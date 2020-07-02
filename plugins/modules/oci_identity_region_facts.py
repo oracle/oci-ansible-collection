@@ -24,9 +24,9 @@ short_description: Fetches details about one or multiple Region resources in Ora
 description:
     - Fetches details about one or multiple Region resources in Oracle Cloud Infrastructure
     - Lists all the regions offered by Oracle Cloud Infrastructure.
-version_added: "2.5"
-options: {}
+version_added: "2.9"
 author: Oracle (@oracle)
+options: {}
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

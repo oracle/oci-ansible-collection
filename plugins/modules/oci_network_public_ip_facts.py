@@ -40,7 +40,8 @@ description:
     - "**Note:** An ephemeral public IP assigned to a private IP
       is always in the same availability domain and compartment as the private IP."
     - If I(public_ip_id) is specified, the details of a single PublicIp will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     public_ip_id:
         description:
@@ -88,7 +89,6 @@ options:
         description:
             - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

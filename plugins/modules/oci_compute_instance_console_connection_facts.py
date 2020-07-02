@@ -26,7 +26,8 @@ description:
     - Lists the console connections for the specified compartment or instance.
     - For more information about console access, see L(Accessing the Console,https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
     - If I(instance_console_connection_id) is specified, the details of a single InstanceConsoleConnection will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_console_connection_id:
         description:
@@ -43,7 +44,6 @@ options:
         description:
             - The OCID of the instance.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

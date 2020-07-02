@@ -24,7 +24,8 @@ short_description: Fetches details about a BootVolumeKmsKey resource in Oracle C
 description:
     - Fetches details about a BootVolumeKmsKey resource in Oracle Cloud Infrastructure
     - Gets the Key Management encryption key assigned to the specified boot volume.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     boot_volume_id:
         description:
@@ -32,7 +33,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

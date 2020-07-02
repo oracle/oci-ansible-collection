@@ -24,7 +24,8 @@ short_description: Fetches details about a InstancePoolLoadBalancerAttachment re
 description:
     - Fetches details about a InstancePoolLoadBalancerAttachment resource in Oracle Cloud Infrastructure
     - Gets information about a load balancer that is attached to the specified instance pool.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_pool_id:
         description:
@@ -37,7 +38,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

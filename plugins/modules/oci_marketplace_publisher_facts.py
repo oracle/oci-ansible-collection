@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple Publisher resources in 
 description:
     - Fetches details about one or multiple Publisher resources in Oracle Cloud Infrastructure
     - Gets the list of all the publishers of listings available in Oracle Cloud Infrastructure Marketplace.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     publisher_id:
         description:
@@ -34,7 +35,6 @@ options:
         description:
             - The unique identifier for the compartment.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

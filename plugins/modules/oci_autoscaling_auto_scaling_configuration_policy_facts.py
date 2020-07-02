@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple AutoScalingConfigurationPolicy resources in Oracle Cloud Infrastructure
     - Lists the autoscaling policies in the specified autoscaling configuration.
     - If I(auto_scaling_policy_id) is specified, the details of a single AutoScalingConfigurationPolicy will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     auto_scaling_configuration_id:
         description:
@@ -60,7 +61,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

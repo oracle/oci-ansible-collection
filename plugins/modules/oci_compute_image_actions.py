@@ -31,7 +31,8 @@ description:
       See L(Object Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
       Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
       for constructing URLs for image import/export.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     image_id:
         description:
@@ -78,7 +79,6 @@ options:
         required: true
         choices:
             - "export"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

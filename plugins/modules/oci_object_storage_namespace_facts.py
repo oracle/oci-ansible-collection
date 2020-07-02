@@ -29,7 +29,8 @@ description:
     - GetNamespace returns the name of the Object Storage namespace for the user making the request.
       If an optional compartmentId query parameter is provided, GetNamespace returns the namespace name of the corresponding
       tenancy, provided the user has access to it.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -38,7 +39,6 @@ options:
               L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) within the tenancy whose Object Storage namespace is to be
               retrieved.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

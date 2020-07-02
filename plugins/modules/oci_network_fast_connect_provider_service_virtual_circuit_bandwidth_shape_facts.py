@@ -26,7 +26,8 @@ description:
     - Gets the list of available virtual circuit bandwidth levels for a provider.
       You need this information so you can specify your desired bandwidth level (shape) when you create a virtual circuit.
     - For more information about virtual circuits, see L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
@@ -34,7 +35,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

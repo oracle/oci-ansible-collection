@@ -25,14 +25,14 @@ description:
     - Fetches details about one or multiple CrossConnectLocation resources in Oracle Cloud Infrastructure
     - Lists the available FastConnect locations for cross-connect installation. You need
       this information so you can specify your desired location when you create a cross-connect.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

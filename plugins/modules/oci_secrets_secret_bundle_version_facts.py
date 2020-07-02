@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple SecretBundleVersion res
 description:
     - Fetches details about one or multiple SecretBundleVersion resources in Oracle Cloud Infrastructure
     - Lists all secret bundle versions for the specified secret.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     secret_id:
         description:
@@ -45,7 +46,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -27,7 +27,8 @@ description:
     - You can limit the list by specifying a dedicated virtual machine host display name. The list will include all the identically-named
       dedicated virtual machine hosts in the compartment.
     - If I(dedicated_vm_host_id) is specified, the details of a single DedicatedVmHost will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     dedicated_vm_host_id:
         description:
@@ -86,7 +87,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

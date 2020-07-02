@@ -26,7 +26,8 @@ description:
     - Lists the volume group backups in the specified compartment. You can filter the results by volume group.
       For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
     - If I(volume_group_backup_id) is specified, the details of a single VolumeGroupBackup will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     volume_group_backup_id:
         description:
@@ -69,7 +70,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

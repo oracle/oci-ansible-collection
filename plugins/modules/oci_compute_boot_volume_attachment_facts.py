@@ -26,7 +26,8 @@ description:
     - Lists the boot volume attachments in the specified compartment. You can filter the
       list by specifying an instance OCID, boot volume OCID, or both.
     - If I(boot_volume_attachment_id) is specified, the details of a single BootVolumeAttachment will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     boot_volume_attachment_id:
         description:
@@ -53,7 +54,6 @@ options:
         description:
             - The OCID of the boot volume.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

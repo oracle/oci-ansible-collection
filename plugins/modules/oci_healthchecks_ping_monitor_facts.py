@@ -27,7 +27,8 @@ description:
     - Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides
       a URL for fetching the next page.
     - If I(monitor_id) is specified, the details of a single PingMonitor will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     monitor_id:
         description:
@@ -64,7 +65,6 @@ options:
         description:
             - Filters results that match the `homeRegion`.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

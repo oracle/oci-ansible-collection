@@ -26,7 +26,8 @@ description:
     - Lists the terms of use agreements that have been accepted in the specified compartment.
       You can filter results by specifying query parameters.
     - If I(accepted_agreement_id) is specified, the details of a single AcceptedAgreement will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     accepted_agreement_id:
         description:
@@ -67,7 +68,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

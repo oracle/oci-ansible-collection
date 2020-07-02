@@ -26,7 +26,8 @@ description:
     - Lists the service gateways in the specified compartment. You may optionally specify a VCN OCID
       to filter the results by VCN.
     - If I(service_gateway_id) is specified, the details of a single ServiceGateway will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     service_gateway_id:
         description:
@@ -73,7 +74,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

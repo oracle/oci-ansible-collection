@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple ImageShapeCompatibilityEntry resources in Oracle Cloud Infrastructure
     - Lists the shape compatibilities for the image.
     - If I(shape_name) is specified, the details of a single ImageShapeCompatibilityEntry will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     image_id:
         description:
@@ -37,7 +38,6 @@ options:
             - Shape name.
             - Required to get a specific image_shape_compatibility_entry.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

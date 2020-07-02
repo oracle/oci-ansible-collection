@@ -27,7 +27,8 @@ description:
       The response includes the default set of options that automatically comes with each VCN,
       plus any other sets you've created.
     - If I(dhcp_id) is specified, the details of a single DhcpOptions will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     dhcp_id:
         description:
@@ -80,7 +81,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

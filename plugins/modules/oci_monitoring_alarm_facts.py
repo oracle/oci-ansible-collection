@@ -30,7 +30,8 @@ description:
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
     - If I(alarm_id) is specified, the details of a single Alarm will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     alarm_id:
         description:
@@ -85,7 +86,6 @@ options:
               then the call is rejected. When false, returns resources from only the compartment specified in
               compartmentId. Default is false.
         type: bool
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -24,7 +24,8 @@ short_description: Perform actions on an IdentityProvider resource in Oracle Clo
 description:
     - Perform actions on an IdentityProvider resource in Oracle Cloud Infrastructure
     - For I(action=reset_idp_scim_client), resets the OAuth2 client credentials for the SCIM client associated with this identity provider.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     identity_provider_id:
         description:
@@ -39,7 +40,6 @@ options:
         required: true
         choices:
             - "reset_idp_scim_client"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

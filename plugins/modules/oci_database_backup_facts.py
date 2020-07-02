@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
     - Gets a list of backups based on the databaseId or compartmentId specified. Either one of the query parameters must be provided.
     - If I(backup_id) is specified, the details of a single Backup will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     backup_id:
         description:
@@ -41,7 +42,6 @@ options:
         description:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

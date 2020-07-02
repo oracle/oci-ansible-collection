@@ -28,7 +28,8 @@ description:
       talk to an administrator. If you are an administrator who needs to write policies to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
     - If I(object_name) is specified, the details of a single Object will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -101,7 +102,6 @@ options:
               Value of this parameter should be a comma-separated, case-insensitive list of those field names.
               For example 'name,etag,timeCreated,md5,timeModified'
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -30,7 +30,8 @@ description:
       to connect to RPCs in the acceptor's compartment. Without that permission, this
       operation will fail. For more information, see
       L(VCN Peering,https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm)."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     remote_peering_connection_id:
         description:
@@ -56,7 +57,6 @@ options:
         required: true
         choices:
             - "connect"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

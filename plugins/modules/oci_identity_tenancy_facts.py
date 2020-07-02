@@ -24,7 +24,8 @@ short_description: Fetches details about a Tenancy resource in Oracle Cloud Infr
 description:
     - Fetches details about a Tenancy resource in Oracle Cloud Infrastructure
     - Get the specified tenancy's information.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     tenancy_id:
         description:
@@ -32,7 +33,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

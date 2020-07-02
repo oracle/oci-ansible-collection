@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple TsigKey resources in Oracle Cloud Infrastructure
     - Gets a list of all TSIG keys in the specified compartment.
     - If I(tsig_key_id) is specified, the details of a single TsigKey will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     tsig_key_id:
         description:
@@ -74,7 +75,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

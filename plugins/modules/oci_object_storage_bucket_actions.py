@@ -41,7 +41,8 @@ description:
       objects are in the bucket and how big they are. This API returns a work request ID that you can use to retrieve the status
       of the work request task.
       All the versions of objects will be re-encrypted whether versioning is enabled or suspended at the bucket.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -62,7 +63,6 @@ options:
         choices:
             - "make_bucket_writable"
             - "reencrypt"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

@@ -24,7 +24,8 @@ short_description: Fetches details about a AutonomousDatabaseWallet resource in 
 description:
     - Fetches details about a AutonomousDatabaseWallet resource in Oracle Cloud Infrastructure
     - Gets the wallet details for the specified Autonomous Database.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     autonomous_database_id:
         description:
@@ -32,7 +33,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

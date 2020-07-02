@@ -25,7 +25,8 @@ description:
     - Fetches details about a InstanceCredentials resource in Oracle Cloud Infrastructure
     - Gets the generated credentials for the instance. Only works for instances that require a password to log in, such as Windows.
       For certain operating systems, users will be forced to change the initial credentials.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_id:
         description:
@@ -33,7 +34,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

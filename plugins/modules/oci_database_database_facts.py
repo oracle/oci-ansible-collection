@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Database resources in Oracle Cloud Infrastructure
     - Gets a list of the databases in the specified Database Home.
     - If I(database_id) is specified, the details of a single Database will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     database_id:
         description:
@@ -75,7 +76,6 @@ options:
         description:
             - A filter to return only resources that match the entire database name given. The match is not case sensitive.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

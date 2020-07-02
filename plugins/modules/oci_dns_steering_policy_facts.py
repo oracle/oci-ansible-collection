@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple SteeringPolicy resources in Oracle Cloud Infrastructure
     - Gets a list of all steering policies in the specified compartment.
     - If I(steering_policy_id) is specified, the details of a single SteeringPolicy will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     steering_policy_id:
         description:
@@ -98,7 +99,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

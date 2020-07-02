@@ -29,7 +29,8 @@ description:
       provide these parameters when you launch an instance from the instance configuration.
       For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/#/en/iaas/20160918/InstanceConfiguration/)
       resource.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_configuration_id:
         description:
@@ -413,7 +414,6 @@ options:
         required: true
         choices:
             - "launch"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

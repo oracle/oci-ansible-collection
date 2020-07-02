@@ -30,7 +30,8 @@ description:
     - For I(action=restore), restores an Autonomous Database based on the provided request parameters.
     - For I(action=start), starts the specified Autonomous Database.
     - For I(action=stop), stops the specified Autonomous Database.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     autonomous_database_id:
         description:
@@ -92,7 +93,6 @@ options:
             - "restore"
             - "start"
             - "stop"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

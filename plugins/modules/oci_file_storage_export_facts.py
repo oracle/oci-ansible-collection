@@ -27,7 +27,8 @@ description:
       set. You must specify an export set ID, a file system ID, and
       / or a compartment ID.
     - If I(export_id) is specified, the details of a single Export will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     export_id:
         description:
@@ -82,7 +83,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple SecurityList resources in Oracle Cloud Infrastructure
     - Lists the security lists in the specified VCN and compartment.
     - If I(security_list_id) is specified, the details of a single SecurityList will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     security_list_id:
         description:
@@ -78,7 +79,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

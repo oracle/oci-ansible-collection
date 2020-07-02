@@ -24,7 +24,8 @@ short_description: Perform actions on a Database resource in Oracle Cloud Infras
 description:
     - Perform actions on a Database resource in Oracle Cloud Infrastructure
     - For I(action=restore), restore a Database based on the request parameters you provide.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     database_id:
         description:
@@ -51,7 +52,6 @@ options:
         required: true
         choices:
             - "restore"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

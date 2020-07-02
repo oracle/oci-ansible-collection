@@ -64,7 +64,7 @@ class ModuleDocFragment(object):
                   used. If this 'auth_type' module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE,
                   if any, is used. Use C(auth_type="instance_principal") to use instance principal based authentication
                   when running ansible playbooks within an OCI compute instance.
-            choices: ['api_key', 'instance_principal']
+            choices: ['api_key', 'instance_principal', 'instance_obo_user']
             default: 'api_key'
             type: str
         tenancy:

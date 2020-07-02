@@ -24,7 +24,8 @@ short_description: Fetches details about a HealthChecker resource in Oracle Clou
 description:
     - Fetches details about a HealthChecker resource in Oracle Cloud Infrastructure
     - Gets the health check policy information for a given load balancer and backend set.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -39,7 +40,6 @@ options:
             - "Example: `example_backend_set`"
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

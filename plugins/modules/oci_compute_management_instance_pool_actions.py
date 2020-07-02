@@ -33,7 +33,8 @@ description:
       which performs the action on all the instances in the pool.
     - For I(action=stop), performs the stop (power off) action on the specified instance pool,
       which performs the action on all the instances in the pool.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_pool_id:
         description:
@@ -74,7 +75,6 @@ options:
             - "softreset"
             - "start"
             - "stop"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

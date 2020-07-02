@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple BudgetAlertRule resources in Oracle Cloud Infrastructure
     - Returns a list of Alert Rules for a specified Budget.
     - If I(alert_rule_id) is specified, the details of a single BudgetAlertRule will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     budget_id:
         description:
@@ -67,7 +68,6 @@ options:
             - "Example: `My new resource`"
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

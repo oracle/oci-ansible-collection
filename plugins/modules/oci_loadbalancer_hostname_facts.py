@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Hostname resources in Oracle Cloud Infrastructure
     - Lists all hostname resources associated with the specified load balancer.
     - If I(name) is specified, the details of a single Hostname will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -39,7 +40,6 @@ options:
             - "Example: `example_hostname_001`"
             - Required to get a specific hostname.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

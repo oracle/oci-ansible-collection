@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple SteeringPolicyAttachment resources in Oracle Cloud Infrastructure
     - Lists the steering policy attachments in the specified compartment.
     - If I(steering_policy_attachment_id) is specified, the details of a single SteeringPolicyAttachment will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     steering_policy_attachment_id:
         description:
@@ -107,7 +108,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

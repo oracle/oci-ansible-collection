@@ -43,7 +43,8 @@ description:
       the entire existing list of enabled `Service` objects with the list that you provide in the
       `Update` call. `UpdateServiceGateway` also lets you block all traffic through the service
       gateway without having to remove each of the individual `Service` objects."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     service_gateway_id:
         description:
@@ -65,7 +66,6 @@ options:
         choices:
             - "attach_service_id"
             - "detach_service_id"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

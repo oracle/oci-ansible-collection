@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple InstancePoolInstance re
 description:
     - Fetches details about one or multiple InstancePoolInstance resources in Oracle Cloud Infrastructure
     - List the instances in the specified instance pool.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -63,7 +64,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

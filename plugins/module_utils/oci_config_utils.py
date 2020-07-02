@@ -78,7 +78,9 @@ def get_oci_config(module, service_client_class=None):
         InvalidPrivateKey,
         MissingPrivateKeyPassphrase,
     ) as ex:
-        if not _is_instance_principal_auth(module):
+        if not _is_instance_principal_auth(module) and not _is_delegation_token_auth(
+            module
+        ):
             # When auth_type is not instance_principal, config file is required
             module.fail_json(msg=str(ex))
 
@@ -159,6 +161,12 @@ def create_service_client(module, service_client_class, config=None):
     if _is_instance_principal_auth(module):
         kwargs["signer"] = _create_instance_principal_signer(module)
 
+    if _is_delegation_token_auth(module):
+        delegation_token_location = config.get("delegation_token_file")
+        kwargs["signer"] = _create_instance_principal_signer(
+            module, delegation_token_location
+        )
+
     # XXX: Validate configuration -- this may be redundant, as all Client constructors perform a validation
     try:
         oci.config.validate_config(config, **kwargs)
@@ -208,9 +216,37 @@ def create_service_client(module, service_client_class, config=None):
     return client
 
 
-def _create_instance_principal_signer(module):
+def _create_instance_principal_signer(module, delegation_token_location=None):
+    signer = None
     try:
-        signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+        if delegation_token_location:  # instance_obo_user
+            signer_kwargs = {}
+            delegation_token = None
+            # expand file location
+            expanded_location = os.path.expanduser(delegation_token_location)
+            if not os.path.exists(expanded_location):
+                raise IOError(
+                    "ERROR: delegation_token_file not found at {0}".format(
+                        expanded_location
+                    )
+                )
+            # read from file
+            with open(expanded_location, "r") as delegation_token_file:
+                delegation_token = delegation_token_file.read().strip()
+            # check if token is there
+            if delegation_token is None:
+                raise ValueError("ERROR: delegation_token was not provided.")
+            # fill up kwarg
+            signer_kwargs["delegation_token"] = delegation_token
+            # create instance_principal_delegation_auth signer
+            signer = oci.auth.signers.InstancePrincipalsDelegationTokenSigner(
+                **signer_kwargs
+            )
+        else:
+            signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+    except (ValueError, IOError) as ex:
+        message = "Exception: {0}".format(str(ex))
+        module.fail_json(msg=message)
     except Exception as ex:
         message = (
             "Failed retrieving certificates from localhost. Instance principal based authentication is only"
@@ -251,3 +287,17 @@ def _merge_auth_option(
     # config file [profile].
     if auth_attribute:
         config.update({config_attr_name: auth_attribute})
+
+
+def _is_delegation_token_auth(module):  # instance_obo_user / delegation token
+    # check if auth type is overridden via module params
+    delegation_token_auth = (
+        "auth_type" in module.params
+        and module.params["auth_type"] == "instance_obo_user"
+    )
+    if not delegation_token_auth:
+        delegation_token_auth = (
+            "OCI_ANSIBLE_AUTH_TYPE" in os.environ
+            and os.environ["OCI_ANSIBLE_AUTH_TYPE"] == "instance_obo_user"
+        )
+    return delegation_token_auth

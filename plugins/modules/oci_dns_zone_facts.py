@@ -26,7 +26,8 @@ description:
     - Gets a list of all zones in the specified compartment. The collection
       can be filtered by name, time created, and zone type.
     - If I(zone_name_or_id) is specified, the details of a single Zone will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     zone_name_or_id:
         description:
@@ -100,7 +101,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

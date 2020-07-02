@@ -27,7 +27,8 @@ description:
     - For more information about Oracle defined backup policies and user defined backup policies,
       see L(Policy-Based Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm).
     - If I(policy_id) is specified, the details of a single VolumeBackupPolicy will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     policy_id:
         description:
@@ -40,7 +41,6 @@ options:
             - The OCID of the compartment.
               If no compartment is specified, the Oracle defined backup policies are listed.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

@@ -27,7 +27,8 @@ description:
       includes the default route table that automatically comes with each VCN, plus any route tables
       you've created.
     - If I(rt_id) is specified, the details of a single RouteTable will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     rt_id:
         description:
@@ -80,7 +81,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

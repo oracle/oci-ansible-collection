@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple InstanceConfiguration resources in Oracle Cloud Infrastructure
     - Lists the instance configurations in the specified compartment.
     - If I(instance_configuration_id) is specified, the details of a single InstanceConfiguration will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_configuration_id:
         description:
@@ -59,7 +60,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

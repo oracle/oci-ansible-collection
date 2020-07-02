@@ -26,7 +26,8 @@ description:
     - Lists the volume groups in the specified compartment and availability domain.
       For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
     - If I(volume_group_id) is specified, the details of a single VolumeGroup will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     volume_group_id:
         description:
@@ -80,7 +81,6 @@ options:
             - "TERMINATING"
             - "TERMINATED"
             - "FAULTY"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

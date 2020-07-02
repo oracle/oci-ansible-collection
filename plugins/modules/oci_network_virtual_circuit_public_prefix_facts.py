@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple VirtualCircuitPublicPrefix resources in Oracle Cloud Infrastructure
     - Lists the public IP prefixes and their details for the specified
       public virtual circuit.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     virtual_circuit_id:
         description:
@@ -42,7 +43,6 @@ options:
             - "IN_PROGRESS"
             - "COMPLETED"
             - "FAILED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

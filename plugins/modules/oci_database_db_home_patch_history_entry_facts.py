@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple DbHomePatchHistoryEntry resources in Oracle Cloud Infrastructure
     - Gets history of the actions taken for patches for the specified Database Home.
     - If I(patch_history_entry_id) is specified, the details of a single DbHomePatchHistoryEntry will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     db_home_id:
         description:
@@ -38,7 +39,6 @@ options:
             - Required to get a specific db_home_patch_history_entry.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

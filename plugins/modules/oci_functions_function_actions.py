@@ -24,7 +24,8 @@ short_description: Perform actions on a Function resource in Oracle Cloud Infras
 description:
     - Perform actions on a Function resource in Oracle Cloud Infrastructure
     - For I(action=invoke), invokes a function
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     function_id:
         description:
@@ -65,7 +66,6 @@ options:
         required: true
         choices:
             - "invoke"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

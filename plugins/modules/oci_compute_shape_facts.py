@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
     - Lists the shapes that can be used to launch an instance within the specified compartment. You can
       filter the list by compatibility with a specific image.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -41,7 +42,6 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of an image.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

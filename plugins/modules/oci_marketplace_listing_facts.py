@@ -41,7 +41,8 @@ description:
       Lastly, to launch the instance, use the image ID of the listing resource version to issue a L(LaunchInstance,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance) API call.
     - If I(listing_id) is specified, the details of a single Listing will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     listing_id:
         description:
@@ -98,7 +99,6 @@ options:
         description:
             - Indicates whether to show only featured listings. If this is set to `false` or is omitted, then all listings will be returned.
         type: bool
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

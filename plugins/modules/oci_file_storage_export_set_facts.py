@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple ExportSet resources in Oracle Cloud Infrastructure
     - Lists the export set resources in the specified compartment.
     - If I(export_set_id) is specified, the details of a single ExportSet will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     export_set_id:
         description:
@@ -85,7 +86,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

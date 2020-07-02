@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple BackendSet resources in Oracle Cloud Infrastructure
     - Lists all backend sets associated with a given load balancer.
     - If I(backend_set_name) is specified, the details of a single BackendSet will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -40,7 +41,6 @@ options:
             - Required to get a specific backend_set.
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -25,14 +25,14 @@ description:
     - Fetches details about one or multiple CustomerSecretKey resources in Oracle Cloud Infrastructure
     - Lists the secret keys for the specified user. The returned object contains the secret key's OCID, but not
       the secret key itself. The actual secret key is returned only upon creation.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     user_id:
         description:
             - The OCID of the user.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

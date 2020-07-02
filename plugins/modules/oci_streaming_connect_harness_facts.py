@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple ConnectHarness resources in Oracle Cloud Infrastructure
     - Lists the connectharness.
     - If I(connect_harness_id) is specified, the details of a single ConnectHarness will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     connect_harness_id:
         description:
@@ -72,7 +73,6 @@ options:
             - "DELETED"
             - "FAILED"
             - "UPDATING"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

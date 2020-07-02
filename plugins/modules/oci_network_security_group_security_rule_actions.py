@@ -26,7 +26,8 @@ description:
     - For I(action=add), adds one or more security rules to the specified network security group.
     - For I(action=remove), removes one or more security rules from the specified network security group.
     - For I(action=update), updates one or more security rules in the specified network security group.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     network_security_group_id:
         description:
@@ -245,7 +246,6 @@ options:
             - "add"
             - "remove"
             - "update"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple SecretVersion resources in Oracle Cloud Infrastructure
     - Lists all secret versions for the specified secret.
     - If I(secret_version_number) is specified, the details of a single SecretVersion will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     secret_id:
         description:
@@ -51,7 +52,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

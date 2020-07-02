@@ -34,7 +34,8 @@ description:
     - "- **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system, and
       then powers the instance back on."
     - For more information, see L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_id:
         description:
@@ -53,7 +54,6 @@ options:
             - "reset"
             - "softstop"
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

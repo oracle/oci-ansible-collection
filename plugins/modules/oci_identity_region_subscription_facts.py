@@ -24,14 +24,14 @@ short_description: Fetches details about one or multiple RegionSubscription reso
 description:
     - Fetches details about one or multiple RegionSubscription resources in Oracle Cloud Infrastructure
     - Lists the region subscriptions for the specified tenancy.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     tenancy_id:
         description:
             - The OCID of the tenancy.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
