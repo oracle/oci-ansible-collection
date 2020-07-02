@@ -28,7 +28,8 @@ description:
       If the stream pool id is specified, the action will be scoped to that stream pool.
       The compartment id and stream pool id cannot be specified at the same time.
     - If I(stream_id) is specified, the details of a single Stream will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     stream_id:
         description:
@@ -78,7 +79,6 @@ options:
             - "DELETED"
             - "FAILED"
             - "UPDATING"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

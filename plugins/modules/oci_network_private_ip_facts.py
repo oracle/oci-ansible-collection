@@ -35,7 +35,8 @@ description:
     - If you're listing all the private IPs associated with a given subnet
       or VNIC, the response includes both primary and secondary private IPs.
     - If I(private_ip_id) is specified, the details of a single PrivateIp will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     private_ip_id:
         description:
@@ -56,7 +57,6 @@ options:
         description:
             - The OCID of the VNIC.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

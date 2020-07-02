@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
     - Gets a list of the shapes that can be used to launch a new Autonomous Exadata Infrastructure DB system. The shape determines resources to allocate to the
       DB system (CPU cores, memory and storage).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     availability_domain:
         description:
@@ -37,7 +38,6 @@ options:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

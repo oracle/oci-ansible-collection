@@ -25,7 +25,8 @@ description:
     - Fetches details about a FastConnectProviderServiceKey resource in Oracle Cloud Infrastructure
     - Gets the specified provider service key's information. Use this operation to validate a
       provider service key. An invalid key returns a 404 error.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
@@ -40,7 +41,6 @@ options:
               attribute of the L(FastConnectProviderService,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/).
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

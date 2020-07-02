@@ -27,7 +27,8 @@ description:
       `assetId` query parameter is required, and the returned list will contain at most
       one item, since volume can only have one volume backup policy assigned at a time.
     - If I(policy_assignment_id) is specified, the details of a single VolumeBackupPolicyAssignment will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     policy_assignment_id:
         description:
@@ -40,7 +41,6 @@ options:
             - The OCID of an asset (e.g. a volume).
             - Required to list multiple volume_backup_policy_assignments.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

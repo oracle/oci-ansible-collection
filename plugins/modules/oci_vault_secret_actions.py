@@ -28,7 +28,8 @@ description:
       it was before you scheduled the secret for deletion.
     - For I(action=schedule_secret_deletion), schedules the deletion of the specified secret. This sets the lifecycle state of the secret
       to `PENDING_DELETION` and then deletes it after the specified retention period ends.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     secret_id:
         description:
@@ -49,7 +50,6 @@ options:
         choices:
             - "cancel_secret_deletion"
             - "schedule_secret_deletion"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

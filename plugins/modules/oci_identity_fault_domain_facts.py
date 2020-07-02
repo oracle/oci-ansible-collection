@@ -26,7 +26,8 @@ description:
     - Lists the Fault Domains in your tenancy. Specify the OCID of either the tenancy or another
       of your compartments as the value for the compartment ID (remember that the tenancy is simply the root compartment).
       See L(Where to Get the Tenancy's OCID and User's OCID,https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm#five).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -38,7 +39,6 @@ options:
             - The name of the availibilityDomain.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

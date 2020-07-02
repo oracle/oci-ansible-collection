@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple NetworkSecurityGroupSec
 description:
     - Fetches details about one or multiple NetworkSecurityGroupSecurityRule resources in Oracle Cloud Infrastructure
     - Lists the security rules in the specified network security group.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     network_security_group_id:
         description:
@@ -53,7 +54,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

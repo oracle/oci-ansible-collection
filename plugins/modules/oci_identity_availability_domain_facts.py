@@ -28,14 +28,14 @@ description:
       See L(Where to Get the Tenancy's OCID and User's OCID,https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm#five).
       Note that the order of the results returned can change if availability domains are added or removed; therefore, do not
       create a dependency on the list order.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The OCID of the compartment (remember that the tenancy is simply the root compartment).
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

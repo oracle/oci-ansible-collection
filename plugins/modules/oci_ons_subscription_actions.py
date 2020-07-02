@@ -27,7 +27,8 @@ description:
       Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
     - "For I(action=resend_subscription_confirmation), resends the confirmation details for the specified subscription.
       Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     id:
         description:
@@ -60,7 +61,6 @@ options:
         choices:
             - "get_unsubscription"
             - "resend_subscription_confirmation"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

@@ -26,7 +26,8 @@ description:
     - Lists the subscriptions in the specified compartment or topic.
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
     - If I(subscription_id) is specified, the details of a single Subscription will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     subscription_id:
         description:
@@ -44,7 +45,6 @@ options:
             - Return all subscriptions that are subscribed to the given topic OCID. Either this query parameter or the compartmentId query parameter must be
               set.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

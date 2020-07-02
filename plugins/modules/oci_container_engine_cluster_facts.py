@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Cluster resources in Oracle Cloud Infrastructure
     - List all the cluster objects in a compartment.
     - If I(cluster_id) is specified, the details of a single Cluster will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     cluster_id:
         description:
@@ -68,7 +69,6 @@ options:
             - "ID"
             - "NAME"
             - "TIME_CREATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

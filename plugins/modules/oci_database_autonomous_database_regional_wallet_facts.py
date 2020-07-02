@@ -24,9 +24,9 @@ short_description: Fetches details about a AutonomousDatabaseRegionalWallet reso
 description:
     - Fetches details about a AutonomousDatabaseRegionalWallet resource in Oracle Cloud Infrastructure
     - Gets the Autonomous Database regional wallet details.
-version_added: "2.5"
-options: {}
+version_added: "2.9"
 author: Oracle (@oracle)
+options: {}
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

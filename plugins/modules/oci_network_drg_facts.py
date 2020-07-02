@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Drg resources in Oracle Cloud Infrastructure
     - Lists the DRGs in the specified compartment.
     - If I(drg_id) is specified, the details of a single Drg will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     drg_id:
         description:
@@ -38,7 +39,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple drgs.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

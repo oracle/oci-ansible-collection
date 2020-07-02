@@ -27,7 +27,8 @@ description:
       resides in the same compartment as the attached instance. The list can be
       filtered by instance, VNIC, or availability domain.
     - If I(vnic_attachment_id) is specified, the details of a single VnicAttachment will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     vnic_attachment_id:
         description:
@@ -53,7 +54,6 @@ options:
         description:
             - The OCID of the VNIC.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Agreement resources in Oracle Cloud Infrastructure
     - Returns the terms of use agreements that must be accepted before you can deploy the specified version of a package.
     - If I(agreement_id) is specified, the details of a single Agreement will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     listing_id:
         description:
@@ -47,7 +48,6 @@ options:
         description:
             - The unique identifier for the compartment.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

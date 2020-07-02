@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple DbVersion resources in 
 description:
     - Fetches details about one or multiple DbVersion resources in Oracle Cloud Infrastructure
     - Gets a list of supported Oracle Database versions.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -40,7 +41,6 @@ options:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm). If provided, filters the results to the set of
               database versions which are supported for the DB system.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

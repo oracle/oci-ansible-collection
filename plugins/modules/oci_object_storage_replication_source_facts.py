@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple ReplicationSource resou
 description:
     - Fetches details about one or multiple ReplicationSource resources in Oracle Cloud Infrastructure
     - List the replication sources of a destination bucket.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -37,7 +38,6 @@ options:
               Example: `my-new-bucket1`"
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

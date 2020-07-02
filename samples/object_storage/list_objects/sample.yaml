@@ -31,8 +31,8 @@
 
     - name: Get all objects from all the buckets
       oci_object_storage_object_facts:
-        namespace: "{{ namespace_name }}"
-        bucket: "{{ item.name }}"
+        namespace_name: "{{ namespace_name }}"
+        bucket_name: "{{ item.name }}"
       with_items: "{{ ocibuckets.buckets }}"
       register: output
     - name: Print objects list

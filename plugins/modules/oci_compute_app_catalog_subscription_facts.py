@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple AppCatalogSubscription 
 description:
     - Fetches details about one or multiple AppCatalogSubscription resources in Oracle Cloud Infrastructure
     - Lists subscriptions for a compartment.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -56,7 +57,6 @@ options:
         description:
             - A filter to return only the listings that matches the given listing id.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

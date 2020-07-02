@@ -25,7 +25,8 @@ description:
     - Fetches details about a AuthenticationPolicy resource in Oracle Cloud Infrastructure
     - Gets the authentication policy for the given tenancy. You must specify your tenant's OCID as the value for
       the compartment ID (remember that the tenancy is simply the root compartment).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -33,7 +34,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

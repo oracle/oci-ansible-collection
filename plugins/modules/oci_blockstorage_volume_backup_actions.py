@@ -25,7 +25,8 @@ description:
     - Perform actions on a VolumeBackup resource in Oracle Cloud Infrastructure
     - For I(action=copy), creates a volume backup copy in specified region. For general information about volume backups,
       see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumebackups.htm)
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     volume_backup_id:
         description:
@@ -52,7 +53,6 @@ options:
         required: true
         choices:
             - "copy"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

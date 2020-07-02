@@ -26,7 +26,8 @@ description:
     - Gets all records in the specified zone. The results are
       sorted by `domain` in alphabetical order by default. For more
       information about records, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     zone_name_or_id:
         description:
@@ -80,7 +81,6 @@ options:
         description:
             - The OCID of the compartment the resource belongs to.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

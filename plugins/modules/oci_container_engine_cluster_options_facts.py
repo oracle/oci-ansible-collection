@@ -24,7 +24,8 @@ short_description: Fetches details about a ClusterOptions resource in Oracle Clo
 description:
     - Fetches details about a ClusterOptions resource in Oracle Cloud Infrastructure
     - Get options available for clusters.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     cluster_option_id:
         description:
@@ -36,7 +37,6 @@ options:
         description:
             - The OCID of the compartment.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

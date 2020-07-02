@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple LoadBalancerHealth resources in Oracle Cloud Infrastructure
     - Lists the summary health statuses for all load balancers in the specified compartment.
     - If I(load_balancer_id) is specified, the details of a single LoadBalancerHealth will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -40,7 +41,6 @@ options:
             - Required to list multiple load_balancer_healths.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -26,7 +26,8 @@ description:
     - Lists the NAT gateways in the specified compartment. You may optionally specify a VCN OCID
       to filter the results by VCN.
     - If I(nat_gateway_id) is specified, the details of a single NatGateway will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     nat_gateway_id:
         description:
@@ -78,7 +79,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

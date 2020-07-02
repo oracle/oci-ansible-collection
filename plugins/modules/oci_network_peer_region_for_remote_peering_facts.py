@@ -25,9 +25,9 @@ description:
     - Fetches details about one or multiple PeerRegionForRemotePeering resources in Oracle Cloud Infrastructure
     - Lists the regions that support remote VCN peering (which is peering across regions).
       For more information, see L(VCN Peering,https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm).
-version_added: "2.5"
-options: {}
+version_added: "2.9"
 author: Oracle (@oracle)
+options: {}
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

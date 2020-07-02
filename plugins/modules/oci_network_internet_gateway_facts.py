@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple InternetGateway resources in Oracle Cloud Infrastructure
     - Lists the internet gateways in the specified VCN and the specified compartment.
     - If I(ig_id) is specified, the details of a single InternetGateway will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ig_id:
         description:
@@ -78,7 +79,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

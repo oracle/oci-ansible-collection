@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple DbHome resources in Oracle Cloud Infrastructure
     - Gets a list of Database Homes in the specified DB system and compartment. A Database Home is a directory where Oracle Database software is installed.
     - If I(db_home_id) is specified, the details of a single DbHome will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     db_home_id:
         description:
@@ -78,7 +79,6 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

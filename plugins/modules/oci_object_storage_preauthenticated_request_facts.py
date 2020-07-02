@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple PreauthenticatedRequest resources in Oracle Cloud Infrastructure
     - Lists pre-authenticated requests for the bucket.
     - If I(par_id) is specified, the details of a single PreauthenticatedRequest will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -49,7 +50,6 @@ options:
         description:
             - User-specified object name prefixes can be used to query and return a list of pre-authenticated requests.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

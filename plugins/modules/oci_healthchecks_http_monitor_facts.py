@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple HttpMonitor resources in Oracle Cloud Infrastructure
     - Gets a list of HTTP monitors.
     - If I(monitor_id) is specified, the details of a single HttpMonitor will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     monitor_id:
         description:
@@ -62,7 +63,6 @@ options:
         description:
             - Filters results that match the `homeRegion`.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

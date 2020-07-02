@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple IdpGroupMapping resources in Oracle Cloud Infrastructure
     - Lists the group mappings for the specified identity provider.
     - If I(mapping_id) is specified, the details of a single IdpGroupMapping will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     identity_provider_id:
         description:
@@ -38,7 +39,6 @@ options:
             - Required to get a specific idp_group_mapping.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

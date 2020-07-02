@@ -26,7 +26,8 @@ description:
     - Lists topics in the specified compartment.
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 120."
     - If I(topic_id) is specified, the details of a single NotificationTopic will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     topic_id:
         description:
@@ -66,7 +67,6 @@ options:
             - "ACTIVE"
             - "DELETING"
             - "CREATING"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

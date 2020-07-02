@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple TagNamespace resources in Oracle Cloud Infrastructure
     - Lists the tag namespaces in the specified compartment.
     - If I(tag_namespace_id) is specified, the details of a single TagNamespace will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     tag_namespace_id:
         description:
@@ -52,7 +53,6 @@ options:
             - "INACTIVE"
             - "DELETING"
             - "DELETED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

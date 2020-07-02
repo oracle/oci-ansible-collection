@@ -24,7 +24,8 @@ short_description: Perform actions on an AutonomousContainerDatabase resource in
 description:
     - Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(action=restart), rolling restarts the specified Autonomous Container Database.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     autonomous_container_database_id:
         description:
@@ -39,7 +40,6 @@ options:
         required: true
         choices:
             - "restart"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

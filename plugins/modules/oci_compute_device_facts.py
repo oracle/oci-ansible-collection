@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple Device resources in Ora
 description:
     - Fetches details about one or multiple Device resources in Oracle Cloud Infrastructure
     - Gets a list of all the devices for given instance. You can optionally filter results by device availability.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_id:
         description:
@@ -60,7 +61,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

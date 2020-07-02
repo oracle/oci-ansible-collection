@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple DbHomePatch resources in Oracle Cloud Infrastructure
     - Lists patches applicable to the requested Database Home.
     - If I(patch_id) is specified, the details of a single DbHomePatch will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     db_home_id:
         description:
@@ -38,7 +39,6 @@ options:
             - Required to get a specific db_home_patch.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

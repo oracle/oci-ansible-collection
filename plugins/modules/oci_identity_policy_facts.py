@@ -28,7 +28,8 @@ description:
     - To determine which policies apply to a particular group or compartment, you must view the individual
       statements inside all your policies. There isn't a way to automatically obtain that information via the API.
     - If I(policy_id) is specified, the details of a single Policy will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     policy_id:
         description:
@@ -41,7 +42,6 @@ options:
             - The OCID of the compartment (remember that the tenancy is simply the root compartment).
             - Required to list multiple policies.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

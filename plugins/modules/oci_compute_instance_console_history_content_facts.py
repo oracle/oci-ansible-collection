@@ -26,7 +26,8 @@ description:
     - Gets the actual console history data (not the metadata).
       See L(CaptureConsoleHistory,https://docs.cloud.oracle.com/#/en/iaas/20160918/ConsoleHistory/CaptureConsoleHistory)
       for details about using the console history operations.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     instance_console_history_id:
         description:
@@ -42,7 +43,6 @@ options:
         description:
             - Length of the snapshot data to retrieve.
         type: int
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

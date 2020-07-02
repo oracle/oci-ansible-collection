@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
     - Gets a list of the Maintenance Runs in the specified compartment.
     - If I(maintenance_run_id) is specified, the details of a single MaintenanceRun will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     maintenance_run_id:
         description:
@@ -91,7 +92,6 @@ options:
         description:
             - A filter to return only resources that match the given availability domain exactly.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

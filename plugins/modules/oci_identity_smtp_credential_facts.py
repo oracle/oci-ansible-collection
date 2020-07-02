@@ -25,14 +25,14 @@ description:
     - Fetches details about one or multiple SmtpCredential resources in Oracle Cloud Infrastructure
     - Lists the SMTP credentials for the specified user. The returned object contains the credential's OCID,
       the SMTP user name but not the SMTP password. The SMTP password is returned only upon creation.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     user_id:
         description:
             - The OCID of the user.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

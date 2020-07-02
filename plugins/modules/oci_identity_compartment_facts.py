@@ -38,7 +38,8 @@ description:
       set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ANY.
     - See L(Where to Get the Tenancy's OCID and User's OCID,https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm#five).
     - If I(compartment_id) is specified, the details of a single Compartment will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -71,7 +72,6 @@ options:
               and all compartments and subcompartments in the tenancy are
               returned depending on the the setting of `accessLevel`.
         type: bool
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

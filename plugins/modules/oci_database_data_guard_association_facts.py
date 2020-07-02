@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple DataGuardAssociation resources in Oracle Cloud Infrastructure
     - Lists all Data Guard associations for the specified database.
     - If I(data_guard_association_id) is specified, the details of a single DataGuardAssociation will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     database_id:
         description:
@@ -38,7 +39,6 @@ options:
             - Required to get a specific data_guard_association.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

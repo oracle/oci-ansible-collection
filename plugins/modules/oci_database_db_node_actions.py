@@ -35,7 +35,8 @@ description:
       (L(TerminateDbSystem,https://docs.cloud.oracle.com/#/en/database/20160918/DbSystem/TerminateDbSystem))
       to remove its resources from billing and quotas.
       *Virtual machine DB systems* - Stopping a node stops billing for all OCPUs associated with that node, and billing resumes when you restart the node."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     db_node_id:
         description:
@@ -53,7 +54,6 @@ options:
             - "softreset"
             - "reset"
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

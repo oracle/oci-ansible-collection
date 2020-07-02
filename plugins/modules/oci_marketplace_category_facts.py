@@ -25,13 +25,13 @@ description:
     - Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
     - Gets the list of all the categories for listings published to Oracle Cloud Infrastructure Marketplace. Categories apply
       to the software product provided by the listing.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The unique identifier for the compartment.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

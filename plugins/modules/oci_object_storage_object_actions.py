@@ -27,7 +27,8 @@ description:
     - For I(action=rename), rename an object in the given Object Storage namespace.
     - For I(action=restore), restores one or more objects specified by the objectName parameter.
       By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -189,7 +190,6 @@ options:
             - "copy"
             - "rename"
             - "restore"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

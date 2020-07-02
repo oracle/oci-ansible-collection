@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Budget resources in Oracle Cloud Infrastructure
     - Lists budgets in the specified compartment.
     - If I(budget_id) is specified, the details of a single Budget will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     budget_id:
         description:
@@ -67,7 +68,6 @@ options:
             - "Example: `My new resource`"
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

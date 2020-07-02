@@ -48,7 +48,8 @@ description:
       the total number of requests across all provisioning write operations. Key Management might
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       write operations exceeds 10 requests per second for a given tenancy.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     key_id:
         description:
@@ -80,7 +81,6 @@ options:
             - "disable"
             - "enable"
             - "schedule_key_deletion"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

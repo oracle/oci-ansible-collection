@@ -29,7 +29,8 @@ description:
     - For the compartment ID, provide the OCID of your tenancy (the root compartment).
     - For more information, see L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
     - If I(provider_service_id) is specified, the details of a single FastConnectProviderService will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
@@ -42,7 +43,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple fast_connect_provider_services.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

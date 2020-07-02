@@ -27,7 +27,8 @@ description:
       You can get the VNIC OCID from the
       L(ListVnicAttachments,https://docs.cloud.oracle.com/#/en/iaas/20160918/VnicAttachment/ListVnicAttachments)
       operation.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     vnic_id:
         description:
@@ -35,7 +36,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

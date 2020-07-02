@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple AuditEvent resources in Oracle Cloud Infrastructure
     - Returns all the audit events processed for the specified compartment within the specified
       time range.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -53,7 +54,6 @@ options:
               granularity to the minute. Seconds (and milliseconds, if included) must be set to `0`.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

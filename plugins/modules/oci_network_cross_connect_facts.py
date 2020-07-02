@@ -26,7 +26,8 @@ description:
     - Lists the cross-connects in the specified compartment. You can filter the list
       by specifying the OCID of a cross-connect group.
     - If I(cross_connect_id) is specified, the details of a single CrossConnect will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     cross_connect_id:
         description:
@@ -80,7 +81,6 @@ options:
             - "INACTIVE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

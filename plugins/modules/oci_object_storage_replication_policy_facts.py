@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple ReplicationPolicy resources in Oracle Cloud Infrastructure
     - List the replication policies associated with a bucket.
     - If I(replication_id) is specified, the details of a single ReplicationPolicy will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -44,7 +45,6 @@ options:
             - Required to get a specific replication_policy.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

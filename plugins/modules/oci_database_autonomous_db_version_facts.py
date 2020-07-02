@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple AutonomousDbVersion res
 description:
     - Fetches details about one or multiple AutonomousDbVersion resources in Oracle Cloud Infrastructure
     - Gets a list of supported Autonomous Database versions.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -45,7 +46,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

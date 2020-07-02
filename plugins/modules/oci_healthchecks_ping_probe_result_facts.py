@@ -29,7 +29,8 @@ description:
       a URL for fetching the next page.  Use `sortOrder` to set the order of the
       results.  If `sortOrder` is unspecified, results are sorted in ascending order by
       `startTime`.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     probe_configuration_id:
         description:
@@ -55,7 +56,6 @@ options:
         description:
             - Filters results that match the `target`.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

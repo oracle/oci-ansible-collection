@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Sender resources in Oracle Cloud Infrastructure
     - Gets a collection of approved sender email addresses and sender IDs.
     - If I(sender_id) is specified, the details of a single Sender will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     sender_id:
         description:
@@ -68,7 +69,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -26,7 +26,8 @@ description:
     - Lists the local peering gateways (LPGs) for the specified VCN and compartment
       (the LPG's compartment).
     - If I(local_peering_gateway_id) is specified, the details of a single LocalPeeringGateway will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     local_peering_gateway_id:
         description:
@@ -44,7 +45,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
             - Required to list multiple local_peering_gateways.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

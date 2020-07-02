@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple AutonomousExadataInfrastructure resources in Oracle Cloud Infrastructure
     - Gets a list of the Autonomous Exadata Infrastructures in the specified compartment.
     - If I(autonomous_exadata_infrastructure_id) is specified, the details of a single AutonomousExadataInfrastructure will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     autonomous_exadata_infrastructure_id:
         description:
@@ -75,7 +76,6 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

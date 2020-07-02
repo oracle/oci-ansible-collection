@@ -29,14 +29,14 @@ description:
       not authorized, talk to an administrator. If you are an administrator who needs to write policies
       to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
             - The Object Storage namespace used for the request.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

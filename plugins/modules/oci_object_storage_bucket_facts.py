@@ -29,7 +29,8 @@ description:
       talk to an administrator. If you are an administrator who needs to write policies to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
     - If I(bucket_name) is specified, the details of a single Bucket will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -57,7 +58,6 @@ options:
             - The ID of the compartment in which to list buckets.
             - Required to list multiple buckets.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

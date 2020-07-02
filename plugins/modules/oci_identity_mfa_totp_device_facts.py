@@ -26,7 +26,8 @@ description:
     - Lists the MFA TOTP devices for the specified user. The returned object contains the device's OCID, but not
       the seed. The seed is returned only upon creation or when the IAM service regenerates the MFA seed for the device.
     - If I(mfa_totp_device_id) is specified, the details of a single MfaTotpDevice will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     user_id:
         description:
@@ -60,7 +61,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

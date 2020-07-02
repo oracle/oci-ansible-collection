@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple TagDefault resources in Oracle Cloud Infrastructure
     - Lists the tag defaults for tag definitions in the specified compartment.
     - If I(tag_default_id) is specified, the details of a single TagDefault will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     tag_default_id:
         description:
@@ -51,7 +52,6 @@ options:
         type: str
         choices:
             - "ACTIVE"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -29,7 +29,8 @@ description:
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       read operations exceeds 10 requests per second for a given tenancy.
     - If I(vault_id) is specified, the details of a single Vault will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     vault_id:
         description:
@@ -58,7 +59,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

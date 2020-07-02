@@ -25,14 +25,14 @@ description:
     - Fetches details about one or multiple CostTrackingTag resources in Oracle Cloud Infrastructure
     - Lists all the tags enabled for cost-tracking in the specified tenancy. For information about
       cost-tracking tags, see L(Using Cost-tracking Tags,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#costs).
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The OCID of the compartment (remember that the tenancy is simply the root compartment).
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

@@ -30,7 +30,8 @@ description:
       otherwise valid request when the total rate of management read operations exceeds 10 requests per second
       for a given tenancy.
     - If I(key_version_id) is specified, the details of a single KeyVersion will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     key_id:
         description:
@@ -64,7 +65,6 @@ options:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

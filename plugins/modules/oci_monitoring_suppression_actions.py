@@ -29,7 +29,8 @@ description:
       This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     alarm_id:
         description:
@@ -44,7 +45,6 @@ options:
         required: true
         choices:
             - "remove_alarm"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

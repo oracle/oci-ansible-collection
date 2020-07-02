@@ -29,7 +29,8 @@ description:
       For important limits information, see L(Limits on
       Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
       Transactions Per Second (TPS) per-tenancy limit for this operation: 10."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -104,7 +105,6 @@ options:
         required: true
         choices:
             - "list"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

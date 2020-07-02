@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple NetworkSecurityGroup resources in Oracle Cloud Infrastructure
     - Lists the network security groups in the specified compartment.
     - If I(network_security_group_id) is specified, the details of a single NetworkSecurityGroup will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     network_security_group_id:
         description:
@@ -77,7 +78,6 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple DedicatedVmHostShape re
 description:
     - Fetches details about one or multiple DedicatedVmHostShape resources in Oracle Cloud Infrastructure
     - Lists the shapes that can be used to launch a dedicated virtual machine host within the specified compartment.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -40,7 +41,6 @@ options:
         description:
             - The name for the instance's shape.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

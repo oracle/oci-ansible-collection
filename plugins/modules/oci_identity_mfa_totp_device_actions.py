@@ -25,7 +25,8 @@ description:
     - Perform actions on a MfaTotpDevice resource in Oracle Cloud Infrastructure
     - For I(action=activate), activates the specified MFA TOTP device for the user. Activation requires manual interaction with the Console.
     - For I(action=generate_totp_seed), generate seed for the MFA TOTP device.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     user_id:
         description:
@@ -51,7 +52,6 @@ options:
         choices:
             - "activate"
             - "generate_totp_seed"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

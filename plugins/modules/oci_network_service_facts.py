@@ -26,7 +26,8 @@ description:
     - Lists the available L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects that you can enable for a
       service gateway in this region.
     - If I(service_id) is specified, the details of a single Service will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     service_id:
         description:
@@ -34,7 +35,6 @@ options:
             - Required to get a specific service.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

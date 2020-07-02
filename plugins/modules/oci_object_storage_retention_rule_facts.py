@@ -26,7 +26,8 @@ description:
     - List the retention rules for a bucket. The retention rules are sorted based on creation time,
       with the most recently created retention rule returned first.
     - If I(retention_rule_id) is specified, the details of a single RetentionRule will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     namespace_name:
         description:
@@ -45,7 +46,6 @@ options:
             - Required to get a specific retention_rule.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

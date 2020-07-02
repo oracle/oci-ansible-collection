@@ -39,7 +39,8 @@ description:
         returns CPE configuration content for all tunnels in a single IPSec connection.
         * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
         returns CPE configuration content for *all* IPSec connections that use a specific CPE."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
@@ -52,7 +53,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

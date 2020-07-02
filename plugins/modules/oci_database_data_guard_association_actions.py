@@ -31,7 +31,8 @@ description:
     - For I(action=switchover), performs a switchover to transition the primary database of a Data Guard association into a standby role. The
       standby database associated with the `dataGuardAssociationId` assumes the primary database role.
       A switchover guarantees no data loss.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     database_id:
         description:
@@ -58,7 +59,6 @@ options:
             - "failover"
             - "reinstate"
             - "switchover"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

@@ -24,7 +24,8 @@ short_description: Fetches details about a AppCatalogListingResourceVersionAgree
 description:
     - Fetches details about a AppCatalogListingResourceVersionAgreement resource in Oracle Cloud Infrastructure
     - Retrieves the agreements for a particular resource version of a listing.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     listing_id:
         description:
@@ -38,7 +39,6 @@ options:
         type: str
         aliases: ["version"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -24,7 +24,8 @@ short_description: Fetches details about a BackendHealth resource in Oracle Clou
 description:
     - Fetches details about a BackendHealth resource in Oracle Cloud Infrastructure
     - Gets the current health status of the specified backend server.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -45,7 +46,6 @@ options:
             - "Example: `10.0.0.3:8080`"
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

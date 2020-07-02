@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple DbSystemShape resources in Oracle Cloud Infrastructure
     - "Gets a list of the shapes that can be used to launch a new DB system. The shape determines resources to allocate to the DB system - CPU cores and memory
       for VM shapes; CPU cores, memory and storage for non-VM (or bare metal) shapes."
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -36,7 +37,6 @@ options:
         description:
             - The name of the Availability Domain.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 

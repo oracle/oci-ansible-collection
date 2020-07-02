@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple BootVolume resources in Oracle Cloud Infrastructure
     - Lists the boot volumes in the specified compartment and availability domain.
     - If I(boot_volume_id) is specified, the details of a single BootVolume will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     boot_volume_id:
         description:
@@ -48,7 +49,6 @@ options:
         description:
             - The OCID of the volume group.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

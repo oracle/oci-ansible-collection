@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Secret resources in Oracle Cloud Infrastructure
     - Lists all secrets in the specified vault and compartment.
     - If I(secret_id) is specified, the details of a single Secret will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     secret_id:
         description:
@@ -75,7 +76,6 @@ options:
             - "PENDING_DELETION"
             - "CANCELLING_DELETION"
             - "FAILED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

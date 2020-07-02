@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple VirtualCircuit resources in Oracle Cloud Infrastructure
     - Lists the virtual circuits in the specified compartment.
     - If I(virtual_circuit_id) is specified, the details of a single VirtualCircuit will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     virtual_circuit_id:
         description:
@@ -77,7 +78,6 @@ options:
             - "INACTIVE"
             - "TERMINATING"
             - "TERMINATED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

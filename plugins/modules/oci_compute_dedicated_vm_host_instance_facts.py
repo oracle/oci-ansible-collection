@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple DedicatedVmHostInstance
 description:
     - Fetches details about one or multiple DedicatedVmHostInstance resources in Oracle Cloud Infrastructure
     - Returns the list of instances on the dedicated virtual machine hosts that match the specified criteria.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
@@ -62,7 +63,6 @@ options:
         choices:
             - "ASC"
             - "DESC"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple Certificate resources i
 description:
     - Fetches details about one or multiple Certificate resources in Oracle Cloud Infrastructure
     - Lists all SSL certificates bundles associated with a given load balancer.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -37,7 +38,6 @@ options:
             - The name of the certificate whose details needs to be fetched.
             - Required to get a specific certificate.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

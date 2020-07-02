@@ -42,7 +42,7 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 - Notifications
 - Streaming
 - Functions
-
+- OS Management
 
 ## Installation
 
@@ -55,6 +55,7 @@ You can install it from [Ansible Galaxy](https://galaxy.ansible.com/oracle) usin
 Notes:
 * Collections is supported in Ansible 2.9+.
 * For more information about collections, please check [Ansible Collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
+* To update the modules to latest version, use the install --force flag.
 
 #### 2) Install OCI Python SDK
 

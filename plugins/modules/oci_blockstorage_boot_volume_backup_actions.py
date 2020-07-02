@@ -25,7 +25,8 @@ description:
     - Perform actions on a BootVolumeBackup resource in Oracle Cloud Infrastructure
     - For I(action=copy), creates a boot volume backup copy in specified region. For general information about volume backups,
       see L(Overview of Boot Volume Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumebackups.htm)
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     boot_volume_backup_id:
         description:
@@ -52,7 +53,6 @@ options:
         required: true
         choices:
             - "copy"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 

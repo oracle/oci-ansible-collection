@@ -26,7 +26,8 @@ description:
     - Gets a list of all records at the specified zone and domain.
       The results are sorted by `rtype` in alphabetical order by default. You
       can optionally filter and/or sort the results using the listed parameters.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     zone_name_or_id:
         description:
@@ -74,7 +75,6 @@ options:
         description:
             - The OCID of the compartment the resource belongs to.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

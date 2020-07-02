@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple Application resources in Oracle Cloud Infrastructure
     - Lists applications for a compartment.
     - If I(application_id) is specified, the details of a single Application will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     application_id:
         description:
@@ -81,7 +82,6 @@ options:
             - "timeCreated"
             - "id"
             - "displayName"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

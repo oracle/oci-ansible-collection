@@ -31,7 +31,8 @@ description:
       Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
       to remove prefixes from the virtual circuit. When the virtual circuit's state switches
       back to PROVISIONED, Oracle stops advertising the specified prefixes across the connection.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     virtual_circuit_id:
         description:
@@ -59,7 +60,6 @@ options:
         choices:
             - "bulk_add_virtual_circuit_public_prefixes"
             - "bulk_delete_virtual_circuit_public_prefixes"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

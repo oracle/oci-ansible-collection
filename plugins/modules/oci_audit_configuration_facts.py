@@ -24,14 +24,14 @@ short_description: Fetches details about a Configuration resource in Oracle Clou
 description:
     - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
     - Get the configuration
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - ID of the root compartment (tenancy)
         type: str
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

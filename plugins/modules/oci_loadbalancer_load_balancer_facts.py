@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple LoadBalancer resources in Oracle Cloud Infrastructure
     - Lists all load balancers in the specified compartment.
     - If I(load_balancer_id) is specified, the details of a single LoadBalancer will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     load_balancer_id:
         description:
@@ -75,7 +76,6 @@ options:
             - "ACTIVE"
             - "DELETING"
             - "DELETED"
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

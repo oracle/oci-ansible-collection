@@ -25,7 +25,8 @@ description:
     - Fetches details about a Rrset resource in Oracle Cloud Infrastructure
     - Gets a list of all records in the specified RRSet. The results are
       sorted by `recordHash` by default.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     zone_name_or_id:
         description:
@@ -58,7 +59,6 @@ options:
         description:
             - The OCID of the compartment the resource belongs to.
         type: str
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

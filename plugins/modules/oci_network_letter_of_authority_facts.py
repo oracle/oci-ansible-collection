@@ -24,7 +24,8 @@ short_description: Fetches details about a LetterOfAuthority resource in Oracle 
 description:
     - Fetches details about a LetterOfAuthority resource in Oracle Cloud Infrastructure
     - Gets the Letter of Authority for the specified cross-connect.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     cross_connect_id:
         description:
@@ -32,7 +33,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 

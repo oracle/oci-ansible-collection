@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple IpSecConnectionTunnel resources in Oracle Cloud Infrastructure
     - Lists the tunnel information for the specified IPSec connection.
     - If I(tunnel_id) is specified, the details of a single IpSecConnectionTunnel will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
@@ -38,7 +39,6 @@ options:
             - Required to get a specific ip_sec_connection_tunnel.
         type: str
         aliases: ["id"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 

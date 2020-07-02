@@ -25,7 +25,8 @@ description:
     - Fetches details about one or multiple AutonomousDatabaseBackup resources in Oracle Cloud Infrastructure
     - Gets a list of Autonomous Database backups based on either the `autonomousDatabaseId` or `compartmentId` specified as a query parameter.
     - If I(autonomous_database_backup_id) is specified, the details of a single AutonomousDatabaseBackup will be returned.
-version_added: "2.5"
+version_added: "2.9"
+author: Oracle (@oracle)
 options:
     autonomous_database_backup_id:
         description:
@@ -72,7 +73,6 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
-author: Oracle (@oracle)
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
