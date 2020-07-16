@@ -70,19 +70,12 @@ tenancy:
             sample: description_example
         home_region_key:
             description:
-                - The region key for the tenancy's home region. For more information about regions, see
+                - The region key for the tenancy's home region. For the full list of supported regions, see
                   L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
-                - "Allowed values are:
-                  - `IAD`
-                  - `PHX`
-                  - `FRA`
-                  - `LHR`
-                  - `ICN`
-                  - `YYZ`
-                  - `NRT`"
+                - "Example: `PHX`"
             returned: on success
             type: string
-            sample: home_region_key_example
+            sample: PHX
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -103,7 +96,7 @@ tenancy:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
-        "home_region_key": "home_region_key_example",
+        "home_region_key": "PHX",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

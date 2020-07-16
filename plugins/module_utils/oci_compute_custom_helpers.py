@@ -8,7 +8,6 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible.module_utils._text import to_text
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_config_utils,
@@ -214,17 +213,6 @@ class InstanceFactsHelperCustom:
         for instance in instances:
             add_primary_ip_info(self.module, self.client, self.network_client, instance)
         return instances
-
-
-class InstanceConsoleHistoryContentFactsHelperCustom:
-    # API returns bytes. Convert to text and return to the user.
-    def get_resource(self):
-        super_get_response = super(
-            InstanceConsoleHistoryContentFactsHelperCustom, self
-        ).get_resource()
-        if super_get_response.data:
-            super_get_response.data = to_text(super_get_response.data)
-        return super_get_response
 
 
 class BootVolumeAttachmentHelperCustom:

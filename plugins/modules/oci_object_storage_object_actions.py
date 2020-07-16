@@ -101,35 +101,35 @@ options:
     opc_sse_customer_algorithm:
         description:
             - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm)."
             - Applicable only for I(action=copy).
         type: str
     opc_sse_customer_key:
         description:
             - The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
               decrypt the data. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - Applicable only for I(action=copy).
         type: str
     opc_sse_customer_key_sha256:
         description:
             - The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
               value is used to check the integrity of the encryption key. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - Applicable only for I(action=copy).
         type: str
     opc_source_sse_customer_algorithm:
         description:
             - "The optional header that specifies \\"AES256\\" as the encryption algorithm to use to decrypt the source
               object. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm)."
             - Applicable only for I(action=copy).
         type: str
     opc_source_sse_customer_key:
         description:
             - The optional header that specifies the base64-encoded 256-bit encryption key to use to decrypt
               the source object. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - Applicable only for I(action=copy).
         type: str
     opc_source_sse_customer_key_sha256:
@@ -137,7 +137,7 @@ options:
             - The optional header that specifies the base64-encoded SHA256 hash of the encryption key used to
               decrypt the source object. This value is used to check the integrity of the encryption key. For
               more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - Applicable only for I(action=copy).
         type: str
     source_name:
@@ -364,7 +364,7 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
@@ -386,7 +386,7 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_action_desired_states(
                 self.module.params.get("action")
@@ -410,7 +410,7 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_action_desired_states(
                 self.module.params.get("action")

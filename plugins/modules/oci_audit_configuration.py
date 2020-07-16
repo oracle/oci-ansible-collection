@@ -120,7 +120,7 @@ class ConfigurationHelperGen(OCIResourceHelperBase):
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )

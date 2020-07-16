@@ -171,7 +171,7 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
             )
         if not identifier:
             self.resource_helper.module.fail_json(
-                "Error getting the resource identifier."
+                msg="Error getting the resource identifier."
             )
         try:
             if (self.resource_helper.get_module_resource_id_param() is not None) and (
@@ -383,7 +383,7 @@ class CreateCompartmentOperationLifecycleStateWaiter(
         identifier = self.operation_response.data.id
         if not identifier:
             self.resource_helper.module.fail_json(
-                "Error getting the resource identifier."
+                msg="Error getting the resource identifier."
             )
         try:
             id_orig = self.resource_helper.module.params[
@@ -626,6 +626,7 @@ _WAITER_OVERRIDE_MAP = {
     #         "DETACH_LOAD_BALANCER", oci_common_utils.ACTION_OPERATION_KEY,
     #     ),
     # ): WorkRequestWaiter,
+    ("nosql", "index", oci_common_utils.CREATE_OPERATION_KEY,): WorkRequestWaiter,
 }
 
 

@@ -66,6 +66,9 @@ class OCIResourceCommonBase:
     def get_resource_failed_states(self):
         return oci_common_utils.FAILED_STATES
 
+    def get_waiter_client(self):
+        return self.client
+
 
 class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
@@ -734,7 +737,10 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def get_existing_resource_dict_for_update(self):
         try:
-            get_response = self.get_resource()
+            if self._use_name_as_identifier():
+                get_response = self.get_resource_using_name()
+            else:
+                get_response = self.get_resource()
         except ServiceError as se:
             self.module.fail_json(
                 msg="Getting resource failed with exception: {0}".format(se.message)
@@ -918,14 +924,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def update_using_name(self):
 
-        try:
-            get_response = self.get_resource_using_name()
-        except ServiceError as se:
-            self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message)
-            )
-        else:
-            resource = to_dict(get_response.data)
+        resource = self.get_existing_resource_dict_for_update()
 
         self.set_required_ids_in_module_when_name_is_identifier(resource)
         is_update_necessary = self.is_update_necessary(resource)

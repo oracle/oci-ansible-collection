@@ -49,6 +49,12 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_monitoring_custom_helpers,
     oci_ons_custom_helpers,
     oci_os_management_custom_helpers,
+    oci_resource_manager_custom_helpers,
+    oci_announcements_service_custom_helpers,
+    oci_integration_custom_helpers,
+    oci_nosql_custom_helpers,
+    oci_apigateway_custom_helpers,
+    oci_oce_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -72,5 +78,11 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_monitoring_custom_helpers,
         oci_ons_custom_helpers,
         oci_os_management_custom_helpers,
+        oci_resource_manager_custom_helpers,
+        oci_announcements_service_custom_helpers,
+        oci_integration_custom_helpers,
+        oci_nosql_custom_helpers,
+        oci_apigateway_custom_helpers,
+        oci_oce_custom_helpers,
     ]
 )

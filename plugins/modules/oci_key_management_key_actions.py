@@ -278,7 +278,7 @@ class KeyActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_action_desired_states(
                 self.module.params.get("action")
@@ -295,7 +295,7 @@ class KeyActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_action_desired_states(
                 self.module.params.get("action")
@@ -312,7 +312,7 @@ class KeyActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_action_desired_states(
                 self.module.params.get("action")
@@ -335,7 +335,7 @@ class KeyActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_action_desired_states(
                 self.module.params.get("action")

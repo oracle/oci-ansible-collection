@@ -1,0 +1,180 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_COMPARTMENT_OCID"
+    - "SAMPLE_IMAGE_OCID"
+    - "SAMPLE_AD_NAME"
+
+- name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance
+  tempfile:
+    state: directory
+    suffix: cert
+  register: result
+- set_fact:
+    temp_certificates_path: "{{ result.path }}"
+- name: Generate a Private Key
+  openssl_privatekey:
+    path: "{{ temp_certificates_path }}/private_key.pem"
+    type: RSA
+    size: 2048
+- set_fact:
+    my_test_public_key: "{{ temp_certificates_path }}/public_key.pem"
+- name: Generate a Public Key
+  openssl_publickey:
+    path: "{{ my_test_public_key }}"
+    privatekey_path: "{{ temp_certificates_path }}/private_key.pem"
+    format: OpenSSH
+
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ instance_compartment }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ vcn_cidr_block }}"
+    dns_label: "{{ vcn_dns_label }}"
+  register: result
+- set_fact:
+    vcn_id: "{{ result.vcn.id }}"
+
+- name: Create a new Internet Gateway
+  oci_network_internet_gateway:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ ig_name }}"
+    is_enabled: 'yes'
+    state: 'present'
+  register: result
+- set_fact:
+    ig_id: "{{ result.internet_gateway.id }}"
+
+- name: Create route table to connect internet gateway to the VCN
+  oci_network_route_table:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ route_table_name }}"
+    route_rules: "{{ route_table_rules }}"
+    state: 'present'
+  register: result
+- set_fact:
+    rt_id: "{{ result.route_table.id }}"
+
+# Create a security list for allowing access to public instance
+# Use a jinja2 template of the ingress and egress security rules to generate
+# a templated version of the final rules.
+- name: create ingress rules yaml body
+  template: src=./templates/ingress_security_rules.yaml.j2 dest=/tmp/instance_ingress_security_rules.yaml
+- name: create egress yaml body
+  template: src=./templates/egress_security_rules.yaml.j2 dest=/tmp/instance_egress_security_rules.yaml
+# Load the variables defined in the generated files
+- name: load the variables defined in the ingress rules yaml body
+  include_vars:
+    file: /tmp/instance_ingress_security_rules.yaml
+    name: loaded_ingress
+- name: print loaded_ingress
+  debug:
+    msg: "loaded ingress is {{loaded_ingress}}"
+- name: load the variables defined in the egress rules yaml body
+  include_vars:
+    file: /tmp/instance_egress_security_rules.yaml
+    name: loaded_egress
+- name: print loaded_egress
+  debug:
+    msg: "loaded egress is {{loaded_egress}}"
+- name: Create a security list for allowing access to public instance
+  oci_network_security_list:
+    name: "{{ securitylist_name }}"
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: '{{ vcn_id }}'
+    ingress_security_rules: "{{ loaded_ingress.instance_ingress_security_rules }}"
+    egress_security_rules:  "{{ loaded_egress.instance_egress_security_rules }}"
+  register: result
+- set_fact:
+    instance_security_list_ocid: "{{ result.security_list.id }}"
+
+- name: Create a subnet to host the public instance. Link security_list and route_table.
+  oci_network_subnet:
+    availability_domain: "{{ instance_ad }}"
+    cidr_block: "{{ subnet_cidr }}"
+    compartment_id: "{{ instance_compartment }}"
+    display_name: "{{ subnet_name }}"
+    prohibit_public_ip_on_vnic: false
+    route_table_id: "{{ rt_id }}"
+    security_list_ids: [ "{{ instance_security_list_ocid }}" ]
+    vcn_id: '{{ vcn_id }}'
+    dns_label: "{{ subnet_dns_label }}"
+  register: result
+- set_fact:
+    instance_subnet_id: "{{ result.subnet.id }}"
+
+- name: Launch an instance
+  oci_compute_instance:
+    availability_domain: "{{ instance_ad }}"
+    compartment_id: "{{ instance_compartment }}"
+    name: "my_test_instance"
+    image_id: "{{ instance_image }}"
+    shape: "{{ instance_shape }}"
+    create_vnic_details:
+        assign_public_ip: True
+        hostname_label: "{{ instance_hostname }}"
+        subnet_id: "{{ instance_subnet_id }}"
+    metadata:
+        ssh_authorized_keys: "{{ lookup('file',  my_test_public_key ) }}"
+  register: result
+
+- name: Print instance details
+  debug:
+    msg: "Launched a new instance {{ result }}"
+- set_fact:
+    instance_id: "{{result.instance.id }}"
+
+- name: Get the VNIC attachment details of instance
+  oci_compute_vnic_attachment_facts:
+    compartment_id: "{{ instance_compartment }}"
+    instance_id: "{{ instance_id }}"
+  register: result
+
+- name: Get details of the VNIC
+  oci_network_vnic_facts:
+    id: "{{ result.vnic_attachments[0].vnic_id }}"
+  register: result
+- set_fact:
+    instance_public_ip: "{{result.vnic.public_ip}}"
+
+- name: Print the public ip of the newly launched instance
+  debug:
+    msg: "Public IP of launched instance {{ instance_public_ip }}"
+
+- name: Wait (upto 5 minutes) for port 22 to become open
+  wait_for:
+    port: 22
+    host: '{{ instance_public_ip }}'
+    state: started
+    delay: 10
+  vars:
+    ansible_connection: local
+
+- set_fact:
+    # Use "opc" user as this is an OL image
+    # Disable SSH's strict host key checking just for this one command invocation
+    common_ssh_args: '-o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }}'
+
+- name: Attempt a ssh connection to the newly launced instance
+  # Use "opc" user as this is an OL image
+  # Disable SSH's strict host key checking just for this one command invocation
+  command: "ssh {{ common_ssh_args }} uname -a"
+  retries: 3
+  delay: 5
+  register: result
+  until: result.rc == 0
+- name: Print SSH response from launched instance
+  debug:
+    msg: "SSH response from instance -> {{ result.stdout_lines }}"
+- assert: { that: "'Linux mytestinstance' in result.stdout" }

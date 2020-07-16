@@ -1,0 +1,155 @@
+---
+# Copyright (c) 2020, Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Create an OKE cluster and deploy a sample app
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    # common networking definitions
+    quad_zero_route: "0.0.0.0/0"
+    TCP_protocol: "6"
+    SSH_port: "22"
+
+    vcn_name: "mytestvcn"
+    vcn_cidr_block: "10.0.0.0/16"
+    vcn_dns_label: "mytestvcn"
+
+    ig_name: "myinternetgatewayformytestvcn"
+
+    # route all internet access to our Internet Gateway
+    route_table_rules:
+        - cidr_block: "{{ quad_zero_route }}"
+          network_entity_id: "{{ ig_id }}"
+
+    subnet1_cidr: "10.0.0.0/24"
+    subnet2_cidr: "10.0.1.0/24"
+    subnet3_cidr: "10.0.2.0/24"
+
+    subnet1_name: "mytestsubnet1"
+    subnet2_name: "mytestsubnet2"
+    subnet3_name: "mytestsubnet3"
+
+    lb_subnet1_cidr: "10.0.20.0/24"
+    lb_subnet2_cidr: "10.0.21.0/24"
+
+    lb_subnet1_name: "LB Subnet1"
+    lb_subnet2_name: "LB Subnet2"
+
+    cluster_name: "my_test_cluster"
+    node_pool_name: "my_node_pool"
+
+    OKE_ip_address1: "130.35.0.0/16"
+    OKE_ip_address2: "134.70.0.0/17"
+    OKE_ip_address3: "138.1.0.0/16"
+    OKE_ip_address4: "140.91.0.0/17"
+    OKE_ip_address5: "147.154.0.0/16"
+    OKE_ip_address6: "192.29.0.0/16"
+
+    # node_pool vars
+    node_pool_config_details:
+      size: 1
+      placement_configs:
+        - availability_domain: "{{ ad1 }}"
+          subnet_id: "{{ ad1_subnet_id }}"
+        - availability_domain: "{{ ad2 }}"
+          subnet_id: "{{ ad2_subnet_id }}"
+        - availability_domain: "{{ ad3 }}"
+          subnet_id: "{{ ad3_subnet_id }}"
+
+
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    ad1: "{{ lookup('env', 'SAMPLE_AD1_NAME') }}"
+    ad2: "{{ lookup('env', 'SAMPLE_AD2_NAME') }}"
+    ad3: "{{ lookup('env', 'SAMPLE_AD3_NAME') }}"
+    cluster_compartment: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    kubeconfig_path: "{{ lookup('env', 'KUBECONFIG_PATH') }}"
+
+  tasks:
+    - import_tasks: setup.yaml
+
+    - name: Get Kubernetes version available for creating cluster
+      oci_container_engine_cluster_options_facts:
+        cluster_option_id: all
+      register: result
+    - debug:
+        msg: "{{ result }}"
+    - set_fact:
+        k8s_version: "{{ result.cluster_options.kubernetes_versions[1] }}"
+
+    - name: Create an OKE cluster
+      oci_container_engine_cluster:
+        compartment_id: "{{ cluster_compartment }}"
+        name: "{{ cluster_name }}"
+        vcn_id: "{{ vcn_id }}"
+        kubernetes_version: "{{ k8s_version }}"
+        options:
+          service_lb_subnet_ids:
+            - "{{ lb_subnet1_id }}"
+            - "{{ lb_subnet2_id }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+    - set_fact:
+        cluster_id: "{{result.cluster.id }}"
+
+    - name: Get node shapes and images available for creating nodes in the cluster
+      oci_container_engine_node_pool_options_facts:
+        id: "{{ cluster_id }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+    - set_fact:
+        node_shape: "{{ result.node_pool_options.shapes[2] }}"
+        node_pool_source_details:
+          source_type: "IMAGE"
+          image_id: "{{ result.node_pool_options.sources[0].image_id }}"
+
+    - name: Create a node pool
+      oci_container_engine_node_pool:
+        cluster_id: "{{ cluster_id }}"
+        compartment_id: "{{ cluster_compartment }}"
+        name: "{{ node_pool_name }}"
+        kubernetes_version: "{{ k8s_version }}"
+        node_source_details: "{{ node_pool_source_details }}"
+        node_shape: "{{ node_shape }}"
+        node_config_details: "{{ node_pool_config_details }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+    - set_fact:
+        node_pool_id: "{{ result.node_pool.id }}"
+
+    - name: Create kubeconfig
+      oci_container_engine_kubeconfig:
+        cluster_id: "{{ cluster_id }}"
+      register: result
+
+    - name: Save to kubeconfig file path
+      copy:
+        content: "{{ result.kubeconfig }}"
+        dest: "{{ kubeconfig_path }}"
+
+    - command: kubectl cluster-info
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+
+    - command: kubectl get nodes
+      environment:
+        KUBECONFIG: "{{ kubeconfig_path }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+
+    - import_tasks: teardown.yaml
