@@ -51,32 +51,20 @@ region_subscriptions:
     contains:
         region_key:
             description:
-                - The region's key.
-                - "Allowed values are:
-                  - `PHX`
-                  - `IAD`
-                  - `FRA`
-                  - `LHR`
-                  - `YYZ`
-                  - `NRT`
-                  - `ICN`"
+                - The region's key. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
+                  for the full list of supported 3-letter region codes.
+                - "Example: `PHX`"
             returned: on success
             type: string
-            sample: region_key_example
+            sample: PHX
         region_name:
             description:
-                - The region's name.
-                - "Allowed values are:
-                  - `ap-seoul-1`
-                  - `ap-tokyo-1`
-                  - `ca-toronto-1`
-                  - `eu-frankurt-1`
-                  - `uk-london-1`
-                  - `us-ashburn-1`
-                  - `us-phoenix-1`"
+                - The region's name. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
+                  for the full list of supported region names.
+                - "Example: `us-phoenix-1`"
             returned: on success
             type: string
-            sample: region_name_example
+            sample: us-phoenix-1
         status:
             description:
                 - The region subscription status.
@@ -90,8 +78,8 @@ region_subscriptions:
             type: bool
             sample: true
     sample: [{
-        "region_key": "region_key_example",
-        "region_name": "region_name_example",
+        "region_key": "PHX",
+        "region_name": "us-phoenix-1",
         "status": "READY",
         "is_home_region": true
     }]

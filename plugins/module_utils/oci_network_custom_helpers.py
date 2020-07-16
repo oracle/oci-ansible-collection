@@ -9,7 +9,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
-from ansible.module_utils._text import to_text
 
 try:
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
@@ -560,10 +559,6 @@ class CpeConfigContentFactsHelperCustom:
         # TODO: Remove this once the issue with API is fixed
         patch_base_client_call_api(self.client)
 
-    def get(self):
-        response_data = self.get_resource().data
-        return to_text(response_data.content)
-
 
 class IpSecConnectionCpeConfigContentFactsHelperCustom:
     def __init__(self, *args, **kwargs):
@@ -574,10 +569,6 @@ class IpSecConnectionCpeConfigContentFactsHelperCustom:
         # charset parameter from the header, it works fine.
         # TODO: Remove this once the issue with API is fixed
         patch_base_client_call_api(self.client)
-
-    def get(self):
-        response_data = self.get_resource().data
-        return to_text(response_data.content)
 
 
 class IpSecConnectionTunnelCpeDeviceConfigHelperCustom:
@@ -600,7 +591,3 @@ class IpSecConnectionTunnelCpeDeviceConfigContentFactsHelperCustom:
         # charset parameter from the header, it works fine.
         # TODO: Remove this once the issue with API is fixed
         patch_base_client_call_api(self.client)
-
-    def get(self):
-        response_data = self.get_resource().data
-        return to_text(response_data.content)

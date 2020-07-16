@@ -43,6 +43,14 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 - Streaming
 - Functions
 - OS Management
+- Resource Manager
+- Announcement
+- Integration
+- NoSQL
+- Events
+- Service Limits
+- API Gateway
+- Content and Experience
 
 ## Installation
 
@@ -69,6 +77,8 @@ The Oracle Cloud Ansible modules are built using the [Oracle Cloud Infrastructur
   $ pip install oci
   ```
 The modules honor the [SDK configuration](https://docs.us-phoenix-1.oraclecloud.com/Content/ToolsConfig.htm) when available.
+
+#### For more info about installation and troubleshooting check the [Installation Guide](https://github.com/oracle/oci-ansible-collections/blob/master/InstallationGuide.md).
 
 ## Samples
 

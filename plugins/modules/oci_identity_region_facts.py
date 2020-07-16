@@ -45,35 +45,23 @@ regions:
     contains:
         key:
             description:
-                - The key of the region.
-                - "Allowed values are:
-                  - `PHX`
-                  - `IAD`
-                  - `FRA`
-                  - `LHR`
-                  - `YYZ`
-                  - `NRT`
-                  - `ICN`"
+                - The key of the region. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm) for
+                  the full list of supported 3-letter region codes.
+                - "Example: `PHX`"
             returned: on success
             type: string
-            sample: key_example
+            sample: PHX
         name:
             description:
-                - The name of the region.
-                - "Allowed values are:
-                  - `ap-seoul-1`
-                  - `ap-tokyo-1`
-                  - `ca-toronto-1`
-                  - `eu-frankurt-1`
-                  - `uk-london-1`
-                  - `us-ashburn-1`
-                  - `us-phoenix-1`"
+                - The name of the region. See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
+                  for the full list of supported region names.
+                - "Example: `us-phoenix-1`"
             returned: on success
             type: string
-            sample: name_example
+            sample: us-phoenix-1
     sample: [{
-        "key": "key_example",
-        "name": "name_example"
+        "key": "PHX",
+        "name": "us-phoenix-1"
     }]
 """
 

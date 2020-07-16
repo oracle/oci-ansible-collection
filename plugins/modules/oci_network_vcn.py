@@ -351,7 +351,7 @@ class VcnHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(create_vcn_details=create_details,),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_resource_active_states(),
         )
@@ -370,7 +370,7 @@ class VcnHelperGen(OCIResourceHelperBase):
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_resource_active_states(),
         )
@@ -382,7 +382,7 @@ class VcnHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(vcn_id=self.module.params.get("vcn_id"),),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_resource_terminated_states(),
         )

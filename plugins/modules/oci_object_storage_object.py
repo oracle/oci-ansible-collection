@@ -99,19 +99,19 @@ options:
     opc_sse_customer_algorithm:
         description:
             - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm)."
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm)."
         type: str
     opc_sse_customer_key:
         description:
             - The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
               decrypt the data. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
         type: str
     opc_sse_customer_key_sha256:
         description:
             - The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
               value is used to check the integrity of the encryption key. For more information, see
-              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
+              L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
         type: str
     opc_meta:
         description:
@@ -322,7 +322,7 @@ class ObjectHelperGen(OCIResourceHelperBase):
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_resource_active_states(),
         )
@@ -339,7 +339,7 @@ class ObjectHelperGen(OCIResourceHelperBase):
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.client,
+            waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=self.get_resource_terminated_states(),
         )

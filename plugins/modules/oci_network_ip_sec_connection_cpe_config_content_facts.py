@@ -69,6 +69,7 @@ ip_sec_connection_cpe_config_content:
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_text
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceFactsHelperBase,
@@ -96,6 +97,10 @@ class IpSecConnectionCpeConfigContentFactsHelperGen(OCIResourceFactsHelperBase):
             self.client.get_ipsec_cpe_device_config_content,
             ipsc_id=self.module.params.get("ipsc_id"),
         )
+
+    def get(self):
+        response_data = self.get_resource().data
+        return to_text(response_data)
 
 
 IpSecConnectionCpeConfigContentFactsHelperCustom = get_custom_class(

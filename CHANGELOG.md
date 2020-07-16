@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2020-7-16
+
+### Added:
+- Added Resource Manager modules
+- Added Announcement modules
+- Added Integration modules
+- Added NoSQL modules
+- Added Events modules
+- Added Service Limits modules
+- Added API Gateway modules
+- Added Content and Experience modules
+- Added samples for Container Engine and Block Volume
+
+### Changed:
+- Please update to the latest version of OCI Python SDK.
+
+
 ## [2.3.0] - 2020-7-2
 
 ### Added:

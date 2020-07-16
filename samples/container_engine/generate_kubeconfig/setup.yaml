@@ -1,0 +1,136 @@
+---
+# Copyright (c) 2020, Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_COMPARTMENT_OCID"
+    - "KUBECONFIG_PATH"
+    - "SAMPLE_AD1_NAME"
+    - "SAMPLE_AD2_NAME"
+    - "SAMPLE_AD3_NAME"
+
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ cluster_compartment }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ vcn_cidr_block }}"
+    dns_label: "{{ vcn_dns_label }}"
+  register: vcnresult
+- debug:
+    msg: "{{ vcnresult }}"
+- set_fact:
+    vcn_id: "{{ vcnresult.vcn.id }}"
+
+- name: Create an internet gateway
+  oci_network_internet_gateway:
+    compartment_id: "{{ cluster_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ ig_name }}"
+    is_enabled: true
+  register: result
+- debug:
+    msg: "{{ result }}"
+- set_fact:
+    ig_id: "{{ result.internet_gateway.id }}"
+
+- name: Update default route table of VCN to connect internet gateway to the VCN
+  oci_network_route_table:
+    id: "{{ vcnresult.vcn.default_route_table_id }}"
+    route_rules: "{{ route_table_rules }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- set_fact:
+    rt_id: "{{ result.route_table.id }}"
+
+- name: Create subnets for worker nodes in AD1, AD2 & AD3
+  oci_network_subnet:
+    availability_domain: "{{ item.ad }}"
+    cidr_block: "{{ item.cidr }}"
+    compartment_id: "{{ cluster_compartment }}"
+    display_name: "{{ item.subnet_name }}"
+    vcn_id: '{{ vcn_id }}'
+  loop:
+    - { ad: '{{ ad1 }}', cidr: '{{ subnet1_cidr }}', subnet_name: '{{ subnet1_name }}' }
+    - { ad: '{{ ad2 }}', cidr: '{{ subnet2_cidr }}', subnet_name: '{{ subnet2_name }}' }
+    - { ad: '{{ ad3 }}', cidr: '{{ subnet3_cidr }}', subnet_name: '{{ subnet3_name }}' }
+  register: result
+- debug:
+    msg: "{{ result }}"
+- set_fact:
+    ad1_subnet_id: "{{ result.results[0].subnet.id }}"
+    ad2_subnet_id: "{{ result.results[1].subnet.id }}"
+    ad3_subnet_id: "{{ result.results[2].subnet.id }}"
+
+# Use a jinja2 template of the ingress and egress security rules to generate a templated version of the final rules.
+- name: create ingress rules yaml body
+  template: src=./templates/ingress_security_rules.yaml.j2 dest=/tmp/ingress_security_rules.yaml
+
+- name: create egress yaml body
+  template: src=./templates/egress_security_rules.yaml.j2 dest=/tmp/egress_security_rules.yaml
+
+# Load the variables defined in the generated files
+- name: load the variables defined in the ingress rules yaml body
+  include_vars:
+    file: /tmp/ingress_security_rules.yaml
+    name: loaded_ingress
+- name: print loaded_ingress
+  debug:
+    msg: "loaded ingress is {{loaded_ingress}}"
+
+- name: load the variables defined in the egress rules yaml body
+  include_vars:
+    file: /tmp/egress_security_rules.yaml
+    name: loaded_egress
+- name: print loaded_egress
+  debug:
+    msg: "loaded egress is {{loaded_egress}}"
+
+- name: Update default security list to add additional rules
+  oci_network_security_list:
+    id: "{{ vcnresult.vcn.default_security_list_id }}"
+    ingress_security_rules: "{{ loaded_ingress.ingress_security_rules_for_default_sec_list }}"
+    egress_security_rules:  "{{ loaded_egress.egress_security_rules_for_default_sec_list }}"
+    purge_security_rules: 'no'
+  register: result
+- debug:
+    msg: "{{ result }}"
+
+- name: Create a security list for load balancers
+  oci_network_security_list:
+    name: "Load Balancers"
+    compartment_id: "{{ cluster_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    ingress_security_rules: "{{ loaded_ingress.ingress_security_rules_for_lb }}"
+    egress_security_rules: "{{ loaded_egress.egress_security_rules_for_lb }}"
+  register: result
+- debug:
+    msg: "{{ result }}"
+- set_fact:
+    lb_sec_list_id: "{{ result.security_list.id }}"
+
+- name: Create load balancer subnets in AD1 & AD2
+  oci_network_subnet:
+    name: "{{ item.name }}"
+    availability_domain: "{{ item.ad }}"
+    compartment_id: "{{ cluster_compartment }}"
+    cidr_block: "{{ item.cidr }}"
+    vcn_id: "{{ vcn_id }}"
+    security_list_ids:
+      - "{{ lb_sec_list_id }}"
+  loop:
+    - { name: '{{ lb_subnet1_name }}', ad: '{{ ad1 }}', cidr: '{{ lb_subnet1_cidr }}' }
+    - { name: '{{ lb_subnet2_name }}', ad: '{{ ad2 }}', cidr: '{{ lb_subnet2_cidr }}' }
+  register: result
+- debug:
+    msg: "{{ result }}"
+- set_fact:
+    lb_subnet1_id: "{{ result.results[0].subnet.id }}"
+    lb_subnet2_id: "{{ result.results[1].subnet.id }}"
