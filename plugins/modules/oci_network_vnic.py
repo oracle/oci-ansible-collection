@@ -59,10 +59,10 @@ options:
               Must be unique across all VNICs in the subnet and comply with
               L(RFC 952,https://tools.ietf.org/html/rfc952) and
               L(RFC 1123,https://tools.ietf.org/html/rfc1123).
-              The value appears in the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and also the
-              L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
-              L(ListPrivateIps,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-              L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+              The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
+              L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
+              L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
+              L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
             - For more information, see
               L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
         type: str
@@ -71,7 +71,7 @@ options:
             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. Setting this as
               an empty array removes the VNIC from all network security groups.
             - For more information about NSGs, see
-              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
         type: list
     skip_source_dest_check:
         description:
@@ -188,7 +188,7 @@ vnic:
             description:
                 - A list of the OCIDs of the network security groups that the VNIC belongs to. For more
                   information about NSGs, see
-                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
             returned: on success
             type: list
             sample: []

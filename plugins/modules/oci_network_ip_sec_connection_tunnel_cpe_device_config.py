@@ -45,7 +45,7 @@ options:
             key:
                 description:
                     - A string that identifies the question to be answered. See the `key` attribute in
-                      L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
+                      L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
                 type: str
             value:
                 description:
@@ -86,7 +86,7 @@ ip_sec_connection_tunnel_cpe_device_config:
                 key:
                     description:
                         - A string that identifies the question to be answered. See the `key` attribute in
-                          L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
+                          L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
                     returned: on success
                     type: string
                     sample: key_example

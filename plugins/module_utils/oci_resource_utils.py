@@ -43,6 +43,16 @@ def get_logger():
 class OCIResourceCommonBase:
     """Base class for the Helper Classes to hold common code."""
 
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.module = module
+        self.resource_type = resource_type
+        self.service_client_class = service_client_class
+
+        self.client = oci_config_utils.create_service_client(
+            self.module, self.service_client_class
+        )
+        self.namespace = namespace
+
     def prepare_result(self, changed, resource_type, resource=None, msg=None):
         result = dict(changed=changed)
         result[resource_type] = resource
@@ -69,16 +79,28 @@ class OCIResourceCommonBase:
     def get_waiter_client(self):
         return self.client
 
+    def get_default_module_wait_timeout(self):
+        """Can be overridden in specfic modules that require longer or shorter wait times"""
+        return (
+            oci_common_utils.SERVICE_WAIT_TIMEOUT_MAP.get(self.namespace)
+            or oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
+        )
+
+    # Order of preference:
+    #   wait_timeout module parameter
+    #   module default wait timeout (get_default_module_wait_timeout)
+    def get_wait_timeout(self):
+        return (
+            self.module.params.get("wait_timeout")
+            or self.get_default_module_wait_timeout()
+        )
+
 
 class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
-        self.module = module
-        self.resource_type = resource_type
-        self.service_client_class = service_client_class
-        self.client = oci_config_utils.create_service_client(
-            self.module, self.service_client_class
+        super(OCIResourceFactsHelperBase, self).__init__(
+            module, resource_type, service_client_class, namespace
         )
-        self.namespace = namespace
 
     def get_required_params_for_get(self):
         """Expected to be generated inside the module."""
@@ -156,13 +178,9 @@ class OCIResourceFactsHelperBase(OCIResourceCommonBase):
 
 class OCIActionsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):
-        self.module = module
-        self.resource_type = resource_type
-        self.service_client_class = service_client_class
-        self.client = oci_config_utils.create_service_client(
-            self.module, self.service_client_class
+        super(OCIActionsHelperBase, self).__init__(
+            module, resource_type, service_client_class, namespace
         )
-        self.namespace = namespace
         self.check_mode = self.module.check_mode
 
     def get_module_resource_id_param(self):
@@ -191,7 +209,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
             return True
 
-        resource = resource or self.get_resource()
+        resource = resource or self.get_resource().data
         if hasattr(
             resource, "lifecycle_state"
         ) and resource.lifecycle_state in self.get_action_idempotent_states(action):
@@ -204,15 +222,6 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
     def get_action_desired_states(self, action):
         return oci_common_utils.ACTION_DESIRED_STATES.get(
             action.upper(), oci_common_utils.DEFAULT_READY_STATES
-        )
-
-    def get_default_module_wait_timeout(self):
-        """Can be overridden in specfic modules that require longer or shorter wait times"""
-        return oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-
-    def get_wait_timeout(self):
-        return self.module.params.get(
-            "wait_timeout", self.get_default_module_wait_timeout()
         )
 
     def perform_action(self, action):
@@ -271,14 +280,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
     USE_NAME_AS_IDENTIFIER_ENV_VAR_KEY = "OCI_USE_NAME_AS_IDENTIFIER"
 
     def __init__(self, module, resource_type, service_client_class, namespace):
-        self.module = module
-        self.resource_type = resource_type
-        self.service_client_class = service_client_class
-
-        self.client = oci_config_utils.create_service_client(
-            self.module, self.service_client_class
+        super(OCIResourceHelperBase, self).__init__(
+            module, resource_type, service_client_class, namespace
         )
-        self.namespace = namespace
         self.check_mode = self.module.check_mode
 
     def get_module_resource_id_param(self):
@@ -360,15 +364,6 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def get_resource_terminated_states(self):
         return oci_common_utils.DEFAULT_TERMINATED_STATES
-
-    def get_default_module_wait_timeout(self):
-        """Can be overridden in specfic modules that require longer or shorter wait times"""
-        return oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-
-    def get_wait_timeout(self):
-        return self.module.params.get(
-            "wait_timeout", self.get_default_module_wait_timeout()
-        )
 
     def _has_name_parameter(self):
         if any(

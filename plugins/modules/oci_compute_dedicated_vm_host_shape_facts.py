@@ -67,7 +67,7 @@ dedicated_vm_host_shapes:
         dedicated_vm_host_shape:
             description:
                 - The name of the dedicated vm host shape. You can enumerate all available shapes by calling
-                  L(ListDedicatedVmHostShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/dedicatedVmHostShapes).
+                  L(ListDedicatedVmHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/dedicatedVmHostShapes).
             returned: on success
             type: string
             sample: dedicated_vm_host_shape_example

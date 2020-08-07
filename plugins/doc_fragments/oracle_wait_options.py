@@ -17,7 +17,7 @@ class ModuleDocFragment(object):
             default: yes
             type: bool
         wait_timeout:
-            description: Time, in seconds, to wait when I(wait=yes).
-            default: 1200
+            description: Time, in seconds, to wait when I(wait=yes). Defaults to 1200 for most of the services but some
+                         services might have a longer wait timeout.
             type: int
     """

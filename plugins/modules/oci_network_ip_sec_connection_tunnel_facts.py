@@ -122,7 +122,7 @@ ip_sec_connection_tunnels:
                     description:
                         - The IP address for the Oracle end of the inside tunnel interface.
                         - If the tunnel's `routing` attribute is set to `BGP`
-                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP address
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP address
                           is required and used for the tunnel's BGP session.
                         - If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
                           address so you can troubleshoot or monitor the tunnel.
@@ -135,7 +135,7 @@ ip_sec_connection_tunnels:
                     description:
                         - The IP address for the CPE end of the inside tunnel interface.
                         - If the tunnel's `routing` attribute is set to `BGP`
-                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP address
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP address
                           is required and used for the tunnel's BGP session.
                         - If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
                           address so you can troubleshoot or monitor the tunnel.
@@ -153,7 +153,7 @@ ip_sec_connection_tunnels:
                 customer_bgp_asn:
                     description:
                         - "If the tunnel's `routing` attribute is set to `BGP`
-                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnectionTunnel/)), this ASN
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this ASN
                           is required and used for the tunnel's BGP session. This is the ASN of the network on the
                           CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
                         - If the tunnel uses static routing, the `customerBgpAsn` must be null.

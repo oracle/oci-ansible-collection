@@ -46,10 +46,6 @@ options:
             - The OCID of the compartment the resource belongs to.
             - Required to list multiple tsig_keys.
         type: str
-    id:
-        description:
-            - The OCID of a resource.
-        type: str
     name:
         description:
             - The name of a resource.
@@ -231,7 +227,6 @@ class TsigKeyFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "name",
             "lifecycle_state",
             "sort_by",
@@ -263,7 +258,6 @@ def main():
             tsig_key_id=dict(aliases=["id"], type="str"),
             if_modified_since=dict(type="str"),
             compartment_id=dict(type="str"),
-            id=dict(type="str"),
             name=dict(type="str"),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "CREATING"]),
             sort_by=dict(type="str", choices=["name", "timeCreated"]),

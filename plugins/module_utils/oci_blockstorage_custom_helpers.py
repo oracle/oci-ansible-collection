@@ -202,9 +202,7 @@ class BootVolumeKmsKeyHelperCustom:
             ),
             evaluate_response=lambda r: r.data.lifecycle_state
             in oci_common_utils.DEFAULT_READY_STATES,
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.get_wait_timeout(),
         )
         return self.prepare_result(
             changed=True,
@@ -250,9 +248,7 @@ class VolumeKmsKeyHelperCustom:
             self.client.get_volume(volume_id=self.module.params.get("volume_id")),
             evaluate_response=lambda r: r.data.lifecycle_state
             in oci_common_utils.DEFAULT_READY_STATES,
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.get_wait_timeout(),
         )
         return self.prepare_result(
             changed=True,

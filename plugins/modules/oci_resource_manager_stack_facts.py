@@ -41,10 +41,6 @@ options:
             - A filter to return only resources that exist in the compartment, identified by
               L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: str
-    id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) on which to query for a stack.
-        type: str
     lifecycle_state:
         description:
             - A filter that returns only those resources that match the specified
@@ -264,7 +260,6 @@ class StackFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "compartment_id",
-            "id",
             "lifecycle_state",
             "display_name",
             "sort_by",
@@ -293,7 +288,6 @@ def main():
         dict(
             stack_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            id=dict(type="str"),
             lifecycle_state=dict(
                 type="str", choices=["CREATING", "ACTIVE", "DELETING", "DELETED"]
             ),

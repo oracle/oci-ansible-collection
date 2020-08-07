@@ -181,7 +181,7 @@ health_checker:
                 - "Example: `^((?!false).|\\\\s)*$`"
             returned: on success
             type: string
-            sample: ^((?!false).|\\s)*$
+            sample: "^((?!false).|\\\\s)*$"
     sample: {
         "protocol": "HTTP",
         "url_path": "/healthcheck",

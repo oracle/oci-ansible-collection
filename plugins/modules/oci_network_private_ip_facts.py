@@ -23,14 +23,14 @@ module: oci_network_private_ip_facts
 short_description: Fetches details about one or multiple PrivateIp resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PrivateIp resources in Oracle Cloud Infrastructure
-    - "Lists the L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) objects based
+    - "Lists the L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) objects based
       on one of these filters:"
     - " - Subnet OCID.
         - VNIC OCID.
         - Both private IP address and subnet OCID: This lets
         you get a `privateIP` object based on its private IP
         address (for example, 10.0.3.3) and not its OCID. For comparison,
-        L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp)
+        L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)
         requires the OCID."
     - If you're listing all the private IPs associated with a given subnet
       or VNIC, the response includes both primary and secondary private IPs.

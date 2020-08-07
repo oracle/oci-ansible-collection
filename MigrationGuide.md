@@ -367,3 +367,22 @@ No breaking changes
 |oci_domain_records_facts                         |  oci_dns_domain_records_facts                       |  Module name is the only breaking change
 |oci_rrset                                        |  oci_dns_rrset                                      |  Module name is the only breaking change
 |oci_rrset_facts                                  |  oci_dns_rrset_facts                                |  Module name is the only breaking change
+
+#### WAAS
+
+|old name                                         |  new name                                           |  migration notes
+|-------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------
+|oci_waas_policy                                  |  oci_waas_policy                                    |  No breaking changes
+|oci_waas_policy_facts                            |  oci_waas_policy_facts                              |  No breaking changes
+|oci_waas_certificate                             |  oci_waas_certificate                               |  No breaking changes
+|oci_waas_certificate_facts                       |  oci_waas_certificate_facts                         |  No breaking changes
+|oci_waas_recommendation_facts                    |  oci_waas_recommendation_facts                      |  No breaking changes
+|oci_waas_edge_subnet_facts                       |  oci_waas_edge_subnet_facts                         |  No breaking changes
+|oci_waas_work_request                            |  deprecated                                         |  
+|oci_waas_work_request_facts                      |  deprecated                                         |  
+
+#### Search
+|old name                                         |  new name                                           |  migration notes
+|-------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------
+|oci_resource_type_facts                          |  oci_resource_search_resource_type_facts            |  Module name is the only breaking change
+|oci_search_resources_facts                       |  oci_resource_search_resource_facts                 |  Breaking changes: <ul><li>Return field has changed from `search_resources` to `resources`</li></ul>

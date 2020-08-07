@@ -154,8 +154,9 @@ dhcp_options:
                 type:
                     description:
                         - The specific DHCP option. Either `DomainNameServer`
-                          (for L(DhcpDnsOption,https://docs.cloud.oracle.com/#/en/iaas/20160918/DhcpDnsOption/)) or
-                          `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/#/en/iaas/20160918/DhcpSearchDomainOption/)).
+                          (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/)) or
+                          `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/iaas/20160918/DhcpSearchDomainOption/)).
                     returned: on success
                     type: string
                     sample: DomainNameServer
@@ -189,7 +190,7 @@ dhcp_options:
                         - A single search domain name according to L(RFC 952,https://tools.ietf.org/html/rfc952)
                           and L(RFC 1123,https://tools.ietf.org/html/rfc1123). During a DNS query,
                           the OS will append this search domain name to the value being queried.
-                        - If you set L(DhcpDnsOption,https://docs.cloud.oracle.com/#/en/iaas/20160918/DhcpDnsOption/) to `VcnLocalPlusInternet`,
+                        - If you set L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/) to `VcnLocalPlusInternet`,
                           and you assign a DNS label to the VCN during creation, the search domain name in the
                           VCN's default set of DHCP options is automatically set to the VCN domain
                           (for example, `vcn1.oraclevcn.com`).

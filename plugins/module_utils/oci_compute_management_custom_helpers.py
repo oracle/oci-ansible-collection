@@ -241,9 +241,7 @@ class InstancePoolActionsHelperCustom:
             self.client,
             self.client.get_instance_pool(instance_pool.id),
             evaluate_response=evaluate_response_for_load_balancer_attachment,
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.get_wait_timeout(),
             fetch_func=lambda **kwargs: self.get_resource(),
         )
         return wait_response.data
@@ -278,9 +276,7 @@ class InstancePoolActionsHelperCustom:
             self.client,
             self.client.get_instance_pool(instance_pool.id),
             evaluate_response=evaluate_response_for_load_balancer_detachment,
-            max_wait_seconds=self.module.params.get(
-                "wait_timeout", oci_common_utils.MAX_WAIT_TIMEOUT_IN_SECONDS
-            ),
+            max_wait_seconds=self.get_wait_timeout(),
             fetch_func=lambda **kwargs: self.get_resource(),
         )
         return wait_response.data

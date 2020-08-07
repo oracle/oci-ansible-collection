@@ -72,21 +72,21 @@ options:
         type: str
     services:
         description:
-            - List of the OCIDs of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects to
+            - List of the OCIDs of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects to
               enable for the service gateway. This list can be empty if you don't want to enable any
               `Service` objects when you create the gateway. You can enable a `Service`
-              object later by using either L(AttachServiceId,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/AttachServiceId)
-              or L(UpdateServiceGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
+              object later by using either L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId)
+              or L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
             - For each enabled `Service`, make sure there's a route rule with the `Service` object's `cidrBlock`
               as the rule's destination and the service gateway as the rule's target. See
-              L(Route Table,https://docs.cloud.oracle.com/#/en/iaas/20160918/RouteTable/).
+              L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/).
             - Required for create using I(state=present).
         type: list
         suboptions:
             service_id:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
-                      L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/).
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the L(Service,https://docs.cloud.oracle.com/en-
+                      us/iaas/api/#/en/iaas/20160918/Service/).
                 type: str
                 required: true
     vcn_id:
@@ -225,10 +225,10 @@ service_gateway:
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         services:
             description:
-                - List of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
+                - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
                   The list can be empty. You can enable a particular `Service` by using
-                  L(AttachServiceId,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
-                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
+                  L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
+                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
             returned: on success
             type: complex
             contains:

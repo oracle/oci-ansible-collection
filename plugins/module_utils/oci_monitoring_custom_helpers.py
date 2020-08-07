@@ -71,3 +71,15 @@ class MetricDataHelperCustom:
         self.client = oci_config_utils.create_service_client(
             self.module, MonitoringClient
         )
+
+
+class AlarmActionsHelperCustom:
+    REMOVE_ALARM_SUPPRESSION = "remove_alarm_suppression"
+
+    # For idempotency we check if suppression already exists for an alarm.
+    def is_action_necessary(self, action, resource=None):
+        if action.lower() == self.REMOVE_ALARM_SUPPRESSION:
+            return resource.suppression is not None
+        return super(AlarmActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

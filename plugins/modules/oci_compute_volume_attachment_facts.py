@@ -25,9 +25,9 @@ description:
     - Fetches details about one or multiple VolumeAttachment resources in Oracle Cloud Infrastructure
     - Lists the volume attachments in the specified compartment. You can filter the
       list by specifying an instance OCID, volume OCID, or both.
-    - Currently, the only supported volume attachment type are L(IScsiVolumeAttachment,https://docs.cloud.oracle.com/#/en/iaas/20160918/IScsiVolumeAttachment/)
-      and
-      L(ParavirtualizedVolumeAttachment,https://docs.cloud.oracle.com/#/en/iaas/20160918/ParavirtualizedVolumeAttachment/).
+    - Currently, the only supported volume attachment type are L(IScsiVolumeAttachment,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/20160918/IScsiVolumeAttachment/) and
+      L(ParavirtualizedVolumeAttachment,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ParavirtualizedVolumeAttachment/).
     - If I(volume_attachment_id) is specified, the details of a single VolumeAttachment will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

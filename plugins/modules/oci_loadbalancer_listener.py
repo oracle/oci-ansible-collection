@@ -42,8 +42,8 @@ options:
     protocol:
         description:
             - The protocol on which the listener accepts connection requests.
-              To get a list of valid protocols, use the
-              L(ListProtocols,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/LoadBalancerProtocol/ListProtocols)
+              To get a list of valid protocols, use the L(ListProtocols,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerProtocol/ListProtocols)
               operation.
             - "Example: `HTTP`"
             - Required for create using I(state=present), update using I(state=present) with name present.
@@ -54,7 +54,8 @@ options:
         type: list
     path_route_set_name:
         description:
-            - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/PathRouteSet/),
+            - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/),
               applied to this listener's traffic.
             - "Example: `example_path_route_set`"
         type: str
@@ -96,6 +97,11 @@ options:
                     - "Example: `1200`"
                 type: int
                 required: true
+            backend_tcp_proxy_protocol_version:
+                description:
+                    - The backend TCP Proxy Protocol version.
+                    - "Example: `1`"
+                type: int
     name:
         description:
             - A friendly name for the listener. It must be unique and it cannot be changed.
@@ -105,7 +111,7 @@ options:
         required: true
     rule_set_names:
         description:
-            - The names of the L(rule sets,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
+            - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
             - "Example: [\\"example_rule_set\\"]"
         type: list
     load_balancer_id:
@@ -181,8 +187,8 @@ listener:
         protocol:
             description:
                 - The protocol on which the listener accepts connection requests.
-                  To get a list of valid protocols, use the
-                  L(ListProtocols,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/LoadBalancerProtocol/ListProtocols)
+                  To get a list of valid protocols, use the L(ListProtocols,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerProtocol/ListProtocols)
                   operation.
                 - "Example: `HTTP`"
             returned: on success
@@ -196,7 +202,8 @@ listener:
             sample: []
         path_route_set_name:
             description:
-                - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/PathRouteSet/),
+                - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/),
                   applied to this listener's traffic.
                 - "Example: `example_path_route_set`"
             returned: on success
@@ -248,9 +255,16 @@ listener:
                     returned: on success
                     type: int
                     sample: 1200
+                backend_tcp_proxy_protocol_version:
+                    description:
+                        - The backend TCP Proxy Protocol version.
+                        - "Example: `1`"
+                    returned: on success
+                    type: int
+                    sample: 1
         rule_set_names:
             description:
-                - The names of the L(rule sets,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
+                - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
                 - "Example: [\\"example_rule_set\\"]"
             returned: on success
             type: list
@@ -268,7 +282,8 @@ listener:
             "verify_depth": 3
         },
         "connection_configuration": {
-            "idle_timeout": 1200
+            "idle_timeout": 1200,
+            "backend_tcp_proxy_protocol_version": 1
         },
         "rule_set_names": []
     }
@@ -397,7 +412,11 @@ def main():
                 ),
             ),
             connection_configuration=dict(
-                type="dict", options=dict(idle_timeout=dict(type="int", required=True))
+                type="dict",
+                options=dict(
+                    idle_timeout=dict(type="int", required=True),
+                    backend_tcp_proxy_protocol_version=dict(type="int"),
+                ),
             ),
             name=dict(type="str", required=True),
             rule_set_names=dict(type="list"),

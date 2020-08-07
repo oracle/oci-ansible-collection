@@ -50,11 +50,6 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
-    id:
-        description:
-            - Filter results by OCID. Must be an OCID of the correct type for
-              the resouce type.
-        type: str
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc', where 'asc' is
@@ -184,7 +179,6 @@ class SnapshotFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "lifecycle_state",
-            "id",
             "sort_order",
             "name",
         ]
@@ -217,7 +211,6 @@ def main():
                 type="str",
                 choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],
             ),
-            id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             name=dict(type="str"),
         )

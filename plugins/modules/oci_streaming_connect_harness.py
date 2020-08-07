@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete a ConnectHarness resource in Oracle Cloud Infrastructure
     - For I(state=present), starts the provisioning of a new connect harness.
       To track the progress of the provisioning, you can periodically call L(GetConnectHarness].
-      In the response, the `lifecycleState` parameter of the [ConnectHarness,https://docs.cloud.oracle.com/#/en/streaming/20180418/ConnectHarness/) object tells
-      you its current state.
+      In the response, the `lifecycleState` parameter of the [ConnectHarness,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/streaming/20180418/ConnectHarness/) object tells you its current state.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

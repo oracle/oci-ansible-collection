@@ -34,8 +34,8 @@ description:
       You can use this name or the OCID when writing policies that apply to the dynamic group. For more information
       about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
     - "You must also specify a *description* for the dynamic group (although it can be an empty string). It does not
-      have to be unique, and you can change it anytime with
-      L(UpdateDynamicGroup,https://docs.cloud.oracle.com/#/en/identity/20160918/DynamicGroup/UpdateDynamicGroup)."
+      have to be unique, and you can change it anytime with L(UpdateDynamicGroup,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/identity/20160918/DynamicGroup/UpdateDynamicGroup)."
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
 version_added: "2.9"

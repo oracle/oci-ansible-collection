@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2020-8-6
+
+### Added:
+- Added Analytics modules
+- Added Web Application Acceleration and Security Services modules
+- Added Limits modules
+- Added Data Science modules
+- Added Data Safe modules
+- Added Data Catalog modules
+- Added Data Flow modules
+- Added Search modules
+- Added Digital Assistant Instance modules
+- Added MySQL modules
+- Added `oci_monitoring_alarm_actions` module
+- Added multiple loadbalancer features.
+- Added `oci_loadbalancer_network_security_groups`, `oci_loadbalancer_listener_rule_facts` modules
+
+### Changed:
+- Please update to the latest version of OCI Python SDK.
+
+
 ## [2.4.0] - 2020-7-16
 
 ### Added:

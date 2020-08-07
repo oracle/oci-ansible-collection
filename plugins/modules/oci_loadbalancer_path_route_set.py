@@ -58,8 +58,8 @@ options:
                 suboptions:
                     match_type:
                         description:
-                            - Specifies how the load balancing service compares a
-                              L(PathRoute,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/requests/PathRoute)
+                            - Specifies how the load balancing service compares a L(PathRoute,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/loadbalancer/20170115/requests/PathRoute)
                               object's `path` string against the incoming URI.
                             - "*  **EXACT_MATCH** - Looks for a `path` string that exactly matches the incoming URI path."
                             - "*  **FORCE_LONGEST_PREFIX_MATCH** - Looks for the `path` string with the best, longest match of the beginning
@@ -165,8 +165,8 @@ path_route_set:
                     contains:
                         match_type:
                             description:
-                                - Specifies how the load balancing service compares a
-                                  L(PathRoute,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/requests/PathRoute)
+                                - Specifies how the load balancing service compares a L(PathRoute,https://docs.cloud.oracle.com/en-
+                                  us/iaas/api/#/en/loadbalancer/20170115/requests/PathRoute)
                                   object's `path` string against the incoming URI.
                                 - "*  **EXACT_MATCH** - Looks for a `path` string that exactly matches the incoming URI path."
                                 - "*  **FORCE_LONGEST_PREFIX_MATCH** - Looks for the `path` string with the best, longest match of the beginning

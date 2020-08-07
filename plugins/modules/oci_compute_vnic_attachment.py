@@ -40,14 +40,14 @@ options:
                     - Whether the VNIC should be assigned a public IP address. Defaults to whether
                       the subnet is public or private. If not set and the VNIC is being created
                       in a private subnet (that is, where `prohibitPublicIpOnVnic` = true in the
-                      L(Subnet,https://docs.cloud.oracle.com/#/en/iaas/20160918/Subnet/)), then no public IP address is assigned.
+                      L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Subnet/)), then no public IP address is assigned.
                       If not set and the subnet is public (`prohibitPublicIpOnVnic` = false), then
                       a public IP address is assigned. If set to true and
                       `prohibitPublicIpOnVnic` = true, an error is returned.
                     - "**Note:** This public IP address is associated with the primary private IP
                       on the VNIC. For more information, see
                       L(IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPaddresses.htm)."
-                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/#/en/iaas/20160918/PublicIp/)
+                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/)
                       a VNIC or instance can have. If you try to create a secondary VNIC
                       with an assigned public IP for an instance that has already
                       reached its public IP limit, an error is returned. For information
@@ -82,15 +82,15 @@ options:
                       Must be unique across all VNICs in the subnet and comply with
                       L(RFC 952,https://tools.ietf.org/html/rfc952) and
                       L(RFC 1123,https://tools.ietf.org/html/rfc1123).
-                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
                     - For more information, see
                       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
                     - When launching an instance, use this `hostnameLabel` instead
                       of the deprecated `hostnameLabel` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
                 type: str
@@ -98,7 +98,7 @@ options:
                 description:
                     - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                       information about NSGs, see
-                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
                 type: list
             private_ip:
                 description:
@@ -106,10 +106,10 @@ options:
                       available IP address within the subnet's CIDR. If you don't specify a
                       value, Oracle automatically assigns a private IP address from the subnet.
                       This is the VNIC's *primary* private IP address. The value appears in
-                      the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
                       Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
@@ -124,7 +124,7 @@ options:
                 description:
                     - The OCID of the subnet to create the VNIC in. When launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
                 type: str
                 required: true

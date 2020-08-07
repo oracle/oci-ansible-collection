@@ -27,7 +27,7 @@ description:
       If the instance configuration does not include all of the parameters that are
       required to launch an instance, such as the availability domain and subnet ID, you must
       provide these parameters when you launch an instance from the instance configuration.
-      For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/#/en/iaas/20160918/InstanceConfiguration/)
+      For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/InstanceConfiguration/)
       resource.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -166,7 +166,7 @@ options:
                     assign_public_ip:
                         description:
                             - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/)
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)
                               for more information.
                         type: bool
                     display_name:
@@ -178,32 +178,32 @@ options:
                     hostname_label:
                         description:
                             - The hostname for the VNIC's primary private IP.
-                              See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for
-                              more information.
+                              See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: str
                     nsg_ids:
                         description:
                             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                               information about NSGs, see
-                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
                         type: list
                     private_ip:
                         description:
                             - A private IP address of your choice to assign to the VNIC.
-                              See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for more
-                              information.
+                              See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: str
                     skip_source_dest_check:
                         description:
                             - Whether the source/destination check is disabled on the VNIC.
-                              See the `skipSourceDestCheck` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              See the `skipSourceDestCheck` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: bool
                     subnet_id:
                         description:
                             - The OCID of the subnet to create the VNIC in.
-                              See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for more
-                              information.
+                              See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: str
             defined_tags:
                 description:
@@ -309,7 +309,8 @@ options:
                 description:
                     - The shape of an instance. The shape determines the number of CPUs, amount of memory,
                       and other resources allocated to the instance.
-                    - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+                    - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
+                      us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
                 type: str
             source_details:
                 description:
@@ -355,7 +356,7 @@ options:
                     assign_public_ip:
                         description:
                             - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/)
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)
                               for more information.
                         type: bool
                     display_name:
@@ -367,32 +368,32 @@ options:
                     hostname_label:
                         description:
                             - The hostname for the VNIC's primary private IP.
-                              See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for
-                              more information.
+                              See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: str
                     nsg_ids:
                         description:
                             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                               information about NSGs, see
-                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
                         type: list
                     private_ip:
                         description:
                             - A private IP address of your choice to assign to the VNIC.
-                              See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for more
-                              information.
+                              See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: str
                     skip_source_dest_check:
                         description:
                             - Whether the source/destination check is disabled on the VNIC.
-                              See the `skipSourceDestCheck` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              See the `skipSourceDestCheck` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: bool
                     subnet_id:
                         description:
                             - The OCID of the subnet to create the VNIC in.
-                              See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/) for more
-                              information.
+                              See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                         type: str
             display_name:
                 description:
@@ -633,7 +634,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

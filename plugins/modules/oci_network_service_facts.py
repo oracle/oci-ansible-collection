@@ -23,7 +23,7 @@ module: oci_network_service_facts
 short_description: Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
-    - Lists the available L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects that you can enable for a
+    - Lists the available L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects that you can enable for a
       service gateway in this region.
     - If I(service_id) is specified, the details of a single Service will be returned.
 version_added: "2.9"
@@ -61,10 +61,10 @@ services:
                   services covered by this `Service` object. Also known as the `Service` object's *service
                   CIDR label*."
                 - When you set up a route rule to route traffic to the service gateway, use this value as the
-                  rule's destination. See L(Route Table,https://docs.cloud.oracle.com/#/en/iaas/20160918/RouteTable/). Also, when you set up
+                  rule's destination. See L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/). Also, when you set up
                   a security list rule to cover traffic with the service gateway, use the `cidrBlock` value
                   as the rule's destination (for an egress rule) or the source (for an ingress rule).
-                  See L(Security List,https://docs.cloud.oracle.com/#/en/iaas/20160918/SecurityList/).
+                  See L(Security List,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/SecurityList/).
                 - "Example: `oci-phx-objectstorage`"
             returned: on success
             type: string

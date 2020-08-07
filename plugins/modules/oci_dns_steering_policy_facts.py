@@ -33,6 +33,7 @@ options:
             - The OCID of the target steering policy.
             - Required to get a specific steering_policy.
         type: str
+        aliases: ["id"]
     if_modified_since:
         description:
             - The `If-Modified-Since` header field makes a GET or HEAD request method
@@ -502,7 +503,6 @@ class SteeringPolicyFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "display_name",
             "display_name_contains",
             "health_check_monitor_id",
@@ -538,7 +538,7 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            steering_policy_id=dict(type="str"),
+            steering_policy_id=dict(aliases=["id"], type="str"),
             if_modified_since=dict(type="str"),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),

@@ -25,7 +25,7 @@ description:
     - Fetches details about a Vnic resource in Oracle Cloud Infrastructure
     - Gets the information for the specified virtual network interface card (VNIC).
       You can get the VNIC OCID from the
-      L(ListVnicAttachments,https://docs.cloud.oracle.com/#/en/iaas/20160918/VnicAttachment/ListVnicAttachments)
+      L(ListVnicAttachments,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VnicAttachment/ListVnicAttachments)
       operation.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -134,7 +134,7 @@ vnic:
             description:
                 - A list of the OCIDs of the network security groups that the VNIC belongs to. For more
                   information about NSGs, see
-                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
             returned: on success
             type: list
             sample: []

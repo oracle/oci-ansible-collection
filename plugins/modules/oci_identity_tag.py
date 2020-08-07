@@ -31,7 +31,7 @@ description:
       Names are case insensitive. That means, for example, \\"myTag\\" and \\"mytag\\" are not allowed in the same namespace.
       If you specify a name that's already in use in the tag namespace, a 409 error is returned."
     - "The tag must have a *description*. It does not have to be unique, and you can change it with
-      L(UpdateTag,https://docs.cloud.oracle.com/#/en/identity/latest/Tag/UpdateTag)."
+      L(UpdateTag,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/Tag/UpdateTag)."
     - The tag must have a value type, which is specified with a validator. Tags can use either a
       static value or a list of possible values. Static values are entered by a user applying the tag
       to a resource. Lists are created by you and the user must apply a value from the list. Lists
@@ -39,7 +39,8 @@ description:
     - "* If no `validator` is set, the user applying the tag to a resource can type in a static
       value or leave the tag value empty.
       * If a `validator` is set, the user applying the tag to a resource must select from a list
-      of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
+      of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

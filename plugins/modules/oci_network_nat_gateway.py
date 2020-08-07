@@ -24,7 +24,7 @@ short_description: Manage a NatGateway resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a NatGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new NAT gateway for the specified VCN. You must also set up a route rule with the
-      NAT gateway as the rule's target. See L(Route Table,https://docs.cloud.oracle.com/#/en/iaas/20160918/RouteTable/).
+      NAT gateway as the rule's target. See L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

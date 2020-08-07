@@ -27,6 +27,9 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 MAX_WAIT_TIMEOUT_IN_SECONDS = 1200
+# some services like waas have longer wait times. This map allows to specify wait times at a service level so that
+# we need not override for each module in a service.
+SERVICE_WAIT_TIMEOUT_MAP = {"waas": 2400, "analytics": 2000, "mysql": 2400}
 DEAD_STATES = [
     "TERMINATING",
     "TERMINATED",
@@ -53,7 +56,7 @@ DEFAULT_READY_STATES = [
     "PENDING_PROVIDER",
 ]
 
-CANCELLED_STATES = ["CANCELLED"]
+CANCELLED_STATES = ["CANCELED", "CANCELLED"]
 FAILED_STATES = ["FAILED"]
 
 WORK_REQUEST_COMPLETED_STATES = ["SUCCEEDED", "SUCCESS", "FAILED", "COMPLETED"]
@@ -72,6 +75,9 @@ ACTION_IDEMPOTENT_STATES = {
     "CANCEL_KEY_VERSION_DELETION": DEFAULT_READY_STATES,
     "CANCEL_VAULT_DELETION": DEFAULT_READY_STATES,
     "CANCEL_SECRET_DELETION": DEFAULT_READY_STATES,
+    "CANCEL": CANCELLED_STATES,
+    "DEACTIVATE": ["INACTIVE"],
+    "ACTIVATE": ["ACTIVE"],
 }
 
 ACTION_DESIRED_STATES = {
@@ -89,11 +95,18 @@ ACTION_DESIRED_STATES = {
     "CANCEL_VAULT_DELETION": DEFAULT_READY_STATES,
     "SCHEDULE_SECRET_DELETION": DEAD_STATES,
     "CANCEL_SECRET_DELETION": DEFAULT_READY_STATES,
+    "CANCEL": CANCELLED_STATES,
+    "DEACTIVATE": ["INACTIVE"],
+    "ACTIVATE": ["ACTIVE"],
 }
 
 ALWAYS_PERFORM_ACTIONS = ["RESET", "SOFTRESET", "EXPORT", "DETECT_STACK_DRIFT"]
 
-RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {"waas_policy": "waas"}
+RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {
+    "waas_policy": "waas",
+    "http_redirect": "redirect",
+    "data_safe_private_endpoint": "datasafeprivateendpoints",
+}
 
 CREATE_OPERATION_KEY = "CREATE"
 UPDATE_OPERATION_KEY = "UPDATE"
@@ -401,8 +414,7 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
 
     if supports_wait:
         common_args.update(
-            wait=dict(type="bool", default=True),
-            wait_timeout=dict(type="int", default=MAX_WAIT_TIMEOUT_IN_SECONDS),
+            wait=dict(type="bool", default=True), wait_timeout=dict(type="int"),
         )
 
     return common_args

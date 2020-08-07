@@ -39,18 +39,18 @@ description:
       users because they have different OCIDs."
     - "You must also specify a *description* for the user (although it can be an empty string).
       It does not have to be unique, and you can change it anytime with
-      L(UpdateUser,https://docs.cloud.oracle.com/#/en/identity/20160918/User/UpdateUser). You can use the field to provide the user's
+      L(UpdateUser,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/User/UpdateUser). You can use the field to provide the user's
       full name, a description, a nickname, or other information to generally identify the user."
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before
       using the object, first make sure its `lifecycleState` has changed to ACTIVE.
     - A new user has no permissions until you place the user in one or more groups (see
-      L(AddUserToGroup,https://docs.cloud.oracle.com/#/en/identity/20160918/UserGroupMembership/AddUserToGroup)). If the user needs to
+      L(AddUserToGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/UserGroupMembership/AddUserToGroup)). If the user needs to
       access the Console, you need to provide the user a password (see
-      L(CreateOrResetUIPassword,https://docs.cloud.oracle.com/#/en/identity/20160918/UIPassword/CreateOrResetUIPassword)).
+      L(CreateOrResetUIPassword,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/UIPassword/CreateOrResetUIPassword)).
       If the user needs to access the Oracle Cloud Infrastructure REST API, you need to upload a
       public API signing key for that user (see
       L(Required Keys and OCIDs,https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm) and also
-      L(UploadApiKey,https://docs.cloud.oracle.com/#/en/identity/20160918/ApiKey/UploadApiKey)).
+      L(UploadApiKey,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/ApiKey/UploadApiKey)).
     - "**Important:** Make sure to inform the new user which compartment(s) they have access to."
 version_added: "2.9"
 author: Oracle (@oracle)

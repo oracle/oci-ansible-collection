@@ -24,11 +24,11 @@ short_description: Perform actions on a VirtualCircuit resource in Oracle Cloud 
 description:
     - Perform actions on a VirtualCircuit resource in Oracle Cloud Infrastructure
     - For I(action=bulk_add_virtual_circuit_public_prefixes), adds one or more customer public IP prefixes to the specified public virtual circuit.
-      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
+      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
       to add prefixes to the virtual circuit. Oracle must verify the customer's ownership
       of each prefix before traffic for that prefix will flow across the virtual circuit.
     - For I(action=bulk_delete_virtual_circuit_public_prefixes), removes one or more customer public IP prefixes from the specified public virtual circuit.
-      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
+      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
       to remove prefixes from the virtual circuit. When the virtual circuit's state switches
       back to PROVISIONED, Oracle stops advertising the specified prefixes across the connection.
 version_added: "2.9"
@@ -91,8 +91,8 @@ virtual_circuit:
             description:
                 - The provisioned data rate of the connection.  To get a list of the
                   available bandwidth levels (that is, shapes), see
-                  L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/List
-                  FastConnectProviderVirtualCircuitBandwidthShapes).
+                  L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
             type: string
@@ -100,7 +100,7 @@ virtual_circuit:
         bgp_management:
             description:
                 - Deprecated. Instead use the information in
-                  L(FastConnectProviderService,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/).
+                  L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/).
             returned: on success
             type: string
             sample: CUSTOMER_MANAGED
@@ -218,7 +218,7 @@ virtual_circuit:
             sample: {'Department': 'Finance'}
         gateway_id:
             description:
-                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/#/en/iaas/20160918/Drg)
+                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Drg)
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string

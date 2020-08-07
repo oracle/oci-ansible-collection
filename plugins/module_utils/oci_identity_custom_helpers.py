@@ -19,6 +19,16 @@ try:
 except ImportError:
     HAS_OCI_PY_SDK = False
 
+logger = oci_common_utils.get_logger("oci_identity_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
+
 
 class ApiKeyHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):
@@ -258,3 +268,71 @@ class TagHelperCustom:
         ):
             update_model_dict["validator"] = None
         return update_model_dict
+
+
+class UserCapabilitiesHelperCustom:
+
+    # As per API documentation operation `UpdateUserCapabilities` returns `User` resource in response body.
+    # This override is required as generated module doesn't have get_resource method to return `User` resource.
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_user, user_id=self.module.params.get("user_id"),
+        )
+
+    # for idempotency check we compare `UpdateUserCapabilitiesDetails` and `UserCapabilities`.
+    # There is no API call to fetch just `UserCapabilities` resource for a user. This resource is a part of
+    # `User` resource.
+    def is_update_necessary(self, existing_resource_dict):
+        update_model = self.get_update_model()
+        update_model_dict = self.get_update_model_dict_for_idempotence_check(
+            update_model
+        )
+        update_is_necessary = not oci_common_utils.compare_dicts(
+            update_model_dict, existing_resource_dict["capabilities"]
+        )
+
+        _debug(
+            "is update necessary for {resource_type}: {update_is_necessary}".format(
+                resource_type=self.resource_type,
+                update_is_necessary=update_is_necessary,
+            )
+        )
+
+        return update_is_necessary
+
+    def prepare_result(self, *args, **kwargs):
+        result = super(UserCapabilitiesHelperCustom, self).prepare_result(
+            *args, **kwargs
+        )
+        result["user"] = result.pop(self.resource_type, None)
+        return result
+
+
+class UserStateHelperCustom:
+
+    # As per API documentation operation `UpdateUserState` returns `User` resource in response body.
+    # This override is required as generated module doesn't have get_resource method to return `User` resource.
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_user, user_id=self.module.params.get("user_id"),
+        )
+
+    # operation `UpdateUserState` updates state to unblocked. Only "false" is supported
+    # (for changing the state to unblocked). If set to "true" API throws an error: Changing
+    # user state to 'Blocked' is not supported.
+    def is_update_necessary(self, existing_resource_dict):
+        if self.module.params.get("blocked") is not None and not self.module.params.get(
+            "blocked"
+        ):
+            if existing_resource_dict.get("inactive_status", None) == 4:
+                return True
+            else:
+                return False
+        return super(UserStateHelperCustom, self).is_update_necessary(
+            existing_resource_dict
+        )
+
+    def prepare_result(self, *args, **kwargs):
+        result = super(UserStateHelperCustom, self).prepare_result(*args, **kwargs)
+        result["user"] = result.pop(self.resource_type, None)
+        return result

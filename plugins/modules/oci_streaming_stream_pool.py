@@ -263,7 +263,7 @@ stream_pool:
         endpoint_fqdn:
             description:
                 - The FQDN used to access the streams inside the stream pool (same FQDN as the messagesEndpoint attribute of a
-                  L(Stream,https://docs.cloud.oracle.com/#/en/streaming/20180418/Stream) object).
+                  L(Stream,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/streaming/20180418/Stream) object).
                   If the stream pool is private, the FQDN is customized and can only be accessed from inside the associated subnetId, otherwise the FQDN is
                   publicly resolvable.
                   Depending on which protocol you attempt to use, you need to either prepend https or append the Kafka port.

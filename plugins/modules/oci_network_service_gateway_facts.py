@@ -156,10 +156,10 @@ service_gateways:
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         services:
             description:
-                - List of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
+                - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
                   The list can be empty. You can enable a particular `Service` by using
-                  L(AttachServiceId,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
-                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
+                  L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
+                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
             returned: on success
             type: complex
             contains:

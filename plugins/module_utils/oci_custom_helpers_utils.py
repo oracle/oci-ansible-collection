@@ -40,7 +40,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_key_management_custom_helpers,
     oci_file_storage_custom_helpers,
     oci_container_engine_custom_helpers,
-    oci_load_balancer_custom_helpers,
+    oci_loadbalancer_custom_helpers,
     oci_database_custom_helpers,
     oci_streaming_custom_helpers,
     oci_functions_custom_helpers,
@@ -55,6 +55,15 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_nosql_custom_helpers,
     oci_apigateway_custom_helpers,
     oci_oce_custom_helpers,
+    oci_waas_custom_helpers,
+    oci_data_flow_custom_helpers,
+    oci_analytics_custom_helpers,
+    oci_data_science_custom_helpers,
+    oci_data_safe_custom_helpers,
+    oci_data_catalog_custom_helpers,
+    oci_resource_search_custom_helpers,
+    oci_oda_custom_helpers,
+    oci_mysql_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -69,7 +78,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_key_management_custom_helpers,
         oci_file_storage_custom_helpers,
         oci_container_engine_custom_helpers,
-        oci_load_balancer_custom_helpers,
+        oci_loadbalancer_custom_helpers,
         oci_database_custom_helpers,
         oci_streaming_custom_helpers,
         oci_functions_custom_helpers,
@@ -84,5 +93,14 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_nosql_custom_helpers,
         oci_apigateway_custom_helpers,
         oci_oce_custom_helpers,
+        oci_waas_custom_helpers,
+        oci_data_flow_custom_helpers,
+        oci_analytics_custom_helpers,
+        oci_data_science_custom_helpers,
+        oci_data_safe_custom_helpers,
+        oci_data_catalog_custom_helpers,
+        oci_resource_search_custom_helpers,
+        oci_oda_custom_helpers,
+        oci_mysql_custom_helpers,
     ]
 )
