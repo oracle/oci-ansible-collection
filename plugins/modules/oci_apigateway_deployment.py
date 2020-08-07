@@ -708,7 +708,7 @@ deployment:
                                                 - Name of the claim.
                                             returned: on success
                                             type: string
-                                            sample: key_example
+                                            sample: iss
                                         values:
                                             description:
                                                 - "The list of acceptable values for a given claim.
@@ -806,7 +806,7 @@ deployment:
                                                         - The content of the PEM-encoded public key.
                                                     returned: on success
                                                     type: string
-                                                    sample: key_example
+                                                    sample: -----BEGIN PUBLIC KEY-----
                                         uri:
                                             description:
                                                 - The uri from which to retrieve the key. It must be accessible
@@ -1213,7 +1213,7 @@ deployment:
                     "issuers": [],
                     "audiences": [],
                     "verify_claims": [{
-                        "key": "key_example",
+                        "key": "iss",
                         "values": [],
                         "is_required": true
                     }],
@@ -1229,7 +1229,7 @@ deployment:
                             "alg": "alg_example",
                             "n": "n_example",
                             "e": "e_example",
-                            "key": "key_example"
+                            "key": "-----BEGIN PUBLIC KEY-----"
                         }],
                         "uri": "uri_example",
                         "is_ssl_verify_disabled": true,

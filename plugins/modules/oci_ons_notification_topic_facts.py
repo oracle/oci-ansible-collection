@@ -201,7 +201,6 @@ class NotificationTopicFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "name",
             "sort_by",
             "sort_order",

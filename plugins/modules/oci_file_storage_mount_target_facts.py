@@ -66,11 +66,6 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
-    id:
-        description:
-            - Filter results by OCID. Must be an OCID of the correct type for
-              the resouce type.
-        type: str
     sort_by:
         description:
             - The field to sort by. You can choose either value, but not both.
@@ -253,7 +248,6 @@ class MountTargetFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "export_set_id",
             "lifecycle_state",
-            "id",
             "sort_by",
             "sort_order",
         ]
@@ -290,7 +284,6 @@ def main():
                 type="str",
                 choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],
             ),
-            id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

@@ -26,7 +26,7 @@ description:
     - "For I(state=present), creates a new SMTP credential for the specified user. An SMTP credential has an SMTP user name and an SMTP password.
       You must specify a *description* for the SMTP credential (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with
-      L(UpdateSmtpCredential,https://docs.cloud.oracle.com/#/en/identity/20160918/SmtpCredentialSummary/UpdateSmtpCredential)."
+      L(UpdateSmtpCredential,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/SmtpCredentialSummary/UpdateSmtpCredential)."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

@@ -24,7 +24,7 @@ short_description: Manage a CrossConnect resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a CrossConnect resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new cross-connect. Oracle recommends you create each cross-connect in a
-      L(CrossConnectGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/CrossConnectGroup) so you can use link aggregation
+      L(CrossConnectGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CrossConnectGroup) so you can use link aggregation
       with the connection.
     - After creating the `CrossConnect` object, you need to go the FastConnect location
       and request to have the physical cable installed. For more information, see
@@ -84,7 +84,7 @@ options:
         description:
             - The name of the FastConnect location where this cross-connect will be installed.
               To get a list of the available locations, see
-              L(ListCrossConnectLocations,https://docs.cloud.oracle.com/#/en/iaas/20160918/CrossConnectLocation/ListCrossConnectLocations).
+              L(ListCrossConnectLocations,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CrossConnectLocation/ListCrossConnectLocations).
             - "Example: `CyrusOne, Chandler, AZ`"
             - Required for create using I(state=present).
         type: str
@@ -97,7 +97,8 @@ options:
     port_speed_shape_name:
         description:
             - The port speed for this cross-connect. To get a list of the available port speeds, see
-              L(ListCrossConnectPortSpeedShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CrossConnectPortSpeedShape/ListCrossconnectPortSpeedShapes).
+              L(ListCrossConnectPortSpeedShapes,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/CrossConnectPortSpeedShape/ListCrossconnectPortSpeedShapes).
             - "Example: `10 Gbps`"
             - Required for create using I(state=present).
         type: str

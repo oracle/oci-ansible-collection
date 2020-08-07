@@ -46,10 +46,6 @@ options:
             - The OCID of the compartment the resource belongs to.
             - Required to list multiple steering_policy_attachments.
         type: str
-    id:
-        description:
-            - The OCID of a resource.
-        type: str
     display_name:
         description:
             - The displayName of a resource.
@@ -255,7 +251,6 @@ class SteeringPolicyAttachmentFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "display_name",
             "steering_policy_id",
             "zone_id",
@@ -297,7 +292,6 @@ def main():
             steering_policy_attachment_id=dict(aliases=["id"], type="str"),
             if_modified_since=dict(type="str"),
             compartment_id=dict(type="str"),
-            id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             steering_policy_id=dict(type="str"),
             zone_id=dict(type="str"),

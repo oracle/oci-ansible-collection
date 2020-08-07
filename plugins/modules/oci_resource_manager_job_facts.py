@@ -46,10 +46,6 @@ options:
         description:
             - The stack L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) on which to filter.
         type: str
-    id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) on which to query for jobs.
-        type: str
     lifecycle_state:
         description:
             - A filter that returns all resources that match the specified lifecycle state.
@@ -346,7 +342,6 @@ class JobFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "compartment_id",
             "stack_id",
-            "id",
             "lifecycle_state",
             "display_name",
             "sort_by",
@@ -376,7 +371,6 @@ def main():
             job_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             stack_id=dict(type="str"),
-            id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
                 choices=[

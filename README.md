@@ -51,6 +51,16 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 - Service Limits
 - API Gateway
 - Content and Experience
+- Analytics
+- Web Application Acceleration and Security Services
+- Limits
+- Data Science
+- Data Safe
+- Data Catalog
+- Data Flow
+- Search
+- Digital Assistant Instance
+- MySQL
 
 ## Installation
 

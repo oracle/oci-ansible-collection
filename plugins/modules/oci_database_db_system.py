@@ -52,7 +52,7 @@ options:
               The system assigns your nodes automatically to the Fault Domains you specify so that
               no Fault Domain contains more than one node.
             - To get a list of Fault Domains, use the
-              L(ListFaultDomains,https://docs.cloud.oracle.com/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
+              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
               Identity and Access Management Service API.
             - "Example: `FAULT-DOMAIN-1`"
         type: list
@@ -104,8 +104,8 @@ options:
             - "The shape of the DB system. The shape determines resources allocated to the DB system.
               - For virtual machine shapes, the number of CPU cores and memory
               - For bare metal and Exadata shapes, the number of CPU cores, memory, and storage"
-            - To get a list of shapes, use the
-              L(ListDbSystemShapes,https://docs.cloud.oracle.com/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.
+            - To get a list of shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.
             - Required for create using I(state=present).
         type: str
     time_zone:
@@ -211,8 +211,8 @@ options:
                 aliases: ["name"]
             db_version:
                 description:
-                    - A valid Oracle Database version. To get a list of supported versions, use the
-                      L(ListDbVersions,https://docs.cloud.oracle.com/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                    - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
+                      us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'NONE'
                 type: str
             database:

@@ -213,3 +213,37 @@ def get_update_model_merged_with_existing_resource(helper):
     )
 
     return update_model
+
+
+class NetworkSecurityGroupsHelperCustom:
+    # this resource does not support get_resource() method, and the module should fetch the
+    # load_balancer resource instead of network_security_groups resource.
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_load_balancer,
+            load_balancer_id=self.module.params.get("load_balancer_id"),
+        )
+
+    # the load_balancer resource need to be updated only when the list of network_security_group_ids
+    # are different irrespective of the order
+    def is_update_necessary(self, existing_dict):
+        existing_nsg_list = existing_dict["network_security_group_ids"] or []
+        new_nsg_list = self.module.params.get("network_security_group_ids") or []
+        return sorted(existing_nsg_list) != sorted(new_nsg_list)
+
+    # the resource_type to be returned from this module is load_balancer, instead of network_security_groups
+    def prepare_result(self, *args, **kwargs):
+        result = super(NetworkSecurityGroupsHelperCustom, self).prepare_result(
+            *args, **kwargs
+        )
+        result["load_balancer"] = result.pop(self.resource_type, None)
+        return result
+
+
+class LoadBalancerHelperCustom:
+    # since ip_mode parameter is not returned by the resource, we remove this parameter
+    # while comparing the dicts for idempotency
+    def get_exclude_attributes(self):
+        return super(LoadBalancerHelperCustom, self).get_exclude_attributes() + [
+            "ip_mode"
+        ]

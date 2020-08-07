@@ -50,8 +50,8 @@ options:
         description:
             - The provisioned data rate of the connection.  To get a list of the
               available bandwidth levels (that is, shapes), see
-              L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/ListFast
-              ConnectProviderVirtualCircuitBandwidthShapes).
+              L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
             - "Example: `10 Gbps`"
         type: str
     compartment_id:
@@ -141,20 +141,23 @@ options:
         type: dict
     gateway_id:
         description:
-            - For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/#/en/iaas/20160918/Drg)
+            - For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/Drg)
               that this virtual circuit uses.
         type: str
     provider_name:
         description:
             - Deprecated. Instead use `providerServiceId`.
               To get a list of the provider names, see
-              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
+              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
         type: str
     provider_service_id:
         description:
             - The OCID of the service offered by the provider (if you're connecting
               via a provider). To get a list of the available service offerings, see
-              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
+              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
         type: str
     provider_service_key_name:
         description:
@@ -164,7 +167,8 @@ options:
         description:
             - Deprecated. Instead use `providerServiceId`.
               To get a list of the provider names, see
-              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
+              L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
         type: str
     public_prefixes:
         description:
@@ -280,8 +284,8 @@ virtual_circuit:
             description:
                 - The provisioned data rate of the connection.  To get a list of the
                   available bandwidth levels (that is, shapes), see
-                  L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/List
-                  FastConnectProviderVirtualCircuitBandwidthShapes).
+                  L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
             type: string
@@ -289,7 +293,7 @@ virtual_circuit:
         bgp_management:
             description:
                 - Deprecated. Instead use the information in
-                  L(FastConnectProviderService,https://docs.cloud.oracle.com/#/en/iaas/20160918/FastConnectProviderService/).
+                  L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/).
             returned: on success
             type: string
             sample: CUSTOMER_MANAGED
@@ -407,7 +411,7 @@ virtual_circuit:
             sample: {'Department': 'Finance'}
         gateway_id:
             description:
-                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/#/en/iaas/20160918/Drg)
+                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Drg)
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string

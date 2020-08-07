@@ -29,6 +29,7 @@ description:
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
+    - "This resource has the following action operations in the M(oci_alarm_actions) module: remove_alarm_suppression."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

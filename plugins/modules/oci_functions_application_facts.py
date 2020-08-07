@@ -57,10 +57,6 @@ options:
             - A filter to return only applications with display names that match the display name string. Matching is exact.
         type: str
         aliases: ["name"]
-    id:
-        description:
-            - A filter to return only applications with the specfied OCID.
-        type: str
     sort_order:
         description:
             - Specifies sort order.
@@ -229,7 +225,6 @@ class ApplicationFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "lifecycle_state",
             "display_name",
-            "id",
             "sort_order",
             "sort_by",
         ]
@@ -271,7 +266,6 @@ def main():
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),
-            id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "id", "displayName"]),
         )

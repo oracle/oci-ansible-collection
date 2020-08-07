@@ -27,7 +27,7 @@ description:
       L(Managing User Credentials,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm).
     - "You must specify a *description* for the auth token (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with
-      L(UpdateAuthToken,https://docs.cloud.oracle.com/#/en/identity/20160918/AuthToken/UpdateAuthToken)."
+      L(UpdateAuthToken,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/AuthToken/UpdateAuthToken)."
     - "Every user has permission to create an auth token for *their own user ID*. An administrator in your organization
       does not need to write a policy to give users this ability. To compare, administrators who have permission to the
       tenancy can use this operation to create an auth token for any user, including themselves."

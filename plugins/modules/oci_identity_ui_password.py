@@ -31,7 +31,7 @@ description:
       it within 7 days, the password will expire and you'll need to create a new one-time password for the
       user.
     - "**Note:** The user's Console login is the unique name you specified when you created the user
-      (see L(CreateUser,https://docs.cloud.oracle.com/#/en/identity/20160918/User/CreateUser))."
+      (see L(CreateUser,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/User/CreateUser))."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

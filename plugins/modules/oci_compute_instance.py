@@ -37,16 +37,16 @@ description:
       When you create a resource, you can find its OCID in the response. You can
       also retrieve a resource's OCID by using a List API operation
       on that resource type, or by viewing the resource in the Console.
-    - To launch an instance using an image or a boot volume use the `sourceDetails` parameter in
-      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/LaunchInstanceDetails).
+    - To launch an instance using an image or a boot volume use the `sourceDetails` parameter in L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/20160918/LaunchInstanceDetails).
     - "When you launch an instance, it is automatically attached to a virtual
       network interface card (VNIC), called the *primary VNIC*. The VNIC
       has a private IP address from the subnet's CIDR. You can either assign a
       private IP address of your choice or let Oracle automatically assign one.
       You can choose whether the instance has a public IP address. To retrieve the
-      addresses, use the L(ListVnicAttachments,https://docs.cloud.oracle.com/#/en/iaas/20160918/VnicAttachment/ListVnicAttachments)
+      addresses, use the L(ListVnicAttachments,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VnicAttachment/ListVnicAttachments)
       operation to get the VNIC ID for the instance, and then call
-      L(GetVnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/GetVnic) with the VNIC ID."
+      L(GetVnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/GetVnic) with the VNIC ID."
     - You can later add secondary VNICs to an instance. For more information, see
       L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
     - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset, softstop."
@@ -77,14 +77,14 @@ options:
                     - Whether the VNIC should be assigned a public IP address. Defaults to whether
                       the subnet is public or private. If not set and the VNIC is being created
                       in a private subnet (that is, where `prohibitPublicIpOnVnic` = true in the
-                      L(Subnet,https://docs.cloud.oracle.com/#/en/iaas/20160918/Subnet/)), then no public IP address is assigned.
+                      L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Subnet/)), then no public IP address is assigned.
                       If not set and the subnet is public (`prohibitPublicIpOnVnic` = false), then
                       a public IP address is assigned. If set to true and
                       `prohibitPublicIpOnVnic` = true, an error is returned.
                     - "**Note:** This public IP address is associated with the primary private IP
                       on the VNIC. For more information, see
                       L(IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPaddresses.htm)."
-                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/#/en/iaas/20160918/PublicIp/)
+                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/)
                       a VNIC or instance can have. If you try to create a secondary VNIC
                       with an assigned public IP for an instance that has already
                       reached its public IP limit, an error is returned. For information
@@ -119,15 +119,15 @@ options:
                       Must be unique across all VNICs in the subnet and comply with
                       L(RFC 952,https://tools.ietf.org/html/rfc952) and
                       L(RFC 1123,https://tools.ietf.org/html/rfc1123).
-                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
                     - For more information, see
                       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
                     - When launching an instance, use this `hostnameLabel` instead
                       of the deprecated `hostnameLabel` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
                 type: str
@@ -135,7 +135,7 @@ options:
                 description:
                     - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                       information about NSGs, see
-                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/#/en/iaas/20160918/NetworkSecurityGroup/).
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
                 type: list
             private_ip:
                 description:
@@ -143,10 +143,10 @@ options:
                       available IP address within the subnet's CIDR. If you don't specify a
                       value, Oracle automatically assigns a private IP address from the subnet.
                       This is the VNIC's *primary* private IP address. The value appears in
-                      the L(Vnic,https://docs.cloud.oracle.com/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
                       Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
@@ -161,7 +161,7 @@ options:
                 description:
                     - The OCID of the subnet to create the VNIC in. When launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
                 type: str
                 required: true
@@ -198,7 +198,7 @@ options:
             - If you do not specify the fault domain, the system selects one for you. To change the fault
               domain for an instance, terminate it and launch a new instance in the preferred fault domain.
             - To get a list of fault domains, use the
-              L(ListFaultDomains,https://docs.cloud.oracle.com/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
+              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
               Identity and Access Management Service API.
             - "Example: `FAULT-DOMAIN-1`"
         type: str
@@ -212,13 +212,13 @@ options:
     hostname_label:
         description:
             - Deprecated. Instead use `hostnameLabel` in
-              L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/).
+              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/).
               If you provide both, the values must match.
         type: str
     image_id:
         description:
-            - Deprecated. Use `sourceDetails` with
-              L(InstanceSourceViaImageDetails,https://docs.cloud.oracle.com/#/en/iaas/latest/requests/InstanceSourceViaImageDetails)
+            - Deprecated. Use `sourceDetails` with L(InstanceSourceViaImageDetails,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/requests/InstanceSourceViaImageDetails)
               source type instead. If you specify values for both, the values must match.
         type: str
     ipxe_script:
@@ -312,7 +312,7 @@ options:
         description:
             - The shape of an instance. The shape determines the number of CPUs, amount of memory,
               and other resources allocated to the instance.
-            - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+            - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             - Required for create using I(state=present).
         type: str
     shape_config:
@@ -363,7 +363,7 @@ options:
     subnet_id:
         description:
             - Deprecated. Instead use `subnetId` in
-              L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/).
+              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/).
               At least one of them is required; if you provide both, the values must match.
         type: str
     is_pv_encryption_in_transit_enabled:
@@ -674,7 +674,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

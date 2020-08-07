@@ -39,10 +39,6 @@ options:
             - The OCID of the compartment.
             - Required to list multiple connect_harness.
         type: str
-    id:
-        description:
-            - A filter to return only resources that match the given ID exactly.
-        type: str
     name:
         description:
             - A filter to return only resources that match the given name exactly.
@@ -197,7 +193,6 @@ class ConnectHarnessFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "name",
             "sort_by",
             "sort_order",
@@ -230,7 +225,6 @@ def main():
         dict(
             connect_harness_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            id=dict(type="str"),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["NAME", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

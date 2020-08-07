@@ -39,10 +39,6 @@ options:
             - The OCID of the compartment.
             - Required to list multiple stream_pools.
         type: str
-    id:
-        description:
-            - A filter to return only resources that match the given ID exactly.
-        type: str
     name:
         description:
             - A filter to return only resources that match the given name exactly.
@@ -189,7 +185,7 @@ stream_pools:
         endpoint_fqdn:
             description:
                 - The FQDN used to access the streams inside the stream pool (same FQDN as the messagesEndpoint attribute of a
-                  L(Stream,https://docs.cloud.oracle.com/#/en/streaming/20180418/Stream) object).
+                  L(Stream,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/streaming/20180418/Stream) object).
                   If the stream pool is private, the FQDN is customized and can only be accessed from inside the associated subnetId, otherwise the FQDN is
                   publicly resolvable.
                   Depending on which protocol you attempt to use, you need to either prepend https or append the Kafka port.
@@ -304,7 +300,6 @@ class StreamPoolFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "name",
             "sort_by",
             "sort_order",
@@ -335,7 +330,6 @@ def main():
         dict(
             stream_pool_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            id=dict(type="str"),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["NAME", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

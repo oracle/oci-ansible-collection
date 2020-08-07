@@ -33,12 +33,13 @@ description:
       cannot be changed. You can use this name or the OCID when writing policies that apply to the group. For more
       information about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
     - "You must also specify a *description* for the group (although it can be an empty string). It does not
-      have to be unique, and you can change it anytime with L(UpdateGroup,https://docs.cloud.oracle.com/#/en/identity/20160918/Group/UpdateGroup)."
+      have to be unique, and you can change it anytime with L(UpdateGroup,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/identity/20160918/Group/UpdateGroup)."
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
     - After creating the group, you need to put users in it and write policies for it.
-      See L(AddUserToGroup,https://docs.cloud.oracle.com/#/en/identity/20160918/UserGroupMembership/AddUserToGroup) and
-      L(CreatePolicy,https://docs.cloud.oracle.com/#/en/identity/20160918/Policy/CreatePolicy).
+      See L(AddUserToGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/UserGroupMembership/AddUserToGroup) and
+      L(CreatePolicy,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Policy/CreatePolicy).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

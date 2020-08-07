@@ -109,13 +109,16 @@ cpes:
                   Cisco ASA). For each type, Oracle provides CPE configuration content that can help
                   a network engineer configure the CPE. The OCID uniquely identifies the type of
                   device. To get the OCIDs for the device types on the list, see
-                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
                 - "For information about how to generate CPE configuration content for a
                   CPE device type, see:"
-                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
-                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
-                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
-                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             returned: on success
             type: string
             sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx

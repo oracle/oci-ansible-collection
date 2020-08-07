@@ -85,7 +85,7 @@ options:
                       traffic. Required if you provide a `destinationType`.
                     - "Allowed values:"
                     - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
-                    - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/), if you're
+                    - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/), if you're
                           setting up a route rule for traffic destined for a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
                 type: str
@@ -94,7 +94,7 @@ options:
                     - Type of destination for the rule. Required if you provide a `destination`.
                     - " * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
                     - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
-                          L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
+                          L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
                           particular `Service` through a service gateway)."
                 type: str
                 choices:
@@ -248,7 +248,7 @@ route_table:
                           traffic. Required if you provide a `destinationType`.
                         - "Allowed values:"
                         - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
-                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/), if you're
+                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/), if you're
                               setting up a route rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
@@ -259,7 +259,7 @@ route_table:
                         - Type of destination for the rule. Required if you provide a `destination`.
                         - " * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
                         - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
-                              L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
+                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
                               particular `Service` through a service gateway)."
                     returned: on success
                     type: string

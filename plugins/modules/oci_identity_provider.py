@@ -33,7 +33,7 @@ description:
     - "You must also specify a *description* for the `IdentityProvider` (although
       it can be an empty string). It does not have to be unique, and you can change
       it anytime with
-      L(UpdateIdentityProvider,https://docs.cloud.oracle.com/#/en/identity/20160918/IdentityProvider/UpdateIdentityProvider)."
+      L(UpdateIdentityProvider,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/IdentityProvider/UpdateIdentityProvider)."
     - After you send your request, the new object's `lifecycleState` will temporarily
       be CREATING. Before using the object, first make sure its `lifecycleState` has
       changed to ACTIVE.

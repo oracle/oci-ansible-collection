@@ -45,10 +45,6 @@ options:
         description:
             - The OCID of the stream pool. Is exclusive with the `compartmentId` parameter. One of them is required.
         type: str
-    id:
-        description:
-            - A filter to return only resources that match the given ID exactly.
-        type: str
     name:
         description:
             - A filter to return only resources that match the given name exactly.
@@ -232,7 +228,6 @@ class StreamFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "compartment_id",
             "stream_pool_id",
-            "id",
             "name",
             "sort_by",
             "sort_order",
@@ -262,7 +257,6 @@ def main():
             stream_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             stream_pool_id=dict(type="str"),
-            id=dict(type="str"),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["NAME", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

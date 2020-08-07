@@ -28,7 +28,8 @@ description:
     - "You must specify a *name* for the policy, which must be unique across all policies in your tenancy
       and cannot be changed."
     - "You must also specify a *description* for the policy (although it can be an empty string). It does not
-      have to be unique, and you can change it anytime with L(UpdatePolicy,https://docs.cloud.oracle.com/#/en/identity/20160918/Policy/UpdatePolicy)."
+      have to be unique, and you can change it anytime with L(UpdatePolicy,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/identity/20160918/Policy/UpdatePolicy)."
     - You must specify one or more policy statements in the statements array. For information about writing
       policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm) and
       L(Common Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm).

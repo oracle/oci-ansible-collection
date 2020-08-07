@@ -219,7 +219,7 @@ rule:
                 - "Example: `\\"This rule sends a notification upon completion of DbaaS backup.\\"`"
             returned: on success
             type: string
-            sample: "This rule sends a notification upon completion of DbaaS backup."
+            sample: This rule sends a notification upon completion of DbaaS backup.
         description:
             description:
                 - A string that describes the details of the rule. It does not have to be unique, and you can change it. Avoid entering

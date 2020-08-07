@@ -60,8 +60,8 @@ options:
               aggregate. The query must specify a metric, statistic, and interval. Supported values for
               interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions and grouping functions.
               Supported grouping functions: `grouping()`, `groupBy()`."
-            - Construct your query to avoid exceeding limits on returned data. See L(MetricData
-              Reference,https://docs.cloud.oracle.com/#/en/monitoring/20180401/MetricData).
+            - Construct your query to avoid exceeding limits on returned data. See L(MetricData Reference,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/monitoring/20180401/MetricData).
             - For details about Monitoring Query Language (MQL), see
               L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm).
               For available dimensions, review the metric definition for the supported service.

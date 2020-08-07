@@ -33,7 +33,7 @@ description:
       If you specify a name that's already in use in the tenancy, a 409 error is returned."
     - "You must also specify a *description* for the namespace.
       It does not have to be unique, and you can change it with
-      L(UpdateTagNamespace,https://docs.cloud.oracle.com/#/en/identity/latest/TagNamespace/UpdateTagNamespace)."
+      L(UpdateTagNamespace,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/TagNamespace/UpdateTagNamespace)."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

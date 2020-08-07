@@ -127,7 +127,8 @@ cluster_network_instances:
             description:
                 - The shape of an instance. The shape determines the number of CPUs, amount of memory,
                   and other resources allocated to the instance.
-                - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+                - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

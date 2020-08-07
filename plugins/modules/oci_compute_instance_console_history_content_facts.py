@@ -24,7 +24,7 @@ short_description: Fetches details about a InstanceConsoleHistoryContent resourc
 description:
     - Fetches details about a InstanceConsoleHistoryContent resource in Oracle Cloud Infrastructure
     - Gets the actual console history data (not the metadata).
-      See L(CaptureConsoleHistory,https://docs.cloud.oracle.com/#/en/iaas/20160918/ConsoleHistory/CaptureConsoleHistory)
+      See L(CaptureConsoleHistory,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ConsoleHistory/CaptureConsoleHistory)
       for details about using the console history operations.
 version_added: "2.9"
 author: Oracle (@oracle)

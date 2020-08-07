@@ -272,7 +272,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

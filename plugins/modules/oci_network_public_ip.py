@@ -30,11 +30,11 @@ description:
       with the OCID of the primary private IP you want to assign the public IP to. The public IP is
       created in the same availability domain as the private IP. An ephemeral public IP must always be
       assigned to a private IP, and only to the *primary* private IP on a VNIC, not a secondary
-      private IP. Exception: If you create a L(NatGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/NatGateway/), Oracle
+      private IP. Exception: If you create a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/), Oracle
       automatically assigns the NAT gateway a regional ephemeral public IP that you cannot remove."
     - "* **For a reserved public IP:** You may also optionally assign the public IP to a private
       IP by specifying `privateIpId`. Or you can later assign the public IP with
-      L(UpdatePublicIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PublicIp/UpdatePublicIp)."
+      L(UpdatePublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/UpdatePublicIp)."
     - "**Note:** When assigning a public IP to a private IP, the private IP must not already have
       a public IP with `lifecycleState` = ASSIGNING or ASSIGNED. If it does, an error is returned."
     - Also, for reserved public IPs, the optional assignment part of this operation is
@@ -88,7 +88,7 @@ options:
               (specifically a *primary* private IP)."
             - Optional for a reserved public IP. If you don't provide it, the public IP is created but not
               assigned to a private IP. You can later assign the public IP with
-              L(UpdatePublicIp,https://docs.cloud.oracle.com/#/en/iaas/20160918/PublicIp/UpdatePublicIp).
+              L(UpdatePublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/UpdatePublicIp).
         type: str
     public_ip_id:
         description:
@@ -101,7 +101,7 @@ options:
         description:
             - Whether the public IP is regional or specific to a particular availability domain.
             - "* `REGION`: The public IP exists within a region and is assigned to a regional entity
-              (such as a L(NatGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/NatGateway/)), or can be assigned to a private IP
+              (such as a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/)), or can be assigned to a private IP
               in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do
               ephemeral public IPs assigned to a regional entity."
             - "* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity
@@ -251,7 +251,7 @@ public_ip:
                   public IP must always be assigned to an entity. If the assigned entity is a private IP,
                   the ephemeral public IP is automatically deleted when the private IP is deleted, when
                   the VNIC is terminated, or when the instance is terminated. If the assigned entity is a
-                  L(NatGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/NatGateway/), the ephemeral public IP is automatically
+                  L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/), the ephemeral public IP is automatically
                   deleted when the NAT gateway is terminated."
                 - "* `RESERVED`: You control the public IP's lifetime. You can delete a reserved public IP
                   whenever you like. It does not need to be assigned to a private IP at all times."
@@ -274,7 +274,7 @@ public_ip:
             description:
                 - Whether the public IP is regional or specific to a particular availability domain.
                 - "* `REGION`: The public IP exists within a region and is assigned to a regional entity
-                  (such as a L(NatGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/NatGateway/)), or can be assigned to a private
+                  (such as a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/)), or can be assigned to a private
                   IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs
                   assigned to a regional entity have `scope` = `REGION`."
                 - "* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity

@@ -35,8 +35,10 @@ NONE_WAITER_KEY = "NONE_WAITER_KEY"
 # working before that happens
 # If we can reliably determine that no opc-work-request returned indicates immediate completion
 # and no waiting is necessary then we can build that case into WorkRequestWaiter
-SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING = ["database"]
-
+SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING = [
+    "database",
+    "mysql",
+]
 
 logger = oci_common_utils.get_logger("oci_wait_utils")
 
@@ -161,14 +163,17 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
             client, resource_helper, operation_response, wait_for_states
         )
 
-    def get_fetch_func(self):
-        if hasattr(self.operation_response.data, "id"):
-            identifier = self.operation_response.data.id
+    def get_identifier_from_resource(self, resource):
+        if hasattr(resource, "id"):
+            identifier = resource.id
         else:
             identifier = getattr(
-                self.operation_response.data,
-                self.resource_helper.get_module_resource_id_param(),
+                resource, self.resource_helper.get_module_resource_id_param(),
             )
+        return identifier
+
+    def get_fetch_func(self):
+        identifier = self.get_identifier_from_resource(self.operation_response.data)
         if not identifier:
             self.resource_helper.module.fail_json(
                 msg="Error getting the resource identifier."
@@ -198,6 +203,18 @@ class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
             return get_response
 
         return fetch_func
+
+
+class CreateDataCatalogWaiter(CreateOperationLifecycleStateWaiter):
+    """Waiter which waits on the lifecycle state of the resource"""
+
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateDataCatalogWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    def get_identifier_from_resource(self, resource):
+        return resource.key
 
 
 class CreateOperationWithCreateOnlyFieldsLifecycleStateWaiter(
@@ -321,12 +338,9 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
         )
         identifier = None
         if hasattr(wait_response.data, "resources"):
-            for resource in wait_response.data.resources:
-                if (
-                    hasattr(resource, "entity_type")
-                    and getattr(resource, "entity_type").lower() == entity_type.lower()
-                ):
-                    identifier = resource.identifier
+            identifier = get_resource_identifier_from_wait_response(
+                wait_response.data, entity_type
+            )
         elif hasattr(
             wait_response.data, self.resource_helper.get_module_resource_id_param()
         ):
@@ -612,21 +626,21 @@ _WAITER_OVERRIDE_MAP = {
         "instance_configuration",
         "{0}_{1}".format("LAUNCH", oci_common_utils.ACTION_OPERATION_KEY,),
     ): InstanceConfigurationLaunchInstanceWorkRequestWaiter,
-    # (
-    #     "core",
-    #     "instance_pool",
-    #     "{0}_{1}".format(
-    #         "ATTACH_LOAD_BALANCER", oci_common_utils.ACTION_OPERATION_KEY,
-    #     ),
-    # ): WorkRequestWaiter,
-    # (
-    #     "core",
-    #     "instance_pool",
-    #     "{0}_{1}".format(
-    #         "DETACH_LOAD_BALANCER", oci_common_utils.ACTION_OPERATION_KEY,
-    #     ),
-    # ): WorkRequestWaiter,
     ("nosql", "index", oci_common_utils.CREATE_OPERATION_KEY,): WorkRequestWaiter,
+    (
+        "data_catalog",
+        "data_asset",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateDataCatalogWaiter,
+    (
+        "data_catalog",
+        "connection",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateDataCatalogWaiter,
+    # mysql UpdateDbSystem doesn't return anything and by default doesn't have a waiter
+    # we need to override this to use a lifecycle waiter since mysql DbSystem model does
+    # have a lifecycle state field
+    ("mysql", "backup", oci_common_utils.UPDATE_OPERATION_KEY,): LifecycleStateWaiter,
 }
 
 
@@ -674,11 +688,28 @@ def get_waiter(
             )
         )
         waiter_type = LIFECYCLE_STATE_WAITER_KEY
-        wait_for_states = (
-            resource_helper.get_resource_terminated_states()
-            if operation == oci_common_utils.DELETE_OPERATION_KEY
-            else resource_helper.get_resource_active_states()
-        )
+        if resource_helper.module.params.get(
+            "action"
+        ) and operation == "{0}_{1}".format(
+            resource_helper.module.params.get("action").upper(),
+            oci_common_utils.ACTION_OPERATION_KEY,
+        ):
+            wait_for_states = resource_helper.get_action_desired_states(
+                resource_helper.module.params.get("action")
+            )
+        elif operation == oci_common_utils.DELETE_OPERATION_KEY:
+            wait_for_states = resource_helper.get_resource_terminated_states()
+        elif (
+            operation == oci_common_utils.CREATE_OPERATION_KEY
+            or operation == oci_common_utils.UPDATE_OPERATION_KEY
+        ):
+            wait_for_states = resource_helper.get_resource_active_states()
+        else:
+            resource_helper.module.fail_json(
+                msg="Unable to wait on operation, work request ID was not returned and operation type is unrecognized: {operation_key}".format(
+                    operation_key=operation
+                )
+            )
 
     if waiter_type == LIFECYCLE_STATE_WAITER_KEY:
         if operation == oci_common_utils.CREATE_OPERATION_KEY:
@@ -738,3 +769,27 @@ def call_and_wait(
         wait_for_states=wait_for_states,
     )
     return waiter.wait()
+
+
+def get_resource_identifier_from_wait_response(wait_response, entity_type):
+    identifier = None
+    for resource in wait_response.resources:
+        if (
+            hasattr(resource, "entity_type")
+            and getattr(resource, "entity_type").lower().strip().replace("-", "")
+            == entity_type.lower()
+        ):
+            identifier = resource.identifier
+        # this handles Analytics Instance & Digital Assistant Instance style WorkRequests which contains a field
+        # 'resource_type' instead of 'entity_type'
+        elif (
+            hasattr(resource, "resource_type")
+            and getattr(resource, "resource_type").lower().strip().replace("_", "")
+            == entity_type.lower()
+        ):
+            if hasattr(resource, "identifier"):
+                identifier = resource.identifier
+            # identifier that was assigned when ODA instance was created.
+            elif hasattr(resource, "resource_id"):
+                identifier = resource.resource_id
+    return identifier

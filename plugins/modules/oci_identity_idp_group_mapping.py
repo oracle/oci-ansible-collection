@@ -24,7 +24,7 @@ short_description: Manage an IdpGroupMapping resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete an IdpGroupMapping resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a single mapping between an IdP group and an IAM Service
-      L(group,https://docs.cloud.oracle.com/#/en/identity/20160918/Group/).
+      L(group,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Group/).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -35,7 +35,7 @@ options:
         type: str
     group_id:
         description:
-            - The OCID of the IAM Service L(group,https://docs.cloud.oracle.com/#/en/identity/20160918/Group/)
+            - The OCID of the IAM Service L(group,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Group/)
               you want to map to the IdP group.
             - Required for create using I(state=present).
         type: str

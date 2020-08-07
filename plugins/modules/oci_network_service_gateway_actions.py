@@ -23,23 +23,25 @@ module: oci_network_service_gateway_actions
 short_description: Perform actions on a ServiceGateway resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ServiceGateway resource in Oracle Cloud Infrastructure
-    - "For I(action=attach_service_id), adds the specified L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) to the list of enabled
+    - "For I(action=attach_service_id), adds the specified L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) to the list of
+      enabled
       `Service` objects for the specified gateway. You must also set up a route rule with the
       `cidrBlock` of the `Service` as the rule's destination and the service gateway as the rule's
-      target. See L(Route Table,https://docs.cloud.oracle.com/#/en/iaas/20160918/RouteTable/).
+      target. See L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/).
       **Note:** The `AttachServiceId` operation is an easy way to add an individual `Service` to
       the service gateway. Compare it with
-      L(UpdateServiceGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway), which replaces
+      L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway), which replaces
       the entire existing list of enabled `Service` objects with the list that you provide in the
       `Update` call."
-    - "For I(action=detach_service_id), removes the specified L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) from the list of enabled
+    - "For I(action=detach_service_id), removes the specified L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) from the list
+      of enabled
       `Service` objects for the specified gateway. You do not need to remove any route
       rules that specify this `Service` object's `cidrBlock` as the destination CIDR. However, consider
       removing the rules if your intent is to permanently disable use of the `Service` through this
       service gateway.
       **Note:** The `DetachServiceId` operation is an easy way to remove an individual `Service` from
       the service gateway. Compare it with
-      L(UpdateServiceGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway), which replaces
+      L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway), which replaces
       the entire existing list of enabled `Service` objects with the list that you provide in the
       `Update` call. `UpdateServiceGateway` also lets you block all traffic through the service
       gateway without having to remove each of the individual `Service` objects."
@@ -54,8 +56,8 @@ options:
         required: true
     service_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
-              L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/).
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the L(Service,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/Service/).
         type: str
         required: true
     action:
@@ -152,10 +154,10 @@ service_gateway:
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         services:
             description:
-                - List of the L(Service,https://docs.cloud.oracle.com/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
+                - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
                   The list can be empty. You can enable a particular `Service` by using
-                  L(AttachServiceId,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
-                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
+                  L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
+                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
             returned: on success
             type: complex
             contains:

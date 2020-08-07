@@ -75,7 +75,7 @@ backend_sets:
         policy:
             description:
                 - The load balancer policy for the backend set. To get a list of available policies, use the
-                  L(ListPolicies,https://docs.cloud.oracle.com/#/en/loadbalancer/20170115/LoadBalancerPolicy/ListPolicies) operation.
+                  L(ListPolicies,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerPolicy/ListPolicies) operation.
                 - "Example: `LEAST_CONNECTIONS`"
             returned: on success
             type: string
@@ -208,7 +208,7 @@ backend_sets:
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
                     type: string
-                    sample: ^((?!false).|\\s)*$
+                    sample: "^((?!false).|\\\\s)*$"
         ssl_configuration:
             description:
                 - ""

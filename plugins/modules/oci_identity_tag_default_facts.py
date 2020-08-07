@@ -34,10 +34,6 @@ options:
             - Required to get a specific tag_default.
         type: str
         aliases: ["id"]
-    id:
-        description:
-            - A filter to only return resources that match the specified OCID exactly.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment (remember that the tenancy is simply the root compartment).
@@ -169,7 +165,6 @@ class TagDefaultFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "id",
             "compartment_id",
             "tag_definition_id",
             "lifecycle_state",
@@ -196,7 +191,6 @@ def main():
     module_args.update(
         dict(
             tag_default_id=dict(aliases=["id"], type="str"),
-            id=dict(type="str"),
             compartment_id=dict(type="str"),
             tag_definition_id=dict(type="str"),
             lifecycle_state=dict(type="str", choices=["ACTIVE"]),

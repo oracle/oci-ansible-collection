@@ -186,7 +186,7 @@ subnets:
                   automatically be assigned public IP addresses unless specified
                   otherwise during instance launch or VNIC creation (with the
                   `assignPublicIp` flag in
-                  L(CreateVnicDetails,https://docs.cloud.oracle.com/#/en/iaas/20160918/CreateVnicDetails/)).
+                  L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)).
                   If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
                   subnet cannot have public IP addresses (that is, it's a private
                   subnet).

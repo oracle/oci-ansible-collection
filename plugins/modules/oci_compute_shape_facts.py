@@ -62,7 +62,7 @@ shapes:
         shape:
             description:
                 - The name of the shape. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

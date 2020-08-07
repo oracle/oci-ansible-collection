@@ -74,14 +74,16 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
               a value if you want to later generate CPE device configuration content for IPSec connections
-              that use this CPE. You can also call L(UpdateCpe,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/UpdateCpe) later to
+              that use this CPE. You can also call L(UpdateCpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/UpdateCpe) later to
               provide a value. For a list of possible values, see
-              L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+              L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
             - "For more information about generating CPE device configuration content, see:"
-            - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
-                * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
-                * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
-                * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+            - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
         type: str
     cpe_id:
         description:
@@ -192,13 +194,16 @@ cpe:
                   Cisco ASA). For each type, Oracle provides CPE configuration content that can help
                   a network engineer configure the CPE. The OCID uniquely identifies the type of
                   device. To get the OCIDs for the device types on the list, see
-                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
                 - "For information about how to generate CPE configuration content for a
                   CPE device type, see:"
-                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
-                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
-                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
-                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             returned: on success
             type: string
             sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx

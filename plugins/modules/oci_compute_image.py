@@ -29,18 +29,20 @@ description:
       the OCID of the compartment containing that instance. For more information about images,
       see L(Managing Custom Images,https://docs.cloud.oracle.com/Content/Compute/Tasks/managingcustomimages.htm).
     - When importing an exported image from Object Storage, you specify the source information
-      in L(ImageSourceDetails,https://docs.cloud.oracle.com/#/en/iaas/latest/requests/ImageSourceDetails).
+      in L(ImageSourceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceDetails).
     - When importing an image based on the namespace, bucket name, and object name,
-      use L(ImageSourceViaObjectStorageTupleDetails,https://docs.cloud.oracle.com/#/en/iaas/latest/requests/ImageSourceViaObjectStorageTupleDetails).
+      use L(ImageSourceViaObjectStorageTupleDetails,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageTupleDetails).
     - When importing an image based on the Object Storage URL, use
-      L(ImageSourceViaObjectStorageUriDetails,https://docs.cloud.oracle.com/#/en/iaas/latest/requests/ImageSourceViaObjectStorageUriDetails).
+      L(ImageSourceViaObjectStorageUriDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageUriDetails).
       See L(Object Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
       Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
       for constructing URLs for image import/export.
     - For more information about importing exported images, see
       L(Image Import/Export,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm).
     - "You may optionally specify a *display name* for the image, which is simply a friendly name or description.
-      It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/#/en/iaas/20160918/Image/UpdateImage).
+      It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/20160918/Image/UpdateImage).
       Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_image_actions) module: export."
 version_added: "2.9"
