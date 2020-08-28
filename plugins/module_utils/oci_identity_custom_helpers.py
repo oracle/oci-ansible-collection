@@ -15,6 +15,8 @@ from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 try:
     from oci.exceptions import ServiceError
 
+    # from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
+
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
@@ -336,3 +338,36 @@ class UserStateHelperCustom:
         result = super(UserStateHelperCustom, self).prepare_result(*args, **kwargs)
         result["user"] = result.pop(self.resource_type, None)
         return result
+
+
+# class TagActionsHelperCustom:
+#     def perform_action(self, action):
+#         action_fn = self.get_action_fn(action)
+#         if not action_fn:
+#             self.module.fail_json(msg="{0} not supported by the module.".format(action))
+#
+#         if self.check_mode:
+#             return self.prepare_result(
+#                 changed=True, resource_type=self.resource_type, resource=None
+#             )
+#
+#         # if sent list is empty or None, return back without performing the action with
+#         # status of resource as not changed
+#         tag_ids = self.module.params.get("tag_definition_ids")
+#         if tag_ids is None or tag_ids == []:
+#             return self.prepare_result(
+#                 changed=False, resource_type=self.resource_type, resource=None
+#             )
+#
+#         try:
+#             action_fn()
+#         except MaximumWaitTimeExceeded as mwtex:
+#             self.module.fail_json(msg=str(mwtex))
+#         except ServiceError as se:
+#             self.module.fail_json(
+#                 msg="Performing action failed with exception: {0}".format(se.message)
+#             )
+#         else:
+#             return self.prepare_result(
+#                 changed=True, resource_type=self.resource_type, resource=None,
+#             )

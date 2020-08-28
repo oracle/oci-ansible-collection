@@ -43,6 +43,17 @@ options:
         description:
             - The Autonomous Exadata Infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
+    autonomous_vm_cluster_id:
+        description:
+            - The Autonomous VM Cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+    infrastructure_type:
+        description:
+            - A filter to return only resources that match the given Infrastructure Type.
+        type: str
+        choices:
+            - "CLOUD"
+            - "CLOUD_AT_CUSTOMER"
     sort_by:
         description:
             - The field to sort by.  You can provide one sort order (`sortOrder`).  Default order for TIMECREATED is descending.  Default order for DISPLAYNAME
@@ -123,6 +134,12 @@ autonomous_container_databases:
             returned: on success
             type: string
             sample: display_name_example
+        db_unique_name:
+            description:
+                - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+            returned: on success
+            type: string
+            sample: db_unique_name_example
         service_level_agreement_type:
             description:
                 - The service level agreement type of the container database. The default is STANDARD.
@@ -135,6 +152,18 @@ autonomous_container_databases:
             returned: on success
             type: string
             sample: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_vm_cluster_id:
+            description:
+                - The OCID of the Autonomous VM Cluster.
+            returned: on success
+            type: string
+            sample: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        infrastructure_type:
+            description:
+                - The infrastructure type this resource belongs to.
+            returned: on success
+            type: string
+            sample: CLOUD
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -171,6 +200,69 @@ autonomous_container_databases:
             returned: on success
             type: string
             sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+        maintenance_window:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preference:
+                    description:
+                        - The maintenance window scheduling preference.
+                    returned: on success
+                    type: string
+                    sample: NO_PREFERENCE
+                months:
+                    description:
+                        - Months during the year when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the month of the year.
+                            returned: on success
+                            type: string
+                            sample: JANUARY
+                weeks_of_month:
+                    description:
+                        - Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
+                          duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                          For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2.
+                          Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days.
+                          Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of
+                          the week and hours that maintenance will be performed.
+                    returned: on success
+                    type: list
+                    sample: []
+                days_of_week:
+                    description:
+                        - Days during the week when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the day of the week.
+                            returned: on success
+                            type: string
+                            sample: MONDAY
+                hours_of_day:
+                    description:
+                        - "The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are
+                          - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12
+                            - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59
+                            UTC"
+                    returned: on success
+                    type: list
+                    sample: []
+                lead_time_in_weeks:
+                    description:
+                        - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to
+                          4.
+                    returned: on success
+                    type: int
+                    sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -192,6 +284,12 @@ autonomous_container_databases:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        db_version:
+            description:
+                - Oracle Database version of the Autonomous Container Database
+            returned: on success
+            type: string
+            sample: db_version_example
         backup_config:
             description:
                 - ""
@@ -211,17 +309,33 @@ autonomous_container_databases:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
+        "db_unique_name": "db_unique_name_example",
         "service_level_agreement_type": "STANDARD",
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
+        "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
+        "infrastructure_type": "CLOUD",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "maintenance_window": {
+            "preference": "NO_PREFERENCE",
+            "months": [{
+                "name": "JANUARY"
+            }],
+            "weeks_of_month": [],
+            "days_of_week": [{
+                "name": "MONDAY"
+            }],
+            "hours_of_day": [],
+            "lead_time_in_weeks": 56
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "availability_domain": "Uocm:PHX-AD-1",
+        "db_version": "db_version_example",
         "backup_config": {
             "recovery_window_in_days": 56
         }
@@ -267,6 +381,8 @@ class AutonomousContainerDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "autonomous_exadata_infrastructure_id",
+            "autonomous_vm_cluster_id",
+            "infrastructure_type",
             "sort_by",
             "sort_order",
             "lifecycle_state",
@@ -304,6 +420,10 @@ def main():
             autonomous_container_database_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             autonomous_exadata_infrastructure_id=dict(type="str"),
+            autonomous_vm_cluster_id=dict(type="str"),
+            infrastructure_type=dict(
+                type="str", choices=["CLOUD", "CLOUD_AT_CUSTOMER"]
+            ),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(

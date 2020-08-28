@@ -167,6 +167,16 @@ mount_targets:
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        nsg_ids:
+            description:
+                - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount
+                  target.
+                  A maximum of 5 is allowed.
+                  Setting this to an empty array after the list is created removes the mount target from all NSGs.
+                  For more information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+            returned: on success
+            type: list
+            sample: []
         time_created:
             description:
                 - The date and time the mount target was created, expressed
@@ -202,6 +212,7 @@ mount_targets:
         "lifecycle_state": "CREATING",
         "private_ip_ids": [],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "nsg_ids": [],
         "time_created": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

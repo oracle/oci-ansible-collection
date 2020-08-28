@@ -35,9 +35,13 @@ options:
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
+    db_unique_name:
+        description:
+            - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+        type: str
     service_level_agreement_type:
         description:
-            - The service level agreement type of the Autonomous Container Database. The default is STANDARD. For a mission critical Autonomous Container
+            - The service level agreement type of the Autonomous Container Database. The default is STANDARD. For an autonomous dataguard Autonomous Container
               Database, the specified Autonomous Exadata Infrastructure must be associated with a remote Autonomous Exadata Infrastructure.
         type: str
         choices:
@@ -45,7 +49,10 @@ options:
     autonomous_exadata_infrastructure_id:
         description:
             - The OCID of the Autonomous Exadata Infrastructure.
-            - Required for create using I(state=present).
+        type: str
+    autonomous_vm_cluster_id:
+        description:
+            - The OCID of the Autonomous VM Cluster.
         type: str
     compartment_id:
         description:
@@ -63,6 +70,79 @@ options:
         choices:
             - "RELEASE_UPDATES"
             - "RELEASE_UPDATE_REVISIONS"
+    maintenance_window_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            preference:
+                description:
+                    - The maintenance window scheduling preference.
+                type: str
+                choices:
+                    - "NO_PREFERENCE"
+                    - "CUSTOM_PREFERENCE"
+                required: true
+            months:
+                description:
+                    - Months during the year when maintenance should be performed.
+                type: list
+                suboptions:
+                    name:
+                        description:
+                            - Name of the month of the year.
+                        type: str
+                        choices:
+                            - "JANUARY"
+                            - "FEBRUARY"
+                            - "MARCH"
+                            - "APRIL"
+                            - "MAY"
+                            - "JUNE"
+                            - "JULY"
+                            - "AUGUST"
+                            - "SEPTEMBER"
+                            - "OCTOBER"
+                            - "NOVEMBER"
+                            - "DECEMBER"
+                        required: true
+            weeks_of_month:
+                description:
+                    - Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
+                      duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                      For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2.
+                      Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days.
+                      Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the
+                      week and hours that maintenance will be performed.
+                type: list
+            days_of_week:
+                description:
+                    - Days during the week when maintenance should be performed.
+                type: list
+                suboptions:
+                    name:
+                        description:
+                            - Name of the day of the week.
+                        type: str
+                        choices:
+                            - "MONDAY"
+                            - "TUESDAY"
+                            - "WEDNESDAY"
+                            - "THURSDAY"
+                            - "FRIDAY"
+                            - "SATURDAY"
+                            - "SUNDAY"
+                        required: true
+            hours_of_day:
+                description:
+                    - "The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are
+                      - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 -
+                        represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC"
+                type: list
+            lead_time_in_weeks:
+                description:
+                    - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
+                type: int
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -109,7 +189,6 @@ EXAMPLES = """
 - name: Create autonomous_container_database
   oci_database_autonomous_container_database:
     display_name: containerdatabases2
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1.unique_ID
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     patch_model: RELEASE_UPDATES
 
@@ -159,6 +238,12 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: display_name_example
+        db_unique_name:
+            description:
+                - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+            returned: on success
+            type: string
+            sample: db_unique_name_example
         service_level_agreement_type:
             description:
                 - The service level agreement type of the container database. The default is STANDARD.
@@ -171,6 +256,18 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_vm_cluster_id:
+            description:
+                - The OCID of the Autonomous VM Cluster.
+            returned: on success
+            type: string
+            sample: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        infrastructure_type:
+            description:
+                - The infrastructure type this resource belongs to.
+            returned: on success
+            type: string
+            sample: CLOUD
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -207,6 +304,69 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+        maintenance_window:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preference:
+                    description:
+                        - The maintenance window scheduling preference.
+                    returned: on success
+                    type: string
+                    sample: NO_PREFERENCE
+                months:
+                    description:
+                        - Months during the year when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the month of the year.
+                            returned: on success
+                            type: string
+                            sample: JANUARY
+                weeks_of_month:
+                    description:
+                        - Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
+                          duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                          For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2.
+                          Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days.
+                          Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of
+                          the week and hours that maintenance will be performed.
+                    returned: on success
+                    type: list
+                    sample: []
+                days_of_week:
+                    description:
+                        - Days during the week when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the day of the week.
+                            returned: on success
+                            type: string
+                            sample: MONDAY
+                hours_of_day:
+                    description:
+                        - "The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are
+                          - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12
+                            - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59
+                            UTC"
+                    returned: on success
+                    type: list
+                    sample: []
+                lead_time_in_weeks:
+                    description:
+                        - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to
+                          4.
+                    returned: on success
+                    type: int
+                    sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -228,6 +388,12 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        db_version:
+            description:
+                - Oracle Database version of the Autonomous Container Database
+            returned: on success
+            type: string
+            sample: db_version_example
         backup_config:
             description:
                 - ""
@@ -247,17 +413,33 @@ autonomous_container_database:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
+        "db_unique_name": "db_unique_name_example",
         "service_level_agreement_type": "STANDARD",
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
+        "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
+        "infrastructure_type": "CLOUD",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "maintenance_window": {
+            "preference": "NO_PREFERENCE",
+            "months": [{
+                "name": "JANUARY"
+            }],
+            "weeks_of_month": [],
+            "days_of_week": [{
+                "name": "MONDAY"
+            }],
+            "hours_of_day": [],
+            "lead_time_in_weeks": 56
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "availability_domain": "Uocm:PHX-AD-1",
+        "db_version": "db_version_example",
         "backup_config": {
             "recovery_window_in_days": 56
         }
@@ -323,6 +505,7 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
     def get_optional_kwargs_for_list(self):
         optional_list_method_params = [
             "autonomous_exadata_infrastructure_id",
+            "autonomous_vm_cluster_id",
             "display_name",
         ]
 
@@ -422,11 +605,69 @@ def main():
     module_args.update(
         dict(
             display_name=dict(aliases=["name"], type="str"),
+            db_unique_name=dict(type="str"),
             service_level_agreement_type=dict(type="str", choices=["STANDARD"]),
             autonomous_exadata_infrastructure_id=dict(type="str"),
+            autonomous_vm_cluster_id=dict(type="str"),
             compartment_id=dict(type="str"),
             patch_model=dict(
                 type="str", choices=["RELEASE_UPDATES", "RELEASE_UPDATE_REVISIONS"]
+            ),
+            maintenance_window_details=dict(
+                type="dict",
+                options=dict(
+                    preference=dict(
+                        type="str",
+                        required=True,
+                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                    ),
+                    months=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "JANUARY",
+                                    "FEBRUARY",
+                                    "MARCH",
+                                    "APRIL",
+                                    "MAY",
+                                    "JUNE",
+                                    "JULY",
+                                    "AUGUST",
+                                    "SEPTEMBER",
+                                    "OCTOBER",
+                                    "NOVEMBER",
+                                    "DECEMBER",
+                                ],
+                            )
+                        ),
+                    ),
+                    weeks_of_month=dict(type="list"),
+                    days_of_week=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "MONDAY",
+                                    "TUESDAY",
+                                    "WEDNESDAY",
+                                    "THURSDAY",
+                                    "FRIDAY",
+                                    "SATURDAY",
+                                    "SUNDAY",
+                                ],
+                            )
+                        ),
+                    ),
+                    hours_of_day=dict(type="list"),
+                    lead_time_in_weeks=dict(type="int"),
+                ),
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

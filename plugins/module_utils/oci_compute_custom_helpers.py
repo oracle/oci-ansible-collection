@@ -12,6 +12,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_config_utils,
 )
+from ansible.module_utils import six
 
 try:
     from oci.core import VirtualNetworkClient
@@ -390,3 +391,97 @@ class VolumeAttachmentFactsHelperCustom:
                 VolumeAttachmentFactsHelperCustom, self
             ).list(*args, **kwargs)
         ]
+
+
+# The subtypes of ImageCapabilitySchemaDescriptor model has parameters with the same name but different types.
+# Below is the list of subtypes and parameters (with different types):
+#   EnumStringImageCapabilitySchemaDescriptor -> values (list[str]), default_value (str)
+#   EnumIntegerImageCapabilityDescriptor -> values (list[int]), default_value (int)
+#   BooleanImageCapabilitySchemaDescriptor -> default_value (bool)
+# We cannot use the original parameter names in the module since we need to specify the type of each parameter in the
+# module. So the parameter names are changed and we have a parameter for each sub type. You can see the parameter name
+# mapping in the function `get_updated_image_capabilities_schema_data_parameter_name`. The parameter names are changed
+# using the renamingConfig (poms/core/renamingConfig.yaml).
+# All the below customisations (related to image capabilities) are either to update the models before sending to sdk
+# or to update the return properties after getting the results from sdk.
+def get_updated_image_capabilities_schema_data_parameter_name(descriptor_type, param):
+    param_descriptor_type_map = {
+        ("enumstring", "values"): "enum_string_values",
+        ("enumstring", "default_value"): "enum_string_default_value",
+        ("enuminteger", "values"): "enum_integer_values",
+        ("enuminteger", "default_value"): "enum_integer_default_value",
+        ("boolean", "default_value"): "boolean_default_value",
+    }
+    return param_descriptor_type_map.get((descriptor_type, param), param)
+
+
+def get_resource_with_updated_schema_data_param_names(resource):
+    if resource and resource.get("schema_data"):
+        resource["schema_data"] = dict(
+            (
+                schema_data_key,
+                dict(
+                    (
+                        get_updated_image_capabilities_schema_data_parameter_name(
+                            schema_data.get("descriptor_type"), k
+                        ),
+                        v,
+                    )
+                    for k, v in six.iteritems(schema_data)
+                ),
+            )
+            for schema_data_key, schema_data in six.iteritems(resource["schema_data"])
+        )
+    return resource
+
+
+class ComputeImageCapabilitySchemaHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(ComputeImageCapabilitySchemaHelperCustom, self).__init__(*args, **kwargs)
+        if self.module.params.get("schema_data"):
+            self.module.params["schema_data"] = dict(
+                (
+                    schema_data_key,
+                    dict(
+                        (self.get_original_sdk_parameter_name(k), v)
+                        for k, v in six.iteritems(schema_data)
+                    ),
+                )
+                for schema_data_key, schema_data in six.iteritems(
+                    self.module.params.get("schema_data")
+                )
+            )
+
+    def get_original_sdk_parameter_name(self, param):
+        if param in ["enum_string_values", "enum_integer_values"]:
+            return "values"
+        if param in [
+            "enum_string_default_value",
+            "enum_integer_default_value",
+            "boolean_default_value",
+        ]:
+            return "default_value"
+        return param
+
+    def prepare_result(self, changed, resource_type, resource=None, msg=None):
+        result = super(ComputeImageCapabilitySchemaHelperCustom, self).prepare_result(
+            changed, resource_type, resource, msg
+        )
+        result[resource_type] = get_resource_with_updated_schema_data_param_names(
+            result[resource_type]
+        )
+        return result
+
+
+class ComputeImageCapabilitySchemaFactsHelperCustom:
+    def get(self):
+        resource = super(ComputeImageCapabilitySchemaFactsHelperCustom, self).get()
+        return get_resource_with_updated_schema_data_param_names(resource)
+
+
+class ComputeGlobalImageCapabilitySchemaVersionFactsHelperCustom:
+    def get(self):
+        resource = super(
+            ComputeGlobalImageCapabilitySchemaVersionFactsHelperCustom, self
+        ).get()
+        return get_resource_with_updated_schema_data_param_names(resource)

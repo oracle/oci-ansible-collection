@@ -151,9 +151,17 @@ volume_backup_policies:
                     returned: on success
                     type: string
                     sample: UTC
+        destination_region:
+            description:
+                - The paired destination region for copying scheduled backups to. Example `us-ashburn-1`.
+                  See L(Region Pairs,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs) for details about paired
+                  regions.
+            returned: on success
+            type: string
+            sample: destination_region_example
         time_created:
             description:
-                - The date and time the volume backup policy was created. Format defined by RFC3339.
+                - The date and time the volume backup policy was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -195,6 +203,7 @@ volume_backup_policies:
             "retention_seconds": 56,
             "time_zone": "UTC"
         }],
+        "destination_region": "destination_region_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

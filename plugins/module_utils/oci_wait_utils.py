@@ -38,6 +38,7 @@ NONE_WAITER_KEY = "NONE_WAITER_KEY"
 SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING = [
     "database",
     "mysql",
+    "resource_manager",
 ]
 
 logger = oci_common_utils.get_logger("oci_wait_utils")
@@ -641,6 +642,20 @@ _WAITER_OVERRIDE_MAP = {
     # we need to override this to use a lifecycle waiter since mysql DbSystem model does
     # have a lifecycle state field
     ("mysql", "backup", oci_common_utils.UPDATE_OPERATION_KEY,): LifecycleStateWaiter,
+    # identity_tag's bulk_delete action does not return anything by default. Hence, cannot
+    # wait for any lifecycle state change
+    (
+        "identity",
+        "tag",
+        "{0}_{1}".format("BULK_DELETE", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NoneWaiter,
+    # identity_tag_namespace's cascade_delete action does not return anything by default.
+    # Hence, cannot wait for any lifecycle state change
+    (
+        "identity",
+        "tag_namespace",
+        "{0}_{1}".format("CASCADE_DELETE", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NoneWaiter,
 }
 
 

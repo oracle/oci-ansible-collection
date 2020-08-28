@@ -61,6 +61,8 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 - Search
 - Digital Assistant Instance
 - MySQL
+- Big Data
+- Usage
 
 ## Installation
 
@@ -98,6 +100,7 @@ with Oracle Cloud Infrastructure services under [the samples directory on GitHub
 Begin by reviewing the Readme.md file that you will find in each sample's root directory.
 
 ## Documentation
+Module documentation is found [here](https://github.com/oracle/oci-ansible-collection/tree/master/docs)<br/>
 To view the module documentation, use this command:
   ``` bash
 ansible-doc oracle.oci.[module_name]

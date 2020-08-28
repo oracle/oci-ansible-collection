@@ -115,13 +115,58 @@ stack:
                     description:
                         - File path to the directory to use for running Terraform.
                           If not specified, the root directory is used.
+                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
                     returned: on success
                     type: string
                     sample: working_directory_example
+                configuration_source_provider_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
+                    returned: on success
+                    type: string
+                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                repository_url:
+                    description:
+                        - The URL of the Git repository for the configuration source.
+                    returned: on success
+                    type: string
+                    sample: repository_url_example
+                branch_name:
+                    description:
+                        - The name of the branch in the Git repository for the configuration source.
+                    returned: on success
+                    type: string
+                    sample: branch_name_example
+                compartment_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
+                          for creating the stack. The new stack will include definitions for supported
+                          resource types in this compartment.
+                    returned: on success
+                    type: string
+                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                region:
+                    description:
+                        - The region to use for creating the stack. The new stack will include definitions for
+                          supported resource types in this region.
+                    returned: on success
+                    type: string
+                    sample: region_example
+                services_to_discover:
+                    description:
+                        - "Filter for L(services to use with Resource
+                          Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+                          For example, \\"database\\" limits resource discovery to resource types within the Database service.
+                          The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level
+                          otherwise).
+                          If not specified, then all services at the scope of the given compartment OCID are used."
+                    returned: on success
+                    type: list
+                    sample: []
         variables:
             description:
                 - "Terraform variables associated with this resource.
-                  Maximum number of variables supported is 100.
+                  Maximum number of variables supported is 250.
                   The maximum size of each variable, including both name and value, is 4096 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
@@ -173,7 +218,13 @@ stack:
         "lifecycle_state": "CREATING",
         "config_source": {
             "config_source_type": "ZIP_UPLOAD",
-            "working_directory": "working_directory_example"
+            "working_directory": "working_directory_example",
+            "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_url": "repository_url_example",
+            "branch_name": "branch_name_example",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "region": "region_example",
+            "services_to_discover": []
         },
         "variables": {},
         "terraform_version": "0.12.x",

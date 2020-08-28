@@ -135,6 +135,18 @@ backups:
             returned: on success
             type: float
             sample: 1.2
+        shape:
+            description:
+                - Shape of the backup's source database.
+            returned: on success
+            type: string
+            sample: shape_example
+        version:
+            description:
+                - Version of the backup's source database
+            returned: on success
+            type: string
+            sample: version_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -147,7 +159,9 @@ backups:
         "availability_domain": "Uocm:PHX-AD-1",
         "lifecycle_state": "CREATING",
         "database_edition": "STANDARD_EDITION",
-        "database_size_in_gbs": 1.2
+        "database_size_in_gbs": 1.2,
+        "shape": "shape_example",
+        "version": "version_example"
     }]
 """
 

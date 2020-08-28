@@ -132,6 +132,16 @@ autonomous_exadata_infrastructures:
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        nsg_ids:
+            description:
+                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+                  resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
+                  NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                  **NsgIds restrictions:**
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            returned: on success
+            type: list
+            sample: []
         shape:
             description:
                 - The shape of the Autonomous Exadata Infrastructure. The shape determines resources to allocate to the Autonomous Exadata Infrastructure (CPU
@@ -231,6 +241,13 @@ autonomous_exadata_infrastructures:
                     returned: on success
                     type: list
                     sample: []
+                lead_time_in_weeks:
+                    description:
+                        - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to
+                          4.
+                    returned: on success
+                    type: int
+                    sample: 56
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -264,6 +281,7 @@ autonomous_exadata_infrastructures:
         "display_name": "display_name_example",
         "availability_domain": "Uocm:PHX-AD-1",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "nsg_ids": [],
         "shape": "shape_example",
         "hostname": "hostname_example",
         "domain": "domain_example",
@@ -280,7 +298,8 @@ autonomous_exadata_infrastructures:
             "days_of_week": [{
                 "name": "MONDAY"
             }],
-            "hours_of_day": []
+            "hours_of_day": [],
+            "lead_time_in_weeks": 56
         },
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",

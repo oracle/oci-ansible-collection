@@ -77,20 +77,20 @@ options:
                     max:
                         description:
                             - The maximum number of instances the instance pool is allowed to increase to (scale out).
+                            - Applicable when policy_type is 'scheduled'
                         type: int
-                        required: true
                     min:
                         description:
                             - The minimum number of instances the instance pool is allowed to decrease to (scale in).
+                            - Applicable when policy_type is 'scheduled'
                         type: int
-                        required: true
                     initial:
                         description:
                             - The initial number of instances to launch in the instance pool immediately after autoscaling is
                               enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this
                               initial number to a number that is based on the limits that you set.
+                            - Applicable when policy_type is 'scheduled'
                         type: int
-                        required: true
             display_name:
                 description:
                     - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -101,23 +101,55 @@ options:
                     - The type of autoscaling policy.
                 type: str
                 choices:
+                    - "scheduled"
                     - "threshold"
                 required: true
+            is_enabled:
+                description:
+                    - Boolean field indicating whether this policy is enabled or not.
+                type: bool
+            execution_schedule:
+                description:
+                    - ""
+                    - Required when policy_type is 'scheduled'
+                type: dict
+                suboptions:
+                    type:
+                        description:
+                            - The type of ExecutionSchedule.
+                        type: str
+                        choices:
+                            - "cron"
+                        required: true
+                    timezone:
+                        description:
+                            - Specifies the time zone the schedule is in.
+                        type: str
+                        choices:
+                            - "UTC"
+                        required: true
+                    expression:
+                        description:
+                            - The value representing the execution schedule, as defined by cron format.
+                        type: str
+                        required: true
             rules:
                 description:
                     - ""
+                    - Required when policy_type is 'threshold'
                 type: list
-                required: true
                 suboptions:
                     action:
                         description:
                             - ""
+                            - Required when policy_type is 'threshold'
                         type: dict
                         required: true
                         suboptions:
                             type:
                                 description:
                                     - The type of action to take.
+                                    - Required when policy_type is 'threshold'
                                 type: str
                                 choices:
                                     - "CHANGE_COUNT_BY"
@@ -126,22 +158,26 @@ options:
                                 description:
                                     - To scale out (increase the number of instances), provide a positive value. To scale in (decrease the number of
                                       instances), provide a negative value.
+                                    - Required when policy_type is 'threshold'
                                 type: int
                                 required: true
                     display_name:
                         description:
                             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                            - Applicable when policy_type is 'threshold'
                         type: str
                         aliases: ["name"]
                     metric:
                         description:
                             - ""
+                            - Required when policy_type is 'threshold'
                         type: dict
                         required: true
                         suboptions:
                             metric_type:
                                 description:
                                     - ""
+                                    - Required when policy_type is 'threshold'
                                 type: str
                                 choices:
                                     - "CPU_UTILIZATION"
@@ -150,6 +186,7 @@ options:
                             threshold:
                                 description:
                                     - ""
+                                    - Required when policy_type is 'threshold'
                                 type: dict
                                 required: true
                                 suboptions:
@@ -157,6 +194,7 @@ options:
                                         description:
                                             - The comparison operator to use. Options are greater than (`GT`), greater than or equal to
                                               (`GTE`), less than (`LT`), and less than or equal to (`LTE`).
+                                            - Required when policy_type is 'threshold'
                                         type: str
                                         choices:
                                             - "GT"
@@ -167,6 +205,7 @@ options:
                                     value:
                                         description:
                                             - ""
+                                            - Required when policy_type is 'threshold'
                                         type: int
                                         required: true
     resource:
@@ -401,6 +440,36 @@ auto_scaling_configuration:
                     returned: on success
                     type: string
                     sample: 2016-08-25T21:10:29.600Z
+                is_enabled:
+                    description:
+                        - Boolean field indicating whether this policy is enabled or not.
+                    returned: on success
+                    type: bool
+                    sample: true
+                execution_schedule:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of ExecutionSchedule.
+                            returned: on success
+                            type: string
+                            sample: cron
+                        timezone:
+                            description:
+                                - Specifies the time zone the schedule is in.
+                            returned: on success
+                            type: string
+                            sample: UTC
+                        expression:
+                            description:
+                                - The value representing the execution schedule, as defined by cron format.
+                            returned: on success
+                            type: string
+                            sample: expression_example
                 rules:
                     description:
                         - ""
@@ -476,6 +545,18 @@ auto_scaling_configuration:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        max_resource_count:
+            description:
+                - The maximum number of resources to scale out to.
+            returned: on success
+            type: int
+            sample: 56
+        min_resource_count:
+            description:
+                - The minimum number of resources to scale in to.
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -498,6 +579,12 @@ auto_scaling_configuration:
             "display_name": "display_name_example",
             "policy_type": "policy_type_example",
             "time_created": "2016-08-25T21:10:29.600Z",
+            "is_enabled": true,
+            "execution_schedule": {
+                "type": "cron",
+                "timezone": "UTC",
+                "expression": "expression_example"
+            },
             "rules": [{
                 "action": {
                     "type": "CHANGE_COUNT_BY",
@@ -514,7 +601,9 @@ auto_scaling_configuration:
                 }
             }]
         }],
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "max_resource_count": 56,
+        "min_resource_count": 56
     }
 """
 
@@ -679,17 +768,27 @@ def main():
                         type="dict",
                         required=True,
                         options=dict(
-                            max=dict(type="int", required=True),
-                            min=dict(type="int", required=True),
-                            initial=dict(type="int", required=True),
+                            max=dict(type="int"),
+                            min=dict(type="int"),
+                            initial=dict(type="int"),
                         ),
                     ),
                     display_name=dict(aliases=["name"], type="str"),
-                    policy_type=dict(type="str", required=True, choices=["threshold"]),
+                    policy_type=dict(
+                        type="str", required=True, choices=["scheduled", "threshold"]
+                    ),
+                    is_enabled=dict(type="bool"),
+                    execution_schedule=dict(
+                        type="dict",
+                        options=dict(
+                            type=dict(type="str", required=True, choices=["cron"]),
+                            timezone=dict(type="str", required=True, choices=["UTC"]),
+                            expression=dict(type="str", required=True),
+                        ),
+                    ),
                     rules=dict(
                         type="list",
                         elements="dict",
-                        required=True,
                         options=dict(
                             action=dict(
                                 type="dict",

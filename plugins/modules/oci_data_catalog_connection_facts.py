@@ -68,6 +68,12 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
+    display_name_contains:
+        description:
+            - "A filter to return only resources that match display name pattern given. The match is not case sensitive.
+              For Example : /folders?displayNameContains=Cu.*
+              The above would match all folders with display name that starts with \\"Cu\\"."
+        type: str
     lifecycle_state:
         description:
             - A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
@@ -244,6 +250,12 @@ connections:
             returned: on success
             type: string
             sample: uri_example
+        count:
+            description:
+                - Total number of items returned.
+            returned: on success
+            type: int
+            sample: 56
         items:
             description:
                 - Collection of connection summaries.
@@ -328,6 +340,7 @@ connections:
         "data_asset_key": "data_asset_key_example",
         "type_key": "type_key_example",
         "uri": "uri_example",
+        "count": 56,
         "items": [{
             "key": "key_example",
             "description": "description_example",
@@ -394,6 +407,7 @@ class DataCatalogConnectionFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "display_name",
+            "display_name_contains",
             "lifecycle_state",
             "time_created",
             "time_updated",
@@ -458,6 +472,7 @@ def main():
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),
+            display_name_contains=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
                 choices=[

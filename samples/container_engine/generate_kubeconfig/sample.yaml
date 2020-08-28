@@ -138,18 +138,19 @@
         content: "{{ result.kubeconfig }}"
         dest: "{{ kubeconfig_path }}"
 
-    - command: kubectl cluster-info
-      environment:
-        KUBECONFIG: "{{ kubeconfig_path }}"
-      register: result
-    - debug:
-        msg: "{{ result }}"
-
-    - command: kubectl get nodes
-      environment:
-        KUBECONFIG: "{{ kubeconfig_path }}"
-      register: result
-    - debug:
-        msg: "{{ result }}"
+# Uncomment to run the kubectl commands
+#    - command: kubectl cluster-info
+#      environment:
+#        KUBECONFIG: "{{ kubeconfig_path }}"
+#      register: result
+#    - debug:
+#        msg: "{{ result }}"
+#
+#    - command: kubectl get nodes
+#      environment:
+#        KUBECONFIG: "{{ kubeconfig_path }}"
+#      register: result
+#    - debug:
+#        msg: "{{ result }}"
 
     - import_tasks: teardown.yaml

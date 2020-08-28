@@ -67,7 +67,7 @@ options:
     ip_address:
         description:
             - The public IP address of the on-premises router.
-            - "Example: `143.19.23.16`"
+            - "Example: `203.0.113.2`"
             - Required for create using I(state=present).
         type: str
     cpe_device_shape_id:
@@ -107,13 +107,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cpe
   oci_network_cpe:
-    ip_address: 189.44.2.135
+    ip_address: 203.0.113.6
     display_name: MyCpe
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..compartment_OCID
 
 - name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..compartment_OCID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyCpe
     freeform_tags: {'Department': 'Finance'}
@@ -132,7 +132,7 @@ EXAMPLES = """
 
 - name: Delete cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..compartment_OCID
     display_name: MyCpe
     state: absent
 
@@ -209,7 +209,7 @@ cpe:
             sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - The date and time the CPE was created, in the format defined by RFC3339.
+                - The date and time the CPE was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

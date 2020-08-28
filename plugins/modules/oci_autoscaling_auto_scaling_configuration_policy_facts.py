@@ -134,6 +134,36 @@ auto_scaling_configuration_policies:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        is_enabled:
+            description:
+                - Boolean field indicating whether this policy is enabled or not.
+            returned: on success
+            type: bool
+            sample: true
+        execution_schedule:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of ExecutionSchedule.
+                    returned: on success
+                    type: string
+                    sample: cron
+                timezone:
+                    description:
+                        - Specifies the time zone the schedule is in.
+                    returned: on success
+                    type: string
+                    sample: UTC
+                expression:
+                    description:
+                        - The value representing the execution schedule, as defined by cron format.
+                    returned: on success
+                    type: string
+                    sample: expression_example
         rules:
             description:
                 - ""
@@ -212,6 +242,12 @@ auto_scaling_configuration_policies:
         "display_name": "display_name_example",
         "policy_type": "policy_type_example",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "is_enabled": true,
+        "execution_schedule": {
+            "type": "cron",
+            "timezone": "UTC",
+            "expression": "expression_example"
+        },
         "rules": [{
             "action": {
                 "type": "CHANGE_COUNT_BY",

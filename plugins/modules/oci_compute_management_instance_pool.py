@@ -167,18 +167,18 @@ EXAMPLES = """
 - name: Create instance_pool
   oci_compute_management_instance_pool:
     display_name: autoscaling-instance-pool
-    compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..&lt;unique_ID&gt;
+    compartment_id: ocid1.compartment.oc1..unique_ID
+    instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
     size: 15
     placement_configurations:
     - availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+      primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
     - availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+      primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
     - availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+      primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
     load_balancers:
-    - load_balancer_id: ocid1.loadbalancer.oc1.phx..&lt;unique_ID&gt;
+    - load_balancer_id: ocid1.loadbalancer.oc1.phx..unique_ID
       backend_set_name: lb-20190410-1147-backend-set
       port: 80
       vnic_selection: PrimaryVnic
@@ -186,25 +186,25 @@ EXAMPLES = """
 - name: Create instance_pool
   oci_compute_management_instance_pool:
     display_name: backend-servers-pool
-    compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..&lt;unique_ID&gt;
+    compartment_id: ocid1.compartment.oc1..unique_ID
+    instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
     size: 10
     placement_configurations:
     - availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.subnet.oc1..&lt;unique_ID_1&gt;
+      primary_subnet_id: ocid1.subnet.oc1..unique_ID_1
     - availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.subnet.oc1..&lt;unique_ID_2&gt;
+      primary_subnet_id: ocid1.subnet.oc1..unique_ID_2
 
 - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
-    compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: autoscaling-instance-pool
     freeform_tags: {'Department': 'Finance'}
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..&lt;unique_ID&gt;
+    instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
     placement_configurations:
     - availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+      primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
     size: 15
 
 - name: Update instance_pool
@@ -220,7 +220,7 @@ EXAMPLES = """
 
 - name: Delete instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_pool:
-    compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: autoscaling-instance-pool
     state: absent
 
@@ -343,7 +343,7 @@ instance_pool:
             sample: 56
         time_created:
             description:
-                - "The date and time the instance pool was created, in the format defined by RFC3339.
+                - "The date and time the instance pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2020-8-27
+
+### Added:
+- Added Big Data modules
+- Added Usage modules
+- Added multiple Database modules and features
+- Added support for Database VM cluster and Exadata Infrastructure
+- Added multiple Identity modules and features
+
+### Changed:
+- Please update to the latest version of OCI Python SDK.
+
+
 ## [2.5.0] - 2020-8-6
 
 ### Added:

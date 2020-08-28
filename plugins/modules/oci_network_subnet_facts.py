@@ -24,6 +24,7 @@ short_description: Fetches details about one or multiple Subnet resources in Ora
 description:
     - Fetches details about one or multiple Subnet resources in Oracle Cloud Infrastructure
     - Lists the subnets in the specified VCN and the specified compartment.
+      If the VCN ID is not provided, then the list includes the subnets from all VCNs in the specified compartment.
     - If I(subnet_id) is specified, the details of a single Subnet will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -42,7 +43,6 @@ options:
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required to list multiple subnets.
         type: str
     display_name:
         description:
@@ -86,7 +86,6 @@ EXAMPLES = """
 - name: List subnets
   oci_network_subnet_facts:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Get a specific subnet
   oci_network_subnet_facts:
@@ -112,10 +111,10 @@ subnets:
         cidr_block:
             description:
                 - The subnet's CIDR block.
-                - "Example: `172.16.1.0/24`"
+                - "Example: `10.0.1.0/24`"
             returned: on success
             type: string
-            sample: 172.16.1.0/24
+            sample: 10.0.1.0/24
         compartment_id:
             description:
                 - The OCID of the compartment containing the subnet.
@@ -220,7 +219,7 @@ subnets:
             sample: subnet123.vcn1.oraclevcn.com
         time_created:
             description:
-                - The date and time the subnet was created, in the format defined by RFC3339.
+                - The date and time the subnet was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -241,13 +240,13 @@ subnets:
         virtual_router_mac:
             description:
                 - The MAC address of the virtual router.
-                - "Example: `00:00:17:B6:4D:DD`"
+                - "Example: `00:00:00:00:00:01`"
             returned: on success
             type: string
-            sample: 00:00:17:B6:4D:DD
+            sample: 00:00:00:00:00:01
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
-        "cidr_block": "172.16.1.0/24",
+        "cidr_block": "10.0.1.0/24",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "dhcp_options_id": "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx",
@@ -263,7 +262,7 @@ subnets:
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "virtual_router_ip": "10.0.14.1",
-        "virtual_router_mac": "00:00:17:B6:4D:DD"
+        "virtual_router_mac": "00:00:00:00:00:01"
     }]
 """
 
@@ -293,7 +292,6 @@ class SubnetFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "vcn_id",
         ]
 
     def get_resource(self):
@@ -303,6 +301,7 @@ class SubnetFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "vcn_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -316,7 +315,6 @@ class SubnetFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_subnets,
             compartment_id=self.module.params.get("compartment_id"),
-            vcn_id=self.module.params.get("vcn_id"),
             **optional_kwargs
         )
 

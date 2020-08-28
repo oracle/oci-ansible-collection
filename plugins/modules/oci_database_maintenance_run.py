@@ -36,6 +36,10 @@ options:
         description:
             - If set to false, skips the Maintenance Run.
         type: bool
+    time_scheduled:
+        description:
+            - The scheduled date and time of the Maintenance Run to update.
+        type: str
     state:
         description:
             - The state of the MaintenanceRun.
@@ -250,6 +254,7 @@ def main():
         dict(
             maintenance_run_id=dict(aliases=["id"], type="str", required=True),
             is_enabled=dict(type="bool"),
+            time_scheduled=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

@@ -39,6 +39,7 @@ options:
         choices:
             - "OLTP"
             - "DW"
+            - "AJD"
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -73,7 +74,8 @@ autonomous_db_versions:
             description:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
-                  - DW - indicates an Autonomous Data Warehouse database"
+                  - DW - indicates an Autonomous Data Warehouse database
+                  - AJD - indicates an Autonomous JSON Database"
             returned: on success
             type: string
             sample: OLTP
@@ -160,7 +162,7 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            db_workload=dict(type="str", choices=["OLTP", "DW"]),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )
     )

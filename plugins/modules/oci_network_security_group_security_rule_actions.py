@@ -489,7 +489,7 @@ network_security_group_security_rule:
                                     sample: 56
                 time_created:
                     description:
-                        - The date and time the security rule was created. Format defined by RFC3339.
+                        - The date and time the security rule was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                     returned: on success
                     type: string
                     sample: 2013-10-20T19:20:30+01:00

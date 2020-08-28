@@ -72,7 +72,42 @@ options:
               and all compartments and subcompartments in the tenancy are
               returned depending on the the setting of `accessLevel`.
         type: bool
-extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
+    name:
+        description:
+            - A filter to only return resources that match the given name exactly.
+        type: str
+    sort_by:
+        description:
+            - The field to sort by. You can provide one sort order (`sortOrder`). Default order for
+              TIMECREATED is descending. Default order for NAME is ascending. The NAME
+              sort order is case sensitive.
+            - "**Note:** In general, some \\"List\\" operations (for example, `ListInstances`) let you
+              optionally filter by Availability Domain if the scope of the resource type is within a
+              single Availability Domain. If you call one of these \\"List\\" operations without specifying
+              an Availability Domain, the resources are grouped by Availability Domain, then sorted."
+        type: str
+        choices:
+            - "TIMECREATED"
+            - "NAME"
+    sort_order:
+        description:
+            - The sort order to use, either ascending (`ASC`) or descending (`DESC`). The NAME sort order
+              is case sensitive.
+        type: str
+        choices:
+            - "ASC"
+            - "DESC"
+    lifecycle_state:
+        description:
+            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+        type: str
+        choices:
+            - "CREATING"
+            - "ACTIVE"
+            - "INACTIVE"
+            - "DELETING"
+            - "DELETED"
+extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
@@ -215,6 +250,9 @@ class CompartmentFactsHelperGen(OCIResourceFactsHelperBase):
             "access_level",
             "compartment_id_in_subtree",
             "name",
+            "sort_by",
+            "sort_order",
+            "lifecycle_state",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -244,6 +282,12 @@ def main():
             access_level=dict(type="str", choices=["ANY", "ACCESSIBLE"]),
             compartment_id_in_subtree=dict(type="bool"),
             name=dict(type="str"),
+            sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
+            sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            lifecycle_state=dict(
+                type="str",
+                choices=["CREATING", "ACTIVE", "INACTIVE", "DELETING", "DELETED"],
+            ),
         )
     )
 

@@ -210,7 +210,7 @@ dedicated_vm_host:
             sample: CREATING
         time_created:
             description:
-                - The date and time the dedicated VM host was created, in the format defined by RFC3339.
+                - The date and time the dedicated VM host was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

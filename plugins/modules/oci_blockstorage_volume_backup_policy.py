@@ -43,6 +43,12 @@ options:
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
+    destination_region:
+        description:
+            - "The paired destination region for copying scheduled backups to. Example: `us-ashburn-1`.
+              See L(Region Pairs,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs) for details about paired
+              regions."
+        type: str
     schedules:
         description:
             - The collection of schedules for the volume backup policy. See
@@ -180,6 +186,7 @@ EXAMPLES = """
   oci_blockstorage_volume_backup_policy:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     display_name: display_name_example
+    destination_region: us-ashburn-1
     schedules:
     - backup_type: FULL
       period: ONE_HOUR
@@ -190,10 +197,7 @@ EXAMPLES = """
 - name: Update volume_backup_policy
   oci_blockstorage_volume_backup_policy:
     display_name: display_name_example
-    schedules:
-    - backup_type: FULL
-      period: ONE_HOUR
-      retention_seconds: 56
+    destination_region: us-ashburn-1
     policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete volume_backup_policy
@@ -305,9 +309,17 @@ volume_backup_policy:
                     returned: on success
                     type: string
                     sample: UTC
+        destination_region:
+            description:
+                - The paired destination region for copying scheduled backups to. Example `us-ashburn-1`.
+                  See L(Region Pairs,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs) for details about paired
+                  regions.
+            returned: on success
+            type: string
+            sample: destination_region_example
         time_created:
             description:
-                - The date and time the volume backup policy was created. Format defined by RFC3339.
+                - The date and time the volume backup policy was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -349,6 +361,7 @@ volume_backup_policy:
             "retention_seconds": 56,
             "time_zone": "UTC"
         }],
+        "destination_region": "destination_region_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -485,6 +498,7 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
+            destination_region=dict(type="str"),
             schedules=dict(
                 type="list",
                 elements="dict",

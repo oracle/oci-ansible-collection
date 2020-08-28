@@ -144,9 +144,10 @@ instances:
             sample: My bare metal instance
         extended_metadata:
             description:
-                - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
-                - They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps
-                  only).
+                - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality
+                  as fields in the `metadata` object.
+                - They are distinguished from `metadata` fields in that these can be nested JSON objects (whereas `metadata`
+                  fields are string/string maps only).
             returned: on success
             type: dict
             sample: {}
@@ -158,8 +159,7 @@ instances:
                   instances so that they are not on the same physical hardware within a single availability domain.
                   A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
                   instances in other fault domains.
-                - If you do not specify the fault domain, the system selects one for you. To change the fault
-                  domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+                - If you do not specify the fault domain, the system selects one for you.
                 - "Example: `FAULT-DOMAIN-1`"
             returned: on success
             type: string
@@ -213,27 +213,27 @@ instances:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
                   * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
-                  * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+                  * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
             returned: on success
             type: string
             sample: NATIVE
         launch_options:
             description:
-                - ""
+                - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.
             returned: on success
             type: complex
             contains:
                 boot_volume_type:
                     description:
-                        - "Emulation type for volume.
-                          * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                          Storage volumes on Oracle provided images.
+                        - "Emulation type for the boot volume.
+                          * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                          volumes on Oracle provided images.
-                          * `PARAVIRTUALIZED` - Paravirtualized disk."
+                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          volumes on Oracle-provided images.
+                          * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                          storage volumes on Oracle-provided images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -243,7 +243,7 @@ instances:
                           * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
-                          default for Oracle provided images."
+                          default for Oracle-provided images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -253,26 +253,27 @@ instances:
                           * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
                           * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
-                          * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers."
+                          * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
                     returned: on success
                     type: string
                     sample: E1000
                 remote_data_volume_type:
                     description:
                         - "Emulation type for volume.
-                          * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                          Storage volumes on Oracle provided images.
+                          * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                          volumes on Oracle provided images.
-                          * `PARAVIRTUALIZED` - Paravirtualized disk."
+                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          volumes on Oracle-provided images.
+                          * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                          storage volumes on Oracle-provided images."
                     returned: on success
                     type: string
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
-                        - Whether to enable in-transit encryption for the boot volume's paravirtualized attachment. The default value is false.
+                        - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -325,19 +326,19 @@ instances:
                     sample: 3.4
                 memory_in_gbs:
                     description:
-                        - The total amount of memory, in gigabytes, available to the instance.
+                        - The total amount of memory available to the instance, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
                 processor_description:
                     description:
-                        - A short description of the processors available to the instance.
+                        - A short description of the instance's processor (CPU).
                     returned: on success
                     type: string
                     sample: processor_description_example
                 networking_bandwidth_in_gbps:
                     description:
-                        - The networking bandwidth, in gigabits per second, available to the instance.
+                        - The networking bandwidth available to the instance, in gigabits per second.
                     returned: on success
                     type: float
                     sample: 3.4
@@ -349,14 +350,14 @@ instances:
                     sample: 56
                 gpus:
                     description:
-                        - The number of GPUs available to this instance.
+                        - The number of GPUs available to the instance.
                     returned: on success
                     type: int
                     sample: 56
                 gpu_description:
                     description:
-                        - A short description of the GPUs available to this instance.
-                          This field is `null` if `gpus` is `0`.
+                        - A short description of the instance's graphics processing unit (GPU).
+                        - If the instance does not have any GPUs, this field is `null`.
                     returned: on success
                     type: string
                     sample: gpu_description_example
@@ -368,15 +369,15 @@ instances:
                     sample: 56
                 local_disks_total_size_in_gbs:
                     description:
-                        - The size of the local disks, aggregated, in gigabytes.
-                          This field is `null` if `localDisks` is equal to `0`.
+                        - The aggregate size of all local disks, in gigabytes.
+                        - If the instance does not have any local disks, this field is `null`.
                     returned: on success
                     type: float
                     sample: 3.4
                 local_disk_description:
                     description:
                         - A short description of the local disks available to this instance.
-                          This field is `null` if `localDisks` is equal to `0`.
+                        - If the instance does not have any local disks, this field is `null`.
                     returned: on success
                     type: string
                     sample: local_disk_description_example
@@ -418,9 +419,16 @@ instances:
                     returned: on success
                     type: string
                     sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         time_created:
             description:
-                - The date and time the instance was created, in the format defined by RFC3339.
+                - The date and time the instance was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -445,7 +453,7 @@ instances:
                     sample: true
         time_maintenance_reboot_due:
             description:
-                - "The date and time the instance is expected to be stopped / started,  in the format defined by RFC3339.
+                - "The date and time the instance is expected to be stopped / started,  in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   After that time if instance hasn't been rebooted, Oracle will reboot the instance within 24 hours of the due time.
                   Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state.
                   Example: `2018-05-25T21:10:29.600Z`"
@@ -508,6 +516,7 @@ instances:
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "system_tags": {},
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
             "is_monitoring_disabled": true,

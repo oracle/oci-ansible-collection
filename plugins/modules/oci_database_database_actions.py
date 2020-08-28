@@ -100,6 +100,18 @@ database:
             returned: on success
             type: string
             sample: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            returned: on success
+            type: string
+            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        vm_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
+            returned: on success
+            type: string
+            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
         db_name:
             description:
                 - The database name.
@@ -144,6 +156,12 @@ database:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        last_backup_timestamp:
+            description:
+                - The date and time when the latest database backup was created.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
         db_backup_config:
             description:
                 - ""
@@ -167,6 +185,16 @@ database:
                     returned: on success
                     type: int
                     sample: 56
+                auto_backup_window:
+                    description:
+                        - Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If no
+                          option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if
+                          the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM
+                          (exclusive).
+                        - "Example: `SLOT_TWO`"
+                    returned: on success
+                    type: string
+                    sample: SLOT_TWO
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -212,6 +240,8 @@ database:
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
         "db_home_id": "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx",
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "db_name": "db_name_example",
         "pdb_name": "pdb_name_example",
         "db_workload": "db_workload_example",
@@ -219,9 +249,11 @@ database:
         "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "PROVISIONING",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "last_backup_timestamp": "2013-10-20T19:20:30+01:00",
         "db_backup_config": {
             "auto_backup_enabled": true,
-            "recovery_window_in_days": 56
+            "recovery_window_in_days": 56,
+            "auto_backup_window": "SLOT_TWO"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

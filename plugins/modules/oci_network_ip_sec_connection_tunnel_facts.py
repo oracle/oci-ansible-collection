@@ -76,17 +76,17 @@ ip_sec_connection_tunnels:
         vpn_ip:
             description:
                 - The IP address of Oracle's VPN headend.
-                - "Example: `192.0.2.5`"
+                - "Example: `203.0.113.21`"
             returned: on success
             type: string
-            sample: 192.0.2.5
+            sample: 203.0.113.21
         cpe_ip:
             description:
                 - The IP address of the CPE's VPN headend.
-                - "Example: `192.0.2.157`"
+                - "Example: `203.0.113.22`"
             returned: on success
             type: string
-            sample: 192.0.2.157
+            sample: 203.0.113.22
         status:
             description:
                 - The status of the tunnel based on IPSec protocol characteristics.
@@ -175,14 +175,14 @@ ip_sec_connection_tunnels:
             sample: BGP
         time_created:
             description:
-                - The date and time the IPSec connection tunnel was created, in the format defined by RFC3339.
+                - The date and time the IPSec connection tunnel was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_status_updated:
             description:
-                - When the status of the tunnel last changed, in the format defined by RFC3339.
+                - When the status of the tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -190,8 +190,8 @@ ip_sec_connection_tunnels:
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "vpn_ip": "192.0.2.5",
-        "cpe_ip": "192.0.2.157",
+        "vpn_ip": "203.0.113.21",
+        "cpe_ip": "203.0.113.22",
         "status": "UP",
         "ike_version": "V1",
         "lifecycle_state": "PROVISIONING",

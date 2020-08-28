@@ -82,13 +82,13 @@ letter_of_authority:
             sample: port_name_example
         time_expires:
             description:
-                - The date and time when the Letter of Authority expires, in the format defined by RFC3339.
+                - The date and time when the Letter of Authority expires, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         time_issued:
             description:
-                - The date and time the Letter of Authority was created, in the format defined by RFC3339.
+                - The date and time the Letter of Authority was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

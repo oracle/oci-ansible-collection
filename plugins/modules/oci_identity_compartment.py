@@ -262,7 +262,20 @@ class CompartmentHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        return dict()
+        optional_list_method_params = ["name"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
 
     def list_resources(self):
 

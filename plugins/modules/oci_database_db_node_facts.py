@@ -150,6 +150,30 @@ db_nodes:
             returned: on success
             type: int
             sample: 56
+        maintenance_type:
+            description:
+                - The type of database node maintenance.
+            returned: on success
+            type: string
+            sample: VMDB_REBOOT_MIGRATION
+        time_maintenance_window_start:
+            description:
+                - Start date and time of maintenance window.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_maintenance_window_end:
+            description:
+                - End date and time of maintenance window.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        additional_details:
+            description:
+                - Additional information about the planned maintenance.
+            returned: on success
+            type: string
+            sample: additional_details_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
@@ -159,7 +183,11 @@ db_nodes:
         "hostname": "hostname_example",
         "fault_domain": "fault_domain_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "software_storage_size_in_gb": 56
+        "software_storage_size_in_gb": 56,
+        "maintenance_type": "VMDB_REBOOT_MIGRATION",
+        "time_maintenance_window_start": "2013-10-20T19:20:30+01:00",
+        "time_maintenance_window_end": "2013-10-20T19:20:30+01:00",
+        "additional_details": "additional_details_example"
     }]
 """
 

@@ -41,7 +41,6 @@ options:
         description:
             - The shared secret (pre-shared key) to use for the tunnel. Only numbers, letters, and spaces
               are allowed.
-            - "Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`"
         type: str
     state:
         description:
@@ -72,12 +71,11 @@ ip_sec_connection_tunnel_shared_secret:
         shared_secret:
             description:
                 - The tunnel's shared secret (pre-shared key).
-                - "Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`"
             returned: on success
             type: string
-            sample: EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o
+            sample: shared_secret_example
     sample: {
-        "shared_secret": "EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o"
+        "shared_secret": "shared_secret_example"
     }
 """
 

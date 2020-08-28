@@ -115,8 +115,6 @@ options:
         description:
             - The OCID of the VCN the route table belongs to.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     rt_id:
         description:
@@ -141,21 +139,20 @@ EXAMPLES = """
 - name: Create route_table
   oci_network_route_table:
     display_name: MyRouteTable
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
     route_rules:
     - cidr_block: 0.0.0.0/0
-      network_entity_id: ocid1.internetgateway.oc1.phx.aaaaaaaaxtfqb2srw7hoi5cmdum4n6ow2xm2zhrzqqypmlteiiebtmvl75ya
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+    compartment_id: ocid1.compartment.oc1..unique_ID
 
 - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyRouteTable
     freeform_tags: {'Department': 'Finance'}
     route_rules:
-    - network_entity_id: ocid1.internetgateway.oc1.phx.aaaaaaaaxtfqb2srw7hoi5cmdum4n6ow2xm2zhrzqqypmlteiiebtmvl75ya
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
+    - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
 
 - name: Update route_table
   oci_network_route_table:
@@ -170,9 +167,8 @@ EXAMPLES = """
 
 - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyRouteTable
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
     state: absent
 
 """
@@ -280,7 +276,7 @@ route_table:
                     sample: description_example
         time_created:
             description:
-                - The date and time the route table was created, in the format defined by RFC3339.
+                - The date and time the route table was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -350,7 +346,6 @@ class RouteTableHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -358,7 +353,7 @@ class RouteTableHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

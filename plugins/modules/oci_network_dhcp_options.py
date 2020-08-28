@@ -124,8 +124,6 @@ options:
         description:
             - The OCID of the VCN the set of DHCP options belongs to.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     dhcp_id:
         description:
@@ -152,21 +150,20 @@ EXAMPLES = """
     options:
     - type: DomainNameServer
       custom_dns_servers:
-      - 202.44.61.9
+      - 203.0.113.6
       server_type: CustomDnsServer
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
     display_name: MyDhcpOptions
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
 
 - name: Update dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDhcpOptions
     freeform_tags: {'Department': 'Finance'}
     options:
     - type: DomainNameServer
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
 
 - name: Update dhcp_options
   oci_network_dhcp_options:
@@ -181,9 +178,8 @@ EXAMPLES = """
 
 - name: Delete dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyDhcpOptions
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
     state: absent
 
 """
@@ -295,7 +291,7 @@ dhcp_options:
                     sample: []
         time_created:
             description:
-                - Date and time the set of DHCP options was created, in the format defined by RFC3339.
+                - Date and time the set of DHCP options was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -364,7 +360,6 @@ class DhcpOptionsHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -372,7 +367,7 @@ class DhcpOptionsHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

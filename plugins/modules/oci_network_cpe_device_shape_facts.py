@@ -34,15 +34,26 @@ description:
         * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
         * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
         us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)"
+    - If I(cpe_device_shape_id) is specified, the details of a single CpeDeviceShape will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
-options: {}
+options:
+    cpe_device_shape_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device shape.
+            - Required to get a specific cpe_device_shape.
+        type: str
+        aliases: ["id"]
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List cpe_device_shapes
   oci_network_cpe_device_shape_facts:
+
+- name: Get a specific cpe_device_shape
+  oci_network_cpe_device_shape_facts:
+    cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
 
 """
 
@@ -53,13 +64,13 @@ cpe_device_shapes:
     returned: on success
     type: complex
     contains:
-        id:
+        cpe_device_shape_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device shape.
                   This value uniquely identifies the type of CPE device.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
         cpe_device_info:
             description:
                 - Basic information about this particular CPE device type.
@@ -78,12 +89,68 @@ cpe_device_shapes:
                     returned: on success
                     type: string
                     sample: platform_software_version_example
+        parameters:
+            description:
+                - For certain CPE devices types, the customer can provide answers to
+                  questions that are specific to the device type. This attribute contains
+                  a list of those questions. The Networking service merges the answers with
+                  other information and renders a set of CPE configuration content. To
+                  provide the answers, use
+                  L(UpdateTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig).
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - A string that identifies the question.
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - A descriptive label for the question (for example, to display in a form in a graphical interface).
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                explanation:
+                    description:
+                        - A description or explanation of the question, to help the customer answer accurately.
+                    returned: on success
+                    type: string
+                    sample: explanation_example
+        template:
+            description:
+                - "A template of CPE device configuration information that will be merged with the customer's
+                  answers to the questions to render the final CPE device configuration content. Also see:"
+                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                    * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
+                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)"
+            returned: on success
+            type: string
+            sample: template_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device shape.
+                  This value uniquely identifies the type of CPE device.
+            returned: on success
+            type: string
+            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
         "cpe_device_info": {
             "vendor": "vendor_example",
             "platform_software_version": "platform_software_version_example"
-        }
+        },
+        "parameters": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "explanation": "explanation_example"
+        }],
+        "template": "template_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 
@@ -103,10 +170,21 @@ except ImportError:
 
 
 class CpeDeviceShapeFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: list"""
+    """Supported operations: get, list"""
+
+    def get_required_params_for_get(self):
+        return [
+            "cpe_device_shape_id",
+        ]
 
     def get_required_params_for_list(self):
         return []
+
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_cpe_device_shape,
+            cpe_device_shape_id=self.module.params.get("cpe_device_shape_id"),
+        )
 
     def list_resources(self):
         optional_list_method_params = []
@@ -131,7 +209,7 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict())
+    module_args.update(dict(cpe_device_shape_id=dict(aliases=["id"], type="str"),))
 
     module = AnsibleModule(argument_spec=module_args)
 
