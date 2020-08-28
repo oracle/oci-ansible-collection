@@ -86,7 +86,8 @@ autonomous_db_preview_versions:
             description:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
-                  - DW - indicates an Autonomous Data Warehouse database"
+                  - DW - indicates an Autonomous Data Warehouse database
+                  - AJD - indicates an Autonomous JSON Database"
             returned: on success
             type: string
             sample: OLTP

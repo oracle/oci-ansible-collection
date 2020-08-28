@@ -57,6 +57,14 @@ options:
               This restriction applies to both the client subnet and backup subnet.
             - Required for create using I(state=present).
         type: str
+    nsg_ids:
+        description:
+            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
+              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+              **NsgIds restrictions:**
+              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+        type: list
     shape:
         description:
             - The shape of the Autonomous Exadata Infrastructure. The shape determines resources allocated to the Autonomous Exadata Infrastructure (CPU cores,
@@ -145,6 +153,10 @@ options:
                       - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 -
                         represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC"
                 type: list
+            lead_time_in_weeks:
+                description:
+                    - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
+                type: int
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -248,6 +260,16 @@ autonomous_exadata_infrastructure:
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        nsg_ids:
+            description:
+                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+                  resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
+                  NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                  **NsgIds restrictions:**
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            returned: on success
+            type: list
+            sample: []
         shape:
             description:
                 - The shape of the Autonomous Exadata Infrastructure. The shape determines resources to allocate to the Autonomous Exadata Infrastructure (CPU
@@ -347,6 +369,13 @@ autonomous_exadata_infrastructure:
                     returned: on success
                     type: list
                     sample: []
+                lead_time_in_weeks:
+                    description:
+                        - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to
+                          4.
+                    returned: on success
+                    type: int
+                    sample: 56
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -380,6 +409,7 @@ autonomous_exadata_infrastructure:
         "display_name": "display_name_example",
         "availability_domain": "Uocm:PHX-AD-1",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "nsg_ids": [],
         "shape": "shape_example",
         "hostname": "hostname_example",
         "domain": "domain_example",
@@ -396,7 +426,8 @@ autonomous_exadata_infrastructure:
             "days_of_week": [{
                 "name": "MONDAY"
             }],
-            "hours_of_day": []
+            "hours_of_day": [],
+            "lead_time_in_weeks": 56
         },
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
@@ -564,6 +595,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             availability_domain=dict(type="str"),
             subnet_id=dict(type="str"),
+            nsg_ids=dict(type="list"),
             shape=dict(type="str"),
             domain=dict(type="str"),
             license_model=dict(
@@ -622,6 +654,7 @@ def main():
                         ),
                     ),
                     hours_of_day=dict(type="list"),
+                    lead_time_in_weeks=dict(type="int"),
                 ),
             ),
             freeform_tags=dict(type="dict"),

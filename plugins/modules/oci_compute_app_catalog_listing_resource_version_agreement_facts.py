@@ -83,7 +83,7 @@ app_catalog_listing_resource_version_agreement:
             sample: eula_link_example
         time_retrieved:
             description:
-                - "Date and time the agreements were retrieved, in RFC3339 format.
+                - "Date and time the agreements were retrieved, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: string

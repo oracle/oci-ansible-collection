@@ -367,8 +367,6 @@ options:
         description:
             - The OCID of the VCN the security list belongs to.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     security_list_id:
         description:
@@ -410,7 +408,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create security_list
   oci_network_security_list:
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
     display_name: MyPrivateSubnetSecurityList
     ingress_security_rules:
     - protocol: 6
@@ -432,11 +430,11 @@ EXAMPLES = """
         destination_port_range:
           min: 1521
           max: 1521
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
 
 - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyPrivateSubnetSecurityList
     egress_security_rules:
@@ -446,7 +444,6 @@ EXAMPLES = """
     ingress_security_rules:
     - protocol: 6
       source: 10.0.1.0/24
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
     purge_security_rules: false
     delete_security_rules: true
 
@@ -463,9 +460,8 @@ EXAMPLES = """
 
 - name: Delete security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyPrivateSubnetSecurityList
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
     state: absent
 
 """
@@ -866,7 +862,7 @@ security_list:
             sample: PROVISIONING
         time_created:
             description:
-                - The date and time the security list was created, in the format defined by RFC3339.
+                - The date and time the security list was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -992,7 +988,6 @@ class SecurityListHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -1000,7 +995,7 @@ class SecurityListHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

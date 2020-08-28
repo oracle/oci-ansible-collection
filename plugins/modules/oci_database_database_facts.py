@@ -42,7 +42,11 @@ options:
     db_home_id:
         description:
             - A Database Home L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required to list multiple databases.
+        type: str
+    system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata DB system that you want to filter the database
+              results by. Applies only to Exadata DB systems.
         type: str
     sort_by:
         description:
@@ -83,7 +87,6 @@ EXAMPLES = """
 - name: List databases
   oci_database_database_facts:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Get a specific database
   oci_database_database_facts:
@@ -128,6 +131,18 @@ databases:
             returned: on success
             type: string
             sample: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            returned: on success
+            type: string
+            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        vm_cluster_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
+            returned: on success
+            type: string
+            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
         db_name:
             description:
                 - The database name.
@@ -172,6 +187,12 @@ databases:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        last_backup_timestamp:
+            description:
+                - The date and time when the latest database backup was created.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
         db_backup_config:
             description:
                 - ""
@@ -195,6 +216,16 @@ databases:
                     returned: on success
                     type: int
                     sample: 56
+                auto_backup_window:
+                    description:
+                        - Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If no
+                          option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if
+                          the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM
+                          (exclusive).
+                        - "Example: `SLOT_TWO`"
+                    returned: on success
+                    type: string
+                    sample: SLOT_TWO
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -240,6 +271,8 @@ databases:
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
         "db_home_id": "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx",
+        "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "db_name": "db_name_example",
         "pdb_name": "pdb_name_example",
         "db_workload": "db_workload_example",
@@ -247,9 +280,11 @@ databases:
         "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "PROVISIONING",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "last_backup_timestamp": "2013-10-20T19:20:30+01:00",
         "db_backup_config": {
             "auto_backup_enabled": true,
-            "recovery_window_in_days": 56
+            "recovery_window_in_days": 56,
+            "auto_backup_window": "SLOT_TWO"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -287,7 +322,6 @@ class DatabaseFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "db_home_id",
         ]
 
     def get_resource(self):
@@ -297,6 +331,8 @@ class DatabaseFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "db_home_id",
+            "system_id",
             "sort_by",
             "sort_order",
             "lifecycle_state",
@@ -310,7 +346,6 @@ class DatabaseFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_databases,
             compartment_id=self.module.params.get("compartment_id"),
-            db_home_id=self.module.params.get("db_home_id"),
             **optional_kwargs
         )
 
@@ -329,6 +364,7 @@ def main():
             database_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             db_home_id=dict(type="str"),
+            system_id=dict(type="str"),
             sort_by=dict(type="str", choices=["DBNAME", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(

@@ -94,6 +94,12 @@ user:
             returned: on success
             type: string
             sample: email_example
+        email_verified:
+            description:
+                - Whether the email address has been validated.
+            returned: on success
+            type: bool
+            sample: true
         identity_provider_id:
             description:
                 - The OCID of the `IdentityProvider` this user belongs to.
@@ -194,6 +200,7 @@ user:
         "name": "name_example",
         "description": "description_example",
         "email": "email_example",
+        "email_verified": true,
         "identity_provider_id": "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx",
         "external_identifier": "external_identifier_example",
         "time_created": "2016-08-25T21:10:29.600Z",

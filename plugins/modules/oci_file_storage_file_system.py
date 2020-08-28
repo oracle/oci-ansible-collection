@@ -34,6 +34,8 @@ description:
       more than one mount target at a time.
     - For information about access control and compartments, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+    - For information about Network Security Groups access control, see
+      L(Network Security Groups,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm).
     - For information about availability domains, see L(Regions and
       Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
       To get a list of availability domains, use the
@@ -84,6 +86,10 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
         type: dict
+    kms_key_id:
+        description:
+            - The OCID of KMS key used to encrypt the encryption keys associated with this file system.
+        type: str
     file_system_id:
         description:
             - The OCID of the file system.
@@ -117,6 +123,7 @@ EXAMPLES = """
     display_name: media-files-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Update file_system
   oci_file_storage_file_system:
@@ -213,6 +220,12 @@ file_system:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        kms_key_id:
+            description:
+                - The OCID of the KMS key which is the master encryption key for the file system.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -222,7 +235,8 @@ file_system:
         "lifecycle_state": "CREATING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -367,6 +381,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            kms_key_id=dict(type="str"),
             file_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

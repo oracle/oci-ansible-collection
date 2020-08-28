@@ -24,8 +24,8 @@ short_description: Manage an AutonomousDatabase resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Database.
-    - "This resource has the following action operations in the M(oci_autonomous_database_actions) module: deregister_autonomous_database_data_safe,
-      generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore, start, stop."
+    - "This resource has the following action operations in the M(oci_autonomous_database_actions) module: deregister_autonomous_database_data_safe, fail_over,
+      generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore, start, stop, switchover."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -51,11 +51,13 @@ options:
         description:
             - "The Autonomous Database workload type. The following values are valid:"
             - "- OLTP - indicates an Autonomous Transaction Processing database
-              - DW - indicates an Autonomous Data Warehouse database"
+              - DW - indicates an Autonomous Data Warehouse database
+              - AJD - indicates an Autonomous JSON Database"
         type: str
         choices:
             - "OLTP"
             - "DW"
+            - "AJD"
     data_storage_size_in_tbs:
         description:
             - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
@@ -119,6 +121,10 @@ options:
               Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3
               e5xeo6j6o62jga44xjizkw;1.1.1.1\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16\\"]`"
         type: list
+    is_data_guard_enabled:
+        description:
+            - Indicates whether the Autonomous Database has Data Guard enabled.
+        type: bool
     subnet_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
@@ -140,7 +146,8 @@ options:
         type: list
     private_endpoint_label:
         description:
-            - The private endpoint label for the resource.
+            - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the
+              same private endpoint database to the public endpoint database.
         type: str
     freeform_tags:
         description:
@@ -332,6 +339,12 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        infrastructure_type:
+            description:
+                - The infrastructure type this resource belongs to.
+            returned: on success
+            type: string
+            sample: CLOUD
         is_dedicated:
             description:
                 - True if the database uses L(dedicated Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
@@ -492,10 +505,17 @@ autonomous_database:
             sample: private_endpoint_example
         private_endpoint_label:
             description:
-                - The private endpoint label for the resource.
+                - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change
+                  the same private endpoint database to the public endpoint database.
             returned: on success
             type: string
             sample: private_endpoint_label_example
+        private_endpoint_ip:
+            description:
+                - The private endpoint Ip address for the resource.
+            returned: on success
+            type: string
+            sample: private_endpoint_ip_example
         db_version:
             description:
                 - A valid Oracle Database version for Autonomous Database.
@@ -512,7 +532,8 @@ autonomous_database:
             description:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
-                  - DW - indicates an Autonomous Data Warehouse database"
+                  - DW - indicates an Autonomous Data Warehouse database
+                  - AJD - indicates an Autonomous JSON Database"
             returned: on success
             type: string
             sample: OLTP
@@ -553,6 +574,55 @@ autonomous_database:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        time_of_last_switchover:
+            description:
+                - The timestamp of the last switchover operation for the Autonomous Database.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_last_failover:
+            description:
+                - The timestamp of the last failover operation.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        is_data_guard_enabled:
+            description:
+                - Indicates whether the Autonomous Database has Data Guard enabled.
+            returned: on success
+            type: bool
+            sample: true
+        failed_data_recovery_in_seconds:
+            description:
+                - Indicates the number of seconds of data loss for a Data Guard failover.
+            returned: on success
+            type: int
+            sample: 56
+        standby_db:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                lag_time_in_seconds:
+                    description:
+                        - The amount of time, in seconds, that the data of the standby database lags the data of the primary database. Can be used to determine
+                          the potential data loss in the event of a failover.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: PROVISIONING
+                lifecycle_details:
+                    description:
+                        - Additional information about the current lifecycle state.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_details_example
         available_upgrade_versions:
             description:
                 - List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
@@ -571,6 +641,7 @@ autonomous_database:
         "time_deletion_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
+        "infrastructure_type": "CLOUD",
         "is_dedicated": true,
         "autonomous_container_database_id": "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -596,6 +667,7 @@ autonomous_database:
         "nsg_ids": [],
         "private_endpoint": "private_endpoint_example",
         "private_endpoint_label": "private_endpoint_label_example",
+        "private_endpoint_ip": "private_endpoint_ip_example",
         "db_version": "db_version_example",
         "is_preview": true,
         "db_workload": "OLTP",
@@ -604,6 +676,15 @@ autonomous_database:
         "data_safe_status": "REGISTERING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
+        "time_of_last_switchover": "2013-10-20T19:20:30+01:00",
+        "time_of_last_failover": "2013-10-20T19:20:30+01:00",
+        "is_data_guard_enabled": true,
+        "failed_data_recovery_in_seconds": 56,
+        "standby_db": {
+            "lag_time_in_seconds": 56,
+            "lifecycle_state": "PROVISIONING",
+            "lifecycle_details": "lifecycle_details_example"
+        },
         "available_upgrade_versions": []
     }
 """
@@ -664,7 +745,7 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
 
     def get_optional_kwargs_for_list(self):
         optional_list_method_params = (
-            ["autonomous_container_database_id", "db_workload", "display_name"]
+            ["autonomous_container_database_id", "display_name"]
             if self._use_name_as_identifier()
             else [
                 "autonomous_container_database_id",
@@ -672,6 +753,7 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
                 "db_version",
                 "is_free_tier",
                 "display_name",
+                "is_data_guard_enabled",
             ]
         )
 
@@ -763,7 +845,7 @@ def main():
             compartment_id=dict(type="str"),
             db_name=dict(type="str"),
             cpu_core_count=dict(type="int"),
-            db_workload=dict(type="str", choices=["OLTP", "DW"]),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD"]),
             data_storage_size_in_tbs=dict(type="int"),
             is_free_tier=dict(type="bool"),
             admin_password=dict(type="str", no_log=True),
@@ -776,6 +858,7 @@ def main():
             is_dedicated=dict(type="bool"),
             autonomous_container_database_id=dict(type="str"),
             whitelisted_ips=dict(type="list"),
+            is_data_guard_enabled=dict(type="bool"),
             subnet_id=dict(type="str"),
             nsg_ids=dict(type="list"),
             private_endpoint_label=dict(type="str"),

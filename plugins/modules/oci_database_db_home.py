@@ -23,8 +23,8 @@ module: oci_database_db_home
 short_description: Manage a DbHome resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DbHome resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Database Home in the specified DB system based on the request parameters you provide. Applies only to bare metal and
-      Exadata DB systems.
+    - For I(state=present), creates a new Database Home in the specified DB system based on the request parameters you provide. Applies to bare metal DB
+      systems, Exadata DB systems, and Exadata Cloud at Customer systems.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -39,6 +39,7 @@ options:
             - "The source of database: NONE for creating a new database. DB_BACKUP for creating a new database by restoring from a database backup."
         type: str
         choices:
+            - "DATABASE"
             - "DB_BACKUP"
             - "NONE"
             - "VM_CLUSTER_NEW"
@@ -46,23 +47,23 @@ options:
     db_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-            - Required when source is one of ['NONE', 'DB_BACKUP']
+            - Required when source is one of ['DATABASE', 'NONE', 'DB_BACKUP']
         type: str
     database:
         description:
             - ""
-            - Required for create using I(state=present).
+            - Required when source is one of ['DATABASE', 'DB_BACKUP']
         type: dict
         suboptions:
-            backup_id:
+            database_id:
                 description:
-                    - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-                    - Required when source is 'DB_BACKUP'
+                    - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                    - Required when source is 'DATABASE'
                 type: str
             backup_tde_password:
                 description:
                     - The password to open the TDE wallet.
-                    - Required when source is 'DB_BACKUP'
+                    - Required when source is one of ['DATABASE', 'DB_BACKUP']
                 type: str
             admin_password:
                 description:
@@ -79,6 +80,11 @@ options:
                     - The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of
                       eight alphanumeric characters. Special characters are not permitted.
                     - Required when source is one of ['VM_CLUSTER_NEW', 'NONE']
+                type: str
+            backup_id:
+                description:
+                    - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+                    - Required when source is 'DB_BACKUP'
                 type: str
             pdb_name:
                 description:
@@ -136,6 +142,28 @@ options:
                               When the value is updated, it is applied to all existing automatic backups.
                             - Applicable when source is 'NONE'
                         type: int
+                    auto_backup_window:
+                        description:
+                            - Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If
+                              no option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For
+                              example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to
+                              4:00 AM (exclusive).
+                            - "Example: `SLOT_TWO`"
+                            - Applicable when source is 'NONE'
+                        type: str
+                        choices:
+                            - "SLOT_ONE"
+                            - "SLOT_TWO"
+                            - "SLOT_THREE"
+                            - "SLOT_FOUR"
+                            - "SLOT_FIVE"
+                            - "SLOT_SIX"
+                            - "SLOT_SEVEN"
+                            - "SLOT_EIGHT"
+                            - "SLOT_NINE"
+                            - "SLOT_TEN"
+                            - "SLOT_ELEVEN"
+                            - "SLOT_TWELVE"
             freeform_tags:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -183,12 +211,17 @@ options:
                 choices:
                     - "APPLY"
                     - "PRECHECK"
+    one_off_patches:
+        description:
+            - List of one-off patches for Database Homes.
+        type: list
     perform_final_backup:
         description:
             - Whether to perform a final backup of the database or not. Default is false.
             - If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup
               configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups
               to work.
+            - This parameter is used in multiple APIs. Refer to the API description for details on how the operation uses it.
         type: bool
     compartment_id:
         description:
@@ -301,12 +334,30 @@ db_home:
             returned: on success
             type: string
             sample: db_version_example
+        db_home_location:
+            description:
+                - The location of the Oracle Database Home.
+            returned: on success
+            type: string
+            sample: db_home_location_example
+        lifecycle_details:
+            description:
+                - Additional information about the current lifecycleState.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the Database Home was created.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        one_off_patches:
+            description:
+                - List of one-off patches for Database Homes.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -316,7 +367,10 @@ db_home:
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "db_version": "db_version_example",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "db_home_location": "db_home_location_example",
+        "lifecycle_details": "lifecycle_details_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "one_off_patches": []
     }
 """
 
@@ -466,17 +520,18 @@ def main():
             source=dict(
                 type="str",
                 default="NONE",
-                choices=["DB_BACKUP", "NONE", "VM_CLUSTER_NEW"],
+                choices=["DATABASE", "DB_BACKUP", "NONE", "VM_CLUSTER_NEW"],
             ),
             db_system_id=dict(type="str"),
             database=dict(
                 type="dict",
                 options=dict(
-                    backup_id=dict(type="str"),
+                    database_id=dict(type="str"),
                     backup_tde_password=dict(type="str", no_log=True),
                     admin_password=dict(type="str", required=True, no_log=True),
                     db_unique_name=dict(type="str"),
                     db_name=dict(type="str"),
+                    backup_id=dict(type="str"),
                     pdb_name=dict(type="str"),
                     character_set=dict(type="str"),
                     ncharacter_set=dict(type="str"),
@@ -486,6 +541,23 @@ def main():
                         options=dict(
                             auto_backup_enabled=dict(type="bool"),
                             recovery_window_in_days=dict(type="int"),
+                            auto_backup_window=dict(
+                                type="str",
+                                choices=[
+                                    "SLOT_ONE",
+                                    "SLOT_TWO",
+                                    "SLOT_THREE",
+                                    "SLOT_FOUR",
+                                    "SLOT_FIVE",
+                                    "SLOT_SIX",
+                                    "SLOT_SEVEN",
+                                    "SLOT_EIGHT",
+                                    "SLOT_NINE",
+                                    "SLOT_TEN",
+                                    "SLOT_ELEVEN",
+                                    "SLOT_TWELVE",
+                                ],
+                            ),
                         ),
                     ),
                     freeform_tags=dict(type="dict"),
@@ -502,6 +574,7 @@ def main():
                     action=dict(type="str", choices=["APPLY", "PRECHECK"]),
                 ),
             ),
+            one_off_patches=dict(type="list"),
             perform_final_backup=dict(type="bool"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

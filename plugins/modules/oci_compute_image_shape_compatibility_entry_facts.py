@@ -23,7 +23,7 @@ module: oci_compute_image_shape_compatibility_entry_facts
 short_description: Fetches details about one or multiple ImageShapeCompatibilityEntry resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ImageShapeCompatibilityEntry resources in Oracle Cloud Infrastructure
-    - Lists the shape compatibilities for the image.
+    - Lists the compatible shapes for the specified image.
     - If I(shape_name) is specified, the details of a single ImageShapeCompatibilityEntry will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

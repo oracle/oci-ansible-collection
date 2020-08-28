@@ -81,6 +81,17 @@ options:
             - The OCID of the Key Management key to assign as the master encryption key
               for the volume.
         type: str
+    vpus_per_gb:
+        description:
+            - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+              representing the Block Volume service's elastic performance options.
+              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+              information.
+            - "Allowed values:"
+            - " * `0`: Represents Lower Cost option."
+            - " * `10`: Represents Balanced option."
+            - " * `20`: Represents Higher Performance option."
+        type: int
     size_in_gbs:
         description:
             - The size of the volume in GBs.
@@ -117,6 +128,10 @@ options:
               This field is deprecated. Use the sourceDetails field instead to specify the
               backup for the volume.
         type: str
+    is_auto_tune_enabled:
+        description:
+            - Specifies whether the auto-tune performance is enabled for this volume.
+        type: bool
     volume_id:
         description:
             - The OCID of the volume.
@@ -148,7 +163,9 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    vpus_per_gb: 56
     size_in_gbs: 56
+    is_auto_tune_enabled: true
 
 - name: Update volume
   oci_blockstorage_volume:
@@ -244,6 +261,19 @@ volume:
             returned: on success
             type: string
             sample: PROVISIONING
+        vpus_per_gb:
+            description:
+                - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+                  representing the Block Volume service's elastic performance options.
+                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+                  information.
+                - "Allowed values:"
+                - " * `0`: Represents Lower Cost option."
+                - " * `10`: Represents Balanced option."
+                - " * `20`: Represents Higher Performance option."
+            returned: on success
+            type: int
+            sample: 56
         size_in_gbs:
             description:
                 - The size of the volume in GBs.
@@ -277,7 +307,7 @@ volume:
                     sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - The date and time the volume was created. Format defined by RFC3339.
+                - The date and time the volume was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -287,6 +317,18 @@ volume:
             returned: on success
             type: string
             sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+        is_auto_tune_enabled:
+            description:
+                - Specifies whether the auto-tune performance is enabled for this volume.
+            returned: on success
+            type: bool
+            sample: true
+        auto_tuned_vpus_per_gb:
+            description:
+                - The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -298,6 +340,7 @@ volume:
         "is_hydrated": true,
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
+        "vpus_per_gb": 56,
         "size_in_gbs": 56,
         "size_in_mbs": 56,
         "source_details": {
@@ -305,7 +348,9 @@ volume:
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_auto_tune_enabled": true,
+        "auto_tuned_vpus_per_gb": 56
     }
 """
 
@@ -446,6 +491,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
+            vpus_per_gb=dict(type="int"),
             size_in_gbs=dict(type="int"),
             size_in_mbs=dict(type="int"),
             source_details=dict(
@@ -458,6 +504,7 @@ def main():
                 ),
             ),
             volume_backup_id=dict(type="str"),
+            is_auto_tune_enabled=dict(type="bool"),
             volume_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

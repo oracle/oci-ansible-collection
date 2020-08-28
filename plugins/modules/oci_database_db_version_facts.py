@@ -41,6 +41,15 @@ options:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm). If provided, filters the results to the set of
               database versions which are supported for the DB system.
         type: str
+    storage_management:
+        description:
+            - "The DB system storage management option. Used to list database versions available for that storage manager. Valid values are:
+              * ASM - Automatic storage management
+              * LVM - Logical volume management"
+        type: str
+        choices:
+            - "ASM"
+            - "LVM"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -110,6 +119,7 @@ class DbVersionFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "db_system_shape",
             "db_system_id",
+            "storage_management",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -137,6 +147,7 @@ def main():
             compartment_id=dict(type="str", required=True),
             db_system_shape=dict(type="str"),
             db_system_id=dict(type="str"),
+            storage_management=dict(type="str", choices=["ASM", "LVM"]),
         )
     )
 

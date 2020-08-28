@@ -29,7 +29,7 @@ except ImportError:
 MAX_WAIT_TIMEOUT_IN_SECONDS = 1200
 # some services like waas have longer wait times. This map allows to specify wait times at a service level so that
 # we need not override for each module in a service.
-SERVICE_WAIT_TIMEOUT_MAP = {"waas": 2400, "analytics": 2000, "mysql": 2400}
+SERVICE_WAIT_TIMEOUT_MAP = {"waas": 2400, "analytics": 2000, "mysql": 2400, "bds": 4000}
 DEAD_STATES = [
     "TERMINATING",
     "TERMINATED",
@@ -106,6 +106,8 @@ RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {
     "waas_policy": "waas",
     "http_redirect": "redirect",
     "data_safe_private_endpoint": "datasafeprivateendpoints",
+    "bds_instance": "bds",
+    "stack": "ormstack",
 }
 
 CREATE_OPERATION_KEY = "CREATE"

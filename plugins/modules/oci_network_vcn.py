@@ -51,8 +51,8 @@ author: Oracle (@oracle)
 options:
     cidr_block:
         description:
-            - The CIDR IP address block of the VCN.
-            - "Example: `172.16.0.0/16`"
+            - "The CIDR IP address block of the VCN.
+              Example: `10.0.0.0/16`"
             - Required for create using I(state=present).
         type: str
     compartment_id:
@@ -119,12 +119,12 @@ EXAMPLES = """
 - name: Create vcn
   oci_network_vcn:
     cidr_block: 10.0.0.0/16
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyVcn
 
 - name: Update vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyVcn
     freeform_tags: {'Department': 'Finance'}
@@ -142,7 +142,7 @@ EXAMPLES = """
 
 - name: Delete vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyVcn
     state: absent
 
@@ -239,7 +239,7 @@ vcn:
             sample: PROVISIONING
         time_created:
             description:
-                - The date and time the VCN was created, in the format defined by RFC3339.
+                - The date and time the VCN was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

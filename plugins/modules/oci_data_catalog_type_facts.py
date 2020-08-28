@@ -220,6 +220,12 @@ types:
             returned: on success
             type: string
             sample: uri_example
+        count:
+            description:
+                - Total number of items returned.
+            returned: on success
+            type: int
+            sample: 56
         items:
             description:
                 - Collection of types.
@@ -281,6 +287,7 @@ types:
         "type_category": "type_category_example",
         "external_type_name": "external_type_name_example",
         "uri": "uri_example",
+        "count": 56,
         "items": [{
             "key": "key_example",
             "name": "name_example",

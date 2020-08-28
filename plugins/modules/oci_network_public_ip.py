@@ -234,10 +234,10 @@ public_ip:
         ip_address:
             description:
                 - The public IP address of the `publicIp` object.
-                - "Example: `129.146.2.1`"
+                - "Example: `203.0.113.2`"
             returned: on success
             type: string
-            sample: 129.146.2.1
+            sample: 203.0.113.2
         lifecycle_state:
             description:
                 - The public IP's current state.
@@ -285,7 +285,7 @@ public_ip:
             sample: REGION
         time_created:
             description:
-                - The date and time the public IP was created, in the format defined by RFC3339.
+                - The date and time the public IP was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -299,7 +299,7 @@ public_ip:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "ip_address": "129.146.2.1",
+        "ip_address": "203.0.113.2",
         "lifecycle_state": "PROVISIONING",
         "lifetime": "EPHEMERAL",
         "private_ip_id": "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx",

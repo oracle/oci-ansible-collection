@@ -48,6 +48,11 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
         type: str
+    backup_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup. Specify a backupId to list only the DB systems
+              or DB homes that support creating a database using this backup in this compartment.
+        type: str
     sort_by:
         description:
             - The field to sort by.  You can provide one sort order (`sortOrder`).  Default order for TIMECREATED is descending.  Default order for DISPLAYNAME
@@ -149,12 +154,30 @@ db_homes:
             returned: on success
             type: string
             sample: db_version_example
+        db_home_location:
+            description:
+                - The location of the Oracle Database Home.
+            returned: on success
+            type: string
+            sample: db_home_location_example
+        lifecycle_details:
+            description:
+                - Additional information about the current lifecycleState.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the Database Home was created.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        one_off_patches:
+            description:
+                - List of one-off patches for Database Homes.
+            returned: on success
+            type: list
+            sample: []
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -164,7 +187,10 @@ db_homes:
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "vm_cluster_id": "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "db_version": "db_version_example",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "db_home_location": "db_home_location_example",
+        "lifecycle_details": "lifecycle_details_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "one_off_patches": []
     }]
 """
 
@@ -205,6 +231,7 @@ class DbHomeFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "db_system_id",
             "vm_cluster_id",
+            "backup_id",
             "sort_by",
             "sort_order",
             "lifecycle_state",
@@ -237,6 +264,7 @@ def main():
             compartment_id=dict(type="str"),
             db_system_id=dict(type="str"),
             vm_cluster_id=dict(type="str"),
+            backup_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(

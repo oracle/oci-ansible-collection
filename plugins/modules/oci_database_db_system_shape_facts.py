@@ -90,6 +90,48 @@ db_system_shapes:
             returned: on success
             type: int
             sample: 56
+        min_core_count_per_node:
+            description:
+                - The minimum number of CPU cores that can be enabled per node for this shape.
+            returned: on success
+            type: int
+            sample: 56
+        available_memory_in_gbs:
+            description:
+                - The maximum memory that can be enabled for this shape.
+            returned: on success
+            type: int
+            sample: 56
+        min_memory_per_node_in_g_bs:
+            description:
+                - The minimum memory that need be allocated per node for this shape.
+            returned: on success
+            type: int
+            sample: 56
+        available_db_node_storage_in_g_bs:
+            description:
+                - The maximum Db Node storage that can be enabled for this shape.
+            returned: on success
+            type: int
+            sample: 56
+        min_db_node_storage_per_node_in_g_bs:
+            description:
+                - The minimum Db Node storage that need be allocated per node for this shape.
+            returned: on success
+            type: int
+            sample: 56
+        available_data_storage_in_t_bs:
+            description:
+                - The maximum DATA storage that can be enabled for this shape.
+            returned: on success
+            type: int
+            sample: 56
+        min_data_storage_in_t_bs:
+            description:
+                - The minimum data storage that need be allocated for this shape.
+            returned: on success
+            type: int
+            sample: 56
         minimum_node_count:
             description:
                 - The minimum number of database nodes available for this shape.
@@ -109,6 +151,13 @@ db_system_shapes:
         "available_core_count": 56,
         "minimum_core_count": 56,
         "core_count_increment": 56,
+        "min_core_count_per_node": 56,
+        "available_memory_in_gbs": 56,
+        "min_memory_per_node_in_g_bs": 56,
+        "available_db_node_storage_in_g_bs": 56,
+        "min_db_node_storage_per_node_in_g_bs": 56,
+        "available_data_storage_in_t_bs": 56,
+        "min_data_storage_in_t_bs": 56,
         "minimum_node_count": 56,
         "maximum_node_count": 56
     }]

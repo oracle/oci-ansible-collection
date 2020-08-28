@@ -55,10 +55,12 @@ options:
         type: bool
     type:
         description:
-            - "The type of volume. The only supported value are \\"iscsi\\" and \\"paravirtualized\\"."
+            - "The type of volume. The only supported values are \\"iscsi\\" and \\"paravirtualized\\"."
             - Required for create using I(state=present).
         type: str
         choices:
+            - "service_determined"
+            - "emulated"
             - "iscsi"
             - "paravirtualized"
     volume_id:
@@ -195,7 +197,7 @@ volume_attachment:
             sample: ATTACHING
         time_created:
             description:
-                - The date and time the volume was created, in the format defined by RFC3339.
+                - The date and time the volume was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -216,17 +218,17 @@ volume_attachment:
             description:
                 - "The Challenge-Handshake-Authentication-Protocol (CHAP) secret valid for the associated CHAP user name.
                   (Also called the \\"CHAP password\\".)"
-                - "Example: `d6866c0d-298b-48ba-95af-309b4faux45e`"
             returned: on success
             type: string
-            sample: d6866c0d-298b-48ba-95af-309b4faux45e
+            sample: chap_secret_example
         chap_username:
             description:
-                - The volume's system-generated Challenge-Handshake-Authentication-Protocol (CHAP) user name.
-                - "Example: `ocid1.volume.oc1.phx.abyhqljrgvttnlx73nmrwfaux7kcvzfs3s66izvxf2h4lgvyndsdsnoiwr5q`"
+                - The volume's system-generated Challenge-Handshake-Authentication-Protocol (CHAP) user name. See L(RFC
+                  1994,https://tools.ietf.org/html/rfc1994) for more on CHAP.
+                - "Example: `ocid1.volume.oc1.phx.<unique_ID>`"
             returned: on success
             type: string
-            sample: ocid1.volume.oc1.phx.abyhqljrgvttnlx73nmrwfaux7kcvzfs3s66izvxf2h4lgvyndsdsnoiwr5q
+            sample: ocid1.volume.oc1.phx.<unique_ID>
         ipv4:
             description:
                 - The volume's iSCSI IP address.
@@ -236,14 +238,14 @@ volume_attachment:
             sample: 169.254.0.2
         iqn:
             description:
-                - The target volume's iSCSI Qualified Name in the format defined by RFC 3720.
-                - "Example: `iqn.2015-12.us.oracle.com:456b0391-17b8-4122-bbf1-f85fc0bb97d9`"
+                - The target volume's iSCSI Qualified Name in the format defined by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
+                - "Example: `iqn.2015-12.us.oracle.com:<CHAP_username>`"
             returned: on success
             type: string
-            sample: iqn.2015-12.us.oracle.com:456b0391-17b8-4122-bbf1-f85fc0bb97d9
+            sample: iqn.2015-12.us.oracle.com:<CHAP_username>
         port:
             description:
-                - The volume's iSCSI port.
+                - The volume's iSCSI port, usually port 860 or 3260.
                 - "Example: `3260`"
             returned: on success
             type: int
@@ -274,10 +276,10 @@ volume_attachment:
         "time_created": "2016-08-25T21:10:29.600Z",
         "volume_id": "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx",
         "is_pv_encryption_in_transit_enabled": true,
-        "chap_secret": "d6866c0d-298b-48ba-95af-309b4faux45e",
-        "chap_username": "ocid1.volume.oc1.phx.abyhqljrgvttnlx73nmrwfaux7kcvzfs3s66izvxf2h4lgvyndsdsnoiwr5q",
+        "chap_secret": "chap_secret_example",
+        "chap_username": "ocid1.volume.oc1.phx.<unique_ID>",
         "ipv4": "169.254.0.2",
-        "iqn": "iqn.2015-12.us.oracle.com:456b0391-17b8-4122-bbf1-f85fc0bb97d9",
+        "iqn": "iqn.2015-12.us.oracle.com:<CHAP_username>",
         "port": 3260,
         "iscsi_attach_commands": [ "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..." ],
         "iscsi_detach_commands": [ "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN" ]
@@ -404,7 +406,10 @@ def main():
             instance_id=dict(type="str"),
             is_read_only=dict(type="bool"),
             is_shareable=dict(type="bool"),
-            type=dict(type="str", choices=["iscsi", "paravirtualized"]),
+            type=dict(
+                type="str",
+                choices=["service_determined", "emulated", "iscsi", "paravirtualized"],
+            ),
             volume_id=dict(type="str"),
             use_chap=dict(type="bool"),
             is_pv_encryption_in_transit_enabled=dict(type="bool"),

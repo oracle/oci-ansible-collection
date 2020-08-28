@@ -247,19 +247,58 @@ jobs:
                     sample: message_example
         working_directory:
             description:
-                - The file path to the directory within the configuration from which the job runs.
+                - File path to the directory from which Terraform runs.
+                  If not specified, the root directory is used.
+                  This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
             returned: on success
             type: string
             sample: working_directory_example
         variables:
             description:
                 - "Terraform variables associated with this resource.
-                  Maximum number of variables supported is 100.
+                  Maximum number of variables supported is 250.
                   The maximum size of each variable, including both name and value, is 4096 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
             type: dict
             sample: {}
+        config_source:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                config_source_record_type:
+                    description:
+                        - The type of configuration source to use for the Terraform configuration.
+                    returned: on success
+                    type: string
+                    sample: ZIP_UPLOAD
+                configuration_source_provider_id:
+                    description:
+                        - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
+                          for the Git configuration source.
+                    returned: on success
+                    type: string
+                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                repository_url:
+                    description:
+                        - The URL of the Git repository.
+                    returned: on success
+                    type: string
+                    sample: repository_url_example
+                branch_name:
+                    description:
+                        - The name of the branch within the Git repository.
+                    returned: on success
+                    type: string
+                    sample: branch_name_example
+                commit_id:
+                    description:
+                        - The unique identifier (SHA-1 hash) of the individual change to the Git repository.
+                    returned: on success
+                    type: string
+                    sample: ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -302,6 +341,13 @@ jobs:
         },
         "working_directory": "working_directory_example",
         "variables": {},
+        "config_source": {
+            "config_source_record_type": "ZIP_UPLOAD",
+            "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_url": "repository_url_example",
+            "branch_name": "branch_name_example",
+            "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

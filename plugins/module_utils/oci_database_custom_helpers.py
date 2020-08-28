@@ -10,10 +10,16 @@ __metaclass__ = type
 
 import os
 from ansible.module_utils._text import to_bytes
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+from ansible.module_utils import six
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_common_utils,
+    oci_wait_utils,
+)
+
 
 try:
     from oci.exceptions import ServiceError
+    from oci.util import to_dict
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -311,3 +317,230 @@ def is_patch_necessary(
             is_patch_necessary = True
 
     return is_patch_necessary
+
+
+class ExadataInfrastructureHelperCustom:
+    def delete_resource(self):
+        try:
+            delete_operation_response = oci_wait_utils.call_and_wait(
+                call_fn=self.client.delete_exadata_infrastructure,
+                call_fn_args=(),
+                call_fn_kwargs=dict(
+                    exadata_infrastructure_id=self.module.params.get(
+                        "exadata_infrastructure_id"
+                    ),
+                ),
+                waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+                operation=oci_common_utils.DELETE_OPERATION_KEY,
+                waiter_client=self.work_request_client,
+                resource_helper=self,
+                wait_for_states=oci_common_utils.get_work_request_completed_states(),
+            )
+        except ServiceError as delete_service_error:
+            # delete_exadata_infrastructure can return a 404 if you are not allowed to delete it
+            if delete_service_error.status == 404:
+                # so attempt a GET to determine if the resource is really still there
+                try:
+                    oci_common_utils.call_with_backoff(
+                        self.client.get_exadata_infrastructure,
+                        exadata_infrastructure_id=self.module.params.get(
+                            "exadata_infrastructure_id"
+                        ),
+                    )
+                except ServiceError as get_service_error:
+                    # if the resource truly doesn't exist, then just re-throw the existing delete 404
+                    # and the resource_utils function will handle it appropriately
+                    if get_service_error.status == 404:
+                        raise delete_service_error
+
+                # if we reach here it means that the DELETE call returned a 404 but the GET operation was successful
+                # this means the resource is still present so the DELETE call must have recieved a 404 for some other
+                # reason, so report that back to the user
+                self.module.fail_json(
+                    msg="Deleting resource failed with exception: {0}".format(
+                        delete_service_error.message
+                    )
+                )
+
+            raise delete_service_error
+
+        return delete_operation_response
+
+
+class ExadataInfrastructureActionsHelperCustom:
+    def download_exadata_infrastructure_config_file(self):
+        operation_response = oci_common_utils.call_with_backoff(
+            self.client.download_exadata_infrastructure_config_file,
+            exadata_infrastructure_id=self.module.params.get(
+                "exadata_infrastructure_id"
+            ),
+        )
+
+        dest = self.module.params.get("config_file_dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in operation_response.data.raw.stream(
+                chunk_size, decode_content=True
+            ):
+                dest_file.write(chunk)
+
+        return None
+
+
+class AutonomousContainerDatabaseHelperCustom:
+    # resource `AutonomousContainerDatabase` has attribute `maintenance_window` which gives the scheduling details for
+    # the quarterly maintenance window. However object `UpdateAutonomousContainerDatabase` represents it with different
+    # name 'maintenance_window_details'.
+    def is_update_necessary(self, existing_resource_dict):
+        existing_resource_dict[
+            "maintenance_window_details"
+        ] = existing_resource_dict.pop("maintenance_window", None)
+        return super(AutonomousContainerDatabaseHelperCustom, self).is_update_necessary(
+            existing_resource_dict
+        )
+
+
+class VmClusterNetworkHelperCustom:
+    def get_get_fn(self):
+        def get_fn(vm_cluster_network_id):
+            return self.client.get_vm_cluster_network(
+                vm_cluster_network_id=vm_cluster_network_id,
+                exadata_infrastructure_id=self.module.params.get(
+                    "exadata_infrastructure_id"
+                ),
+            )
+
+        return get_fn
+
+
+class VmClusterNetworkActionsHelperCustom:
+    def get_action_desired_states(self, action):
+        action_desired_states = super(
+            VmClusterNetworkActionsHelperCustom, self
+        ).get_action_desired_states(action)
+
+        if action.lower() == "validate":
+            return action_desired_states + [
+                "VALIDATED",
+            ]
+        return action_desired_states
+
+    def get_action_idempotent_states(self, action):
+        action_idempotent_states = super(
+            VmClusterNetworkActionsHelperCustom, self
+        ).get_action_idempotent_states(action)
+
+        if action.lower() == "validate":
+            return action_idempotent_states + [
+                "VALIDATED",
+            ]
+        return action_idempotent_states
+
+    def download_vm_cluster_network_config_file(self):
+        operation_response = oci_common_utils.call_with_backoff(
+            self.client.download_vm_cluster_network_config_file,
+            exadata_infrastructure_id=self.module.params.get(
+                "exadata_infrastructure_id"
+            ),
+            vm_cluster_network_id=self.module.params.get("vm_cluster_network_id"),
+        )
+
+        dest = self.module.params.get("config_file_dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in operation_response.data.raw.stream(
+                chunk_size, decode_content=True
+            ):
+                dest_file.write(chunk)
+
+        return None
+
+
+class VmClusterHelperCustom:
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        model_dict = super(
+            VmClusterHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+
+        if model_dict["cpu_core_count"]:
+            model_dict["cpus_enabled"] = model_dict["cpu_core_count"]
+            del model_dict["cpu_core_count"]
+
+        return model_dict
+
+    def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
+        attributes_to_consider = super(
+            VmClusterHelperCustom, self
+        ).get_attributes_to_consider_for_create_idempotency_check(create_model)
+        if "cpu_core_count" in attributes_to_consider:
+            attributes_to_consider.remove("cpu_core_count")
+            attributes_to_consider.append("cpus_enabled")
+
+        return attributes_to_consider
+
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        # The cpu count param has different names in update model (cpu_core_count) and get model
+        # (cpus_enabled). So update the name in the update model for idempotence logic to work.
+        update_model_dict = to_dict(update_model)
+        update_model_dict["cpus_enabled"] = update_model_dict.pop(
+            "cpu_core_count", None
+        )
+        return update_model_dict
+
+    def get_update_model(self):
+        # if license model is passed and matches the existing value on the resource
+        # UPDATE will fail
+        # so if license model matches what is on the resource, skip sending the field
+        update_model = super(VmClusterHelperCustom, self).get_update_model()
+        if update_model.license_model:
+            existing_resource_dict = to_dict(self.get_resource().data)
+            if update_model.license_model == existing_resource_dict.get(
+                "license_model"
+            ):
+                update_model.license_model = None
+
+        return update_model
+
+
+class DatabaseHelperCustom:
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        create_model_dict = super(
+            DatabaseHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+        create_model_dict = dict(
+            (k, v)
+            for k, v in six.iteritems(create_model_dict)
+            if k not in ["source", "db_version"]
+        )
+        for k, v in six.iteritems(create_model_dict.pop("database", dict())):
+            if k not in ["backup_id", "backup_tde_password", "admin_password"]:
+                create_model_dict[k] = v
+        return create_model_dict
+
+
+class AutonomousVmClusterHelperCustom:
+    # work requests generated for `UpdateAutonomousVmCluster` operation never gets completed however attributes get
+    # updated with values passed in request.
+    def update_resource(self):
+        operation_response = oci_common_utils.call_with_backoff(
+            self.client.update_autonomous_vm_cluster,
+            autonomous_vm_cluster_id=self.module.params.get("autonomous_vm_cluster_id"),
+            update_autonomous_vm_cluster_details=self.get_update_model(),
+        )
+
+        # Delete `opc-work-request-id` from operation_response to allow falling back to lifecycle based waiting.
+        if (
+            operation_response
+            and operation_response.headers
+            and oci_wait_utils.WORK_REQUEST_HEADER in operation_response.headers
+        ):
+            del operation_response.headers[oci_wait_utils.WORK_REQUEST_HEADER]
+
+        return oci_wait_utils.get_waiter(
+            oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            oci_common_utils.UPDATE_OPERATION_KEY,
+            self.work_request_client,
+            self,
+            operation_response=operation_response,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        ).wait()

@@ -68,8 +68,6 @@ options:
         description:
             - The OCID of the VCN the LPG belongs to.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     local_peering_gateway_id:
         description:
@@ -103,7 +101,6 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Update local_peering_gateway
   oci_network_local_peering_gateway:
@@ -120,7 +117,6 @@ EXAMPLES = """
   oci_network_local_peering_gateway:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     display_name: display_name_example
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
     state: absent
 
 """
@@ -224,7 +220,7 @@ local_peering_gateway:
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - The date and time the LPG was created, in the format defined by RFC3339.
+                - The date and time the LPG was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -294,7 +290,6 @@ class LocalPeeringGatewayHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -302,7 +297,20 @@ class LocalPeeringGatewayHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        return dict()
+        optional_list_method_params = ["vcn_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
 
     def list_resources(self):
 

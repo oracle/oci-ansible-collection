@@ -109,8 +109,8 @@ options:
                       the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
                       L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
                       L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
-                      Example: `10.0.3.3`"
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
+                    - "Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
                 description:
@@ -257,7 +257,7 @@ vnic_attachment:
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - The date and time the VNIC attachment was created, in the format defined by RFC3339.
+                - The date and time the VNIC attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

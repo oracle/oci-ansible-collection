@@ -32,6 +32,20 @@ options:
             - The OCID of the identity provider.
         type: str
         required: true
+    name:
+        description:
+            - A filter to only return resources that match the given name exactly.
+        type: str
+    lifecycle_state:
+        description:
+            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+        type: str
+        choices:
+            - "CREATING"
+            - "ACTIVE"
+            - "INACTIVE"
+            - "DELETING"
+            - "DELETED"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -67,6 +81,12 @@ identity_provider_groups:
             returned: on success
             type: string
             sample: display_name_example
+        name:
+            description:
+                - Display name of the group
+            returned: on success
+            type: string
+            sample: name_example
         external_identifier:
             description:
                 - Identifier of the group in the identity provider
@@ -91,6 +111,7 @@ identity_provider_groups:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "identity_provider_id": "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
+        "name": "name_example",
         "external_identifier": "external_identifier_example",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_modified": "2016-08-25T21:10:29.600Z"
@@ -122,6 +143,8 @@ class IdentityProviderGroupFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "name",
+            "lifecycle_state",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -152,6 +175,11 @@ def main():
     module_args.update(
         dict(
             identity_provider_id=dict(type="str", required=True),
+            name=dict(type="str"),
+            lifecycle_state=dict(
+                type="str",
+                choices=["CREATING", "ACTIVE", "INACTIVE", "DELETING", "DELETED"],
+            ),
             display_name=dict(type="str"),
         )
     )

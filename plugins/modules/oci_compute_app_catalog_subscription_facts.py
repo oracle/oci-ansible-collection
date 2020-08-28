@@ -118,7 +118,7 @@ app_catalog_subscriptions:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - "Date and time at which the subscription was created, in RFC3339 format.
+                - "Date and time at which the subscription was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: string

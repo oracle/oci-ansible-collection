@@ -136,7 +136,7 @@ volume_backups:
         expiration_time:
             description:
                 - The date and time the volume backup will expire and be automatically deleted.
-                  Format defined by RFC3339. This parameter will always be present for backups that
+                  Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339). This parameter will always be present for backups that
                   were created automatically by a scheduled-backup policy. For manually created backups,
                   it will be absent, signifying that there is no expiration time and the backup will
                   last forever until manually deleted.
@@ -158,6 +158,15 @@ volume_backups:
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+        kms_key_id:
+            description:
+                - The OCID of the Key Management key which is the master encryption key for the volume backup.
+                  For more information about the Key Management service and encryption keys, see
+                  L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
+                  L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
                 - The current state of a volume backup.
@@ -192,13 +201,13 @@ volume_backups:
         time_created:
             description:
                 - The date and time the volume backup was created. This is the time the actual point-in-time image
-                  of the volume data was taken. Format defined by RFC3339.
+                  of the volume data was taken. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         time_request_received:
             description:
-                - The date and time the request to create the volume backup was received. Format defined by RFC3339.
+                - The date and time the request to create the volume backup was received. Format defined by [RFC3339]https://tools.ietf.org/html/rfc3339.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -237,6 +246,7 @@ volume_backups:
         "expiration_time": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "size_in_gbs": 56,
         "size_in_mbs": 56,

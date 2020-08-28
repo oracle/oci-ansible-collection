@@ -152,7 +152,6 @@ options:
                       Oracle generates a value for you. You can specify your own shared secret later if
                       you like with L(UpdateIPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/en-
                       us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/UpdateIPSecConnectionTunnelSharedSecret).
-                    - "Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`"
                 type: str
             bgp_session_config:
                 description:
@@ -219,21 +218,21 @@ EXAMPLES = """
 - name: Create ip_sec_connection
   oci_network_ip_sec_connection:
     display_name: MyIPSecConnection
-    cpe_id: ocid1.cpe.oc1.phx.aaaaaaaauceeaxawury4ri72wjcmdgqkwb3cgpj4f67fdh7kcnbay5mpk65q
+    cpe_id: ocid1.cpe.oc1.phx.unique_ID
     static_routes:
-    - 172.16.10.0/24
-    drg_id: ocidv1:drg:oc1:phx:aaaaaaaany43ugr3m5mxir3cuub2i254me
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    - 192.0.2.0/24
+    drg_id: ocid1.drg.oc1.phx.unique_ID
+    compartment_id: ocid1.compartment.oc1..unique_ID
 
 - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
     freeform_tags: {'Department': 'Finance'}
     cpe_local_identifier: cpe_local_identifier_example
     cpe_local_identifier_type: IP_ADDRESS
-    static_routes: [ "172.16.10.0/24" ]
+    static_routes: [ "192.0.2.0/24" ]
 
 - name: Update ip_sec_connection
   oci_network_ip_sec_connection:
@@ -248,7 +247,7 @@ EXAMPLES = """
 
 - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyIPSecConnection
     state: absent
 
@@ -351,7 +350,7 @@ ip_sec_connection:
             sample: []
         time_created:
             description:
-                - The date and time the IPSec connection was created, in the format defined by RFC3339.
+                - The date and time the IPSec connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

@@ -80,3 +80,10 @@ class JobHelperCustom:
             return True
 
         return False
+
+
+class ConfigurationSourceProviderHelperCustom:
+    def get_exclude_attributes(self):
+        return super(
+            ConfigurationSourceProviderHelperCustom, self
+        ).get_exclude_attributes() + ["access_token"]

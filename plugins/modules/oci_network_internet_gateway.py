@@ -79,8 +79,6 @@ options:
         description:
             - The OCID of the VCN the internet gateway is attached to.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     ig_id:
         description:
@@ -105,18 +103,17 @@ EXAMPLES = """
 - name: Create internet_gateway
   oci_network_internet_gateway:
     display_name: MyInternetGateway
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
+    compartment_id: ocid1.compartment.oc1..unique_ID
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
     is_enabled: true
 
 - name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyInternetGateway
     freeform_tags: {'Department': 'Finance'}
     is_enabled: true
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
 
 - name: Update internet_gateway
   oci_network_internet_gateway:
@@ -131,9 +128,8 @@ EXAMPLES = """
 
 - name: Delete internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MyInternetGateway
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
     state: absent
 
 """
@@ -196,7 +192,7 @@ internet_gateway:
             sample: PROVISIONING
         time_created:
             description:
-                - The date and time the internet gateway was created, in the format defined by RFC3339.
+                - The date and time the internet gateway was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -260,7 +256,6 @@ class InternetGatewayHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -268,7 +263,7 @@ class InternetGatewayHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

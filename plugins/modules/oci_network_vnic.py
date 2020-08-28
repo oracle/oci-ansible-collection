@@ -75,9 +75,9 @@ options:
         type: list
     skip_source_dest_check:
         description:
-            - Whether the source/destination check is disabled on the VNIC.
-              Defaults to `false`, which means the check is performed.
-            - "For information about why you would skip the source/destination check, see
+            - "Whether the source/destination check is disabled on the VNIC.
+              Defaults to `false`, which means the check is performed. For information about why you would
+              skip the source/destination check, see
               L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
               Example: `true`"
         type: bool
@@ -180,14 +180,14 @@ vnic:
         mac_address:
             description:
                 - The MAC address of the VNIC.
-                - "Example: `00:00:17:B6:4D:DD`"
+                - "Example: `00:00:00:00:00:01`"
             returned: on success
             type: string
-            sample: 00:00:17:B6:4D:DD
+            sample: 00:00:00:00:00:01
         nsg_ids:
             description:
-                - A list of the OCIDs of the network security groups that the VNIC belongs to. For more
-                  information about NSGs, see
+                - A list of the OCIDs of the network security groups that the VNIC belongs to.
+                - For more information about NSGs, see
                   L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
             returned: on success
             type: list
@@ -224,7 +224,7 @@ vnic:
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - The date and time the VNIC was created, in the format defined by RFC3339.
+                - The date and time the VNIC was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -239,7 +239,7 @@ vnic:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "is_primary": true,
         "lifecycle_state": "PROVISIONING",
-        "mac_address": "00:00:17:B6:4D:DD",
+        "mac_address": "00:00:00:00:00:01",
         "nsg_ids": [],
         "private_ip": "10.0.3.3",
         "public_ip": "public_ip_example",

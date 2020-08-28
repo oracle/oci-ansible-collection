@@ -101,7 +101,7 @@ app_catalog_listings:
             sample: display_name_example
         time_published:
             description:
-                - "Date and time the listing was published, in RFC3339 format.
+                - "Date and time the listing was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: string

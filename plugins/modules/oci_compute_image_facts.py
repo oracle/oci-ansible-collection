@@ -173,7 +173,7 @@ images:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
                   * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
-                  * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+                  * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
             returned: on success
             type: string
@@ -186,14 +186,14 @@ images:
             contains:
                 boot_volume_type:
                     description:
-                        - "Emulation type for volume.
-                          * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                          Storage volumes on Oracle provided images.
+                        - "Emulation type for the boot volume.
+                          * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                          volumes on Oracle provided images.
-                          * `PARAVIRTUALIZED` - Paravirtualized disk."
+                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          volumes on Oracle-provided images.
+                          * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                          storage volumes on Oracle-provided images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -203,7 +203,7 @@ images:
                           * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
-                          default for Oracle provided images."
+                          default for Oracle-provided images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -213,26 +213,27 @@ images:
                           * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
                           * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
-                          * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers."
+                          * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
                     returned: on success
                     type: string
                     sample: E1000
                 remote_data_volume_type:
                     description:
                         - "Emulation type for volume.
-                          * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                          Storage volumes on Oracle provided images.
+                          * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                          volumes on Oracle provided images.
-                          * `PARAVIRTUALIZED` - Paravirtualized disk."
+                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          volumes on Oracle-provided images.
+                          * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                          storage volumes on Oracle-provided images."
                     returned: on success
                     type: string
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
-                        - Whether to enable in-transit encryption for the boot volume's paravirtualized attachment. The default value is false.
+                        - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -290,7 +291,7 @@ images:
             sample: 47694
         time_created:
             description:
-                - The date and time the image was created, in the format defined by RFC3339.
+                - The date and time the image was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

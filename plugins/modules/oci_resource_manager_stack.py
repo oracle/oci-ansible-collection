@@ -24,7 +24,9 @@ short_description: Manage a Stack resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Stack resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a stack in the specified compartment.
-      Specify the compartment using the compartment ID.
+      You can create a stack from a Terraform configuration file.
+      The Terraform configuration file can be directly uploaded or referenced from a source code control system.
+      You can also create a stack from an existing compartment.
       For more information, see
       L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack).
     - "This resource has the following action operations in the M(oci_stack_actions) module: detect_stack_drift."
@@ -59,21 +61,63 @@ options:
                 type: str
                 choices:
                     - "ZIP_UPLOAD"
+                    - "GIT_CONFIG_SOURCE"
+                    - "COMPARTMENT_CONFIG_SOURCE"
                 required: true
             working_directory:
                 description:
                     - File path to the directory from which Terraform runs.
                       If not specified, the root directory is used.
+                      This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
                 type: str
             zip_file_base64_encoded:
                 description:
                     - ""
                     - Applicable when config_source_type is 'ZIP_UPLOAD'
+                    - Required when config_source_type is 'ZIP_UPLOAD'
                 type: str
+            configuration_source_provider_id:
+                description:
+                    - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
+                      for the Git configuration source.
+                    - Required when config_source_type is 'GIT_CONFIG_SOURCE'
+                type: str
+            repository_url:
+                description:
+                    - The URL of the Git repository.
+                    - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
+                type: str
+            branch_name:
+                description:
+                    - The name of the branch within the Git repository.
+                    - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
+                type: str
+            compartment_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for creating the stack.
+                      The new stack will include definitions for supported resource types in scope of the specified compartment OCID (tenancy level for root
+                      compartment, compartment level otherwise).
+                    - Required when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
+                type: str
+            region:
+                description:
+                    - The region to use for creating the stack. The new stack will include definitions for
+                      supported resource types in this region.
+                    - Required when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
+                type: str
+            services_to_discover:
+                description:
+                    - "Filter for L(services to use with Resource
+                      Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+                      For example, \\"database\\" limits resource discovery to resource types within the Database service.
+                      The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level otherwise).
+                      If not specified, then all services at the scope of the given compartment OCID are used."
+                    - Applicable when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
+                type: list
     variables:
         description:
             - "Terraform variables associated with this resource.
-              Maximum number of variables supported is 100.
+              Maximum number of variables supported is 250.
               The maximum size of each variable, including both name and value, is 4096 bytes.
               Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
         type: dict
@@ -211,13 +255,58 @@ stack:
                     description:
                         - File path to the directory to use for running Terraform.
                           If not specified, the root directory is used.
+                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
                     returned: on success
                     type: string
                     sample: working_directory_example
+                configuration_source_provider_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
+                    returned: on success
+                    type: string
+                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                repository_url:
+                    description:
+                        - The URL of the Git repository for the configuration source.
+                    returned: on success
+                    type: string
+                    sample: repository_url_example
+                branch_name:
+                    description:
+                        - The name of the branch in the Git repository for the configuration source.
+                    returned: on success
+                    type: string
+                    sample: branch_name_example
+                compartment_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
+                          for creating the stack. The new stack will include definitions for supported
+                          resource types in this compartment.
+                    returned: on success
+                    type: string
+                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                region:
+                    description:
+                        - The region to use for creating the stack. The new stack will include definitions for
+                          supported resource types in this region.
+                    returned: on success
+                    type: string
+                    sample: region_example
+                services_to_discover:
+                    description:
+                        - "Filter for L(services to use with Resource
+                          Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+                          For example, \\"database\\" limits resource discovery to resource types within the Database service.
+                          The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level
+                          otherwise).
+                          If not specified, then all services at the scope of the given compartment OCID are used."
+                    returned: on success
+                    type: list
+                    sample: []
         variables:
             description:
                 - "Terraform variables associated with this resource.
-                  Maximum number of variables supported is 100.
+                  Maximum number of variables supported is 250.
                   The maximum size of each variable, including both name and value, is 4096 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
@@ -269,7 +358,13 @@ stack:
         "lifecycle_state": "CREATING",
         "config_source": {
             "config_source_type": "ZIP_UPLOAD",
-            "working_directory": "working_directory_example"
+            "working_directory": "working_directory_example",
+            "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
+            "repository_url": "repository_url_example",
+            "branch_name": "branch_name_example",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "region": "region_example",
+            "services_to_discover": []
         },
         "variables": {},
         "terraform_version": "0.12.x",
@@ -352,11 +447,11 @@ class StackHelperGen(OCIResourceHelperBase):
             call_fn=self.client.create_stack,
             call_fn_args=(),
             call_fn_kwargs=dict(create_stack_details=create_details,),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def get_update_model_class(self):
@@ -411,10 +506,22 @@ def main():
                 type="dict",
                 options=dict(
                     config_source_type=dict(
-                        type="str", required=True, choices=["ZIP_UPLOAD"]
+                        type="str",
+                        required=True,
+                        choices=[
+                            "ZIP_UPLOAD",
+                            "GIT_CONFIG_SOURCE",
+                            "COMPARTMENT_CONFIG_SOURCE",
+                        ],
                     ),
                     working_directory=dict(type="str"),
                     zip_file_base64_encoded=dict(type="str"),
+                    configuration_source_provider_id=dict(type="str"),
+                    repository_url=dict(type="str"),
+                    branch_name=dict(type="str"),
+                    compartment_id=dict(type="str"),
+                    region=dict(type="str"),
+                    services_to_discover=dict(type="list"),
                 ),
             ),
             variables=dict(type="dict"),

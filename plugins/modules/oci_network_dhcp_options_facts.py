@@ -24,6 +24,7 @@ short_description: Fetches details about one or multiple DhcpOptions resources i
 description:
     - Fetches details about one or multiple DhcpOptions resources in Oracle Cloud Infrastructure
     - Lists the sets of DHCP options in the specified VCN and specified compartment.
+      If the VCN ID is not provided, then the list includes the sets of DHCP options from all VCNs in the specified compartment.
       The response includes the default set of options that automatically comes with each VCN,
       plus any other sets you've created.
     - If I(dhcp_id) is specified, the details of a single DhcpOptions will be returned.
@@ -44,7 +45,6 @@ options:
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required to list multiple dhcp_options.
         type: str
     display_name:
         description:
@@ -88,7 +88,6 @@ EXAMPLES = """
 - name: List dhcp_options
   oci_network_dhcp_options_facts:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Get a specific dhcp_options
   oci_network_dhcp_options_facts:
@@ -203,7 +202,7 @@ dhcp_options:
                     sample: []
         time_created:
             description:
-                - Date and time the set of DHCP options was created, in the format defined by RFC3339.
+                - Date and time the set of DHCP options was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -258,7 +257,6 @@ class DhcpOptionsFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "vcn_id",
         ]
 
     def get_resource(self):
@@ -268,6 +266,7 @@ class DhcpOptionsFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "vcn_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -281,7 +280,6 @@ class DhcpOptionsFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_dhcp_options,
             compartment_id=self.module.params.get("compartment_id"),
-            vcn_id=self.module.params.get("vcn_id"),
             **optional_kwargs
         )
 

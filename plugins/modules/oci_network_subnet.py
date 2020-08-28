@@ -66,8 +66,10 @@ options:
         type: str
     cidr_block:
         description:
-            - The CIDR IP address range of the subnet.
-            - "Example: `172.16.1.0/24`"
+            - The CIDR IP address range of the subnet. The CIDR must maintain the following rules -
+            - a. The CIDR block is valid and correctly formatted.
+              b. The new range is within one of the parent VCN ranges.
+            - "Example: `10.0.1.0/24`"
             - Required for create using I(state=present).
         type: str
     compartment_id:
@@ -143,8 +145,6 @@ options:
         description:
             - The OCID of the VCN to contain the subnet.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     subnet_id:
         description:
@@ -171,28 +171,27 @@ EXAMPLES = """
     display_name: MySubnet
     cidr_block: 10.0.2.0/24
     availability_domain: Uocm:PHX-AD-1
-    route_table_id: ocid1.routetable.oc1.phx.aaaaaaaabkzwmlew7tb7orbcsaq7hx6wcmdeuh5slbosmbbdy52oxaahsitq
+    route_table_id: ocid1.routetable.oc1.phx.unique_ID
     security_list_ids:
-    - ocid1.securitylist.oc1.phx.aaaaaaaadyndu2n3hcmdsjfiljwyq7vpxsvv7ynp4ori7aealcvhzicnzhyq
-    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.aaaaaaaauqemh7hsa35d7dx5m46f3prnxzgw4nevb6z6cmdmckvy7odixthq
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    - ocid1.securitylist.oc1.phx.unique_ID
+    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
+    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    compartment_id: ocid1.compartment.oc1..unique_ID
 
 - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.aaaaaaaauqemh7hsa35d7dx5m46f3prnxzgw4nevb6z6cmdmckvy7odixthq
+    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
     display_name: MySubnet
     freeform_tags: {'Department': 'Finance'}
-    route_table_id: ocid1.routetable.oc1.phx.aaaaaaaabkzwmlew7tb7orbcsaq7hx6wcmdeuh5slbosmbbdy52oxaahsitq
-    security_list_ids: [ "ocid1.securitylist.oc1.phx.aaaaaaaadyndu2n3hcmdsjfiljwyq7vpxsvv7ynp4ori7aealcvhzicnzhyq" ]
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
+    route_table_id: ocid1.routetable.oc1.phx.unique_ID
+    security_list_ids: [ "ocid1.securitylist.oc1.phx.unique_ID" ]
 
 - name: Update subnet
   oci_network_subnet:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.aaaaaaaauqemh7hsa35d7dx5m46f3prnxzgw4nevb6z6cmdmckvy7odixthq
+    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
     subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete subnet
@@ -202,9 +201,8 @@ EXAMPLES = """
 
 - name: Delete subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: ocid1.compartment.oc1..unique_ID
     display_name: MySubnet
-    vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
     state: absent
 
 """
@@ -227,10 +225,10 @@ subnet:
         cidr_block:
             description:
                 - The subnet's CIDR block.
-                - "Example: `172.16.1.0/24`"
+                - "Example: `10.0.1.0/24`"
             returned: on success
             type: string
-            sample: 172.16.1.0/24
+            sample: 10.0.1.0/24
         compartment_id:
             description:
                 - The OCID of the compartment containing the subnet.
@@ -335,7 +333,7 @@ subnet:
             sample: subnet123.vcn1.oraclevcn.com
         time_created:
             description:
-                - The date and time the subnet was created, in the format defined by RFC3339.
+                - The date and time the subnet was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -356,13 +354,13 @@ subnet:
         virtual_router_mac:
             description:
                 - The MAC address of the virtual router.
-                - "Example: `00:00:17:B6:4D:DD`"
+                - "Example: `00:00:00:00:00:01`"
             returned: on success
             type: string
-            sample: 00:00:17:B6:4D:DD
+            sample: 00:00:00:00:00:01
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
-        "cidr_block": "172.16.1.0/24",
+        "cidr_block": "10.0.1.0/24",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "dhcp_options_id": "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx",
@@ -378,7 +376,7 @@ subnet:
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "virtual_router_ip": "10.0.14.1",
-        "virtual_router_mac": "00:00:17:B6:4D:DD"
+        "virtual_router_mac": "00:00:00:00:00:01"
     }
 """
 
@@ -422,7 +420,6 @@ class SubnetHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -430,7 +427,7 @@ class SubnetHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

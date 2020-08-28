@@ -171,6 +171,12 @@ file_systems:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        kms_key_id:
+            description:
+                - The OCID of the KMS key which is the master encryption key for the file system.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -180,7 +186,8 @@ file_systems:
         "lifecycle_state": "CREATING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

@@ -49,6 +49,16 @@ description:
       L(GetVnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/GetVnic) with the VNIC ID."
     - You can later add secondary VNICs to an instance. For more information, see
       L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+    - To launch an instance from a Marketplace image listing, you must provide the image ID of the
+      listing resource version that you want, but you also must subscribe to the listing before you try
+      to launch the instance. To subscribe to the listing, use the L(GetAppCatalogListingAgreements,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersionAgreements/GetAppCatalogListingAgreements)
+      operation to get the signature for the terms of use agreement for the desired listing resource version.
+      Then, call L(CreateAppCatalogSubscription,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/AppCatalogSubscription/CreateAppCatalogSubscription)
+      with the signature. To get the image ID for the LaunchInstance operation, call
+      L(GetAppCatalogListingResourceVersion,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion).
     - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset, softstop."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -146,8 +156,8 @@ options:
                       the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
                       L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
                       L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
-                      Example: `10.0.3.3`"
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
+                    - "Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
                 description:
@@ -167,7 +177,7 @@ options:
                 required: true
     dedicated_vm_host_id:
         description:
-            - The OCID of dedicated VM host.
+            - The OCID of the dedicated VM host.
         type: str
     defined_tags:
         description:
@@ -185,8 +195,12 @@ options:
         aliases: ["name"]
     extended_metadata:
         description:
-            - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
-            - They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
+            - Additional metadata key/value pairs that you provide. They serve the same purpose and
+              functionality as fields in the `metadata` object.
+            - They are distinguished from `metadata` fields in that these can be nested JSON objects
+              (whereas `metadata` fields are string/string maps only).
+            - The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
+              32,000 bytes.
         type: dict
     fault_domain:
         description:
@@ -195,8 +209,7 @@ options:
               instances so that they are not on the same physical hardware within a single availability domain.
               A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
               instances in other fault domains.
-            - If you do not specify the fault domain, the system selects one for you. To change the fault
-              domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+            - If you do not specify the fault domain, the system selects one for you.
             - To get a list of fault domains, use the
               L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
               Identity and Access Management Service API.
@@ -243,6 +256,78 @@ options:
               L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
             - For more information about iPXE, see http://ipxe.org.
         type: str
+    launch_options:
+        description:
+            - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any
+              default values.
+        type: dict
+        suboptions:
+            boot_volume_type:
+                description:
+                    - "Emulation type for the boot volume.
+                      * `ISCSI` - ISCSI attached block storage device.
+                      * `SCSI` - Emulated SCSI disk.
+                      * `IDE` - Emulated IDE disk.
+                      * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                      volumes on Oracle-provided images.
+                      * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                      storage volumes on Oracle-provided images."
+                type: str
+                choices:
+                    - "ISCSI"
+                    - "SCSI"
+                    - "IDE"
+                    - "VFIO"
+                    - "PARAVIRTUALIZED"
+            firmware:
+                description:
+                    - "Firmware used to boot VM.  Select the option that matches your operating system.
+                      * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
+                      systems that boot using MBR style bootloaders.
+                      * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
+                      default for Oracle-provided images."
+                type: str
+                choices:
+                    - "BIOS"
+                    - "UEFI_64"
+            network_type:
+                description:
+                    - "Emulation type for the physical network interface card (NIC).
+                      * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
+                      * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
+                      when you launch an instance using hardware-assisted (SR-IOV) networking.
+                      * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
+                type: str
+                choices:
+                    - "E1000"
+                    - "VFIO"
+                    - "PARAVIRTUALIZED"
+            remote_data_volume_type:
+                description:
+                    - "Emulation type for volume.
+                      * `ISCSI` - ISCSI attached block storage device.
+                      * `SCSI` - Emulated SCSI disk.
+                      * `IDE` - Emulated IDE disk.
+                      * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                      volumes on Oracle-provided images.
+                      * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                      storage volumes on Oracle-provided images."
+                type: str
+                choices:
+                    - "ISCSI"
+                    - "SCSI"
+                    - "IDE"
+                    - "VFIO"
+                    - "PARAVIRTUALIZED"
+            is_pv_encryption_in_transit_enabled:
+                description:
+                    - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                type: bool
+            is_consistent_volume_naming_enabled:
+                description:
+                    - Whether to enable consistent volume naming feature. Defaults to false.
+                type: bool
     metadata:
         description:
             - Custom metadata key/value pairs that you provide, such as the SSH public key
@@ -265,33 +350,21 @@ options:
                Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. For
                information about how to take advantage of user data, see the
                L(Cloud-Init Documentation,http://cloudinit.readthedocs.org/en/latest/topics/format.html)."
-            - "**Note:** Cloud-Init does not pull this data from the `http://169.254.169.254/opc/v1/instance/metadata/`
-               path. When the instance launches and either of these keys are provided, the key values are formatted as
-               OpenStack metadata and copied to the following locations, which are recognized by Cloud-Init:"
-            - "`http://169.254.169.254/openstack/latest/meta_data.json` - This JSON blob
-               contains, among other things, the SSH keys that you provided for
-                **\\"ssh_authorized_keys\\"**."
-            - "`http://169.254.169.254/openstack/latest/user_data` - Contains the
-               base64-decoded data that you provided for **\\"user_data\\"**."
             - "**Metadata Example**"
             - "     \\"metadata\\" : {
                        \\"quake_bot_level\\" : \\"Severe\\",
-                       \\"ssh_authorized_keys\\" : \\"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCZ06fccNTQfq+xubFlJ5ZR3kt+uzspdH9tXL+lAejSM1NXM+CFZev7MIxfEjas06y80Z
-                       BZ7DUTQO0GxJPeD8NCOb1VorF8M4xuLwrmzRtkoZzU16umt4y1W0Q4ifdp3IiiU0U8/WxczSXcUVZOLqkz5dc6oMHdMVpkimietWzGZ4LBBsH/LjEVY7E0V+a0sNchlVDIZcm7ErR
-                       eBLcdTGDq0uLBiuChyl6RUkX1PNhusquTGwK7zc8OBXkRuubn5UKXhI3Ul9Nyk4XESkVWIGNKmw8mSpoJSjR8P9ZjRmcZVo8S+x4KVPMZKQEor== ryan.smith@company.com
-                       ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAzJSAtwEPoB3Jmr58IXrDGzLuDYkWAYg8AsLYlo6JZvKpjY1xednIcfEVQJm4T2DhVmdWhRrwQ8DmayVZvBkLt+zs2LdoAJEVimKwX
-                       cJFD/7wtH8Lnk17HiglbbbNXsemjDY0hea4JUE5CfvkIdZBITuMrfqSmA4n3VNoorXYdvtTMoGG8fxMub46RPtuxtqi9bG9Zqenordkg5FJt2mVNfQRqf83CWojcOkklUWq4Cjyxa
-                       eLf5i9gv1fRoBo4QhiA8I6NCSppO8GnoV/6Ox6TNoh9BiifqGKC9VGYuC89RvUajRBTZSK2TK4DPfaT+2R+slPsFrwiT/oPEhhEK1S5Q== rsa-key-20160227\\",
-                       \\"user_data\\" : \\"SWYgeW91IGNhbiBzZWUgdGhpcywgdGhlbiBpdCB3b3JrZWQgbWF5YmUuCg==\\"
+                       \\"ssh_authorized_keys\\" : \\"ssh-rsa <your_public_SSH_key>== rsa-key-20160227\\",
+                       \\"user_data\\" : \\"<your_public_SSH_key>==\\"
                     }
                **Getting Metadata on the Instance**"
             - "To get information about your instance, connect to the instance using SSH and issue any of the
                following GET requests:"
-            -      curl http://169.254.169.254/opc/v1/instance/
-                   curl http://169.254.169.254/opc/v1/instance/metadata/
-                   curl http://169.254.169.254/opc/v1/instance/metadata/<any-key-name>
+            - "    curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/
+                   curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/metadata/
+                   curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/metadata/<any-key-name>"
             -  You'll get back a response that includes all the instance information; only the metadata information; or
                the metadata information for the specified key name, respectively.
+            -  The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of 32,000 bytes.
         type: dict
     agent_config:
         description:
@@ -446,7 +519,9 @@ EXAMPLES = """
     compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: myinstance1
+    fault_domain: FAULT-DOMAIN-2
     freeform_tags: {'Department': 'Finance'}
+    shape: VM.Standard2.1
 
 - name: Update instance
   oci_compute_instance:
@@ -511,9 +586,10 @@ instance:
             sample: My bare metal instance
         extended_metadata:
             description:
-                - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
-                - They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps
-                  only).
+                - Additional metadata key/value pairs that you provide. They serve the same purpose and functionality
+                  as fields in the `metadata` object.
+                - They are distinguished from `metadata` fields in that these can be nested JSON objects (whereas `metadata`
+                  fields are string/string maps only).
             returned: on success
             type: dict
             sample: {}
@@ -525,8 +601,7 @@ instance:
                   instances so that they are not on the same physical hardware within a single availability domain.
                   A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
                   instances in other fault domains.
-                - If you do not specify the fault domain, the system selects one for you. To change the fault
-                  domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+                - If you do not specify the fault domain, the system selects one for you.
                 - "Example: `FAULT-DOMAIN-1`"
             returned: on success
             type: string
@@ -580,27 +655,27 @@ instance:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
                   * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
-                  * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+                  * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
             returned: on success
             type: string
             sample: NATIVE
         launch_options:
             description:
-                - ""
+                - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.
             returned: on success
             type: complex
             contains:
                 boot_volume_type:
                     description:
-                        - "Emulation type for volume.
-                          * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                          Storage volumes on Oracle provided images.
+                        - "Emulation type for the boot volume.
+                          * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                          volumes on Oracle provided images.
-                          * `PARAVIRTUALIZED` - Paravirtualized disk."
+                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          volumes on Oracle-provided images.
+                          * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                          storage volumes on Oracle-provided images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -610,7 +685,7 @@ instance:
                           * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
-                          default for Oracle provided images."
+                          default for Oracle-provided images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -620,26 +695,27 @@ instance:
                           * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
                           * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
-                          * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers."
+                          * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
                     returned: on success
                     type: string
                     sample: E1000
                 remote_data_volume_type:
                     description:
                         - "Emulation type for volume.
-                          * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-                          Storage volumes on Oracle provided images.
+                          * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
-                          volumes on Oracle provided images.
-                          * `PARAVIRTUALIZED` - Paravirtualized disk."
+                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          volumes on Oracle-provided images.
+                          * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                          storage volumes on Oracle-provided images."
                     returned: on success
                     type: string
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
-                        - Whether to enable in-transit encryption for the boot volume's paravirtualized attachment. The default value is false.
+                        - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -692,19 +768,19 @@ instance:
                     sample: 3.4
                 memory_in_gbs:
                     description:
-                        - The total amount of memory, in gigabytes, available to the instance.
+                        - The total amount of memory available to the instance, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
                 processor_description:
                     description:
-                        - A short description of the processors available to the instance.
+                        - A short description of the instance's processor (CPU).
                     returned: on success
                     type: string
                     sample: processor_description_example
                 networking_bandwidth_in_gbps:
                     description:
-                        - The networking bandwidth, in gigabits per second, available to the instance.
+                        - The networking bandwidth available to the instance, in gigabits per second.
                     returned: on success
                     type: float
                     sample: 3.4
@@ -716,14 +792,14 @@ instance:
                     sample: 56
                 gpus:
                     description:
-                        - The number of GPUs available to this instance.
+                        - The number of GPUs available to the instance.
                     returned: on success
                     type: int
                     sample: 56
                 gpu_description:
                     description:
-                        - A short description of the GPUs available to this instance.
-                          This field is `null` if `gpus` is `0`.
+                        - A short description of the instance's graphics processing unit (GPU).
+                        - If the instance does not have any GPUs, this field is `null`.
                     returned: on success
                     type: string
                     sample: gpu_description_example
@@ -735,15 +811,15 @@ instance:
                     sample: 56
                 local_disks_total_size_in_gbs:
                     description:
-                        - The size of the local disks, aggregated, in gigabytes.
-                          This field is `null` if `localDisks` is equal to `0`.
+                        - The aggregate size of all local disks, in gigabytes.
+                        - If the instance does not have any local disks, this field is `null`.
                     returned: on success
                     type: float
                     sample: 3.4
                 local_disk_description:
                     description:
                         - A short description of the local disks available to this instance.
-                          This field is `null` if `localDisks` is equal to `0`.
+                        - If the instance does not have any local disks, this field is `null`.
                     returned: on success
                     type: string
                     sample: local_disk_description_example
@@ -785,9 +861,16 @@ instance:
                     returned: on success
                     type: string
                     sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace.
+                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         time_created:
             description:
-                - The date and time the instance was created, in the format defined by RFC3339.
+                - The date and time the instance was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -812,7 +895,7 @@ instance:
                     sample: true
         time_maintenance_reboot_due:
             description:
-                - "The date and time the instance is expected to be stopped / started,  in the format defined by RFC3339.
+                - "The date and time the instance is expected to be stopped / started,  in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   After that time if instance hasn't been rebooted, Oracle will reboot the instance within 24 hours of the due time.
                   Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state.
                   Example: `2018-05-25T21:10:29.600Z`"
@@ -875,6 +958,7 @@ instance:
             "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "system_tags": {},
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
             "is_monitoring_disabled": true,
@@ -990,11 +1074,11 @@ class InstanceHelperGen(OCIResourceHelperBase):
                 instance_id=self.module.params.get("instance_id"),
                 update_instance_details=update_details,
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def delete_resource(self):
@@ -1051,6 +1135,25 @@ def main():
             hostname_label=dict(type="str"),
             image_id=dict(type="str"),
             ipxe_script=dict(type="str"),
+            launch_options=dict(
+                type="dict",
+                options=dict(
+                    boot_volume_type=dict(
+                        type="str",
+                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
+                    ),
+                    firmware=dict(type="str", choices=["BIOS", "UEFI_64"]),
+                    network_type=dict(
+                        type="str", choices=["E1000", "VFIO", "PARAVIRTUALIZED"]
+                    ),
+                    remote_data_volume_type=dict(
+                        type="str",
+                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
+                    ),
+                    is_pv_encryption_in_transit_enabled=dict(type="bool"),
+                    is_consistent_volume_naming_enabled=dict(type="bool"),
+                ),
+            ),
             metadata=dict(type="dict"),
             agent_config=dict(
                 type="dict",

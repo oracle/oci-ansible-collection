@@ -68,64 +68,64 @@ shapes:
             sample: shape_example
         processor_description:
             description:
-                - A short description of the processors available to an instance of this shape.
+                - A short description of the shape's processor (CPU).
             returned: on success
             type: string
             sample: processor_description_example
         ocpus:
             description:
-                - The default number of OCPUs available to an instance of this shape.
+                - The default number of OCPUs available for this shape.
             returned: on success
             type: float
             sample: 3.4
         memory_in_gbs:
             description:
-                - The default amount of memory, in gigabytes, available to an instance of this shape.
+                - The default amount of memory available for this shape, in gigabytes.
             returned: on success
             type: float
             sample: 3.4
         networking_bandwidth_in_gbps:
             description:
-                - The networking bandwidth, in gigabits per second, available to an instance of this shape.
+                - The networking bandwidth available for this shape, in gigabits per second.
             returned: on success
             type: float
             sample: 3.4
         max_vnic_attachments:
             description:
-                - The maximum number of VNIC attachments available to an instance of this shape.
+                - The maximum number of VNIC attachments available for this shape.
             returned: on success
             type: int
             sample: 56
         gpus:
             description:
-                - The number of GPUs available to an instance of this shape.
+                - The number of GPUs available for this shape.
             returned: on success
             type: int
             sample: 56
         gpu_description:
             description:
-                - A short description of the GPUs available to instances of this shape.
-                  This field is `null` if `gpus` is `0`.
+                - A short description of the graphics processing unit (GPU) available for this shape.
+                - If the shape does not have any GPUs, this field is `null`.
             returned: on success
             type: string
             sample: gpu_description_example
         local_disks:
             description:
-                - The number of local disks available to the instance.
+                - The number of local disks available for this shape.
             returned: on success
             type: int
             sample: 56
         local_disks_total_size_in_gbs:
             description:
-                - The size of the local disks, aggregated, in gigabytes.
-                  This field is `null` if `localDisks` is equal to `0`.
+                - The aggregate size of the local disks available for this shape, in gigabytes.
+                - If the shape does not have any local disks, this field is `null`.
             returned: on success
             type: float
             sample: 3.4
         local_disk_description:
             description:
-                - A short description of the local disks available to instances of this shape.
-                  This field is `null` if `localDisks` is equal to `0`.
+                - A short description of the local disks available for this shape.
+                - If the shape does not have any local disks, this field is `null`.
             returned: on success
             type: string
             sample: local_disk_description_example
@@ -167,8 +167,7 @@ shapes:
                     sample: 3.4
                 default_per_ocpu_in_g_bs:
                     description:
-                        - The default amount of memory, in gigabytes, per OCPU available to an instance
-                          of this shape.
+                        - The default amount of memory per OCPU available for this shape, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
@@ -192,8 +191,7 @@ shapes:
                     sample: 3.4
                 default_per_ocpu_in_gbps:
                     description:
-                        - The default amount of networking bandwidth, in gigabits per second,
-                          per OCPU.
+                        - The default amount of networking bandwidth per OCPU, in gigabits per second.
                     returned: on success
                     type: float
                     sample: 3.4

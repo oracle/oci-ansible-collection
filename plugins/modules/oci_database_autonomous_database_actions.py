@@ -24,12 +24,15 @@ short_description: Perform actions on an AutonomousDatabase resource in Oracle C
 description:
     - Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
+    - For I(action=fail_over), initiates a failover the specified Autonomous Database to a standby.
     - For I(action=generate_autonomous_database_wallet), creates and downloads a wallet for the specified Autonomous Database.
     - For I(action=register_autonomous_database_data_safe), asynchronously registers this Autonomous Database with Data Safe.
-    - For I(action=restart), restarts the specified Autonomous Database. Restart supported only for databases using dedicated Exadata infrastructure.
+    - For I(action=restart), restarts the specified Autonomous Database.
     - For I(action=restore), restores an Autonomous Database based on the provided request parameters.
     - For I(action=start), starts the specified Autonomous Database.
     - For I(action=stop), stops the specified Autonomous Database.
+    - For I(action=switchover), initiates a switchover of the specified Autonomous Database to the associated standby database. Applicable only to databases
+      with Autonomous Data Guard enabled.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -39,6 +42,13 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    pdb_admin_password:
+        description:
+            - "The admin password provided during the creation of the database. This password is between 12 and 30 characters long, and must contain at least 1
+              uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (\\") or the username \\"admin\\", regardless of
+              casing."
+            - Required for I(action=deregister_autonomous_database_data_safe), I(action=register_autonomous_database_data_safe).
+        type: str
     generate_type:
         description:
             - The type of wallet to generate. `SINGLE` is used to generate a wallet for a single database. `ALL` is used to generate wallet for all databases in
@@ -87,12 +97,14 @@ options:
         required: true
         choices:
             - "deregister_autonomous_database_data_safe"
+            - "fail_over"
             - "generate_autonomous_database_wallet"
             - "register_autonomous_database_data_safe"
             - "restart"
             - "restore"
             - "start"
             - "stop"
+            - "switchover"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -100,7 +112,13 @@ EXAMPLES = """
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
     autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    pdb_admin_password: pdb_admin_password_example
     action: deregister_autonomous_database_data_safe
+
+- name: Perform action fail_over on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: fail_over
 
 - name: Perform action generate_autonomous_database_wallet on autonomous_database
   oci_database_autonomous_database_actions:
@@ -111,6 +129,7 @@ EXAMPLES = """
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
     autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    pdb_admin_password: pdb_admin_password_example
     action: register_autonomous_database_data_safe
 
 - name: Perform action restart on autonomous_database
@@ -133,6 +152,11 @@ EXAMPLES = """
   oci_database_autonomous_database_actions:
     autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
     action: stop
+
+- name: Perform action switchover on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: switchover
 
 """
 
@@ -213,6 +237,12 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        infrastructure_type:
+            description:
+                - The infrastructure type this resource belongs to.
+            returned: on success
+            type: string
+            sample: CLOUD
         is_dedicated:
             description:
                 - True if the database uses L(dedicated Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
@@ -373,10 +403,17 @@ autonomous_database:
             sample: private_endpoint_example
         private_endpoint_label:
             description:
-                - The private endpoint label for the resource.
+                - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change
+                  the same private endpoint database to the public endpoint database.
             returned: on success
             type: string
             sample: private_endpoint_label_example
+        private_endpoint_ip:
+            description:
+                - The private endpoint Ip address for the resource.
+            returned: on success
+            type: string
+            sample: private_endpoint_ip_example
         db_version:
             description:
                 - A valid Oracle Database version for Autonomous Database.
@@ -393,7 +430,8 @@ autonomous_database:
             description:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
-                  - DW - indicates an Autonomous Data Warehouse database"
+                  - DW - indicates an Autonomous Data Warehouse database
+                  - AJD - indicates an Autonomous JSON Database"
             returned: on success
             type: string
             sample: OLTP
@@ -434,6 +472,55 @@ autonomous_database:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        time_of_last_switchover:
+            description:
+                - The timestamp of the last switchover operation for the Autonomous Database.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_last_failover:
+            description:
+                - The timestamp of the last failover operation.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        is_data_guard_enabled:
+            description:
+                - Indicates whether the Autonomous Database has Data Guard enabled.
+            returned: on success
+            type: bool
+            sample: true
+        failed_data_recovery_in_seconds:
+            description:
+                - Indicates the number of seconds of data loss for a Data Guard failover.
+            returned: on success
+            type: int
+            sample: 56
+        standby_db:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                lag_time_in_seconds:
+                    description:
+                        - The amount of time, in seconds, that the data of the standby database lags the data of the primary database. Can be used to determine
+                          the potential data loss in the event of a failover.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: PROVISIONING
+                lifecycle_details:
+                    description:
+                        - Additional information about the current lifecycle state.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_details_example
         available_upgrade_versions:
             description:
                 - List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
@@ -452,6 +539,7 @@ autonomous_database:
         "time_deletion_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
+        "infrastructure_type": "CLOUD",
         "is_dedicated": true,
         "autonomous_container_database_id": "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -477,6 +565,7 @@ autonomous_database:
         "nsg_ids": [],
         "private_endpoint": "private_endpoint_example",
         "private_endpoint_label": "private_endpoint_label_example",
+        "private_endpoint_ip": "private_endpoint_ip_example",
         "db_version": "db_version_example",
         "is_preview": true,
         "db_workload": "OLTP",
@@ -485,6 +574,15 @@ autonomous_database:
         "data_safe_status": "REGISTERING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
+        "time_of_last_switchover": "2013-10-20T19:20:30+01:00",
+        "time_of_last_failover": "2013-10-20T19:20:30+01:00",
+        "is_data_guard_enabled": true,
+        "failed_data_recovery_in_seconds": 56,
+        "standby_db": {
+            "lag_time_in_seconds": 56,
+            "lifecycle_state": "PROVISIONING",
+            "lifecycle_details": "lifecycle_details_example"
+        },
         "available_upgrade_versions": []
     }
 """
@@ -502,7 +600,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import DeregisterAutonomousDatabaseDataSafeDetails
     from oci.database.models import GenerateAutonomousDatabaseWalletDetails
+    from oci.database.models import RegisterAutonomousDatabaseDataSafeDetails
     from oci.database.models import RestoreAutonomousDatabaseDetails
 
     HAS_OCI_PY_SDK = True
@@ -514,12 +614,14 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         deregister_autonomous_database_data_safe
+        fail_over
         generate_autonomous_database_wallet
         register_autonomous_database_data_safe
         restart
         restore
         start
         stop
+        switchover
     """
 
     def __init__(self, *args, **kwargs):
@@ -545,8 +647,29 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
         )
 
     def deregister_autonomous_database_data_safe(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DeregisterAutonomousDatabaseDataSafeDetails
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.deregister_autonomous_database_data_safe,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                deregister_autonomous_database_data_safe_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def fail_over(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.fail_over_autonomous_database,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
@@ -585,11 +708,15 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
         )
 
     def register_autonomous_database_data_safe(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RegisterAutonomousDatabaseDataSafeDetails
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.register_autonomous_database_data_safe,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                register_autonomous_database_data_safe_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -673,6 +800,23 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def switchover(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.switchover_autonomous_database,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 AutonomousDatabaseActionsHelperCustom = get_custom_class(
     "AutonomousDatabaseActionsHelperCustom"
@@ -692,6 +836,7 @@ def main():
     module_args.update(
         dict(
             autonomous_database_id=dict(aliases=["id"], type="str", required=True),
+            pdb_admin_password=dict(type="str", no_log=True),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
             timestamp=dict(type="str"),
@@ -704,12 +849,14 @@ def main():
                 required=True,
                 choices=[
                     "deregister_autonomous_database_data_safe",
+                    "fail_over",
                     "generate_autonomous_database_wallet",
                     "register_autonomous_database_data_safe",
                     "restart",
                     "restore",
                     "start",
                     "stop",
+                    "switchover",
                 ],
             ),
         )

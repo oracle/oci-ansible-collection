@@ -59,6 +59,13 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    infrastructure_type:
+        description:
+            - A filter to return only resources that match the given Infrastructure Type.
+        type: str
+        choices:
+            - "CLOUD"
+            - "CLOUD_AT_CUSTOMER"
     lifecycle_state:
         description:
             - A filter to return only resources that match the given lifecycle state exactly.
@@ -80,6 +87,8 @@ options:
             - "UPDATING"
             - "MAINTENANCE_IN_PROGRESS"
             - "RESTARTING"
+            - "RECREATING"
+            - "ROLE_CHANGE_IN_PROGRESS"
             - "UPGRADING"
     db_workload:
         description:
@@ -88,6 +97,7 @@ options:
         choices:
             - "OLTP"
             - "DW"
+            - "AJD"
     db_version:
         description:
             - A filter to return only autonomous database resources that match the specified dbVersion.
@@ -102,6 +112,10 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
+    is_data_guard_enabled:
+        description:
+            - A filter to return only resources that have Data Guard enabled.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -193,6 +207,12 @@ autonomous_databases:
             returned: on success
             type: int
             sample: 56
+        infrastructure_type:
+            description:
+                - The infrastructure type this resource belongs to.
+            returned: on success
+            type: string
+            sample: CLOUD
         is_dedicated:
             description:
                 - True if the database uses L(dedicated Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
@@ -353,10 +373,17 @@ autonomous_databases:
             sample: private_endpoint_example
         private_endpoint_label:
             description:
-                - The private endpoint label for the resource.
+                - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change
+                  the same private endpoint database to the public endpoint database.
             returned: on success
             type: string
             sample: private_endpoint_label_example
+        private_endpoint_ip:
+            description:
+                - The private endpoint Ip address for the resource.
+            returned: on success
+            type: string
+            sample: private_endpoint_ip_example
         db_version:
             description:
                 - A valid Oracle Database version for Autonomous Database.
@@ -373,7 +400,8 @@ autonomous_databases:
             description:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
-                  - DW - indicates an Autonomous Data Warehouse database"
+                  - DW - indicates an Autonomous Data Warehouse database
+                  - AJD - indicates an Autonomous JSON Database"
             returned: on success
             type: string
             sample: OLTP
@@ -414,6 +442,55 @@ autonomous_databases:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        time_of_last_switchover:
+            description:
+                - The timestamp of the last switchover operation for the Autonomous Database.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_last_failover:
+            description:
+                - The timestamp of the last failover operation.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        is_data_guard_enabled:
+            description:
+                - Indicates whether the Autonomous Database has Data Guard enabled.
+            returned: on success
+            type: bool
+            sample: true
+        failed_data_recovery_in_seconds:
+            description:
+                - Indicates the number of seconds of data loss for a Data Guard failover.
+            returned: on success
+            type: int
+            sample: 56
+        standby_db:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                lag_time_in_seconds:
+                    description:
+                        - The amount of time, in seconds, that the data of the standby database lags the data of the primary database. Can be used to determine
+                          the potential data loss in the event of a failover.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: PROVISIONING
+                lifecycle_details:
+                    description:
+                        - Additional information about the current lifecycle state.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_details_example
         available_upgrade_versions:
             description:
                 - List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
@@ -432,6 +509,7 @@ autonomous_databases:
         "time_deletion_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
+        "infrastructure_type": "CLOUD",
         "is_dedicated": true,
         "autonomous_container_database_id": "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -457,6 +535,7 @@ autonomous_databases:
         "nsg_ids": [],
         "private_endpoint": "private_endpoint_example",
         "private_endpoint_label": "private_endpoint_label_example",
+        "private_endpoint_ip": "private_endpoint_ip_example",
         "db_version": "db_version_example",
         "is_preview": true,
         "db_workload": "OLTP",
@@ -465,6 +544,15 @@ autonomous_databases:
         "data_safe_status": "REGISTERING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
+        "time_of_last_switchover": "2013-10-20T19:20:30+01:00",
+        "time_of_last_failover": "2013-10-20T19:20:30+01:00",
+        "is_data_guard_enabled": true,
+        "failed_data_recovery_in_seconds": 56,
+        "standby_db": {
+            "lag_time_in_seconds": 56,
+            "lifecycle_state": "PROVISIONING",
+            "lifecycle_details": "lifecycle_details_example"
+        },
         "available_upgrade_versions": []
     }]
 """
@@ -508,11 +596,13 @@ class AutonomousDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
             "autonomous_container_database_id",
             "sort_by",
             "sort_order",
+            "infrastructure_type",
             "lifecycle_state",
             "db_workload",
             "db_version",
             "is_free_tier",
             "display_name",
+            "is_data_guard_enabled",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -546,6 +636,9 @@ def main():
             autonomous_container_database_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            infrastructure_type=dict(
+                type="str", choices=["CLOUD", "CLOUD_AT_CUSTOMER"]
+            ),
             lifecycle_state=dict(
                 type="str",
                 choices=[
@@ -565,13 +658,16 @@ def main():
                     "UPDATING",
                     "MAINTENANCE_IN_PROGRESS",
                     "RESTARTING",
+                    "RECREATING",
+                    "ROLE_CHANGE_IN_PROGRESS",
                     "UPGRADING",
                 ],
             ),
-            db_workload=dict(type="str", choices=["OLTP", "DW"]),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD"]),
             db_version=dict(type="str"),
             is_free_tier=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
+            is_data_guard_enabled=dict(type="bool"),
         )
     )
 

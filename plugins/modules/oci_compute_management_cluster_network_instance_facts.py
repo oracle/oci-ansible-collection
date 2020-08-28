@@ -107,7 +107,7 @@ cluster_network_instances:
             sample: display_name_example
         fault_domain:
             description:
-                - The name of the Fault Domain the instance is running in.
+                - The fault domain the instance is running in.
             returned: on success
             type: string
             sample: fault_domain_example
@@ -140,7 +140,7 @@ cluster_network_instances:
             sample: state_example
         time_created:
             description:
-                - "The date and time the instance pool instance was created, in the format defined by RFC3339.
+                - "The date and time the instance pool instance was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

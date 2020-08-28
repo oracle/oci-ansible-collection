@@ -80,20 +80,19 @@ ip_sec_connection_device_config:
                 ip_address:
                     description:
                         - The IP address of Oracle's VPN headend.
-                        - "Example: `129.146.17.50`"
+                        - "Example: `203.0.113.50 `"
                     returned: on success
                     type: string
-                    sample: 129.146.17.50
+                    sample: 203.0.113.50
                 shared_secret:
                     description:
                         - The shared secret of the IPSec tunnel.
-                        - "Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`"
                     returned: on success
                     type: string
-                    sample: EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o
+                    sample: shared_secret_example
                 time_created:
                     description:
-                        - The date and time the IPSec connection was created, in the format defined by RFC3339.
+                        - The date and time the IPSec connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: string
@@ -103,8 +102,8 @@ ip_sec_connection_device_config:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "tunnels": [{
-            "ip_address": "129.146.17.50",
-            "shared_secret": "EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o",
+            "ip_address": "203.0.113.50",
+            "shared_secret": "shared_secret_example",
             "time_created": "2016-08-25T21:10:29.600Z"
         }]
     }

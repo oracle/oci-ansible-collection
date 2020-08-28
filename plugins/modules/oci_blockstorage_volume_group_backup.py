@@ -182,13 +182,14 @@ volume_group_backup:
         time_created:
             description:
                 - The date and time the volume group backup was created. This is the time the actual point-in-time image
-                  of the volume group data was taken. Format defined by RFC3339.
+                  of the volume group data was taken. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         time_request_received:
             description:
-                - The date and time the request to create the volume group backup was received. Format defined by RFC3339.
+                - The date and time the request to create the volume group backup was received. Format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00

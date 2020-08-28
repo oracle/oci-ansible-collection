@@ -24,6 +24,7 @@ short_description: Fetches details about one or multiple InternetGateway resourc
 description:
     - Fetches details about one or multiple InternetGateway resources in Oracle Cloud Infrastructure
     - Lists the internet gateways in the specified VCN and the specified compartment.
+      If the VCN ID is not provided, then the list includes the internet gateways from all VCNs in the specified compartment.
     - If I(ig_id) is specified, the details of a single InternetGateway will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -42,7 +43,6 @@ options:
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required to list multiple internet_gateways.
         type: str
     display_name:
         description:
@@ -86,7 +86,6 @@ EXAMPLES = """
 - name: List internet_gateways
   oci_network_internet_gateway_facts:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Get a specific internet_gateway
   oci_network_internet_gateway_facts:
@@ -152,7 +151,7 @@ internet_gateways:
             sample: PROVISIONING
         time_created:
             description:
-                - The date and time the internet gateway was created, in the format defined by RFC3339.
+                - The date and time the internet gateway was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -202,7 +201,6 @@ class InternetGatewayFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "vcn_id",
         ]
 
     def get_resource(self):
@@ -212,6 +210,7 @@ class InternetGatewayFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "vcn_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -225,7 +224,6 @@ class InternetGatewayFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_internet_gateways,
             compartment_id=self.module.params.get("compartment_id"),
-            vcn_id=self.module.params.get("vcn_id"),
             **optional_kwargs
         )
 

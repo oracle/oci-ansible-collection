@@ -77,7 +77,7 @@ app_catalog_listing_resource_versions:
             sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
         time_published:
             description:
-                - "Date and time the listing resource version was published, in RFC3339 format.
+                - "Date and time the listing resource version was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
             type: string
