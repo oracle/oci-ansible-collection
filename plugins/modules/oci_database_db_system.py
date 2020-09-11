@@ -91,6 +91,7 @@ options:
               see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
               **NsgIds restrictions:**
               - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            - This parameter is updatable.
         type: list
     backup_network_nsg_ids:
         description:
@@ -98,6 +99,7 @@ options:
               backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
               information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
               DB systems.
+            - This parameter is updatable.
         type: list
     shape:
         description:
@@ -107,6 +109,7 @@ options:
             - To get a list of shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     time_zone:
         description:
@@ -137,6 +140,7 @@ options:
             - The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined
               keys cannot exceed 40,000 characters.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     hostname:
         description:
@@ -170,6 +174,7 @@ options:
               For information about the number of cores for a virtual machine DB system shape, see L(Virtual Machine DB
               Systems,https://docs.cloud.oracle.com/Content/Database/Concepts/overview.htm#virtualmachine)
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     cluster_name:
         description:
@@ -187,6 +192,7 @@ options:
             - Size (in GB) of the initial data volume that will be created and attached to a virtual machine DB system. You can scale up storage after
               provisioning, as needed. Note that the total storage size attached will be more than the amount you specify to allow for REDO/RECO space and
               software volume.
+            - This parameter is updatable.
         type: int
         aliases: ["initial_data_storage_size_in_gb"]
     node_count:
@@ -198,11 +204,13 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     source:
         description:
@@ -333,6 +341,45 @@ options:
                                     - "SLOT_TEN"
                                     - "SLOT_ELEVEN"
                                     - "SLOT_TWELVE"
+                            backup_destination_details:
+                                description:
+                                    - Backup destination details.
+                                    - Applicable when source is 'NONE'
+                                type: list
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the database backup destination.
+                                            - Required when source is 'NONE'
+                                        type: str
+                                        choices:
+                                            - "NFS"
+                                            - "RECOVERY_APPLIANCE"
+                                            - "OBJECT_STORE"
+                                            - "LOCAL"
+                                        required: true
+                                    id:
+                                        description:
+                                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                                            - Applicable when source is 'NONE'
+                                        type: str
+                                    vpc_user:
+                                        description:
+                                            - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the
+                                              Recovery Appliance.
+                                            - Applicable when source is 'NONE'
+                                        type: str
+                                    vpc_password:
+                                        description:
+                                            - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery
+                                              Appliance.
+                                            - Applicable when source is 'NONE'
+                                        type: str
+                                    internet_proxy:
+                                        description:
+                                            - Proxy URL to connect to object store.
+                                            - Applicable when source is 'NONE'
+                                        type: str
                     freeform_tags:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -384,6 +431,7 @@ options:
     license_model:
         description:
             - The Oracle license model that applies to all the databases on the DB system. The default is LICENSE_INCLUDED.
+            - This parameter is updatable.
         type: str
         choices:
             - "LICENSE_INCLUDED"
@@ -391,6 +439,7 @@ options:
     maintenance_window_details:
         description:
             - ""
+            - This parameter is updatable.
             - Applicable when source is 'NONE'
         type: dict
         suboptions:
@@ -480,15 +529,18 @@ options:
     version:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             patch_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
+                    - This parameter is updatable.
                 type: str
             action:
                 description:
                     - The action to perform on the patch.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "APPLY"
@@ -517,6 +569,11 @@ EXAMPLES = """
         admin_password: password
         db_name: myTestDb
         db_backup_config:
+          backup_destination_details:
+          - type: RECOVERY_APPLIANCE
+            id: ocid1.bkupdest.oc1.phx.ckiuzhel9ro23wokzhllxfuo8acbzcygqo5kcbhqbhcjoknfuzlh2t8xcttl
+            vpc_user: vpcUser1
+            vpc_password: password
           recovery_window_in_days: 30
           auto_backup_enabled: true
       db_version: 12.1.0.2
@@ -1238,6 +1295,26 @@ def main():
                                             "SLOT_ELEVEN",
                                             "SLOT_TWELVE",
                                         ],
+                                    ),
+                                    backup_destination_details=dict(
+                                        type="list",
+                                        elements="dict",
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "NFS",
+                                                    "RECOVERY_APPLIANCE",
+                                                    "OBJECT_STORE",
+                                                    "LOCAL",
+                                                ],
+                                            ),
+                                            id=dict(type="str"),
+                                            vpc_user=dict(type="str"),
+                                            vpc_password=dict(type="str", no_log=True),
+                                            internet_proxy=dict(type="str"),
+                                        ),
                                     ),
                                 ),
                             ),

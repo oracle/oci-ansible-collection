@@ -41,20 +41,24 @@ options:
             key:
                 description:
                     - The unique key for the bot.
+                    - This parameter is updatable.
                 type: str
                 required: true
             name:
                 description:
                     - The bot name.
+                    - This parameter is updatable.
                 type: str
             is_enabled:
                 description:
                     - Enables or disables the bot.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             description:
                 description:
                     - The description of the bot.
+                    - This parameter is updatable.
                 type: str
     state:
         description:

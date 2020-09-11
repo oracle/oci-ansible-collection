@@ -392,12 +392,54 @@ class AutonomousContainerDatabaseHelperCustom:
     # the quarterly maintenance window. However object `UpdateAutonomousContainerDatabase` represents it with different
     # name 'maintenance_window_details'.
     def is_update_necessary(self, existing_resource_dict):
+        resource_dict = dict(existing_resource_dict)
+        resource_dict["maintenance_window_details"] = resource_dict.pop(
+            "maintenance_window", None
+        )
+        return super(AutonomousContainerDatabaseHelperCustom, self).is_update_necessary(
+            resource_dict
+        )
+
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        existing_resource_dict = super(
+            AutonomousContainerDatabaseHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+
         existing_resource_dict[
             "maintenance_window_details"
         ] = existing_resource_dict.pop("maintenance_window", None)
-        return super(AutonomousContainerDatabaseHelperCustom, self).is_update_necessary(
-            existing_resource_dict
-        )
+        return existing_resource_dict
+
+    def list_resources(self):
+        # Method `ListAutonomousContainerDatabases` has filer `infrastructureType` which returns resources that
+        # match the given Infrastructure Type. If not passed API sets its value to `CLOUD`. In order to return ExaCC
+        # resources it's necessary to pass `infrastructureType` = `CLOUD_AT_CUSTOMER` and `infrastructureType` = `CLOUD`
+        # for non ExaCC resources.
+        if not (
+            self.module.params.get("autonomous_exadata_infrastructure_id")
+            and self.module.params.get("autonomous_vm_cluster_id")
+        ):
+            optional_kwargs = super(
+                AutonomousContainerDatabaseHelperCustom, self
+            ).get_optional_kwargs_for_list()
+            required_kwargs = super(
+                AutonomousContainerDatabaseHelperCustom, self
+            ).get_required_kwargs_for_list()
+            kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+
+            autonomous_container_database_at_cloud = oci_common_utils.list_all_resources(
+                self.client.list_autonomous_container_databases, **kwargs
+            )
+
+            kwargs["infrastructure_type"] = "CLOUD_AT_CUSTOMER"
+            autonomous_container_database_cloud_at_customer = oci_common_utils.list_all_resources(
+                self.client.list_autonomous_container_databases, **kwargs
+            )
+            return (
+                autonomous_container_database_at_cloud
+                + autonomous_container_database_cloud_at_customer
+            )
+        return super(AutonomousContainerDatabaseHelperCustom, self).list_resources()
 
 
 class VmClusterNetworkHelperCustom:
@@ -544,3 +586,50 @@ class AutonomousVmClusterHelperCustom:
             operation_response=operation_response,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         ).wait()
+
+
+class BackupDestinationHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(BackupDestinationHelperCustom, self).__init__(*args, **kwargs)
+        self.delete_vpc_users_from_update_model_dict = False
+
+    # resource returned from server doesn't have an attribute `mount_type_details` Thus we add this attribute in
+    # existing resource dict by using values returned for parameters `nfs_mount_type` , `local_mount_point_path`,
+    # `nfs_server` & `nfs_server_export`.
+    def get_existing_resource_dict_for_idempotence_check(self, resource):
+        resource_dict = super(
+            BackupDestinationHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(resource)
+        resource_dict["mount_type_details"] = {
+            "mount_type": resource_dict.get("nfs_mount_type", None),
+            "local_mount_point_path": resource_dict.get("local_mount_point_path", None),
+            "nfs_server": resource_dict.get("nfs_server", None),
+            "nfs_server_export": resource_dict.get("nfs_server_export", None),
+        }
+        return resource_dict
+
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            BackupDestinationHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        if "vpc_users" in update_model_dict:
+            del update_model_dict["vpc_users"]
+        return update_model_dict
+
+    def is_update_necessary(self, existing_resource_dict):
+        vpc_users_source_list = self.module.params.get("vpc_users")
+        vpc_users_target_list = existing_resource_dict["vpc_users"]
+
+        if vpc_users_source_list is not None and not all(
+            [
+                oci_common_utils.is_in_list(
+                    vpc_users_target_list, element, ignore_attr_if_not_in_target=False,
+                )
+                for element in vpc_users_source_list
+            ]
+        ):
+            return True
+
+        return super(BackupDestinationHelperCustom, self).is_update_necessary(
+            existing_resource_dict
+        )

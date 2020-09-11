@@ -130,6 +130,15 @@ vnic_attachments:
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        vlan_id:
+            description:
+                - The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead
+                  of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer.
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                - An error is returned if the instance already has a VNIC attached to it from this VLAN.
+            returned: on success
+            type: string
+            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
                 - The date and time the VNIC attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -141,6 +150,9 @@ vnic_attachments:
             description:
                 - The Oracle-assigned VLAN tag of the attached VNIC. Available after the
                   attachment process is complete.
+                - However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
+                  the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN.
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 - "Example: `0`"
             returned: on success
             type: int
@@ -160,6 +172,7 @@ vnic_attachments:
         "lifecycle_state": "ATTACHING",
         "nic_index": 56,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vlan_tag": 0,
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"

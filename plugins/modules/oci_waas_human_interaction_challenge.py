@@ -40,6 +40,7 @@ options:
     action:
         description:
             - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
+            - This parameter is updatable.
         type: str
         choices:
             - "DETECT"
@@ -47,47 +48,57 @@ options:
     failure_threshold:
         description:
             - The number of failed requests before taking action. If unspecified, defaults to `10`.
+            - This parameter is updatable.
         type: int
     action_expiration_in_seconds:
         description:
             - The number of seconds between challenges for the same IP address. If unspecified, defaults to `60`.
+            - This parameter is updatable.
         type: int
     failure_threshold_expiration_in_seconds:
         description:
             - The number of seconds before the failure threshold resets. If unspecified, defaults to  `60`.
+            - This parameter is updatable.
         type: int
     interaction_threshold:
         description:
             - The number of interactions required to pass the challenge. If unspecified, defaults to `3`.
+            - This parameter is updatable.
         type: int
     recording_period_in_seconds:
         description:
             - The number of seconds to record the interactions from the user. If unspecified, defaults to `15`.
+            - This parameter is updatable.
         type: int
     set_http_header:
         description:
             - Adds an additional HTTP header to requests that fail the challenge before being passed to the origin. Only applicable when the `action` is set to
               `DETECT`.
+            - This parameter is updatable.
         type: dict
         suboptions:
             name:
                 description:
                     - The name of the header.
+                    - This parameter is updatable.
                 type: str
                 required: true
             value:
                 description:
                     - The value of the header.
+                    - This parameter is updatable.
                 type: str
                 required: true
     challenge_settings:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             block_action:
                 description:
                     - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to `SHOW_ERROR_PAGE`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "SET_RESPONSE_CODE"
@@ -99,47 +110,56 @@ options:
                       the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`,
                       `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`,
                       `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                    - This parameter is updatable.
                 type: int
             block_error_page_message:
                 description:
                     - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is
                       blocked. If unspecified, defaults to `Access to the website is blocked`.
+                    - This parameter is updatable.
                 type: str
             block_error_page_description:
                 description:
                     - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request
                       is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
+                    - This parameter is updatable.
                 type: str
             block_error_page_code:
                 description:
                     - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the request is
                       blocked. If unspecified, defaults to `403`.
+                    - This parameter is updatable.
                 type: str
             captcha_title:
                 description:
                     - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request
                       is blocked. If unspecified, defaults to `Are you human?`
+                    - This parameter is updatable.
                 type: str
             captcha_header:
                 description:
                     - The text to show in the header when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`,
                       and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to access this webapp. To help
                       us keep this webapp secure, please let us know that you are not a robot by entering the text from captcha below.`
+                    - This parameter is updatable.
                 type: str
             captcha_footer:
                 description:
                     - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`,
                       and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image above`.
+                    - This parameter is updatable.
                 type: str
             captcha_submit_label:
                 description:
                     - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                       `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
+                    - This parameter is updatable.
                 type: str
     is_nat_enabled:
         description:
             - When enabled, the user is identified not only by the IP address but also by an unique additional hash, which prevents blocking visitors with
               shared IP addresses.
+            - This parameter is updatable.
         type: bool
     state:
         description:

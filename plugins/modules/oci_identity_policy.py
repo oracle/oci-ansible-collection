@@ -59,29 +59,34 @@ options:
               L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm) and
               L(Common Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm).
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     description:
         description:
             - The description you assign to the policy during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     version_date:
         description:
             - The version of the policy. If null or set to an empty string, when a request comes in for authorization, the
               policy will be evaluated according to the current behavior of the services at that moment. If set to a particular
               date (YYYY-MM-DD), the policy will be evaluated according to the behavior of the services on that date.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     policy_id:
         description:

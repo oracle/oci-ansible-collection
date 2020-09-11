@@ -40,16 +40,19 @@ options:
     tunnel_cpe_device_config:
         description:
             - The set of configuration answers for a CPE device.
+            - This parameter is updatable.
         type: list
         suboptions:
             key:
                 description:
                     - A string that identifies the question to be answered. See the `key` attribute in
                       L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
+                    - This parameter is updatable.
                 type: str
             value:
                 description:
                     - The answer to the question.
+                    - This parameter is updatable.
                 type: str
     state:
         description:

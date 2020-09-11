@@ -33,6 +33,7 @@ options:
             - Integration Instance Identifier.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     compartment_id:
@@ -46,6 +47,7 @@ options:
         description:
             - Standard or Enterprise type
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "STANDARD"
@@ -55,17 +57,20 @@ options:
             - "Simple key-value pair that is applied without any predefined name,
               type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to
               namespaces.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     is_byol:
         description:
             - Bring your own license.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: bool
     idcs_at:
         description:
@@ -75,10 +80,12 @@ options:
         description:
             - The number of configured message packs
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     is_file_server_enabled:
         description:
             - The file server is enabled or not.
+            - This parameter is updatable.
         type: bool
     integration_instance_id:
         description:

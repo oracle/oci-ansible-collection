@@ -32,12 +32,14 @@ options:
         description:
             - The name of the IdP group you want to map.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     group_id:
         description:
             - The OCID of the IAM Service L(group,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Group/)
               you want to map to the IdP group.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     identity_provider_id:
         description:

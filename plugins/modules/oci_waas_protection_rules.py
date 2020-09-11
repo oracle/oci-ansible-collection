@@ -41,11 +41,13 @@ options:
             key:
                 description:
                     - The unique key of the protection rule.
+                    - This parameter is updatable.
                 type: str
                 required: true
             action:
                 description:
                     - The action to apply to the protection rule. If unspecified, defaults to `OFF`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "OFF"
@@ -61,6 +63,7 @@ options:
                     target:
                         description:
                             - The target of the exclusion.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "REQUEST_COOKIES"
@@ -70,6 +73,7 @@ options:
                     exclusions:
                         description:
                             - ""
+                            - This parameter is updatable.
                         type: list
     state:
         description:

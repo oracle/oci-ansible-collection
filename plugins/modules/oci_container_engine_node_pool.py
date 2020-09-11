@@ -44,11 +44,13 @@ options:
             - The name of the node pool. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     kubernetes_version:
         description:
             - The version of Kubernetes to install on the nodes in the node pool.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     node_metadata:
         description:
@@ -86,6 +88,7 @@ options:
     initial_node_labels:
         description:
             - A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
+            - This parameter is updatable.
         type: list
         suboptions:
             key:
@@ -104,22 +107,26 @@ options:
         description:
             - Optional, default to 1. The number of nodes to create in each subnet specified in subnetIds property.
               When used, subnetIds is required. This property is deprecated, use nodeConfigDetails instead.
+            - This parameter is updatable.
         type: int
     subnet_ids:
         description:
             - The OCIDs of the subnets in which to place nodes for this node pool. When used, quantityPerSubnet
               can be provided. This property is deprecated, use nodeConfigDetails. Exactly one of the
               subnetIds or nodeConfigDetails properties must be specified.
+            - This parameter is updatable.
         type: list
     node_config_details:
         description:
             - The configuration of nodes in the node pool. Exactly one of the
               subnetIds or nodeConfigDetails properties must be specified.
+            - This parameter is updatable.
         type: dict
         suboptions:
             size:
                 description:
                     - The number of nodes that should be in the node pool.
+                    - This parameter is updatable.
                 type: int
             placement_configs:
                 description:

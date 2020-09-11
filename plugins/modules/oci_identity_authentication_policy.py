@@ -34,33 +34,51 @@ options:
         required: true
     password_policy:
         description:
-            - Password policy.
+            - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             minimum_password_length:
                 description:
                     - Minimum password length required.
+                    - This parameter is updatable.
                 type: int
             is_uppercase_characters_required:
                 description:
                     - At least one uppercase character required.
+                    - This parameter is updatable.
                 type: bool
             is_lowercase_characters_required:
                 description:
                     - At least one lower case character required.
+                    - This parameter is updatable.
                 type: bool
             is_numeric_characters_required:
                 description:
                     - At least one numeric character required.
+                    - This parameter is updatable.
                 type: bool
             is_special_characters_required:
                 description:
                     - At least one special character required.
+                    - This parameter is updatable.
                 type: bool
             is_username_containment_allowed:
                 description:
                     - User name is allowed to be part of the password.
+                    - This parameter is updatable.
                 type: bool
+    network_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            network_source_ids:
+                description:
+                    - Network Source ids
+                    - This parameter is updatable.
+                type: list
     state:
         description:
             - The state of the AuthenticationPolicy.
@@ -88,7 +106,7 @@ authentication_policy:
     contains:
         password_policy:
             description:
-                - Password policy.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -134,6 +152,18 @@ authentication_policy:
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        network_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_source_ids:
+                    description:
+                        - Network Source ids
+                    returned: on success
+                    type: list
+                    sample: []
     sample: {
         "password_policy": {
             "minimum_password_length": 56,
@@ -143,7 +173,10 @@ authentication_policy:
             "is_special_characters_required": true,
             "is_username_containment_allowed": true
         },
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_policy": {
+            "network_source_ids": []
+        }
     }
 """
 
@@ -228,6 +261,9 @@ def main():
                     is_special_characters_required=dict(type="bool"),
                     is_username_containment_allowed=dict(type="bool"),
                 ),
+            ),
+            network_policy=dict(
+                type="dict", options=dict(network_source_ids=dict(type="list"))
             ),
             state=dict(type="str", default="present", choices=["present"]),
         )

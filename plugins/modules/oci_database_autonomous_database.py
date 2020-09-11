@@ -41,11 +41,13 @@ options:
             - The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters
               are not permitted. The database name must be unique in the tenancy.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     cpu_core_count:
         description:
             - The number of OCPU cores to be made available to the database.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     db_workload:
         description:
@@ -53,6 +55,7 @@ options:
             - "- OLTP - indicates an Autonomous Transaction Processing database
               - DW - indicates an Autonomous Data Warehouse database
               - AJD - indicates an Autonomous JSON Database"
+            - This parameter is updatable.
         type: str
         choices:
             - "OLTP"
@@ -62,22 +65,26 @@ options:
         description:
             - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     is_free_tier:
         description:
             - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
               memory. For Always Free databases, memory and CPU cannot be scaled.
+            - This parameter is updatable.
         type: bool
     admin_password:
         description:
             - "The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot
               contain the double quote symbol (\\") or the username \\"admin\\", regardless of casing."
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     display_name:
         description:
             - The user-friendly name for the Autonomous Database. The name does not have to be unique.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     license_model:
@@ -88,6 +95,7 @@ options:
               Autonomous Exadata Infrastructure level. When using L(shared Exadata
               infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply
               the value of `BRING_YOUR_OWN_LICENSE`.
+            - This parameter is updatable.
         type: str
         choices:
             - "LICENSE_INCLUDED"
@@ -102,6 +110,7 @@ options:
         description:
             - Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is `FALSE`. Note that auto scaling is
               available for databases on L(shared Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
+            - This parameter is updatable.
         type: bool
     is_dedicated:
         description:
@@ -120,10 +129,12 @@ options:
               To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
               Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3
               e5xeo6j6o62jga44xjizkw;1.1.1.1\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16\\"]`"
+            - This parameter is updatable.
         type: list
     is_data_guard_enabled:
         description:
             - Indicates whether the Autonomous Database has Data Guard enabled.
+            - This parameter is updatable.
         type: bool
     subnet_id:
         description:
@@ -135,6 +146,7 @@ options:
             - These subnets are used by the Oracle Clusterware private interconnect on the database instance.
               Specifying an overlapping subnet will cause the private interconnect to malfunction.
               This restriction applies to both the client subnet and the backup subnet.
+            - This parameter is updatable.
         type: str
     nsg_ids:
         description:
@@ -143,26 +155,31 @@ options:
               see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
               **NsgIds restrictions:**
               - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            - This parameter is updatable.
         type: list
     private_endpoint_label:
         description:
             - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the
               same private endpoint database to the public endpoint database.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     db_version:
         description:
             - A valid Oracle Database version for Autonomous Database.
+            - This parameter is updatable.
         type: str
     source:
         description:

@@ -36,42 +36,61 @@ options:
         type: str
     target_compartment_id:
         description:
-            - The OCID of the compartment on which budget is applied
-            - Required for create using I(state=present).
+            - This is DEPRECTAED. Set the target compartment id in targets instead.
         type: str
     display_name:
         description:
             - The displayName of the budget.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - The description of the budget.
+            - This parameter is updatable.
         type: str
     amount:
         description:
             - The amount of the budget expressed as a whole number in the currency of the customer's rate card.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: float
     reset_period:
         description:
             - The reset period for the budget.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "MONTHLY"
+    target_type:
+        description:
+            - The type of target on which the budget is applied.
+        type: str
+        choices:
+            - "COMPARTMENT"
+            - "TAG"
+    targets:
+        description:
+            - "The list of targets on which the budget is applied.
+                If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
+                If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\".
+              Curerntly, the array should contain EXACT ONE item."
+        type: list
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     budget_id:
         description:
@@ -95,18 +114,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create budget
   oci_budget:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    target_compartment_id: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
-    amount: 10
-    reset_period: MONTHLY
+    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    target_type: COMPARTMENT
+    targets:
+    - ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    amount: 100.00
+    reset_period: Monthly
 
 - name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
     display_name: display_name_example
     description: description_example
-    amount: 10
-    reset_period: MONTHLY
+    amount: 100.00
+    reset_period: Monthly
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -123,7 +144,7 @@ EXAMPLES = """
 
 - name: Delete budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
     display_name: display_name_example
     state: absent
 
@@ -150,7 +171,9 @@ budget:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         target_compartment_id:
             description:
-                - The OCID of the compartment on which budget is applied
+                - "This is DEPRECATED. For backwards compatability, the property will be populated when
+                  targetType is \\"COMPARTMENT\\" AND targets contains EXACT ONE target compartment ocid.
+                  For all other scenarios, this property will be left empty."
             returned: on success
             type: string
             sample: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -178,6 +201,20 @@ budget:
             returned: on success
             type: string
             sample: MONTHLY
+        target_type:
+            description:
+                - The type of target on which the budget is applied.
+            returned: on success
+            type: string
+            sample: COMPARTMENT
+        targets:
+            description:
+                - "The list of targets on which the budget is applied.
+                    If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
+                    If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\"."
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The current state of the budget.
@@ -250,6 +287,8 @@ budget:
         "description": "description_example",
         "amount": 10,
         "reset_period": "MONTHLY",
+        "target_type": "COMPARTMENT",
+        "targets": [],
         "lifecycle_state": "ACTIVE",
         "alert_rule_count": 56,
         "version": 56,
@@ -310,7 +349,7 @@ class BudgetHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["display_name", "target_type"]
 
         return dict(
             (param, self.module.params[param])
@@ -399,6 +438,8 @@ def main():
             description=dict(type="str"),
             amount=dict(type="float"),
             reset_period=dict(type="str", choices=["MONTHLY"]),
+            target_type=dict(type="str", choices=["COMPARTMENT", "TAG"]),
+            targets=dict(type="list"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             budget_id=dict(aliases=["id"], type="str"),

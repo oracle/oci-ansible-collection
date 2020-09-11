@@ -53,63 +53,75 @@ options:
             - The time zone of the Exadata infrastructure. For details, see L(Exadata Infrastructure Time
               Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     cloud_control_plane_server1:
         description:
             - The IP address for the first control plane server.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     cloud_control_plane_server2:
         description:
             - The IP address for the second control plane server.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     netmask:
         description:
             - The netmask for the control plane network.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     gateway:
         description:
             - The gateway for the control plane network.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     admin_network_cidr:
         description:
             - The CIDR block for the Exadata administration network.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     infini_band_network_cidr:
         description:
             - The CIDR block for the Exadata InfiniBand interconnect.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     corporate_proxy:
         description:
             - The corporate network proxy for access to the control plane network. Oracle recommends using an HTTPS proxy when possible
               for enhanced security.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     dns_server:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     ntp_server:
         description:
             - The list of NTP server IP addresses. Maximum of 3 allowed.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     exadata_infrastructure_id:
         description:

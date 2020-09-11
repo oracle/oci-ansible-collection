@@ -52,6 +52,7 @@ options:
               Does not have to be unique and can be changed.
               Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     steering_policy_attachment_id:
@@ -68,6 +69,7 @@ options:
               earlier than or equal to the date provided in the field-value.  This
               field accomplishes the same purpose as If-Match for cases where the user
               agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:

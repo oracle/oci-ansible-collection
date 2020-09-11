@@ -75,12 +75,14 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
               L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     subscription_id:
         description:
@@ -92,6 +94,7 @@ options:
     delivery_policy:
         description:
             - The delivery policy of the subscription. Stored as a JSON string.
+            - This parameter is updatable.
         type: dict
         suboptions:
             backoff_retry_policy:
@@ -102,11 +105,13 @@ options:
                     max_retry_duration:
                         description:
                             - The maximum retry duration in milliseconds. Default value is `7200000` (2 hours).
+                            - This parameter is updatable.
                         type: int
                         required: true
                     policy_type:
                         description:
                             - The type of delivery policy.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "EXPONENTIAL"

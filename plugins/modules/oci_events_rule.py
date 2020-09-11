@@ -33,18 +33,21 @@ options:
               confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - A string that describes the details of the rule. It does not have to be unique, and you can change it. Avoid entering
               confidential information.
+            - This parameter is updatable.
         type: str
     is_enabled:
         description:
             - Whether or not this rule is currently enabled.
             - "Example: `true`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: bool
     condition:
         description:
@@ -67,6 +70,7 @@ options:
               L(Matching Events with Filters,https://docs.cloud.oracle.com/iaas/Content/Events/Concepts/filterevents.htm)
             - "Example: `\\\\\\"eventType\\\\\\": \\\\\\"com.oraclecloud.databaseservice.autonomous.database.backup.end\\\\\\"`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -79,6 +83,7 @@ options:
         description:
             - ""
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: dict
         suboptions:
             actions:
@@ -134,12 +139,14 @@ options:
               only.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     rule_id:
         description:

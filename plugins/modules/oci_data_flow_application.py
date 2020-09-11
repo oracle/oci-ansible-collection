@@ -31,6 +31,7 @@ options:
         description:
             - An Oracle Cloud Infrastructure URI of an archive (zip) file that may used to support the execution of the application.
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+            - This parameter is updatable.
         type: str
     arguments:
         description:
@@ -42,10 +43,12 @@ options:
               Example:  `[ \\"--input\\", \\"${input_file}\\", \\"--name\\", \\"John Doe\\" ]`
               If \\"input_file\\" has a value of \\"mydata.xml\\", then the value above will be translated to
               `--input mydata.xml --name \\"John Doe\\"`"
+            - This parameter is updatable.
         type: list
     class_name:
         description:
             - The class for the application.
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -61,50 +64,59 @@ options:
               Example: { \\"spark.app.name\\" : \\"My App Name\\", \\"spark.shuffle.io.maxRetries\\" : \\"4\\" }
               Note: Not all Spark properties are permitted to be set.  Attempting to set a property that is
               not allowed to be overwritten will cause a 400 status to be returned."
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     description:
         description:
             - A user-friendly description. Avoid entering confidential information.
+            - This parameter is updatable.
         type: str
     display_name:
         description:
             - A user-friendly name. It does not have to be unique. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     driver_shape:
         description:
             - The VM shape for the driver. Sets the driver cores and memory.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     executor_shape:
         description:
             - The VM shape for the executors. Sets the executor cores and memory.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     file_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     language:
         description:
             - The Spark language.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "SCALA"
@@ -115,11 +127,13 @@ options:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+            - This parameter is updatable.
         type: str
     num_executors:
         description:
             - The number of executor VMs requested.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     parameters:
         description:
@@ -128,6 +142,7 @@ options:
               (a-z, A-Z, 0-9, _).  The value can be a string of 0 or more characters of any kind.
               Example:  [ { name: \\"iterations\\", value: \\"10\\"}, { name: \\"input_file\\", value: \\"mydata.xml\\" }, { name: \\"variable_x\\", value:
               \\"${x}\\"} ]"
+            - This parameter is updatable.
         type: list
         suboptions:
             name:
@@ -147,12 +162,14 @@ options:
         description:
             - The Spark version utilized to run the application.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     warehouse_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
               for BATCH SQL runs.
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+            - This parameter is updatable.
         type: str
     application_id:
         description:

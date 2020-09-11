@@ -37,11 +37,13 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
+            - This parameter is updatable.
         type: str
         aliases: ["name"]
     freeform_tags:
@@ -50,6 +52,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     hostname_label:
         description:
@@ -65,21 +68,31 @@ options:
               L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
             - For more information, see
               L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+            - This parameter is updatable.
         type: str
     nsg_ids:
         description:
             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. Setting this as
               an empty array removes the VNIC from all network security groups.
+            - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
+              belonging to a subnet), the value of the `nsgIds` attribute is ignored. Instead, the
+              VNIC belongs to the NSGs that are associated with the VLAN itself. See L(Vlan,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/20160918/Vlan).
             - For more information about NSGs, see
               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+            - This parameter is updatable.
         type: list
     skip_source_dest_check:
         description:
-            - "Whether the source/destination check is disabled on the VNIC.
+            - Whether the source/destination check is disabled on the VNIC.
               Defaults to `false`, which means the check is performed. For information about why you would
               skip the source/destination check, see
               L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+            - "If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
+              belonging to a subnet), the value of the `skipSourceDestCheck` attribute is ignored.
+              This is because the source/destination check is always disabled for VNICs in a VLAN.
               Example: `true`"
+            - This parameter is updatable.
         type: bool
     state:
         description:
@@ -180,6 +193,9 @@ vnic:
         mac_address:
             description:
                 - The MAC address of the VNIC.
+                - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
+                  the MAC address is learned. If the VNIC belongs to a subnet, the
+                  MAC address is a static, Oracle-provided value.
                 - "Example: `00:00:00:00:00:01`"
             returned: on success
             type: string
@@ -187,11 +203,23 @@ vnic:
         nsg_ids:
             description:
                 - A list of the OCIDs of the network security groups that the VNIC belongs to.
+                - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
+                  belonging to a subnet), the value of the `nsgIds` attribute is ignored. Instead, the
+                  VNIC belongs to the NSGs that are associated with the VLAN itself. See L(Vlan,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/20160918/Vlan).
                 - For more information about NSGs, see
                   L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
             returned: on success
             type: list
             sample: []
+        vlan_id:
+            description:
+                - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
+                  belonging to a subnet), the `vlanId` is the OCID of the VLAN the VNIC is in. See
+                  L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan). If the VNIC is instead in a subnet, `subnetId` has a value.
+            returned: on success
+            type: string
+            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
         private_ip:
             description:
                 - The private IP address of the primary `privateIp` object on the VNIC.
@@ -212,6 +240,9 @@ vnic:
                   Defaults to `false`, which means the check is performed. For information
                   about why you would skip the source/destination check, see
                   L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+                - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
+                  belonging to a subnet), the `skipSourceDestCheck` attribute is `true`.
+                  This is because the source/destination check is always disabled for VNICs in a VLAN.
                 - "Example: `true`"
             returned: on success
             type: bool
@@ -241,6 +272,7 @@ vnic:
         "lifecycle_state": "PROVISIONING",
         "mac_address": "00:00:00:00:00:01",
         "nsg_ids": [],
+        "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "private_ip": "10.0.3.3",
         "public_ip": "public_ip_example",
         "skip_source_dest_check": true,

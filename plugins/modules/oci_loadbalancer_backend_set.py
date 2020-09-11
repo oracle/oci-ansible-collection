@@ -141,6 +141,7 @@ options:
     ssl_configuration:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             certificate_name:
@@ -164,6 +165,7 @@ options:
     session_persistence_configuration:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             cookie_name:

@@ -32,6 +32,7 @@ options:
             - "List of DNS zones to be used by the data assets to be harvested.
               Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     subnet_id:
         description:
@@ -49,16 +50,19 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - Display name of the private endpoint resource being created.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     catalog_private_endpoint_id:

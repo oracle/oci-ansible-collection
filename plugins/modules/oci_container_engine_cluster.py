@@ -32,6 +32,7 @@ options:
             - The name of the cluster. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     compartment_id:
         description:
@@ -49,6 +50,7 @@ options:
         description:
             - The version of Kubernetes to install into the cluster masters.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     kms_key_id:
         description:
@@ -58,6 +60,7 @@ options:
     options:
         description:
             - Optional attributes for the cluster.
+            - This parameter is updatable.
         type: dict
         suboptions:
             service_lb_subnet_ids:

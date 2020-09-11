@@ -36,22 +36,27 @@ options:
     repository_url:
         description:
             - For model reproducibility purposes. URL of the git repository associated with model training.
+            - This parameter is updatable.
         type: str
     git_branch:
         description:
             - For model reproducibility purposes. Branch of the git repository associated with model training.
+            - This parameter is updatable.
         type: str
     git_commit:
         description:
             - For model reproducibility purposes. Commit ID of the git repository associated with model training.
+            - This parameter is updatable.
         type: str
     script_dir:
         description:
             - For model reproducibility purposes. Path to model artifacts.
+            - This parameter is updatable.
         type: str
     training_script:
         description:
             - "For model reproducibility purposes. Path to the python script or notebook in which the model was trained.\\""
+            - This parameter is updatable.
         type: str
     state:
         description:

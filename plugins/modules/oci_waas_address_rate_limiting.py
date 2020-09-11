@@ -40,16 +40,19 @@ options:
     allowed_rate_per_address:
         description:
             - The number of allowed requests per second from one IP address. If unspecified, defaults to `1`.
+            - This parameter is updatable.
         type: int
     max_delayed_count_per_address:
         description:
             - The maximum number of requests allowed to be queued before subsequent requests are dropped. If unspecified, defaults to `10`.
+            - This parameter is updatable.
         type: int
     block_response_code:
         description:
             - "The response status code returned when a request is blocked. If unspecified, defaults to `503`. The list of available response codes: `200`,
               `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`,
               `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+            - This parameter is updatable.
         type: int
     state:
         description:

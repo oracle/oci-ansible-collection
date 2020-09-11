@@ -40,6 +40,7 @@ options:
             - The name you assign to the secret key during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     user_id:

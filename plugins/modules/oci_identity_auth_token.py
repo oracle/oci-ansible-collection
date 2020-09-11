@@ -38,6 +38,7 @@ options:
         description:
             - The description you assign to the auth token during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     user_id:
         description:

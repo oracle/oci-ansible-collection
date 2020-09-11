@@ -13,9 +13,7 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
-    from oci.exceptions import ServiceError
-
-    # from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
+    from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -341,6 +339,8 @@ class UserStateHelperCustom:
 
 
 # class TagActionsHelperCustom:
+#     # overriding the perform_action method as bulk_delete tags operation does not support
+#     # get_resource method which is an integral part of the main perform_action method
 #     def perform_action(self, action):
 #         action_fn = self.get_action_fn(action)
 #         if not action_fn:
@@ -354,7 +354,7 @@ class UserStateHelperCustom:
 #         # if sent list is empty or None, return back without performing the action with
 #         # status of resource as not changed
 #         tag_ids = self.module.params.get("tag_definition_ids")
-#         if tag_ids is None or tag_ids == []:
+#         if not tag_ids:
 #             return self.prepare_result(
 #                 changed=False, resource_type=self.resource_type, resource=None
 #             )
@@ -371,3 +371,53 @@ class UserStateHelperCustom:
 #             return self.prepare_result(
 #                 changed=True, resource_type=self.resource_type, resource=None,
 #             )
+
+
+class CompartmentActionsHelperCustom:
+    # overriding the perform_action method as bulk_move and bulk_delete actions do not support
+    # get_resource method which is an integral part of the main perform_action method
+    def perform_action(self, action):
+        if action in ["move", "recover"]:
+            return super(CompartmentActionsHelperCustom, self).perform_action(action)
+
+        action_fn = self.get_action_fn(action)
+        if not action_fn:
+            self.module.fail_json(msg="{0} not supported by the module.".format(action))
+
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=None
+            )
+
+        # if resource list is empty or None, return back without performing the action with
+        # status of resource as not changed
+        resources_list = self.module.params.get("resources")
+        if not resources_list:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=None
+            )
+
+        try:
+            action_fn()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=None,
+            )
+
+    # this method is overridden to ensure idempotency for the move and recover actions
+    def is_action_necessary(self, action, resource_data):
+        if action == "move":
+            return resource_data.compartment_id != self.module.params.get(
+                "target_compartment_id"
+            )
+        if action == "recover":
+            return resource_data.lifecycle_state == "DELETED"
+        return super(CompartmentActionsHelperCustom, self).is_action_necessary(
+            action, resource_data
+        )

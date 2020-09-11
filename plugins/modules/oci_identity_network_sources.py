@@ -61,11 +61,13 @@ options:
     public_source_list:
         description:
             - A list of allowed public IP addresses and CIDR ranges.
+            - This parameter is updatable.
         type: list
     virtual_source_list:
         description:
             - "A list of allowed VCN OCID and IP range pairs.
               Example:`\\"vcnId\\": \\"ocid1.vcn.oc1.iad.aaaaaaaaexampleuniqueID\\", \\"ipRanges\\": [ \\"129.213.39.0/24\\" ]`"
+            - This parameter is updatable.
         type: list
         suboptions:
             vcn_id:
@@ -81,23 +83,27 @@ options:
             - A list of services allowed to make on-behalf-of requests. These requests can have different source IP addresses
               than those listed in the network source.
               Currently, only `all` and `none` are supported. The default is `all`.
+            - This parameter is updatable.
         type: list
     description:
         description:
             - The description you assign to the network source during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     network_source_id:
         description:

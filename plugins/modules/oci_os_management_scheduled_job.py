@@ -43,16 +43,19 @@ options:
             - Scheduled Job name
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - Details describing the Scheduled Job.
+            - This parameter is updatable.
         type: str
     schedule_type:
         description:
             - the type of scheduling this Scheduled Job follows
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "ONETIME"
@@ -61,10 +64,12 @@ options:
         description:
             - the desired time for the next execution of this Scheduled Job
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     interval_type:
         description:
             - the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
+            - This parameter is updatable.
         type: str
         choices:
             - "HOUR"
@@ -74,6 +79,7 @@ options:
     interval_value:
         description:
             - the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
+            - This parameter is updatable.
         type: str
     managed_instances:
         description:
@@ -115,6 +121,7 @@ options:
         description:
             - the type of operation this Scheduled Job performs
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "INSTALL"
@@ -124,6 +131,7 @@ options:
     update_type:
         description:
             - Type of the update (only if operation type is UPDATEALL)
+            - This parameter is updatable.
         type: str
         choices:
             - "SECURITY"
@@ -133,6 +141,7 @@ options:
     package_names:
         description:
             - the id of the package (only if operation type is INSTALL/UPDATE/REMOVE)
+            - This parameter is updatable.
         type: list
         suboptions:
             name:
@@ -144,16 +153,19 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     update_names:
         description:
             - The unique names of the Windows Updates (only if operation type is INSTALL).
               This is only applicable when the osFamily is for Windows managed instances.
+            - This parameter is updatable.
         type: list
     os_family:
         description:

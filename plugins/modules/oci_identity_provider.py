@@ -61,6 +61,7 @@ options:
             - The description you assign to the `IdentityProvider` during creation.
               Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
+            - This parameter is updatable.
             - Applicable when protocol is 'SAML2'
         type: str
     product_type:
@@ -88,30 +89,35 @@ options:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     metadata_url:
         description:
             - The URL for retrieving the identity provider's metadata,
               which contains information required for federating.
             - Required for create using I(state=present).
+            - This parameter is updatable.
             - Applicable when protocol is 'SAML2'
         type: str
     metadata:
         description:
             - The XML that contains the information required for federating.
             - Required for create using I(state=present).
+            - This parameter is updatable.
             - Applicable when protocol is 'SAML2'
         type: str
     freeform_attributes:
         description:
             - "Extra name value pairs associated with this identity provider.
               Example: `{\\"clientId\\": \\"app_sf3kdjf3\\"}`"
+            - This parameter is updatable.
         type: dict
     identity_provider_id:
         description:

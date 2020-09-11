@@ -41,16 +41,19 @@ options:
             url:
                 description:
                     - The unique URL path at which to show the CAPTCHA challenge.
+                    - This parameter is updatable.
                 type: str
                 required: true
             session_expiration_in_seconds:
                 description:
                     - The amount of time before the CAPTCHA expires, in seconds. If unspecified, defaults to `300`.
+                    - This parameter is updatable.
                 type: int
                 required: true
             title:
                 description:
                     - The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`
+                    - This parameter is updatable.
                 type: str
                 required: true
             header_text:
@@ -58,20 +61,24 @@ options:
                     - The text to show in the header when showing a CAPTCHA challenge. If unspecified, defaults to 'We have detected an increased number of
                       attempts to access this website. To help us keep this site secure, please let us know that you are not a robot by entering the text from
                       the image below.'
+                    - This parameter is updatable.
                 type: str
             footer_text:
                 description:
                     - The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to 'Enter the letters and numbers as they are
                       shown in the image above.'
+                    - This parameter is updatable.
                 type: str
             failure_message:
                 description:
                     - The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`
+                    - This parameter is updatable.
                 type: str
                 required: true
             submit_label:
                 description:
                     - The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.
+                    - This parameter is updatable.
                 type: str
                 required: true
     state:

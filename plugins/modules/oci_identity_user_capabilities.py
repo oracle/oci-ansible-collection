@@ -35,22 +35,27 @@ options:
     can_use_console_password:
         description:
             - Indicates if the user can log in to the console.
+            - This parameter is updatable.
         type: bool
     can_use_api_keys:
         description:
             - Indicates if the user can use API keys.
+            - This parameter is updatable.
         type: bool
     can_use_auth_tokens:
         description:
             - Indicates if the user can use SWIFT passwords / auth tokens.
+            - This parameter is updatable.
         type: bool
     can_use_smtp_credentials:
         description:
             - Indicates if the user can use SMTP passwords.
+            - This parameter is updatable.
         type: bool
     can_use_customer_secret_keys:
         description:
             - Indicates if the user can use SigV4 symmetric keys.
+            - This parameter is updatable.
         type: bool
     state:
         description:
@@ -170,7 +175,7 @@ user:
             sample: {'Operations': {'CostCenter': 'US'}}
         capabilities:
             description:
-                - Properties indicating how the user is allowed to authenticate.
+                - ""
             returned: on success
             type: complex
             contains:

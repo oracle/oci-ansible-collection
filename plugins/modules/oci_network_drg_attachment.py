@@ -39,6 +39,7 @@ options:
         description:
             - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     drg_id:
@@ -55,6 +56,7 @@ options:
             - "For information about why you would associate a route table with a DRG attachment, see:"
             - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
                 * L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
+            - This parameter is updatable.
         type: str
     vcn_id:
         description:

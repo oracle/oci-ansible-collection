@@ -108,6 +108,7 @@ RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {
     "data_safe_private_endpoint": "datasafeprivateendpoints",
     "bds_instance": "bds",
     "stack": "ormstack",
+    "workspace": "disworkspace",
 }
 
 CREATE_OPERATION_KEY = "CREATE"

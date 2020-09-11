@@ -39,16 +39,19 @@ options:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     description:
         description:
             - A brief description of the secret. Avoid entering confidential information.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     key_id:
         description:
@@ -59,11 +62,13 @@ options:
             - Additional metadata that you can use to provide context about how to use the secret during rotation or
               other administrative tasks. For example, for a secret that you use to connect to a database, the additional
               metadata might specify the connection endpoint and the connection string. Provide additional metadata as key-value pairs.
+            - This parameter is updatable.
         type: dict
     secret_content:
         description:
             - ""
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: dict
         suboptions:
             content_type:
@@ -101,6 +106,7 @@ options:
     secret_rules:
         description:
             - A list of rules to control how the secret is used and managed.
+            - This parameter is updatable.
         type: list
         suboptions:
             rule_type:
@@ -158,6 +164,7 @@ options:
             - Details to update the secret version of the specified secret. The secret contents,
               version number, and rules can't be specified at the same time.
               Updating the secret contents automatically creates a new secret version.
+            - This parameter is updatable.
         type: int
     state:
         description:

@@ -41,6 +41,7 @@ options:
         description:
             - The shared secret (pre-shared key) to use for the tunnel. Only numbers, letters, and spaces
               are allowed.
+            - This parameter is updatable.
         type: str
     state:
         description:

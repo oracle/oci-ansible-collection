@@ -41,6 +41,7 @@ options:
     description:
         description:
             - A description of the connection.
+            - This parameter is updatable.
         type: str
     display_name:
         description:
@@ -48,6 +49,7 @@ options:
               Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     type_key:
@@ -66,6 +68,7 @@ options:
               of it's properties, can be identified from this collection.
               Example: `{\\"properties\\": { \\"default\\": { \\"username\\": \\"user1\\"}}}`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: dict
     enc_properties:
         description:
@@ -77,6 +80,7 @@ options:
               on '/types?type=connection' that returns a collection of all connection types. The appropriate connection
               type, which will include definitions of all of it's properties, can be identified from this collection.
               Example: `{\\"encProperties\\": { \\"default\\": { \\"password\\": \\"pwd\\"}}}`"
+            - This parameter is updatable.
         type: dict
     is_default:
         description:
@@ -84,6 +88,7 @@ options:
               to being the default, subsequent connections default to not being the default. If a default connection already
               exists, then trying to create a connection as the default will fail. In this case the default connection would
               need to be updated not to be the default and then the new connection can then be created as the default.
+            - This parameter is updatable.
         type: bool
     connection_key:
         description:

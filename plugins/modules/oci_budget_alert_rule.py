@@ -36,17 +36,20 @@ options:
         description:
             - The name of the alert rule.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - The description of the alert rule.
+            - This parameter is updatable.
         type: str
     type:
         description:
             - Type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
               FORECAST (the alert will trigger based on predicted usage).
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "ACTUAL"
@@ -57,11 +60,13 @@ options:
               If thresholdType is ABSOLUTE, threshold can have at most 12 digits before the decimal point and up to 2 digits after the decimal point.
               If thresholdType is PERCENTAGE, the maximum value is 10000 and can have up to 2 digits after the decimal point.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: float
     threshold_type:
         description:
             - The type of threshold.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "PERCENTAGE"
@@ -69,23 +74,26 @@ options:
     recipients:
         description:
             - The audience that will receive the alert when it triggers. An empty string is interpreted as null.
-            - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     message:
         description:
             - The message to be sent to the recipients when alert rule is triggered.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     alert_rule_id:
         description:
@@ -113,7 +121,6 @@ EXAMPLES = """
     type: ACTUAL
     threshold: 10
     threshold_type: PERCENTAGE
-    recipients: recipients_example
 
 - name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:

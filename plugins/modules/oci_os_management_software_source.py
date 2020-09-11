@@ -42,11 +42,13 @@ options:
             - User friendly name for the software source
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - Information specified by the user about the software source
+            - This parameter is updatable.
         type: str
     arch_type:
         description:
@@ -62,18 +64,22 @@ options:
     maintainer_name:
         description:
             - Name of the person maintaining this software source
+            - This parameter is updatable.
         type: str
     maintainer_email:
         description:
             - Email address of the person maintaining this software source
+            - This parameter is updatable.
         type: str
     maintainer_phone:
         description:
             - Phone number of the person maintaining this software source
+            - This parameter is updatable.
         type: str
     checksum_type:
         description:
             - The yum repository checksum type used by this software source
+            - This parameter is updatable.
         type: str
         choices:
             - "SHA1"
@@ -88,11 +94,13 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     software_source_id:
         description:

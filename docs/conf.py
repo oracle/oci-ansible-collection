@@ -24,8 +24,6 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from recommonmark.parser import CommonMarkParser
-
 # sys.path.insert(0, os.path.abspath('.'))
 
 import sphinx_rtd_theme
@@ -192,7 +190,3 @@ texinfo_documents = [
 
 # The suffix of source filenames.
 source_suffix = [".rst", ".md"]
-
-# source_parsers = {
-#     ".md": CommonMarkParser,
-# }

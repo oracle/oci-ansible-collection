@@ -43,11 +43,13 @@ options:
         description:
             - A user-specified name for the retention rule. Names can be helpful in identifying retention rules.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     duration:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             time_amount:
@@ -70,6 +72,7 @@ options:
               and can only be deleted by deleting the bucket. Once a rule is locked, only increases in the duration are
               allowed and no other properties can be changed. This property cannot be updated for rules that are in a
               locked state. Specifying it when a duration is not specified is considered an error.
+            - This parameter is updatable.
         type: str
     retention_rule_id:
         description:

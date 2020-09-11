@@ -34,6 +34,8 @@ description:
         requires the OCID."
     - If you're listing all the private IPs associated with a given subnet
       or VNIC, the response includes both primary and secondary private IPs.
+    - If you are an Oracle Cloud VMware Solution customer and have VLANs
+      in your VCN, you can filter the list by VLAN OCID. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
     - If I(private_ip_id) is specified, the details of a single PrivateIp will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -56,6 +58,10 @@ options:
     vnic_id:
         description:
             - The OCID of the VNIC.
+        type: str
+    vlan_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
@@ -139,6 +145,9 @@ private_ips:
             description:
                 - The private IP address of the `privateIp` object. The address is within the CIDR
                   of the VNIC's subnet.
+                - However, if the `PrivateIp` object is being used with a VLAN as part of
+                  the Oracle Cloud VMware Solution, the address is from the range specified by the
+                  `cidrBlock` attribute for the VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 - "Example: `10.0.3.3`"
             returned: on success
             type: string
@@ -151,9 +160,19 @@ private_ips:
             returned: on success
             type: bool
             sample: true
+        vlan_id:
+            description:
+                - Applicable only if the `PrivateIp` object is being used with a VLAN as part of
+                  the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See
+                  L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+            returned: on success
+            type: string
+            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
         subnet_id:
             description:
                 - The OCID of the subnet the VNIC is in.
+                - However, if the `PrivateIp` object is being used with a VLAN as part of
+                  the Oracle Cloud VMware Solution, the `subnetId` is null.
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
@@ -168,6 +187,8 @@ private_ips:
             description:
                 - The OCID of the VNIC the private IP is assigned to. The VNIC and private IP
                   must be in the same subnet.
+                - However, if the `PrivateIp` object is being used with a VLAN as part of
+                  the Oracle Cloud VMware Solution, the `vnicId` is null.
             returned: on success
             type: string
             sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
@@ -181,6 +202,7 @@ private_ips:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ip_address": "10.0.3.3",
         "is_primary": true,
+        "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
@@ -224,6 +246,7 @@ class PrivateIpFactsHelperGen(OCIResourceFactsHelperBase):
             "ip_address",
             "subnet_id",
             "vnic_id",
+            "vlan_id",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -251,6 +274,7 @@ def main():
             ip_address=dict(type="str"),
             subnet_id=dict(type="str"),
             vnic_id=dict(type="str"),
+            vlan_id=dict(type="str"),
             display_name=dict(type="str"),
         )
     )

@@ -66,11 +66,13 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     drg_id:
@@ -84,6 +86,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     cpe_local_identifier:
         description:
@@ -96,11 +99,13 @@ options:
               L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
             - "Example IP address: `10.0.3.3`"
             - "Example hostname: `cpe.example.com`"
+            - This parameter is updatable.
         type: str
     cpe_local_identifier_type:
         description:
             - The type of identifier for your CPE device. The value you provide here must correspond to the value
               for `cpeLocalIdentifier`.
+            - This parameter is updatable.
         type: str
         choices:
             - "IP_ADDRESS"
@@ -117,6 +122,7 @@ options:
               us/iaas/api/#/en/iaas/20160918/IPSecConnection/).
             - "Example: `10.0.1.0/24`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     tunnel_configuration:
         description:

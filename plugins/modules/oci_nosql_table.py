@@ -39,6 +39,7 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable.
         type: str
     ddl_statement:
         description:
@@ -51,11 +52,13 @@ options:
               provided value and the, not identical, but functionally equivalent service value.  The best way to prevent this is by copying the service
               table.ddl_statement value into your playbook post creation so that the playbook value matches the service value.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     table_limits:
         description:
             - ""
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: dict
         suboptions:
             max_read_units:
@@ -78,12 +81,14 @@ options:
             - "Simple key-value pair that is applied without any predefined
               name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and
               scoped to a namespace.  Example: `{\\"foo-namespace\\":
               {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     table_name_or_id:
         description:

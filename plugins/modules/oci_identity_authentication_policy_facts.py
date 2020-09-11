@@ -53,7 +53,7 @@ authentication_policy:
     contains:
         password_policy:
             description:
-                - Password policy.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -99,6 +99,18 @@ authentication_policy:
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        network_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_source_ids:
+                    description:
+                        - Network Source ids
+                    returned: on success
+                    type: list
+                    sample: []
     sample: {
         "password_policy": {
             "minimum_password_length": 56,
@@ -108,7 +120,10 @@ authentication_policy:
             "is_special_characters_required": true,
             "is_username_containment_allowed": true
         },
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_policy": {
+            "network_source_ids": []
+        }
     }
 """
 

@@ -32,11 +32,13 @@ options:
         description:
             - The user-friendly name for the DB System. It does not have to be unique.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - User-provided data about the DB System.
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -48,15 +50,18 @@ options:
     availability_domain:
         description:
             - The Availability Domain where the primary instance should be located.
+            - This parameter is updatable.
         type: str
     fault_domain:
         description:
             - The name of the Fault Domain the DB System is located in.
+            - This parameter is updatable.
         type: str
     configuration_id:
         description:
             - The OCID of the Configuration to be used for this DB System.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     shape_name:
         description:
@@ -65,20 +70,24 @@ options:
               for non-VM (or bare metal) shapes. To get a list of shapes, use the
               L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20190415/ShapeSummary/ListShapes) operation."
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     mysql_version:
         description:
             - The specific MySQL version identifier.
+            - This parameter is updatable.
         type: str
     subnet_id:
         description:
             - The OCID of the subnet the DB System is associated with.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     admin_username:
         description:
             - The username for the administrative user.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     admin_password:
         description:
@@ -87,12 +96,14 @@ options:
               numeric character, 1 lowercase character, 1 uppercase character, and
               1 special (nonalphanumeric) character.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     data_storage_size_in_gbs:
         description:
             - Initial size of the data volume in GBs that will be created and attached.
               Keep in mind that this only specifies the size of the database data volume,
               the log volume for the database will be scaled appropriately with its shape.
+            - This parameter is updatable.
         type: int
     hostname_label:
         description:
@@ -100,6 +111,7 @@ options:
             - "The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN)
               (for example, \\"dbsystem-1\\" in FQDN \\"dbsystem-1.subnet123.vcn1.oraclevcn.com\\")."
             - Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.
+            - This parameter is updatable.
         type: str
     ip_address:
         description:
@@ -108,23 +120,28 @@ options:
               Must be an available IP address within the subnet's CIDR. If you don't specify a value,
               Oracle automatically assigns a private IP address from the subnet. This should be a
               \\"dotted-quad\\" style IPv4 address."
+            - This parameter is updatable.
         type: str
     port:
         description:
             - The port for primary endpoint of the DB System to listen on.
+            - This parameter is updatable.
         type: int
     port_x:
         description:
             - The TCP network port on which X Plugin listens for connections. This is the X Plugin equivalent of port.
+            - This parameter is updatable.
         type: int
     backup_policy:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             is_enabled:
                 description:
                     - Specifies if automatic backups are enabled.
+                    - This parameter is updatable.
                 type: bool
             window_start_time:
                 description:
@@ -132,21 +149,25 @@ options:
                     - "This should be in the format of the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be
                       truncated to zero."
                     - At some point in the window, the system may incur a brief service disruption as the backup is performed.
+                    - This parameter is updatable.
                 type: str
             retention_in_days:
                 description:
                     - Number of days to retain an automatic backup.
+                    - This parameter is updatable.
                 type: int
             freeform_tags:
                 description:
                     - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
                       Example: `{\\"bar-key\\": \\"value\\"}`"
+                    - This parameter is updatable.
                 type: dict
             defined_tags:
                 description:
                     - Usage of predefined tag keys. These predefined keys are scoped to namespaces.
                     - Tags defined here will be copied verbatim as tags on the Backup resource created by this BackupPolicy.
                     - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                    - This parameter is updatable.
                 type: dict
     source:
         description:
@@ -174,6 +195,7 @@ options:
     maintenance:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             window_start_time:
@@ -183,16 +205,19 @@ options:
                     - "\\"{day-of-week}\\" is a case-insensitive string like \\"mon\\", \\"tue\\", &c."
                     - "\\"{time-of-day}\\" is the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be truncated to
                       zero."
+                    - This parameter is updatable.
                 type: str
     freeform_tags:
         description:
             - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     db_system_id:
         description:

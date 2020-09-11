@@ -30,6 +30,7 @@ options:
     description:
         description:
             - OceInstance description
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -101,6 +102,7 @@ options:
     waf_primary_domain:
         description:
             - Web Application Firewall(WAF) primary domain
+            - This parameter is updatable.
         type: str
     instance_access_type:
         description:
@@ -113,11 +115,13 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     oce_instance_id:
         description:

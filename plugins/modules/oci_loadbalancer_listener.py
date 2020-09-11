@@ -51,6 +51,7 @@ options:
     hostname_names:
         description:
             - An array of hostname resource names.
+            - This parameter is updatable.
         type: list
     path_route_set_name:
         description:
@@ -58,10 +59,12 @@ options:
               us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/),
               applied to this listener's traffic.
             - "Example: `example_path_route_set`"
+            - This parameter is updatable.
         type: str
     ssl_configuration:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             certificate_name:
@@ -85,6 +88,7 @@ options:
     connection_configuration:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             idle_timeout:
@@ -113,6 +117,7 @@ options:
         description:
             - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
             - "Example: [\\"example_rule_set\\"]"
+            - This parameter is updatable.
         type: list
     load_balancer_id:
         description:

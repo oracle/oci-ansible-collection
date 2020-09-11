@@ -195,6 +195,43 @@ database:
                     returned: on success
                     type: string
                     sample: SLOT_TWO
+                backup_destination_details:
+                    description:
+                        - Backup destination details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - Type of the database backup destination.
+                            returned: on success
+                            type: string
+                            sample: NFS
+                        id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                        vpc_user:
+                            description:
+                                - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
+                                  Appliance.
+                            returned: on success
+                            type: string
+                            sample: vpc_user_example
+                        vpc_password:
+                            description:
+                                - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                            returned: on success
+                            type: string
+                            sample: vpc_password_example
+                        internet_proxy:
+                            description:
+                                - Proxy URL to connect to object store.
+                            returned: on success
+                            type: string
+                            sample: internet_proxy_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -253,7 +290,14 @@ database:
         "db_backup_config": {
             "auto_backup_enabled": true,
             "recovery_window_in_days": 56,
-            "auto_backup_window": "SLOT_TWO"
+            "auto_backup_window": "SLOT_TWO",
+            "backup_destination_details": [{
+                "type": "NFS",
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "vpc_user": "vpc_user_example",
+                "vpc_password": "vpc_password_example",
+                "internet_proxy": "internet_proxy_example"
+            }]
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

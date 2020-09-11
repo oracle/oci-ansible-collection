@@ -101,6 +101,8 @@ options:
                       about the public IP limits, see
                       L(Public IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
+                    - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 type: bool
             defined_tags:
                 description:
@@ -140,12 +142,18 @@ options:
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
+                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
+                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 type: str
             nsg_ids:
                 description:
                     - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                       information about NSGs, see
                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                    - If a `vlanId` is specified, the `nsgIds` cannot be specified. The `vlanId`
+                      indicates that the VNIC will belong to a VLAN instead of a subnet. With VLANs,
+                      all VNICs in the VLAN belong to the NSGs that are associated with the VLAN.
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 type: list
             private_ip:
                 description:
@@ -157,6 +165,8 @@ options:
                       L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
                       L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
                       L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
+                    - If you specify a `vlanId`, the `privateIp` cannot be specified.
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                     - "Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
@@ -165,6 +175,9 @@ options:
                       Defaults to `false`, which means the check is performed. For information
                       about why you would skip the source/destination check, see
                       L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+                    - If you specify a `vlanId`, the `skipSourceDestCheck` cannot be specified because the
+                      source/destination check is always disabled for VNICs in a VLAN. See
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                     - "Example: `true`"
                 type: bool
             subnet_id:
@@ -173,8 +186,18 @@ options:
                       use this `subnetId` instead of the deprecated `subnetId` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
+                    - If you are an Oracle Cloud VMware Solution customer and creating a secondary
+                      VNIC in a VLAN instead of a subnet, provide a `vlanId` instead of a `subnetId`.
+                      If you provide both a `vlanId` and `subnetId`, the request fails.
                 type: str
-                required: true
+            vlan_id:
+                description:
+                    - Provide this attribute only if you are an Oracle Cloud VMware Solution
+                      customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN.
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                    - Provide a `vlanId` instead of a `subnetId`. If you provide both a
+                      `vlanId` and `subnetId`, the request fails.
+                type: str
     dedicated_vm_host_id:
         description:
             - The OCID of the dedicated VM host.
@@ -184,6 +207,7 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
@@ -191,6 +215,7 @@ options:
               Avoid entering confidential information.
             - "Example: `My bare metal instance`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     extended_metadata:
@@ -201,6 +226,7 @@ options:
               (whereas `metadata` fields are string/string maps only).
             - The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
               32,000 bytes.
+            - This parameter is updatable.
         type: dict
     fault_domain:
         description:
@@ -214,6 +240,7 @@ options:
               L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
               Identity and Access Management Service API.
             - "Example: `FAULT-DOMAIN-1`"
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
@@ -221,6 +248,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     hostname_label:
         description:
@@ -260,6 +288,7 @@ options:
         description:
             - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any
               default values.
+            - This parameter is updatable.
         type: dict
         suboptions:
             boot_volume_type:
@@ -272,6 +301,7 @@ options:
                       volumes on Oracle-provided images.
                       * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                       storage volumes on Oracle-provided images."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "ISCSI"
@@ -297,6 +327,7 @@ options:
                       * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                       when you launch an instance using hardware-assisted (SR-IOV) networking.
                       * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "E1000"
@@ -323,6 +354,7 @@ options:
                 description:
                     - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                    - This parameter is updatable.
                 type: bool
             is_consistent_volume_naming_enabled:
                 description:
@@ -365,21 +397,25 @@ options:
             -  You'll get back a response that includes all the instance information; only the metadata information; or
                the metadata information for the specified key name, respectively.
             -  The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of 32,000 bytes.
+            - This parameter is updatable.
         type: dict
     agent_config:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             is_monitoring_disabled:
                 description:
                     - Whether the agent running on the instance can gather performance metrics and monitor the instance.
                       Default value is false.
+                    - This parameter is updatable.
                 type: bool
             is_management_disabled:
                 description:
                     - Whether the agent running on the instance can run all the available management plugins.
                       Default value is false.
+                    - This parameter is updatable.
                 type: bool
     shape:
         description:
@@ -387,15 +423,18 @@ options:
               and other resources allocated to the instance.
             - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     shape_config:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             ocpus:
                 description:
                     - The total number of OCPUs available to the instance.
+                    - This parameter is updatable.
                 type: float
     source_details:
         description:
@@ -1123,7 +1162,8 @@ def main():
                     nsg_ids=dict(type="list"),
                     private_ip=dict(type="str"),
                     skip_source_dest_check=dict(type="bool"),
-                    subnet_id=dict(type="str", required=True),
+                    subnet_id=dict(type="str"),
+                    vlan_id=dict(type="str"),
                 ),
             ),
             dedicated_vm_host_id=dict(type="str"),

@@ -39,11 +39,13 @@ options:
               Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - Detailed description of the data asset.
+            - This parameter is updatable.
         type: str
     type_key:
         description:
@@ -60,6 +62,7 @@ options:
               collection of all data asset types. The appropriate data asset type, which includes definitions of all of
               it's properties, can be identified from this collection.
               Example: `{\\"properties\\": { \\"default\\": { \\"host\\": \\"host1\\", \\"port\\": \\"1521\\", \\"database\\": \\"orcl\\"}}}`"
+            - This parameter is updatable.
         type: dict
     data_asset_key:
         description:

@@ -41,15 +41,18 @@ options:
             name:
                 description:
                     - The unique name of the whitelist.
+                    - This parameter is updatable.
                 type: str
                 required: true
             addresses:
                 description:
                     - A set of IP addresses or CIDR notations to include in the whitelist.
+                    - This parameter is updatable.
                 type: list
             address_lists:
                 description:
                     - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of IP address lists to include in the whitelist.
+                    - This parameter is updatable.
                 type: list
     state:
         description:

@@ -35,10 +35,12 @@ options:
     is_enabled:
         description:
             - If set to false, skips the Maintenance Run.
+            - This parameter is updatable.
         type: bool
     time_scheduled:
         description:
             - The scheduled date and time of the Maintenance Run to update.
+            - This parameter is updatable.
         type: str
     state:
         description:
