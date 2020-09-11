@@ -55,6 +55,7 @@ options:
         description:
             - A user-friendly name for the WAAS policy. The name can be changed and does not need to be unique.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     domain:
@@ -65,10 +66,12 @@ options:
     additional_domains:
         description:
             - An array of additional domains for the specified web application.
+            - This parameter is updatable.
         type: list
     origins:
         description:
             - A map of host to origin for the web application. The key should be a customer friendly name for the host, ex. primary, secondary, etc.
+            - This parameter is updatable.
         type: dict
         suboptions:
             uri:
@@ -104,6 +107,7 @@ options:
             - The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups of
               origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests.
               To add additional origins to your WAAS policy, update the `origins` field of a `UpdateWaasPolicy` request.
+            - This parameter is updatable.
         type: dict
         suboptions:
             origins:
@@ -122,6 +126,7 @@ options:
     policy_config:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             certificate_id:
@@ -329,6 +334,7 @@ options:
     waf_config:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             access_rules:
@@ -1059,6 +1065,7 @@ options:
                 description:
                     - The key in the map of origins referencing the origin used for the Web Application Firewall. The origin must already be included in
                       `Origins`. Required when creating the `WafConfig` resource, but is not required upon updating the configuration.
+                    - This parameter is updatable.
                 type: str
             caching_rules:
                 description:
@@ -1177,6 +1184,7 @@ options:
                     - The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups
                       of origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests.
                       To add additional origins to your WAAS policy, update the `origins` field of a `UpdateWaasPolicy` request.
+                    - This parameter is updatable.
                 type: list
             protection_settings:
                 description:
@@ -1319,20 +1327,24 @@ options:
                     key:
                         description:
                             - The unique key for the bot.
+                            - This parameter is updatable.
                         type: str
                         required: true
                     name:
                         description:
                             - The bot name.
+                            - This parameter is updatable.
                         type: str
                     is_enabled:
                         description:
                             - Enables or disables the bot.
+                            - This parameter is updatable.
                         type: bool
                         required: true
                     description:
                         description:
                             - The description of the bot.
+                            - This parameter is updatable.
                         type: str
             protection_rules:
                 description:
@@ -1342,23 +1354,28 @@ options:
                     key:
                         description:
                             - The unique key of the protection rule.
+                            - This parameter is updatable.
                         type: str
                     mod_security_rule_ids:
                         description:
                             - The list of the ModSecurity rule IDs that apply to this protection rule. For more information about ModSecurity's open source WAF
                               rules, see L(Mod Security's documentation,https://www.modsecurity.org/CRS/Documentation/index.html).
+                            - This parameter is updatable.
                         type: list
                     name:
                         description:
                             - The name of the protection rule.
+                            - This parameter is updatable.
                         type: str
                     description:
                         description:
                             - The description of the protection rule.
+                            - This parameter is updatable.
                         type: str
                     action:
                         description:
                             - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "OFF"
@@ -1368,6 +1385,7 @@ options:
                         description:
                             - The list of labels for the protection rule.
                             - "**Note:** Protection rules with a `ResponseBody` label will have no effect unless `isResponseInspected` is true."
+                            - This parameter is updatable.
                         type: list
                     exclusions:
                         description:
@@ -1377,6 +1395,7 @@ options:
                             target:
                                 description:
                                     - The target of the exclusion.
+                                    - This parameter is updatable.
                                 type: str
                                 choices:
                                     - "REQUEST_COOKIES"
@@ -1386,6 +1405,7 @@ options:
                             exclusions:
                                 description:
                                     - ""
+                                    - This parameter is updatable.
                                 type: list
             threat_feeds:
                 description:
@@ -1395,15 +1415,18 @@ options:
                     key:
                         description:
                             - The unique key of the threat intelligence feed.
+                            - This parameter is updatable.
                         type: str
                     name:
                         description:
                             - The name of the threat intelligence feed.
+                            - This parameter is updatable.
                         type: str
                     action:
                         description:
                             - The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to
                               `OFF`.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "OFF"
@@ -1412,18 +1435,21 @@ options:
                     description:
                         description:
                             - The description of the threat intelligence feed.
+                            - This parameter is updatable.
                         type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     waas_policy_id:
         description:

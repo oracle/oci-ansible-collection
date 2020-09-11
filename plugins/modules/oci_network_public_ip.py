@@ -56,12 +56,14 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
               entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     freeform_tags:
@@ -70,6 +72,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     lifetime:
         description:
@@ -89,6 +92,7 @@ options:
             - Optional for a reserved public IP. If you don't provide it, the public IP is created but not
               assigned to a private IP. You can later assign the public IP with
               L(UpdatePublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/UpdatePublicIp).
+            - This parameter is updatable.
         type: str
     public_ip_id:
         description:

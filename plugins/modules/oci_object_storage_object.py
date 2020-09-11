@@ -47,10 +47,12 @@ options:
     content_length:
         description:
             - The content length of the body.
+            - This parameter is updatable.
         type: int
     expect:
         description:
             - 100-continue
+            - This parameter is updatable.
         type: str
     content_md5:
         description:
@@ -59,6 +61,7 @@ options:
               MD5 hash supplied in the header. If the two hashes do not match, the object is rejected and an HTTP-400 Unmatched Content MD5 error
               is returned with the message:"
             - "\\"The computed MD5 of the request body (ACTUAL_MD5) does not match the Content-MD5 header (HEADER_MD5)\\""
+            - This parameter is updatable.
         type: str
     content_type:
         description:
@@ -66,6 +69,7 @@ options:
               'application/octet-stream' if not specified in the PutObject call. Specifying values for this header has no effect
               on Object Storage behavior. Programs that read the object determine what to do based on the value provided. For example,
               you could use this header to identify and perform special operations on text only objects.
+            - This parameter is updatable.
         type: str
     content_language:
         description:
@@ -73,6 +77,7 @@ options:
               values for this header has no effect on Object Storage behavior. Programs that read the object determine what
               to do based on the value provided. For example, you could use this header to identify and differentiate objects
               based on a particular language.
+            - This parameter is updatable.
         type: str
     content_encoding:
         description:
@@ -81,6 +86,7 @@ options:
               object determine what to do based on the value provided. For example, you could use this header to determine
               what decoding mechanisms need to be applied to obtain the media-type specified by the Content-Type header of
               the object.
+            - This parameter is updatable.
         type: str
     content_disposition:
         description:
@@ -88,6 +94,7 @@ options:
               returned in GetObject and HeadObject responses. Specifying values for this header has no effect on Object
               Storage behavior. Programs that read the object determine what to do based on the value provided.
               For example, you could use this header to let users download objects with custom filenames in a browser.
+            - This parameter is updatable.
         type: str
     cache_control:
         description:
@@ -95,27 +102,32 @@ options:
               HeadObject responses. Specifying values for this header has no effect on Object Storage behavior. Programs
               that read the object determine what to do based on the value provided.
               For example, you could use this header to identify objects that require caching restrictions.
+            - This parameter is updatable.
         type: str
     opc_sse_customer_algorithm:
         description:
             - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm)."
+            - This parameter is updatable.
         type: str
     opc_sse_customer_key:
         description:
             - The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
               decrypt the data. For more information, see
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
+            - This parameter is updatable.
         type: str
     opc_sse_customer_key_sha256:
         description:
             - The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
               value is used to check the integrity of the encryption key. For more information, see
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
+            - This parameter is updatable.
         type: str
     opc_meta:
         description:
             - Optional user-defined metadata key and value.
+            - This parameter is updatable.
         type: dict
     version_id:
         description:
@@ -124,6 +136,7 @@ options:
     src:
         description:
             - The source file path when uploading an object. Use with I(state=present) to upload an object. This option is mutually exclusive with I(dest).
+            - This parameter is updatable.
         type: str
     dest:
         description:

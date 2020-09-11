@@ -37,6 +37,7 @@ description:
       L(UpdateCompartment,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Compartment/UpdateCompartment)."
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
+    - "This resource has the following action operations in the M(oci_compartment_actions) module: bulk_delete_resources, bulk_move_resources, move, recover."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -53,23 +54,27 @@ options:
               in the parent compartment. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     description:
         description:
             - The description you assign to the compartment during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     compartment_id:
         description:

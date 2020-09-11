@@ -51,6 +51,7 @@ options:
         description:
             - The SCAN details.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             hostname:
@@ -71,15 +72,18 @@ options:
     dns:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
+            - This parameter is updatable.
         type: list
     ntp:
         description:
             - The list of NTP server IP addresses. Maximum of 3 allowed.
+            - This parameter is updatable.
         type: list
     vm_networks:
         description:
             - Details of the client and backup networks.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             vlan_id:
@@ -139,11 +143,13 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     vm_cluster_network_id:
         description:

@@ -41,12 +41,14 @@ options:
             id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
+                    - This parameter is updatable.
                 type: str
             action:
                 description:
                     - "The action to take when the custom protection rule is triggered.
                       `DETECT` - Logs the request when the criteria of the custom protection rule are met. `BLOCK` - Blocks the request when the criteria of the
                       custom protection rule are met."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "DETECT"
@@ -59,6 +61,7 @@ options:
                     target:
                         description:
                             - The target of the exclusion.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "REQUEST_COOKIES"
@@ -68,6 +71,7 @@ options:
                     exclusions:
                         description:
                             - ""
+                            - This parameter is updatable.
                         type: list
     state:
         description:

@@ -1,4 +1,22 @@
-## Installation Steps:
+### Installing the Collection with yum
+
+You can use yum to install the Oracle Cloud Infrastructure Ansible Module Collection RPM.
+
+The RPM also installs the required dependencies: the OCI SDK for Python and Ansible.
+
+The following example shows how to use yum to install the Ansible Module Collection RPM:
+  ``` bash
+$ yum -y install oraclelinux-developer-release-el7 && sudo yum install oci-ansible-collection
+  ```
+Note:
+This installation uses Python version 3.6.
+
+To test the installation of the RPM and configuration of the SDK, you can run a sample playbook. For example:
+  ``` bash
+$ ansible-playbook-3 /usr/share/doc/oci-ansible-collection-<version>/samples/object_storage/get_namespace/sample.yaml
+  ```
+
+### Manual Installation Steps:
 ```
     sudo pip3 install virtualenv
     virtualenv venvansible
@@ -13,7 +31,7 @@ To test the installation, you can run this sample:
 venvansible/bin/ansible-playbook -vvv ~/.ansible/collections/ansible_collections/oracle/oci/samples/object_storage/get_namespace/sample.yaml
 ```
 
-## How to troubleshoot installation errors?
+### How to troubleshoot installation errors?
 #### Troubleshoot the error `oci python sdk required for this module`
 
 You will get an error if Ansible runs using python2 and the python SDK is installed under python 3.<br/>

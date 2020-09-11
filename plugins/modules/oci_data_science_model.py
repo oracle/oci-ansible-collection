@@ -45,23 +45,27 @@ options:
             - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
               Example: `My Model`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - A short blurb describing the model.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     model_id:
         description:

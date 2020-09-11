@@ -152,14 +152,14 @@ def main():
     if not HAS_OCI_PY_SDK:
         module.fail_json(msg="oci python sdk required for this module.")
 
+    module.params["do_not_redirect_to_home_region"] = True
+
     resource_facts_helper = ResourceFactsHelper(
         module=module,
         resource_type="fault_domain",
         service_client_class=IdentityClient,
         namespace="identity",
     )
-
-    module.params["do_not_redirect_to_home_region"] = True
 
     result = []
 

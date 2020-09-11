@@ -58,12 +58,14 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
               Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     far_cross_connect_or_cross_connect_group_id:
@@ -79,6 +81,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     location_name:
         description:
@@ -106,6 +109,7 @@ options:
         description:
             - A reference name or identifier for the physical fiber connection that this cross-connect
               uses.
+            - This parameter is updatable.
         type: str
     cross_connect_id:
         description:
@@ -120,6 +124,7 @@ options:
               is complete, and you've confirmed the cross-connect's light levels are good and your side
               of the interface is up. Activation indicates to Oracle that the physical connection is ready.
             - "Example: `true`"
+            - This parameter is updatable.
         type: bool
     state:
         description:

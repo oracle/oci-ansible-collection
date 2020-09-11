@@ -50,18 +50,21 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     zone_type:
         description:
@@ -75,6 +78,7 @@ options:
         description:
             - External master servers for the zone. `externalMasters` becomes a
               required parameter when the `zoneType` value is `SECONDARY`.
+            - This parameter is updatable.
             - Applicable when migration_source is 'NONE'
         type: list
         suboptions:
@@ -165,6 +169,7 @@ options:
               earlier than or equal to the date provided in the field-value.  This
               field accomplishes the same purpose as If-Match for cases where the user
               agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
         type: str
     state:
         description:

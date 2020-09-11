@@ -60,6 +60,7 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
@@ -68,6 +69,7 @@ options:
             - You cannot use an Oracle-provided image name as a custom image name.
             - "Example: `My Oracle Linux image`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     freeform_tags:
@@ -76,6 +78,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     image_source_details:
         description:
@@ -155,11 +158,13 @@ options:
         description:
             - Operating system
             - "Example: `Oracle Linux`"
+            - This parameter is updatable.
         type: str
     operating_system_version:
         description:
             - Operating system version
             - "Example: `7.4`"
+            - This parameter is updatable.
         type: str
     state:
         description:

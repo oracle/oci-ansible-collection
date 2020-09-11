@@ -45,10 +45,12 @@ options:
         description:
             - The ID of the compartment in which to create the bucket.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     metadata:
         description:
             - Arbitrary string, up to 4KB, of keys and values for user-defined metadata.
+            - This parameter is updatable.
         type: dict
     public_access_type:
         description:
@@ -57,6 +59,7 @@ options:
               bucket and its contents. When `ObjectRead` is enabled on the bucket, public access is allowed for the
               `GetObject`, `HeadObject`, and `ListObjects` operations. When `ObjectReadWithoutList` is enabled on the bucket,
               public access is allowed for the `GetObject` and `HeadObject` operations.
+            - This parameter is updatable.
         type: str
         choices:
             - "NoPublicAccess"
@@ -77,29 +80,34 @@ options:
             - Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
               set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
               about events, see L(Overview of Events,https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
+            - This parameter is updatable.
         type: bool
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     kms_key_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key
               Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
+            - This parameter is updatable.
         type: str
     versioning:
         description:
             - Set the versioning status on the bucket. By default, a bucket is created with versioning `Disabled`. Use this option to enable versioning during
               bucket creation. Objects in a version enabled bucket are protected from overwrites and deletions. Previous versions of the same object will be
               available in the bucket.
+            - This parameter is updatable.
         type: str
         choices:
             - "Enabled"

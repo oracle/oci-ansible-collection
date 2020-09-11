@@ -46,21 +46,25 @@ options:
     update_items:
         description:
             - ""
+            - This parameter is updatable.
         type: list
         suboptions:
             domain:
                 description:
                     - The fully qualified domain name where the record can be located.
+                    - This parameter is updatable.
                 type: str
                 required: true
             record_hash:
                 description:
                     - A unique identifier for the record within its zone.
+                    - This parameter is updatable.
                 type: str
             is_protected:
                 description:
                     - A Boolean flag indicating whether or not parts of the record
                       are unable to be explicitly managed.
+                    - This parameter is updatable.
                 type: bool
             rdata:
                 description:
@@ -69,22 +73,26 @@ options:
                       returned presentation of your RDATA may differ from its initial input.
                       For more information about RDATA, see L(Supported DNS Resource Record
                       Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm)
+                    - This parameter is updatable.
                 type: str
                 required: true
             rrset_version:
                 description:
                     - The latest version of the record's zone in which its RRSet differs
                       from the preceding version.
+                    - This parameter is updatable.
                 type: str
             rtype:
                 description:
                     - The canonical name for the record's type, such as A or CNAME. For more
                       information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+                    - This parameter is updatable.
                 type: str
                 required: true
             ttl:
                 description:
                     - The Time To Live for the record, in seconds.
+                    - This parameter is updatable.
                 type: int
                 required: true
     if_unmodified_since:
@@ -94,10 +102,12 @@ options:
               earlier than or equal to the date provided in the field-value.  This
               field accomplishes the same purpose as If-Match for cases where the user
               agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
             - The OCID of the compartment the resource belongs to.
+            - This parameter is updatable.
         type: str
     patch_items:
         description:

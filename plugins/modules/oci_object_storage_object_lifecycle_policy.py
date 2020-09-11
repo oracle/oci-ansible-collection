@@ -40,11 +40,13 @@ options:
     items:
         description:
             - The bucket's set of lifecycle policy rules.
+            - This parameter is updatable.
         type: list
         suboptions:
             name:
                 description:
                     - The name of the lifecycle rule to be applied.
+                    - This parameter is updatable.
                 type: str
                 required: true
             action:
@@ -53,18 +55,21 @@ options:
                       L(Archive Storage tier,https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm). Rules using the action
                       'DELETE' permanently delete objects from buckets. 'ARCHIVE' and 'DELETE' are the only two supported
                       actions at this time.
+                    - This parameter is updatable.
                 type: str
                 required: true
             time_amount:
                 description:
                     - Specifies the age of objects to apply the rule to. The timeAmount is interpreted in units defined by the
                       timeUnit parameter, and is calculated in relation to each object's Last-Modified time.
+                    - This parameter is updatable.
                 type: int
                 required: true
             time_unit:
                 description:
                     - The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC.
                       Years are defined as 365.2425 days long and likewise round up to the next midnight UTC.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "DAYS"
@@ -73,6 +78,7 @@ options:
             is_enabled:
                 description:
                     - A Boolean that determines whether this rule is currently enabled.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             object_name_filter:
@@ -83,6 +89,7 @@ options:
                     inclusion_prefixes:
                         description:
                             - An array of object name prefixes that the rule will apply to. An empty array means to include all objects.
+                            - This parameter is updatable.
                         type: list
                     inclusion_patterns:
                         description:
@@ -104,6 +111,7 @@ options:
                                                           [a-mn-z] is not valid
                                                       Character ranges can not start with ^ or :
                                                       To include a '-' in the range, make it the first or last character."
+                            - This parameter is updatable.
                         type: list
                     exclusion_patterns:
                         description:
@@ -125,6 +133,7 @@ options:
                                                           [a-mn-z] is not valid
                                                       Character ranges can not start with ^ or :
                                                       To include a '-' in the range, make it the first or last character."
+                            - This parameter is updatable.
                         type: list
     state:
         description:

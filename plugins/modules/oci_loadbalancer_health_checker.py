@@ -36,6 +36,7 @@ options:
         description:
             - The path against which to run the health check.
             - "Example: `/healthcheck`"
+            - This parameter is updatable.
         type: str
     port:
         description:

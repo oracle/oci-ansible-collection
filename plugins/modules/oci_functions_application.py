@@ -50,6 +50,7 @@ options:
             - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
             - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each key
               and value in UTF-8.
+            - This parameter is updatable.
         type: dict
     subnet_ids:
         description:
@@ -62,12 +63,14 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     application_id:
         description:

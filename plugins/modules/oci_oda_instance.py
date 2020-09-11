@@ -34,11 +34,13 @@ options:
         description:
             - User-friendly name for the instance. Avoid entering confidential information. You can change this value anytime.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - Description of the Digital Assistant instance.
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -60,11 +62,13 @@ options:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for
               cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     oda_instance_id:
         description:

@@ -39,6 +39,7 @@ options:
         description:
             - The user-friendly name for the Autonomous Exadata Infrastructure. It does not have to be unique.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     availability_domain:
@@ -64,6 +65,7 @@ options:
               see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
               **NsgIds restrictions:**
               - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            - This parameter is updatable.
         type: list
     shape:
         description:
@@ -87,6 +89,7 @@ options:
     maintenance_window_details:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             preference:
@@ -162,11 +165,13 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     autonomous_exadata_infrastructure_id:
         description:

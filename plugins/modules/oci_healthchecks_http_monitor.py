@@ -40,25 +40,30 @@ options:
         description:
             - A list of targets (hostnames or IP addresses) of the probe.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     vantage_point_names:
         description:
             - A list of names of vantage points from which to execute the probe.
+            - This parameter is updatable.
         type: list
     port:
         description:
             - The port on which to probe endpoints. If unspecified, probes will use the
               default port of their protocol.
+            - This parameter is updatable.
         type: int
     timeout_in_seconds:
         description:
             - "The probe timeout in seconds. Valid values: 10, 20, 30, and 60.
               The probe timeout must be less than or equal to `intervalInSeconds` for monitors."
+            - This parameter is updatable.
         type: int
     protocol:
         description:
             - ""
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "HTTP"
@@ -66,6 +71,7 @@ options:
     method:
         description:
             - ""
+            - This parameter is updatable.
         type: str
         choices:
             - "GET"
@@ -73,27 +79,32 @@ options:
     path:
         description:
             - The optional URL path to probe, including query parameters.
+            - This parameter is updatable.
         type: str
     headers:
         description:
             - A dictionary of HTTP request headers.
             - "*Note:* Monitors and probes do not support the use of the `Authorization` HTTP header."
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly and mutable name suitable for display in a user interface.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     interval_in_seconds:
         description:
             - "The monitor interval in seconds. Valid values: 10, 30, and 60."
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     is_enabled:
         description:
             - Enables or disables the monitor. Set to 'true' to launch monitoring.
+            - This parameter is updatable.
         type: bool
     freeform_tags:
         description:
@@ -101,12 +112,14 @@ options:
               predefined name, type, or namespace.  For more information,
               see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     monitor_id:
         description:

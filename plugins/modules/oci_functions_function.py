@@ -49,17 +49,20 @@ options:
               The image should be in the OCI Registry that is in the same region as the function itself.
               Example: `phx.ocir.io/ten/functions/function:0.0.1`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     image_digest:
         description:
             - "The image digest for the version of the image that will be pulled when invoking this function.
               If no value is specified, the digest currently associated with the image in the OCI Registry will be used.
               Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`"
+            - This parameter is updatable.
         type: str
     memory_in_mbs:
         description:
             - Maximum usable memory for the function (MiB).
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     config:
         description:
@@ -69,22 +72,26 @@ options:
             - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
             - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each key
               and value in UTF-8.
+            - This parameter is updatable.
         type: dict
     timeout_in_seconds:
         description:
             - Timeout for executions of the function. Value in seconds.
+            - This parameter is updatable.
         type: int
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     function_id:
         description:

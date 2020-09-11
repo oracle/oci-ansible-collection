@@ -35,6 +35,13 @@ Helps in checking if the create operation will create the resource or not. It wi
     check_mode: yes
 ```
 
+### Identity Home Region Redirect
+By default, Identity requests are redirected to the user home region even if you specify a different region. 
+If you need to use Identity service with a region other than your home region, you can override this behavior by setting this variable to any value:
+- Environment variable: OCI_IDENTITY_DO_NOT_REDIRECT_TO_HOME_REGION
+
+
+
 ### Avoiding reliance on server side default values
 Before our modules execute any operation, they check with the service to determine if that operation is necessary or if the state is already such that the operation would be a no-op. For create operations, this means checking if a resource already exists that matches the parameters a user supplied. The modules will attempt to find a matching resource *only* based on the parameters you supply. This means that if you omit an optional parameter and rely on the server side default value, future invocations of the same playbook can potentially match a resource that has a different value for that parameter.
 

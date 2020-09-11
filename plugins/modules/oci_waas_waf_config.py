@@ -36,11 +36,13 @@ options:
         description:
             - The access rules applied to the Web Application Firewall. Used for defining custom access policies with the combination of `ALLOW`, `DETECT`, and
               `BLOCK` rules, based on different criteria.
+            - This parameter is updatable.
         type: list
         suboptions:
             name:
                 description:
                     - The unique name of the access rule.
+                    - This parameter is updatable.
                 type: str
                 required: true
             criteria:
@@ -108,6 +110,7 @@ options:
                               *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`
                               - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                               *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "URL_IS"
@@ -135,11 +138,13 @@ options:
                     value:
                         description:
                             - The criteria value.
+                            - This parameter is updatable.
                         type: str
                         required: true
                     is_case_sensitive:
                         description:
                             - When enabled, the condition will be matched with case-sensitive rules.
+                            - This parameter is updatable.
                         type: bool
             action:
                 description:
@@ -152,6 +157,7 @@ options:
                       `redirectResponseCode`."
                     - "- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page."
                     - Regardless of action, no further rules are processed once a rule is matched.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "ALLOW"
@@ -165,6 +171,7 @@ options:
                 description:
                     - The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to
                       `SET_RESPONSE_CODE`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "SET_RESPONSE_CODE"
@@ -175,21 +182,25 @@ options:
                       are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`,
                       `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`,
                       `500`, `501`, `502`, `503`, `504`, `507`."
+                    - This parameter is updatable.
                 type: int
             block_error_page_message:
                 description:
                     - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria
                       are met. If unspecified, defaults to 'Access to the website is blocked.'
+                    - This parameter is updatable.
                 type: str
             block_error_page_code:
                 description:
                     - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                       criteria are met. If unspecified, defaults to 'Access rules'.
+                    - This parameter is updatable.
                 type: str
             block_error_page_description:
                 description:
                     - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                       criteria are met. If unspecified, defaults to 'Access blocked by website owner. Please contact support.'
+                    - This parameter is updatable.
                 type: str
             bypass_challenges:
                 description:
@@ -198,6 +209,7 @@ options:
                     - "- **DEVICE_FINGERPRINT_CHALLENGE:** Bypasses Device Fingerprint Challenge."
                     - "- **HUMAN_INTERACTION_CHALLENGE:** Bypasses Human Interaction Challenge."
                     - "- **CAPTCHA:** Bypasses CAPTCHA Challenge."
+                    - This parameter is updatable.
                 type: list
                 choices:
                     - "JS_CHALLENGE"
@@ -207,12 +219,14 @@ options:
             redirect_url:
                 description:
                     - The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.
+                    - This parameter is updatable.
                 type: str
             redirect_response_code:
                 description:
                     - The response status code to return when `action` is set to `REDIRECT`.
                     - "- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301)."
                     - "- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302)."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "MOVED_PERMANENTLY"
@@ -220,18 +234,22 @@ options:
             captcha_title:
                 description:
                     - The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             captcha_header:
                 description:
                     - The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             captcha_footer:
                 description:
                     - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             captcha_submit_label:
                 description:
                     - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             response_header_manipulation:
                 description:
@@ -242,6 +260,7 @@ options:
                     action:
                         description:
                             - ""
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "EXTEND_HTTP_RESPONSE_HEADER"
@@ -252,56 +271,67 @@ options:
                         description:
                             - A header field name that conforms to RFC 7230.
                             - "Example: `example_header_name`"
+                            - This parameter is updatable.
                         type: str
                         required: true
                     value:
                         description:
                             - A header field value that conforms to RFC 7230.
                             - "Example: `example_value`"
+                            - This parameter is updatable.
                             - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER']
                         type: str
     address_rate_limiting:
         description:
             - The IP address rate limiting settings used to limit the number of requests from an address.
+            - This parameter is updatable.
         type: dict
         suboptions:
             is_enabled:
                 description:
                     - Enables or disables the address rate limiting Web Application Firewall feature.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             allowed_rate_per_address:
                 description:
                     - The number of allowed requests per second from one IP address. If unspecified, defaults to `1`.
+                    - This parameter is updatable.
                 type: int
             max_delayed_count_per_address:
                 description:
                     - The maximum number of requests allowed to be queued before subsequent requests are dropped. If unspecified, defaults to `10`.
+                    - This parameter is updatable.
                 type: int
             block_response_code:
                 description:
                     - "The response status code returned when a request is blocked. If unspecified, defaults to `503`. The list of available response codes:
                       `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`,
                       `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                    - This parameter is updatable.
                 type: int
     captchas:
         description:
             - A list of CAPTCHA challenge settings. These are used to challenge requests with a CAPTCHA to block bots.
+            - This parameter is updatable.
         type: list
         suboptions:
             url:
                 description:
                     - The unique URL path at which to show the CAPTCHA challenge.
+                    - This parameter is updatable.
                 type: str
                 required: true
             session_expiration_in_seconds:
                 description:
                     - The amount of time before the CAPTCHA expires, in seconds. If unspecified, defaults to `300`.
+                    - This parameter is updatable.
                 type: int
                 required: true
             title:
                 description:
                     - The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`
+                    - This parameter is updatable.
                 type: str
                 required: true
             header_text:
@@ -309,36 +339,43 @@ options:
                     - The text to show in the header when showing a CAPTCHA challenge. If unspecified, defaults to 'We have detected an increased number of
                       attempts to access this website. To help us keep this site secure, please let us know that you are not a robot by entering the text from
                       the image below.'
+                    - This parameter is updatable.
                 type: str
             footer_text:
                 description:
                     - The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to 'Enter the letters and numbers as they are
                       shown in the image above.'
+                    - This parameter is updatable.
                 type: str
             failure_message:
                 description:
                     - The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`
+                    - This parameter is updatable.
                 type: str
                 required: true
             submit_label:
                 description:
                     - The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.
+                    - This parameter is updatable.
                 type: str
                 required: true
     device_fingerprint_challenge:
         description:
             - The device fingerprint challenge settings. Used to detect unique devices based on the device fingerprint information collected in order to block
               bots.
+            - This parameter is updatable.
         type: dict
         suboptions:
             is_enabled:
                 description:
                     - Enables or disables the device fingerprint challenge Web Application Firewall feature.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             action:
                 description:
                     - The action to take on requests from detected bots. If unspecified, defaults to `DETECT`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "DETECT"
@@ -346,22 +383,27 @@ options:
             failure_threshold:
                 description:
                     - The number of failed requests allowed before taking action. If unspecified, defaults to `10`.
+                    - This parameter is updatable.
                 type: int
             action_expiration_in_seconds:
                 description:
                     - The number of seconds between challenges for the same IP address. If unspecified, defaults to `60`.
+                    - This parameter is updatable.
                 type: int
             failure_threshold_expiration_in_seconds:
                 description:
                     - The number of seconds before the failure threshold resets. If unspecified, defaults to `60`.
+                    - This parameter is updatable.
                 type: int
             max_address_count:
                 description:
                     - The maximum number of IP addresses permitted with the same device fingerprint. If unspecified, defaults to `20`.
+                    - This parameter is updatable.
                 type: int
             max_address_count_expiration_in_seconds:
                 description:
                     - The number of seconds before the maximum addresses count resets. If unspecified, defaults to `60`.
+                    - This parameter is updatable.
                 type: int
             challenge_settings:
                 description:
@@ -372,6 +414,7 @@ options:
                         description:
                             - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                               `SHOW_ERROR_PAGE`.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "SET_RESPONSE_CODE"
@@ -383,26 +426,31 @@ options:
                               `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`,
                               `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`,
                               `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                            - This parameter is updatable.
                         type: int
                     block_error_page_message:
                         description:
                             - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request
                               is blocked. If unspecified, defaults to `Access to the website is blocked`.
+                            - This parameter is updatable.
                         type: str
                     block_error_page_description:
                         description:
                             - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                               request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
+                            - This parameter is updatable.
                         type: str
                     block_error_page_code:
                         description:
                             - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the
                               request is blocked. If unspecified, defaults to `403`.
+                            - This parameter is updatable.
                         type: str
                     captcha_title:
                         description:
                             - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the
                               request is blocked. If unspecified, defaults to `Are you human?`
+                            - This parameter is updatable.
                         type: str
                     captcha_header:
                         description:
@@ -410,55 +458,66 @@ options:
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to
                               access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from
                               captcha below.`
+                            - This parameter is updatable.
                         type: str
                     captcha_footer:
                         description:
                             - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image
                               above`.
+                            - This parameter is updatable.
                         type: str
                     captcha_submit_label:
                         description:
                             - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
+                            - This parameter is updatable.
                         type: str
     good_bots:
         description:
             - A list of bots allowed to access the web application.
+            - This parameter is updatable.
         type: list
         suboptions:
             key:
                 description:
                     - The unique key for the bot.
+                    - This parameter is updatable.
                 type: str
                 required: true
             name:
                 description:
                     - The bot name.
+                    - This parameter is updatable.
                 type: str
             is_enabled:
                 description:
                     - Enables or disables the bot.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             description:
                 description:
                     - The description of the bot.
+                    - This parameter is updatable.
                 type: str
     human_interaction_challenge:
         description:
             - The human interaction challenge settings. Used to look for natural human interactions such as mouse movements, time on site, and page scrolling to
               identify bots.
+            - This parameter is updatable.
         type: dict
         suboptions:
             is_enabled:
                 description:
                     - Enables or disables the human interaction challenge Web Application Firewall feature.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             action:
                 description:
                     - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "DETECT"
@@ -466,22 +525,27 @@ options:
             failure_threshold:
                 description:
                     - The number of failed requests before taking action. If unspecified, defaults to `10`.
+                    - This parameter is updatable.
                 type: int
             action_expiration_in_seconds:
                 description:
                     - The number of seconds between challenges for the same IP address. If unspecified, defaults to `60`.
+                    - This parameter is updatable.
                 type: int
             failure_threshold_expiration_in_seconds:
                 description:
                     - The number of seconds before the failure threshold resets. If unspecified, defaults to  `60`.
+                    - This parameter is updatable.
                 type: int
             interaction_threshold:
                 description:
                     - The number of interactions required to pass the challenge. If unspecified, defaults to `3`.
+                    - This parameter is updatable.
                 type: int
             recording_period_in_seconds:
                 description:
                     - The number of seconds to record the interactions from the user. If unspecified, defaults to `15`.
+                    - This parameter is updatable.
                 type: int
             set_http_header:
                 description:
@@ -492,11 +556,13 @@ options:
                     name:
                         description:
                             - The name of the header.
+                            - This parameter is updatable.
                         type: str
                         required: true
                     value:
                         description:
                             - The value of the header.
+                            - This parameter is updatable.
                         type: str
                         required: true
             challenge_settings:
@@ -508,6 +574,7 @@ options:
                         description:
                             - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                               `SHOW_ERROR_PAGE`.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "SET_RESPONSE_CODE"
@@ -519,26 +586,31 @@ options:
                               `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`,
                               `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`,
                               `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                            - This parameter is updatable.
                         type: int
                     block_error_page_message:
                         description:
                             - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request
                               is blocked. If unspecified, defaults to `Access to the website is blocked`.
+                            - This parameter is updatable.
                         type: str
                     block_error_page_description:
                         description:
                             - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                               request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
+                            - This parameter is updatable.
                         type: str
                     block_error_page_code:
                         description:
                             - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the
                               request is blocked. If unspecified, defaults to `403`.
+                            - This parameter is updatable.
                         type: str
                     captcha_title:
                         description:
                             - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the
                               request is blocked. If unspecified, defaults to `Are you human?`
+                            - This parameter is updatable.
                         type: str
                     captcha_header:
                         description:
@@ -546,37 +618,44 @@ options:
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to
                               access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from
                               captcha below.`
+                            - This parameter is updatable.
                         type: str
                     captcha_footer:
                         description:
                             - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image
                               above`.
+                            - This parameter is updatable.
                         type: str
                     captcha_submit_label:
                         description:
                             - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
+                            - This parameter is updatable.
                         type: str
             is_nat_enabled:
                 description:
                     - When enabled, the user is identified not only by the IP address but also by an unique additional hash, which prevents blocking visitors
                       with shared IP addresses.
+                    - This parameter is updatable.
                 type: bool
     js_challenge:
         description:
             - The JavaScript challenge settings. Used to challenge requests with a JavaScript challenge and take the action if a browser has no JavaScript
               support in order to block bots.
+            - This parameter is updatable.
         type: dict
         suboptions:
             is_enabled:
                 description:
                     - Enables or disables the JavaScript challenge Web Application Firewall feature.
+                    - This parameter is updatable.
                 type: bool
                 required: true
             action:
                 description:
                     - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "DETECT"
@@ -584,10 +663,12 @@ options:
             failure_threshold:
                 description:
                     - The number of failed requests before taking action. If unspecified, defaults to `10`.
+                    - This parameter is updatable.
                 type: int
             action_expiration_in_seconds:
                 description:
                     - The number of seconds between challenges from the same IP address. If unspecified, defaults to `60`.
+                    - This parameter is updatable.
                 type: int
             set_http_header:
                 description:
@@ -598,11 +679,13 @@ options:
                     name:
                         description:
                             - The name of the header.
+                            - This parameter is updatable.
                         type: str
                         required: true
                     value:
                         description:
                             - The value of the header.
+                            - This parameter is updatable.
                         type: str
                         required: true
             challenge_settings:
@@ -614,6 +697,7 @@ options:
                         description:
                             - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                               `SHOW_ERROR_PAGE`.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "SET_RESPONSE_CODE"
@@ -625,26 +709,31 @@ options:
                               `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`,
                               `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`,
                               `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                            - This parameter is updatable.
                         type: int
                     block_error_page_message:
                         description:
                             - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request
                               is blocked. If unspecified, defaults to `Access to the website is blocked`.
+                            - This parameter is updatable.
                         type: str
                     block_error_page_description:
                         description:
                             - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                               request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
+                            - This parameter is updatable.
                         type: str
                     block_error_page_code:
                         description:
                             - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the
                               request is blocked. If unspecified, defaults to `403`.
+                            - This parameter is updatable.
                         type: str
                     captcha_title:
                         description:
                             - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the
                               request is blocked. If unspecified, defaults to `Are you human?`
+                            - This parameter is updatable.
                         type: str
                     captcha_header:
                         description:
@@ -652,22 +741,26 @@ options:
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to
                               access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from
                               captcha below.`
+                            - This parameter is updatable.
                         type: str
                     captcha_footer:
                         description:
                             - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image
                               above`.
+                            - This parameter is updatable.
                         type: str
                     captcha_submit_label:
                         description:
                             - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                               `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
+                            - This parameter is updatable.
                         type: str
             are_redirects_challenged:
                 description:
                     - When enabled, redirect responses from the origin will also be challenged. This will change HTTP 301/302 responses from origin to HTTP 200
                       with an HTML body containing JavaScript page redirection.
+                    - This parameter is updatable.
                 type: bool
             criteria:
                 description:
@@ -733,6 +826,7 @@ options:
                               *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`
                               - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                               *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "URL_IS"
@@ -760,34 +854,41 @@ options:
                     value:
                         description:
                             - The criteria value.
+                            - This parameter is updatable.
                         type: str
                         required: true
                     is_case_sensitive:
                         description:
                             - When enabled, the condition will be matched with case-sensitive rules.
+                            - This parameter is updatable.
                         type: bool
             is_nat_enabled:
                 description:
                     - When enabled, the user is identified not only by the IP address but also by an unique additional hash, which prevents blocking visitors
                       with shared IP addresses.
+                    - This parameter is updatable.
                 type: bool
     origin:
         description:
             - The key in the map of origins referencing the origin used for the Web Application Firewall. The origin must already be included in `Origins`.
               Required when creating the `WafConfig` resource, but not on update.
+            - This parameter is updatable.
         type: str
     caching_rules:
         description:
             - A list of caching rules applied to the web application.
+            - This parameter is updatable.
         type: list
         suboptions:
             key:
                 description:
                     - The unique key for the caching rule.
+                    - This parameter is updatable.
                 type: str
             name:
                 description:
                     - The name of the caching rule.
+                    - This parameter is updatable.
                 type: str
                 required: true
             action:
@@ -795,6 +896,7 @@ options:
                     - "The action to take when the criteria of a caching rule are met.
                       - **CACHE:** Caches requested content when the criteria of the rule are met."
                     - "- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "CACHE"
@@ -806,12 +908,14 @@ options:
                       days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when
                       the `action` is set to `CACHE`.
                       Example: `PT1H`"
+                    - This parameter is updatable.
                 type: str
             is_client_caching_enabled:
                 description:
                     - Enables or disables client caching.
                       Browsers use the `Cache-Control` header value for caching content locally in the browser. This setting overrides the addition of a `Cache-
                       Control` header in responses.
+                    - This parameter is updatable.
                 type: bool
             client_caching_duration:
                 description:
@@ -819,6 +923,7 @@ options:
                       days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when
                       the `action` is set to `CACHE`.
                       Example: `PT1H`"
+                    - This parameter is updatable.
                 type: str
             criteria:
                 description:
@@ -837,6 +942,7 @@ options:
                             - "- **URL_PART_CONTAINS:** Matches if the concatenation of request URL path and query contains the contents of the `value` field."
                             - URLs must start with a `/`. URLs can't contain restricted double slashes `//`. URLs can't contain the restricted `'` `&` `?`
                               symbols. Resources to cache can only be specified by a URL, any query parameters are ignored.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "URL_IS"
@@ -847,22 +953,26 @@ options:
                     value:
                         description:
                             - The value of the caching rule criteria.
+                            - This parameter is updatable.
                         type: str
                         required: true
     custom_protection_rules:
         description:
             - A list of the custom protection rule OCIDs and their actions.
+            - This parameter is updatable.
         type: list
         suboptions:
             id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
+                    - This parameter is updatable.
                 type: str
             action:
                 description:
                     - "The action to take when the custom protection rule is triggered.
                       `DETECT` - Logs the request when the criteria of the custom protection rule are met. `BLOCK` - Blocks the request when the criteria of the
                       custom protection rule are met."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "DETECT"
@@ -875,6 +985,7 @@ options:
                     target:
                         description:
                             - The target of the exclusion.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "REQUEST_COOKIES"
@@ -884,38 +995,46 @@ options:
                     exclusions:
                         description:
                             - ""
+                            - This parameter is updatable.
                         type: list
     origin_groups:
         description:
             - The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups of
               origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests.
               To add additional origins to your WAAS policy, update the `origins` field of a `UpdateWaasPolicy` request.
+            - This parameter is updatable.
         type: list
     protection_rules:
         description:
             - A list of the protection rules and their details.
+            - This parameter is updatable.
         type: list
         suboptions:
             key:
                 description:
                     - The unique key of the protection rule.
+                    - This parameter is updatable.
                 type: str
             mod_security_rule_ids:
                 description:
                     - The list of the ModSecurity rule IDs that apply to this protection rule. For more information about ModSecurity's open source WAF rules,
                       see L(Mod Security's documentation,https://www.modsecurity.org/CRS/Documentation/index.html).
+                    - This parameter is updatable.
                 type: list
             name:
                 description:
                     - The name of the protection rule.
+                    - This parameter is updatable.
                 type: str
             description:
                 description:
                     - The description of the protection rule.
+                    - This parameter is updatable.
                 type: str
             action:
                 description:
                     - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "OFF"
@@ -925,6 +1044,7 @@ options:
                 description:
                     - The list of labels for the protection rule.
                     - "**Note:** Protection rules with a `ResponseBody` label will have no effect unless `isResponseInspected` is true."
+                    - This parameter is updatable.
                 type: list
             exclusions:
                 description:
@@ -934,6 +1054,7 @@ options:
                     target:
                         description:
                             - The target of the exclusion.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "REQUEST_COOKIES"
@@ -943,16 +1064,19 @@ options:
                     exclusions:
                         description:
                             - ""
+                            - This parameter is updatable.
                         type: list
     protection_settings:
         description:
             - The settings to apply to protection rules.
+            - This parameter is updatable.
         type: dict
         suboptions:
             block_action:
                 description:
                     - If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If unspecified,
                       defaults to `SET_RESPONSE_CODE`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "SHOW_ERROR_PAGE"
@@ -962,21 +1086,25 @@ options:
                     - "The response code returned when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the traffic is detected as
                       malicious by a protection rule. If unspecified, defaults to `403`. The list of available response codes: `400`, `401`, `403`, `405`,
                       `409`, `411`, `412`, `413`, `414`, `415`, `416`, `500`, `501`, `502`, `503`, `504`, `507`."
+                    - This parameter is updatable.
                 type: int
             block_error_page_message:
                 description:
                     - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                       detected as malicious by a protection rule. If unspecified, defaults to 'Access to the website is blocked.'
+                    - This parameter is updatable.
                 type: str
             block_error_page_code:
                 description:
                     - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                       detected as malicious by a protection rule. If unspecified, defaults to `403`.
+                    - This parameter is updatable.
                 type: str
             block_error_page_description:
                 description:
                     - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic
                       is detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
+                    - This parameter is updatable.
                 type: str
             max_argument_count:
                 description:
@@ -987,39 +1115,46 @@ options:
                       blocked:
                       `GET /myapp/path?query=one&query=two&query=three`
                       `POST /myapp/path` with Body `{\\"argument1\\":\\"one\\",\\"argument2\\":\\"two\\",\\"argument3\\":\\"three\\"}`"
+                    - This parameter is updatable.
                 type: int
             max_name_length_per_argument:
                 description:
                     - "The maximum length allowed for each argument name, in characters. Arguements are query parameters or body parameters in a PUT or POST
                       request. If unspecified, defaults to `400`. This setting only applies if a corresponding protection rule is enabled, such as the \\"Values
                       Limits\\" rule (key: 960208)."
+                    - This parameter is updatable.
                 type: int
             max_total_name_length_of_arguments:
                 description:
                     - "The maximum length allowed for the sum of the argument name and value, in characters. Arguements are query parameters or body parameters
                       in a PUT or POST request. If unspecified, defaults to `64000`. This setting only applies if a corresponding protection rule is enabled,
                       such as the \\"Total Arguments Limits\\" rule (key: 960341)."
+                    - This parameter is updatable.
                 type: int
             recommendations_period_in_days:
                 description:
                     - The length of time to analyze traffic traffic, in days. After the analysis period, `WafRecommendations` will be populated. If unspecified,
                       defaults to `10`.
                     - Use `GET /waasPolicies/{waasPolicyId}/wafRecommendations` to view WAF recommendations.
+                    - This parameter is updatable.
                 type: int
             is_response_inspected:
                 description:
                     - Inspects the response body of origin responses. Can be used to detect leakage of sensitive data. If unspecified, defaults to `false`.
                     - "**Note:** Only origin responses with a Content-Type matching a value in `mediaTypes` will be inspected."
+                    - This parameter is updatable.
                 type: bool
             max_response_size_in_ki_b:
                 description:
                     - The maximum response size to be fully inspected, in binary kilobytes (KiB). Anything over this limit will be partially inspected. If
                       unspecified, defaults to `1024`.
+                    - This parameter is updatable.
                 type: int
             allowed_http_methods:
                 description:
                     - "The list of allowed HTTP methods. If unspecified, default to `[OPTIONS, GET, HEAD, POST]`. This setting only applies if a corresponding
                       protection rule is enabled, such as the \\"Restrict HTTP Request Methods\\" rule (key: 911100)."
+                    - This parameter is updatable.
                 type: list
                 choices:
                     - "OPTIONS"
@@ -1055,23 +1190,28 @@ options:
                           - application/plain
                           - application/xml
                           - text/xml"
+                    - This parameter is updatable.
                 type: list
     threat_feeds:
         description:
             - A list of threat intelligence feeds and the actions to apply to known malicious traffic based on internet intelligence.
+            - This parameter is updatable.
         type: list
         suboptions:
             key:
                 description:
                     - The unique key of the threat intelligence feed.
+                    - This parameter is updatable.
                 type: str
             name:
                 description:
                     - The name of the threat intelligence feed.
+                    - This parameter is updatable.
                 type: str
             action:
                 description:
                     - The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to `OFF`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "OFF"
@@ -1080,24 +1220,29 @@ options:
             description:
                 description:
                     - The description of the threat intelligence feed.
+                    - This parameter is updatable.
                 type: str
     whitelists:
         description:
             - A list of IP addresses that bypass the Web Application Firewall.
+            - This parameter is updatable.
         type: list
         suboptions:
             name:
                 description:
                     - The unique name of the whitelist.
+                    - This parameter is updatable.
                 type: str
                 required: true
             addresses:
                 description:
                     - A set of IP addresses or CIDR notations to include in the whitelist.
+                    - This parameter is updatable.
                 type: list
             address_lists:
                 description:
                     - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of IP address lists to include in the whitelist.
+                    - This parameter is updatable.
                 type: list
     state:
         description:

@@ -296,6 +296,43 @@ autonomous_container_databases:
             returned: on success
             type: complex
             contains:
+                backup_destination_details:
+                    description:
+                        - Backup destination details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - Type of the database backup destination.
+                            returned: on success
+                            type: string
+                            sample: NFS
+                        id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                        vpc_user:
+                            description:
+                                - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
+                                  Appliance.
+                            returned: on success
+                            type: string
+                            sample: vpc_user_example
+                        vpc_password:
+                            description:
+                                - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                            returned: on success
+                            type: string
+                            sample: vpc_password_example
+                        internet_proxy:
+                            description:
+                                - Proxy URL to connect to object store.
+                            returned: on success
+                            type: string
+                            sample: internet_proxy_example
                 recovery_window_in_days:
                     description:
                         - Number of days between the current and the earliest point of recoverability covered by automatic backups.
@@ -337,6 +374,13 @@ autonomous_container_databases:
         "availability_domain": "Uocm:PHX-AD-1",
         "db_version": "db_version_example",
         "backup_config": {
+            "backup_destination_details": [{
+                "type": "NFS",
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "vpc_user": "vpc_user_example",
+                "vpc_password": "vpc_password_example",
+                "internet_proxy": "internet_proxy_example"
+            }],
             "recovery_window_in_days": 56
         }
     }]

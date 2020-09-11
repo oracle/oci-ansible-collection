@@ -39,6 +39,7 @@ options:
     description:
         description:
             - Optional description.
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -79,6 +80,7 @@ options:
         description:
             - The license used for the service.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "LICENSE_INCLUDED"
@@ -86,6 +88,7 @@ options:
     email_notification:
         description:
             - Email address receiving notifications.
+            - This parameter is updatable.
         type: str
     network_endpoint_details:
         description:
@@ -141,6 +144,7 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     freeform_tags:
         description:
@@ -148,6 +152,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     analytics_instance_id:
         description:

@@ -43,21 +43,25 @@ options:
         description:
             - The stack's display name.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - Description of the stack.
+            - This parameter is updatable.
         type: str
     config_source:
         description:
             - ""
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: dict
         suboptions:
             config_source_type:
                 description:
                     - Specifies the `configSourceType` for uploading the Terraform configuration.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "ZIP_UPLOAD"
@@ -69,10 +73,12 @@ options:
                     - File path to the directory from which Terraform runs.
                       If not specified, the root directory is used.
                       This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                    - This parameter is updatable.
                 type: str
             zip_file_base64_encoded:
                 description:
                     - ""
+                    - This parameter is updatable.
                     - Applicable when config_source_type is 'ZIP_UPLOAD'
                     - Required when config_source_type is 'ZIP_UPLOAD'
                 type: str
@@ -80,16 +86,19 @@ options:
                 description:
                     - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
                       for the Git configuration source.
+                    - This parameter is updatable.
                     - Required when config_source_type is 'GIT_CONFIG_SOURCE'
                 type: str
             repository_url:
                 description:
                     - The URL of the Git repository.
+                    - This parameter is updatable.
                     - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
                 type: str
             branch_name:
                 description:
                     - The name of the branch within the Git repository.
+                    - This parameter is updatable.
                     - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
                 type: str
             compartment_id:
@@ -120,22 +129,26 @@ options:
               Maximum number of variables supported is 250.
               The maximum size of each variable, including both name and value, is 4096 bytes.
               Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
+            - This parameter is updatable.
         type: dict
     terraform_version:
         description:
             - "The version of Terraform to use with the stack. Example: `0.12.x`"
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags associated with this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags associated with this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     stack_id:
         description:

@@ -35,6 +35,7 @@ options:
             - "*  NSGs define network security rules to govern ingress and egress traffic for the load balancer."
             - "*  The network security rules of other resources can reference the NSGs associated with the load balancer
                  to ensure access."
+            - This parameter is updatable.
         type: list
     load_balancer_id:
         description:

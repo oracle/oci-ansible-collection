@@ -41,11 +41,13 @@ options:
             key:
                 description:
                     - The unique key of the object for which the action applies.
+                    - This parameter is updatable.
                 type: str
                 required: true
             action:
                 description:
                     - The selected action. If unspecified, defaults to `OFF`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "OFF"

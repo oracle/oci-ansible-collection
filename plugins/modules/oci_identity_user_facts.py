@@ -197,7 +197,7 @@ users:
             sample: {'Operations': {'CostCenter': 'US'}}
         capabilities:
             description:
-                - Properties indicating how the user is allowed to authenticate.
+                - ""
             returned: on success
             type: complex
             contains:

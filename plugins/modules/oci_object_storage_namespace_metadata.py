@@ -34,10 +34,12 @@ options:
     default_s3_compartment_id:
         description:
             - The updated compartment id for use by an S3 client, if this field is set.
+            - This parameter is updatable.
         type: str
     default_swift_compartment_id:
         description:
             - The updated compartment id for use by a Swift client, if this field is set.
+            - This parameter is updatable.
         type: str
     state:
         description:

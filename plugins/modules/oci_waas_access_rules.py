@@ -41,6 +41,7 @@ options:
             name:
                 description:
                     - The unique name of the access rule.
+                    - This parameter is updatable.
                 type: str
                 required: true
             criteria:
@@ -108,6 +109,7 @@ options:
                               *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`
                               - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                               *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "URL_IS"
@@ -135,11 +137,13 @@ options:
                     value:
                         description:
                             - The criteria value.
+                            - This parameter is updatable.
                         type: str
                         required: true
                     is_case_sensitive:
                         description:
                             - When enabled, the condition will be matched with case-sensitive rules.
+                            - This parameter is updatable.
                         type: bool
             action:
                 description:
@@ -152,6 +156,7 @@ options:
                       `redirectResponseCode`."
                     - "- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page."
                     - Regardless of action, no further rules are processed once a rule is matched.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "ALLOW"
@@ -165,6 +170,7 @@ options:
                 description:
                     - The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to
                       `SET_RESPONSE_CODE`.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "SET_RESPONSE_CODE"
@@ -175,21 +181,25 @@ options:
                       are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`,
                       `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`,
                       `500`, `501`, `502`, `503`, `504`, `507`."
+                    - This parameter is updatable.
                 type: int
             block_error_page_message:
                 description:
                     - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria
                       are met. If unspecified, defaults to 'Access to the website is blocked.'
+                    - This parameter is updatable.
                 type: str
             block_error_page_code:
                 description:
                     - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                       criteria are met. If unspecified, defaults to 'Access rules'.
+                    - This parameter is updatable.
                 type: str
             block_error_page_description:
                 description:
                     - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                       criteria are met. If unspecified, defaults to 'Access blocked by website owner. Please contact support.'
+                    - This parameter is updatable.
                 type: str
             bypass_challenges:
                 description:
@@ -198,6 +208,7 @@ options:
                     - "- **DEVICE_FINGERPRINT_CHALLENGE:** Bypasses Device Fingerprint Challenge."
                     - "- **HUMAN_INTERACTION_CHALLENGE:** Bypasses Human Interaction Challenge."
                     - "- **CAPTCHA:** Bypasses CAPTCHA Challenge."
+                    - This parameter is updatable.
                 type: list
                 choices:
                     - "JS_CHALLENGE"
@@ -207,12 +218,14 @@ options:
             redirect_url:
                 description:
                     - The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.
+                    - This parameter is updatable.
                 type: str
             redirect_response_code:
                 description:
                     - The response status code to return when `action` is set to `REDIRECT`.
                     - "- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301)."
                     - "- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302)."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "MOVED_PERMANENTLY"
@@ -220,18 +233,22 @@ options:
             captcha_title:
                 description:
                     - The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             captcha_header:
                 description:
                     - The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             captcha_footer:
                 description:
                     - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             captcha_submit_label:
                 description:
                     - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
+                    - This parameter is updatable.
                 type: str
             response_header_manipulation:
                 description:
@@ -242,6 +259,7 @@ options:
                     action:
                         description:
                             - ""
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "EXTEND_HTTP_RESPONSE_HEADER"
@@ -252,12 +270,14 @@ options:
                         description:
                             - A header field name that conforms to RFC 7230.
                             - "Example: `example_header_name`"
+                            - This parameter is updatable.
                         type: str
                         required: true
                     value:
                         description:
                             - A header field value that conforms to RFC 7230.
                             - "Example: `example_value`"
+                            - This parameter is updatable.
                             - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER']
                         type: str
     state:

@@ -50,23 +50,28 @@ options:
         description:
             - The number of CPU cores to enable for the VM cluster.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     memory_size_in_gbs:
         description:
             - The memory to be allocated in GBs.
+            - This parameter is updatable.
         type: int
     db_node_storage_size_in_gbs:
         description:
             - The local node storage to be allocated in GBs.
+            - This parameter is updatable.
         type: int
     data_storage_size_in_tbs:
         description:
             - The data disk group size to be allocated in TBs.
+            - This parameter is updatable.
         type: float
     ssh_public_keys:
         description:
             - The public key portion of one or more key pairs used for SSH access to the VM cluster.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     vm_cluster_network_id:
         description:
@@ -76,6 +81,7 @@ options:
     license_model:
         description:
             - The Oracle license model that applies to the VM cluster. The default is BRING_YOUR_OWN_LICENSE.
+            - This parameter is updatable.
         type: str
         choices:
             - "LICENSE_INCLUDED"
@@ -104,11 +110,13 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     vm_cluster_id:
         description:

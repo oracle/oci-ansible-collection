@@ -33,6 +33,7 @@ options:
               Avoid entering confidential information.
             - "Example: `My new resource`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     compartment_id:
@@ -60,6 +61,7 @@ options:
               with no predefined name, type, or namespace. For more information, see
               L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
@@ -67,6 +69,7 @@ options:
               namespace. For more information, see
               L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     gateway_id:
         description:

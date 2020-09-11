@@ -73,22 +73,26 @@ options:
         description:
             - The description you assign to the user during creation. Does not have to be unique, and it's changeable.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     email:
         description:
             - The email you assign to the user. Has to be unique across the tenancy.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     user_id:
         description:
@@ -243,7 +247,7 @@ user:
             sample: {'Operations': {'CostCenter': 'US'}}
         capabilities:
             description:
-                - Properties indicating how the user is allowed to authenticate.
+                - ""
             returned: on success
             type: complex
             contains:

@@ -41,6 +41,7 @@ options:
               L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm#routing).
             - "Example: `app.example.com`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     load_balancer_id:
         description:

@@ -39,11 +39,13 @@ options:
         description:
             - Human-readable name of the configuration source provider. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - Description of the configuration source provider. Avoid entering confidential information.
+            - This parameter is updatable.
         type: str
     config_source_provider_type:
         description:
@@ -58,24 +60,28 @@ options:
             - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     api_endpoint:
         description:
             - "The Git service API endpoint.
               Example: `https://gitlab.com/api/v4/`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
             - Applicable when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
         type: str
     access_token:
         description:
             - The personal access token to be configured on the Git repository. Avoid entering confidential information.
             - Required for create using I(state=present).
+            - This parameter is updatable.
             - Applicable when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
         type: str
     configuration_source_provider_id:

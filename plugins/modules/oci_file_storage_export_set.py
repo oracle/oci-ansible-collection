@@ -38,6 +38,7 @@ options:
               Avoid entering confidential information.
             - "Example: `My export set`"
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     max_fs_stat_bytes:
@@ -51,6 +52,7 @@ options:
               `maxFsStatBytes` minus the metered size of the file
               system. If the metered size is larger than `maxFsStatBytes`,
               then `fbytes` and `abytes` will both be '0'.
+            - This parameter is updatable.
         type: int
     max_fs_stat_files:
         description:
@@ -63,6 +65,7 @@ options:
               `maxFsStatFiles` minus the metered size of the file
               system. If the metered size is larger than `maxFsStatFiles`,
               then `ffiles` and `afiles` will both be '0'.
+            - This parameter is updatable.
         type: int
     compartment_id:
         description:

@@ -50,17 +50,20 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     egress_security_rules:
         description:
             - Rules for allowing egress IP packets.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             destination:
@@ -213,11 +216,13 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     ingress_security_rules:
         description:
             - Rules for allowing ingress IP packets.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             icmp_options:
@@ -380,6 +385,7 @@ options:
             - Purge security rules  from security list which are not present in the provided group security list.
               If I(purge_security_rules=no), provided security rules would be appended to existing security
               rules. I(purge_security_rules) and I(delete_security_rules) are mutually exclusive.
+            - This parameter is updatable.
         type: bool
         default: "true"
     delete_security_rules:
@@ -391,6 +397,7 @@ options:
               are part of existing security list. If they are not part of existing security list,
               they will be ignored. I(purge_security_rules) and I(delete_security_rules) are mutually
               exclusive.
+            - This parameter is updatable.
         type: bool
         default: "false"
     state:

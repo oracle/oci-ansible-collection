@@ -41,6 +41,7 @@ options:
             - Name of the BDS instance
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     cluster_version:
@@ -112,11 +113,13 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     bds_instance_id:
         description:

@@ -164,6 +164,44 @@ options:
                             - "SLOT_TEN"
                             - "SLOT_ELEVEN"
                             - "SLOT_TWELVE"
+                    backup_destination_details:
+                        description:
+                            - Backup destination details.
+                            - Applicable when source is 'NONE'
+                        type: list
+                        suboptions:
+                            type:
+                                description:
+                                    - Type of the database backup destination.
+                                    - Required when source is 'NONE'
+                                type: str
+                                choices:
+                                    - "NFS"
+                                    - "RECOVERY_APPLIANCE"
+                                    - "OBJECT_STORE"
+                                    - "LOCAL"
+                                required: true
+                            id:
+                                description:
+                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                                    - Applicable when source is 'NONE'
+                                type: str
+                            vpc_user:
+                                description:
+                                    - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
+                                      Appliance.
+                                    - Applicable when source is 'NONE'
+                                type: str
+                            vpc_password:
+                                description:
+                                    - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                                    - Applicable when source is 'NONE'
+                                type: str
+                            internet_proxy:
+                                description:
+                                    - Proxy URL to connect to object store.
+                                    - Applicable when source is 'NONE'
+                                type: str
             freeform_tags:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -198,15 +236,18 @@ options:
     patch_details:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             patch_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
+                    - This parameter is updatable.
                 type: str
             action:
                 description:
                     - The action to perform on the patch.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "APPLY"
@@ -214,6 +255,7 @@ options:
     one_off_patches:
         description:
             - List of one-off patches for Database Homes.
+            - This parameter is updatable.
         type: list
     perform_final_backup:
         description:
@@ -252,6 +294,7 @@ EXAMPLES = """
     database:
       admin_password: password
       db_name: myTestDb
+      db_unique_name: myTestDb_phx1cs
       db_backup_config:
         recovery_window_in_days: 30
         auto_backup_enabled: true
@@ -557,6 +600,26 @@ def main():
                                     "SLOT_ELEVEN",
                                     "SLOT_TWELVE",
                                 ],
+                            ),
+                            backup_destination_details=dict(
+                                type="list",
+                                elements="dict",
+                                options=dict(
+                                    type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=[
+                                            "NFS",
+                                            "RECOVERY_APPLIANCE",
+                                            "OBJECT_STORE",
+                                            "LOCAL",
+                                        ],
+                                    ),
+                                    id=dict(type="str"),
+                                    vpc_user=dict(type="str"),
+                                    vpc_password=dict(type="str", no_log=True),
+                                    internet_proxy=dict(type="str"),
+                                ),
                             ),
                         ),
                     ),

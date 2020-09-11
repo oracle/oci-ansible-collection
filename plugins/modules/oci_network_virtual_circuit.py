@@ -53,6 +53,7 @@ options:
               L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
             - "Example: `10 Gbps`"
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -65,6 +66,7 @@ options:
         description:
             - Create a `CrossConnectMapping` for each cross-connect or cross-connect
               group this virtual circuit will run on.
+            - This parameter is updatable.
         type: list
         suboptions:
             bgp_md5_auth_key:
@@ -111,6 +113,7 @@ options:
         description:
             - Deprecated. Instead use `customerAsn`.
               If you specify values for both, the request will be rejected.
+            - This parameter is updatable.
         type: int
     customer_asn:
         description:
@@ -119,17 +122,20 @@ options:
               Otherwise, leave this empty or null.
               Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
             - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
+            - This parameter is updatable.
         type: int
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     freeform_tags:
@@ -138,12 +144,14 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     gateway_id:
         description:
             - For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/iaas/20160918/Drg)
               that this virtual circuit uses.
+            - This parameter is updatable.
         type: str
     provider_name:
         description:
@@ -162,6 +170,7 @@ options:
     provider_service_key_name:
         description:
             - The service key name offered by the provider (if the customer is connecting via a provider).
+            - This parameter is updatable.
         type: str
     provider_service_name:
         description:
@@ -213,6 +222,7 @@ options:
               end. INACTIVE means the provider has not yet provisioned the virtual
               circuit, or has de-provisioned it.
             - To be updated only by the provider.
+            - This parameter is updatable.
         type: str
         choices:
             - "ACTIVE"
@@ -222,6 +232,7 @@ options:
             - Provider-supplied reference information about this virtual circuit.
               Relevant only if the customer is using FastConnect via a provider.
             - To be updated only by the provider.
+            - This parameter is updatable.
         type: str
     state:
         description:

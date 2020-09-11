@@ -63,10 +63,30 @@ We have also added a new [User Guide](https://github.com/oracle/oci-ansible-coll
 - MySQL
 - Big Data
 - Usage
+- VMWare
+- Data Integration
 
 ## Installation
 
-#### 1) Installing collections
+#### 1) Installing the Collection with yum
+
+You can use yum to install the Oracle Cloud Infrastructure Ansible Module Collection RPM.
+
+The RPM installs the OCI Ansible module collection and its required dependencies: the OCI SDK for Python and Ansible.
+
+The following example shows how to use yum to install the Ansible Module Collection RPM:
+  ``` bash
+$ yum -y install oraclelinux-developer-release-el7 && sudo yum install oci-ansible-collection
+  ```
+Note:
+This installation uses Python version 3.6.
+
+To test the installation of the RPM and configuration of the SDK, you can run a sample playbook. For example:
+  ``` bash
+$ ansible-playbook-3 /usr/share/doc/oci-ansible-collection-<version>/samples/object_storage/get_namespace/sample.yaml
+  ```
+
+#### 2) Installing collections from Ansible Galaxy
 
 You can install it from [Ansible Galaxy](https://galaxy.ansible.com/oracle) using the command:
   ``` bash
@@ -77,7 +97,7 @@ Notes:
 * For more information about collections, please check [Ansible Collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
 * To update the modules to latest version, use the install --force flag.
 
-#### 2) Install OCI Python SDK
+#### Install OCI Python SDK
 
 The Oracle Cloud Ansible modules are built using the [Oracle Cloud Infrastructure Python SDK](https://docs.us-phoenix-1.oraclecloud.com/Content/API/SDKDocs/pythonsdk.htm).
 
@@ -100,7 +120,8 @@ with Oracle Cloud Infrastructure services under [the samples directory on GitHub
 Begin by reviewing the Readme.md file that you will find in each sample's root directory.
 
 ## Documentation
-Module documentation is found [here](https://github.com/oracle/oci-ansible-collection/tree/master/docs)<br/>
+Module documentation is found [here](https://github.com/oracle/oci-ansible-collection/tree/master/docs). The HTML version is available on [readthedocs.io](https://oci-ansible-collection.readthedocs.io/en/latest/).
+
 To view the module documentation, use this command:
   ``` bash
 ansible-doc oracle.oci.[module_name]

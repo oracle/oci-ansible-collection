@@ -41,10 +41,12 @@ options:
             key:
                 description:
                     - The unique key for the caching rule.
+                    - This parameter is updatable.
                 type: str
             name:
                 description:
                     - The name of the caching rule.
+                    - This parameter is updatable.
                 type: str
                 required: true
             action:
@@ -52,6 +54,7 @@ options:
                     - "The action to take when the criteria of a caching rule are met.
                       - **CACHE:** Caches requested content when the criteria of the rule are met."
                     - "- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met."
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "CACHE"
@@ -63,12 +66,14 @@ options:
                       days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when
                       the `action` is set to `CACHE`.
                       Example: `PT1H`"
+                    - This parameter is updatable.
                 type: str
             is_client_caching_enabled:
                 description:
                     - Enables or disables client caching.
                       Browsers use the `Cache-Control` header value for caching content locally in the browser. This setting overrides the addition of a `Cache-
                       Control` header in responses.
+                    - This parameter is updatable.
                 type: bool
             client_caching_duration:
                 description:
@@ -76,6 +81,7 @@ options:
                       days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when
                       the `action` is set to `CACHE`.
                       Example: `PT1H`"
+                    - This parameter is updatable.
                 type: str
             criteria:
                 description:
@@ -94,6 +100,7 @@ options:
                             - "- **URL_PART_CONTAINS:** Matches if the concatenation of request URL path and query contains the contents of the `value` field."
                             - URLs must start with a `/`. URLs can't contain restricted double slashes `//`. URLs can't contain the restricted `'` `&` `?`
                               symbols. Resources to cache can only be specified by a URL, any query parameters are ignored.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "URL_IS"
@@ -104,6 +111,7 @@ options:
                     value:
                         description:
                             - The value of the caching rule criteria.
+                            - This parameter is updatable.
                         type: str
                         required: true
     state:

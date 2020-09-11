@@ -42,11 +42,13 @@ options:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
               entering confidential information.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     routing:
         description:
             - The type of routing to use for this tunnel (either BGP dynamic routing or static routing).
+            - This parameter is updatable.
         type: str
         choices:
             - "BGP"
@@ -54,6 +56,7 @@ options:
     ike_version:
         description:
             - Internet Key Exchange protocol version.
+            - This parameter is updatable.
         type: str
         choices:
             - "V1"
@@ -61,6 +64,7 @@ options:
     bgp_session_config:
         description:
             - Information for establishing a BGP session for the IPSec tunnel.
+            - This parameter is updatable.
         type: dict
         suboptions:
             oracle_interface_ip:
@@ -76,6 +80,7 @@ options:
                     - If you are switching the tunnel from using BGP dynamic routing to static routing and want
                       to remove the value for `oracleInterfaceIp`, you can set the value to an empty string.
                     - "Example: `10.0.0.4/31`"
+                    - This parameter is updatable.
                 type: str
             customer_interface_ip:
                 description:
@@ -90,6 +95,7 @@ options:
                     - If you are switching the tunnel from using BGP dynamic routing to static routing and want
                       to remove the value for `customerInterfaceIp`, you can set the value to an empty string.
                     - "Example: `10.0.0.5/31`"
+                    - This parameter is updatable.
                 type: str
             customer_bgp_asn:
                 description:
@@ -98,6 +104,7 @@ options:
                     - If you are switching the tunnel from using BGP dynamic routing to static routing, the
                       `customerBgpAsn` must be null.
                     - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
+                    - This parameter is updatable.
                 type: str
     state:
         description:

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.7.0] - 2020-9-10
+
+### Added:
+- Added VMWare (ocvp) modules
+- Added Data Integration Workspace modules
+- Added multiple Database modules and features
+- Added Network modules, features and support for it
+- Added features for Budget service
+- Added multiple Identity modules and features
+- Added support for auto_backup_window in Database service
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.21.3).
+
+### Fixes:
+- Removed the redirect to home region in these modules oci_identity_fault_domain_facts 
+and oci_identity_availability_domain_facts.
+
 ## [2.6.0] - 2020-8-27
 
 ### Added:

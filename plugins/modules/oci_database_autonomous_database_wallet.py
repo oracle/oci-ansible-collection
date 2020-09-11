@@ -35,6 +35,7 @@ options:
     should_rotate:
         description:
             - Indicates whether to rotate the wallet or not. If `false`, the wallet will not be rotated. The default is `false`.
+            - This parameter is updatable.
         type: bool
     state:
         description:

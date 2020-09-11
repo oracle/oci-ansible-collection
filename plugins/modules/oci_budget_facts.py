@@ -23,7 +23,13 @@ module: oci_budget_facts
 short_description: Fetches details about one or multiple Budget resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Budget resources in Oracle Cloud Infrastructure
-    - Lists budgets in the specified compartment.
+    - Gets a list of Budgets in a compartment.
+    - By default, ListBudgets returns budgets of 'COMPARTMENT' target type and the budget records with only ONE target compartment OCID.
+    - "To list ALL budgets, set the targetType query parameter to ALL.
+      Example:
+        'targetType=ALL'"
+    - Additional targetTypes would be available in future releases. Clients should ignore new targetType
+      or upgrade to latest version of client SDK to handle new targetType.
     - If I(budget_id) is specified, the details of a single Budget will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -68,6 +74,17 @@ options:
             - "Example: `My new resource`"
         type: str
         aliases: ["name"]
+    target_type:
+        description:
+            - "The type of target to filter by.
+                * ALL - List all budgets
+                * COMPARTMENT - List all budgets with targetType == \\"COMPARTMENT\\"
+                * TAG - List all budgets with targetType == \\"TAG\\""
+        type: str
+        choices:
+            - "ALL"
+            - "COMPARTMENT"
+            - "TAG"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -103,7 +120,9 @@ budgets:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         target_compartment_id:
             description:
-                - The OCID of the compartment on which budget is applied
+                - "This is DEPRECATED. For backwards compatability, the property will be populated when
+                  targetType is \\"COMPARTMENT\\" AND targets contains EXACT ONE target compartment ocid.
+                  For all other scenarios, this property will be left empty."
             returned: on success
             type: string
             sample: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -131,6 +150,20 @@ budgets:
             returned: on success
             type: string
             sample: MONTHLY
+        target_type:
+            description:
+                - The type of target on which the budget is applied.
+            returned: on success
+            type: string
+            sample: COMPARTMENT
+        targets:
+            description:
+                - "The list of targets on which the budget is applied.
+                    If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
+                    If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\"."
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The current state of the budget.
@@ -203,6 +236,8 @@ budgets:
         "description": "description_example",
         "amount": 10,
         "reset_period": "MONTHLY",
+        "target_type": "COMPARTMENT",
+        "targets": [],
         "lifecycle_state": "ACTIVE",
         "alert_rule_count": 56,
         "version": 56,
@@ -255,6 +290,7 @@ class BudgetFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "lifecycle_state",
             "display_name",
+            "target_type",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -285,6 +321,7 @@ def main():
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "INACTIVE"]),
             display_name=dict(aliases=["name"], type="str"),
+            target_type=dict(type="str", choices=["ALL", "COMPARTMENT", "TAG"]),
         )
     )
 

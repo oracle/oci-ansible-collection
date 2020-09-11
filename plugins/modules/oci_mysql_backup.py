@@ -31,11 +31,13 @@ options:
         description:
             - A user-supplied display name for the backup.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
             - A user-supplied description for the backup.
+            - This parameter is updatable.
         type: str
     backup_type:
         description:
@@ -52,16 +54,19 @@ options:
     retention_in_days:
         description:
             - Number of days to retain this backup.
+            - This parameter is updatable.
         type: int
     freeform_tags:
         description:
             - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
         type: dict
     backup_id:
         description:

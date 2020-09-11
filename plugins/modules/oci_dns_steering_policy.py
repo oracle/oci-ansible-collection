@@ -42,12 +42,14 @@ options:
               Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     ttl:
         description:
             - The Time To Live (TTL) for responses from the steering policy, in seconds.
               If not specified during creation, a value of 30 seconds will be used.
+            - This parameter is updatable.
         type: int
     health_check_monitor_id:
         description:
@@ -58,6 +60,7 @@ options:
             - "**Note:** To use the Health Check monitoring feature in a steering policy, a monitor
               must be created using the Health Checks service first. For more information on how to
               create a monitor, please see L(Managing Health Checks,https://docs.cloud.oracle.com/iaas/Content/HealthChecks/Tasks/managinghealthchecks.htm)."
+            - This parameter is updatable.
         type: str
     template:
         description:
@@ -87,6 +90,7 @@ options:
             - "* `ROUTE_BY_IP` - Answers DNS queries based on the query's IP address."
             - "* `CUSTOM` - Allows a customized configuration of rules."
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "FAILOVER"
@@ -100,16 +104,19 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     answers:
         description:
             - The set of all answers that can potentially issue from the steering policy.
+            - This parameter is updatable.
         type: list
         suboptions:
             name:
@@ -191,6 +198,7 @@ options:
             - The first rule receives a shuffled list of all answers, and every other rule receives
               the list of answers emitted by the one preceding it. The last rule populates the
               response.
+            - This parameter is updatable.
         type: list
         suboptions:
             description:
@@ -320,6 +328,7 @@ options:
               earlier than or equal to the date provided in the field-value.  This
               field accomplishes the same purpose as If-Match for cases where the user
               agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
         type: str
     state:
         description:

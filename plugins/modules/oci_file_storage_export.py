@@ -49,6 +49,7 @@ options:
                 visible to any clients.**"
             -   The export's `exportOptions` can be changed after creation
                 using the `UpdateExport` operation.
+            - This parameter is updatable.
         type: list
         suboptions:
             source:

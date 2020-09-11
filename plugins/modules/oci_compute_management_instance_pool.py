@@ -41,12 +41,14 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     display_name:
         description:
             - A user-friendly name for the instance pool. Does not have to be unique, and it's
               changeable. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     freeform_tags:
@@ -55,12 +57,14 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     instance_configuration_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
               with the instance pool.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     placement_configurations:
         description:
@@ -70,12 +74,14 @@ options:
               each availability domain, and include the regional subnet in each placement
               configuration.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             availability_domain:
                 description:
                     - The availability domain to place instances.
                     - "Example: `Uocm:PHX-AD-1`"
+                    - This parameter is updatable.
                 type: str
                 required: true
             fault_domains:
@@ -90,10 +96,12 @@ options:
                       L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation
                       in the Identity and Access Management Service API.
                     - "Example: `[FAULT-DOMAIN-1, FAULT-DOMAIN-2, FAULT-DOMAIN-3]`"
+                    - This parameter is updatable.
                 type: list
             primary_subnet_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
+                    - This parameter is updatable.
                 type: str
                 required: true
             secondary_vnic_subnets:
@@ -116,6 +124,7 @@ options:
         description:
             - The number of instances that should be in the instance pool.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: int
     load_balancers:
         description:

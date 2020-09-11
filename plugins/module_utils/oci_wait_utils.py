@@ -656,6 +656,22 @@ _WAITER_OVERRIDE_MAP = {
         "tag_namespace",
         "{0}_{1}".format("CASCADE_DELETE", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NoneWaiter,
+    # identity_compartment's bulk_move_resources action does not return anything by default.
+    # Hence, cannot wait for any lifecycle state change
+    (
+        "identity",
+        "compartment",
+        "{0}_{1}".format("BULK_MOVE_RESOURCES", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NoneWaiter,
+    # identity_compartment's bulk_delete_resources action does not return anything by default.
+    # Hence, cannot wait for any lifecycle state change
+    (
+        "identity",
+        "compartment",
+        "{0}_{1}".format(
+            "BULK_DELETE_RESOURCES", oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): NoneWaiter,
 }
 
 

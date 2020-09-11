@@ -33,6 +33,7 @@ options:
             - The display name for the Autonomous Container Database.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     db_unique_name:
@@ -66,6 +67,7 @@ options:
         description:
             - Database Patch model preference.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "RELEASE_UPDATES"
@@ -73,6 +75,7 @@ options:
     maintenance_window_details:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             preference:
@@ -148,17 +151,51 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     backup_config:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
+            backup_destination_details:
+                description:
+                    - Backup destination details.
+                type: list
+                suboptions:
+                    type:
+                        description:
+                            - Type of the database backup destination.
+                        type: str
+                        choices:
+                            - "NFS"
+                            - "RECOVERY_APPLIANCE"
+                            - "OBJECT_STORE"
+                            - "LOCAL"
+                        required: true
+                    id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                        type: str
+                    vpc_user:
+                        description:
+                            - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.
+                        type: str
+                    vpc_password:
+                        description:
+                            - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                        type: str
+                    internet_proxy:
+                        description:
+                            - Proxy URL to connect to object store.
+                        type: str
             recovery_window_in_days:
                 description:
                     - Number of days between the current and the earliest point of recoverability covered by automatic backups.
@@ -400,6 +437,43 @@ autonomous_container_database:
             returned: on success
             type: complex
             contains:
+                backup_destination_details:
+                    description:
+                        - Backup destination details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - Type of the database backup destination.
+                            returned: on success
+                            type: string
+                            sample: NFS
+                        id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                        vpc_user:
+                            description:
+                                - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
+                                  Appliance.
+                            returned: on success
+                            type: string
+                            sample: vpc_user_example
+                        vpc_password:
+                            description:
+                                - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                            returned: on success
+                            type: string
+                            sample: vpc_password_example
+                        internet_proxy:
+                            description:
+                                - Proxy URL to connect to object store.
+                            returned: on success
+                            type: string
+                            sample: internet_proxy_example
                 recovery_window_in_days:
                     description:
                         - Number of days between the current and the earliest point of recoverability covered by automatic backups.
@@ -441,6 +515,13 @@ autonomous_container_database:
         "availability_domain": "Uocm:PHX-AD-1",
         "db_version": "db_version_example",
         "backup_config": {
+            "backup_destination_details": [{
+                "type": "NFS",
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "vpc_user": "vpc_user_example",
+                "vpc_password": "vpc_password_example",
+                "internet_proxy": "internet_proxy_example"
+            }],
             "recovery_window_in_days": 56
         }
     }
@@ -672,7 +753,30 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             backup_config=dict(
-                type="dict", options=dict(recovery_window_in_days=dict(type="int"))
+                type="dict",
+                options=dict(
+                    backup_destination_details=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            type=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "NFS",
+                                    "RECOVERY_APPLIANCE",
+                                    "OBJECT_STORE",
+                                    "LOCAL",
+                                ],
+                            ),
+                            id=dict(type="str"),
+                            vpc_user=dict(type="str"),
+                            vpc_password=dict(type="str", no_log=True),
+                            internet_proxy=dict(type="str"),
+                        ),
+                    ),
+                    recovery_window_in_days=dict(type="int"),
+                ),
             ),
             autonomous_container_database_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

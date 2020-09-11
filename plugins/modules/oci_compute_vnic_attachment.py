@@ -54,6 +54,8 @@ options:
                       about the public IP limits, see
                       L(Public IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
+                    - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 type: bool
             defined_tags:
                 description:
@@ -93,12 +95,18 @@ options:
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
+                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
+                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 type: str
             nsg_ids:
                 description:
                     - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                       information about NSGs, see
                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                    - If a `vlanId` is specified, the `nsgIds` cannot be specified. The `vlanId`
+                      indicates that the VNIC will belong to a VLAN instead of a subnet. With VLANs,
+                      all VNICs in the VLAN belong to the NSGs that are associated with the VLAN.
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 type: list
             private_ip:
                 description:
@@ -110,6 +118,8 @@ options:
                       L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
                       L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
                       L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
+                    - If you specify a `vlanId`, the `privateIp` cannot be specified.
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                     - "Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
@@ -118,6 +128,9 @@ options:
                       Defaults to `false`, which means the check is performed. For information
                       about why you would skip the source/destination check, see
                       L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+                    - If you specify a `vlanId`, the `skipSourceDestCheck` cannot be specified because the
+                      source/destination check is always disabled for VNICs in a VLAN. See
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                     - "Example: `true`"
                 type: bool
             subnet_id:
@@ -126,8 +139,18 @@ options:
                       use this `subnetId` instead of the deprecated `subnetId` in
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
+                    - If you are an Oracle Cloud VMware Solution customer and creating a secondary
+                      VNIC in a VLAN instead of a subnet, provide a `vlanId` instead of a `subnetId`.
+                      If you provide both a `vlanId` and `subnetId`, the request fails.
                 type: str
-                required: true
+            vlan_id:
+                description:
+                    - Provide this attribute only if you are an Oracle Cloud VMware Solution
+                      customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN.
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                    - Provide a `vlanId` instead of a `subnetId`. If you provide both a
+                      `vlanId` and `subnetId`, the request fails.
+                type: str
     display_name:
         description:
             - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
@@ -175,8 +198,6 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vnic_attachment
   oci_compute_vnic_attachment:
-    create_vnic_details:
-      subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
     instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
@@ -255,6 +276,15 @@ vnic_attachment:
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        vlan_id:
+            description:
+                - The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead
+                  of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer.
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                - An error is returned if the instance already has a VNIC attached to it from this VLAN.
+            returned: on success
+            type: string
+            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
                 - The date and time the VNIC attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -266,6 +296,9 @@ vnic_attachment:
             description:
                 - The Oracle-assigned VLAN tag of the attached VNIC. Available after the
                   attachment process is complete.
+                - However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
+                  the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN.
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
                 - "Example: `0`"
             returned: on success
             type: int
@@ -285,6 +318,7 @@ vnic_attachment:
         "lifecycle_state": "ATTACHING",
         "nic_index": 56,
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "vlan_id": "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vlan_tag": 0,
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
@@ -417,7 +451,8 @@ def main():
                     nsg_ids=dict(type="list"),
                     private_ip=dict(type="str"),
                     skip_source_dest_check=dict(type="bool"),
-                    subnet_id=dict(type="str", required=True),
+                    subnet_id=dict(type="str"),
+                    vlan_id=dict(type="str"),
                 ),
             ),
             display_name=dict(aliases=["name"], type="str"),

@@ -41,21 +41,25 @@ options:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     capacity:
         description:
             - The capacity requirements of the autoscaling policy.
+            - This parameter is updatable.
         type: dict
         suboptions:
             max:
                 description:
                     - The maximum number of instances the instance pool is allowed to increase to (scale out).
+                    - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: int
             min:
                 description:
                     - The minimum number of instances the instance pool is allowed to decrease to (scale in).
+                    - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: int
             initial:
@@ -63,6 +67,7 @@ options:
                     - The initial number of instances to launch in the instance pool immediately after autoscaling is
                       enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this
                       initial number to a number that is based on the limits that you set.
+                    - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: int
     policy_type:
@@ -76,10 +81,12 @@ options:
     is_enabled:
         description:
             - Boolean field indicating whether this policy is enabled or not.
+            - This parameter is updatable.
         type: bool
     rules:
         description:
             - ""
+            - This parameter is updatable.
             - Applicable when policy_type is 'threshold'
         type: list
         suboptions:
@@ -93,6 +100,7 @@ options:
                     type:
                         description:
                             - The type of action to take.
+                            - This parameter is updatable.
                             - Required when policy_type is 'threshold'
                         type: str
                         choices:
@@ -102,12 +110,14 @@ options:
                         description:
                             - To scale out (increase the number of instances), provide a positive value. To scale in (decrease the number of
                               instances), provide a negative value.
+                            - This parameter is updatable.
                             - Required when policy_type is 'threshold'
                         type: int
                         required: true
             display_name:
                 description:
                     - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                    - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: str
                 aliases: ["name"]
@@ -121,6 +131,7 @@ options:
                     metric_type:
                         description:
                             - ""
+                            - This parameter is updatable.
                             - Required when policy_type is 'threshold'
                         type: str
                         choices:
@@ -138,6 +149,7 @@ options:
                                 description:
                                     - The comparison operator to use. Options are greater than (`GT`), greater than or equal to
                                       (`GTE`), less than (`LT`), and less than or equal to (`LTE`).
+                                    - This parameter is updatable.
                                     - Required when policy_type is 'threshold'
                                 type: str
                                 choices:
@@ -149,18 +161,21 @@ options:
                             value:
                                 description:
                                     - ""
+                                    - This parameter is updatable.
                                     - Required when policy_type is 'threshold'
                                 type: int
                                 required: true
     execution_schedule:
         description:
             - ""
+            - This parameter is updatable.
             - Applicable when policy_type is 'scheduled'
         type: dict
         suboptions:
             type:
                 description:
                     - The type of ExecutionSchedule.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "cron"
@@ -168,6 +183,7 @@ options:
             timezone:
                 description:
                     - Specifies the time zone the schedule is in.
+                    - This parameter is updatable.
                 type: str
                 choices:
                     - "UTC"
@@ -175,6 +191,7 @@ options:
             expression:
                 description:
                     - The value representing the execution schedule, as defined by cron format.
+                    - This parameter is updatable.
                 type: str
                 required: true
     state:

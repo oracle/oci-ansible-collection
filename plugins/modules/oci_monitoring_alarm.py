@@ -41,6 +41,7 @@ options:
             - "Example: `High CPU Utilization`"
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     compartment_id:
@@ -49,12 +50,14 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable.
         type: str
     metric_compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
               being evaluated by the alarm.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     metric_compartment_id_in_subtree:
         description:
@@ -64,12 +67,14 @@ options:
               then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified
               in metricCompartmentId. Default is false.
             - "Example: `true`"
+            - This parameter is updatable.
         type: bool
     namespace:
         description:
             - The source service or application emitting the metric that is evaluated by the alarm.
             - "Example: `oci_computeagent`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     resource_group:
         description:
@@ -79,6 +84,7 @@ options:
               (-), and dollar signs ($).
               Avoid entering confidential information.
             - "Example: `frontend-fleet`"
+            - This parameter is updatable.
         type: str
     query:
         description:
@@ -101,10 +107,12 @@ options:
             - "   CpuUtilization[1m]{availabilityDomain=\\"cumS:PHX-AD-1\\"}.absent()"
             -   -----
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     resolution:
         description:
             - "The time between calculated aggregation windows for the alarm. Supported value: `1m`"
+            - This parameter is updatable.
         type: str
     pending_duration:
         description:
@@ -119,12 +127,14 @@ options:
             - "The alarm updates its status to \\"OK\\" when the breaching condition has been clear for
               the most recent minute."
             - "Example: `PT5M`"
+            - This parameter is updatable.
         type: str
     severity:
         description:
             - "The perceived type of response required when the alarm is in the \\"FIRING\\" state."
             - "Example: `CRITICAL`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     body:
         description:
@@ -132,6 +142,7 @@ options:
               to operators for resolving the alarm condition. Consider adding links to standard runbook
               practices. Avoid entering confidential information.
             - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
+            - This parameter is updatable.
         type: str
     destinations:
         description:
@@ -141,6 +152,7 @@ options:
               For example, a destination using the Notifications service is represented by a topic OCID.
               Supported destination services: Notifications Service. Limit: One destination per supported destination service."
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
     repeat_notification_duration:
         description:
@@ -149,10 +161,12 @@ options:
               Minimum: PT1M. Maximum: P30D."
             - "Default value: null (notifications are not re-submitted)."
             - "Example: `PT2H`"
+            - This parameter is updatable.
         type: str
     suppression:
         description:
             - The configuration details for suppressing an alarm.
+            - This parameter is updatable.
         type: dict
         suboptions:
             description:
@@ -181,16 +195,19 @@ options:
             - Whether the alarm is enabled.
             - "Example: `true`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: bool
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     alarm_id:
         description:

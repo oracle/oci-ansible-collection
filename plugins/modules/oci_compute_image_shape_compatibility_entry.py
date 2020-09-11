@@ -39,15 +39,18 @@ options:
     ocpu_constraints:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
             min:
                 description:
                     - The minimum number of OCPUs supported for this image and shape.
+                    - This parameter is updatable.
                 type: int
             max:
                 description:
                     - The maximum number of OCPUs supported for this image and shape.
+                    - This parameter is updatable.
                 type: int
     state:
         description:
