@@ -31,9 +31,8 @@ A clear and concise description of what you expected to happen.
 
 * OCI Ansible Modules version:
 
-    insert output of either one of these (based on the installation path):
-`cat ~/.ansible/collections/ansible_collections/oracle/oci/MANIFEST.json | grep version`
-`cat /usr/share/ansible/collections/ansible_collections/oracle/oci/MANIFEST.json | grep version`
+    insert output of (for oracle.oci):
+`ansible-galaxy collection list`
 
 **Ansible playbook to reproduce the issue**
 
