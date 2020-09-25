@@ -29,7 +29,11 @@ description:
       and create cell servers on all your worker nodes.
     - For I(action=add_worker_nodes), add worker nodes to an existing cluster. The worker nodes added will be based on an identical shape
       and have the same amount of attached block storage as other worker nodes in the cluster.
+    - For I(action=change_shape), scale-up/down individial nodes (per role type) in the cluster. Customer can choose
+      arbitrarty VM_STANDARD shape to scale-up/down the instance. Only VM_STANDARD nodes
+      can be re-shaped.
     - For I(action=remove_cloud_sql), remove Cloud SQL capability.
+    - For I(action=restart_node), restarts a single node of a BDS instance.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -42,8 +46,8 @@ options:
     cluster_admin_password:
         description:
             - Base-64 encoded password for Cloudera Manager admin user
+            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=remove_cloud_sql).
         type: str
-        required: true
     block_volume_size_in_gbs:
         description:
             - The size of block volume in GB that needs to be added to each worker node.
@@ -60,6 +64,33 @@ options:
             - Number of additional worker nodes for the BDS instance
             - Required for I(action=add_worker_nodes).
         type: int
+    nodes:
+        description:
+            - Inidividial worker nodes groups details
+            - Required for I(action=change_shape).
+        type: dict
+        suboptions:
+            worker:
+                description:
+                    - worker nodes shape
+                type: str
+            master:
+                description:
+                    - master nodes shape
+                type: str
+            utility:
+                description:
+                    - utility nodes shape
+                type: str
+            cloudsql:
+                description:
+                    - cloudsql node shape
+                type: str
+    node_id:
+        description:
+            - OCID of the BDS node which should be restarted
+            - Required for I(action=restart_node).
+        type: str
     action:
         description:
             - The action to perform on the BdsInstance.
@@ -69,7 +100,9 @@ options:
             - "add_block_storage"
             - "add_cloud_sql"
             - "add_worker_nodes"
+            - "change_shape"
             - "remove_cloud_sql"
+            - "restart_node"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -95,11 +128,23 @@ EXAMPLES = """
     number_of_worker_nodes: 56
     action: add_worker_nodes
 
+- name: Perform action change_shape on bds_instance
+  oci_bds_instance_actions:
+    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    cluster_admin_password: cluster_admin_password_example
+    action: change_shape
+
 - name: Perform action remove_cloud_sql on bds_instance
   oci_bds_instance_actions:
     bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
     cluster_admin_password: cluster_admin_password_example
     action: remove_cloud_sql
+
+- name: Perform action restart_node on bds_instance
+  oci_bds_instance_actions:
+    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    node_id: ocid1.node.oc1..xxxxxxEXAMPLExxxxxx
+    action: restart_node
 
 """
 
@@ -190,10 +235,40 @@ bds_instance:
                     sample: bda_version_example
                 bdm_version:
                     description:
-                        - BDM version installed in the cluster
+                        - Big Data Manager version installed in the cluster
                     returned: on success
                     type: string
                     sample: bdm_version_example
+                bds_version:
+                    description:
+                        - Big Data Service version installed in the cluster
+                    returned: on success
+                    type: string
+                    sample: bds_version_example
+                os_version:
+                    description:
+                        - Oracle Linux version installed in the cluster
+                    returned: on success
+                    type: string
+                    sample: os_version_example
+                db_version:
+                    description:
+                        - Query Server Database version
+                    returned: on success
+                    type: string
+                    sample: db_version_example
+                bd_cell_version:
+                    description:
+                        - Cloud SQL cell version
+                    returned: on success
+                    type: string
+                    sample: bd_cell_version_example
+                csql_cell_version:
+                    description:
+                        - Big Data SQL version
+                    returned: on success
+                    type: string
+                    sample: csql_cell_version_example
                 time_created:
                     description:
                         - The time the cluster was created. An RFC3339 formatted datetime string
@@ -291,6 +366,12 @@ bds_instance:
                     returned: on success
                     type: string
                     sample: ip_address_example
+                hostname:
+                    description:
+                        - The fully-qualified hostname (FQDN) of the node
+                    returned: on success
+                    type: string
+                    sample: hostname_example
                 image_id:
                     description:
                         - The OCID of the image from which the node was created
@@ -431,6 +512,11 @@ bds_instance:
         "cluster_details": {
             "bda_version": "bda_version_example",
             "bdm_version": "bdm_version_example",
+            "bds_version": "bds_version_example",
+            "os_version": "os_version_example",
+            "db_version": "db_version_example",
+            "bd_cell_version": "bd_cell_version_example",
+            "csql_cell_version": "csql_cell_version_example",
             "time_created": "2019-03-29T09:36:42.000+0000",
             "time_refreshed": "2019-03-29T09:36:42.000+0000",
             "cloudera_manager_url": "cloudera_manager_url_example",
@@ -449,6 +535,7 @@ bds_instance:
             }],
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "ip_address": "ip_address_example",
+            "hostname": "hostname_example",
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "ssh_fingerprint": "ssh_fingerprint_example",
             "availability_domain": "Uocm:PHX-AD-1",
@@ -490,7 +577,9 @@ try:
     from oci.bds.models import AddBlockStorageDetails
     from oci.bds.models import AddCloudSqlDetails
     from oci.bds.models import AddWorkerNodesDetails
+    from oci.bds.models import ChangeShapeDetails
     from oci.bds.models import RemoveCloudSqlDetails
+    from oci.bds.models import RestartNodeDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -503,7 +592,9 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         add_block_storage
         add_cloud_sql
         add_worker_nodes
+        change_shape
         remove_cloud_sql
+        restart_node
     """
 
     @staticmethod
@@ -585,6 +676,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def change_shape(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeShapeDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_shape,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                change_shape_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def remove_cloud_sql(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RemoveCloudSqlDetails
@@ -595,6 +707,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 remove_cloud_sql_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def restart_node(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RestartNodeDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.restart_node,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                restart_node_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -621,10 +754,20 @@ def main():
     module_args.update(
         dict(
             bds_instance_id=dict(aliases=["id"], type="str", required=True),
-            cluster_admin_password=dict(type="str", required=True, no_log=True),
+            cluster_admin_password=dict(type="str", no_log=True),
             block_volume_size_in_gbs=dict(type="int"),
             shape=dict(type="str"),
             number_of_worker_nodes=dict(type="int"),
+            nodes=dict(
+                type="dict",
+                options=dict(
+                    worker=dict(type="str"),
+                    master=dict(type="str"),
+                    utility=dict(type="str"),
+                    cloudsql=dict(type="str"),
+                ),
+            ),
+            node_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
@@ -632,7 +775,9 @@ def main():
                     "add_block_storage",
                     "add_cloud_sql",
                     "add_worker_nodes",
+                    "change_shape",
                     "remove_cloud_sql",
+                    "restart_node",
                 ],
             ),
         )

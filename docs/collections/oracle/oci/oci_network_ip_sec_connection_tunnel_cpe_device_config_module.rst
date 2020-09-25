@@ -257,6 +257,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The set of configuration answers for a CPE device.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -273,6 +274,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A string that identifies the question to be answered. See the `key` attribute in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion'>CpeDeviceConfigQuestion</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,6 +291,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The answer to the question.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -326,8 +329,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

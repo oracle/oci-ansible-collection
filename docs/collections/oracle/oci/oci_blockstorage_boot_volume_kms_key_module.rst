@@ -209,6 +209,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the new Key Management key to assign to protect the specified volume. This key has to be a valid Key Management key, and policies must exist to allow the user and the Block Volume service to access this key. If you specify the same OCID as the previous key&#x27;s OCID, the Block Volume service will use it to regenerate a volume encryption key.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -280,8 +281,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

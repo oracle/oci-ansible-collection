@@ -260,8 +260,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -306,7 +304,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>IpSecConnectionTunnelSharedSecret resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;shared_secret&#x27;: &#x27;EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;shared_secret&#x27;: &#x27;shared_secret_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -322,10 +320,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The tunnel&#x27;s shared secret (pre-shared key).</div>
-                                            <div>Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shared_secret_example</div>
                                     </td>
             </tr>
                     

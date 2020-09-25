@@ -246,6 +246,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-display_name_contains"></div>
+                    <b>display_name_contains</b>
+                    <a class="ansibleOptionLink" href="#parameter-display_name_contains" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only resources that match display name pattern given. The match is not case sensitive. For Example : /folders?displayNameContains=Cu.* The above would match all folders with display name that starts with &quot;Cu&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-external_key"></div>
                     <b>external_key</b>
                     <a class="ansibleOptionLink" href="#parameter-external_key" title="Permalink to this option"></a>
@@ -460,8 +475,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -510,7 +523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DataAsset resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;items&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}], &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;count&#x27;: 56, &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;items&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}], &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -529,6 +542,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-data_assets/count"></div>
+                    <b>count</b>
+                    <a class="ansibleOptionLink" href="#return-data_assets/count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Total number of items returned.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

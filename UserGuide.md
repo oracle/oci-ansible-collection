@@ -41,7 +41,6 @@ If you need to use Identity service with a region other than your home region, y
 - Environment variable: OCI_IDENTITY_DO_NOT_REDIRECT_TO_HOME_REGION
 
 
-
 ### Avoiding reliance on server side default values
 Before our modules execute any operation, they check with the service to determine if that operation is necessary or if the state is already such that the operation would be a no-op. For create operations, this means checking if a resource already exists that matches the parameters a user supplied. The modules will attempt to find a matching resource *only* based on the parameters you supply. This means that if you omit an optional parameter and rely on the server side default value, future invocations of the same playbook can potentially match a resource that has a different value for that parameter.
 
@@ -70,5 +69,18 @@ It is important to note that matching these extra fields only comes into play if
 - Use unique attributes or tags for resources of the same type so there is no potential for ambiguity in matching resources
 - Specify optional values that you care about instead of relying on server side defaults
 
+## Additional Module parameters
+
 ### Support for `key_by` option
 All modules support the key_by option. It takes a list of comma-separated attributes of the resource which should be used to uniquely identify the resource. By default, all the attributes of a resource are used to uniquely identify a resource.
+
+### Force Create resources `force_create`
+Ansible recommends that all the modules be idempotent, so that repeated playbook executions by users result in reaching the desired state quickly and reliably. 
+Unless documented explicitly in the module's `ansible-doc`, all resource lifecycle operations initiated through OCI Ansible Modules are idempotent. 
+To forcefully perform a non-idempotent creation of a resource, use the `force_create` option.
+
+### Manage Waiting `wait`
+All modules wait for the resource to be created/updated/deleted before returning. 
+We provide two options in each module to control the waiting:
+- `wait`: Whether to wait for create or delete operation to complete.
+- `wait_timeout`: Time, in seconds, to wait when wait=yes. Defaults to 1200 for most of the services but some services might have a longer wait timeout.

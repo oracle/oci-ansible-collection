@@ -263,8 +263,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -295,12 +293,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-rule_sets"></div>
                     <b>rule_sets</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets" title="Permalink to this return value"></a>
@@ -313,12 +311,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of RuleSet resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;ADD_HTTP_REQUEST_HEADER&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;prefix&#x27;: &#x27;example_prefix_value&#x27;, &#x27;suffix&#x27;: &#x27;example_suffix_value&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}], &#x27;name&#x27;: &#x27;example_rule_set&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;ADD_HTTP_REQUEST_HEADER&#x27;, &#x27;allowed_methods&#x27;: [], &#x27;are_invalid_characters_allowed&#x27;: True, &#x27;conditions&#x27;: [{&#x27;attribute_name&#x27;: &#x27;SOURCE_IP_ADDRESS&#x27;, &#x27;attribute_value&#x27;: &#x27;ocid1.vcn.oc1.phx.unique_ID&#x27;, &#x27;operator&#x27;: &#x27;EXACT_MATCH&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;http_large_header_size_in_kb&#x27;: 56, &#x27;prefix&#x27;: &#x27;example_prefix_value&#x27;, &#x27;redirect_uri&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;port&#x27;: 8081, &#x27;protocol&#x27;: &#x27;HTTPS&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;}, &#x27;response_code&#x27;: 301, &#x27;status_code&#x27;: 56, &#x27;suffix&#x27;: &#x27;example_suffix_value&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}], &#x27;name&#x27;: &#x27;example_rule_set&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/items" title="Permalink to this return value"></a>
@@ -335,7 +333,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/items/action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/items/action" title="Permalink to this return value"></a>
@@ -354,7 +352,151 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/allowed_methods"></div>
+                    <b>allowed_methods</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/allowed_methods" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of HTTP methods allowed for this listener.</div>
+                                            <div>By default, you can specify only the standard HTTP methods defined in the <a href='http://www.iana.org/assignments/http-methods/http-methods.xhtml'>HTTP Method Registry</a>. You can also see a list of supported standard HTTP methods in the Load Balancing service documentation at <a href='https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm'>Managing Rule Sets</a>.</div>
+                                            <div>Your backend application must be able to handle the methods specified in this list.</div>
+                                            <div>The list of HTTP methods is extensible. If you need to configure custom HTTP methods, contact <a href='http://support.oracle.com/'>My Oracle Support</a> to remove the restriction for your tenancy.</div>
+                                            <div>Example: [&quot;GET&quot;, &quot;PUT&quot;, &quot;POST&quot;, &quot;PROPFIND&quot;]</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/are_invalid_characters_allowed"></div>
+                    <b>are_invalid_characters_allowed</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/are_invalid_characters_allowed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether or not invalid characters in client header fields will be allowed. Valid names are composed of English letters, digits, hyphens and underscores. If &quot;true&quot;, invalid characters are allowed in the HTTP header. If &quot;false&quot;, invalid characters are not allowed in the HTTP header</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/conditions"></div>
+                    <b>conditions</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/conditions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/conditions/attribute_name"></div>
+                    <b>attribute_name</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/conditions/attribute_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SOURCE_IP_ADDRESS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/conditions/attribute_value"></div>
+                    <b>attribute_value</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/conditions/attribute_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the originating VCN that an incoming packet must match.</div>
+                                            <div>You can use this condition in conjunction with `SourceVcnIpAddressCondition`.</div>
+                                            <div>**NOTE:** If you define this condition for a rule without a `SourceVcnIpAddressCondition`, this condition matches all incoming traffic in the specified VCN.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1.phx.unique_ID</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/conditions/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/conditions/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A string that specifies how to compare the PathMatchCondition object&#x27;s `attributeValue` string to the incoming URI.</div>
+                                            <div>*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string.</div>
+                                            <div>*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best, longest match of the beginning portion of the incoming URI path.</div>
+                                            <div>*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the `attributeValue` string.</div>
+                                            <div>*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue` string.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXACT_MATCH</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A brief description of the access control rule. Avoid entering confidential information.</div>
+                                            <div>example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/items/header"></div>
                     <b>header</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/items/header" title="Permalink to this return value"></a>
@@ -374,7 +516,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/http_large_header_size_in_kb"></div>
+                    <b>http_large_header_size_in_kb</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/http_large_header_size_in_kb" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum size of each buffer used for reading http client request header. This value indicates the maximum size allowed for each buffer. The allowed values for buffer size are 8, 16, 32 and 64.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/items/prefix"></div>
                     <b>prefix</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/items/prefix" title="Permalink to this return value"></a>
@@ -394,7 +555,203 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/redirect_uri"></div>
+                    <b>redirect_uri</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/redirect_uri" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/redirect_uri/host"></div>
+                    <b>host</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/redirect_uri/host" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The valid domain name (hostname) or IP address to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{host}`, the service preserves the original domain name from the incoming HTTP request URI.</div>
+                                            <div>All RedirectUri tokens are valid for this property. You can use any token more than once.</div>
+                                            <div>Curly braces are valid in this property only to surround tokens, such as `{host}`</div>
+                                            <div>Examples:</div>
+                                            <div>*  **example.com** appears as `example.com` in the redirect URI.</div>
+                                            <div>*  **in{host}** appears as `inexample.com` in the redirect URI if `example.com` is the hostname in the incoming HTTP request URI.</div>
+                                            <div>*  **{port}{host}** appears as `8081example.com` in the redirect URI if `example.com` is the hostname and the port is `8081` in the incoming HTTP request URI.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/redirect_uri/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/redirect_uri/path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP URI path to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{path}`, the service preserves the original path from the incoming HTTP request URI. To omit the path from the redirect URI, set this value to an empty string, &quot;&quot;.</div>
+                                            <div>All RedirectUri tokens are valid for this property. You can use any token more than once.</div>
+                                            <div>The path string must begin with `/` if it does not begin with the `{path}` token.</div>
+                                            <div>Examples:</div>
+                                            <div>*  __/example/video/123__ appears as `/example/video/123` in the redirect URI.</div>
+                                            <div>*  __/example{path}__ appears as `/example/video/123` in the redirect URI if `/video/123` is the path in the incoming HTTP request URI.</div>
+                                            <div>*  __{path}/123__ appears as `/example/video/123` in the redirect URI if `/example/video` is the path in the incoming HTTP request URI.</div>
+                                            <div>*  __{path}123__ appears as `/example/video123` in the redirect URI if `/example/video` is the path in the incoming HTTP request URI.</div>
+                                            <div>*  __/{host}/123__ appears as `/example.com/123` in the redirect URI if `example.com` is the hostname in the incoming HTTP request URI.</div>
+                                            <div>*  __/{host}/{port}__ appears as `/example.com/123` in the redirect URI if `example.com` is the hostname and `123` is the port in the incoming HTTP request URI.</div>
+                                            <div>*  __/{query}__ appears as `/lang=en` in the redirect URI if the query is `lang=en` in the incoming HTTP request URI.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/redirect_uri/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/redirect_uri/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The communication port to use in the redirect URI.</div>
+                                            <div>Valid values include integers from 1 to 65535.</div>
+                                            <div>When this value is null, the service preserves the original port from the incoming HTTP request URI.</div>
+                                            <div>Example: `8081`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">8081</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/redirect_uri/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/redirect_uri/protocol" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP protocol to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{protocol}`, the service preserves the original protocol from the incoming HTTP request URI. Allowed values are:</div>
+                                            <div>*  HTTP *  HTTPS *  {protocol}</div>
+                                            <div>`{protocol}` is the only valid token for this property. It can appear only once in the value string.</div>
+                                            <div>Example: `HTTPS`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTPS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/redirect_uri/query"></div>
+                    <b>query</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/redirect_uri/query" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The query string to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{query}`, the service preserves the original query parameters from the incoming HTTP request URI.</div>
+                                            <div>All `RedirectUri` tokens are valid for this property. You can use any token more than once.</div>
+                                            <div>If the query string does not begin with the `{query}` token, it must begin with the question mark (?) character.</div>
+                                            <div>You can specify multiple query parameters as a single string. Separate each query parameter with an ampersand (&amp;) character. To omit all incoming query parameters from the redirect URI, set this value to an empty string, &quot;&quot;.</div>
+                                            <div>If the specified query string results in a redirect URI ending with `?` or `&amp;`, the last character is truncated. For example, if the incoming URI is `http://host.com:8080/documents` and the query property value is `?lang=en&amp;{query}`, the redirect URI is `http://host.com:8080/documents?lang=en`. The system truncates the final ampersand (&amp;) because the incoming URI included no value to replace the {query} token.</div>
+                                            <div>Examples: * **lang=en&amp;time_zone=PST** appears as `lang=en&amp;time_zone=PST` in the redirect URI.</div>
+                                            <div>* **{query}** appears as `lang=en&amp;time_zone=PST` in the redirect URI if `lang=en&amp;time_zone=PST` is the query string in the incoming HTTP request. If the incoming HTTP request has no query parameters, the `{query}` token renders as an empty string.</div>
+                                            <div>* **lang=en&amp;{query}&amp;time_zone=PST** appears as `lang=en&amp;country=us&amp;time_zone=PST` in the redirect URI if `country=us` is the query string in the incoming HTTP request. If the incoming HTTP request has no query parameters, this value renders as `lang=en&amp;time_zone=PST`.</div>
+                                            <div>*  **protocol={protocol}&amp;hostname={host}** appears as `protocol=http&amp;hostname=example.com` in the redirect URI if the protocol is `HTTP` and the hostname is `example.com` in the incoming HTTP request.</div>
+                                            <div>*  **port={port}&amp;hostname={host}** appears as `port=8080&amp;hostname=example.com` in the redirect URI if the port is `8080` and the hostname is `example.com` in the incoming HTTP request URI.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/response_code"></div>
+                    <b>response_code</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/response_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP status code to return when the incoming request is redirected.</div>
+                                            <div>The status line returned with the code is mapped from the standard HTTP specification. Valid response codes for redirection are:</div>
+                                            <div>*  301 *  302 *  303 *  307 *  308</div>
+                                            <div>The default value is `302` (Found).</div>
+                                            <div>Example: `301`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">301</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-rule_sets/items/status_code"></div>
+                    <b>status_code</b>
+                    <a class="ansibleOptionLink" href="#return-rule_sets/items/status_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP status code to return when the requested HTTP method is not in the list of allowed methods. The associated status line returned with the code is mapped from the standard HTTP specification. The default value is `405 (Method Not Allowed)`.</div>
+                                            <div>Example: 403</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/items/suffix"></div>
                     <b>suffix</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/items/suffix" title="Permalink to this return value"></a>
@@ -414,7 +771,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/items/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/items/value" title="Permalink to this return value"></a>
@@ -434,7 +791,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-rule_sets/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-rule_sets/name" title="Permalink to this return value"></a>

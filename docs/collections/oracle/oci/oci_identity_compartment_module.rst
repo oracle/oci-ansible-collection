@@ -49,6 +49,7 @@ Synopsis
 - You must also specify a *name* for the compartment, which must be unique across all compartments in your tenancy. You can use this name or the OCID when writing policies that apply to the compartment. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm>`_.
 - You must also specify a *description* for the compartment (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateCompartment <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Compartment/UpdateCompartment>`_.
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
+- This resource has the following action operations in the :ref:`oci_compartment_actions <ansible_collections.oci_compartment_actions_module>` module: bulk_delete_resources, bulk_move_resources, move, recover.
 
 .. Aliases
 
@@ -217,6 +218,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -233,6 +235,7 @@ Parameters
                                                                 <td>
                                             <div>The description you assign to the compartment during creation. Does not have to be unique, and it&#x27;s changeable.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -267,6 +270,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -299,6 +303,7 @@ Parameters
                                             <div>The name you assign to the compartment during creation. The name must be unique across all compartments in the parent compartment. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -422,8 +427,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

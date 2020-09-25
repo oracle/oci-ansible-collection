@@ -215,6 +215,7 @@ Parameters
                                                                 <td>
                                             <div>The description you assign to the auth token during creation. Does not have to be unique, and it&#x27;s changeable.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -369,8 +370,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

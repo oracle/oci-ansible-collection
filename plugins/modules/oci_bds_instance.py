@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new BDS instance.
     - "This resource has the following action operations in the M(oci_bds_instance_actions) module: add_block_storage, add_cloud_sql, add_worker_nodes,
-      remove_cloud_sql."
+      change_shape, remove_cloud_sql, restart_node."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -269,10 +269,40 @@ bds_instance:
                     sample: bda_version_example
                 bdm_version:
                     description:
-                        - BDM version installed in the cluster
+                        - Big Data Manager version installed in the cluster
                     returned: on success
                     type: string
                     sample: bdm_version_example
+                bds_version:
+                    description:
+                        - Big Data Service version installed in the cluster
+                    returned: on success
+                    type: string
+                    sample: bds_version_example
+                os_version:
+                    description:
+                        - Oracle Linux version installed in the cluster
+                    returned: on success
+                    type: string
+                    sample: os_version_example
+                db_version:
+                    description:
+                        - Query Server Database version
+                    returned: on success
+                    type: string
+                    sample: db_version_example
+                bd_cell_version:
+                    description:
+                        - Cloud SQL cell version
+                    returned: on success
+                    type: string
+                    sample: bd_cell_version_example
+                csql_cell_version:
+                    description:
+                        - Big Data SQL version
+                    returned: on success
+                    type: string
+                    sample: csql_cell_version_example
                 time_created:
                     description:
                         - The time the cluster was created. An RFC3339 formatted datetime string
@@ -370,6 +400,12 @@ bds_instance:
                     returned: on success
                     type: string
                     sample: ip_address_example
+                hostname:
+                    description:
+                        - The fully-qualified hostname (FQDN) of the node
+                    returned: on success
+                    type: string
+                    sample: hostname_example
                 image_id:
                     description:
                         - The OCID of the image from which the node was created
@@ -510,6 +546,11 @@ bds_instance:
         "cluster_details": {
             "bda_version": "bda_version_example",
             "bdm_version": "bdm_version_example",
+            "bds_version": "bds_version_example",
+            "os_version": "os_version_example",
+            "db_version": "db_version_example",
+            "bd_cell_version": "bd_cell_version_example",
+            "csql_cell_version": "csql_cell_version_example",
             "time_created": "2019-03-29T09:36:42.000+0000",
             "time_refreshed": "2019-03-29T09:36:42.000+0000",
             "cloudera_manager_url": "cloudera_manager_url_example",
@@ -528,6 +569,7 @@ bds_instance:
             }],
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "ip_address": "ip_address_example",
+            "hostname": "hostname_example",
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
             "ssh_fingerprint": "ssh_fingerprint_example",
             "availability_domain": "Uocm:PHX-AD-1",

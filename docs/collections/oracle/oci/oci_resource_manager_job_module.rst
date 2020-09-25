@@ -266,6 +266,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -282,6 +283,7 @@ Parameters
                                                                 <td>
                                             <div>Description of the job.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -317,6 +319,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -576,8 +579,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -643,7 +644,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Job resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;IMPORT_TF_STATE&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_finished&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;IMPORT_TF_STATE&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_finished&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -738,6 +739,118 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/config_source"></div>
+                    <b>config_source</b>
+                    <a class="ansibleOptionLink" href="#return-job/config_source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/config_source/branch_name"></div>
+                    <b>branch_name</b>
+                    <a class="ansibleOptionLink" href="#return-job/config_source/branch_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the branch within the Git repository.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">branch_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/config_source/commit_id"></div>
+                    <b>commit_id</b>
+                    <a class="ansibleOptionLink" href="#return-job/config_source/commit_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unique identifier (SHA-1 hash) of the individual change to the Git repository.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/config_source/config_source_record_type"></div>
+                    <b>config_source_record_type</b>
+                    <a class="ansibleOptionLink" href="#return-job/config_source/config_source_record_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of configuration source to use for the Terraform configuration.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ZIP_UPLOAD</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/config_source/configuration_source_provider_id"></div>
+                    <b>configuration_source_provider_id</b>
+                    <a class="ansibleOptionLink" href="#return-job/config_source/configuration_source_provider_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique identifier (<a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>) for the Git configuration source.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/config_source/repository_url"></div>
+                    <b>repository_url</b>
+                    <a class="ansibleOptionLink" href="#return-job/config_source/repository_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL of the Git repository.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">repository_url_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1059,7 +1172,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 100. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
+                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1075,7 +1188,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The file path to the directory within the configuration from which the job runs.</div>
+                                            <div>File path to the directory from which Terraform runs. If not specified, the root directory is used. This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">working_directory_example</div>

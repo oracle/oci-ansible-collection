@@ -184,6 +184,7 @@ Parameters
                                                                 <td>
                                             <div>The action to take when the criteria of a caching rule are met. - **CACHE:** Caches requested content when the criteria of the rule are met.</div>
                                             <div>- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -200,6 +201,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The duration to cache content for the caching rule, specified in ISO 8601 extended format. Supported units: seconds, minutes, hours, days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when the `action` is set to `CACHE`. Example: `PT1H`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -216,6 +218,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The duration to cache content in the user&#x27;s browser, specified in ISO 8601 extended format. Supported units: seconds, minutes, hours, days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when the `action` is set to `CACHE`. Example: `PT1H`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -259,6 +262,7 @@ Parameters
                                             <div>- **URL_PART_ENDS_WITH:** Matches if the concatenation of request URL path and query ends with the contents of the `value` field.</div>
                                             <div>- **URL_PART_CONTAINS:** Matches if the concatenation of request URL path and query contains the contents of the `value` field.</div>
                                             <div>URLs must start with a `/`. URLs can&#x27;t contain restricted double slashes `//`. URLs can&#x27;t contain the restricted `&#x27;` `&amp;` `?` symbols. Resources to cache can only be specified by a URL, any query parameters are ignored.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -276,6 +280,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The value of the caching rule criteria.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -297,6 +302,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables client caching. Browsers use the `Cache-Control` header value for caching content locally in the browser. This setting overrides the addition of a `Cache- Control` header in responses.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -313,6 +319,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key for the caching rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -329,6 +336,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the caching rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -479,8 +487,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

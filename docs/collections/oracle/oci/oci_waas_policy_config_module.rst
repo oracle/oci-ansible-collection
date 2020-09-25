@@ -163,6 +163,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the SSL certificate to use if HTTPS is supported.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -181,6 +182,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The set cipher group for the configured TLS protocol. This sets the configuration for the TLS connections between clients and edge nodes only. - **DEFAULT:** Cipher group supports TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3 protocols. It has the following ciphers enabled: `ECDHE-RSA-AES128-GCM- SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM- SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE- ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA- AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM- SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:!DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS- DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -211,6 +213,7 @@ Parameters
                                             <div>- **X_REAL_IP:** Corresponds to `X-Real-Ip` header name.</div>
                                             <div>- **CLIENT_IP:** Corresponds to `Client-Ip` header name.</div>
                                             <div>- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -256,6 +259,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -278,6 +282,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The HTTP response codes that signify a healthy state. - **2XX:** Success response code group. - **3XX:** Redirection response code group. - **4XX:** Client errors response code group. - **5XX:** Server errors response code group.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -294,6 +299,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Health check will search for the given text in a case-sensitive manner within the response body and will fail if the text is not found.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -311,6 +317,7 @@ Parameters
                                                                 <td>
                                             <div>HTTP header fields to include in health check requests, expressed as `&quot;name&quot;: &quot;value&quot;` properties. Because HTTP header field names are case-insensitive, any use of names that are case-insensitive equal to other names will be rejected. If Host is not specified, requests will include a Host header field with value matching the policy&#x27;s protected domain. If User-Agent is not specified, requests will include a User-Agent header field with value &quot;waf health checks&quot;.</div>
                                             <div>**Note:** The only currently-supported header fields are Host and User-Agent.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -327,6 +334,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Number of successful health checks after which the server is marked up.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -343,6 +351,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Time between health checks of an individual origin server, in seconds.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -363,6 +372,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the health checks.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -383,6 +393,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables additional check for predefined text in addition to response code.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -404,6 +415,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>An HTTP verb (i.e. HEAD, GET, or POST) to use when performing the health check.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -420,6 +432,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Path to visit on your origins when performing the health check.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -436,6 +449,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Response timeout represents wait time until request is considered failed, in seconds.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -452,6 +466,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Number of failed health checks after which the server is marked down.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -472,6 +487,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enabling `isBehindCdn` allows for the collection of IP addresses from client requests if the WAF is connected to a CDN.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -491,6 +507,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enable or disable automatic content caching based on the response `cache-control` header. This feature enables the origin to act as a proxy cache. Caching is usually defined using `cache-control` header. For example `cache-control: max-age=120` means that the returned resource is valid for 120 seconds. Caching rules will overwrite this setting.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -510,6 +527,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enable or disable HTTPS support. If true, a `certificateId` is required. If unspecified, defaults to `false`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -529,6 +547,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Force HTTP to HTTPS redirection. If unspecified, defaults to `false`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -548,6 +567,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enable or disable GZIP compression of origin responses. If enabled, the header `Accept-Encoding: gzip` is sent to origin, otherwise, the empty `Accept-Encoding:` header is used.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -567,6 +587,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enable or disable buffering of responses from the origin. Buffering improves overall stability in case of network issues, but slightly increases Time To First Byte.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -586,6 +607,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>SNI stands for Server Name Indication and is an extension of the TLS protocol. It indicates which hostname is being contacted by the browser at the beginning of the &#x27;handshake&#x27;-process. This allows a server to connect multiple SSL Certificates to one IP address and port.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -601,6 +623,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>An object that represents a load balancing method and its properties.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -617,6 +640,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The domain for which the cookie is set, defaults to WAAS policy domain.</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Applicable when method is &#x27;STICKY_COOKIE&#x27;</div>
                                                         </td>
             </tr>
@@ -634,6 +658,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The time for which a browser should keep the cookie in seconds. Empty value will cause the cookie to expire at the end of a browser session.</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Applicable when method is &#x27;STICKY_COOKIE&#x27;</div>
                                                         </td>
             </tr>
@@ -659,6 +684,7 @@ Parameters
                                             <div>- **IP_HASH:** All the incoming requests from the same client IP address should go to the same content origination server. IP_HASH load balancing method uses origin weights when choosing which origin should the hash be assigned to initially.</div>
                                             <div>- **ROUND_ROBIN:** Forwards requests sequentially to the available origin servers. The first request - to the first origin server, the second request - to the next origin server, and so on. After it sends a request to the last origin server, it starts again with the first origin server. When using weights on origins, Weighted Round Robin assigns more requests to origins with a greater weight. Over a period of time, origins will receive a number of requests in proportion to their weight.</div>
                                             <div>- **STICKY_COOKIE:** Adds a session cookie to the first response from the origin server and identifies the server that sent the response. The client&#x27;s next request contains the cookie value, and nginx routes the request to the origin server that responded to the first request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -675,6 +701,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the cookie used to track the persistence. Can contain any US-ASCII character except separator or control character.</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Applicable when method is &#x27;STICKY_COOKIE&#x27;</div>
                                                         </td>
             </tr>
@@ -751,6 +778,7 @@ Parameters
                                             <div>- **TLS_V1_2:** corresponds to TLS 1.2 specification.</div>
                                             <div>- **TLS_V1_3:** corresponds to TLS 1.3 specification.</div>
                                             <div>Enabled TLS protocols must go in a row. For example if `TLS_v1_1` and `TLS_V1_3` are enabled, `TLS_V1_2` must be enabled too.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -816,6 +844,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>ModSecurity is not capable to inspect WebSockets. Therefore paths specified here have WAF disabled if Connection request header from the client has the value Upgrade (case insensitive matching) and Upgrade request header has the value websocket (case insensitive matching). Paths matches if the concatenation of request URL path and query starts with the contents of the one of `websocketPathPrefixes` array value. In All other cases challenges, like JSC, HIC and etc., remain active.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                         </table>
@@ -836,8 +865,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

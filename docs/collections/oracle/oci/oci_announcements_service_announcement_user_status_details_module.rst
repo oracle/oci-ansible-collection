@@ -258,6 +258,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The date and time the announcement was acknowledged, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-01-01T17:43:01.389+0000`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -308,8 +309,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

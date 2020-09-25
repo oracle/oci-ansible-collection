@@ -209,6 +209,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -229,6 +230,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +247,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key for the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -261,6 +264,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The bot name.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -381,8 +385,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

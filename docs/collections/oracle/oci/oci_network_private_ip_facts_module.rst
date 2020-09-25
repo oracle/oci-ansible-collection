@@ -46,6 +46,7 @@ Synopsis
 - Lists the `PrivateIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/>`_ objects based on one of these filters:
 -  - Subnet OCID. - VNIC OCID. - Both private IP address and subnet OCID: This lets you get a `privateIP` object based on its private IP address (for example, 10.0.3.3) and not its OCID. For comparison, `GetPrivateIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp>`_ requires the OCID.
 - If you're listing all the private IPs associated with a given subnet or VNIC, the response includes both primary and secondary private IPs.
+- If you are an Oracle Cloud VMware Solution customer and have VLANs in your VCN, you can filter the list by VLAN OCID. See `Vlan <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan>`_.
 - If *private_ip_id* is specified, the details of a single PrivateIp will be returned.
 
 .. Aliases
@@ -278,6 +279,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vlan_id"></div>
+                    <b>vlan_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-vlan_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-vnic_id"></div>
                     <b>vnic_id</b>
                     <a class="ansibleOptionLink" href="#parameter-vnic_id" title="Permalink to this option"></a>
@@ -309,8 +325,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -357,7 +371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of PrivateIp resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;bminstance-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;10.0.3.3&#x27;, &#x27;is_primary&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vnic_id&#x27;: &#x27;ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;bminstance-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;10.0.3.3&#x27;, &#x27;is_primary&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vlan_id&#x27;: &#x27;ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vnic_id&#x27;: &#x27;ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -504,6 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The private IP address of the `privateIp` object. The address is within the CIDR of the VNIC&#x27;s subnet.</div>
+                                            <div>However, if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution, the address is from the range specified by the `cidrBlock` attribute for the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
                                             <div>Example: `10.0.3.3`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -542,6 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the subnet the VNIC is in.</div>
+                                            <div>However, if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution, the `subnetId` is null.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -559,11 +575,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the private IP was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the private IP was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-private_ips/vlan_id"></div>
+                    <b>vlan_id</b>
+                    <a class="ansibleOptionLink" href="#return-private_ips/vlan_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Applicable only if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -579,6 +613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The OCID of the VNIC the private IP is assigned to. The VNIC and private IP must be in the same subnet.</div>
+                                            <div>However, if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution, the `vnicId` is null.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx</div>

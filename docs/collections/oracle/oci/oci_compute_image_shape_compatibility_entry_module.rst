@@ -208,6 +208,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -224,6 +225,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum number of OCPUs supported for this image and shape.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -240,6 +242,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The minimum number of OCPUs supported for this image and shape.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -327,8 +330,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

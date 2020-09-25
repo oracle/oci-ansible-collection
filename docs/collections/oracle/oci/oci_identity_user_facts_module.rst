@@ -230,6 +230,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#parameter-lifecycle_state" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>ACTIVE</li>
+                                                                                                                                                                                                <li>INACTIVE</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
@@ -240,7 +262,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Use <em>name</em> along with the other options to return only resources that match the given name exactly.</div>
+                                            <div>A filter to only return resources that match the given name exactly.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -256,6 +278,45 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_by"></div>
+                    <b>sort_by</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_by" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>TIMECREATED</li>
+                                                                                                                                                                                                <li>NAME</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The field to sort by. You can provide one sort order (`sortOrder`). Default order for TIMECREATED is descending. Default order for NAME is ascending. The NAME sort order is case sensitive.</div>
+                                            <div>**Note:** In general, some &quot;List&quot; operations (for example, `ListInstances`) let you optionally filter by Availability Domain if the scope of the resource type is within a single Availability Domain. If you call one of these &quot;List&quot; operations without specifying an Availability Domain, the resources are grouped by Availability Domain, then sorted.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sort_order"></div>
+                    <b>sort_order</b>
+                    <a class="ansibleOptionLink" href="#parameter-sort_order" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ASC</li>
+                                                                                                                                                                                                <li>DESC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The sort order to use, either ascending (`ASC`) or descending (`DESC`). The NAME sort order is case sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -308,8 +369,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -357,7 +416,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of User resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capabilities&#x27;: {&#x27;can_use_api_keys&#x27;: True, &#x27;can_use_auth_tokens&#x27;: True, &#x27;can_use_console_password&#x27;: True, &#x27;can_use_customer_secret_keys&#x27;: True, &#x27;can_use_smtp_credentials&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;external_identifier&#x27;: &#x27;external_identifier_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_provider_id&#x27;: &#x27;ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;is_mfa_activated&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capabilities&#x27;: {&#x27;can_use_api_keys&#x27;: True, &#x27;can_use_auth_tokens&#x27;: True, &#x27;can_use_console_password&#x27;: True, &#x27;can_use_customer_secret_keys&#x27;: True, &#x27;can_use_smtp_credentials&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;email_verified&#x27;: True, &#x27;external_identifier&#x27;: &#x27;external_identifier_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_provider_id&#x27;: &#x27;ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;is_mfa_activated&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -372,7 +431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Properties indicating how the user is allowed to authenticate.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -542,6 +601,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">email_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-users/email_verified"></div>
+                    <b>email_verified</b>
+                    <a class="ansibleOptionLink" href="#return-users/email_verified" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the email address has been validated.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

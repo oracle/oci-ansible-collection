@@ -11,11 +11,15 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from ansible.module_utils import six
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+from ansible_collections.oracle.oci.plugins.module_utils import (
+    oci_common_utils,
+    oci_wait_utils,
+)
 
 try:
     from oci.exceptions import ServiceError
     from oci.util import to_dict
+    from oci.load_balancer.models import UpdateLoadBalancerShapeDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -247,3 +251,64 @@ class LoadBalancerHelperCustom:
         return super(LoadBalancerHelperCustom, self).get_exclude_attributes() + [
             "ip_mode"
         ]
+
+    # adding this customization to support the update operation of shape of LoadBalancer
+    # within the resource module.
+    def is_update_necessary(self, existing_resource_dict):
+        # check if shape_name is present in update params and if the value of resource's
+        # shape_name is different
+        if (
+            not self.module.params.get("shape_name")
+            or self.module.params.get("shape_name")
+            == existing_resource_dict["shape_name"]
+        ):
+            # calling the base is_update_necessary to check for update param changes in resource's
+            # actual update model
+            return super(LoadBalancerHelperCustom, self).is_update_necessary(
+                existing_resource_dict
+            )
+        # variation in shape_name, hence return back True as it needs to be updated
+        return True
+
+    # adding this customization to support the update operation of shape of LoadBalancer
+    # within the resource module.
+    def update_resource(self):
+        resource = self.get_existing_resource_dict_for_update()
+        # check if shape_name is present in update params and if the value of resource's
+        # shape_name is different
+        if (
+            self.module.params.get("shape_name")
+            and self.module.params.get("shape_name") != resource["shape_name"]
+        ):
+            # since the shape_name is being changed, call the updateShape operation
+            shape_update_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, UpdateLoadBalancerShapeDetails
+            )
+            resource = oci_wait_utils.call_and_wait(
+                call_fn=self.client.update_load_balancer_shape,
+                call_fn_args=(),
+                call_fn_kwargs=dict(
+                    update_load_balancer_shape_details=shape_update_details,
+                    load_balancer_id=self.module.params.get("load_balancer_id"),
+                ),
+                waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+                operation=oci_common_utils.UPDATE_OPERATION_KEY,
+                waiter_client=self.get_waiter_client(),
+                resource_helper=self,
+                wait_for_states=oci_common_utils.get_work_request_completed_states(),
+            )
+
+        # check if there are changes in resource's actual update model
+        if super(LoadBalancerHelperCustom, self).is_update_necessary(to_dict(resource)):
+            resource = super(LoadBalancerHelperCustom, self).update_resource()
+
+        return resource
+
+
+class LoadBalancerActionsHelperCustom:
+    def is_action_necessary(self, action, response_data):
+        if action not in ["update_load_balancer_shape"]:
+            return super(LoadBalancerActionsHelperCustom, self).is_action_necessary(
+                action, response_data
+            )
+        return response_data.shape_name != self.module.params.get("shape_name")

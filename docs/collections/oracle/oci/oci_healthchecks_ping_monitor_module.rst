@@ -212,6 +212,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -229,6 +230,7 @@ Parameters
                                             <div>A user-friendly and mutable name suitable for display in a user interface.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -264,6 +266,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.  For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -280,6 +283,7 @@ Parameters
                                                                 <td>
                                             <div>The monitor interval in seconds. Valid values: 10, 30, and 60.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -299,6 +303,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the monitor. Set to &#x27;true&#x27; to launch monitoring.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -347,6 +352,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The port on which to probe endpoints. If unspecified, probes will use the default port of their protocol.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -367,6 +373,7 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -419,6 +426,7 @@ Parameters
                                                                 <td>
                                             <div>A list of targets (hostnames or IP addresses) of the probe.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -449,6 +457,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The probe timeout in seconds. Valid values: 10, 20, 30, and 60. The probe timeout must be less than or equal to `intervalInSeconds` for monitors.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -464,6 +473,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of names of vantage points from which to execute the probe.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                         </table>
@@ -484,8 +494,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

@@ -243,6 +243,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-storage_management"></div>
+                    <b>storage_management</b>
+                    <a class="ansibleOptionLink" href="#parameter-storage_management" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ASM</li>
+                                                                                                                                                                                                <li>LVM</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The DB system storage management option. Used to list database versions available for that storage manager. Valid values are: * ASM - Automatic storage management * LVM - Logical volume management</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -274,8 +293,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

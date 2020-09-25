@@ -169,6 +169,7 @@ Parameters
                                                                 <td>
                                             <div>The provisioned data rate of the connection.  To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -232,6 +233,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Create a `CrossConnectMapping` for each cross-connect or cross-connect group this virtual circuit will run on.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -334,6 +336,7 @@ Parameters
                                                                 <td>
                                             <div>Your BGP ASN (either public or private). Provide this value only if there&#x27;s a BGP session that goes from your edge router to Oracle. Otherwise, leave this empty or null. Can be a 2-byte or 4-byte ASN. Uses &quot;asplain&quot; format.</div>
                                             <div>Example: `12345` (2-byte) or `1587232876` (4-byte)</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -349,6 +352,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Deprecated. Instead use `customerAsn`. If you specify values for both, the request will be rejected.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -365,6 +369,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -381,6 +386,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -417,6 +423,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -432,6 +439,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/Drg) that this virtual circuit uses.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -492,6 +500,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The service key name offered by the provider (if the customer is connecting via a provider).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -527,6 +536,7 @@ Parameters
                                                                 <td>
                                             <div>The provider&#x27;s state in relation to this virtual circuit. Relevant only if the customer is using FastConnect via a provider.  ACTIVE means the provider has provisioned the virtual circuit from their end. INACTIVE means the provider has not yet provisioned the virtual circuit, or has de-provisioned it.</div>
                                             <div>To be updated only by the provider.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -575,6 +585,7 @@ Parameters
                                                                 <td>
                                             <div>Provider-supplied reference information about this virtual circuit. Relevant only if the customer is using FastConnect via a provider.</div>
                                             <div>To be updated only by the provider.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -718,8 +729,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -1323,7 +1332,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the virtual circuit was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the virtual circuit was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

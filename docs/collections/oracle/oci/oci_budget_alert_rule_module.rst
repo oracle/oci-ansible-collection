@@ -228,6 +228,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -243,6 +244,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the alert rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -259,6 +261,7 @@ Parameters
                                                                 <td>
                                             <div>The name of the alert rule.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -295,6 +298,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -325,6 +329,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to be sent to the recipients when alert rule is triggered.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -340,7 +345,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The audience that will receive the alert when it triggers. An empty string is interpreted as null.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -408,6 +413,7 @@ Parameters
                                                                 <td>
                                             <div>The threshold for triggering the alert expressed as a whole number or decimal value. If thresholdType is ABSOLUTE, threshold can have at most 12 digits before the decimal point and up to 2 digits after the decimal point. If thresholdType is PERCENTAGE, the maximum value is 10000 and can have up to 2 digits after the decimal point.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -428,6 +434,7 @@ Parameters
                                                                 <td>
                                             <div>The type of threshold.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -448,6 +455,7 @@ Parameters
                                                                 <td>
                                             <div>Type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -502,8 +510,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -514,7 +520,6 @@ Examples
         type: ACTUAL
         threshold: 10
         threshold_type: PERCENTAGE
-        recipients: recipients_example
 
     - name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget_alert_rule:

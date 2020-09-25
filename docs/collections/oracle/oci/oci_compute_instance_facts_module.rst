@@ -360,8 +360,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -409,7 +407,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Instance resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;agent_config&#x27;: {&#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My bare metal instance&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;source_type_example&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2018-05-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;agent_config&#x27;: {&#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My bare metal instance&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;source_type_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2018-05-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -572,8 +570,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the &#x27;metadata&#x27; object.</div>
-                                            <div>They are distinguished from &#x27;metadata&#x27; fields in that these can be nested JSON objects (whereas &#x27;metadata&#x27; fields are string/string maps only).</div>
+                                            <div>Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the `metadata` object.</div>
+                                            <div>They are distinguished from `metadata` fields in that these can be nested JSON objects (whereas `metadata` fields are string/string maps only).</div>
                                         <br/>
                                     </td>
             </tr>
@@ -591,7 +589,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the fault domain the instance is running in.</div>
                                             <div>A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains.</div>
-                                            <div>If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain.</div>
+                                            <div>If you do not specify the fault domain, the system selects one for you.</div>
                                             <div>Example: `FAULT-DOMAIN-1`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -687,7 +685,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are: * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images. * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers. * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.</div>
+                                            <div>Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are: * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images. * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers. * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NATIVE</div>
@@ -705,7 +703,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -722,7 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data volumes on Oracle provided images. * `PARAVIRTUALIZED` - Paravirtualized disk.</div>
+                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ISCSI</div>
@@ -741,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Firmware used to boot VM.  Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the default for Oracle provided images.</div>
+                                            <div>Firmware used to boot VM.  Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the default for Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BIOS</div>
@@ -779,7 +777,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether to enable in-transit encryption for the boot volume&#x27;s paravirtualized attachment. The default value is false.</div>
+                                            <div>Deprecated. Instead use `isPvEncryptionInTransitEnabled` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails'>LaunchInstanceDetails</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -798,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.</div>
+                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">E1000</div>
@@ -817,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data volumes on Oracle provided images. * `PARAVIRTUALIZED` - Paravirtualized disk.</div>
+                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ISCSI</div>
@@ -961,7 +959,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short description of the GPUs available to this instance. This field is `null` if `gpus` is `0`.</div>
+                                            <div>A short description of the instance&#x27;s graphics processing unit (GPU).</div>
+                                            <div>If the instance does not have any GPUs, this field is `null`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">gpu_description_example</div>
@@ -980,7 +979,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of GPUs available to this instance.</div>
+                                            <div>The number of GPUs available to the instance.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -999,7 +998,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short description of the local disks available to this instance. This field is `null` if `localDisks` is equal to `0`.</div>
+                                            <div>A short description of the local disks available to this instance.</div>
+                                            <div>If the instance does not have any local disks, this field is `null`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">local_disk_description_example</div>
@@ -1037,7 +1037,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The size of the local disks, aggregated, in gigabytes. This field is `null` if `localDisks` is equal to `0`.</div>
+                                            <div>The aggregate size of all local disks, in gigabytes.</div>
+                                            <div>If the instance does not have any local disks, this field is `null`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1075,7 +1076,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The total amount of memory, in gigabytes, available to the instance.</div>
+                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1094,7 +1095,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The networking bandwidth, in gigabits per second, available to the instance.</div>
+                                            <div>The networking bandwidth available to the instance, in gigabits per second.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1132,7 +1133,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short description of the processors available to the instance.</div>
+                                            <div>A short description of the instance&#x27;s processor (CPU).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">processor_description_example</div>
@@ -1254,6 +1255,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instances/system_tags"></div>
+                    <b>system_tags</b>
+                    <a class="ansibleOptionLink" href="#return-instances/system_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>System tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-instances/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-instances/time_created" title="Permalink to this return value"></a>
@@ -1263,7 +1280,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the instance was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the instance was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1282,7 +1299,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the instance is expected to be stopped / started,  in the format defined by RFC3339. After that time if instance hasn&#x27;t been rebooted, Oracle will reboot the instance within 24 hours of the due time. Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state. Example: `2018-05-25T21:10:29.600Z`</div>
+                                            <div>The date and time the instance is expected to be stopped / started,  in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. After that time if instance hasn&#x27;t been rebooted, Oracle will reboot the instance within 24 hours of the due time. Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state. Example: `2018-05-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-05-25T21:10:29.600000+00:00</div>

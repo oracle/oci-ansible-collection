@@ -47,6 +47,7 @@ Synopsis
 - If you want to generate CPE configuration content for one of the returned CPE device types, ensure that the `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/>`_ object's `cpeDeviceShapeId` attribute is set to the CPE device type's OCID (returned by this operation).
 - For information about generating CPE configuration content, see these operations:
 -  * `GetCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent>`_ * `GetIpsecCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent>`_ * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_
+- If *cpe_device_shape_id* is specified, the details of a single CpeDeviceShape will be returned.
 
 .. Aliases
 
@@ -186,6 +187,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cpe_device_shape_id"></div>
+                    <b>cpe_device_shape_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-cpe_device_shape_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE device shape.</div>
+                                            <div>Required to get a specific cpe_device_shape.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -232,14 +250,16 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
     
     - name: List cpe_device_shapes
       oci_network_cpe_device_shape_facts:
+
+    - name: Get a specific cpe_device_shape
+      oci_network_cpe_device_shape_facts:
+        cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
 
 
 
@@ -276,7 +296,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of CpeDeviceShape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cpe_device_info&#x27;: {&#x27;platform_software_version&#x27;: &#x27;platform_software_version_example&#x27;, &#x27;vendor&#x27;: &#x27;vendor_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cpe_device_info&#x27;: {&#x27;platform_software_version&#x27;: &#x27;platform_software_version_example&#x27;, &#x27;vendor&#x27;: &#x27;vendor_example&#x27;}, &#x27;cpe_device_shape_id&#x27;: &#x27;ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parameters&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;explanation&#x27;: &#x27;explanation_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;}], &#x27;template&#x27;: &#x27;template_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -337,6 +357,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/cpe_device_shape_id"></div>
+                    <b>cpe_device_shape_id</b>
+                    <a class="ansibleOptionLink" href="#return-cpe_device_shapes/cpe_device_shape_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE device shape. This value uniquely identifies the type of CPE device.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-cpe_device_shapes/id" title="Permalink to this return value"></a>
@@ -350,6 +388,99 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/parameters"></div>
+                    <b>parameters</b>
+                    <a class="ansibleOptionLink" href="#return-cpe_device_shapes/parameters" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For certain CPE devices types, the customer can provide answers to questions that are specific to the device type. This attribute contains a list of those questions. The Networking service merges the answers with other information and renders a set of CPE configuration content. To provide the answers, use <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig'>UpdateTunnelCpeDeviceConfig</a>.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/parameters/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-cpe_device_shapes/parameters/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A descriptive label for the question (for example, to display in a form in a graphical interface).</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/parameters/explanation"></div>
+                    <b>explanation</b>
+                    <a class="ansibleOptionLink" href="#return-cpe_device_shapes/parameters/explanation" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A description or explanation of the question, to help the customer answer accurately.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">explanation_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/parameters/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#return-cpe_device_shapes/parameters/key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A string that identifies the question.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cpe_device_shapes/template"></div>
+                    <b>template</b>
+                    <a class="ansibleOptionLink" href="#return-cpe_device_shapes/template" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A template of CPE device configuration information that will be merged with the customer&#x27;s answers to the questions to render the final CPE device configuration content. Also see:</div>
+                                            <div>* <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent'>GetCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent'>GetIpsecCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent'>GetTunnelCpeDeviceConfigContent</a></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">template_example</div>
                                     </td>
             </tr>
                     

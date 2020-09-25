@@ -212,6 +212,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Details to update the secret version of the specified secret. The secret contents, version number, and rules can&#x27;t be specified at the same time. Updating the secret contents automatically creates a new secret version.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -227,6 +228,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -242,6 +244,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A brief description of the secret. Avoid entering confidential information.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -276,6 +279,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -321,6 +325,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Additional metadata that you can use to provide context about how to use the secret during rotation or other administrative tasks. For example, for a secret that you use to connect to a database, the additional metadata might specify the connection endpoint and the connection string. Provide additional metadata as key-value pairs.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -352,6 +357,7 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -472,6 +478,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of rules to control how the secret is used and managed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -673,8 +680,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

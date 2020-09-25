@@ -1,0 +1,108 @@
+---
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: create temporary directory for ssh public key
+  tempfile:
+    state: directory
+    suffix: cert
+  register: result
+
+- set_fact:
+    ssh_public_key_path: "{{ result.path }}"
+# ===========================================================================================
+- name: Generate Private Key For using which Public Key will be generated
+  openssl_privatekey:
+      path: "{{ssh_public_key_path}}/private_key.pem"
+      type: RSA
+      size: 2048
+# ===========================================================================================
+- name: Generate Public Key
+  openssl_publickey:
+    path: "{{ssh_public_key_path}}/public_key.pem"
+    privatekey_path: "{{ssh_public_key_path}}/private_key.pem"
+    format: OpenSSH
+
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ compartment_ocid }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ vcn_cidr_block }}"
+    dns_label: "{{ vcn_dns_label }}"
+  register: result
+- set_fact:
+    vcn_id: "{{ result.vcn.id }}"
+    vcn: "{{ result.vcn }}"
+
+- name: Create a new Internet Gateway
+  oci_network_internet_gateway:
+    compartment_id: "{{ compartment_ocid }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ ig_name }}"
+    is_enabled: 'yes'
+    state: 'present'
+  register: result
+- set_fact:
+    ig_id: "{{ result.internet_gateway.id }}"
+
+- name: Create route table to connect internet gateway to the VCN
+  oci_network_route_table:
+    compartment_id: "{{ compartment_ocid }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ route_table_name }}"
+    route_rules: "{{ route_table_rules }}"
+    state: 'present'
+  register: result
+- set_fact:
+    rt_id: "{{ result.route_table.id }}"
+
+# Create a security list for allowing access to public instance
+# Use a jinja2 template of the ingress and egress security rules to generate
+# a templated version of the final rules.
+- name: create ingress rules yaml body
+  template: src=./templates/ingress_security_rules.yaml.j2 dest=/tmp/instance_ingress_security_rules.yaml
+- name: create egress yaml body
+  template: src=./templates/egress_security_rules.yaml.j2 dest=/tmp/instance_egress_security_rules.yaml
+# Load the variables defined in the generated files
+- name: load the variables defined in the ingress rules yaml body
+  include_vars:
+    file: /tmp/instance_ingress_security_rules.yaml
+    name: loaded_ingress
+- name: print loaded_ingress
+  debug:
+    msg: "loaded ingress is {{loaded_ingress}}"
+- name: load the variables defined in the egress rules yaml body
+  include_vars:
+    file: /tmp/instance_egress_security_rules.yaml
+    name: loaded_egress
+- name: print loaded_egress
+  debug:
+    msg: "loaded egress is {{loaded_egress}}"
+- name: Create a security list
+  oci_network_security_list:
+    name: "{{ securitylist_name }}"
+    compartment_id: "{{ compartment_ocid }}"
+    vcn_id: '{{ vcn_id }}'
+    ingress_security_rules: "{{ loaded_ingress.instance_ingress_security_rules }}"
+    egress_security_rules:  "{{ loaded_egress.instance_egress_security_rules }}"
+  register: result
+- set_fact:
+    instance_security_list_ocid: "{{ result.security_list.id }}"
+
+- name: Create subnet
+  oci_network_subnet:
+    display_name: "{{ subnet_name }}"
+    dns_label: "{{ subnet_dns_label }}"
+    cidr_block: "{{ subnet_cidr }}"
+    availability_domain: "{{ availability_domain }}"
+    route_table_id: "{{ rt_id }}"
+    security_list_ids: [ "{{ instance_security_list_ocid }}" ]
+    vcn_id: "{{ vcn_id }}"
+    compartment_id: "{{ compartment_ocid }}"
+  register: result
+
+- set_fact:
+   subnet_id: "{{ result.subnet.id }}"

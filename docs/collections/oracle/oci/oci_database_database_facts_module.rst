@@ -228,7 +228,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A Database Home <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
-                                            <div>Required to list multiple databases.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -326,6 +325,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-system_id"></div>
+                    <b>system_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-system_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Exadata DB system that you want to filter the database results by. Applies only to Exadata DB systems.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -357,8 +371,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -366,7 +378,6 @@ Examples
     - name: List databases
       oci_database_database_facts:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Get a specific database
       oci_database_database_facts:
@@ -389,12 +400,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-databases"></div>
                     <b>databases</b>
                     <a class="ansibleOptionLink" href="#return-databases" title="Permalink to this return value"></a>
@@ -407,12 +418,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Database resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_TWO&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;vpc_password_example&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/character_set"></div>
                     <b>character_set</b>
                     <a class="ansibleOptionLink" href="#return-databases/character_set" title="Permalink to this return value"></a>
@@ -430,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-databases/compartment_id" title="Permalink to this return value"></a>
@@ -448,7 +459,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/connection_strings"></div>
                     <b>connection_strings</b>
                     <a class="ansibleOptionLink" href="#return-databases/connection_strings" title="Permalink to this return value"></a>
@@ -465,7 +476,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-databases/connection_strings/all_connection_strings"></div>
                     <b>all_connection_strings</b>
                     <a class="ansibleOptionLink" href="#return-databases/connection_strings/all_connection_strings" title="Permalink to this return value"></a>
@@ -482,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-databases/connection_strings/cdb_default"></div>
                     <b>cdb_default</b>
                     <a class="ansibleOptionLink" href="#return-databases/connection_strings/cdb_default" title="Permalink to this return value"></a>
@@ -501,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-databases/connection_strings/cdb_ip_default"></div>
                     <b>cdb_ip_default</b>
                     <a class="ansibleOptionLink" href="#return-databases/connection_strings/cdb_ip_default" title="Permalink to this return value"></a>
@@ -520,7 +531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/db_backup_config"></div>
                     <b>db_backup_config</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_backup_config" title="Permalink to this return value"></a>
@@ -537,7 +548,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/auto_backup_enabled"></div>
                     <b>auto_backup_enabled</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_backup_config/auto_backup_enabled" title="Permalink to this return value"></a>
@@ -556,7 +567,145 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/auto_backup_window"></div>
+                    <b>auto_backup_window</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/auto_backup_window" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If no option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive).</div>
+                                            <div>Example: `SLOT_TWO`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SLOT_TWO</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/backup_destination_details"></div>
+                    <b>backup_destination_details</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/backup_destination_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Backup destination details.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/backup_destination_details/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/backup_destination_details/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup destination.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/backup_destination_details/internet_proxy"></div>
+                    <b>internet_proxy</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/backup_destination_details/internet_proxy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Proxy URL to connect to object store.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">internet_proxy_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/backup_destination_details/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/backup_destination_details/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the database backup destination.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NFS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/backup_destination_details/vpc_password"></div>
+                    <b>vpc_password</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/backup_destination_details/vpc_password" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vpc_password_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/backup_destination_details/vpc_user"></div>
+                    <b>vpc_user</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_backup_config/backup_destination_details/vpc_user" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vpc_user_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-databases/db_backup_config/recovery_window_in_days"></div>
                     <b>recovery_window_in_days</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_backup_config/recovery_window_in_days" title="Permalink to this return value"></a>
@@ -575,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/db_home_id"></div>
                     <b>db_home_id</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_home_id" title="Permalink to this return value"></a>
@@ -593,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/db_name"></div>
                     <b>db_name</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_name" title="Permalink to this return value"></a>
@@ -611,7 +760,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-databases/db_system_id"></div>
+                    <b>db_system_id</b>
+                    <a class="ansibleOptionLink" href="#return-databases/db_system_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/db_unique_name"></div>
                     <b>db_unique_name</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_unique_name" title="Permalink to this return value"></a>
@@ -629,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/db_workload"></div>
                     <b>db_workload</b>
                     <a class="ansibleOptionLink" href="#return-databases/db_workload" title="Permalink to this return value"></a>
@@ -647,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-databases/defined_tags" title="Permalink to this return value"></a>
@@ -665,7 +832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-databases/freeform_tags" title="Permalink to this return value"></a>
@@ -684,7 +851,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-databases/id" title="Permalink to this return value"></a>
@@ -702,7 +869,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-databases/last_backup_timestamp"></div>
+                    <b>last_backup_timestamp</b>
+                    <a class="ansibleOptionLink" href="#return-databases/last_backup_timestamp" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time when the latest database backup was created.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-databases/lifecycle_details" title="Permalink to this return value"></a>
@@ -720,7 +905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-databases/lifecycle_state" title="Permalink to this return value"></a>
@@ -738,7 +923,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/ncharacter_set"></div>
                     <b>ncharacter_set</b>
                     <a class="ansibleOptionLink" href="#return-databases/ncharacter_set" title="Permalink to this return value"></a>
@@ -756,7 +941,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/pdb_name"></div>
                     <b>pdb_name</b>
                     <a class="ansibleOptionLink" href="#return-databases/pdb_name" title="Permalink to this return value"></a>
@@ -774,7 +959,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-databases/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-databases/time_created" title="Permalink to this return value"></a>
@@ -788,6 +973,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-databases/vm_cluster_id"></div>
+                    <b>vm_cluster_id</b>
+                    <a class="ansibleOptionLink" href="#return-databases/vm_cluster_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VM cluster.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     

@@ -230,6 +230,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which is also the default.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -246,6 +247,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -262,6 +264,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -298,6 +301,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -317,6 +321,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the autoscaling configuration is enabled.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -375,12 +380,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-policies/capacity/initial" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The initial number of instances to launch in the instance pool immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this initial number to a number that is based on the limits that you set.</div>
+                                            <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -392,12 +398,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-policies/capacity/max" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum number of instances the instance pool is allowed to increase to (scale out).</div>
+                                            <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -409,12 +416,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-policies/capacity/min" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The minimum number of instances the instance pool is allowed to decrease to (scale in).</div>
+                                            <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -438,6 +446,101 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/execution_schedule"></div>
+                    <b>execution_schedule</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/execution_schedule" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when policy_type is &#x27;scheduled&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/execution_schedule/expression"></div>
+                    <b>expression</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/execution_schedule/expression" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The value representing the execution schedule, as defined by cron format.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/execution_schedule/timezone"></div>
+                    <b>timezone</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/execution_schedule/timezone" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>UTC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the time zone the schedule is in.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/execution_schedule/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/execution_schedule/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>cron</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of ExecutionSchedule.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/is_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Boolean field indicating whether this policy is enabled or not.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-policies/policy_type"></div>
                     <b>policy_type</b>
                     <a class="ansibleOptionLink" href="#parameter-policies/policy_type" title="Permalink to this option"></a>
@@ -447,7 +550,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>threshold</li>
+                                                                                                                                                                <li>scheduled</li>
+                                                                                                                                                                                                <li>threshold</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -462,12 +566,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-policies/rules" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -485,6 +590,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -506,6 +612,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of action to take.</div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -524,6 +631,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>To scale out (increase the number of instances), provide a positive value. To scale in (decrease the number of instances), provide a negative value.</div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -542,6 +650,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>Applicable when policy_type is &#x27;threshold&#x27;</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -560,6 +669,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -582,6 +692,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -600,6 +711,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -625,6 +737,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The comparison operator to use. Options are greater than (`GT`), greater than or equal to (`GTE`), less than (`LT`), and less than or equal to (`LTE`).</div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -644,6 +757,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required when policy_type is &#x27;threshold&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -771,8 +885,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -869,7 +981,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutoScalingConfiguration resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cool_down_in_seconds&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;policies&#x27;: [{&#x27;capacity&#x27;: {&#x27;initial&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;policy_type&#x27;: &#x27;policy_type_example&#x27;, &#x27;rules&#x27;: [{&#x27;action&#x27;: {&#x27;type&#x27;: &#x27;CHANGE_COUNT_BY&#x27;, &#x27;value&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;resource&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;instancePool&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cool_down_in_seconds&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;max_resource_count&#x27;: 56, &#x27;min_resource_count&#x27;: 56, &#x27;policies&#x27;: [{&#x27;capacity&#x27;: {&#x27;initial&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;execution_schedule&#x27;: {&#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;timezone&#x27;: &#x27;UTC&#x27;, &#x27;type&#x27;: &#x27;cron&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;policy_type&#x27;: &#x27;policy_type_example&#x27;, &#x27;rules&#x27;: [{&#x27;action&#x27;: {&#x27;type&#x27;: &#x27;CHANGE_COUNT_BY&#x27;, &#x27;value&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;resource&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;instancePool&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1003,6 +1115,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/max_resource_count"></div>
+                    <b>max_resource_count</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/max_resource_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum number of resources to scale out to.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/min_resource_count"></div>
+                    <b>min_resource_count</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/min_resource_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum number of resources to scale in to.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies"></div>
                     <b>policies</b>
                     <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies" title="Permalink to this return value"></a>
@@ -1118,6 +1266,84 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/execution_schedule"></div>
+                    <b>execution_schedule</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/execution_schedule" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/execution_schedule/expression"></div>
+                    <b>expression</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/execution_schedule/expression" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value representing the execution schedule, as defined by cron format.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">expression_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/execution_schedule/timezone"></div>
+                    <b>timezone</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/execution_schedule/timezone" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies the time zone the schedule is in.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UTC</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/execution_schedule/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/execution_schedule/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of ExecutionSchedule.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cron</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/id" title="Permalink to this return value"></a>
@@ -1131,6 +1357,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/is_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Boolean field indicating whether this policy is enabled or not.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

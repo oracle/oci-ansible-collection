@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ImageShapeCompatibilityEntry resources in Oracle Cloud Infrastructure
-- Lists the shape compatibilities for the image.
+- Lists the compatible shapes for the specified image.
 - If *shape_name* is specified, the details of a single ImageShapeCompatibilityEntry will be returned.
 
 .. Aliases
@@ -261,8 +261,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

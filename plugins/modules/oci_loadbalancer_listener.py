@@ -67,6 +67,16 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            verify_depth:
+                description:
+                    - The maximum depth for peer certificate chain verification.
+                    - "Example: `3`"
+                type: int
+            verify_peer_certificate:
+                description:
+                    - Whether the load balancer listener should verify peer certificates.
+                    - "Example: `true`"
+                type: bool
             certificate_name:
                 description:
                     - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -75,16 +85,59 @@ options:
                     - "Example: `example_certificate_bundle`"
                 type: str
                 required: true
-            verify_peer_certificate:
+            protocols:
                 description:
-                    - Whether the load balancer listener should verify peer certificates.
-                    - "Example: `true`"
-                type: bool
-            verify_depth:
+                    - A list of SSL protocols the load balancer must support for HTTPS or SSL connections.
+                    - The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure
+                      connection ensures that all data passed between the client and the server is private.
+                    - "The Load Balancing service supports the following protocols:"
+                    - "*  TLSv1
+                      *  TLSv1.1
+                      *  TLSv1.2"
+                    - If this field is not specified, TLSv1.2 is the default.
+                    - "**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols."
+                    - "**Notes:**"
+                    - "*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols.
+                      *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                         suite.
+                      *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation
+                         displays a list of SSL protocols currently used by those resources."
+                    - "example: `[\\"TLSv1.1\\", \\"TLSv1.2\\"]`"
+                type: list
+            cipher_suite_name:
                 description:
-                    - The maximum depth for peer certificate chain verification.
-                    - "Example: `3`"
-                type: int
+                    - The name of the cipher suite to use for HTTPS or SSL connections.
+                    - If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.
+                    - "**Notes:**"
+                    - "*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                         suite. Clients cannot perform an SSL handshake if there is an incompatible configuration.
+                      *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured
+                         certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA
+                         certificates.
+                      *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns
+                         `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners
+                         that predate this feature.
+                      *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET`
+                         operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for
+                         existing listeners that predate this feature.
+                      *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL
+                         configuration for existing backend sets that predate this feature.
+                      *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field,
+                         you must specify an appropriate predefined or custom cipher suite name when updating the resource.
+                      *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for
+                         this field."
+                    - "example: `example_cipher_suite`"
+                type: str
+            server_order_preference:
+                description:
+                    - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
+                      ciphers.
+                    - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
+                                field is ignored when the `SSLConfiguration` object is associated with a backend set."
+                type: str
+                choices:
+                    - "ENABLED"
+                    - "DISABLED"
     connection_configuration:
         description:
             - ""
@@ -220,6 +273,20 @@ listener:
             returned: on success
             type: complex
             contains:
+                verify_depth:
+                    description:
+                        - The maximum depth for peer certificate chain verification.
+                        - "Example: `3`"
+                    returned: on success
+                    type: int
+                    sample: 3
+                verify_peer_certificate:
+                    description:
+                        - Whether the load balancer listener should verify peer certificates.
+                        - "Example: `true`"
+                    returned: on success
+                    type: bool
+                    sample: true
                 certificate_name:
                     description:
                         - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -229,20 +296,62 @@ listener:
                     returned: on success
                     type: string
                     sample: example_certificate_bundle
-                verify_peer_certificate:
+                server_order_preference:
                     description:
-                        - Whether the load balancer listener should verify peer certificates.
-                        - "Example: `true`"
+                        - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
+                          ciphers.
+                        - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
+                                    field is ignored when the `SSLConfiguration` object is associated with a backend set."
                     returned: on success
-                    type: bool
-                    sample: true
-                verify_depth:
+                    type: string
+                    sample: ENABLED
+                cipher_suite_name:
                     description:
-                        - The maximum depth for peer certificate chain verification.
-                        - "Example: `3`"
+                        - The name of the cipher suite to use for HTTPS or SSL connections.
+                        - If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.
+                        - "**Notes:**"
+                        - "*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                             suite. Clients cannot perform an SSL handshake if there is an incompatible configuration.
+                          *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured
+                             certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA
+                             certificates.
+                          *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns
+                             `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners
+                             that predate this feature.
+                          *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET`
+                             operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for
+                             existing listeners that predate this feature.
+                          *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL
+                             configuration for existing backend sets that predate this feature.
+                          *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field,
+                             you must specify an appropriate predefined or custom cipher suite name when updating the resource.
+                          *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for
+                             this field."
+                        - "example: `example_cipher_suite`"
                     returned: on success
-                    type: int
-                    sample: 3
+                    type: string
+                    sample: cipher_suite_name_example
+                protocols:
+                    description:
+                        - A list of SSL protocols the load balancer must support for HTTPS or SSL connections.
+                        - The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure
+                          connection ensures that all data passed between the client and the server is private.
+                        - "The Load Balancing service supports the following protocols:"
+                        - "*  TLSv1
+                          *  TLSv1.1
+                          *  TLSv1.2"
+                        - If this field is not specified, TLSv1.2 is the default.
+                        - "**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols."
+                        - "**Notes:**"
+                        - "*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols.
+                          *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                             suite.
+                          *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation
+                             displays a list of SSL protocols currently used by those resources."
+                        - "example: `[\\"TLSv1.1\\", \\"TLSv1.2\\"]`"
+                    returned: on success
+                    type: list
+                    sample: []
         connection_configuration:
             description:
                 - ""
@@ -282,9 +391,12 @@ listener:
         "hostname_names": [],
         "path_route_set_name": "example_path_route_set",
         "ssl_configuration": {
-            "certificate_name": "example_certificate_bundle",
+            "verify_depth": 3,
             "verify_peer_certificate": true,
-            "verify_depth": 3
+            "certificate_name": "example_certificate_bundle",
+            "server_order_preference": "ENABLED",
+            "cipher_suite_name": "cipher_suite_name_example",
+            "protocols": []
         },
         "connection_configuration": {
             "idle_timeout": 1200,
@@ -411,9 +523,14 @@ def main():
             ssl_configuration=dict(
                 type="dict",
                 options=dict(
-                    certificate_name=dict(type="str", required=True),
-                    verify_peer_certificate=dict(type="bool"),
                     verify_depth=dict(type="int"),
+                    verify_peer_certificate=dict(type="bool"),
+                    certificate_name=dict(type="str", required=True),
+                    protocols=dict(type="list"),
+                    cipher_suite_name=dict(type="str"),
+                    server_order_preference=dict(
+                        type="str", choices=["ENABLED", "DISABLED"]
+                    ),
                 ),
             ),
             connection_configuration=dict(

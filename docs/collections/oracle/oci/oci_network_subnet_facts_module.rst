@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Subnet resources in Oracle Cloud Infrastructure
-- Lists the subnets in the specified VCN and the specified compartment.
+- Lists the subnets in the specified VCN and the specified compartment. If the VCN ID is not provided, then the list includes the subnets from all VCNs in the specified compartment.
 - If *subnet_id* is specified, the details of a single Subnet will be returned.
 
 .. Aliases
@@ -334,7 +334,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN.</div>
-                                            <div>Required to list multiple subnets.</div>
                                                         </td>
             </tr>
                         </table>
@@ -355,8 +354,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -364,7 +361,6 @@ Examples
     - name: List subnets
       oci_network_subnet_facts:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Get a specific subnet
       oci_network_subnet_facts:
@@ -405,7 +401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Subnet resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;172.16.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:17:B6:4D:DD&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;10.0.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:00:00:00:01&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -440,10 +436,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The subnet&#x27;s CIDR block.</div>
-                                            <div>Example: `172.16.1.0/24`</div>
+                                            <div>Example: `10.0.1.0/24`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">172.16.1.0/24</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.1.0/24</div>
                                     </td>
             </tr>
                                 <tr>
@@ -680,7 +676,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the subnet was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the subnet was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -737,10 +733,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The MAC address of the virtual router.</div>
-                                            <div>Example: `00:00:17:B6:4D:DD`</div>
+                                            <div>Example: `00:00:00:00:00:01`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">00:00:17:B6:4D:DD</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">00:00:00:00:00:01</div>
                                     </td>
             </tr>
                     

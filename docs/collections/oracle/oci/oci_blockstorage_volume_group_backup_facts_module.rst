@@ -333,8 +333,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -543,7 +541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the volume group backup was created. This is the time the actual point-in-time image of the volume group data was taken. Format defined by RFC3339.</div>
+                                            <div>The date and time the volume group backup was created. This is the time the actual point-in-time image of the volume group data was taken. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -561,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the request to create the volume group backup was received. Format defined by RFC3339.</div>
+                                            <div>The date and time the request to create the volume group backup was received. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

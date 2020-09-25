@@ -91,6 +91,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>An array of additional domains for the specified web application.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -235,6 +236,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -251,6 +253,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name for the WAAS policy. The name can be changed and does not need to be unique.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -303,6 +306,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -333,6 +337,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups of origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests. To add additional origins to your WAAS policy, update the `origins` field of a `UpdateWaasPolicy` request.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -400,6 +405,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A map of host to origin for the web application. The key should be a customer friendly name for the host, ex. primary, secondary, etc.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -515,6 +521,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1168,6 +1175,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -2535,6 +2543,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2556,6 +2565,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2573,6 +2583,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key for the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2590,6 +2601,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The bot name.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -3488,6 +3500,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The key in the map of origins referencing the origin used for the Web Application Firewall. The origin must already be included in `Origins`. Required when creating the `WafConfig` resource, but is not required upon updating the configuration.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3504,6 +3517,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups of origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests. To add additional origins to your WAAS policy, update the `origins` field of a `UpdateWaasPolicy` request.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3542,6 +3556,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3559,6 +3574,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3594,6 +3610,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3618,6 +3635,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The target of the exclusion.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -3636,6 +3654,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3654,6 +3673,7 @@ Parameters
                                                                 <td>
                                             <div>The list of labels for the protection rule.</div>
                                             <div>**Note:** Protection rules with a `ResponseBody` label will have no effect unless `isResponseInspected` is true.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3671,6 +3691,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of the ModSecurity rule IDs that apply to this protection rule. For more information about ModSecurity&#x27;s open source WAF rules, see <a href='https://www.modsecurity.org/CRS/Documentation/index.html'>Mod Security&#x27;s documentation</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3688,6 +3709,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -3990,6 +4012,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to `OFF`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4007,6 +4030,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the threat intelligence feed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4024,6 +4048,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key of the threat intelligence feed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4041,6 +4066,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the threat intelligence feed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -4165,8 +4191,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

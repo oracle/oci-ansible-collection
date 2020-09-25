@@ -114,6 +114,7 @@ Parameters
                                             <div>- **REDIRECT:** Redirects the request to the specified URL. These fields are required when `REDIRECT` is selected: `redirectUrl`, `redirectResponseCode`.</div>
                                             <div>- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page.</div>
                                             <div>Regardless of action, no further rules are processed once a rule is matched.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -134,6 +135,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to `SET_RESPONSE_CODE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -150,6 +152,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access rules&#x27;.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -166,6 +169,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access blocked by website owner. Please contact support.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -182,6 +186,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access to the website is blocked.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -198,6 +203,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the access criteria are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -224,6 +230,7 @@ Parameters
                                             <div>- **DEVICE_FINGERPRINT_CHALLENGE:** Bypasses Device Fingerprint Challenge.</div>
                                             <div>- **HUMAN_INTERACTION_CHALLENGE:** Bypasses Human Interaction Challenge.</div>
                                             <div>- **CAPTCHA:** Bypasses CAPTCHA Challenge.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -240,6 +247,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -256,6 +264,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -272,6 +281,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -288,6 +298,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -348,6 +359,7 @@ Parameters
                                             <div>- **HTTP_METHOD_IS_NOT:** Matches if the request is not identical to any of the contents of the `value` field. The `value` in this case is string with one or multiple HTTP methods separated by new line symbol \n The list of available methods: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`</div>
                                             <div>*Example:* &quot;GET\nPOST&quot;</div>
                                             <div>- **COUNTRY_IS:** Matches if the request originates from one of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **COUNTRY_IS_NOT:** Matches if the request does not originate from any of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **USER_AGENT_IS:** Matches if the requesting user agent is identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0` - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -369,6 +381,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>When enabled, the condition will be matched with case-sensitive rules.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -386,6 +399,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The criteria value.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -403,6 +417,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique name of the access rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -425,6 +440,7 @@ Parameters
                                             <div>The response status code to return when `action` is set to `REDIRECT`.</div>
                                             <div>- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301).</div>
                                             <div>- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -441,6 +457,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -479,6 +496,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -497,6 +515,7 @@ Parameters
                                                                 <td>
                                             <div>A header field name that conforms to RFC 7230.</div>
                                             <div>Example: `example_header_name`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -515,6 +534,7 @@ Parameters
                                                                 <td>
                                             <div>A header field value that conforms to RFC 7230.</div>
                                             <div>Example: `example_value`</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Required when action is one of [&#x27;ADD_HTTP_RESPONSE_HEADER&#x27;, &#x27;EXTEND_HTTP_RESPONSE_HEADER&#x27;]</div>
                                                         </td>
             </tr>
@@ -747,8 +767,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

@@ -210,6 +210,7 @@ Parameters
                                                                 <td>
                                             <div>A user-specified name for the retention rule. Names can be helpful in identifying retention rules.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -226,6 +227,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -396,6 +398,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The date and time as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> after which this rule is locked and can only be deleted by deleting the bucket. Once a rule is locked, only increases in the duration are allowed and no other properties can be changed. This property cannot be updated for rules that are in a locked state. Specifying it when a duration is not specified is considered an error.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                         </table>
@@ -416,8 +419,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

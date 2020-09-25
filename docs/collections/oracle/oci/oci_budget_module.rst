@@ -85,6 +85,7 @@ Parameters
                                                                 <td>
                                             <div>The amount of the budget expressed as a whole number in the currency of the customer&#x27;s rate card.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -247,6 +248,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -262,6 +264,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the budget.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -278,6 +281,7 @@ Parameters
                                                                 <td>
                                             <div>The displayName of the budget.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -314,6 +318,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -363,6 +368,7 @@ Parameters
                                                                 <td>
                                             <div>The reset period for the budget.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -398,8 +404,41 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment on which budget is applied</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This is DEPRECTAED. Set the target compartment id in targets instead.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_type"></div>
+                    <b>target_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>COMPARTMENT</li>
+                                                                                                                                                                                                <li>TAG</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of target on which the budget is applied.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-targets"></div>
+                    <b>targets</b>
+                    <a class="ansibleOptionLink" href="#parameter-targets" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of targets on which the budget is applied. If targetType is &quot;COMPARTMENT&quot;, targets contains list of compartment OCIDs. If targetType is &quot;TAG&quot;, targets contains list of cost tracking tag identifiers in the form of &quot;{tagNamespace}.{tagKey}.{tagValue}&quot;. Curerntly, the array should contain EXACT ONE item.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -469,26 +508,26 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
     
     - name: Create budget
       oci_budget:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        target_compartment_id: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
-        amount: 10
-        reset_period: MONTHLY
+        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        target_type: COMPARTMENT
+        targets:
+        - ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        amount: 100.00
+        reset_period: Monthly
 
     - name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
         display_name: display_name_example
         description: description_example
-        amount: 10
-        reset_period: MONTHLY
+        amount: 100.00
+        reset_period: Monthly
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -505,7 +544,7 @@ Examples
 
     - name: Delete budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
         display_name: display_name_example
         state: absent
 
@@ -544,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Budget resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_spend&#x27;: 10, &#x27;alert_rule_count&#x27;: 56, &#x27;amount&#x27;: 10, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;forecasted_spend&#x27;: 10, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;reset_period&#x27;: &#x27;MONTHLY&#x27;, &#x27;target_compartment_id&#x27;: &#x27;ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_spend_computed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_spend&#x27;: 10, &#x27;alert_rule_count&#x27;: 56, &#x27;amount&#x27;: 10, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;forecasted_spend&#x27;: 10, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;reset_period&#x27;: &#x27;MONTHLY&#x27;, &#x27;target_compartment_id&#x27;: &#x27;ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;targets&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_spend_computed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -777,10 +816,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment on which budget is applied</div>
+                                            <div>This is DEPRECATED. For backwards compatability, the property will be populated when targetType is &quot;COMPARTMENT&quot; AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-budget/target_type"></div>
+                    <b>target_type</b>
+                    <a class="ansibleOptionLink" href="#return-budget/target_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of target on which the budget is applied.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPARTMENT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-budget/targets"></div>
+                    <b>targets</b>
+                    <a class="ansibleOptionLink" href="#return-budget/targets" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of targets on which the budget is applied. If targetType is &quot;COMPARTMENT&quot;, targets contains list of compartment OCIDs. If targetType is &quot;TAG&quot;, targets contains list of cost tracking tag identifiers in the form of &quot;{tagNamespace}.{tagKey}.{tagValue}&quot;.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

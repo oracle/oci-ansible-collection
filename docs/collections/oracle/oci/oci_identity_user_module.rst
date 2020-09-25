@@ -218,6 +218,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -234,6 +235,7 @@ Parameters
                                                                 <td>
                                             <div>The description you assign to the user during creation. Does not have to be unique, and it&#x27;s changeable.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -249,6 +251,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The email you assign to the user. Has to be unique across the tenancy.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -283,6 +286,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -438,8 +442,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -511,7 +513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the User resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;capabilities&#x27;: {&#x27;can_use_api_keys&#x27;: True, &#x27;can_use_auth_tokens&#x27;: True, &#x27;can_use_console_password&#x27;: True, &#x27;can_use_customer_secret_keys&#x27;: True, &#x27;can_use_smtp_credentials&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;external_identifier&#x27;: &#x27;external_identifier_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_provider_id&#x27;: &#x27;ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;is_mfa_activated&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;capabilities&#x27;: {&#x27;can_use_api_keys&#x27;: True, &#x27;can_use_auth_tokens&#x27;: True, &#x27;can_use_console_password&#x27;: True, &#x27;can_use_customer_secret_keys&#x27;: True, &#x27;can_use_smtp_credentials&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;email_verified&#x27;: True, &#x27;external_identifier&#x27;: &#x27;external_identifier_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;identity_provider_id&#x27;: &#x27;ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;is_mfa_activated&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -526,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Properties indicating how the user is allowed to authenticate.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -696,6 +698,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">email_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-user/email_verified"></div>
+                    <b>email_verified</b>
+                    <a class="ansibleOptionLink" href="#return-user/email_verified" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the email address has been validated.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

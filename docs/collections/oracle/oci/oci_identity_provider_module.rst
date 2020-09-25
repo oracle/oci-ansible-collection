@@ -217,6 +217,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -233,6 +234,7 @@ Parameters
                                                                 <td>
                                             <div>The description you assign to the `IdentityProvider` during creation. Does not have to be unique, and it&#x27;s changeable.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Applicable when protocol is &#x27;SAML2&#x27;</div>
                                                         </td>
             </tr>
@@ -268,6 +270,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Extra name value pairs associated with this identity provider. Example: `{&quot;clientId&quot;: &quot;app_sf3kdjf3&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -283,6 +286,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -332,6 +336,7 @@ Parameters
                                                                 <td>
                                             <div>The XML that contains the information required for federating.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Applicable when protocol is &#x27;SAML2&#x27;</div>
                                                         </td>
             </tr>
@@ -349,6 +354,7 @@ Parameters
                                                                 <td>
                                             <div>The URL for retrieving the identity provider&#x27;s metadata, which contains information required for federating.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Applicable when protocol is &#x27;SAML2&#x27;</div>
                                                         </td>
             </tr>
@@ -514,8 +520,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

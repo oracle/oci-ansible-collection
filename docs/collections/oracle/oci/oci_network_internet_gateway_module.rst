@@ -217,6 +217,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -233,6 +234,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -269,6 +271,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -307,6 +310,7 @@ Parameters
                                                                 <td>
                                             <div>Whether the gateway is enabled upon creation.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -389,8 +393,6 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the VCN the internet gateway is attached to.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -445,8 +447,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -454,18 +454,17 @@ Examples
     - name: Create internet_gateway
       oci_network_internet_gateway:
         display_name: MyInternetGateway
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
-        vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
+        compartment_id: ocid1.compartment.oc1..unique_ID
+        vcn_id: ocid1.vcn.oc1.phx.unique_ID
         is_enabled: true
 
     - name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_internet_gateway:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyInternetGateway
         freeform_tags: {'Department': 'Finance'}
         is_enabled: true
-        vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
 
     - name: Update internet_gateway
       oci_network_internet_gateway:
@@ -480,9 +479,8 @@ Examples
 
     - name: Delete internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_internet_gateway:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
         display_name: MyInternetGateway
-        vcn_id: ocid1.vcn.oc1.phx.aaaaaaaamzvcg26irmlpkcmdzs33fb43lv2ej4lxshrdgpzvxsmb7zn427ma
         state: absent
 
 
@@ -663,7 +661,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the internet gateway was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the internet gateway was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

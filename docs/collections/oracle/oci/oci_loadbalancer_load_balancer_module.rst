@@ -219,6 +219,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -237,6 +238,7 @@ Parameters
                                             <div>Example: `example_load_balancer`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -273,6 +275,29 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ip_mode"></div>
+                    <b>ip_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-ip_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>IPV4</li>
+                                                                                                                                                                                                <li>IPV6</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the load balancer has an IPv4 or IPv6 IP address.</div>
+                                            <div>If &quot;IPV4&quot;, the service assigns an IPv4 address and the load balancer supports IPv4 traffic.</div>
+                                            <div>If &quot;IPV6&quot;, the service assigns an IPv6 address and the load balancer supports IPv6 traffic.</div>
+                                            <div>Example: &quot;ipMode&quot;:&quot;IPV6&quot;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -361,6 +386,7 @@ Parameters
                                             <div>A template that determines the total pre-provisioned bandwidth (ingress plus egress). To get a list of available shapes, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerShape/ListShapes'>ListShapes</a> operation.</div>
                                             <div>Example: `100Mbps`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -467,8 +493,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -486,13 +510,14 @@ Examples
       oci_loadbalancer_load_balancer:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name: example_load_balancer
+        shape_name: 100Mbps
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update load_balancer
       oci_loadbalancer_load_balancer:
         display_name: example_load_balancer
-        freeform_tags: {'Department': 'Finance'}
+        shape_name: 100Mbps
         load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete load_balancer
@@ -541,7 +566,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the LoadBalancer resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backend_sets&#x27;: {&#x27;backends&#x27;: [{&#x27;backup&#x27;: False, &#x27;drain&#x27;: False, &#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;offline&#x27;: False, &#x27;port&#x27;: 8080, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;response_body_regex&#x27;: &#x27;^((?!false).|\\s)*$&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;LEAST_CONNECTIONS&#x27;, &#x27;session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False}, &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;certificates&#x27;: {&#x27;ca_certificate&#x27;: &#x27;ca_certificate_example&#x27;, &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;public_certificate&#x27;: &#x27;public_certificate_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;example_load_balancer&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostnames&#x27;: {&#x27;hostname&#x27;: &#x27;app.example.com&#x27;, &#x27;name&#x27;: &#x27;example_hostname_001&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;192.168.0.3&#x27;, &#x27;is_public&#x27;: True}], &#x27;is_private&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: {&#x27;connection_configuration&#x27;: {&#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;path_route_sets&#x27;: {&#x27;name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;path_routes&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;path&#x27;: &#x27;/example/video/123&#x27;, &#x27;path_match_type&#x27;: {&#x27;match_type&#x27;: &#x27;EXACT_MATCH&#x27;}}]}, &#x27;rule_sets&#x27;: {&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;ADD_HTTP_REQUEST_HEADER&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;prefix&#x27;: &#x27;example_prefix_value&#x27;, &#x27;suffix&#x27;: &#x27;example_suffix_value&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}], &#x27;name&#x27;: &#x27;example_rule_set&#x27;}, &#x27;shape_name&#x27;: &#x27;100Mbps&#x27;, &#x27;subnet_ids&#x27;: [], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backend_sets&#x27;: {&#x27;backends&#x27;: [{&#x27;backup&#x27;: False, &#x27;drain&#x27;: False, &#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;offline&#x27;: False, &#x27;port&#x27;: 8080, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;response_body_regex&#x27;: &#x27;^((?!false).|\\s)*$&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;lb_cookie_session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False, &#x27;domain&#x27;: &#x27;example.com&#x27;, &#x27;is_http_only&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;max_age_in_seconds&#x27;: 3600, &#x27;path&#x27;: &#x27;/example&#x27;}, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;LEAST_CONNECTIONS&#x27;, &#x27;session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False}, &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;certificates&#x27;: {&#x27;ca_certificate&#x27;: &#x27;ca_certificate_example&#x27;, &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;public_certificate&#x27;: &#x27;public_certificate_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;example_load_balancer&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostnames&#x27;: {&#x27;hostname&#x27;: &#x27;app.example.com&#x27;, &#x27;name&#x27;: &#x27;example_hostname_001&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;192.168.0.3&#x27;, &#x27;is_public&#x27;: True}], &#x27;is_private&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: {&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;network_security_group_ids&#x27;: [], &#x27;path_route_sets&#x27;: {&#x27;name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;path_routes&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;path&#x27;: &#x27;/example/video/123&#x27;, &#x27;path_match_type&#x27;: {&#x27;match_type&#x27;: &#x27;EXACT_MATCH&#x27;}}]}, &#x27;rule_sets&#x27;: {&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;ADD_HTTP_REQUEST_HEADER&#x27;, &#x27;allowed_methods&#x27;: [], &#x27;are_invalid_characters_allowed&#x27;: True, &#x27;conditions&#x27;: [{&#x27;attribute_name&#x27;: &#x27;SOURCE_IP_ADDRESS&#x27;, &#x27;attribute_value&#x27;: &#x27;ocid1.vcn.oc1.phx.unique_ID&#x27;, &#x27;operator&#x27;: &#x27;EXACT_MATCH&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;http_large_header_size_in_kb&#x27;: 56, &#x27;prefix&#x27;: &#x27;example_prefix_value&#x27;, &#x27;redirect_uri&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;port&#x27;: 8081, &#x27;protocol&#x27;: &#x27;HTTPS&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;}, &#x27;response_code&#x27;: 301, &#x27;status_code&#x27;: 56, &#x27;suffix&#x27;: &#x27;example_suffix_value&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}], &#x27;name&#x27;: &#x27;example_rule_set&#x27;}, &#x27;shape_name&#x27;: &#x27;100Mbps&#x27;, &#x27;ssl_cipher_suites&#x27;: {&#x27;ciphers&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -906,6 +931,181 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration"></div>
+                    <b>lb_cookie_session_persistence_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/cookie_name"></div>
+                    <b>cookie_name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/cookie_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the cookie inserted by the load balancer. If this field is not configured, the cookie name defaults to &quot;X-Oracle-BMC-LBS-Route&quot;.</div>
+                                            <div>Example: `example_cookie`</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  Ensure that the cookie name used at the backend application servers is different from the cookie name used at the load balancer. To minimize the chance of name collision, Oracle recommends that you use a prefix such as &quot;X-Oracle-OCI-&quot; for this field.</div>
+                                            <div>*  If a backend server and the load balancer both insert cookies with the same name, the client or browser behavior can vary depending on the domain and path values associated with the cookie. If the name, domain, and path values of the `Set-cookie` generated by a backend server and the `Set-cookie` generated by the load balancer are all the same, the client or browser treats them as one cookie and returns only one of the cookie values in subsequent requests. If both `Set-cookie` names are the same, but the domain and path names are different, the client or browser treats them as two different cookies.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_cookie</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/disable_fallback"></div>
+                    <b>disable_fallback</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/disable_fallback" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the load balancer is prevented from directing traffic from a persistent session client to a different backend server if the original server is unavailable. Defaults to false.</div>
+                                            <div>Example: `false`</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/domain"></div>
+                    <b>domain</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/domain" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The domain in which the cookie is valid. The `Set-cookie` header inserted by the load balancer contains a domain attribute with the specified value.</div>
+                                            <div>This attribute has no default value. If you do not specify a value, the load balancer does not insert the domain attribute into the `Set-cookie` header.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  <a href='https://www.ietf.org/rfc/rfc6265.txt'>RFC 6265 - HTTP State Management Mechanism</a> describes client and browser behavior when the domain attribute is present or not present in the `Set-cookie` header.</div>
+                                            <div>If the value of the `Domain` attribute is `example.com` in the `Set-cookie` header, the client includes the same cookie in the `Cookie` header when making HTTP requests to `example.com`, `www.example.com`, and `www.abc.example.com`. If the `Domain` attribute is not present, the client returns the cookie only for the domain to which the original request was made.</div>
+                                            <div>*  Ensure that this attribute specifies the correct domain value. If the `Domain` attribute in the `Set-cookie` header does not include the domain to which the original request was made, the client or browser might reject the cookie. As specified in RFC 6265, the client accepts a cookie with the `Domain` attribute value `example.com` or `www.example.com` sent from `www.example.com`. It does not accept a cookie with the `Domain` attribute `abc.example.com` or `www.abc.example.com` sent from `www.example.com`.</div>
+                                            <div>Example: `example.com`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example.com</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/is_http_only"></div>
+                    <b>is_http_only</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/is_http_only" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the `Set-cookie` header should contain the `HttpOnly` attribute. If `true`, the `Set-cookie` header inserted by the load balancer contains the `HttpOnly` attribute, which limits the scope of the cookie to HTTP requests. This attribute directs the client or browser to omit the cookie when providing access to cookies through non-HTTP APIs. For example, it restricts the cookie from JavaScript channels.</div>
+                                            <div>Example: `true`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/is_secure"></div>
+                    <b>is_secure</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/is_secure" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the `Set-cookie` header should contain the `Secure` attribute. If `true`, the `Set-cookie` header inserted by the load balancer contains the `Secure` attribute, which directs the client or browser to send the cookie only using a secure protocol.</div>
+                                            <div>**Note:** If you set this field to `true`, you cannot associate the corresponding backend set with an HTTP listener.</div>
+                                            <div>Example: `true`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/max_age_in_seconds"></div>
+                    <b>max_age_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/max_age_in_seconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The amount of time the cookie remains valid. The `Set-cookie` header inserted by the load balancer contains a `Max-Age` attribute with the specified value.</div>
+                                            <div>The specified value must be at least one second. There is no default value for this attribute. If you do not specify a value, the load balancer does not include the `Max-Age` attribute in the `Set-cookie` header. In most cases, the client or browser retains the cookie until the current session ends, as defined by the client.</div>
+                                            <div>Example: `3600`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3600</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/lb_cookie_session_persistence_configuration/path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The path in which the cookie is valid. The `Set-cookie header` inserted by the load balancer contains a `Path` attribute with the specified value.</div>
+                                            <div>Clients include the cookie in an HTTP request only if the path portion of the request-uri matches, or is a subdirectory of, the cookie&#x27;s `Path` attribute.</div>
+                                            <div>The default value is `/`.</div>
+                                            <div>Example: `/example`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/name" title="Permalink to this return value"></a>
@@ -1037,6 +1237,77 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_certificate_bundle</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/ssl_configuration/cipher_suite_name"></div>
+                    <b>cipher_suite_name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/ssl_configuration/cipher_suite_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the cipher suite to use for HTTPS or SSL connections.</div>
+                                            <div>If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. Clients cannot perform an SSL handshake if there is an incompatible configuration. *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA certificates. *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET` operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing backend sets that predate this feature. *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field, you must specify an appropriate predefined or custom cipher suite name when updating the resource. *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for this field.</div>
+                                            <div>example: `example_cipher_suite`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cipher_suite_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/ssl_configuration/protocols"></div>
+                    <b>protocols</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/ssl_configuration/protocols" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of SSL protocols the load balancer must support for HTTPS or SSL connections.</div>
+                                            <div>The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure connection ensures that all data passed between the client and the server is private.</div>
+                                            <div>The Load Balancing service supports the following protocols:</div>
+                                            <div>*  TLSv1 *  TLSv1.1 *  TLSv1.2</div>
+                                            <div>If this field is not specified, TLSv1.2 is the default.</div>
+                                            <div>**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols. *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation displays a list of SSL protocols currently used by those resources.</div>
+                                            <div>example: `[&quot;TLSv1.1&quot;, &quot;TLSv1.2&quot;]`</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/backend_sets/ssl_configuration/server_order_preference"></div>
+                    <b>server_order_preference</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/backend_sets/ssl_configuration/server_order_preference" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client ciphers.</div>
+                                            <div>**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This field is ignored when the `SSLConfiguration` object is associated with a backend set.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1448,6 +1719,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/connection_configuration/backend_tcp_proxy_protocol_version"></div>
+                    <b>backend_tcp_proxy_protocol_version</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/listeners/connection_configuration/backend_tcp_proxy_protocol_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The backend TCP Proxy Protocol version.</div>
+                                            <div>Example: `1`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/connection_configuration/idle_timeout"></div>
                     <b>idle_timeout</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/listeners/connection_configuration/idle_timeout" title="Permalink to this return value"></a>
@@ -1642,6 +1934,77 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/ssl_configuration/cipher_suite_name"></div>
+                    <b>cipher_suite_name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/listeners/ssl_configuration/cipher_suite_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the cipher suite to use for HTTPS or SSL connections.</div>
+                                            <div>If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. Clients cannot perform an SSL handshake if there is an incompatible configuration. *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA certificates. *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET` operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing backend sets that predate this feature. *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field, you must specify an appropriate predefined or custom cipher suite name when updating the resource. *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for this field.</div>
+                                            <div>example: `example_cipher_suite`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cipher_suite_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/ssl_configuration/protocols"></div>
+                    <b>protocols</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/listeners/ssl_configuration/protocols" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of SSL protocols the load balancer must support for HTTPS or SSL connections.</div>
+                                            <div>The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure connection ensures that all data passed between the client and the server is private.</div>
+                                            <div>The Load Balancing service supports the following protocols:</div>
+                                            <div>*  TLSv1 *  TLSv1.1 *  TLSv1.2</div>
+                                            <div>If this field is not specified, TLSv1.2 is the default.</div>
+                                            <div>**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols. *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation displays a list of SSL protocols currently used by those resources.</div>
+                                            <div>example: `[&quot;TLSv1.1&quot;, &quot;TLSv1.2&quot;]`</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/ssl_configuration/server_order_preference"></div>
+                    <b>server_order_preference</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/listeners/ssl_configuration/server_order_preference" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client ciphers.</div>
+                                            <div>**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This field is ignored when the `SSLConfiguration` object is associated with a backend set.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/ssl_configuration/verify_depth"></div>
                     <b>verify_depth</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/listeners/ssl_configuration/verify_depth" title="Permalink to this return value"></a>
@@ -1681,6 +2044,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                     
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/network_security_group_ids"></div>
+                    <b>network_security_group_ids</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/network_security_group_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An array of NSG <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> associated with the load balancer.</div>
+                                            <div>During the load balancer&#x27;s creation, the service adds the new load balancer to the specified NSGs.</div>
+                                            <div>The benefits of associating the load balancer with NSGs include:</div>
+                                            <div>*  NSGs define network security rules to govern ingress and egress traffic for the load balancer.</div>
+                                            <div>*  The network security rules of other resources can reference the NSGs associated with the load balancer to ensure access.</div>
+                                            <div>Example: [&quot;ocid1.nsg.oc1.phx.unique_ID&quot;]</div>
+                                        <br/>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
@@ -1884,6 +2268,157 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/allowed_methods"></div>
+                    <b>allowed_methods</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/allowed_methods" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of HTTP methods allowed for this listener.</div>
+                                            <div>By default, you can specify only the standard HTTP methods defined in the <a href='http://www.iana.org/assignments/http-methods/http-methods.xhtml'>HTTP Method Registry</a>. You can also see a list of supported standard HTTP methods in the Load Balancing service documentation at <a href='https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm'>Managing Rule Sets</a>.</div>
+                                            <div>Your backend application must be able to handle the methods specified in this list.</div>
+                                            <div>The list of HTTP methods is extensible. If you need to configure custom HTTP methods, contact <a href='http://support.oracle.com/'>My Oracle Support</a> to remove the restriction for your tenancy.</div>
+                                            <div>Example: [&quot;GET&quot;, &quot;PUT&quot;, &quot;POST&quot;, &quot;PROPFIND&quot;]</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/are_invalid_characters_allowed"></div>
+                    <b>are_invalid_characters_allowed</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/are_invalid_characters_allowed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether or not invalid characters in client header fields will be allowed. Valid names are composed of English letters, digits, hyphens and underscores. If &quot;true&quot;, invalid characters are allowed in the HTTP header. If &quot;false&quot;, invalid characters are not allowed in the HTTP header</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/conditions"></div>
+                    <b>conditions</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/conditions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/conditions/attribute_name"></div>
+                    <b>attribute_name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/conditions/attribute_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SOURCE_IP_ADDRESS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/conditions/attribute_value"></div>
+                    <b>attribute_value</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/conditions/attribute_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the originating VCN that an incoming packet must match.</div>
+                                            <div>You can use this condition in conjunction with `SourceVcnIpAddressCondition`.</div>
+                                            <div>**NOTE:** If you define this condition for a rule without a `SourceVcnIpAddressCondition`, this condition matches all incoming traffic in the specified VCN.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1.phx.unique_ID</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/conditions/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/conditions/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A string that specifies how to compare the PathMatchCondition object&#x27;s `attributeValue` string to the incoming URI.</div>
+                                            <div>*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string.</div>
+                                            <div>*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best, longest match of the beginning portion of the incoming URI path.</div>
+                                            <div>*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the `attributeValue` string.</div>
+                                            <div>*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue` string.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXACT_MATCH</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A brief description of the access control rule. Avoid entering confidential information.</div>
+                                            <div>example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/header"></div>
                     <b>header</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/header" title="Permalink to this return value"></a>
@@ -1905,6 +2440,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/http_large_header_size_in_kb"></div>
+                    <b>http_large_header_size_in_kb</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/http_large_header_size_in_kb" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum size of each buffer used for reading http client request header. This value indicates the maximum size allowed for each buffer. The allowed values for buffer size are 8, 16, 32 and 64.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/prefix"></div>
                     <b>prefix</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/prefix" title="Permalink to this return value"></a>
@@ -1919,6 +2474,210 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_prefix_value</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/redirect_uri"></div>
+                    <b>redirect_uri</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/redirect_uri" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/redirect_uri/host"></div>
+                    <b>host</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/redirect_uri/host" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The valid domain name (hostname) or IP address to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{host}`, the service preserves the original domain name from the incoming HTTP request URI.</div>
+                                            <div>All RedirectUri tokens are valid for this property. You can use any token more than once.</div>
+                                            <div>Curly braces are valid in this property only to surround tokens, such as `{host}`</div>
+                                            <div>Examples:</div>
+                                            <div>*  **example.com** appears as `example.com` in the redirect URI.</div>
+                                            <div>*  **in{host}** appears as `inexample.com` in the redirect URI if `example.com` is the hostname in the incoming HTTP request URI.</div>
+                                            <div>*  **{port}{host}** appears as `8081example.com` in the redirect URI if `example.com` is the hostname and the port is `8081` in the incoming HTTP request URI.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/redirect_uri/path"></div>
+                    <b>path</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/redirect_uri/path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP URI path to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{path}`, the service preserves the original path from the incoming HTTP request URI. To omit the path from the redirect URI, set this value to an empty string, &quot;&quot;.</div>
+                                            <div>All RedirectUri tokens are valid for this property. You can use any token more than once.</div>
+                                            <div>The path string must begin with `/` if it does not begin with the `{path}` token.</div>
+                                            <div>Examples:</div>
+                                            <div>*  __/example/video/123__ appears as `/example/video/123` in the redirect URI.</div>
+                                            <div>*  __/example{path}__ appears as `/example/video/123` in the redirect URI if `/video/123` is the path in the incoming HTTP request URI.</div>
+                                            <div>*  __{path}/123__ appears as `/example/video/123` in the redirect URI if `/example/video` is the path in the incoming HTTP request URI.</div>
+                                            <div>*  __{path}123__ appears as `/example/video123` in the redirect URI if `/example/video` is the path in the incoming HTTP request URI.</div>
+                                            <div>*  __/{host}/123__ appears as `/example.com/123` in the redirect URI if `example.com` is the hostname in the incoming HTTP request URI.</div>
+                                            <div>*  __/{host}/{port}__ appears as `/example.com/123` in the redirect URI if `example.com` is the hostname and `123` is the port in the incoming HTTP request URI.</div>
+                                            <div>*  __/{query}__ appears as `/lang=en` in the redirect URI if the query is `lang=en` in the incoming HTTP request URI.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/redirect_uri/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/redirect_uri/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The communication port to use in the redirect URI.</div>
+                                            <div>Valid values include integers from 1 to 65535.</div>
+                                            <div>When this value is null, the service preserves the original port from the incoming HTTP request URI.</div>
+                                            <div>Example: `8081`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">8081</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/redirect_uri/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/redirect_uri/protocol" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP protocol to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{protocol}`, the service preserves the original protocol from the incoming HTTP request URI. Allowed values are:</div>
+                                            <div>*  HTTP *  HTTPS *  {protocol}</div>
+                                            <div>`{protocol}` is the only valid token for this property. It can appear only once in the value string.</div>
+                                            <div>Example: `HTTPS`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTPS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/redirect_uri/query"></div>
+                    <b>query</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/redirect_uri/query" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The query string to use in the redirect URI.</div>
+                                            <div>When this value is null, not set, or set to `{query}`, the service preserves the original query parameters from the incoming HTTP request URI.</div>
+                                            <div>All `RedirectUri` tokens are valid for this property. You can use any token more than once.</div>
+                                            <div>If the query string does not begin with the `{query}` token, it must begin with the question mark (?) character.</div>
+                                            <div>You can specify multiple query parameters as a single string. Separate each query parameter with an ampersand (&amp;) character. To omit all incoming query parameters from the redirect URI, set this value to an empty string, &quot;&quot;.</div>
+                                            <div>If the specified query string results in a redirect URI ending with `?` or `&amp;`, the last character is truncated. For example, if the incoming URI is `http://host.com:8080/documents` and the query property value is `?lang=en&amp;{query}`, the redirect URI is `http://host.com:8080/documents?lang=en`. The system truncates the final ampersand (&amp;) because the incoming URI included no value to replace the {query} token.</div>
+                                            <div>Examples: * **lang=en&amp;time_zone=PST** appears as `lang=en&amp;time_zone=PST` in the redirect URI.</div>
+                                            <div>* **{query}** appears as `lang=en&amp;time_zone=PST` in the redirect URI if `lang=en&amp;time_zone=PST` is the query string in the incoming HTTP request. If the incoming HTTP request has no query parameters, the `{query}` token renders as an empty string.</div>
+                                            <div>* **lang=en&amp;{query}&amp;time_zone=PST** appears as `lang=en&amp;country=us&amp;time_zone=PST` in the redirect URI if `country=us` is the query string in the incoming HTTP request. If the incoming HTTP request has no query parameters, this value renders as `lang=en&amp;time_zone=PST`.</div>
+                                            <div>*  **protocol={protocol}&amp;hostname={host}** appears as `protocol=http&amp;hostname=example.com` in the redirect URI if the protocol is `HTTP` and the hostname is `example.com` in the incoming HTTP request.</div>
+                                            <div>*  **port={port}&amp;hostname={host}** appears as `port=8080&amp;hostname=example.com` in the redirect URI if the port is `8080` and the hostname is `example.com` in the incoming HTTP request URI.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/response_code"></div>
+                    <b>response_code</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/response_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP status code to return when the incoming request is redirected.</div>
+                                            <div>The status line returned with the code is mapped from the standard HTTP specification. Valid response codes for redirection are:</div>
+                                            <div>*  301 *  302 *  303 *  307 *  308</div>
+                                            <div>The default value is `302` (Found).</div>
+                                            <div>Example: `301`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">301</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets/items/status_code"></div>
+                    <b>status_code</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets/items/status_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The HTTP status code to return when the requested HTTP method is not in the list of allowed methods. The associated status line returned with the code is mapped from the standard HTTP specification. The default value is `405 (Method Not Allowed)`.</div>
+                                            <div>Example: 403</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2007,6 +2766,68 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/ssl_cipher_suites"></div>
+                    <b>ssl_cipher_suites</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/ssl_cipher_suites" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/ssl_cipher_suites/ciphers"></div>
+                    <b>ciphers</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/ssl_cipher_suites/ciphers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of SSL ciphers the load balancer must support for HTTPS or SSL connections.</div>
+                                            <div>The following ciphers are valid values for this property:</div>
+                                            <div>*  __TLSv1.2 ciphers__</div>
+                                            <div>&quot;AES128-GCM-SHA256&quot; &quot;AES128-SHA256&quot; &quot;AES256-GCM-SHA384&quot; &quot;AES256-SHA256&quot; &quot;DH-DSS-AES128-GCM-SHA256&quot; &quot;DH-DSS-AES128-SHA256&quot; &quot;DH-DSS-AES256-GCM-SHA384&quot; &quot;DH-DSS-AES256-SHA256&quot; &quot;DH-RSA-AES128-GCM-SHA256&quot; &quot;DH-RSA-AES128-SHA256&quot; &quot;DH-RSA-AES256-GCM-SHA384&quot; &quot;DH-RSA-AES256-SHA256&quot; &quot;DHE-DSS-AES128-GCM-SHA256&quot; &quot;DHE-DSS-AES128-SHA256&quot; &quot;DHE-DSS-AES256-GCM-SHA384&quot; &quot;DHE-DSS-AES256-SHA256&quot; &quot;DHE-RSA-AES128-GCM-SHA256&quot; &quot;DHE-RSA-AES128-SHA256&quot; &quot;DHE-RSA-AES256-GCM-SHA384&quot; &quot;DHE-RSA-AES256-SHA256&quot; &quot;ECDH-ECDSA-AES128-GCM-SHA256&quot; &quot;ECDH-ECDSA-AES128-SHA256&quot; &quot;ECDH-ECDSA-AES256-GCM-SHA384&quot; &quot;ECDH-ECDSA-AES256-SHA384&quot; &quot;ECDH-RSA-AES128-GCM-SHA256&quot; &quot;ECDH-RSA-AES128-SHA256&quot; &quot;ECDH-RSA-AES256-GCM-SHA384&quot; &quot;ECDH-RSA-AES256-SHA384&quot; &quot;ECDHE-ECDSA-AES128-GCM-SHA256&quot; &quot;ECDHE-ECDSA-AES128-SHA256&quot; &quot;ECDHE-ECDSA-AES256-GCM-SHA384&quot; &quot;ECDHE-ECDSA-AES256-SHA384&quot; &quot;ECDHE-RSA-AES128-GCM-SHA256&quot; &quot;ECDHE-RSA-AES128-SHA256&quot; &quot;ECDHE-RSA-AES256-GCM-SHA384&quot; &quot;ECDHE-RSA-AES256-SHA384&quot;</div>
+                                            <div>*  __TLSv1 ciphers also supported by TLSv1.2__</div>
+                                            <div>&quot;AES128-SHA&quot; &quot;AES256-SHA&quot; &quot;CAMELLIA128-SHA&quot; &quot;CAMELLIA256-SHA&quot; &quot;DES-CBC3-SHA&quot; &quot;DH-DSS-AES128-SHA&quot; &quot;DH-DSS-AES256-SHA&quot; &quot;DH-DSS-CAMELLIA128-SHA&quot; &quot;DH-DSS-CAMELLIA256-SHA&quot; &quot;DH-DSS-DES-CBC3-SHAv&quot; &quot;DH-DSS-SEED-SHA&quot; &quot;DH-RSA-AES128-SHA&quot; &quot;DH-RSA-AES256-SHA&quot; &quot;DH-RSA-CAMELLIA128-SHA&quot; &quot;DH-RSA-CAMELLIA256-SHA&quot; &quot;DH-RSA-DES-CBC3-SHA&quot; &quot;DH-RSA-SEED-SHA&quot; &quot;DHE-DSS-AES128-SHA&quot; &quot;DHE-DSS-AES256-SHA&quot; &quot;DHE-DSS-CAMELLIA128-SHA&quot; &quot;DHE-DSS-CAMELLIA256-SHA&quot; &quot;DHE-DSS-DES-CBC3-SHA&quot; &quot;DHE-DSS-SEED-SHA&quot; &quot;DHE-RSA-AES128-SHA&quot; &quot;DHE-RSA-AES256-SHA&quot; &quot;DHE-RSA-CAMELLIA128-SHA&quot; &quot;DHE-RSA-CAMELLIA256-SHA&quot; &quot;DHE-RSA-DES-CBC3-SHA&quot; &quot;DHE-RSA-SEED-SHA&quot; &quot;ECDH-ECDSA-AES128-SHA&quot; &quot;ECDH-ECDSA-AES256-SHA&quot; &quot;ECDH-ECDSA-DES-CBC3-SHA&quot; &quot;ECDH-ECDSA-RC4-SHA&quot; &quot;ECDH-RSA-AES128-SHA&quot; &quot;ECDH-RSA-AES256-SHA&quot; &quot;ECDH-RSA-DES-CBC3-SHA&quot; &quot;ECDH-RSA-RC4-SHA&quot; &quot;ECDHE-ECDSA-AES128-SHA&quot; &quot;ECDHE-ECDSA-AES256-SHA&quot; &quot;ECDHE-ECDSA-DES-CBC3-SHA&quot; &quot;ECDHE-ECDSA-RC4-SHA&quot; &quot;ECDHE-RSA-AES128-SHA&quot; &quot;ECDHE-RSA-AES256-SHA&quot; &quot;ECDHE-RSA-DES-CBC3-SHA&quot; &quot;ECDHE-RSA-RC4-SHA&quot; &quot;IDEA-CBC-SHA&quot; &quot;KRB5-DES-CBC3-MD5&quot; &quot;KRB5-DES-CBC3-SHA&quot; &quot;KRB5-IDEA-CBC-MD5&quot; &quot;KRB5-IDEA-CBC-SHA&quot; &quot;KRB5-RC4-MD5&quot; &quot;KRB5-RC4-SHA&quot; &quot;PSK-3DES-EDE-CBC-SHA&quot; &quot;PSK-AES128-CBC-SHA&quot; &quot;PSK-AES256-CBC-SHA&quot; &quot;PSK-RC4-SHA&quot; &quot;RC4-MD5&quot; &quot;RC4-SHA&quot; &quot;SEED-SHA&quot;</div>
+                                            <div>example: `[&quot;ECDHE-RSA-AES256-GCM-SHA384&quot;,&quot;ECDHE-ECDSA-AES256-GCM-SHA384&quot;,&quot;ECDHE-RSA-AES128-GCM-SHA256&quot;]`</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/ssl_cipher_suites/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/ssl_cipher_suites/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A friendly name for the SSL cipher suite. It must be unique and it cannot be changed.</div>
+                                            <div>**Note:** The name of your user-defined cipher suite must not be the same as any of Oracle&#x27;s predefined or reserved SSL cipher suite names:</div>
+                                            <div>* oci-default-ssl-cipher-suite-v1 * oci-modern-ssl-cipher-suite-v1 * oci-compatible-ssl-cipher-suite-v1 * oci-wider-compatible-ssl-cipher-suite-v1 * oci-customized-ssl-cipher-suite</div>
+                                            <div>example: `example_cipher_suite`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/subnet_ids"></div>
                     <b>subnet_ids</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/subnet_ids" title="Permalink to this return value"></a>
@@ -2017,6 +2838,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>An array of subnet <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/system_tags"></div>
+                    <b>system_tags</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/system_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. System tags can be viewed by users, but can only be created by the system.</div>
+                                            <div>Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
                                     </td>
             </tr>

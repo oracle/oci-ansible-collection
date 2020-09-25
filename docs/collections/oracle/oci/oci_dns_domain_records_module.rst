@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the compartment the resource belongs to.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -224,6 +225,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The `If-Unmodified-Since` header field makes the request method conditional on the selected representation&#x27;s last modification date being earlier than or equal to the date provided in the field-value.  This field accomplishes the same purpose as If-Match for cases where the user agent does not have an entity-tag for the representation.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -448,6 +450,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -464,6 +467,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The fully qualified domain name where the record can be located.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -484,6 +488,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>A Boolean flag indicating whether or not parts of the record are unable to be explicitly managed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -500,6 +505,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The record&#x27;s data, as whitespace-delimited tokens in type-specific presentation format. All RDATA is normalized and the returned presentation of your RDATA may differ from its initial input. For more information about RDATA, see <a href='https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm'>Supported DNS Resource Record Types</a></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -516,6 +522,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A unique identifier for the record within its zone.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -532,6 +539,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The latest version of the record&#x27;s zone in which its RRSet differs from the preceding version.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -548,6 +556,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The canonical name for the record&#x27;s type, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -564,6 +573,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Time To Live for the record, in seconds.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -601,8 +611,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

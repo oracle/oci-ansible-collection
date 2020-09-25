@@ -247,6 +247,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of key/value pairs to add to nodes after they join the Kubernetes cluster.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -311,6 +312,7 @@ Parameters
                                                                 <td>
                                             <div>The version of Kubernetes to install on the nodes in the node pool.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -328,6 +330,7 @@ Parameters
                                             <div>The name of the node pool. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -343,6 +346,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The configuration of nodes in the node pool. Exactly one of the subnetIds or nodeConfigDetails properties must be specified.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -411,6 +415,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of nodes that should be in the node pool.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -542,6 +547,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional, default to 1. The number of nodes to create in each subnet specified in subnetIds property. When used, subnetIds is required. This property is deprecated, use nodeConfigDetails instead.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -608,6 +614,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCIDs of the subnets in which to place nodes for this node pool. When used, quantityPerSubnet can be provided. This property is deprecated, use nodeConfigDetails. Exactly one of the subnetIds or nodeConfigDetails properties must be specified.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -677,8 +684,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

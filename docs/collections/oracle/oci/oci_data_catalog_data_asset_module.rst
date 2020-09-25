@@ -228,6 +228,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Detailed description of the data asset.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +246,7 @@ Parameters
                                             <div>A user-friendly display name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -295,6 +297,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A map of maps that contains the properties which are specific to the data asset type. Each data asset type definition defines it&#x27;s set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most data assets have required properties within the &quot;default&quot; category. To determine the set of optional and required properties for a data asset type, a query can be done on &#x27;/types?type=dataAsset&#x27; that returns a collection of all data asset types. The appropriate data asset type, which includes definitions of all of it&#x27;s properties, can be identified from this collection. Example: `{&quot;properties&quot;: { &quot;default&quot;: { &quot;host&quot;: &quot;host1&quot;, &quot;port&quot;: &quot;1521&quot;, &quot;database&quot;: &quot;orcl&quot;}}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -416,8 +419,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

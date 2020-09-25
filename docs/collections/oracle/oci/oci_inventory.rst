@@ -297,6 +297,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-fetch_db_hosts"></div>
+                    <b>fetch_db_hosts</b>
+                    <a class="ansibleOptionLink" href="#parameter-fetch_db_hosts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>When set, the db nodes are also fetched.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-filters"></div>
                     <b>filters</b>
                     <a class="ansibleOptionLink" href="#parameter-filters" title="Permalink to this option"></a>
@@ -328,6 +345,26 @@ Parameters
                                                                                             </td>
                                                 <td>
                                             <div>Add hosts to group based on Jinja2 conditionals.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-hostname_format"></div>
+                    <b>hostname_format</b>
+                    <a class="ansibleOptionLink" href="#parameter-hostname_format" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_HOSTNAME_FORMAT
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. By default, hosts are listed using public IP address.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -419,7 +456,7 @@ Parameters
                                                     <td>
                                                                                             </td>
                                                 <td>
-                                            <div>A list of regions to search. If not specified, the region is read from config file.</div>
+                                            <div>A list of regions to search. If not specified, the region is read from config file. Use &#x27;all&#x27; to generate inventory from all subscribed regions.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -457,8 +494,6 @@ Parameters
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -512,6 +547,9 @@ Examples
     cache_timeout: 7200
     cache_connection: /tmp/oci-cache
     cache_prefix: oci_
+
+    # DB Hosts
+    fetch_db_hosts: True
 
 
 

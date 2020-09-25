@@ -277,8 +277,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -327,7 +325,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of IpSecConnectionTunnel resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_session_info&#x27;: {&#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;12345&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;10.0.0.5/31&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;10.0.0.4/31&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;192.0.2.157&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vpn_ip&#x27;: &#x27;192.0.2.5&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_session_info&#x27;: {&#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;12345&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;10.0.0.5/31&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;10.0.0.4/31&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;203.0.113.22&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vpn_ip&#x27;: &#x27;203.0.113.21&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -483,10 +481,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The IP address of the CPE&#x27;s VPN headend.</div>
-                                            <div>Example: `192.0.2.157`</div>
+                                            <div>Example: `203.0.113.22`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">192.0.2.157</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">203.0.113.22</div>
                                     </td>
             </tr>
                                 <tr>
@@ -609,7 +607,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the IPSec connection tunnel was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the IPSec connection tunnel was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -628,7 +626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>When the status of the tunnel last changed, in the format defined by RFC3339.</div>
+                                            <div>When the status of the tunnel last changed, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -648,10 +646,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The IP address of Oracle&#x27;s VPN headend.</div>
-                                            <div>Example: `192.0.2.5`</div>
+                                            <div>Example: `203.0.113.21`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">192.0.2.5</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">203.0.113.21</div>
                                     </td>
             </tr>
                     

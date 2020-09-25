@@ -235,6 +235,7 @@ Parameters
                                             <div>**Note:** This public IP address is associated with the primary private IP on the VNIC. For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPaddresses.htm'>IP Addresses</a>.</div>
                                             <div>**Note:** There&#x27;s a limit to the number of <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/'>public IPs</a> a VNIC or instance can have. If you try to create a secondary VNIC with an assigned public IP for an instance that has already reached its public IP limit, an error is returned. For information about the public IP limits, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
                                             <div>Example: `false`</div>
+                                            <div>If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -305,6 +306,7 @@ Parameters
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>When launching an instance, use this `hostnameLabel` instead of the deprecated `hostnameLabel` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails'>LaunchInstanceDetails</a>. If you provide both, the values must match.</div>
                                             <div>Example: `bminstance-1`</div>
+                                            <div>If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan can not be assigned a hostname  See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -321,6 +323,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/'>NetworkSecurityGroup</a>.</div>
+                                            <div>If a `vlanId` is specified, the `nsgIds` cannot be specified. The `vlanId` indicates that the VNIC will belong to a VLAN instead of a subnet. With VLANs, all VNICs in the VLAN belong to the NSGs that are associated with the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -336,7 +339,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet&#x27;s CIDR. If you don&#x27;t specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC&#x27;s *primary* private IP address. The value appears in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/'>Vnic</a> object and also the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/'>PrivateIp</a> object returned by <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps'>ListPrivateIps</a> and <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp'>GetPrivateIp</a>. Example: `10.0.3.3`</div>
+                                            <div>A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet&#x27;s CIDR. If you don&#x27;t specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC&#x27;s *primary* private IP address. The value appears in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/'>Vnic</a> object and also the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/'>PrivateIp</a> object returned by <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps'>ListPrivateIps</a> and <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp'>GetPrivateIp</a>.</div>
+                                            <div>If you specify a `vlanId`, the `privateIp` cannot be specified. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>Example: `10.0.3.3`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -357,6 +362,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the source/destination check is disabled on the VNIC. Defaults to `false`, which means the check is performed. For information about why you would skip the source/destination check, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip'>Using a Private IP as a Route Target</a>.</div>
+                                            <div>If you specify a `vlanId`, the `skipSourceDestCheck` cannot be specified because the source/destination check is always disabled for VNICs in a VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
                                             <div>Example: `true`</div>
                                                         </td>
             </tr>
@@ -368,12 +374,30 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-create_vnic_details/subnet_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the subnet to create the VNIC in. When launching an instance, use this `subnetId` instead of the deprecated `subnetId` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails'>LaunchInstanceDetails</a>. At least one of them is required; if you provide both, the values must match.</div>
+                                            <div>If you are an Oracle Cloud VMware Solution customer and creating a secondary VNIC in a VLAN instead of a subnet, provide a `vlanId` instead of a `subnetId`. If you provide both a `vlanId` and `subnetId`, the request fails.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-create_vnic_details/vlan_id"></div>
+                    <b>vlan_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-create_vnic_details/vlan_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Provide this attribute only if you are an Oracle Cloud VMware Solution customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>Provide a `vlanId` instead of a `subnetId`. If you provide both a `vlanId` and `subnetId`, the request fails.</div>
                                                         </td>
             </tr>
                     
@@ -579,16 +603,12 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
     
     - name: Create vnic_attachment
       oci_compute_vnic_attachment:
-        create_vnic_details:
-          subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
         instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
@@ -638,7 +658,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VnicAttachment resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;nic_index&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vlan_tag&#x27;: 0, &#x27;vnic_id&#x27;: &#x27;ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;nic_index&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vlan_id&#x27;: &#x27;ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vlan_tag&#x27;: 0, &#x27;vnic_id&#x27;: &#x27;ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -798,11 +818,30 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the VNIC attachment was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the VNIC attachment was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vnic_attachment/vlan_id"></div>
+                    <b>vlan_id</b>
+                    <a class="ansibleOptionLink" href="#return-vnic_attachment/vlan_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>An error is returned if the instance already has a VNIC attached to it from this VLAN.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -818,6 +857,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The Oracle-assigned VLAN tag of the attached VNIC. Available after the attachment process is complete.</div>
+                                            <div>However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution, the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
                                             <div>Example: `0`</div>
                                         <br/>
                                     </td>

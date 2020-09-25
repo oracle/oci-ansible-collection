@@ -246,8 +246,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -291,7 +289,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>IpSecConnectionDeviceConfig resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;tunnels&#x27;: [{&#x27;ip_address&#x27;: &#x27;129.146.17.50&#x27;, &#x27;shared_secret&#x27;: &#x27;EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;tunnels&#x27;: [{&#x27;ip_address&#x27;: &#x27;203.0.113.50&#x27;, &#x27;shared_secret&#x27;: &#x27;shared_secret_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -378,10 +376,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The IP address of Oracle&#x27;s VPN headend.</div>
-                                            <div>Example: `129.146.17.50`</div>
+                                            <div>Example: `203.0.113.50 `</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">129.146.17.50</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">203.0.113.50</div>
                                     </td>
             </tr>
                                 <tr>
@@ -398,10 +396,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The shared secret of the IPSec tunnel.</div>
-                                            <div>Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shared_secret_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -417,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the IPSec connection was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the IPSec connection was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

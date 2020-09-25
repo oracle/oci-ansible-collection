@@ -259,8 +259,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -538,9 +536,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.</div>
-                                            <div>If you use the default validiator (or don&#x27;t define a validator), the user applying the tag enters a value. No additional validation is performed.</div>
-                                            <div>To clear the validator, call UpdateTag with <a href='https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator'>DefaultTagDefinitionValidator</a>.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

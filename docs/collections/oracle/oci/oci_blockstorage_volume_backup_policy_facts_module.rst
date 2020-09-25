@@ -278,8 +278,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -327,7 +325,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of VolumeBackupPolicy resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schedules&#x27;: [{&#x27;backup_type&#x27;: &#x27;FULL&#x27;, &#x27;day_of_month&#x27;: 56, &#x27;day_of_week&#x27;: &#x27;MONDAY&#x27;, &#x27;hour_of_day&#x27;: 56, &#x27;month&#x27;: &#x27;JANUARY&#x27;, &#x27;offset_seconds&#x27;: 56, &#x27;offset_type&#x27;: &#x27;STRUCTURED&#x27;, &#x27;period&#x27;: &#x27;ONE_HOUR&#x27;, &#x27;retention_seconds&#x27;: 56, &#x27;time_zone&#x27;: &#x27;UTC&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destination_region&#x27;: &#x27;destination_region_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schedules&#x27;: [{&#x27;backup_type&#x27;: &#x27;FULL&#x27;, &#x27;day_of_month&#x27;: 56, &#x27;day_of_week&#x27;: &#x27;MONDAY&#x27;, &#x27;hour_of_day&#x27;: 56, &#x27;month&#x27;: &#x27;JANUARY&#x27;, &#x27;offset_seconds&#x27;: 56, &#x27;offset_type&#x27;: &#x27;STRUCTURED&#x27;, &#x27;period&#x27;: &#x27;ONE_HOUR&#x27;, &#x27;retention_seconds&#x27;: 56, &#x27;time_zone&#x27;: &#x27;UTC&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -365,6 +363,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_backup_policies/destination_region"></div>
+                    <b>destination_region</b>
+                    <a class="ansibleOptionLink" href="#return-volume_backup_policies/destination_region" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The paired destination region for copying scheduled backups to. Example `us-ashburn-1`. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs'>Region Pairs</a> for details about paired regions.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_region_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -648,7 +664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the volume backup policy was created. Format defined by RFC3339.</div>
+                                            <div>The date and time the volume backup policy was created. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

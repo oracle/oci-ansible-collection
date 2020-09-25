@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete an Alarm resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new alarm in the specified compartment. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
 - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
+- This resource has the following action operations in the :ref:`oci_alarm_actions <ansible_collections.oci_alarm_actions_module>` module: remove_alarm_suppression.
 
 .. Aliases
 
@@ -184,6 +185,7 @@ Parameters
                                                                 <td>
                                             <div>The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
                                             <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -202,6 +204,7 @@ Parameters
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -247,6 +250,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -263,6 +267,7 @@ Parameters
                                                                 <td>
                                             <div>A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -282,6 +287,7 @@ Parameters
                                             <div>Example: `High CPU Utilization`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -317,6 +323,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -338,6 +345,7 @@ Parameters
                                             <div>Whether the alarm is enabled.</div>
                                             <div>Example: `true`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -369,6 +377,7 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the metric being evaluated by the alarm.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -389,6 +398,7 @@ Parameters
                                                                 <td>
                                             <div>When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can only be set to true when metricCompartmentId is the tenancy OCID (the tenancy is the root compartment). A true value requires the user to have tenancy-level permissions. If this requirement is not met, then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified in metricCompartmentId. Default is false.</div>
                                             <div>Example: `true`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -406,6 +416,7 @@ Parameters
                                             <div>The source service or application emitting the metric that is evaluated by the alarm.</div>
                                             <div>Example: `oci_computeagent`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -425,6 +436,7 @@ Parameters
                                             <div>Under the default value of PT1M, the first evaluation that breaches the alarm updates the state to &quot;FIRING&quot;.</div>
                                             <div>The alarm updates its status to &quot;OK&quot; when the breaching condition has been clear for the most recent minute.</div>
                                             <div>Example: `PT5M`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -449,6 +461,7 @@ Parameters
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.absent()</div>
                                             <div>-----</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -481,6 +494,7 @@ Parameters
                                             <div>The frequency at which notifications are re-submitted, if the alarm keeps firing without interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours. Minimum: PT1M. Maximum: P30D.</div>
                                             <div>Default value: null (notifications are not re-submitted).</div>
                                             <div>Example: `PT2H`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -496,6 +510,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The time between calculated aggregation windows for the alarm. Supported value: `1m`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -512,6 +527,7 @@ Parameters
                                                                 <td>
                                             <div>Resource group that you want to use as a filter. The alarm retrieves metric data associated with the specified resource group only. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($). Avoid entering confidential information.</div>
                                             <div>Example: `frontend-fleet`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -529,6 +545,7 @@ Parameters
                                             <div>The perceived type of response required when the alarm is in the &quot;FIRING&quot; state.</div>
                                             <div>Example: `CRITICAL`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -565,6 +582,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The configuration details for suppressing an alarm.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -687,8 +705,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

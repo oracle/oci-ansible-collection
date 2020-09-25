@@ -41,6 +41,7 @@ description:
       * If a `validator` is set, the user applying the tag to a resource must select from a list
       of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
+    - "This resource has the following action operations in the M(oci_tag_actions) module: bulk_delete."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

@@ -263,6 +263,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The selected action. If unspecified, defaults to `OFF`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -279,6 +280,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key of the object for which the action applies.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -350,8 +352,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
