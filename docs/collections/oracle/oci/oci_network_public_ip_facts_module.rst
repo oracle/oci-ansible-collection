@@ -369,8 +369,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -427,7 +425,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of PublicIp resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;assigned_entity_id&#x27;: &#x27;ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;assigned_entity_type&#x27;: &#x27;PRIVATE_IP&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;129.146.2.1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;lifetime&#x27;: &#x27;EPHEMERAL&#x27;, &#x27;private_ip_id&#x27;: &#x27;ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scope&#x27;: &#x27;REGION&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;assigned_entity_id&#x27;: &#x27;ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;assigned_entity_type&#x27;: &#x27;PRIVATE_IP&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;203.0.113.2&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;lifetime&#x27;: &#x27;EPHEMERAL&#x27;, &#x27;private_ip_id&#x27;: &#x27;ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scope&#x27;: &#x27;REGION&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -590,10 +588,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The public IP address of the `publicIp` object.</div>
-                                            <div>Example: `129.146.2.1`</div>
+                                            <div>Example: `203.0.113.2`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">129.146.2.1</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">203.0.113.2</div>
                                     </td>
             </tr>
                                 <tr>
@@ -687,7 +685,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the public IP was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the public IP was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

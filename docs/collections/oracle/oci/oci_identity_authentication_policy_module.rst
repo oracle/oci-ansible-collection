@@ -198,6 +198,40 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-network_policy"></div>
+                    <b>network_policy</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_policy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-network_policy/network_source_ids"></div>
+                    <b>network_source_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_policy/network_source_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Network Source ids</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-password_policy"></div>
                     <b>password_policy</b>
                     <a class="ansibleOptionLink" href="#parameter-password_policy" title="Permalink to this option"></a>
@@ -208,7 +242,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Password policy.</div>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -229,6 +264,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>At least one lower case character required.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -249,6 +285,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>At least one numeric character required.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -269,6 +306,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>At least one special character required.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,6 +327,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>At least one uppercase character required.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -309,6 +348,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>User name is allowed to be part of the password.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -325,6 +365,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Minimum password length required.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -395,8 +436,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -440,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AuthenticationPolicy resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;password_policy&#x27;: {&#x27;is_lowercase_characters_required&#x27;: True, &#x27;is_numeric_characters_required&#x27;: True, &#x27;is_special_characters_required&#x27;: True, &#x27;is_uppercase_characters_required&#x27;: True, &#x27;is_username_containment_allowed&#x27;: True, &#x27;minimum_password_length&#x27;: 56}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;network_policy&#x27;: {&#x27;network_source_ids&#x27;: []}, &#x27;password_policy&#x27;: {&#x27;is_lowercase_characters_required&#x27;: True, &#x27;is_numeric_characters_required&#x27;: True, &#x27;is_special_characters_required&#x27;: True, &#x27;is_uppercase_characters_required&#x27;: True, &#x27;is_username_containment_allowed&#x27;: True, &#x27;minimum_password_length&#x27;: 56}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -464,6 +503,40 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-authentication_policy/network_policy"></div>
+                    <b>network_policy</b>
+                    <a class="ansibleOptionLink" href="#return-authentication_policy/network_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-authentication_policy/network_policy/network_source_ids"></div>
+                    <b>network_source_ids</b>
+                    <a class="ansibleOptionLink" href="#return-authentication_policy/network_policy/network_source_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network Source ids</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-authentication_policy/password_policy"></div>
                     <b>password_policy</b>
                     <a class="ansibleOptionLink" href="#return-authentication_policy/password_policy" title="Permalink to this return value"></a>
@@ -473,7 +546,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Password policy.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

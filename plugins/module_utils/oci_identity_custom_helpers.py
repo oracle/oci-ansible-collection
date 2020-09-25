@@ -338,39 +338,39 @@ class UserStateHelperCustom:
         return result
 
 
-# class TagActionsHelperCustom:
-#     # overriding the perform_action method as bulk_delete tags operation does not support
-#     # get_resource method which is an integral part of the main perform_action method
-#     def perform_action(self, action):
-#         action_fn = self.get_action_fn(action)
-#         if not action_fn:
-#             self.module.fail_json(msg="{0} not supported by the module.".format(action))
-#
-#         if self.check_mode:
-#             return self.prepare_result(
-#                 changed=True, resource_type=self.resource_type, resource=None
-#             )
-#
-#         # if sent list is empty or None, return back without performing the action with
-#         # status of resource as not changed
-#         tag_ids = self.module.params.get("tag_definition_ids")
-#         if not tag_ids:
-#             return self.prepare_result(
-#                 changed=False, resource_type=self.resource_type, resource=None
-#             )
-#
-#         try:
-#             action_fn()
-#         except MaximumWaitTimeExceeded as mwtex:
-#             self.module.fail_json(msg=str(mwtex))
-#         except ServiceError as se:
-#             self.module.fail_json(
-#                 msg="Performing action failed with exception: {0}".format(se.message)
-#             )
-#         else:
-#             return self.prepare_result(
-#                 changed=True, resource_type=self.resource_type, resource=None,
-#             )
+class TagActionsHelperCustom:
+    # overriding the perform_action method as bulk_delete tags operation does not support
+    # get_resource method which is an integral part of the main perform_action method
+    def perform_action(self, action):
+        action_fn = self.get_action_fn(action)
+        if not action_fn:
+            self.module.fail_json(msg="{0} not supported by the module.".format(action))
+
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=None
+            )
+
+        # if sent list is empty or None, return back without performing the action with
+        # status of resource as not changed
+        tag_ids = self.module.params.get("tag_definition_ids")
+        if not tag_ids:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=None
+            )
+
+        try:
+            action_fn()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=None,
+            )
 
 
 class CompartmentActionsHelperCustom:

@@ -34,6 +34,7 @@ description:
     - "You must also specify a *description* for the namespace.
       It does not have to be unique, and you can change it with
       L(UpdateTagNamespace,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/TagNamespace/UpdateTagNamespace)."
+    - "This resource has the following action operations in the M(oci_tag_namespace_actions) module: cascade_delete."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

@@ -194,9 +194,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_configuration/backend_tcp_proxy_protocol_version"></div>
+                    <b>backend_tcp_proxy_protocol_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_configuration/backend_tcp_proxy_protocol_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The backend TCP Proxy Protocol version.</div>
+                                            <div>Example: `1`</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-connection_configuration/idle_timeout"></div>
@@ -264,6 +282,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>An array of hostname resource names.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -326,6 +345,7 @@ Parameters
                                                                 <td>
                                             <div>The name of the set of path-based routing rules, <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/'>PathRouteSet</a>, applied to this listener&#x27;s traffic.</div>
                                             <div>Example: `example_path_route_set`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -391,6 +411,7 @@ Parameters
                                                                 <td>
                                             <div>The names of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/'>rule sets</a> to apply to the listener.</div>
                                             <div>Example: [&quot;example_rule_set&quot;]</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -406,6 +427,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -423,6 +445,71 @@ Parameters
                                                                 <td>
                                             <div>A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.</div>
                                             <div>Example: `example_certificate_bundle`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_configuration/cipher_suite_name"></div>
+                    <b>cipher_suite_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_configuration/cipher_suite_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the cipher suite to use for HTTPS or SSL connections.</div>
+                                            <div>If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. Clients cannot perform an SSL handshake if there is an incompatible configuration. *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA certificates. *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET` operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing backend sets that predate this feature. *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field, you must specify an appropriate predefined or custom cipher suite name when updating the resource. *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for this field.</div>
+                                            <div>example: `example_cipher_suite`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_configuration/protocols"></div>
+                    <b>protocols</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_configuration/protocols" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of SSL protocols the load balancer must support for HTTPS or SSL connections.</div>
+                                            <div>The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure connection ensures that all data passed between the client and the server is private.</div>
+                                            <div>The Load Balancing service supports the following protocols:</div>
+                                            <div>*  TLSv1 *  TLSv1.1 *  TLSv1.2</div>
+                                            <div>If this field is not specified, TLSv1.2 is the default.</div>
+                                            <div>**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols. *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation displays a list of SSL protocols currently used by those resources.</div>
+                                            <div>example: `[&quot;TLSv1.1&quot;, &quot;TLSv1.2&quot;]`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_configuration/server_order_preference"></div>
+                    <b>server_order_preference</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_configuration/server_order_preference" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ENABLED</li>
+                                                                                                                                                                                                <li>DISABLED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client ciphers.</div>
+                                            <div>**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This field is ignored when the `SSLConfiguration` object is associated with a backend set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -552,8 +639,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -615,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Listener resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;connection_configuration&#x27;: {&#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -635,6 +720,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-listener/connection_configuration/backend_tcp_proxy_protocol_version"></div>
+                    <b>backend_tcp_proxy_protocol_version</b>
+                    <a class="ansibleOptionLink" href="#return-listener/connection_configuration/backend_tcp_proxy_protocol_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The backend TCP Proxy Protocol version.</div>
+                                            <div>Example: `1`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
@@ -816,6 +921,74 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_certificate_bundle</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-listener/ssl_configuration/cipher_suite_name"></div>
+                    <b>cipher_suite_name</b>
+                    <a class="ansibleOptionLink" href="#return-listener/ssl_configuration/cipher_suite_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the cipher suite to use for HTTPS or SSL connections.</div>
+                                            <div>If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. Clients cannot perform an SSL handshake if there is an incompatible configuration. *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA certificates. *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET` operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for existing listeners that predate this feature. *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing backend sets that predate this feature. *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field, you must specify an appropriate predefined or custom cipher suite name when updating the resource. *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for this field.</div>
+                                            <div>example: `example_cipher_suite`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cipher_suite_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-listener/ssl_configuration/protocols"></div>
+                    <b>protocols</b>
+                    <a class="ansibleOptionLink" href="#return-listener/ssl_configuration/protocols" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of SSL protocols the load balancer must support for HTTPS or SSL connections.</div>
+                                            <div>The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure connection ensures that all data passed between the client and the server is private.</div>
+                                            <div>The Load Balancing service supports the following protocols:</div>
+                                            <div>*  TLSv1 *  TLSv1.1 *  TLSv1.2</div>
+                                            <div>If this field is not specified, TLSv1.2 is the default.</div>
+                                            <div>**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols.</div>
+                                            <div>**Notes:**</div>
+                                            <div>*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols. *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher suite. *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation displays a list of SSL protocols currently used by those resources.</div>
+                                            <div>example: `[&quot;TLSv1.1&quot;, &quot;TLSv1.2&quot;]`</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-listener/ssl_configuration/server_order_preference"></div>
+                    <b>server_order_preference</b>
+                    <a class="ansibleOptionLink" href="#return-listener/ssl_configuration/server_order_preference" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client ciphers.</div>
+                                            <div>**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This field is ignored when the `SSLConfiguration` object is associated with a backend set.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
                                     </td>
             </tr>
                                 <tr>

@@ -73,6 +73,7 @@ options:
               operation.
             - "Example: `100Mbps`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     is_private:
         description:
@@ -147,13 +148,14 @@ EXAMPLES = """
   oci_loadbalancer_load_balancer:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     display_name: example_load_balancer
+    shape_name: 100Mbps
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update load_balancer
   oci_loadbalancer_load_balancer:
     display_name: example_load_balancer
-    freeform_tags: {'Department': 'Finance'}
+    shape_name: 100Mbps
     load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete load_balancer
@@ -329,6 +331,20 @@ load_balancer:
                     returned: on success
                     type: complex
                     contains:
+                        verify_depth:
+                            description:
+                                - The maximum depth for peer certificate chain verification.
+                                - "Example: `3`"
+                            returned: on success
+                            type: int
+                            sample: 3
+                        verify_peer_certificate:
+                            description:
+                                - Whether the load balancer listener should verify peer certificates.
+                                - "Example: `true`"
+                            returned: on success
+                            type: bool
+                            sample: true
                         certificate_name:
                             description:
                                 - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -338,20 +354,62 @@ load_balancer:
                             returned: on success
                             type: string
                             sample: example_certificate_bundle
-                        verify_peer_certificate:
+                        server_order_preference:
                             description:
-                                - Whether the load balancer listener should verify peer certificates.
-                                - "Example: `true`"
+                                - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
+                                  ciphers.
+                                - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
+                                            field is ignored when the `SSLConfiguration` object is associated with a backend set."
                             returned: on success
-                            type: bool
-                            sample: true
-                        verify_depth:
+                            type: string
+                            sample: ENABLED
+                        cipher_suite_name:
                             description:
-                                - The maximum depth for peer certificate chain verification.
-                                - "Example: `3`"
+                                - The name of the cipher suite to use for HTTPS or SSL connections.
+                                - If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.
+                                - "**Notes:**"
+                                - "*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                                     suite. Clients cannot perform an SSL handshake if there is an incompatible configuration.
+                                  *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured
+                                     certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA
+                                     certificates.
+                                  *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns
+                                     `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners
+                                     that predate this feature.
+                                  *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET`
+                                     operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for
+                                     existing listeners that predate this feature.
+                                  *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL
+                                     configuration for existing backend sets that predate this feature.
+                                  *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field,
+                                     you must specify an appropriate predefined or custom cipher suite name when updating the resource.
+                                  *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for
+                                     this field."
+                                - "example: `example_cipher_suite`"
                             returned: on success
-                            type: int
-                            sample: 3
+                            type: string
+                            sample: cipher_suite_name_example
+                        protocols:
+                            description:
+                                - A list of SSL protocols the load balancer must support for HTTPS or SSL connections.
+                                - The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure
+                                  connection ensures that all data passed between the client and the server is private.
+                                - "The Load Balancing service supports the following protocols:"
+                                - "*  TLSv1
+                                  *  TLSv1.1
+                                  *  TLSv1.2"
+                                - If this field is not specified, TLSv1.2 is the default.
+                                - "**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols."
+                                - "**Notes:**"
+                                - "*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols.
+                                  *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                                     suite.
+                                  *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation
+                                     displays a list of SSL protocols currently used by those resources."
+                                - "example: `[\\"TLSv1.1\\", \\"TLSv1.2\\"]`"
+                            returned: on success
+                            type: list
+                            sample: []
                 connection_configuration:
                     description:
                         - ""
@@ -406,6 +464,131 @@ load_balancer:
                     returned: on success
                     type: string
                     sample: app.example.com
+        ssl_cipher_suites:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - A friendly name for the SSL cipher suite. It must be unique and it cannot be changed.
+                        - "**Note:** The name of your user-defined cipher suite must not be the same as any of Oracle's predefined or
+                                    reserved SSL cipher suite names:"
+                        - "* oci-default-ssl-cipher-suite-v1
+                          * oci-modern-ssl-cipher-suite-v1
+                          * oci-compatible-ssl-cipher-suite-v1
+                          * oci-wider-compatible-ssl-cipher-suite-v1
+                          * oci-customized-ssl-cipher-suite"
+                        - "example: `example_cipher_suite`"
+                    returned: on success
+                    type: string
+                    sample: name_example
+                ciphers:
+                    description:
+                        - A list of SSL ciphers the load balancer must support for HTTPS or SSL connections.
+                        - "The following ciphers are valid values for this property:"
+                        - "*  __TLSv1.2 ciphers__"
+                        - "       \\"AES128-GCM-SHA256\\"
+                                  \\"AES128-SHA256\\"
+                                  \\"AES256-GCM-SHA384\\"
+                                  \\"AES256-SHA256\\"
+                                  \\"DH-DSS-AES128-GCM-SHA256\\"
+                                  \\"DH-DSS-AES128-SHA256\\"
+                                  \\"DH-DSS-AES256-GCM-SHA384\\"
+                                  \\"DH-DSS-AES256-SHA256\\"
+                                  \\"DH-RSA-AES128-GCM-SHA256\\"
+                                  \\"DH-RSA-AES128-SHA256\\"
+                                  \\"DH-RSA-AES256-GCM-SHA384\\"
+                                  \\"DH-RSA-AES256-SHA256\\"
+                                  \\"DHE-DSS-AES128-GCM-SHA256\\"
+                                  \\"DHE-DSS-AES128-SHA256\\"
+                                  \\"DHE-DSS-AES256-GCM-SHA384\\"
+                                  \\"DHE-DSS-AES256-SHA256\\"
+                                  \\"DHE-RSA-AES128-GCM-SHA256\\"
+                                  \\"DHE-RSA-AES128-SHA256\\"
+                                  \\"DHE-RSA-AES256-GCM-SHA384\\"
+                                  \\"DHE-RSA-AES256-SHA256\\"
+                                  \\"ECDH-ECDSA-AES128-GCM-SHA256\\"
+                                  \\"ECDH-ECDSA-AES128-SHA256\\"
+                                  \\"ECDH-ECDSA-AES256-GCM-SHA384\\"
+                                  \\"ECDH-ECDSA-AES256-SHA384\\"
+                                  \\"ECDH-RSA-AES128-GCM-SHA256\\"
+                                  \\"ECDH-RSA-AES128-SHA256\\"
+                                  \\"ECDH-RSA-AES256-GCM-SHA384\\"
+                                  \\"ECDH-RSA-AES256-SHA384\\"
+                                  \\"ECDHE-ECDSA-AES128-GCM-SHA256\\"
+                                  \\"ECDHE-ECDSA-AES128-SHA256\\"
+                                  \\"ECDHE-ECDSA-AES256-GCM-SHA384\\"
+                                  \\"ECDHE-ECDSA-AES256-SHA384\\"
+                                  \\"ECDHE-RSA-AES128-GCM-SHA256\\"
+                                  \\"ECDHE-RSA-AES128-SHA256\\"
+                                  \\"ECDHE-RSA-AES256-GCM-SHA384\\"
+                                  \\"ECDHE-RSA-AES256-SHA384\\""
+                        - "*  __TLSv1 ciphers also supported by TLSv1.2__"
+                        - "       \\"AES128-SHA\\"
+                                  \\"AES256-SHA\\"
+                                  \\"CAMELLIA128-SHA\\"
+                                  \\"CAMELLIA256-SHA\\"
+                                  \\"DES-CBC3-SHA\\"
+                                  \\"DH-DSS-AES128-SHA\\"
+                                  \\"DH-DSS-AES256-SHA\\"
+                                  \\"DH-DSS-CAMELLIA128-SHA\\"
+                                  \\"DH-DSS-CAMELLIA256-SHA\\"
+                                  \\"DH-DSS-DES-CBC3-SHAv\\"
+                                  \\"DH-DSS-SEED-SHA\\"
+                                  \\"DH-RSA-AES128-SHA\\"
+                                  \\"DH-RSA-AES256-SHA\\"
+                                  \\"DH-RSA-CAMELLIA128-SHA\\"
+                                  \\"DH-RSA-CAMELLIA256-SHA\\"
+                                  \\"DH-RSA-DES-CBC3-SHA\\"
+                                  \\"DH-RSA-SEED-SHA\\"
+                                  \\"DHE-DSS-AES128-SHA\\"
+                                  \\"DHE-DSS-AES256-SHA\\"
+                                  \\"DHE-DSS-CAMELLIA128-SHA\\"
+                                  \\"DHE-DSS-CAMELLIA256-SHA\\"
+                                  \\"DHE-DSS-DES-CBC3-SHA\\"
+                                  \\"DHE-DSS-SEED-SHA\\"
+                                  \\"DHE-RSA-AES128-SHA\\"
+                                  \\"DHE-RSA-AES256-SHA\\"
+                                  \\"DHE-RSA-CAMELLIA128-SHA\\"
+                                  \\"DHE-RSA-CAMELLIA256-SHA\\"
+                                  \\"DHE-RSA-DES-CBC3-SHA\\"
+                                  \\"DHE-RSA-SEED-SHA\\"
+                                  \\"ECDH-ECDSA-AES128-SHA\\"
+                                  \\"ECDH-ECDSA-AES256-SHA\\"
+                                  \\"ECDH-ECDSA-DES-CBC3-SHA\\"
+                                  \\"ECDH-ECDSA-RC4-SHA\\"
+                                  \\"ECDH-RSA-AES128-SHA\\"
+                                  \\"ECDH-RSA-AES256-SHA\\"
+                                  \\"ECDH-RSA-DES-CBC3-SHA\\"
+                                  \\"ECDH-RSA-RC4-SHA\\"
+                                  \\"ECDHE-ECDSA-AES128-SHA\\"
+                                  \\"ECDHE-ECDSA-AES256-SHA\\"
+                                  \\"ECDHE-ECDSA-DES-CBC3-SHA\\"
+                                  \\"ECDHE-ECDSA-RC4-SHA\\"
+                                  \\"ECDHE-RSA-AES128-SHA\\"
+                                  \\"ECDHE-RSA-AES256-SHA\\"
+                                  \\"ECDHE-RSA-DES-CBC3-SHA\\"
+                                  \\"ECDHE-RSA-RC4-SHA\\"
+                                  \\"IDEA-CBC-SHA\\"
+                                  \\"KRB5-DES-CBC3-MD5\\"
+                                  \\"KRB5-DES-CBC3-SHA\\"
+                                  \\"KRB5-IDEA-CBC-MD5\\"
+                                  \\"KRB5-IDEA-CBC-SHA\\"
+                                  \\"KRB5-RC4-MD5\\"
+                                  \\"KRB5-RC4-SHA\\"
+                                  \\"PSK-3DES-EDE-CBC-SHA\\"
+                                  \\"PSK-AES128-CBC-SHA\\"
+                                  \\"PSK-AES256-CBC-SHA\\"
+                                  \\"PSK-RC4-SHA\\"
+                                  \\"RC4-MD5\\"
+                                  \\"RC4-SHA\\"
+                                  \\"SEED-SHA\\""
+                        - "example: `[\\"ECDHE-RSA-AES256-GCM-SHA384\\",\\"ECDHE-ECDSA-AES256-GCM-SHA384\\",\\"ECDHE-RSA-AES128-GCM-SHA256\\"]`"
+                    returned: on success
+                    type: list
+                    sample: []
         certificates:
             description:
                 - ""
@@ -607,6 +790,20 @@ load_balancer:
                     returned: on success
                     type: complex
                     contains:
+                        verify_depth:
+                            description:
+                                - The maximum depth for peer certificate chain verification.
+                                - "Example: `3`"
+                            returned: on success
+                            type: int
+                            sample: 3
+                        verify_peer_certificate:
+                            description:
+                                - Whether the load balancer listener should verify peer certificates.
+                                - "Example: `true`"
+                            returned: on success
+                            type: bool
+                            sample: true
                         certificate_name:
                             description:
                                 - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -616,20 +813,62 @@ load_balancer:
                             returned: on success
                             type: string
                             sample: example_certificate_bundle
-                        verify_peer_certificate:
+                        server_order_preference:
                             description:
-                                - Whether the load balancer listener should verify peer certificates.
-                                - "Example: `true`"
+                                - When this attribute is set to ENABLED, the system gives preference to the server ciphers over the client
+                                  ciphers.
+                                - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
+                                            field is ignored when the `SSLConfiguration` object is associated with a backend set."
                             returned: on success
-                            type: bool
-                            sample: true
-                        verify_depth:
+                            type: string
+                            sample: ENABLED
+                        cipher_suite_name:
                             description:
-                                - The maximum depth for peer certificate chain verification.
-                                - "Example: `3`"
+                                - The name of the cipher suite to use for HTTPS or SSL connections.
+                                - If this field is not specified, the default is `oci-default-ssl-cipher-suite-v1`.
+                                - "**Notes:**"
+                                - "*  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                                     suite. Clients cannot perform an SSL handshake if there is an incompatible configuration.
+                                  *  You must ensure compatibility between the ciphers configured in the cipher suite and the configured
+                                     certificates. For example, RSA-based ciphers require RSA certificates and ECDSA-based ciphers require ECDSA
+                                     certificates.
+                                  *  If the cipher configuration is not modified after load balancer creation, the `GET` operation returns
+                                     `oci-default-ssl-cipher-suite-v1` as the value of this field in the SSL configuration for existing listeners
+                                     that predate this feature.
+                                  *  If the cipher configuration was modified using Oracle operations after load balancer creation, the `GET`
+                                     operation returns `oci-customized-ssl-cipher-suite` as the value of this field in the SSL configuration for
+                                     existing listeners that predate this feature.
+                                  *  The `GET` operation returns `oci-wider-compatible-ssl-cipher-suite-v1` as the value of this field in the SSL
+                                     configuration for existing backend sets that predate this feature.
+                                  *  If the `GET` operation on a listener returns `oci-customized-ssl-cipher-suite` as the value of this field,
+                                     you must specify an appropriate predefined or custom cipher suite name when updating the resource.
+                                  *  The `oci-customized-ssl-cipher-suite` Oracle reserved cipher suite name is not accepted as valid input for
+                                     this field."
+                                - "example: `example_cipher_suite`"
                             returned: on success
-                            type: int
-                            sample: 3
+                            type: string
+                            sample: cipher_suite_name_example
+                        protocols:
+                            description:
+                                - A list of SSL protocols the load balancer must support for HTTPS or SSL connections.
+                                - The load balancer uses SSL protocols to establish a secure connection between a client and a server. A secure
+                                  connection ensures that all data passed between the client and the server is private.
+                                - "The Load Balancing service supports the following protocols:"
+                                - "*  TLSv1
+                                  *  TLSv1.1
+                                  *  TLSv1.2"
+                                - If this field is not specified, TLSv1.2 is the default.
+                                - "**Warning:** All SSL listeners created on a given port must use the same set of SSL protocols."
+                                - "**Notes:**"
+                                - "*  The handshake to establish an SSL connection fails if the client supports none of the specified protocols.
+                                  *  You must ensure compatibility between the specified SSL protocols and the ciphers configured in the cipher
+                                     suite.
+                                  *  For all existing load balancer listeners and backend sets that predate this feature, the `GET` operation
+                                     displays a list of SSL protocols currently used by those resources."
+                                - "example: `[\\"TLSv1.1\\", \\"TLSv1.2\\"]`"
+                            returned: on success
+                            type: list
+                            sample: []
                 session_persistence_configuration:
                     description:
                         - ""
@@ -652,6 +891,103 @@ load_balancer:
                             returned: on success
                             type: bool
                             sample: false
+                lb_cookie_session_persistence_configuration:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        cookie_name:
+                            description:
+                                - "The name of the cookie inserted by the load balancer. If this field is not configured, the cookie name defaults
+                                  to \\"X-Oracle-BMC-LBS-Route\\"."
+                                - "Example: `example_cookie`"
+                                - "**Notes:**"
+                                - "*  Ensure that the cookie name used at the backend application servers is different from the cookie name used
+                                     at the load balancer. To minimize the chance of name collision, Oracle recommends that you use a prefix
+                                     such as \\"X-Oracle-OCI-\\" for this field."
+                                - "*  If a backend server and the load balancer both insert cookies with the same name, the client or browser
+                                     behavior can vary depending on the domain and path values associated with the cookie. If the name, domain,
+                                     and path values of the `Set-cookie` generated by a backend server and the `Set-cookie` generated by the
+                                     load balancer are all the same, the client or browser treats them as one cookie and returns only one of
+                                     the cookie values in subsequent requests. If both `Set-cookie` names are the same, but the domain and path
+                                     names are different, the client or browser treats them as two different cookies."
+                            returned: on success
+                            type: string
+                            sample: example_cookie
+                        disable_fallback:
+                            description:
+                                - Whether the load balancer is prevented from directing traffic from a persistent session client to
+                                  a different backend server if the original server is unavailable. Defaults to false.
+                                - "Example: `false`"
+                            returned: on success
+                            type: bool
+                            sample: false
+                        domain:
+                            description:
+                                - The domain in which the cookie is valid. The `Set-cookie` header inserted by the load balancer contains a
+                                  domain attribute with the specified value.
+                                - This attribute has no default value. If you do not specify a value, the load balancer does not insert the domain
+                                  attribute into the `Set-cookie` header.
+                                - "**Notes:**"
+                                - "*  L(RFC 6265 - HTTP State Management Mechanism,https://www.ietf.org/rfc/rfc6265.txt) describes client and
+                                     browser behavior when the domain attribute is present or not present in the `Set-cookie` header."
+                                -    If the value of the `Domain` attribute is `example.com` in the `Set-cookie` header, the client includes
+                                     the same cookie in the `Cookie` header when making HTTP requests to `example.com`, `www.example.com`, and
+                                     `www.abc.example.com`. If the `Domain` attribute is not present, the client returns the cookie only for
+                                     the domain to which the original request was made.
+                                - "*  Ensure that this attribute specifies the correct domain value. If the `Domain` attribute in the `Set-cookie`
+                                     header does not include the domain to which the original request was made, the client or browser might reject
+                                     the cookie. As specified in RFC 6265, the client accepts a cookie with the `Domain` attribute value `example.com`
+                                     or `www.example.com` sent from `www.example.com`. It does not accept a cookie with the `Domain` attribute
+                                     `abc.example.com` or `www.abc.example.com` sent from `www.example.com`."
+                                - "Example: `example.com`"
+                            returned: on success
+                            type: string
+                            sample: example.com
+                        path:
+                            description:
+                                - The path in which the cookie is valid. The `Set-cookie header` inserted by the load balancer contains a `Path`
+                                  attribute with the specified value.
+                                - Clients include the cookie in an HTTP request only if the path portion of the request-uri matches, or is a
+                                  subdirectory of, the cookie's `Path` attribute.
+                                - The default value is `/`.
+                                - "Example: `/example`"
+                            returned: on success
+                            type: string
+                            sample: /example
+                        max_age_in_seconds:
+                            description:
+                                - The amount of time the cookie remains valid. The `Set-cookie` header inserted by the load balancer contains
+                                  a `Max-Age` attribute with the specified value.
+                                - The specified value must be at least one second. There is no default value for this attribute. If you do not
+                                  specify a value, the load balancer does not include the `Max-Age` attribute in the `Set-cookie` header. In
+                                  most cases, the client or browser retains the cookie until the current session ends, as defined by the client.
+                                - "Example: `3600`"
+                            returned: on success
+                            type: int
+                            sample: 3600
+                        is_secure:
+                            description:
+                                - Whether the `Set-cookie` header should contain the `Secure` attribute. If `true`, the `Set-cookie` header
+                                  inserted by the load balancer contains the `Secure` attribute, which directs the client or browser to send the
+                                  cookie only using a secure protocol.
+                                - "**Note:** If you set this field to `true`, you cannot associate the corresponding backend set with an HTTP
+                                  listener."
+                                - "Example: `true`"
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_http_only:
+                            description:
+                                - Whether the `Set-cookie` header should contain the `HttpOnly` attribute. If `true`, the `Set-cookie` header
+                                  inserted by the load balancer contains the `HttpOnly` attribute, which limits the scope of the cookie to HTTP
+                                  requests. This attribute directs the client or browser to omit the cookie when providing access to cookies
+                                  through non-HTTP APIs. For example, it restricts the cookie from JavaScript channels.
+                                - "Example: `true`"
+                            returned: on success
+                            type: bool
+                            sample: true
         path_route_sets:
             description:
                 - ""
@@ -1006,9 +1342,12 @@ load_balancer:
             "hostname_names": [],
             "path_route_set_name": "example_path_route_set",
             "ssl_configuration": {
-                "certificate_name": "example_certificate_bundle",
+                "verify_depth": 3,
                 "verify_peer_certificate": true,
-                "verify_depth": 3
+                "certificate_name": "example_certificate_bundle",
+                "server_order_preference": "ENABLED",
+                "cipher_suite_name": "cipher_suite_name_example",
+                "protocols": []
             },
             "connection_configuration": {
                 "idle_timeout": 1200,
@@ -1019,6 +1358,10 @@ load_balancer:
         "hostnames": {
             "name": "example_hostname_001",
             "hostname": "app.example.com"
+        },
+        "ssl_cipher_suites": {
+            "name": "name_example",
+            "ciphers": []
         },
         "certificates": {
             "certificate_name": "example_certificate_bundle",
@@ -1048,13 +1391,25 @@ load_balancer:
                 "response_body_regex": "^((?!false).|\\\\s)*$"
             },
             "ssl_configuration": {
-                "certificate_name": "example_certificate_bundle",
+                "verify_depth": 3,
                 "verify_peer_certificate": true,
-                "verify_depth": 3
+                "certificate_name": "example_certificate_bundle",
+                "server_order_preference": "ENABLED",
+                "cipher_suite_name": "cipher_suite_name_example",
+                "protocols": []
             },
             "session_persistence_configuration": {
                 "cookie_name": "example_cookie",
                 "disable_fallback": false
+            },
+            "lb_cookie_session_persistence_configuration": {
+                "cookie_name": "example_cookie",
+                "disable_fallback": false,
+                "domain": "example.com",
+                "path": "/example",
+                "max_age_in_seconds": 3600,
+                "is_secure": true,
+                "is_http_only": true
             }
         },
         "path_route_sets": {

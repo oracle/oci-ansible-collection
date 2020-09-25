@@ -228,6 +228,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Indicates whether to rotate the wallet or not. If `false`, the wallet will not be rotated. The default is `false`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -316,8 +317,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

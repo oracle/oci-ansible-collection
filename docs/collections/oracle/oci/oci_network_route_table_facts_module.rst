@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple RouteTable resources in Oracle Cloud Infrastructure
-- Lists the route tables in the specified VCN and specified compartment. The response includes the default route table that automatically comes with each VCN, plus any route tables you've created.
+- Lists the route tables in the specified VCN and specified compartment. If the VCN ID is not provided, then the list includes the route tables from all VCNs in the specified compartment. The response includes the default route table that automatically comes with each VCN in the specified compartment, plus any route tables you've created.
 - If *rt_id* is specified, the details of a single RouteTable will be returned.
 
 .. Aliases
@@ -334,7 +334,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN.</div>
-                                            <div>Required to list multiple route_tables.</div>
                                                         </td>
             </tr>
                         </table>
@@ -355,8 +354,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -364,7 +361,6 @@ Examples
     - name: List route_tables
       oci_network_route_table_facts:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Get a specific route_table
       oci_network_route_table_facts:
@@ -649,7 +645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the route table was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the route table was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

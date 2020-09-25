@@ -179,6 +179,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional Cache-Control header that defines the caching behavior value to be returned in GetObject and HeadObject responses. Specifying values for this header has no effect on Object Storage behavior. Programs that read the object determine what to do based on the value provided. For example, you could use this header to identify objects that require caching restrictions.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -224,6 +225,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional Content-Disposition header that defines presentational information for the object to be returned in GetObject and HeadObject responses. Specifying values for this header has no effect on Object Storage behavior. Programs that read the object determine what to do based on the value provided. For example, you could use this header to let users download objects with custom filenames in a browser.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -239,6 +241,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional Content-Encoding header that defines the content encodings that were applied to the object to upload. Specifying values for this header has no effect on Object Storage behavior. Programs that read the object determine what to do based on the value provided. For example, you could use this header to determine what decoding mechanisms need to be applied to obtain the media-type specified by the Content-Type header of the object.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -254,6 +257,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional Content-Language header that defines the content language of the object to upload. Specifying values for this header has no effect on Object Storage behavior. Programs that read the object determine what to do based on the value provided. For example, you could use this header to identify and differentiate objects based on a particular language.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -269,6 +273,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The content length of the body.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -285,6 +290,7 @@ Parameters
                                                                 <td>
                                             <div>The optional base-64 header that defines the encoded MD5 hash of the body. If the optional Content-MD5 header is present, Object Storage performs an integrity check on the body of the HTTP request by computing the MD5 hash for the body and comparing it to the MD5 hash supplied in the header. If the two hashes do not match, the object is rejected and an HTTP-400 Unmatched Content MD5 error is returned with the message:</div>
                                             <div>&quot;The computed MD5 of the request body (ACTUAL_MD5) does not match the Content-MD5 header (HEADER_MD5)&quot;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -300,6 +306,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional Content-Type header that defines the standard MIME type format of the object. Content type defaults to &#x27;application/octet-stream&#x27; if not specified in the PutObject call. Specifying values for this header has no effect on Object Storage behavior. Programs that read the object determine what to do based on the value provided. For example, you could use this header to identify and perform special operations on text only objects.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -330,6 +337,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>100-continue</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -395,6 +403,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional user-defined metadata key and value.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -410,6 +419,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional header that specifies &quot;AES256&quot; as the encryption algorithm. For more information, see <a href='https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm'>Using Your Own Keys for Server-Side Encryption</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -425,6 +435,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or decrypt the data. For more information, see <a href='https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm'>Using Your Own Keys for Server-Side Encryption</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -440,6 +451,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This value is used to check the integrity of the encryption key. For more information, see <a href='https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm'>Using Your Own Keys for Server-Side Encryption</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -470,6 +482,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The source file path when uploading an object. Use with <em>state=present</em> to upload an object. This option is mutually exclusive with <em>dest</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -541,8 +554,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

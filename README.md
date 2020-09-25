@@ -4,67 +4,24 @@ Oracle Cloud Infrastructure Ansible Collection provides an easy way to provision
 
 > **This collection replaces the [legacy modules](https://github.com/oracle/oci-ansible-modules). Refer to the [Migration Guide](https://github.com/oracle/oci-ansible-collections/blob/master/MigrationGuide.md) for best migration practices.**
 
-Ansible [released Collections](https://www.ansible.com/blog/getting-started-with-ansible-collections) as part of the Ansible 2.9 release. Ansible recommends Collections as the recommended method of packaging and releasing modules. 
+Ansible [released Collections](https://www.ansible.com/blog/getting-started-with-ansible-collections) as part of the Ansible 2.9 release.
+Ansible recommends Collections as the recommended method of packaging and releasing modules. 
 With the creation of Oracle Cloud Ansible Collection, we are providing two user benefits:
  * **Faster Availability** - Oracle Cloud Ansible Modules will now be available to users at a faster pace on Ansible Galaxy. 
- * **Wider Coverage** - This summer, we aim to provide support for all the Oracle Cloud resources    
-    
-### Expected Change
-
-Please expect a few [breaking changes](https://github.com/oracle/oci-ansible-collections/blob/master/MigrationGuide.md) as we transition from legacy modules to the new collection modules.
-Also, the new modules are renamed to use the service name as a prefix.
-We recommend you to refer to the [Migration Guide](https://github.com/oracle/oci-ansible-collections/blob/master/MigrationGuide.md) as you plan to migrate.
-
-As we gradually make progress to provide full coverage of Oracle Cloud resources, you might not find all the familiar modules (that we support in the legacy modules) in the new collection.
-In that case, you may choose to use the legacy modules as a workaround for the time being.
+ * **Wider Coverage** - Support for the majority of the Oracle Cloud services.
 
 We have also added a new [User Guide](https://github.com/oracle/oci-ansible-collections/blob/master/UserGuide.md) to highlight new features and best practices for using the new modules.
 
-### Currently Supported Services 
-- Block Volume
-- Compute/Compute Management
-- Database
-- Networking
-- Container Engine for Kubernetes Service (OKE)
-- Identity and Access Management (IAM)
-- Load Balancing
-- Object Storage
-- File Storage
-- Audit
-- Autoscaling
-- Budget/Account management
-- Health Checks
-- Vault Secret and Key Management (KMS)
-- Domain Name System (DNS)
-- Email
-- Marketplace
-- Monitoring
-- Notifications
-- Streaming
-- Functions
-- OS Management
-- Resource Manager
-- Announcement
-- Integration
-- NoSQL
-- Events
-- Service Limits
-- API Gateway
-- Content and Experience
-- Analytics
-- Web Application Acceleration and Security Services
-- Limits
-- Data Science
-- Data Safe
-- Data Catalog
-- Data Flow
-- Search
-- Digital Assistant Instance
-- MySQL
-- Big Data
-- Usage
-- VMWare
-- Data Integration
+### Migration from Legacy Modules
+
+We recommend migrating from the [legacy modules](https://github.com/oracle/oci-ansible-modules) since they will be deprecated in the near future.
+Please expect a few breaking changes while migrating from legacy modules to the new collection modules.
+We recommend you to refer to the [Migration Guide](https://github.com/oracle/oci-ansible-collections/blob/master/MigrationGuide.md) for breaking changes.
+Also, the new modules are renamed to use the service name as a prefix.
+
+#### Currently Supported Services 
+We support almost all the of [OCI Cloud services](https://docs.cloud.oracle.com/en-us/iaas/Content/services.htm) with very few exceptions.
+For the complete list of supported services, please check the [modules list](https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/index.html).
 
 ## Installation
 
@@ -120,18 +77,19 @@ with Oracle Cloud Infrastructure services under [the samples directory on GitHub
 Begin by reviewing the Readme.md file that you will find in each sample's root directory.
 
 ## Documentation
-Module documentation is found [here](https://github.com/oracle/oci-ansible-collection/tree/master/docs). The HTML version is available on [readthedocs.io](https://oci-ansible-collection.readthedocs.io/en/latest/).
+Module HTML documentation is available on [readthedocs.io](https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/index.html).
 
 To view the module documentation, use this command:
   ``` bash
 ansible-doc oracle.oci.[module_name]
   ```
-General documentation for legacy and new modules can be found [here](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/ansible.htm).
+General documentation can be found [here](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/ansible.htm).
 
 
 ## Help
-
-See the ["Questions or Feedback"](https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/ansible.htm#questions) section.
+- For FAQs and common errors, check the [Frequently Asked Questions](https://github.com/oracle/oci-ansible-collections/blob/master/FAQ.md) page.
+- To file bugs or feature requests, use [GitHub issues](https://github.com/oracle/oci-ansible-collections/issues).
+- For other channels, check the ["Questions or Feedback"](https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/ansible.htm#questions) section.
 
 ## Changes
 

@@ -46,7 +46,7 @@ Synopsis
 - For *state=present*, publishes raw metric data points to the Monitoring service. For more information about publishing metrics, see `Publishing Custom Metrics <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
 - Per-call limits information follows.
 - * Dimensions per metric group*. Maximum: 20. Minimum: 1. * Unique metric streams*. Maximum: 50. * Transactions Per Second (TPS) per-tenancy limit for this operation: 50.
-- * A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits. A dimension is a qualifier provided in a metric definition. A metric stream is an individual set of aggregated data for a metric, typically specific to a resource. For more information about metric-related concepts, see `Monitoring Concepts <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts>`_.
+- *A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits. A dimension is a qualifier provided in a metric definition. A metric stream is an individual set of aggregated data for a metric, typically specific to a resource. For more information about metric-related concepts, see `Monitoring Concepts <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts>`_.
 - The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as in the following example:
 - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
 - This resource has the following action operations in the :ref:`oci_metric_data_actions <ansible_collections.oci_metric_data_actions_module>` module: summarize_metrics_data.
@@ -498,8 +498,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

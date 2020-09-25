@@ -213,6 +213,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -228,6 +229,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Details describing the Scheduled Job.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +247,7 @@ Parameters
                                             <div>Scheduled Job name</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -280,6 +283,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -301,6 +305,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -316,6 +321,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -451,6 +457,7 @@ Parameters
                                                                 <td>
                                             <div>the type of operation this Scheduled Job performs</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -486,6 +493,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>the id of the package (only if operation type is INSTALL/UPDATE/REMOVE)</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -538,6 +546,7 @@ Parameters
                                                                 <td>
                                             <div>the type of scheduling this Scheduled Job follows</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -608,6 +617,7 @@ Parameters
                                                                 <td>
                                             <div>the desired time for the next execution of this Scheduled Job</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -623,6 +633,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique names of the Windows Updates (only if operation type is INSTALL). This is only applicable when the osFamily is for Windows managed instances.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -644,6 +655,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Type of the update (only if operation type is UPDATEALL)</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -698,8 +710,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - 2020-9-24
+
+### Added:
+- Added [Blockchain](https://docs.cloud.oracle.com/en-us/iaas/blockchain-platform/index.html) service modules
+- Added [Service Connector Hub (SCH)](https://docs.cloud.oracle.com/en-us/iaas/Content/service-connector-hub/overview.htm) modules
+- Added new features in [Inventory Plugin](https://github.com/oracle/oci-ansible-collection/blob/master/plugins/inventory/oci.py) (List Database VMs and other enhancements)
+- Added new [samples](https://github.com/oracle/oci-ansible-collection/tree/master/samples)
+- Added [Logging service](https://docs.cloud.oracle.com/en-us/iaas/Content/Logging/Concepts/loggingoverview.htm) modules
+- Added new features for Identity (bulk_delete_tags and cascade_delete_tag_namespace)
+- Added new features for load_balancer service
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.21.5).
+
 ## [2.7.0] - 2020-9-10
 
 ### Added:

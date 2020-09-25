@@ -49,6 +49,7 @@ Synopsis
 - The tag must have a *description*. It does not have to be unique, and you can change it with `UpdateTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/Tag/UpdateTag>`_.
 - The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.
 - * If no `validator` is set, the user applying the tag to a resource can type in a static value or leave the tag value empty. * If a `validator` is set, the user applying the tag to a resource must select from a list of values that you supply with `EnumTagDefinitionValidator <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator>`_.
+- This resource has the following action operations in the :ref:`oci_tag_actions <ansible_collections.oci_tag_actions_module>` module: bulk_delete.
 
 .. Aliases
 
@@ -200,6 +201,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -216,6 +218,7 @@ Parameters
                                                                 <td>
                                             <div>The description you assign to the tag during creation.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -251,6 +254,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -270,6 +274,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Indicates whether the tag is enabled for cost tracking.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,6 +294,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the tag is retired. See <a href='https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring'>Retiring Key Definitions and Namespace Definitions</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -399,9 +405,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.</div>
-                                            <div>If you use the default validiator (or don&#x27;t define a validator), the user applying the tag enters a value. No additional validation is performed.</div>
-                                            <div>To clear the validator, call UpdateTag with <a href='https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator'>DefaultTagDefinitionValidator</a>.</div>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -494,8 +499,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -786,9 +789,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.</div>
-                                            <div>If you use the default validiator (or don&#x27;t define a validator), the user applying the tag enters a value. No additional validation is performed.</div>
-                                            <div>To clear the validator, call UpdateTag with <a href='https://docs.cloud.oracle.com/api/#/en/identity/latest/datatypes/DefaultTagDefinitionValidator'>DefaultTagDefinitionValidator</a>.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

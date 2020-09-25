@@ -223,6 +223,7 @@ Parameters
                                             <div>**Note:** Mount targets do not have Internet-routable IP addresses.  Therefore they will not be reachable from the Internet, even if an associated `ClientOptions` item has a source of `0.0.0.0/0`.</div>
                                             <div>**If set to the empty array then the export will not be visible to any clients.**</div>
                                             <div>The export&#x27;s `exportOptions` can be changed after creation using the `UpdateExport` operation.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -523,8 +524,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

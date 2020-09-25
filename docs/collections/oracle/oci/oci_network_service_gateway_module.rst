@@ -172,6 +172,7 @@ Parameters
                                                                 <td>
                                             <div>Whether the service gateway blocks all traffic through it. The default is `false`. When this is `true`, traffic is not routed to any services, regardless of route rules.</div>
                                             <div>Example: `true`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -236,6 +237,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -252,6 +254,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -288,6 +291,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,6 +339,7 @@ Parameters
                                             <div>The OCID of the route table the service gateway will use.</div>
                                             <div>If you don&#x27;t specify a route table here, the service gateway is created without an associated route table. The Networking service does NOT automatically associate the attached VCN&#x27;s default route table with the service gateway.</div>
                                             <div>For information about why you would associate a route table with a service gateway, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -370,6 +375,7 @@ Parameters
                                             <div>List of the OCIDs of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a> objects to enable for the service gateway. This list can be empty if you don&#x27;t want to enable any `Service` objects when you create the gateway. You can enable a `Service` object later by using either <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId'>AttachServiceId</a> or <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway'>UpdateServiceGateway</a>.</div>
                                             <div>For each enabled `Service`, make sure there&#x27;s a route rule with the `Service` object&#x27;s `cidrBlock` as the rule&#x27;s destination and the service gateway as the rule&#x27;s target. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/'>Route Table</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -493,8 +499,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -786,7 +790,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the service gateway was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the service gateway was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

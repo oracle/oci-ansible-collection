@@ -215,6 +215,7 @@ Parameters
                                             <div>A virtual hostname. For more information about virtual hostname string construction, see <a href='https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm#routing'>Managing Request Routing</a>.</div>
                                             <div>Example: `app.example.com`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -367,8 +368,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

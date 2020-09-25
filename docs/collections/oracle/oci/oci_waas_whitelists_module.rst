@@ -308,6 +308,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of IP address lists to include in the whitelist.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -324,6 +325,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A set of IP addresses or CIDR notations to include in the whitelist.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -340,6 +342,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique name of the whitelist.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -361,8 +364,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

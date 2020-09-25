@@ -83,6 +83,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The access rules applied to the Web Application Firewall. Used for defining custom access policies with the combination of `ALLOW`, `DETECT`, and `BLOCK` rules, based on different criteria.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -114,6 +115,7 @@ Parameters
                                             <div>- **REDIRECT:** Redirects the request to the specified URL. These fields are required when `REDIRECT` is selected: `redirectUrl`, `redirectResponseCode`.</div>
                                             <div>- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page.</div>
                                             <div>Regardless of action, no further rules are processed once a rule is matched.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -134,6 +136,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to `SET_RESPONSE_CODE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -150,6 +153,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access rules&#x27;.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -166,6 +170,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access blocked by website owner. Please contact support.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -182,6 +187,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are met. If unspecified, defaults to &#x27;Access to the website is blocked.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -198,6 +204,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the access criteria are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -224,6 +231,7 @@ Parameters
                                             <div>- **DEVICE_FINGERPRINT_CHALLENGE:** Bypasses Device Fingerprint Challenge.</div>
                                             <div>- **HUMAN_INTERACTION_CHALLENGE:** Bypasses Human Interaction Challenge.</div>
                                             <div>- **CAPTCHA:** Bypasses CAPTCHA Challenge.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -240,6 +248,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -256,6 +265,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -272,6 +282,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -288,6 +299,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -348,6 +360,7 @@ Parameters
                                             <div>- **HTTP_METHOD_IS_NOT:** Matches if the request is not identical to any of the contents of the `value` field. The `value` in this case is string with one or multiple HTTP methods separated by new line symbol \n The list of available methods: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`</div>
                                             <div>*Example:* &quot;GET\nPOST&quot;</div>
                                             <div>- **COUNTRY_IS:** Matches if the request originates from one of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **COUNTRY_IS_NOT:** Matches if the request does not originate from any of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **USER_AGENT_IS:** Matches if the requesting user agent is identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0` - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -369,6 +382,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>When enabled, the condition will be matched with case-sensitive rules.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -386,6 +400,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The criteria value.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -403,6 +418,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique name of the access rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -425,6 +441,7 @@ Parameters
                                             <div>The response status code to return when `action` is set to `REDIRECT`.</div>
                                             <div>- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301).</div>
                                             <div>- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -441,6 +458,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -479,6 +497,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -497,6 +516,7 @@ Parameters
                                                                 <td>
                                             <div>A header field name that conforms to RFC 7230.</div>
                                             <div>Example: `example_header_name`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -515,6 +535,7 @@ Parameters
                                                                 <td>
                                             <div>A header field value that conforms to RFC 7230.</div>
                                             <div>Example: `example_value`</div>
+                                            <div>This parameter is updatable.</div>
                                             <div>Required when action is one of [&#x27;ADD_HTTP_RESPONSE_HEADER&#x27;, &#x27;EXTEND_HTTP_RESPONSE_HEADER&#x27;]</div>
                                                         </td>
             </tr>
@@ -533,6 +554,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The IP address rate limiting settings used to limit the number of requests from an address.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -549,6 +571,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of allowed requests per second from one IP address. If unspecified, defaults to `1`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -565,6 +588,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response status code returned when a request is blocked. If unspecified, defaults to `503`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -585,6 +609,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the address rate limiting Web Application Firewall feature.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -601,6 +626,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum number of requests allowed to be queued before subsequent requests are dropped. If unspecified, defaults to `10`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -697,6 +723,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of caching rules applied to the web application.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -718,6 +745,7 @@ Parameters
                                                                 <td>
                                             <div>The action to take when the criteria of a caching rule are met. - **CACHE:** Caches requested content when the criteria of the rule are met.</div>
                                             <div>- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -734,6 +762,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The duration to cache content for the caching rule, specified in ISO 8601 extended format. Supported units: seconds, minutes, hours, days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when the `action` is set to `CACHE`. Example: `PT1H`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -750,6 +779,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The duration to cache content in the user&#x27;s browser, specified in ISO 8601 extended format. Supported units: seconds, minutes, hours, days, weeks, months. The maximum value that can be set for any unit is `99`. Mixing of multiple units is not supported. Only applies when the `action` is set to `CACHE`. Example: `PT1H`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -793,6 +823,7 @@ Parameters
                                             <div>- **URL_PART_ENDS_WITH:** Matches if the concatenation of request URL path and query ends with the contents of the `value` field.</div>
                                             <div>- **URL_PART_CONTAINS:** Matches if the concatenation of request URL path and query contains the contents of the `value` field.</div>
                                             <div>URLs must start with a `/`. URLs can&#x27;t contain restricted double slashes `//`. URLs can&#x27;t contain the restricted `&#x27;` `&amp;` `?` symbols. Resources to cache can only be specified by a URL, any query parameters are ignored.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -810,6 +841,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The value of the caching rule criteria.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -831,6 +863,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables client caching. Browsers use the `Cache-Control` header value for caching content locally in the browser. This setting overrides the addition of a `Cache- Control` header in responses.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -847,6 +880,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key for the caching rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -863,6 +897,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the caching rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -879,6 +914,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of CAPTCHA challenge settings. These are used to challenge requests with a CAPTCHA to block bots.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -895,6 +931,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -911,6 +948,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to &#x27;Enter the letters and numbers as they are shown in the image above.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -927,6 +965,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge. If unspecified, defaults to &#x27;We have detected an increased number of attempts to access this website. To help us keep this site secure, please let us know that you are not a robot by entering the text from the image below.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -943,6 +982,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The amount of time before the CAPTCHA expires, in seconds. If unspecified, defaults to `300`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -959,6 +999,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -975,6 +1016,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -991,6 +1033,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique URL path at which to show the CAPTCHA challenge.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1037,6 +1080,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of the custom protection rule OCIDs and their actions.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1057,6 +1101,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take when the custom protection rule is triggered. `DETECT` - Logs the request when the criteria of the custom protection rule are met. `BLOCK` - Blocks the request when the criteria of the custom protection rule are met.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1090,6 +1135,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1113,6 +1159,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The target of the exclusion.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1130,6 +1177,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the custom protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1146,6 +1194,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The device fingerprint challenge settings. Used to detect unique devices based on the device fingerprint information collected in order to block bots.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1166,6 +1215,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take on requests from detected bots. If unspecified, defaults to `DETECT`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1182,6 +1232,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds between challenges for the same IP address. If unspecified, defaults to `60`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1220,6 +1271,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to `SHOW_ERROR_PAGE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1237,6 +1289,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the request is blocked. If unspecified, defaults to `403`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1254,6 +1307,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1271,6 +1325,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access to the website is blocked`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1288,6 +1343,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1305,6 +1361,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image above`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1322,6 +1379,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from captcha below.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1339,6 +1397,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1356,6 +1415,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Are you human?`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1373,6 +1433,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of failed requests allowed before taking action. If unspecified, defaults to `10`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1389,6 +1450,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds before the failure threshold resets. If unspecified, defaults to `60`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1409,6 +1471,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the device fingerprint challenge Web Application Firewall feature.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1425,6 +1488,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum number of IP addresses permitted with the same device fingerprint. If unspecified, defaults to `20`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1441,6 +1505,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds before the maximum addresses count resets. If unspecified, defaults to `60`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1457,6 +1522,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of bots allowed to access the web application.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1473,6 +1539,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1493,6 +1560,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1509,6 +1577,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key for the bot.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1525,6 +1594,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The bot name.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1541,6 +1611,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The human interaction challenge settings. Used to look for natural human interactions such as mouse movements, time on site, and page scrolling to identify bots.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1561,6 +1632,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1577,6 +1649,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds between challenges for the same IP address. If unspecified, defaults to `60`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1615,6 +1688,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to `SHOW_ERROR_PAGE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1632,6 +1706,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the request is blocked. If unspecified, defaults to `403`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1649,6 +1724,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1666,6 +1742,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access to the website is blocked`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1683,6 +1760,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1700,6 +1778,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image above`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1717,6 +1796,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from captcha below.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1734,6 +1814,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1751,6 +1832,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Are you human?`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1768,6 +1850,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of failed requests before taking action. If unspecified, defaults to `10`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1784,6 +1867,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds before the failure threshold resets. If unspecified, defaults to  `60`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1800,6 +1884,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of interactions required to pass the challenge. If unspecified, defaults to `3`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1820,6 +1905,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the human interaction challenge Web Application Firewall feature.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1840,6 +1926,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>When enabled, the user is identified not only by the IP address but also by an unique additional hash, which prevents blocking visitors with shared IP addresses.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1856,6 +1943,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds to record the interactions from the user. If unspecified, defaults to `15`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1889,6 +1977,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the header.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1906,6 +1995,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The value of the header.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -1923,6 +2013,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The JavaScript challenge settings. Used to challenge requests with a JavaScript challenge and take the action if a browser has no JavaScript support in order to block bots.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1943,6 +2034,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1959,6 +2051,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of seconds between challenges from the same IP address. If unspecified, defaults to `60`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1979,6 +2072,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>When enabled, redirect responses from the origin will also be challenged. This will change HTTP 301/302 responses from origin to HTTP 200 with an HTML body containing JavaScript page redirection.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2017,6 +2111,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to `SHOW_ERROR_PAGE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2034,6 +2129,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the request is blocked. If unspecified, defaults to `403`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2051,6 +2147,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2068,6 +2165,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access to the website is blocked`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2085,6 +2183,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2102,6 +2201,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image above`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2119,6 +2219,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show in the header when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from captcha below.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2136,6 +2237,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2153,6 +2255,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Are you human?`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -2214,6 +2317,7 @@ Parameters
                                             <div>- **HTTP_METHOD_IS_NOT:** Matches if the request is not identical to any of the contents of the `value` field. The `value` in this case is string with one or multiple HTTP methods separated by new line symbol \n The list of available methods: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS`, `TRACE`, `PATCH`</div>
                                             <div>*Example:* &quot;GET\nPOST&quot;</div>
                                             <div>- **COUNTRY_IS:** Matches if the request originates from one of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **COUNTRY_IS_NOT:** Matches if the request does not originate from any of countries in the `value` field. The `value` in this case is string with one or multiple countries separated by new line symbol \n Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see <a href='https://www.iso.org/obp/ui/#search/code/'>ISO&#x27;s website</a>. *Example:* &quot;AL\nDZ\nAM&quot; - **USER_AGENT_IS:** Matches if the requesting user agent is identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0` - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field. *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2235,6 +2339,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>When enabled, the condition will be matched with case-sensitive rules.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2252,6 +2357,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The criteria value.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -2269,6 +2375,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of failed requests before taking action. If unspecified, defaults to `10`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2289,6 +2396,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables or disables the JavaScript challenge Web Application Firewall feature.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2309,6 +2417,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>When enabled, the user is identified not only by the IP address but also by an unique additional hash, which prevents blocking visitors with shared IP addresses.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2342,6 +2451,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the header.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2359,6 +2469,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The value of the header.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -2376,6 +2487,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The key in the map of origins referencing the origin used for the Web Application Firewall. The origin must already be included in `Origins`. Required when creating the `WafConfig` resource, but not on update.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2391,6 +2503,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The map of origin groups and their keys used to associate origins to the `wafConfig`. Origin groups allow you to apply weights to groups of origins for load balancing purposes. Origins with higher weights will receive larger proportions of client requests. To add additional origins to your WAAS policy, update the `origins` field of a `UpdateWaasPolicy` request.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2406,6 +2519,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of the protection rules and their details.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -2427,6 +2541,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2443,6 +2558,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2476,6 +2592,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2499,6 +2616,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The target of the exclusion.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -2516,6 +2634,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2533,6 +2652,7 @@ Parameters
                                                                 <td>
                                             <div>The list of labels for the protection rule.</div>
                                             <div>**Note:** Protection rules with a `ResponseBody` label will have no effect unless `isResponseInspected` is true.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2549,6 +2669,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of the ModSecurity rule IDs that apply to this protection rule. For more information about ModSecurity&#x27;s open source WAF rules, see <a href='https://www.modsecurity.org/CRS/Documentation/index.html'>Mod Security&#x27;s documentation</a>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2565,6 +2686,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -2581,6 +2703,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The settings to apply to protection rules.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -2609,6 +2732,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The list of allowed HTTP methods. If unspecified, default to `[OPTIONS, GET, HEAD, POST]`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Restrict HTTP Request Methods&quot; rule (key: 911100).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2629,6 +2753,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If unspecified, defaults to `SET_RESPONSE_CODE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2645,6 +2770,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to `403`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2661,6 +2787,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner. Please contact support.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2677,6 +2804,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to &#x27;Access to the website is blocked.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2693,6 +2821,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response code returned when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to `403`. The list of available response codes: `400`, `401`, `403`, `405`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2714,6 +2843,7 @@ Parameters
                                                                 <td>
                                             <div>Inspects the response body of origin responses. Can be used to detect leakage of sensitive data. If unspecified, defaults to `false`.</div>
                                             <div>**Note:** Only origin responses with a Content-Type matching a value in `mediaTypes` will be inspected.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2731,6 +2861,7 @@ Parameters
                                                                 <td>
                                             <div>The maximum number of arguments allowed to be passed to your application before an action is taken. Arguements are query parameters or body parameters in a PUT or POST request. If unspecified, defaults to `255`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Number of Arguments Limits&quot; rule (key: 960335).</div>
                                             <div>Example: If `maxArgumentCount` to `2` for the Max Number of Arguments protection rule (key: 960335), the following requests would be blocked: `GET /myapp/path?query=one&amp;query=two&amp;query=three` `POST /myapp/path` with Body `{&quot;argument1&quot;:&quot;one&quot;,&quot;argument2&quot;:&quot;two&quot;,&quot;argument3&quot;:&quot;three&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2747,6 +2878,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum length allowed for each argument name, in characters. Arguements are query parameters or body parameters in a PUT or POST request. If unspecified, defaults to `400`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Values Limits&quot; rule (key: 960208).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2763,6 +2895,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum response size to be fully inspected, in binary kilobytes (KiB). Anything over this limit will be partially inspected. If unspecified, defaults to `1024`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2779,6 +2912,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum length allowed for the sum of the argument name and value, in characters. Arguements are query parameters or body parameters in a PUT or POST request. If unspecified, defaults to `64000`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Total Arguments Limits&quot; rule (key: 960341).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2797,6 +2931,7 @@ Parameters
                                             <div>The list of media types to allow for inspection, if `isResponseInspected` is enabled. Only responses with MIME types in this list will be inspected. If unspecified, defaults to `[&quot;text/html&quot;, &quot;text/plain&quot;, &quot;text/xml&quot;]`.</div>
                                             <div>Supported MIME types include:</div>
                                             <div>- text/html - text/plain - text/asp - text/css - text/x-script - application/json - text/webviewhtml - text/x-java-source - application/x-javascript - application/javascript - application/ecmascript - text/javascript - text/ecmascript - text/x-script.perl - text/x-script.phyton - application/plain - application/xml - text/xml</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2814,6 +2949,7 @@ Parameters
                                                                 <td>
                                             <div>The length of time to analyze traffic traffic, in days. After the analysis period, `WafRecommendations` will be populated. If unspecified, defaults to `10`.</div>
                                             <div>Use `GET /waasPolicies/{waasPolicyId}/wafRecommendations` to view WAF recommendations.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -2879,6 +3015,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of threat intelligence feeds and the actions to apply to known malicious traffic based on internet intelligence.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -2900,6 +3037,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to `OFF`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2916,6 +3054,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the threat intelligence feed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2932,6 +3071,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key of the threat intelligence feed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2948,6 +3088,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the threat intelligence feed.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -3014,6 +3155,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of IP addresses that bypass the Web Application Firewall.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -3030,6 +3172,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of IP address lists to include in the whitelist.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3046,6 +3189,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A set of IP addresses or CIDR notations to include in the whitelist.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3062,6 +3206,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique name of the whitelist.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -3083,8 +3228,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

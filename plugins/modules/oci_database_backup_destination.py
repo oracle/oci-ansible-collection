@@ -54,11 +54,13 @@ options:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
         type: dict
     local_mount_point_path:
         description:
@@ -66,6 +68,7 @@ options:
               server location must each be the same across all of the VM cluster nodes. Ensure that the NFS mount is maintained continuously on all of the VM
               cluster nodes.
               This field is deprecated. Use the mountTypeDetails field instead to specify the mount type for NFS."
+            - This parameter is updatable.
             - Applicable when type is 'NFS'
         type: str
     mount_type_details:
@@ -102,11 +105,13 @@ options:
     connection_string:
         description:
             - The connection string for connecting to the Recovery Appliance.
+            - This parameter is updatable.
             - Required when type is 'RECOVERY_APPLIANCE'
         type: str
     vpc_users:
         description:
             - The Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
+            - This parameter is updatable.
             - Required when type is 'RECOVERY_APPLIANCE'
         type: list
     backup_destination_id:
@@ -119,6 +124,7 @@ options:
     nfs_mount_type:
         description:
             - NFS Mount type for backup destination.
+            - This parameter is updatable.
         type: str
         choices:
             - "SELF_MOUNT"
@@ -126,10 +132,12 @@ options:
     nfs_server:
         description:
             - IP addresses for NFS Auto mount.
+            - This parameter is updatable.
         type: list
     nfs_server_export:
         description:
             - Specifies the directory on which to mount the file system
+            - This parameter is updatable.
         type: str
     state:
         description:

@@ -95,6 +95,21 @@ class OCIResourceCommonBase:
             or self.get_default_module_wait_timeout()
         )
 
+    # When waiting on work request, we need to get the resource identifier from the work request response. To identify
+    # that we generally use the entry with entity type for the resource. It generally matches resource_type but in some
+    # cases it is different. Previously we handled by maintaining a map between the resource_type and the entity_type
+    # in oci_common_utils. But any time we updated the map, we had to run all the tests in the pipeline since we are
+    # touching a common module. This method allows us to add the override in the service specific custom file and we can
+    # avoid running all the tests.
+    # For now, the default implementation still the uses the map from oci_common_utils.
+    # TODO: Move all the entries in the oci_common_utils map to the service custom files
+    def get_entity_type(self):
+        if not self.resource_type:
+            return self.resource_type
+        if self.resource_type in oci_common_utils.RESOURCE_TYPE_TO_ENTITY_TYPE_MAP:
+            return oci_common_utils.RESOURCE_TYPE_TO_ENTITY_TYPE_MAP[self.resource_type]
+        return self.resource_type.strip().replace("_", "")
+
 
 class OCIResourceFactsHelperBase(OCIResourceCommonBase):
     def __init__(self, module, resource_type, service_client_class, namespace):

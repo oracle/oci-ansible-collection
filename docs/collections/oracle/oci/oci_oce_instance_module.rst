@@ -228,6 +228,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -243,6 +244,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OceInstance description</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -277,6 +279,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -558,6 +561,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Web Application Firewall(WAF) primary domain</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -612,8 +616,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

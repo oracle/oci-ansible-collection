@@ -95,6 +95,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The list of allowed HTTP methods. If unspecified, default to `[OPTIONS, GET, HEAD, POST]`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Restrict HTTP Request Methods&quot; rule (key: 911100).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -194,6 +195,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If unspecified, defaults to `SET_RESPONSE_CODE`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -209,6 +211,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to `403`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -224,6 +227,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner. Please contact support.`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -239,6 +243,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to &#x27;Access to the website is blocked.&#x27;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -254,6 +259,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The response code returned when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the traffic is detected as malicious by a protection rule. If unspecified, defaults to `403`. The list of available response codes: `400`, `401`, `403`, `405`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `500`, `501`, `502`, `503`, `504`, `507`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -304,6 +310,7 @@ Parameters
                                                                 <td>
                                             <div>Inspects the response body of origin responses. Can be used to detect leakage of sensitive data. If unspecified, defaults to `false`.</div>
                                             <div>**Note:** Only origin responses with a Content-Type matching a value in `mediaTypes` will be inspected.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -320,6 +327,7 @@ Parameters
                                                                 <td>
                                             <div>The maximum number of arguments allowed to be passed to your application before an action is taken. Arguements are query parameters or body parameters in a PUT or POST request. If unspecified, defaults to `255`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Number of Arguments Limits&quot; rule (key: 960335).</div>
                                             <div>Example: If `maxArgumentCount` to `2` for the Max Number of Arguments protection rule (key: 960335), the following requests would be blocked: `GET /myapp/path?query=one&amp;query=two&amp;query=three` `POST /myapp/path` with Body `{&quot;argument1&quot;:&quot;one&quot;,&quot;argument2&quot;:&quot;two&quot;,&quot;argument3&quot;:&quot;three&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,6 +343,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum length allowed for each argument name, in characters. Arguements are query parameters or body parameters in a PUT or POST request. If unspecified, defaults to `400`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Values Limits&quot; rule (key: 960208).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -350,6 +359,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum response size to be fully inspected, in binary kilobytes (KiB). Anything over this limit will be partially inspected. If unspecified, defaults to `1024`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -365,6 +375,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The maximum length allowed for the sum of the argument name and value, in characters. Arguements are query parameters or body parameters in a PUT or POST request. If unspecified, defaults to `64000`. This setting only applies if a corresponding protection rule is enabled, such as the &quot;Total Arguments Limits&quot; rule (key: 960341).</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -382,6 +393,7 @@ Parameters
                                             <div>The list of media types to allow for inspection, if `isResponseInspected` is enabled. Only responses with MIME types in this list will be inspected. If unspecified, defaults to `[&quot;text/html&quot;, &quot;text/plain&quot;, &quot;text/xml&quot;]`.</div>
                                             <div>Supported MIME types include:</div>
                                             <div>- text/html - text/plain - text/asp - text/css - text/x-script - application/json - text/webviewhtml - text/x-java-source - application/x-javascript - application/javascript - application/ecmascript - text/javascript - text/ecmascript - text/x-script.perl - text/x-script.phyton - application/plain - application/xml - text/xml</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -398,6 +410,7 @@ Parameters
                                                                 <td>
                                             <div>The length of time to analyze traffic traffic, in days. After the analysis period, `WafRecommendations` will be populated. If unspecified, defaults to `10`.</div>
                                             <div>Use `GET /waasPolicies/{waasPolicyId}/wafRecommendations` to view WAF recommendations.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -517,8 +530,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

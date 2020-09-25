@@ -387,6 +387,7 @@ Parameters
                                                                 <td>
                                             <div>The path against which to run the health check.</div>
                                             <div>Example: `/healthcheck`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -441,8 +442,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

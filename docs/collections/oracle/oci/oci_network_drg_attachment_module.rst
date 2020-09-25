@@ -215,6 +215,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -317,6 +318,7 @@ Parameters
                                             <div>If you don&#x27;t specify a route table here, the DRG attachment is created without an associated route table. The Networking service does NOT automatically associate the attached VCN&#x27;s default route table with the DRG attachment.</div>
                                             <div>For information about why you would associate a route table with a DRG attachment, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm'>Transit Routing: Access to Multiple VCNs in Same Region</a> * <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -423,8 +425,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -618,7 +618,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the DRG attachment was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the DRG attachment was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

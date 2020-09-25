@@ -238,6 +238,7 @@ Parameters
                                             <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
                                             <div>Example IP address: `10.0.3.3`</div>
                                             <div>Example hostname: `cpe.example.com`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -257,6 +258,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of identifier for your CPE device. The value you provide here must correspond to the value for `cpeLocalIdentifier`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -273,6 +275,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,6 +292,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -341,6 +345,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -428,6 +433,7 @@ Parameters
                                             <div>Used for routing a given IPSec tunnel&#x27;s traffic only if the tunnel is using static routing. If you configure at least one tunnel to use static routing, then you must provide at least one valid static route. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnection/'>IPSecConnection</a>.</div>
                                             <div>Example: `10.0.1.0/24`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -610,7 +616,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The shared secret (pre-shared key) to use for the IPSec tunnel. Only numbers, letters, and spaces are allowed. If you don&#x27;t provide a value, Oracle generates a value for you. You can specify your own shared secret later if you like with <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/UpdateIPSecConnectionTunnelSharedSecret'>UpdateIPSecConnectionTunnelSharedSecret</a>.</div>
-                                            <div>Example: `EXAMPLEToUis6j1cp8GdVQxcmdfMO0yXMLilZTbYCMDGu4V8o`</div>
                                                         </td>
             </tr>
                     
@@ -666,8 +671,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -675,21 +678,21 @@ Examples
     - name: Create ip_sec_connection
       oci_network_ip_sec_connection:
         display_name: MyIPSecConnection
-        cpe_id: ocid1.cpe.oc1.phx.aaaaaaaauceeaxawury4ri72wjcmdgqkwb3cgpj4f67fdh7kcnbay5mpk65q
+        cpe_id: ocid1.cpe.oc1.phx.unique_ID
         static_routes:
-        - 172.16.10.0/24
-        drg_id: ocidv1:drg:oc1:phx:aaaaaaaany43ugr3m5mxir3cuub2i254me
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        - 192.0.2.0/24
+        drg_id: ocid1.drg.oc1.phx.unique_ID
+        compartment_id: ocid1.compartment.oc1..unique_ID
 
     - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyIPSecConnection
         freeform_tags: {'Department': 'Finance'}
         cpe_local_identifier: cpe_local_identifier_example
         cpe_local_identifier_type: IP_ADDRESS
-        static_routes: [ "172.16.10.0/24" ]
+        static_routes: [ "192.0.2.0/24" ]
 
     - name: Update ip_sec_connection
       oci_network_ip_sec_connection:
@@ -704,7 +707,7 @@ Examples
 
     - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
         display_name: MyIPSecConnection
         state: absent
 
@@ -962,7 +965,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the IPSec connection was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the IPSec connection was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

@@ -214,6 +214,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The action to apply to the protection rule. If unspecified, defaults to `OFF`.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -247,6 +248,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -270,6 +272,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The target of the exclusion.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -287,6 +290,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique key of the protection rule.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -407,8 +411,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

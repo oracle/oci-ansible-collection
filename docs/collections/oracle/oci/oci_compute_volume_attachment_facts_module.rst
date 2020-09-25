@@ -325,8 +325,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -374,7 +372,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of VolumeAttachment resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attachment_type&#x27;: &#x27;attachment_type_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;d6866c0d-298b-48ba-95af-309b4faux45e&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.abyhqljrgvttnlx73nmrwfaux7kcvzfs3s66izvxf2h4lgvyndsdsnoiwr5q&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;My volume attachment&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:456b0391-17b8-4122-bbf1-f85fc0bb97d9&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attachment_type&#x27;: &#x27;attachment_type_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.&lt;unique_ID&gt;&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;My volume attachment&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -427,10 +425,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The Challenge-Handshake-Authentication-Protocol (CHAP) secret valid for the associated CHAP user name. (Also called the &quot;CHAP password&quot;.)</div>
-                                            <div>Example: `d6866c0d-298b-48ba-95af-309b4faux45e`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">d6866c0d-298b-48ba-95af-309b4faux45e</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">chap_secret_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -445,11 +442,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The volume&#x27;s system-generated Challenge-Handshake-Authentication-Protocol (CHAP) user name.</div>
-                                            <div>Example: `ocid1.volume.oc1.phx.abyhqljrgvttnlx73nmrwfaux7kcvzfs3s66izvxf2h4lgvyndsdsnoiwr5q`</div>
+                                            <div>The volume&#x27;s system-generated Challenge-Handshake-Authentication-Protocol (CHAP) user name. See <a href='https://tools.ietf.org/html/rfc1994'>RFC 1994</a> for more on CHAP.</div>
+                                            <div>Example: `ocid1.volume.oc1.phx.&lt;unique_ID&gt;`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.volume.oc1.phx.abyhqljrgvttnlx73nmrwfaux7kcvzfs3s66izvxf2h4lgvyndsdsnoiwr5q</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.volume.oc1.phx.&lt;unique_ID&gt;</div>
                                     </td>
             </tr>
                                 <tr>
@@ -574,11 +571,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The target volume&#x27;s iSCSI Qualified Name in the format defined by RFC 3720.</div>
-                                            <div>Example: `iqn.2015-12.us.oracle.com:456b0391-17b8-4122-bbf1-f85fc0bb97d9`</div>
+                                            <div>The target volume&#x27;s iSCSI Qualified Name in the format defined by <a href='https://tools.ietf.org/html/rfc3720#page-32'>RFC 3720</a>.</div>
+                                            <div>Example: `iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn.2015-12.us.oracle.com:456b0391-17b8-4122-bbf1-f85fc0bb97d9</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;</div>
                                     </td>
             </tr>
                                 <tr>
@@ -701,7 +698,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The volume&#x27;s iSCSI port.</div>
+                                            <div>The volume&#x27;s iSCSI port, usually port 860 or 3260.</div>
                                             <div>Example: `3260`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -720,7 +717,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the volume was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the volume was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

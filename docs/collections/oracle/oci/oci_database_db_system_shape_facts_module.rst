@@ -274,8 +274,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -319,7 +317,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbSystemShape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -335,6 +333,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The maximum number of CPU cores that can be enabled on the DB system for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_data_storage_in_t_bs"></div>
+                    <b>available_data_storage_in_t_bs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_data_storage_in_t_bs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum DATA storage that can be enabled for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_db_node_storage_in_g_bs"></div>
+                    <b>available_db_node_storage_in_g_bs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_db_node_storage_in_g_bs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum Db Node storage that can be enabled for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_memory_in_gbs"></div>
+                    <b>available_memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum memory that can be enabled for this shape.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -371,6 +423,78 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The maximum number of database nodes available for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/min_core_count_per_node"></div>
+                    <b>min_core_count_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/min_core_count_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum number of CPU cores that can be enabled per node for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/min_data_storage_in_t_bs"></div>
+                    <b>min_data_storage_in_t_bs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/min_data_storage_in_t_bs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum data storage that need be allocated for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/min_db_node_storage_per_node_in_g_bs"></div>
+                    <b>min_db_node_storage_per_node_in_g_bs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/min_db_node_storage_per_node_in_g_bs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum Db Node storage that need be allocated per node for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/min_memory_per_node_in_g_bs"></div>
+                    <b>min_memory_per_node_in_g_bs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/min_memory_per_node_in_g_bs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum memory that need be allocated per node for this shape.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

@@ -280,6 +280,7 @@ Parameters
                                                                 <td>
                                             <div>The version of Kubernetes to install into the cluster masters.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -297,6 +298,7 @@ Parameters
                                             <div>The name of the cluster. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -312,6 +314,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional attributes for the cluster.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -598,8 +601,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

@@ -167,6 +167,7 @@ Parameters
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -216,6 +217,7 @@ Parameters
                                             <div>Note that UPDATEs for this field are not idempotent, any UPDATE will be retried against the service and may fail if the alteration has been performed previously</div>
                                             <div>Also note that on creation, the nosql service may change the user provided ddl_statement to a functinoally equivalent ddl_statement. This can cause future runs of the playbook to fail because the module will attempt to update the ddl_statement due to the mismatch between the user provided value and the, not identical, but functionally equivalent service value.  The best way to prevent this is by copying the service table.ddl_statement value into your playbook post creation so that the playbook value matches the service value.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -231,6 +233,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace.  Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -265,6 +268,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -368,6 +372,7 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -504,8 +509,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

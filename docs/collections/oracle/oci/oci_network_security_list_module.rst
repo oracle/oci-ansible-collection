@@ -215,6 +215,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -235,6 +236,7 @@ Parameters
                                     </td>
                                                                 <td>
                                             <div>Delete security rules from existing security list which are present in the security rules provided by <em>ingress_security_rules</em> and/or <em>egress_security_rules</em>. If <em>delete_security_rules=yes</em>, security rules provided by <em>ingress_security_rules</em> and/or <em>egress_security_rules</em> would be deleted to existing security list, if they are part of existing security list. If they are not part of existing security list, they will be ignored. <em>purge_security_rules</em> and <em>delete_security_rules</em> are mutually exclusive.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -251,6 +253,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -268,6 +271,7 @@ Parameters
                                                                 <td>
                                             <div>Rules for allowing egress IP packets.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -699,6 +703,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -715,6 +720,7 @@ Parameters
                                                                 <td>
                                             <div>Rules for allowing ingress IP packets.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1145,6 +1151,7 @@ Parameters
                                     </td>
                                                                 <td>
                                             <div>Purge security rules  from security list which are not present in the provided group security list. If <em>purge_security_rules=no</em>, provided security rules would be appended to existing security rules. <em>purge_security_rules</em> and <em>delete_security_rules</em> are mutually exclusive.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1230,8 +1237,6 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the VCN the security list belongs to.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1286,15 +1291,13 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
     
     - name: Create security_list
       oci_network_security_list:
-        vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
+        vcn_id: ocid1.vcn.oc1.phx.unique_ID
         display_name: MyPrivateSubnetSecurityList
         ingress_security_rules:
         - protocol: 6
@@ -1316,11 +1319,11 @@ Examples
             destination_port_range:
               min: 1521
               max: 1521
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
 
     - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_list:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyPrivateSubnetSecurityList
         egress_security_rules:
@@ -1330,7 +1333,6 @@ Examples
         ingress_security_rules:
         - protocol: 6
           source: 10.0.1.0/24
-        vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
         purge_security_rules: false
         delete_security_rules: true
 
@@ -1347,9 +1349,8 @@ Examples
 
     - name: Delete security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_list:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..unique_ID
         display_name: MyPrivateSubnetSecurityList
-        vcn_id: ocid1.vcn.oc1.phx.aaaaaaaax45nyk226ps4pknnef7nmcmd5cgeenrkpbqtiotszg3hmacocrfq
         state: absent
 
 
@@ -2423,7 +2424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the security list was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the security list was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

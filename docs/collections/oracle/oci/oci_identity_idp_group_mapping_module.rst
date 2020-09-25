@@ -214,6 +214,7 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the IAM Service <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Group/'>group</a> you want to map to the IdP group.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +246,7 @@ Parameters
                                                                 <td>
                                             <div>The name of the IdP group you want to map.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -383,8 +385,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

@@ -208,6 +208,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The bucket&#x27;s set of lifecycle policy rules.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -224,6 +225,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. &#x27;ARCHIVE&#x27; and &#x27;DELETE&#x27; are the only two supported actions at this time.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -244,6 +246,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>A Boolean that determines whether this rule is currently enabled.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -260,6 +263,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the lifecycle rule to be applied.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -295,6 +299,7 @@ Parameters
                                             <div>An array of glob patterns to match the object names to exclude. An empty array is ignored. Exclusion patterns take precedence over inclusion patterns. A Glob pattern is a sequence of characters to match text. Any character that appears in the pattern, other than the special pattern characters described below, matches itself. Glob patterns must be between 1 and 1024 characters.</div>
                                             <div>The special pattern characters have the following meanings:</div>
                                             <div>\           Escapes the following character *           Matches any string of characters. ?           Matches any single character . [...]       Matches a group of characters. A group of characters can be: A set of characters, for example: [Zafg9@]. This matches any character in the brackets. A range of characters, for example: [a-z]. This matches any character in the range. [a-f] is equivalent to [abcdef]. For character ranges only the CHARACTER-CHARACTER pattern is supported. [ab-yz] is not valid [a-mn-z] is not valid Character ranges can not start with ^ or : To include a &#x27;-&#x27; in the range, make it the first or last character.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -314,6 +319,7 @@ Parameters
                                             <div>An array of glob patterns to match the object names to include. An empty array includes all objects in the bucket. Exclusion patterns take precedence over inclusion patterns. A Glob pattern is a sequence of characters to match text. Any character that appears in the pattern, other than the special pattern characters described below, matches itself. Glob patterns must be between 1 and 1024 characters.</div>
                                             <div>The special pattern characters have the following meanings:</div>
                                             <div>\           Escapes the following character *           Matches any string of characters. ?           Matches any single character . [...]       Matches a group of characters. A group of characters can be: A set of characters, for example: [Zafg9@]. This matches any character in the brackets. A range of characters, for example: [a-z]. This matches any character in the range. [a-f] is equivalent to [abcdef]. For character ranges only the CHARACTER-CHARACTER pattern is supported. [ab-yz] is not valid [a-mn-z] is not valid Character ranges can not start with ^ or : To include a &#x27;-&#x27; in the range, make it the first or last character.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -331,6 +337,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>An array of object name prefixes that the rule will apply to. An empty array means to include all objects.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -348,6 +355,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Specifies the age of objects to apply the rule to. The timeAmount is interpreted in units defined by the timeUnit parameter, and is calculated in relation to each object&#x27;s Last-Modified time.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -368,6 +376,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC. Years are defined as 365.2425 days long and likewise round up to the next midnight UTC.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                     
@@ -455,8 +464,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

@@ -242,6 +242,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A description of the connection.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -259,6 +260,7 @@ Parameters
                                             <div>A user-friendly display name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -275,6 +277,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A map of maps that contains the encrypted values for sensitive properties which are specific to the connection type. Each connection type definition defines it&#x27;s set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the &quot;default&quot; category. To determine the set of optional and required properties for a connection type, a query can be done on &#x27;/types?type=connection&#x27; that returns a collection of all connection types. The appropriate connection type, which will include definitions of all of it&#x27;s properties, can be identified from this collection. Example: `{&quot;encProperties&quot;: { &quot;default&quot;: { &quot;password&quot;: &quot;pwd&quot;}}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -313,6 +316,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Indicates whether this connection is the default connection. The first connection of a data asset defaults to being the default, subsequent connections default to not being the default. If a default connection already exists, then trying to create a connection as the default will fail. In this case the default connection would need to be updated not to be the default and then the new connection can then be created as the default.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -344,6 +348,7 @@ Parameters
                                                                 <td>
                                             <div>A map of maps that contains the properties which are specific to the connection type. Each connection type definition defines it&#x27;s set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the &quot;default&quot; category. To determine the set of optional and required properties for a connection type, a query can be done on &#x27;/types?type=connection&#x27; that returns a collection of all connection types. The appropriate connection type, which will include definitions of all of it&#x27;s properties, can be identified from this collection. Example: `{&quot;properties&quot;: { &quot;default&quot;: { &quot;username&quot;: &quot;user1&quot;}}}`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -465,8 +470,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

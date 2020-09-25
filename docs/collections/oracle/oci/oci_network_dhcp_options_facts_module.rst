@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple DhcpOptions resources in Oracle Cloud Infrastructure
-- Lists the sets of DHCP options in the specified VCN and specified compartment. The response includes the default set of options that automatically comes with each VCN, plus any other sets you've created.
+- Lists the sets of DHCP options in the specified VCN and specified compartment. If the VCN ID is not provided, then the list includes the sets of DHCP options from all VCNs in the specified compartment. The response includes the default set of options that automatically comes with each VCN, plus any other sets you've created.
 - If *dhcp_id* is specified, the details of a single DhcpOptions will be returned.
 
 .. Aliases
@@ -334,7 +334,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN.</div>
-                                            <div>Required to list multiple dhcp_options.</div>
                                                         </td>
             </tr>
                         </table>
@@ -355,8 +354,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -364,7 +361,6 @@ Examples
     - name: List dhcp_options
       oci_network_dhcp_options_facts:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Get a specific dhcp_options
       oci_network_dhcp_options_facts:
@@ -623,7 +619,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the set of DHCP options was created, in the format defined by RFC3339.</div>
+                                            <div>Date and time the set of DHCP options was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

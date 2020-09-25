@@ -213,6 +213,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>For model reproducibility purposes. Branch of the git repository associated with model training.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -228,6 +229,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>For model reproducibility purposes. Commit ID of the git repository associated with model training.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,6 +291,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>For model reproducibility purposes. URL of the git repository associated with model training.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -304,6 +307,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>For model reproducibility purposes. Path to model artifacts.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -353,6 +357,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>For model reproducibility purposes. Path to the python script or notebook in which the model was trained.&quot;</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                         </table>
@@ -373,8 +378,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 

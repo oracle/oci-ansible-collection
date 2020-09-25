@@ -36,12 +36,24 @@ DOCUMENTATION = """
         enable_parallel_processing:
               description: Use multiple threads to speedup lookup.
         regions:
-             description: A list of regions to search. If not specified, the region is read from config file.
+             description: A list of regions to search. If not specified, the region is read from config file. Use 'all'
+                          to generate inventory from all subscribed regions.
         hostnames:
              description: A list of hostnames to search for.
+        hostname_format:
+             description: Host naming format to use. Use 'fqdn' to list hosts using the instance's
+                          Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN
+                          resolver specified through the subnet's DHCP options. Please see
+                          https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details.
+                          Use 'public_ip' to list hosts using public IP address. Use 'private_ip' to list hosts using
+                          private IP address. By default, hosts are listed using public IP address.
+             env:
+               - name: OCI_HOSTNAME_FORMAT
         filters:
              description: A dictionary of filter value pairs. Available filters  are
                  display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.
+        fetch_db_hosts:
+             description: When set, the db nodes are also fetched.
 """
 
 EXAMPLES = """
@@ -94,6 +106,9 @@ cache_plugin: jsonfile
 cache_timeout: 7200
 cache_connection: /tmp/oci-cache
 cache_prefix: oci_
+
+# DB Hosts
+fetch_db_hosts: True
 """
 import os
 import re
@@ -122,6 +137,7 @@ try:
     from oci.core.compute_client import ComputeClient
     from oci.identity.identity_client import IdentityClient
     from oci.core.virtual_network_client import VirtualNetworkClient
+    from oci.database import DatabaseClient
     from oci.util import to_dict
     from oci.exceptions import ServiceError
 except ImportError:
@@ -140,6 +156,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self.inventory = None
         self.config = {}
         self.compartments = None
+        self._identity_client = None
         self._region_subscriptions = None
         self.regions = {}
         self.params = {
@@ -157,7 +174,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "parent_compartment_ocid": None,
             "fetch_hosts_from_subcompartments": False,
             "debug": False,
-            "hostname_format": "public_ip",
+            "hostname_format": None,
             "sanitize_names": True,
             "replace_dash_in_names": False,
             "max_thread_count": 50,
@@ -190,6 +207,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         elif "OCI_CONFIG_PROFILE" in os.environ:
             self.params["profile"] = os.environ.get("OCI_CONFIG_PROFILE")
 
+    def _get_hostname_format(self):
+        # Preference order: .oci.yml > environment variable
+        if self.get_option("hostname_format"):
+            return self.get_option("hostname_format")
+        if os.environ.get("OCI_HOSTNAME_FORMAT"):
+            return os.environ.get("OCI_HOSTNAME_FORMAT")
+        return "public_ip"
+
     def read_config(self):
 
         self._get_config_file()
@@ -220,6 +245,25 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 else:
                     self.params[option] = self.settings_config.get("oci", option)
 
+    @property
+    def region_subscriptions(self):
+        if self._region_subscriptions:
+            return self._region_subscriptions
+        if not self.params["tenancy"]:
+            raise Exception("Tenancy OCID required to get the region subscriptions.")
+        self._region_subscriptions = oci_common_utils.call_with_backoff(
+            self.identity_client.list_region_subscriptions,
+            tenancy_id=self.params["tenancy"],
+        ).data
+        return self._region_subscriptions
+
+    @property
+    def identity_client(self):
+        if self._identity_client:
+            return self._identity_client
+        self._identity_client = self.create_service_client(IdentityClient)
+        return self._identity_client
+
     def log(self, *args, **kwargs):
         if self.params["debug"]:
             self.display.warning(*args, **kwargs)
@@ -232,8 +276,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         """
         self.regions = regions
 
-        self.identity_client = self.create_service_client(IdentityClient)
-
         self._compute_clients = dict(
             (region, self.create_service_client(ComputeClient, region=region))
             for region in self.regions
@@ -241,6 +283,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         self._virtual_nw_clients = dict(
             (region, self.create_service_client(VirtualNetworkClient, region=region))
+            for region in self.regions
+        )
+
+        self._database_clients = dict(
+            (region, self.create_service_client(DatabaseClient, region=region))
             for region in self.regions
         )
 
@@ -260,6 +307,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
     def _is_instance_principal_auth(self):
         # check if auth is set to `instance_principal`.
         return self.get_option("instance_principal_authentication")
+
+    def _fetch_db_hosts(self):
+        # check if we should fetch db hosts
+        return self.get_option("fetch_db_hosts")
 
     @staticmethod
     def create_instance_principal_signer():
@@ -310,12 +361,20 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return
 
         all_instances = self.get_instances(self.compartments)
-
         instance_inventories = [
             self.build_inventory_for_instance(instance, region)
             for region in all_instances
             for instance in all_instances[region]
         ]
+
+        if self._fetch_db_hosts():
+            all_db_hosts = self.get_db_hosts(self.compartments)
+
+            instance_inventories += [
+                self.build_inventory_for_db_host(db_host, region)
+                for region in all_db_hosts
+                for db_host in all_db_hosts[region]
+            ]
 
         return instance_inventories
 
@@ -356,6 +415,44 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     )
 
         return instances
+
+    def get_db_hosts(self, compartment_ocids):
+        """Get and return instances from all the specified compartments and regions.
+
+        :param compartment_ocids: List of compartment ocid's to fetch the instances from
+        :return: dict with region as key and list of db nodes of the region as value
+        """
+        db_hosts = defaultdict(list)
+
+        if self.get_option("enable_parallel_processing"):
+            for region in self.regions:
+                num_threads = min(
+                    len(compartment_ocids), self.params["max_thread_count"]
+                )
+                self.display.warning(
+                    "Parallel processing enabled. Getting db hosts from {0} in {1} threads.".format(
+                        region, num_threads
+                    )
+                )
+
+                with self.pool(processes=num_threads) as pool:
+                    get_filtered_db_hosts_for_region = partial(
+                        self.get_filtered_db_hosts, region=region
+                    )
+                    lists_of_instances = pool.map(
+                        get_filtered_db_hosts_for_region, compartment_ocids
+                    )
+                for sublist in lists_of_instances:
+                    db_hosts[region].extend(sublist)
+
+        else:
+            for region in self.regions:
+                for compartment_ocid in compartment_ocids:
+                    db_hosts[region].extend(
+                        self.get_filtered_db_hosts(compartment_ocid, region)
+                    )
+
+        return db_hosts
 
     def get_compartments(
         self,
@@ -522,23 +619,25 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             common_groups.add(region_grp)
 
             # Group by freeform tags tag_key=value
-            for key in instance.freeform_tags:
-                tag_group_name = self.sanitize(
-                    "tag_" + key + "=" + instance.freeform_tags[key]
-                )
-                common_groups.add(tag_group_name)
+            if hasattr(instance, "freeform_tags"):
+                for key in instance.freeform_tags:
+                    tag_group_name = self.sanitize(
+                        "tag_" + key + "=" + instance.freeform_tags[key]
+                    )
+                    common_groups.add(tag_group_name)
 
             # Group by defined tags
-            for namespace in instance.defined_tags:
-                for key in instance.defined_tags[namespace]:
-                    defined_tag_group_name = self.sanitize(
-                        namespace
-                        + "#"
-                        + key
-                        + "="
-                        + instance.defined_tags[namespace][key]
-                    )
-                    common_groups.add(defined_tag_group_name)
+            if hasattr(instance, "defined_tags"):
+                for namespace in instance.defined_tags:
+                    for key in instance.defined_tags[namespace]:
+                        defined_tag_group_name = self.sanitize(
+                            namespace
+                            + "#"
+                            + key
+                            + "="
+                            + instance.defined_tags[namespace][key]
+                        )
+                        common_groups.add(defined_tag_group_name)
 
             vnic_attachments = [
                 vnic_attachment
@@ -599,8 +698,104 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 self.create_instance_inventory_for_host(
                     instance_inventory, host_name, vars=instance_vars, groups=groups
                 )
-            self.log("Final inventory for {0}.".format(str(instance_inventory)))
+            self.log(
+                "Final inventory for {0}.".format(
+                    str(self.get_resource_for_logging(instance_inventory))
+                )
+            )
             return instance_inventory
+
+        except ServiceError as ex:
+            if ex.status == 401:
+                self.log(ex)
+                raise
+            self.log(ex)
+
+    def build_inventory_for_db_host(self, db_host, region):
+        """Build and return inventory for a database host"""
+        try:
+            db_host_inventory = {}
+            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
+            compartment = self.compartments[db_host.compartment_id]
+
+            db_host_vars = to_dict(db_host)
+
+            common_groups = set(["all_hosts", "db_hosts"])
+            # Group by availability domain
+            ad = self.sanitize(db_host.availability_domain)
+            common_groups.add(ad)
+
+            # Group by compartments
+            compartment_name = self.sanitize(compartment.name)
+            common_groups.add(compartment_name)
+
+            # Group by region
+            region_grp = self.sanitize("region_" + region)
+            common_groups.add(region_grp)
+
+            # Group by freeform tags tag_key=value
+            if hasattr(db_host, "freeform_tags"):
+                for key in db_host.freeform_tags:
+                    tag_group_name = self.sanitize(
+                        "tag_" + key + "=" + db_host.freeform_tags[key]
+                    )
+                    common_groups.add(tag_group_name)
+
+            # Group by defined tags
+            if hasattr(db_host, "defined_tags"):
+                for namespace in db_host.defined_tags:
+                    for key in db_host.defined_tags[namespace]:
+                        defined_tag_group_name = self.sanitize(
+                            namespace
+                            + "#"
+                            + key
+                            + "="
+                            + db_host.defined_tags[namespace][key]
+                        )
+                        common_groups.add(defined_tag_group_name)
+
+            if not db_host.vnic_id:
+                return None
+
+            vnic = oci_common_utils.call_with_backoff(
+                virtual_nw_client.get_vnic, vnic_id=db_host.vnic_id
+            ).data
+
+            self.log("VNIC {0} is attached to db_host {1}.".format(vnic.id, db_host.id))
+
+            subnet = oci_common_utils.call_with_backoff(
+                virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
+            ).data
+
+            db_host_vars.update({"vcn_id": subnet.vcn_id})
+            db_host_vars.update({"vnic_id": vnic.id})
+            db_host_vars.update({"subnet_id": vnic.subnet_id})
+            db_host_vars.update({"public_ip": vnic.public_ip})
+            db_host_vars.update({"private_ip": vnic.private_ip})
+
+            host_name = self.get_host_name(vnic, region=region)
+
+            # Skip host which is not addressable using hostname_format
+            if not host_name:
+                if self.params["strict_hostname_checking"] == "yes":
+                    raise Exception(
+                        "Instance with OCID: {0} does not have a valid hostname.".format(
+                            db_host.id
+                        )
+                    )
+                self.log("Skipped instance with OCID:" + db_host.id)
+                return None
+
+            host_name = self.sanitize(host_name)
+
+            groups = set(common_groups)
+
+            self.display.warning("Creating inventory for host {0}.".format(host_name))
+            self.create_instance_inventory_for_host(
+                db_host_inventory, host_name, vars=db_host_vars, groups=groups
+            )
+            self.log("Final inventory for {0}.".format(str(db_host_inventory)))
+            return db_host_inventory
 
         except ServiceError as ex:
             if ex.status == 401:
@@ -630,80 +825,153 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return re.sub(regex + "]", "_", word)
         return word
 
+    def get_filtered_resources(self, resources, compartment_ocid):
+
+        self.log(
+            "Resources before filtering from compartment {0}:{1}".format(
+                compartment_ocid, self.get_resources_for_logging(resources)
+            )
+        )
+        filters = ["display_name", "availability_domain", "lifecycle_state"]
+        resources = [
+            resource
+            for resource in resources
+            if all(
+                True
+                for filter in filters
+                if not self.filters.get(filter)
+                or getattr(resource, filter, None) == self.filters[filter]
+            )
+        ]
+
+        if self.filters.get("freeform_tags"):
+            resources = [
+                resource
+                for resource in resources
+                if all(
+                    hasattr(resource, "freeform_tags")
+                    and resource.freeform_tags.get(key) == value
+                    for key, value in six.iteritems(self.filters["freeform_tags"])
+                )
+            ]
+            self.display.warning(
+                "Resources in compartment {0} which match all the freeform tags: {1}".format(
+                    compartment_ocid, self.get_resources_for_logging(resources)
+                )
+            )
+        if self.filters.get("defined_tags"):
+            resources = [
+                resource
+                for resource in resources
+                if all(
+                    (
+                        hasattr(resource, "defined_tags")
+                        and resource.defined_tags.get(namespace, {})
+                    ).get(key)
+                    == value
+                    for namespace in self.filters["defined_tags"]
+                    for key, value in six.iteritems(
+                        self.filters["defined_tags"][namespace]
+                    )
+                )
+            ]
+            self.display.warning(
+                "Resources in compartment {0} which match all the freeform & defined tags: {1}".format(
+                    compartment_ocid, self.get_resources_for_logging(resources)
+                )
+            )
+        self.log(
+            "Resources after filtering from compartment {0}:{1}".format(
+                compartment_ocid, self.get_resources_for_logging(resources)
+            )
+        )
+        return resources
+
+    def get_resource_for_logging(self, resource):
+        """Return the resource with any sensitive data removed"""
+        if not resource:
+            return dict()
+        NO_LOG_KEYS = ["metadata"]
+        # this covers the case where we are logging instance inventory
+        if isinstance(resource, dict):
+            for v in six.itervalues(resource):
+                if isinstance(v, dict) and v.get("vars"):
+                    v["vars"] = dict(
+                        (k, v)
+                        for k, v in six.iteritems(v["vars"])
+                        if k not in NO_LOG_KEYS
+                    )
+        return dict(
+            (k, v) for k, v in six.iteritems(to_dict(resource)) if k not in NO_LOG_KEYS
+        )
+
+    def get_resources_for_logging(self, resources):
+        """Return the resource with any sensitive data removed"""
+        if not resources:
+            return []
+        return [self.get_resource_for_logging(resource) for resource in resources]
+
+    def get_resource_with_attributes(self, resource, **kwargs):
+        """Add the given kwargs as attributes to the resource"""
+        if not kwargs:
+            return resource
+        for key, value in six.iteritems(kwargs):
+            if hasattr(resource, key):
+                continue
+            # for now only string types are supported
+            if not isinstance(value, six.string_types):
+                continue
+            setattr(resource, key, value)
+            # also add attr to the swagger_types so that it is returned when converted to dict using to_dict
+            if hasattr(resource, "swagger_types"):
+                resource.swagger_types[key] = "str"
+        return resource
+
+    def get_filtered_db_hosts(self, compartment_ocid, region):
+        try:
+            database_client = self.get_database_client_for_region(region)
+
+            db_hosts = self.get_filtered_resources(
+                [
+                    self.get_resource_with_attributes(
+                        db_node,
+                        availability_domain=db_system.availability_domain,
+                        compartment_id=db_system.compartment_id,
+                    )
+                    for db_system in oci_common_utils.list_all_resources(
+                        target_fn=database_client.list_db_systems,
+                        compartment_id=compartment_ocid,
+                    )
+                    for db_node in oci_common_utils.list_all_resources(
+                        database_client.list_db_nodes,
+                        compartment_id=compartment_ocid,
+                        db_system_id=db_system.id,
+                    )
+                    if db_node.lifecycle_state == "AVAILABLE"
+                ],
+                compartment_ocid,
+            )
+            return db_hosts
+
+        except ServiceError as ex:
+            if ex.status == 401:
+                self.display.warning(ex)
+                raise
+            self.display.warning(ex)
+            return []
+
     def get_filtered_instances(self, compartment_ocid, region):
         try:
             compute_client = self.get_compute_client_for_region(region)
 
-            instances = oci_common_utils.list_all_resources(
-                target_fn=compute_client.list_instances,
-                compartment_id=compartment_ocid,
-                lifecycle_state="RUNNING",
+            instances = self.get_filtered_resources(
+                oci_common_utils.list_all_resources(
+                    target_fn=compute_client.list_instances,
+                    compartment_id=compartment_ocid,
+                    lifecycle_state="RUNNING",
+                ),
+                compartment_ocid,
             )
-            self.log(
-                "All RUNNING instances from compartment {0}:{1}".format(
-                    compartment_ocid, instances
-                )
-            )
-
-            # Data is cached so filter using all of the data not using the API
-            if "display_name" in self.filters and self.filters["display_name"]:
-                instances = [
-                    instance
-                    for instance in instances
-                    if (instance.display_name == self.filters["display_name"])
-                ]
-
-            if (
-                "availability_domain" in self.filters
-                and self.filters["availability_domain"]
-            ):
-                instances = [
-                    instance
-                    for instance in instances
-                    if (
-                        instance.availability_domain
-                        == self.filters["availability_domain"]
-                    )
-                ]
-
-            if "lifecycle_state" in self.filters and self.filters["lifecycle_state"]:
-                instances = [
-                    instance
-                    for instance in instances
-                    if (instance.lifecycle_state == self.filters["lifecycle_state"])
-                ]
-
-            if "freeform_tags" in self.filters and self.filters["freeform_tags"]:
-                instances = [
-                    instance
-                    for instance in instances
-                    if all(
-                        instance.freeform_tags.get(key) == value
-                        for key, value in six.iteritems(self.filters["freeform_tags"])
-                    )
-                ]
-                self.display.warning(
-                    "Instances in compartment {0} which match all the freeform tags: {1}".format(
-                        compartment_ocid, instances
-                    )
-                )
-            if "defined_tags" in self.filters and self.filters["defined_tags"]:
-                instances = [
-                    instance
-                    for instance in instances
-                    if all(
-                        (instance.defined_tags.get(namespace, {})).get(key) == value
-                        for namespace in self.filters["defined_tags"]
-                        for key, value in six.iteritems(
-                            self.filters["defined_tags"][namespace]
-                        )
-                    )
-                ]
-                self.display.warning(
-                    "Instances in compartment {0} which match all the freeform & defined tags: {1}".format(
-                        compartment_ocid, instances
-                    )
-                )
             return instances
         except ServiceError as ex:
             if ex.status == 401:
@@ -722,9 +990,18 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
     def get_virtual_nw_client_for_region(self, region):
         if region not in self._compute_clients:
             raise ValueError(
-                "Could not fetch the virtual network for region {0}.".format(region)
+                "Could not fetch the virtual network client for region {0}.".format(
+                    region
+                )
             )
         return self._virtual_nw_clients[region]
+
+    def get_database_client_for_region(self, region):
+        if region not in self._database_clients:
+            raise ValueError(
+                "Could not fetch the database client for region {0}.".format(region)
+            )
+        return self._database_clients[region]
 
     def get_host_name(self, vnic, region):
         virtual_nw_client = self.get_virtual_nw_client_for_region(region)
@@ -772,11 +1049,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         for group in host_inventory["groups"]:
                             self.inventory.add_group(group)
                             self.inventory.add_host(host_name, group=group)
-                            self.inventory.set_variable(
-                                host_name,
-                                host_inventory["vars"]["display_name"],
-                                host_inventory["vars"],
-                            )
+                            if host_inventory["vars"].get("display_name"):
+                                self.inventory.set_variable(
+                                    host_name,
+                                    host_inventory["vars"]["display_name"],
+                                    host_inventory["vars"],
+                                )
                             self.inventory.add_child("all", host_name)
                             self._set_composite_vars(
                                 self.get_option("compose"),
@@ -842,6 +1120,19 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 self.params["compartment_name"] = item["compartment_name"]
 
         regions = options["regions"]["value"]
+        if "all" in regions:
+            if len(regions) > 1:
+                raise AnsibleError(
+                    "Found conflicting values for regions. Cannot specify other regions when using 'all'"
+                )
+            self.log(
+                "Inventory requested for all regions. Fetching all subsribed regions."
+            )
+            regions = [
+                region_subscription.region_name
+                for region_subscription in self.region_subscriptions
+            ]
+            self.log("Subscribed regions: {0}.".format(regions))
         hostnames = options["hostnames"]["value"]
 
         return regions, filters, hostnames
@@ -875,6 +1166,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self.read_config()
 
         regions, filters, hostnames = self._get_query_options(config_data)
+
+        # hostname format
+        self.params["hostname_format"] = self._get_hostname_format()
+        self.log("Using hostname format {0}".format(self.params["hostname_format"]))
 
         cache_key = self.get_cache_key(path)
 

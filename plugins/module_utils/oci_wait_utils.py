@@ -5,6 +5,7 @@
 # See LICENSE.TXT for details.
 
 from __future__ import absolute_import, division, print_function
+import time
 
 __metaclass__ = type
 
@@ -334,9 +335,7 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
         )
 
     def get_resource_from_wait_response(self, wait_response):
-        entity_type = oci_common_utils.get_entity_type(
-            self.resource_helper.resource_type
-        )
+        entity_type = self.resource_helper.get_entity_type()
         identifier = None
         if hasattr(wait_response.data, "resources"):
             identifier = get_resource_identifier_from_wait_response(
@@ -447,6 +446,51 @@ class VolumeCreateWaitUntilCopyIsDoneWaiter(CreateOperationLifecycleStateWaiter)
 class CopyObjectWorkRequestWaiter(WorkRequestWaiter):
     def get_resource_from_wait_response(self, wait_response):
         return wait_response.data
+
+
+class ChangeLogGroupWorkRequestWaiter(WorkRequestWaiter):
+    # Once the operation - `change_log_log_group` is successful log_group_id of log changes to `target_log_group_id`
+    # Operation returns response without body thus in order to retrieve `Log` resource we have to pass
+    # `target_log_group_id` instead of `log_group_id`.
+    def get_resource_from_wait_response(self, wait_response):
+        sleep_interval_seconds = 1
+        start_time = time.time()
+        max_wait_seconds = self.resource_helper.get_wait_timeout()
+
+        # GET call throws NotFoundException if the request is made immediately after changing log group of specified log
+        # We avoid giving back NotFoundException to user by making repetitive calls until max wait time is exceeded.
+        while (
+            self.is_resource_not_found()
+            and time.time() - start_time <= max_wait_seconds
+        ):
+            time.sleep(sleep_interval_seconds)
+            sleep_interval_seconds = min(sleep_interval_seconds * 2, max_wait_seconds)
+
+        # return None when Maximum wait time has been exceeded.
+        if time.time() - start_time > max_wait_seconds:
+            return None
+
+        return oci_common_utils.call_with_backoff(
+            self.resource_helper.client.get_log,
+            log_group_id=self.resource_helper.module.params.get("target_log_group_id"),
+            log_id=self.resource_helper.module.params.get("log_id"),
+        ).data
+
+    def is_resource_not_found(self):
+        try:
+            oci_common_utils.call_with_backoff(
+                self.resource_helper.client.get_log,
+                log_group_id=self.resource_helper.module.params.get(
+                    "target_log_group_id"
+                ),
+                log_id=self.resource_helper.module.params.get("log_id"),
+            )
+        except ServiceError as se:
+            if se.status == 404:
+                return True
+            else:
+                raise
+        return False
 
 
 class InstanceConfigurationLaunchInstanceWorkRequestWaiter(WorkRequestWaiter):
@@ -604,6 +648,11 @@ _WAITER_OVERRIDE_MAP = {
         oci_common_utils.CREATE_OPERATION_KEY,
     ): WorkRequestWaiter,
     (
+        "load_balancer",
+        "ssl_cipher_suite",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
         "object_storage",
         "object",
         "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
@@ -672,6 +721,13 @@ _WAITER_OVERRIDE_MAP = {
             "BULK_DELETE_RESOURCES", oci_common_utils.ACTION_OPERATION_KEY,
         ),
     ): NoneWaiter,
+    (
+        "logging",
+        "log",
+        "{0}_{1}".format(
+            "CHANGE_LOG_LOG_GROUP", oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): ChangeLogGroupWorkRequestWaiter,
 }
 
 

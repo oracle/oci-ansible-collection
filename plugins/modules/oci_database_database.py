@@ -269,6 +269,7 @@ options:
                     type:
                         description:
                             - Type of the database backup destination.
+                            - This parameter is updatable.
                         type: str
                         choices:
                             - "NFS"
@@ -279,18 +280,22 @@ options:
                     id:
                         description:
                             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                            - This parameter is updatable.
                         type: str
                     vpc_user:
                         description:
                             - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.
+                            - This parameter is updatable.
                         type: str
                     vpc_password:
                         description:
                             - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                            - This parameter is updatable.
                         type: str
                     internet_proxy:
                         description:
                             - Proxy URL to connect to object store.
+                            - This parameter is updatable.
                         type: str
     freeform_tags:
         description:

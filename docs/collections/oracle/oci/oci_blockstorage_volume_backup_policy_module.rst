@@ -214,6 +214,23 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-destination_region"></div>
+                    <b>destination_region</b>
+                    <a class="ansibleOptionLink" href="#parameter-destination_region" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The paired destination region for copying scheduled backups to. Example: `us-ashburn-1`. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs'>Region Pairs</a> for details about paired regions.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -230,6 +247,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name for the volume backup policy. Does not have to be unique and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -266,6 +284,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -329,6 +348,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The collection of schedules for the volume backup policy. See see <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#schedules'>Schedules</a> in <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm'>Policy-Based Backups</a> for more information.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -595,8 +615,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -609,6 +627,7 @@ Examples
       oci_blockstorage_volume_backup_policy:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name: display_name_example
+        destination_region: us-ashburn-1
         schedules:
         - backup_type: FULL
           period: ONE_HOUR
@@ -619,10 +638,7 @@ Examples
     - name: Update volume_backup_policy
       oci_blockstorage_volume_backup_policy:
         display_name: display_name_example
-        schedules:
-        - backup_type: FULL
-          period: ONE_HOUR
-          retention_seconds: 56
+        destination_region: us-ashburn-1
         policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete volume_backup_policy
@@ -671,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VolumeBackupPolicy resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schedules&#x27;: [{&#x27;backup_type&#x27;: &#x27;FULL&#x27;, &#x27;day_of_month&#x27;: 56, &#x27;day_of_week&#x27;: &#x27;MONDAY&#x27;, &#x27;hour_of_day&#x27;: 56, &#x27;month&#x27;: &#x27;JANUARY&#x27;, &#x27;offset_seconds&#x27;: 56, &#x27;offset_type&#x27;: &#x27;STRUCTURED&#x27;, &#x27;period&#x27;: &#x27;ONE_HOUR&#x27;, &#x27;retention_seconds&#x27;: 56, &#x27;time_zone&#x27;: &#x27;UTC&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destination_region&#x27;: &#x27;destination_region_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schedules&#x27;: [{&#x27;backup_type&#x27;: &#x27;FULL&#x27;, &#x27;day_of_month&#x27;: 56, &#x27;day_of_week&#x27;: &#x27;MONDAY&#x27;, &#x27;hour_of_day&#x27;: 56, &#x27;month&#x27;: &#x27;JANUARY&#x27;, &#x27;offset_seconds&#x27;: 56, &#x27;offset_type&#x27;: &#x27;STRUCTURED&#x27;, &#x27;period&#x27;: &#x27;ONE_HOUR&#x27;, &#x27;retention_seconds&#x27;: 56, &#x27;time_zone&#x27;: &#x27;UTC&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -709,6 +725,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_backup_policy/destination_region"></div>
+                    <b>destination_region</b>
+                    <a class="ansibleOptionLink" href="#return-volume_backup_policy/destination_region" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The paired destination region for copying scheduled backups to. Example `us-ashburn-1`. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs'>Region Pairs</a> for details about paired regions.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_region_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -992,7 +1026,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the volume backup policy was created. Format defined by RFC3339.</div>
+                                            <div>The date and time the volume backup policy was created. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

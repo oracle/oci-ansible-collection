@@ -465,14 +465,6 @@ def is_work_request_success(work_request_response):
     )
 
 
-def get_entity_type(resource_type):
-    if not resource_type:
-        return resource_type
-    if resource_type in RESOURCE_TYPE_TO_ENTITY_TYPE_MAP:
-        return RESOURCE_TYPE_TO_ENTITY_TYPE_MAP[resource_type]
-    return resource_type.strip().replace("_", "")
-
-
 def get_work_request_completed_states():
     return WORK_REQUEST_COMPLETED_STATES
 

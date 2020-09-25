@@ -217,6 +217,7 @@ Parameters
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE device type. You can provide a value if you want to later generate CPE device configuration content for IPSec connections that use this CPE. You can also call <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/UpdateCpe'>UpdateCpe</a> later to provide a value. For a list of possible values, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes'>ListCpeDeviceShapes</a>.</div>
                                             <div>For more information about generating CPE device configuration content, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent'>GetCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent'>GetIpsecCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent'>GetTunnelCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig'>GetTunnelCpeDeviceConfig</a></div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -251,6 +252,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -267,6 +269,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -303,6 +306,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -318,7 +322,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The public IP address of the on-premises router.</div>
-                                            <div>Example: `143.19.23.16`</div>
+                                            <div>Example: `203.0.113.2`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -406,21 +410,19 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
     
     - name: Create cpe
       oci_network_cpe:
-        ip_address: 189.44.2.135
+        ip_address: 203.0.113.6
         display_name: MyCpe
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..compartment_OCID
 
     - name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cpe:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..compartment_OCID
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyCpe
         freeform_tags: {'Department': 'Finance'}
@@ -439,7 +441,7 @@ Examples
 
     - name: Delete cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cpe:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: ocid1.compartment.oc1..compartment_OCID
         display_name: MyCpe
         state: absent
 
@@ -623,7 +625,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the CPE was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the CPE was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

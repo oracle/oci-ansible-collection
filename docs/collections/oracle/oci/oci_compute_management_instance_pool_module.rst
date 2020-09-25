@@ -214,6 +214,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -230,6 +231,7 @@ Parameters
                                                                 <td>
                                             <div>A user-friendly name for the instance pool. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -266,6 +268,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -282,6 +285,7 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance configuration associated with the instance pool.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -412,6 +416,7 @@ Parameters
                                             <div>The placement configurations for the instance pool. Provide one placement configuration for each availability domain.</div>
                                             <div>To use the instance pool with a regional subnet, provide a placement configuration for each availability domain, and include the regional subnet in each placement configuration.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -429,6 +434,7 @@ Parameters
                                                                 <td>
                                             <div>The availability domain to place instances.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -449,6 +455,7 @@ Parameters
                                             <div>To distribute the instances evenly across selected fault domains, provide a set of fault domains. For example, you might want instances to be evenly distributed if your applications require high availability.</div>
                                             <div>To get a list of fault domains, use the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains'>ListFaultDomains</a> operation in the Identity and Access Management Service API.</div>
                                             <div>Example: `[FAULT-DOMAIN-1, FAULT-DOMAIN-2, FAULT-DOMAIN-3]`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -465,6 +472,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -549,6 +557,7 @@ Parameters
                                                                 <td>
                                             <div>The number of instances that should be in the instance pool.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -639,8 +648,6 @@ Notes
 
 Examples
 --------
-.. note::
-    These examples assume the ``collections`` keyword is defined in  playbook and do not use the fully qualified collection name.
 
 .. code-block:: yaml+jinja
 
@@ -648,18 +655,18 @@ Examples
     - name: Create instance_pool
       oci_compute_management_instance_pool:
         display_name: autoscaling-instance-pool
-        compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..&lt;unique_ID&gt;
+        compartment_id: ocid1.compartment.oc1..unique_ID
+        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
         size: 15
         placement_configurations:
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
         load_balancers:
-        - load_balancer_id: ocid1.loadbalancer.oc1.phx..&lt;unique_ID&gt;
+        - load_balancer_id: ocid1.loadbalancer.oc1.phx..unique_ID
           backend_set_name: lb-20190410-1147-backend-set
           port: 80
           vnic_selection: PrimaryVnic
@@ -667,25 +674,25 @@ Examples
     - name: Create instance_pool
       oci_compute_management_instance_pool:
         display_name: backend-servers-pool
-        compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..&lt;unique_ID&gt;
+        compartment_id: ocid1.compartment.oc1..unique_ID
+        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
         size: 10
         placement_configurations:
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..&lt;unique_ID_1&gt;
+          primary_subnet_id: ocid1.subnet.oc1..unique_ID_1
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..&lt;unique_ID_2&gt;
+          primary_subnet_id: ocid1.subnet.oc1..unique_ID_2
 
     - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
-        compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
+        compartment_id: ocid1.compartment.oc1..unique_ID
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: autoscaling-instance-pool
         freeform_tags: {'Department': 'Finance'}
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..&lt;unique_ID&gt;
+        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
         placement_configurations:
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..&lt;regional_subnet_unique_ID&gt;
+          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
         size: 15
 
     - name: Update instance_pool
@@ -701,7 +708,7 @@ Examples
 
     - name: Delete instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
-        compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
+        compartment_id: ocid1.compartment.oc1..unique_ID
         display_name: autoscaling-instance-pool
         state: absent
 
@@ -1186,7 +1193,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the instance pool was created, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`</div>
+                                            <div>The date and time the instance pool was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>

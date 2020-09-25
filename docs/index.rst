@@ -10,7 +10,6 @@ Oracle Cloud Infrastructure Ansible Modules Collection - Modules Index
    :caption: OCI Ansible Modules Index
 
    Modules Index <collections/oracle/oci/index>
-   FAQs <faqs>
 
 
 
