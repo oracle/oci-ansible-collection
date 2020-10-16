@@ -1,0 +1,353 @@
+---
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_TENANCY_OCID"
+    - "SAMPLE_COMPARTMENT_OCID"
+    - "SAMPLE_OL_IMAGE_OCID"
+    - "SAMPLE_AD_NAME"
+#    - "SAMPLE_OBJECT_NS_NAME"
+#    - "SAMPLE_REGION"
+
+- name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance and API Key
+  tempfile:
+    state: directory
+    suffix: cert
+  register: result
+- set_fact:
+    temp_certificates_path: "{{ result.path }}"
+
+- name: Generate a Private Key
+  openssl_privatekey:
+    path: "{{ temp_certificates_path }}/private_key.pem"
+    type: RSA
+    size: 2048
+- set_fact:
+    my_test_public_key: "{{ temp_certificates_path }}/public_key.pem"
+
+- name: Generate a OpenSSH Public Key
+  openssl_publickey:
+    path: "{{ my_test_public_key }}"
+    privatekey_path: "{{ temp_certificates_path }}/private_key.pem"
+    format: OpenSSH
+- set_fact:
+    my_test_api_public_key: "{{ temp_certificates_path }}/api_public_key.pem"
+
+- name: Create test group
+  oci_identity_group:
+    name: "{{ test_group_name }}"
+    description: "{{ test_group_description }}"
+    compartment_id: "{{ tenancy_ocid }}"
+  register: result
+- set_fact:
+    test_group_id: "{{ result.group.id }}"
+- debug:
+    msg: "Created test group {{ test_group_id }}"
+
+- name: Create test user
+  oci_identity_user:
+    name: "{{ test_user_name }}"
+    compartment_id: "{{ tenancy_ocid }}"
+    description: "{{ test_user_description }}"
+  register: result
+- set_fact:
+    test_user_id: "{{ result.user.id }}"
+- debug:
+    msg: "Created test user {{ test_user_id }}"
+
+- name: Add user to the test group
+  oci_identity_user_group_membership:
+    user_id: "{{ test_user_id }}"
+    group_id: "{{ test_group_id }}"
+    compartment_id: "{{ tenancy_ocid }}"
+  register: result
+- set_fact:
+    user_group_membership_id: "{{ result.user_group_membership.id }}"
+- debug:
+    msg: "Added user {{ test_user_id }} to the group {{ test_group_id }}"
+
+- name: Add policy to allow test group to manage buckets
+  oci_identity_policy:
+    name: "{{ test_policy_name }}"
+    description: "{{ test_policy_description }}"
+    compartment_id: "{{ instance_compartment }}"
+    statements:
+        - "{{ test_policy_statement }}"
+  register: result
+- set_fact:
+    test_policy_id: "{{ result.policy.id }}"
+
+- name: Create a api private key for test user
+  openssl_privatekey:
+    path:  "{{ temp_certificates_path }}/oci_api_key.pem"
+    size: 2048
+    cipher: aes128
+    passphrase: "{{ api_key_passphrase }}"
+  register: result
+- set_fact:
+    api_private_key_path: "{{ temp_certificates_path }}/oci_api_key.pem"
+    api_private_key_contents: "{{ lookup('file', '{{ result.filename }}') }}"
+
+- name: Create a public key from that temp private key
+  openssl_publickey:
+    path: "{{ temp_certificates_path }}/oci_api_key_public.pem"
+    privatekey_path: "{{ temp_certificates_path }}/oci_api_key.pem"
+    privatekey_passphrase: "{{ api_key_passphrase }}"
+    force: True
+  register: result
+- set_fact:
+    api_public_key_contents: "{{ lookup('file', '{{ result.filename }}') }}"
+    api_public_key_file_name: "{{ result.filename }}"
+
+- name: Upload the API Signing Key for test user
+  oci_identity_api_key:
+    user_id: "{{ test_user_id }}"
+    key: "{{ api_public_key_contents }}"
+  register: result
+- set_fact:
+    api_signing_key_id: "{{ result.api_key.key_id }}"
+    api_signing_key_fingerprint: "{{ result.api_key.fingerprint }}"
+
+- name: Generate user data script from the template
+  template:
+    src: "./user_data.tpl"
+    dest: "{{ temp_certificates_path }}/user_data"
+- set_fact:
+    user_data_path: "{{ temp_certificates_path }}/user_data"
+
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ instance_compartment }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ vcn_cidr_block }}"
+  register: result
+- set_fact:
+    vcn_id: "{{ result.vcn.id }}"
+
+- name: Create a security list for the public subnet
+  oci_network_security_list:
+    name: "{{ public_subnet_securitylist_name }}"
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: '{{ vcn_id }}'
+    ingress_security_rules: "{{ public_instance_ingress_security_rules }}"
+    egress_security_rules:  "{{ public_instance_egress_security_rules }}"
+  register: result
+- set_fact:
+    public_subnet_security_list_ocid: "{{ result.security_list.id }}"
+
+- name: Get OCI service details
+  oci_network_service_facts:
+  register: result
+- set_fact:
+    object_storage_service_id: "{{ item.id }}"
+  when: '"Object Storage" in item.name'
+  with_items: "{{ result.services }}"
+- set_fact:
+    object_storage_destination: "{{ item.cidr_block }}"
+  when: '"Object Storage" in item.name'
+  with_items: "{{ result.services }}"
+
+- name: Create a new Service Gateway
+  oci_network_service_gateway:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ sg_name }}"
+    services:
+        - service_id: "{{ object_storage_service_id }}"
+  register: result
+- set_fact:
+    sg_id: "{{ result.service_gateway.id }}"
+
+- name: Create a new NAT Gateway
+  oci_network_nat_gateway:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ ng_name }}"
+  register: result
+- set_fact:
+    ng_id: "{{ result.nat_gateway.id }}"
+
+- name: Create a new Internet Gateway
+  oci_network_internet_gateway:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ ig_name }}"
+    is_enabled: true
+  register: result
+- set_fact:
+    ig_id: "{{ result.internet_gateway.id }}"
+
+- name: Create a route table to connect internet gateway to the VCN
+  oci_network_route_table:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ public_subnet_route_table_name }}"
+    route_rules: "{{ public_subnet_route_table_rules }}"
+  register: result
+- set_fact:
+    public_subnet_rt_id: "{{ result.route_table.id }}"
+
+- name: Create the public subnet to host the bastion instance. Link security_list and route_table.
+  oci_network_subnet:
+    availability_domain: "{{ instance_ad }}"
+    cidr_block: "{{ public_subnet_cidr }}"
+    compartment_id: "{{ instance_compartment }}"
+    display_name: "{{ public_subnet_name }}"
+    prohibit_public_ip_on_vnic: false
+    route_table_id: "{{ public_subnet_rt_id }}"
+    security_list_ids: [ "{{ public_subnet_security_list_ocid }}" ]
+    vcn_id: '{{ vcn_id }}'
+  register: result
+- set_fact:
+    public_subnet_id: "{{ result.subnet.id }}"
+
+- name: Launch an instance in the public subnet to act as the bastion instance
+  oci_compute_instance:
+    availability_domain: "{{ instance_ad }}"
+    compartment_id: "{{ instance_compartment }}"
+    name: "{{ public_subnet_instance_name }}"
+    image_id: "{{ instance_image }}"
+    shape: "{{ instance_shape }}"
+    create_vnic_details:
+        assign_public_ip: True
+        subnet_id: "{{ public_subnet_id }}"
+    metadata:
+        ssh_authorized_keys: "{{ lookup('file',  my_test_public_key ) }}"
+  register: result
+
+- name: Print instance details
+  debug:
+    msg: "Launched a new bastion instance in the public subnet {{ result }}"
+- set_fact:
+    public_subnet_instance_id: "{{result.instance.id }}"
+
+- name: Get the VNIC attachment details of instance
+  oci_compute_vnic_attachment_facts:
+    compartment_id: "{{ instance_compartment }}"
+    instance_id: "{{ public_subnet_instance_id }}"
+  register: result
+- name: Get details of the VNIC
+  oci_network_vnic_facts:
+    id: "{{ result.vnic_attachments[0].vnic_id }}"
+  register: result
+- set_fact:
+    public_instance_public_ip: "{{result.vnic.public_ip}}"
+
+- name: Print the public ip of the newly launched instance
+  debug:
+    msg: "Public IP of the instance launched in the public subnet {{ public_instance_public_ip }}"
+
+- name: Wait (upto 10 minutes) for port 22 to become open
+  wait_for:
+    port: 22
+    host: '{{ public_instance_public_ip }}'
+    state: started
+    delay: 10
+    timeout: 600
+  vars:
+    ansible_connection: local
+
+- name: Create a security list for the private subnet
+  oci_network_security_list:
+    name: "{{ private_subnet_securitylist_name }}"
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: '{{ vcn_id }}'
+    ingress_security_rules: "{{ private_instance_ingress_security_rules }}"
+    egress_security_rules:  "{{ private_instance_egress_security_rules }}"
+  register: result
+- set_fact:
+    private_subnet_security_list_ocid: "{{ result.security_list.id }}"
+
+## Temporary rule to enable NAT Gateway for private instance. This is needed to install oci cli in the private instance.
+## Will be disabled after oci cli is installed
+- name: Create a route table to connect all access from the private subnet to the NAT Gateway
+  oci_network_route_table:
+    compartment_id: "{{ instance_compartment }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ private_subnet_route_table_name }}"
+    route_rules: "{{ private_subnet_route_table_rules_temp }}"
+  register: result
+- set_fact:
+    private_subnet_rt_id: "{{ result.route_table.id }}"
+
+- name: Create the private subnet to host the private instance. Link security_list and route_table.
+  oci_network_subnet:
+    availability_domain: "{{ instance_ad }}"
+    cidr_block: "{{ private_subnet_cidr }}"
+    compartment_id: "{{ instance_compartment }}"
+    display_name: "{{ private_subnet_name }}"
+    prohibit_public_ip_on_vnic: True
+    route_table_id: "{{ private_subnet_rt_id }}"
+    security_list_ids: [ "{{ private_subnet_security_list_ocid }}" ]
+    vcn_id: '{{ vcn_id }}'
+  register: result
+- set_fact:
+    private_subnet_id: "{{ result.subnet.id }}"
+
+- name: Launch an instance in the private subnet from which object storage access would go through the Service Gateway
+  oci_compute_instance:
+    availability_domain: "{{ instance_ad }}"
+    compartment_id: "{{ instance_compartment }}"
+    name: "{{ private_subnet_instance_name }}"
+    image_id: "{{ instance_image }}"
+    shape: "{{ instance_shape }}"
+    create_vnic_details:
+        assign_public_ip: False
+        subnet_id: "{{ private_subnet_id }}"
+    metadata:
+        ssh_authorized_keys: "{{ lookup('file',  my_test_public_key ) }}"
+        # Cloud init script to install oci cli and setup oci config.
+        # Note: It is not secure to setup the oci config manually on a compute instance.
+        #       Will be changed once private instances support instance principal auth.
+        user_data: "{{ lookup('file',  '{{ user_data_path }}' ) | b64encode }}"
+  register: result
+- set_fact:
+    private_subnet_instance_id: "{{ result.instance.id }}"
+
+- name: Get the VNIC attachment details of instance
+  oci_compute_vnic_attachment_facts:
+    compartment_id: "{{ instance_compartment }}"
+    instance_id: "{{ private_subnet_instance_id }}"
+  register: result
+
+- name: Get details of the VNIC
+  oci_network_vnic_facts:
+    id: "{{ result.vnic_attachments[0].vnic_id }}"
+  register: result
+- set_fact:
+    private_instance_private_ip: "{{result.vnic.private_ip}}"
+
+- name: Print the private ip of the newly launched instance
+  debug:
+    msg: "Private IP of the instance launched in the private subnet {{ private_instance_private_ip }}"
+
+- name: Print ssh command for private instance via basion instance
+  debug:
+    msg: 'ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -o ProxyCommand="ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -W %h:%p -q {{ ssh_user }}@{{ public_instance_public_ip }}" {{ ssh_user }}@{{ private_instance_private_ip }}'
+
+- name: Wait (upto 5 mins) for private instance to start
+  command: 'ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -o ProxyCommand="ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -W %h:%p -q {{ ssh_user }}@{{ public_instance_public_ip }}" {{ ssh_user }}@{{ private_instance_private_ip }} uname -a'
+  register: result
+  until: result.rc == 0
+  retries: 10
+  delay: 30
+
+#- name: Wait (upto 5 mins) until the oci cli is installed in the private instance
+#  command: 'ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -o ProxyCommand="ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -W %h:%p -q {{ ssh_user }}@{{ public_instance_public_ip }}" {{ ssh_user }}@{{ private_instance_private_ip }} oci --version'
+#  register: result
+#  until: result.rc == 0
+#  retries: 10
+#  delay: 30
+
+#- name: Disable NAT Gateway for the private instance and enable only Service Gateway
+#  oci_network_route_table:
+#    rt_id: "{{ private_subnet_rt_id }}"
+#    route_rules: "{{ private_subnet_route_table_rules }}"

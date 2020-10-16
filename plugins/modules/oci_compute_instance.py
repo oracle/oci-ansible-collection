@@ -360,6 +360,23 @@ options:
                 description:
                     - Whether to enable consistent volume naming feature. Defaults to false.
                 type: bool
+    availability_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            recovery_action:
+                description:
+                    - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
+                      * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                      will be restored to the power state it was in before maintenance.
+                      * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "RESTORE_INSTANCE"
+                    - "STOP_INSTANCE"
     metadata:
         description:
             - Custom metadata key/value pairs that you provide, such as the SSH public key
@@ -764,6 +781,21 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+        availability_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                recovery_action:
+                    description:
+                        - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
+                          * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                          will be restored to the power state it was in before maintenance.
+                          * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                    returned: on success
+                    type: string
+                    sample: RESTORE_INSTANCE
         lifecycle_state:
             description:
                 - The current state of the instance.
@@ -974,6 +1006,9 @@ instance:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
+        "availability_config": {
+            "recovery_action": "RESTORE_INSTANCE"
+        },
         "lifecycle_state": "MOVING",
         "metadata": {},
         "region": "region_example",
@@ -1132,7 +1167,9 @@ class InstanceHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_terminated_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.DELETE_OPERATION_KEY,
+            ),
         )
 
 
@@ -1192,6 +1229,14 @@ def main():
                     ),
                     is_pv_encryption_in_transit_enabled=dict(type="bool"),
                     is_consistent_volume_naming_enabled=dict(type="bool"),
+                ),
+            ),
+            availability_config=dict(
+                type="dict",
+                options=dict(
+                    recovery_action=dict(
+                        type="str", choices=["RESTORE_INSTANCE", "STOP_INSTANCE"]
+                    )
                 ),
             ),
             metadata=dict(type="dict"),

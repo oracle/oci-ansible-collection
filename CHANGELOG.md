@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.9.0] - 2020-10-15
+
+### Added:
+- Modules for management agent service
+- Modules for cloud-guard service
+- Modules for unified agent configuration
+- Add logging analytics - namespace modules
+- Add availability_config parameter in instance modules
+- New [samples](https://github.com/oracle/oci-ansible-collection/tree/v2.8.0/samples/compute)
+
+### Fixes
+- Inventory plugin issues: Filtering options, Host FQDN lookup
+- Updated the description and current use of flags for `compartments` in inventory plugin
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.23.0)
+
 ## [2.8.0] - 2020-9-24
 
 ### Added:

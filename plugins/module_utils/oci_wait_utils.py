@@ -521,6 +521,15 @@ class InstanceConfigurationLaunchInstanceWorkRequestWaiter(WorkRequestWaiter):
         return compute_client.get_instance(instance_id=instance_id).data
 
 
+class NamespaceActionWorkRequestWaiter(WorkRequestWaiter):
+    def get_fetch_func(self):
+        return lambda **kwargs: oci_common_utils.call_with_backoff(
+            self.client.get_work_request,
+            work_request_id=self.operation_response.headers[WORK_REQUEST_HEADER],
+            namespace_name=self.resource_helper.module.params.get("namespace_name"),
+        )
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -728,6 +737,16 @@ _WAITER_OVERRIDE_MAP = {
             "CHANGE_LOG_LOG_GROUP", oci_common_utils.ACTION_OPERATION_KEY,
         ),
     ): ChangeLogGroupWorkRequestWaiter,
+    (
+        "log_analytics",
+        "namespace",
+        "{0}_{1}".format("ONBOARD", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NamespaceActionWorkRequestWaiter,
+    (
+        "log_analytics",
+        "namespace",
+        "{0}_{1}".format("OFFBOARD", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NamespaceActionWorkRequestWaiter,
 }
 
 

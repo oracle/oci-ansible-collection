@@ -518,6 +518,21 @@ options:
                 choices:
                     - "LIVE_MIGRATE"
                     - "REBOOT"
+            availability_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    recovery_action:
+                        description:
+                            - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
+                              * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                              will be restored to the power state it was in before maintenance.
+                              * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                        type: str
+                        choices:
+                            - "RESTORE_INSTANCE"
+                            - "STOP_INSTANCE"
     secondary_vnics:
         description:
             - ""
@@ -798,6 +813,21 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+        availability_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                recovery_action:
+                    description:
+                        - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
+                          * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                          will be restored to the power state it was in before maintenance.
+                          * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                    returned: on success
+                    type: string
+                    sample: RESTORE_INSTANCE
         lifecycle_state:
             description:
                 - The current state of the instance.
@@ -995,6 +1025,9 @@ instance:
             "remote_data_volume_type": "ISCSI",
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
+        },
+        "availability_config": {
+            "recovery_action": "RESTORE_INSTANCE"
         },
         "lifecycle_state": "MOVING",
         "metadata": {},
@@ -1259,6 +1292,15 @@ def main():
                     is_pv_encryption_in_transit_enabled=dict(type="bool"),
                     preferred_maintenance_action=dict(
                         type="str", choices=["LIVE_MIGRATE", "REBOOT"]
+                    ),
+                    availability_config=dict(
+                        type="dict",
+                        options=dict(
+                            recovery_action=dict(
+                                type="str",
+                                choices=["RESTORE_INSTANCE", "STOP_INSTANCE"],
+                            )
+                        ),
                     ),
                 ),
             ),
