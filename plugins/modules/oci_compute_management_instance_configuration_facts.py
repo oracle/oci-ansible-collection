@@ -678,6 +678,22 @@ instance_configurations:
                             returned: on success
                             type: string
                             sample: LIVE_MIGRATE
+                        availability_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                recovery_action:
+                                    description:
+                                        - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host
+                                          maintenance.
+                                          * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                                          will be restored to the power state it was in before maintenance.
+                                          * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                                    returned: on success
+                                    type: string
+                                    sample: RESTORE_INSTANCE
                 secondary_vnics:
                     description:
                         - ""
@@ -875,7 +891,10 @@ instance_configurations:
                     "is_management_disabled": true
                 },
                 "is_pv_encryption_in_transit_enabled": true,
-                "preferred_maintenance_action": "LIVE_MIGRATE"
+                "preferred_maintenance_action": "LIVE_MIGRATE",
+                "availability_config": {
+                    "recovery_action": "RESTORE_INSTANCE"
+                }
             },
             "secondary_vnics": [{
                 "create_vnic_details": {

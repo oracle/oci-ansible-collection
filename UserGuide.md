@@ -56,7 +56,7 @@ oci_volume:
 
 If there were no existing volumes in the tenancy, then a new volume would be created and the blockstorage service would default to a size of 50 GBs. Given that there *are* 2 existing volumes that match all other attributes in this play (display_name), the module may consider either the 50 GB "MyVolume" or the 100 GB "MyVolume" a match, and return that resource with changed = False. This is non-deterministic and therefore is probably not desirable for the user. In this case because the play only specifies the name and state = present, that is all that Ansible considers when trying to find a matching resource.
 
-If they playbook looked instead like the following:
+If the playbook looked instead like the following:
 ```
 oci_volume:
   display_name: "MyVolume"
@@ -68,6 +68,25 @@ There would be no ambiguity and it would only ever match the 50 GB block volume.
 It is important to note that matching these extra fields only comes into play if *all* other fields match *and* you did not specify optional values with defaults.  Thus, this corner case can be avoided very easily by doing either of the following:
 - Use unique attributes or tags for resources of the same type so there is no potential for ambiguity in matching resources
 - Specify optional values that you care about instead of relying on server side defaults
+
+
+### Passing json vars ot modules in Ansible 2.10
+Please use the the keyword `to_json` in ansible version 2.10 for passing in json vars to the collections module. Find more about it in [official Ansible documentation](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#formatting-data-yaml-and-json)
+
+For example, if a json input was expected for a module like this before:
+```
+oci_events_rule:
+  display_name: "EventRule"
+  condition: '{"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}'
+```
+
+Please rewrite it to look like this:
+```
+oci_events_rule:
+  display_name: "EventRule"
+  condition: '{{ {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"} | to_json }}'
+```
+
 
 ## Additional Module parameters
 

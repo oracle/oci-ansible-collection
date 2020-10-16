@@ -361,7 +361,9 @@ class PingMonitorHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.CREATE_OPERATION_KEY,
+            ),
         )
 
     def get_update_model_class(self):
@@ -380,7 +382,9 @@ class PingMonitorHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.UPDATE_OPERATION_KEY,
+            ),
         )
 
     def delete_resource(self):
@@ -392,7 +396,9 @@ class PingMonitorHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_terminated_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.DELETE_OPERATION_KEY,
+            ),
         )
 
 

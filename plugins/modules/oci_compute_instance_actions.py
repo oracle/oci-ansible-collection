@@ -248,6 +248,21 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+        availability_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                recovery_action:
+                    description:
+                        - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
+                          * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                          will be restored to the power state it was in before maintenance.
+                          * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                    returned: on success
+                    type: string
+                    sample: RESTORE_INSTANCE
         lifecycle_state:
             description:
                 - The current state of the instance.
@@ -445,6 +460,9 @@ instance:
             "remote_data_volume_type": "ISCSI",
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
+        },
+        "availability_config": {
+            "recovery_action": "RESTORE_INSTANCE"
         },
         "lifecycle_state": "MOVING",
         "metadata": {},

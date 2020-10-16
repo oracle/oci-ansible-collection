@@ -618,6 +618,17 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             # Resource does not have a get operation. Return the summary model.
             return summary_model
 
+    def get_wait_for_states_for_operation(self, operation):
+        wait_for_states_operation_dict = {
+            oci_common_utils.CREATE_OPERATION_KEY: self.get_resource_active_states(),
+            oci_common_utils.UPDATE_OPERATION_KEY: self.get_resource_active_states(),
+            oci_common_utils.PATCH_OPERATION_KEY: self.get_resource_active_states(),
+            oci_common_utils.DELETE_OPERATION_KEY: self.get_resource_terminated_states(),
+        }
+        if operation not in wait_for_states_operation_dict:
+            raise Exception("Unsupported operation: {0}".format(operation))
+        return wait_for_states_operation_dict.get(operation)
+
     def get_matching_resource(self):
 
         create_model = self.get_create_model()

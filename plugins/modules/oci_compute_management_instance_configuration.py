@@ -564,6 +564,21 @@ options:
                         choices:
                             - "LIVE_MIGRATE"
                             - "REBOOT"
+                    availability_config:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            recovery_action:
+                                description:
+                                    - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
+                                      * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                                      will be restored to the power state it was in before maintenance.
+                                      * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                                type: str
+                                choices:
+                                    - "RESTORE_INSTANCE"
+                                    - "STOP_INSTANCE"
             secondary_vnics:
                 description:
                     - ""
@@ -1306,6 +1321,22 @@ instance_configuration:
                             returned: on success
                             type: string
                             sample: LIVE_MIGRATE
+                        availability_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                recovery_action:
+                                    description:
+                                        - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host
+                                          maintenance.
+                                          * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
+                                          will be restored to the power state it was in before maintenance.
+                                          * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                                    returned: on success
+                                    type: string
+                                    sample: RESTORE_INSTANCE
                 secondary_vnics:
                     description:
                         - ""
@@ -1503,7 +1534,10 @@ instance_configuration:
                     "is_management_disabled": true
                 },
                 "is_pv_encryption_in_transit_enabled": true,
-                "preferred_maintenance_action": "LIVE_MIGRATE"
+                "preferred_maintenance_action": "LIVE_MIGRATE",
+                "availability_config": {
+                    "recovery_action": "RESTORE_INSTANCE"
+                }
             },
             "secondary_vnics": [{
                 "create_vnic_details": {
@@ -1600,7 +1634,9 @@ class InstanceConfigurationHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.CREATE_OPERATION_KEY,
+            ),
         )
 
     def get_update_model_class(self):
@@ -1621,7 +1657,9 @@ class InstanceConfigurationHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_active_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.UPDATE_OPERATION_KEY,
+            ),
         )
 
     def delete_resource(self):
@@ -1637,7 +1675,9 @@ class InstanceConfigurationHelperGen(OCIResourceHelperBase):
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
-            wait_for_states=self.get_resource_terminated_states(),
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.DELETE_OPERATION_KEY,
+            ),
         )
 
 
@@ -1816,6 +1856,15 @@ def main():
                             is_pv_encryption_in_transit_enabled=dict(type="bool"),
                             preferred_maintenance_action=dict(
                                 type="str", choices=["LIVE_MIGRATE", "REBOOT"]
+                            ),
+                            availability_config=dict(
+                                type="dict",
+                                options=dict(
+                                    recovery_action=dict(
+                                        type="str",
+                                        choices=["RESTORE_INSTANCE", "STOP_INSTANCE"],
+                                    )
+                                ),
                             ),
                         ),
                     ),

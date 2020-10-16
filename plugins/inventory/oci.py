@@ -34,7 +34,7 @@ DOCUMENTATION = """
              env:
                - name: OCI_ANSIBLE_AUTH_TYPE
         enable_parallel_processing:
-              description: Use multiple threads to speedup lookup.
+              description: Use multiple threads to speedup lookup. Default is set to True
         regions:
              description: A list of regions to search. If not specified, the region is read from config file. Use 'all'
                           to generate inventory from all subscribed regions.
@@ -54,6 +54,27 @@ DOCUMENTATION = """
                  display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.
         fetch_db_hosts:
              description: When set, the db nodes are also fetched.
+        compartments:
+            description: A dictionary of compartment identifier to obtain list of hosts. This config parameter is
+                         optional. If compartment is not specified, the plugin fetches all compartments from
+                         the tenancy
+            type: list
+            suboptions:
+                compartment_ocid:
+                    description: OCID of the compartment. If None, root compartment is assumed to be the default value.
+                    type: str
+                compartment_name:
+                    description: Name of the compartment. If None and `compartment_ocid` is not set, all the
+                                 compartments including the root compartment are returned.
+                    type: str
+                fetch_hosts_from_subcompartments:
+                    description: Flag used to fetch hosts from subcompartments. Default value is set to True
+                    type: boolean
+                parent_compartment_ocid:
+                    description: This option is not needed when the compartment_ocid option is used, it is needed when
+                                 compartment_name is used. OCID of the parent compartment. If None, root compartment
+                                 is assumed to be parent.
+                    type: str
 """
 
 EXAMPLES = """
@@ -75,7 +96,10 @@ enable_parallel_processing: yes
 # Select compartment by ocid or name
 compartments:
   - compartment_ocid: ocid1.compartment.oc1..xxxxxx
-  - compartment_name: "test"
+    fetch_hosts_from_subcompartments: false
+
+  - compartment_name: "test_compartment"
+    parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
 
 # Example filtering using hostname IP
 hostnames:
@@ -145,7 +169,7 @@ except ImportError:
 
 
 class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
-    NAME = "oci"
+    NAME = "oracle.oci.oci"
     LIFECYCLE_ACTIVE_STATE = "ACTIVE"
     LIFECYCLE_RUNNING_STATE = "RUNNING"
     LIFECYCLE_ATTACHED_STATE = "ATTACHED"
@@ -159,6 +183,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self._identity_client = None
         self._region_subscriptions = None
         self.regions = {}
+        self.enable_parallel_processing = True
+        self.compartments_info = None
         self.params = {
             "config_file": os.path.join(os.path.expanduser("~"), ".oci", "config"),
             "profile": "DEFAULT",
@@ -172,7 +198,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "compartment_ocid": None,
             "compartment_name": None,
             "parent_compartment_ocid": None,
-            "fetch_hosts_from_subcompartments": False,
+            "fetch_hosts_from_subcompartments": True,
             "debug": False,
             "hostname_format": None,
             "sanitize_names": True,
@@ -346,15 +372,43 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         self.display.warning("Building inventory.")
 
-        # Compartments(including the root compartment) from which the instances are to be retrieved.
-        self.compartments = dict(
-            (compartment.id, compartment)
-            for compartment in self.get_compartments(
-                compartment_ocid=self.params["compartment_ocid"],
-                parent_compartment_ocid=self.params["parent_compartment_ocid"],
-                compartment_name=self.params["compartment_name"],
-            )
-        )
+        self.compartments = dict()
+
+        if self.compartments_info:
+            fetching_hosts_from_all_compartments = False
+            for key, value in self.compartments_info.items():
+                compartments = self.get_compartments(
+                    compartment_ocid=value.get("compartment_ocid"),
+                    parent_compartment_ocid=value.get("parent_compartment_ocid"),
+                    compartment_name=value.get("compartment_name"),
+                    fetch_hosts_from_subcompartments=value.get(
+                        "fetch_hosts_from_subcompartments"
+                    ),
+                )
+
+                for compartment in compartments:
+                    if compartment.id in self.compartments:
+                        self.display.warning(
+                            "Obtained the the compartment {0} twice, picking up the later entry in the list".format(
+                                compartment.id
+                            )
+                        )
+                    if value["fetch_hosts_from_subcompartments"] and (
+                        "tenancy" in compartment.id
+                    ):
+                        fetching_hosts_from_all_compartments = True
+                        self.display.warning(
+                            "Config given to fetch hosts from all compartments, skipping reading the "
+                            "compartments list further if there are any present"
+                        )
+                    self.compartments[compartment.id] = compartment
+                if fetching_hosts_from_all_compartments:
+                    break
+        else:
+            # fetch all compartments in tenancy
+            compartments = self.get_compartments()
+            for compartment in compartments:
+                self.compartments[compartment.id] = compartment
 
         if not self.compartments:
             self.display.warning("No compartments matching the criteria.")
@@ -478,8 +532,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             Name of the compartment. If None and :attr:`compartment_ocid` is not set, all the compartments including
             the root compartment are returned.
         :param str fetch_hosts_from_subcompartments: (optional)
-            Only applicable when compartment_name is specified. When set to true, the entire hierarchy of compartments
-            of the given compartment is returned.
+            Only applicable when compartment_name or compartment_ocid is specified. When set to true, the entire
+            hierarchy of compartments of the given compartment is returned.
         :raises ServiceError: When the Service returned an Error response
         :raises MaximumWaitTimeExceededError: When maximum wait time is exceeded while invoking target_fn
         :return: list of :class:`~oci.identity.models.Compartment`
@@ -838,9 +892,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             for resource in resources
             if all(
                 True
-                for filter in filters
                 if not self.filters.get(filter)
                 or getattr(resource, filter, None) == self.filters[filter]
+                else False
+                for filter in filters
             )
         ]
 
@@ -1014,7 +1069,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             ).data
 
             oraclevcn_domain_name = ".oraclevcn.com"
-            if not (vnic.hostname_label or subnet.dns_label or vcn.dns_label):
+            if not (vnic.hostname_label and subnet.dns_label and vcn.dns_label):
                 return None
             fqdn = (
                 vnic.hostname_label
@@ -1110,14 +1165,28 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         filters = dict((key, d[key]) for d in options["filters"]["value"] for key in d)
         self.filters = filters
 
+        self.compartments_info = dict()
+        it = 0
         for item in options["compartments"]["value"]:
-            self.display.warning(" --- compartments item: {0}   ".format(item))
+            self.display.warning(" --- compartments item: {0}".format(item))
+            self.compartments_info[it] = dict()
             if "compartment_ocid" in item:
-                self.params["compartment_ocid"] = item["compartment_ocid"]
+                self.compartments_info[it]["compartment_ocid"] = item[
+                    "compartment_ocid"
+                ]
             if "parent_compartment_ocid" in item:
-                self.params["parent_compartment_ocid"] = item["parent_compartment_ocid"]
+                self.compartments_info[it]["parent_compartment_ocid"] = item[
+                    "parent_compartment_ocid"
+                ]
             if "compartment_name" in item:
-                self.params["compartment_name"] = item["compartment_name"]
+                self.compartments_info[it]["compartment_name"] = item[
+                    "compartment_name"
+                ]
+            if "fetch_hosts_from_subcompartments" in item:
+                self.compartments_info[it]["fetch_hosts_from_subcompartments"] = item[
+                    "fetch_hosts_from_subcompartments"
+                ]
+            it += 1
 
         regions = options["regions"]["value"]
         if "all" in regions:

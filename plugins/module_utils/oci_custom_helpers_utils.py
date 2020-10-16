@@ -69,6 +69,9 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_ocvp_custom_helpers,
     oci_logging_custom_helpers,
     oci_blockchain_customer_helpers,
+    oci_log_analytics_custom_helpers,
+    oci_cloud_guard_custom_helpers,
+    oci_management_agent_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -112,5 +115,8 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_ocvp_custom_helpers,
         oci_logging_custom_helpers,
         oci_blockchain_customer_helpers,
+        oci_log_analytics_custom_helpers,
+        oci_cloud_guard_custom_helpers,
+        oci_management_agent_custom_helpers,
     ]
 )
