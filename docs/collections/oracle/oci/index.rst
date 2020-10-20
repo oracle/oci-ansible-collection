@@ -73,6 +73,12 @@ Module Plugins
 * :ref:`oci_budget_alert_rule <ansible_collections.oracle.oci.oci_budget_alert_rule_module>` -- Manage a BudgetAlertRule resource in Oracle Cloud Infrastructure
 * :ref:`oci_budget_alert_rule_facts <ansible_collections.oracle.oci.oci_budget_alert_rule_facts_module>` -- Fetches details about one or multiple BudgetAlertRule resources in Oracle Cloud Infrastructure
 * :ref:`oci_budget_facts <ansible_collections.oracle.oci.oci_budget_facts_module>` -- Fetches details about one or multiple Budget resources in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_configuration <ansible_collections.oracle.oci.oci_cloud_guard_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_configuration_facts <ansible_collections.oracle.oci.oci_cloud_guard_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_detector_facts <ansible_collections.oracle.oci.oci_cloud_guard_detector_facts_module>` -- Fetches details about one or multiple Detector resources in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_managed_list <ansible_collections.oracle.oci.oci_cloud_guard_managed_list_module>` -- Manage a ManagedList resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_managed_list_facts <ansible_collections.oracle.oci.oci_cloud_guard_managed_list_facts_module>` -- Fetches details about one or multiple ManagedList resources in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_managed_list_type_facts <ansible_collections.oracle.oci.oci_cloud_guard_managed_list_type_facts_module>` -- Fetches details about one or multiple ManagedListType resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_app_catalog_listing_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_facts_module>` -- Fetches details about one or multiple AppCatalogListing resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_app_catalog_listing_resource_version_agreement_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_resource_version_agreement_facts_module>` -- Fetches details about a AppCatalogListingResourceVersionAgreement resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_app_catalog_listing_resource_version_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_resource_version_facts_module>` -- Fetches details about one or multiple AppCatalogListingResourceVersion resources in Oracle Cloud Infrastructure
@@ -366,12 +372,23 @@ Module Plugins
 * :ref:`oci_loadbalancer_shape_facts <ansible_collections.oracle.oci.oci_loadbalancer_shape_facts_module>` -- Fetches details about one or multiple LoadBalancerShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_ssl_cipher_suite <ansible_collections.oracle.oci.oci_loadbalancer_ssl_cipher_suite_module>` -- Manage a SslCipherSuite resource in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_ssl_cipher_suite_facts <ansible_collections.oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts_module>` -- Fetches details about one or multiple SslCipherSuite resources in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_namespace_actions <ansible_collections.oracle.oci.oci_log_analytics_namespace_actions_module>` -- Perform actions on a Namespace resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_namespace_facts <ansible_collections.oracle.oci.oci_log_analytics_namespace_facts_module>` -- Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log <ansible_collections.oracle.oci.oci_logging_log_module>` -- Manage a Log resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_actions <ansible_collections.oracle.oci.oci_logging_log_actions_module>` -- Perform actions on a Log resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_facts <ansible_collections.oracle.oci.oci_logging_log_facts_module>` -- Fetches details about one or multiple Log resources in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_group <ansible_collections.oracle.oci.oci_logging_log_group_module>` -- Manage a LogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_group_facts <ansible_collections.oracle.oci.oci_logging_log_group_facts_module>` -- Fetches details about one or multiple LogGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_logging_service_facts <ansible_collections.oracle.oci.oci_logging_service_facts_module>` -- Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
+* :ref:`oci_logging_unified_agent_configuration <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_module>` -- Manage an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oci_logging_unified_agent_configuration_facts <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_facts_module>` -- Fetches details about one or multiple UnifiedAgentConfiguration resources in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent <ansible_collections.oracle.oci.oci_management_agent_module>` -- Manage a ManagementAgent resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_actions <ansible_collections.oracle.oci.oci_management_agent_actions_module>` -- Perform actions on a ManagementAgent resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_facts <ansible_collections.oracle.oci.oci_management_agent_facts_module>` -- Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_image_facts <ansible_collections.oracle.oci.oci_management_agent_image_facts_module>` -- Fetches details about one or multiple ManagementAgentImage resources in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_install_key <ansible_collections.oracle.oci.oci_management_agent_install_key_module>` -- Manage a ManagementAgentInstallKey resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_install_key_content_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_content_facts_module>` -- Fetches details about a ManagementAgentInstallKeyContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_install_key_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_facts_module>` -- Fetches details about one or multiple ManagementAgentInstallKey resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_accepted_agreement <ansible_collections.oracle.oci.oci_marketplace_accepted_agreement_module>` -- Manage an AcceptedAgreement resource in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_accepted_agreement_facts <ansible_collections.oracle.oci.oci_marketplace_accepted_agreement_facts_module>` -- Fetches details about one or multiple AcceptedAgreement resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_agreement_facts <ansible_collections.oracle.oci.oci_marketplace_agreement_facts_module>` -- Fetches details about one or multiple Agreement resources in Oracle Cloud Infrastructure

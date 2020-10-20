@@ -4,7 +4,7 @@
 
 .. Anchors
 
-.. _ansible_collections.oracle.oci.oci_data_integration_workspace_module:
+.. _ansible_collections.oracle.oci.oci_management_agent_module:
 
 .. Anchors: short name for ansible.builtin
 
@@ -14,8 +14,8 @@
 
 .. Title
 
-oracle.oci.oci_data_integration_workspace -- Manage a Workspace resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_management_agent -- Manage a ManagementAgent resource in Oracle Cloud Infrastructure
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
@@ -24,7 +24,7 @@ oracle.oci.oci_data_integration_workspace -- Manage a Workspace resource in Orac
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
-    To use it in a playbook, specify: :code:`oracle.oci.oci_data_integration_workspace`.
+    To use it in a playbook, specify: :code:`oracle.oci.oci_management_agent`.
 
 .. version_added
 
@@ -42,9 +42,8 @@ Synopsis
 
 .. Description
 
-- This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Data Integration Workspace ready for performing data integration.
-- This resource has the following action operations in the :ref:`oci_workspace_actions <ansible_collections.oci_workspace_actions_module>` module: start, stop.
+- This module allows the user to update and delete a ManagementAgent resource in Oracle Cloud Infrastructure
+- This resource has the following action operations in the :ref:`oci_management_agent_actions <ansible_collections.oci_management_agent_actions_module>` module: deploy_plugins.
 
 .. Aliases
 
@@ -164,8 +163,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment containing the workspace.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>The ID of the compartment from which the Management Agents to be listed.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
@@ -212,23 +210,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
-                                            <div>This parameter is updatable.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>A detailed description for the workspace.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -244,61 +226,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>New displayName of Agent.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-dns_server_ip"></div>
-                    <b>dns_server_ip</b>
-                    <a class="ansibleOptionLink" href="#parameter-dns_server_ip" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The IP of the custom DNS.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-dns_server_zone"></div>
-                    <b>dns_server_zone</b>
-                    <a class="ansibleOptionLink" href="#parameter-dns_server_zone" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The DNS zone of the custom DNS to use to resolve names.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
-                    <b>force_create</b>
-                    <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                                                                                                                                                                                <li>yes</li>
-                                                                                    </ul>
-                                                                            </td>
-                                                                <td>
-                                            <div>Whether to attempt non-idempotent creation of a resource. By default, create resource is an idempotent operation, and doesn&#x27;t create the resource if it already exists. Setting this option to true, forcefully creates a copy of the resource, even if it already exists.This option is mutually exclusive with <em>key_by</em>.</div>
-                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -312,15 +244,15 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-is_force_operation"></div>
-                    <b>is_force_operation</b>
-                    <a class="ansibleOptionLink" href="#parameter-is_force_operation" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-is_agent_auto_upgradable"></div>
+                    <b>is_agent_auto_upgradable</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_agent_auto_upgradable" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
                                                                     </div>
@@ -332,57 +264,27 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to force close down the workspace.</div>
+                                            <div>true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-is_private_network_enabled"></div>
-                    <b>is_private_network_enabled</b>
-                    <a class="ansibleOptionLink" href="#parameter-is_private_network_enabled" title="Permalink to this option"></a>
+                    <div class="ansibleOptionAnchor" id="parameter-management_agent_id"></div>
+                    <b>management_agent_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-management_agent_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>no</li>
-                                                                                                                                                                                                <li>yes</li>
-                                                                                    </ul>
-                                                                            </td>
-                                                                <td>
-                                            <div>Whether the private network connection is enabled or disabled.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
-                    <b>key_by</b>
-                    <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The list of comma-separated attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-quiesce_timeout"></div>
-                    <b>quiesce_timeout</b>
-                    <a class="ansibleOptionLink" href="#parameter-quiesce_timeout" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
+                        <span style="color: purple">string</span>
                                                                     </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.</div>
-                                                        </td>
+                                            <div>Unique Management Agent identifier</div>
+                                            <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
+                                            <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -415,24 +317,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The state of the Workspace.</div>
-                                            <div>Use <em>state=present</em> to create or update a Workspace.</div>
-                                            <div>Use <em>state=absent</em> to delete a Workspace.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-subnet_id"></div>
-                    <b>subnet_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-subnet_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The OCID of the subnet for customer connected databases.</div>
+                                            <div>The state of the ManagementAgent.</div>
+                                            <div>Use <em>state=present</em> to update an existing a ManagementAgent.</div>
+                                            <div>Use <em>state=absent</em> to delete a ManagementAgent.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -448,21 +335,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-vcn_id"></div>
-                    <b>vcn_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-vcn_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The OCID of the VCN the subnet is in.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -499,24 +371,6 @@ Parameters
                                             <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
                                                         </td>
             </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-workspace_id"></div>
-                    <b>workspace_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-workspace_id" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>DIS workspace id</div>
-                                            <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
-                                    </td>
-            </tr>
                         </table>
     <br/>
 
@@ -539,32 +393,26 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Create workspace
-      oci_data_integration_workspace:
+    - name: Update management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_management_agent:
+        is_agent_auto_upgradable: true
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-
-    - name: Update workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_data_integration_workspace:
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        description: description_example
-        display_name: display_name_example
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
-    - name: Update workspace
-      oci_data_integration_workspace:
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+    - name: Update management_agent
+      oci_management_agent:
+        management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+        is_agent_auto_upgradable: true
 
-    - name: Delete workspace
-      oci_data_integration_workspace:
-        workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+    - name: Delete management_agent
+      oci_management_agent:
+        management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
         state: absent
 
-    - name: Delete workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-      oci_data_integration_workspace:
+    - name: Delete management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_management_agent:
         display_name: display_name_example
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         state: absent
@@ -586,40 +434,40 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-workspace"></div>
-                    <b>workspace</b>
-                    <a class="ansibleOptionLink" href="#return-workspace" title="Permalink to this return value"></a>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-management_agent"></div>
+                    <b>management_agent</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Details of the Workspace resource acted upon by the current operation</div>
+                                            <div>Details of the ManagementAgent resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server_ip&#x27;: &#x27;dns_server_ip_example&#x27;, &#x27;dns_server_zone&#x27;: &#x27;dns_server_zone_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_private_network_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2019-08-25T21:10:29.410+0000&#x27;, &#x27;time_updated&#x27;: &#x27;2019-08-25T21:10:29.410+0000&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/compartment_id"></div>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/compartment_id"></div>
                     <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/compartment_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-management_agent/compartment_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the workspace.</div>
+                                            <div>Compartment Identifier</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -627,17 +475,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/defined_tags"></div>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/defined_tags"></div>
                     <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/defined_tags" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-management_agent/defined_tags" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -645,35 +493,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/description" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A detailed description for the workspace.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/display_name"></div>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-management_agent/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.</div>
+                                            <div>Management Agent Name</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -681,53 +511,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/dns_server_ip"></div>
-                    <b>dns_server_ip</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/dns_server_ip" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The IP of the custom DNS.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dns_server_ip_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/dns_server_zone"></div>
-                    <b>dns_server_zone</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/dns_server_zone" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The DNS zone of the custom DNS to use to resolve names.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dns_server_zone_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/freeform_tags"></div>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/freeform_tags"></div>
                     <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/freeform_tags" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-management_agent/freeform_tags" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -735,17 +529,35 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/id" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/host"></div>
+                    <b>host</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/host" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>Management Agent host machine name</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>agent identifier</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -753,17 +565,53 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/is_private_network_enabled"></div>
-                    <b>is_private_network_enabled</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/is_private_network_enabled" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/install_key_id"></div>
+                    <b>install_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/install_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>agent install key identifier</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/install_path"></div>
+                    <b>install_path</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/install_path" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Path where Management Agent is installed</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">install_path_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/is_agent_auto_upgradable"></div>
+                    <b>is_agent_auto_upgradable</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/is_agent_auto_upgradable" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">boolean</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the private network connection is enabled or disabled.</div>
+                                            <div>true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -771,28 +619,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Lifecycle states for workspaces in Data Integration Service CREATING - The resource is being created and may not be usable until the entire metadata is defined UPDATING - The resource is being updated and may not be usable until all changes are commited DELETING - The resource is being deleted and might require deep cleanup of children. ACTIVE   - The resource is valid and available for access INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for administrative reasons DELETED  - The resource has been deleted and isn&#x27;t available FAILED   - The resource is in a failed state due to validation or other errors STARTING - The resource is being started and may not be usable until becomes ACTIVE again STOPPING - The resource is in the process of Stopping and may not be usable until it Stops or fails STOPPED  - The resource is in Stopped state due to stop operation.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/state_message"></div>
-                    <b>state_message</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/state_message" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/lifecycle_details" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -802,79 +632,244 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">state_message_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/subnet_id"></div>
-                    <b>subnet_id</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/subnet_id" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/lifecycle_state" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the subnet for customer connected databases.</div>
+                                            <div>The current state of managementAgent</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/platform_name"></div>
+                    <b>platform_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/platform_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Platform Name</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">platform_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/platform_type"></div>
+                    <b>platform_type</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/platform_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Platform Type</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LINUX</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/platform_version"></div>
+                    <b>platform_version</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/platform_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Platform Version</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">platform_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list"></div>
+                    <b>plugin_list</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>list of managementAgentPlugins associated with the agent</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/time_created"></div>
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/plugin_display_name"></div>
+                    <b>plugin_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/plugin_display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Management Agent Plugin Identifier, can be renamed</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plugin_display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/plugin_id"></div>
+                    <b>plugin_id</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/plugin_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Plugin Id</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/plugin_name"></div>
+                    <b>plugin_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/plugin_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Management Agent Plugin Name</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plugin_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/plugin_version"></div>
+                    <b>plugin_version</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/plugin_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Plugin Version</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plugin_version_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/time_created"></div>
                     <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/time_created" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-management_agent/time_created" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the workspace was created, in the timestamp format defined by RFC3339.</div>
+                                            <div>The time the Management Agent was created. An RFC3339 formatted datetime string</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-08-25T21:10:29.410+0000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/time_updated"></div>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/time_last_heartbeat"></div>
+                    <b>time_last_heartbeat</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/time_last_heartbeat" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the Management Agent has last recorded its health status in telemetry. This value will be null if the agent has not recorded its health status in last 7 days. An RFC3339 formatted datetime string</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/time_updated"></div>
                     <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/time_updated" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-management_agent/time_updated" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the workspace was updated, in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>The time the Management Agent was updated. An RFC3339 formatted datetime string</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-08-25T21:10:29.410+0000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-workspace/vcn_id"></div>
-                    <b>vcn_id</b>
-                    <a class="ansibleOptionLink" href="#return-workspace/vcn_id" title="Permalink to this return value"></a>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/version"></div>
+                    <b>version</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/version" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the VCN the subnet is in.</div>
+                                            <div>Management Agent Version</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
                                     </td>
             </tr>
                     
