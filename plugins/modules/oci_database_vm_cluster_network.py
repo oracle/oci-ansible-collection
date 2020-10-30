@@ -23,7 +23,7 @@ module: oci_database_vm_cluster_network
 short_description: Manage a VmClusterNetwork resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VmClusterNetwork resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates the VM cluster network.
+    - For I(state=present), creates the Exadata Cloud@Customer VM cluster network.
     - "This resource has the following action operations in the M(oci_vm_cluster_network_actions) module: download_vm_cluster_network_config_file, validate."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -42,7 +42,7 @@ options:
         type: str
     display_name:
         description:
-            - The user-friendly name for the VM cluster network. The name does not need to be unique.
+            - The user-friendly name for the Exadata Cloud@Customer VM cluster network. The name does not need to be unique.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
@@ -174,7 +174,7 @@ EXAMPLES = """
 - name: Create vm_cluster_network
   oci_database_vm_cluster_network:
     exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.tenancy.oc1.<example_unique_ID>
+    compartment_id: ocid1.tenancy.oc1.example_unique_ID
     display_name: testVmClusterNw
     scans:
     - hostname: sea2410c4-scan
@@ -193,7 +193,7 @@ EXAMPLES = """
 - name: Update vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster_network:
     exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.tenancy.oc1.<example_unique_ID>
+    compartment_id: ocid1.tenancy.oc1.example_unique_ID
     display_name: testVmClusterNw
     scans:
     - hostname: sea2410c4-scan
@@ -225,7 +225,7 @@ EXAMPLES = """
 - name: Delete vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster_network:
     exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.tenancy.oc1.<example_unique_ID>
+    compartment_id: ocid1.tenancy.oc1.example_unique_ID
     display_name: testVmClusterNw
     state: absent
 

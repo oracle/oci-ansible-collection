@@ -23,14 +23,14 @@ module: oci_database_maintenance_run_facts
 short_description: Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
-    - Gets a list of the Maintenance Runs in the specified compartment.
+    - Gets a list of the maintenance runs in the specified compartment.
     - If I(maintenance_run_id) is specified, the details of a single MaintenanceRun will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     maintenance_run_id:
         description:
-            - The Maintenance Run OCID.
+            - The maintenance run OCID.
             - Required to get a specific maintenance_run.
         type: str
         aliases: ["id"]
@@ -51,6 +51,7 @@ options:
             - "AUTONOMOUS_EXADATA_INFRASTRUCTURE"
             - "AUTONOMOUS_CONTAINER_DATABASE"
             - "EXADATA_DB_SYSTEM"
+            - "CLOUD_EXADATA_INFRASTRUCTURE"
     maintenance_type:
         description:
             - The maintenance type.
@@ -115,7 +116,7 @@ maintenance_runs:
     contains:
         id:
             description:
-                - The OCID of the Maintenance Run.
+                - The OCID of the maintenance run.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
@@ -127,19 +128,19 @@ maintenance_runs:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The user-friendly name for the Maintenance Run.
+                - The user-friendly name for the maintenance run.
             returned: on success
             type: string
             sample: display_name_example
         description:
             description:
-                - The text describing this Maintenance Run.
+                - Description of the maintenance run.
             returned: on success
             type: string
             sample: description_example
         lifecycle_state:
             description:
-                - The current state of the Maintenance Run.
+                - The current state of the maintenance run.
             returned: on success
             type: string
             sample: SCHEDULED
@@ -151,31 +152,31 @@ maintenance_runs:
             sample: lifecycle_details_example
         time_scheduled:
             description:
-                - The date and time the Maintenance Run is scheduled for.
+                - The date and time the maintenance run is scheduled to occur.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         time_started:
             description:
-                - The date and time the Maintenance Run starts.
+                - The date and time the maintenance run starts.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         time_ended:
             description:
-                - The date and time the Maintenance Run was completed.
+                - The date and time the maintenance run was completed.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         target_resource_type:
             description:
-                - The type of the target resource on which the Maintenance Run occurs.
+                - The type of the target resource on which the maintenance run occurs.
             returned: on success
             type: string
             sample: AUTONOMOUS_EXADATA_INFRASTRUCTURE
         target_resource_id:
             description:
-                - The ID of the target resource on which the Maintenance Run occurs.
+                - The ID of the target resource on which the maintenance run occurs.
             returned: on success
             type: string
             sample: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
@@ -185,6 +186,12 @@ maintenance_runs:
             returned: on success
             type: string
             sample: PLANNED
+        patch_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch to be applied in the maintenance run.
+            returned: on success
+            type: string
+            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
         maintenance_subtype:
             description:
                 - Maintenance sub-type.
@@ -204,6 +211,7 @@ maintenance_runs:
         "target_resource_type": "AUTONOMOUS_EXADATA_INFRASTRUCTURE",
         "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_type": "PLANNED",
+        "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_subtype": "QUARTERLY"
     }]
 """
@@ -287,6 +295,7 @@ def main():
                     "AUTONOMOUS_EXADATA_INFRASTRUCTURE",
                     "AUTONOMOUS_CONTAINER_DATABASE",
                     "EXADATA_DB_SYSTEM",
+                    "CLOUD_EXADATA_INFRASTRUCTURE",
                 ],
             ),
             maintenance_type=dict(type="str", choices=["PLANNED", "UNPLANNED"]),

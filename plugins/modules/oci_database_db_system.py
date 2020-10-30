@@ -30,6 +30,7 @@ description:
     - "- L(Bare metal and virtual machine DB system default
       options,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)
       - L(Exadata DB system default options,https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)"
+    - "This resource has the following action operations in the M(oci_db_system_actions) module: migrate_exadata_db_system_resource_model."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -98,7 +99,7 @@ options:
             - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
               backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
               information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
-              DB systems.
+              systems.
             - This parameter is updatable.
         type: list
     shape:
@@ -178,8 +179,8 @@ options:
         type: int
     cluster_name:
         description:
-            - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an an alphabetic character, and may
-              contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
+            - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain
+              hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
         type: str
     data_storage_percentage:
         description:
@@ -220,9 +221,15 @@ options:
         type: str
         choices:
             - "NONE"
+            - "DB_SYSTEM"
             - "DATABASE"
             - "DB_BACKUP"
         default: "NONE"
+    private_ip:
+        description:
+            - A private IP address of your choice. Must be an available IP address within the subnet's CIDR.
+              If you don't specify a value, Oracle automatically assigns a private IP address from the subnet.
+        type: str
     db_home:
         description:
             - ""
@@ -240,6 +247,11 @@ options:
                       us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'NONE'
                 type: str
+            database_software_image_id:
+                description:
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    - Applicable when source is 'NONE'
+                type: str
             database:
                 description:
                     - ""
@@ -255,6 +267,11 @@ options:
                     db_unique_name:
                         description:
                             - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+                        type: str
+                    database_software_image_id:
+                        description:
+                            - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                            - Applicable when source is 'NONE'
                         type: str
                     pdb_name:
                         description:
@@ -301,7 +318,7 @@ options:
                     db_backup_config:
                         description:
                             - ""
-                            - Applicable when source is 'NONE'
+                            - Applicable when source is one of ['DB_SYSTEM', 'NONE']
                         type: dict
                         suboptions:
                             auto_backup_enabled:
@@ -385,14 +402,20 @@ options:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
                               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                            - Applicable when source is 'NONE'
+                            - Applicable when source is one of ['DB_SYSTEM', 'NONE']
                         type: dict
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a namespace.
                               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                            - Applicable when source is 'NONE'
+                            - Applicable when source is one of ['DB_SYSTEM', 'NONE']
                         type: dict
+                    db_domain:
+                        description:
+                            - The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network
+                              structure.
+                            - Applicable when source is 'DB_SYSTEM'
+                        type: str
                     database_id:
                         description:
                             - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -403,16 +426,35 @@ options:
                             - The password to open the TDE wallet.
                             - Required when source is one of ['DATABASE', 'DB_BACKUP']
                         type: str
+                    time_stamp_for_point_in_time_recovery:
+                        description:
+                            - The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to
+                              create the database.
+                            - Applicable when source is 'DATABASE'
+                        type: str
                     backup_id:
                         description:
                             - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                             - Required when source is 'DB_BACKUP'
                         type: str
+            freeform_tags:
+                description:
+                    - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                    - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                    - Applicable when source is 'DB_SYSTEM'
+                type: dict
+            defined_tags:
+                description:
+                    - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                    - Applicable when source is 'DB_SYSTEM'
+                type: dict
     database_edition:
         description:
             - The Oracle Database Edition that applies to all the databases on the DB system.
               Exadata DB systems and 2-node RAC DB systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.
-            - Required for create using I(state=present).
+            - Required when source is one of ['DATABASE', 'NONE', 'DB_BACKUP']
         type: str
         choices:
             - "STANDARD_EDITION"
@@ -424,6 +466,7 @@ options:
             - The type of redundancy configured for the DB system.
               Normal is 2-way redundancy, recommended for test and development systems.
               High is 3-way redundancy, recommended for production systems.
+            - Applicable when source is one of ['DATABASE', 'NONE', 'DB_BACKUP']
         type: str
         choices:
             - "HIGH"
@@ -519,6 +562,11 @@ options:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                     - Applicable when source is 'NONE'
                 type: int
+    source_db_system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            - Required when source is 'DB_SYSTEM'
+        type: str
     db_system_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -535,6 +583,11 @@ options:
             patch_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
+                    - This parameter is updatable.
+                type: str
+            database_software_image_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
                     - This parameter is updatable.
                 type: str
             action:
@@ -571,7 +624,7 @@ EXAMPLES = """
         db_backup_config:
           backup_destination_details:
           - type: RECOVERY_APPLIANCE
-            id: ocid1.bkupdest.oc1.phx.ckiuzhel9ro23wokzhllxfuo8acbzcygqo5kcbhqbhcjoknfuzlh2t8xcttl
+            id: ocid1.bkupdest.oc1.phx.unique_ID
             vpc_user: vpcUser1
             vpc_password: password
           recovery_window_in_days: 30
@@ -596,7 +649,7 @@ EXAMPLES = """
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     version:
-      patch_id: ocid1.patch.oc1.phx.aaaaaaaahlnxiytzxhvat7fxcycge3tlxmmraivbtomh32j5lmjhf44zsqqa
+      patch_id: ocid1.patch.oc1.phx.unique_ID
       action: APPLY
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -607,7 +660,7 @@ EXAMPLES = """
   oci_database_db_system:
     cpu_core_count: 10
     version:
-      patch_id: ocid1.patch.oc1.phx.aaaaaaaahlnxiytzxhvat7fxcycge3tlxmmraivbtomh32j5lmjhf44zsqqa
+      patch_id: ocid1.patch.oc1.phx.unique_ID
       action: APPLY
     ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
 
@@ -643,45 +696,46 @@ db_system:
             contains:
                 lifecycle_state:
                     description:
-                        - The current config state of IORM settings for this Exadata System.
+                        - The current state of IORM configuration for the Exadata DB system.
                     returned: on success
                     type: string
                     sample: BOOTSTRAPPING
                 lifecycle_details:
                     description:
-                        - Additional information about the current lifecycleState.
+                        - Additional information about the current `lifecycleState`.
                     returned: on success
                     type: string
                     sample: lifecycle_details_example
                 objective:
                     description:
-                        - "Value for the IORM objective
-                          Default is \\"Auto\\""
+                        - The current value for the IORM objective.
+                          The default is `AUTO`.
                     returned: on success
                     type: string
                     sample: LOW_LATENCY
                 db_plans:
                     description:
-                        - Array of IORM Setting for all the database in
-                          this Exadata DB System
+                        - An array of IORM settings for all the database in
+                          the Exadata DB system.
                     returned: on success
                     type: complex
                     contains:
                         db_name:
                             description:
-                                - Database Name. For default DbPlan, the dbName will always be `default`
+                                - The database name. For the default `DbPlan`, the `dbName` is `default`.
                             returned: on success
                             type: string
                             sample: db_name_example
                         share:
                             description:
-                                - Relative priority of a database
+                                - The relative priority of this database.
                             returned: on success
                             type: int
                             sample: 56
                         flash_cache_limit:
                             description:
-                                - Flash Cache limit, internally configured based on shares
+                                - The flash cache limit for this database. This value is internally configured based on the share value assigned to the
+                                  database.
                             returned: on success
                             type: string
                             sample: flash_cache_limit_example
@@ -750,7 +804,7 @@ db_system:
                 - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
                   backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For
                   more information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only
-                  to Exadata DB systems.
+                  to Exadata systems.
             returned: on success
             type: list
             sample: []
@@ -815,7 +869,7 @@ db_system:
             sample: 56
         cluster_name:
             description:
-                - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an an alphabetic character, and may
+                - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may
                   contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
             returned: on success
             type: string
@@ -1020,6 +1074,19 @@ db_system:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        source_db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            returned: on success
+            type: string
+            sample: ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        point_in_time_data_disk_clone_timestamp:
+            description:
+                - The point in time for a cloned database system when the data disks were cloned from the source database system, as described in L(RFC
+                  3339,https://tools.ietf.org/rfc/rfc3339).
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
     sample: {
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -1082,7 +1149,9 @@ db_system:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "source_db_system_id": "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "point_in_time_data_disk_clone_timestamp": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -1256,19 +1325,24 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             source=dict(
-                type="str", default="NONE", choices=["NONE", "DATABASE", "DB_BACKUP"]
+                type="str",
+                default="NONE",
+                choices=["NONE", "DB_SYSTEM", "DATABASE", "DB_BACKUP"],
             ),
+            private_ip=dict(type="str"),
             db_home=dict(
                 type="dict",
                 options=dict(
                     display_name=dict(aliases=["name"], type="str"),
                     db_version=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
                     database=dict(
                         type="dict",
                         required=True,
                         options=dict(
                             db_name=dict(type="str"),
                             db_unique_name=dict(type="str"),
+                            database_software_image_id=dict(type="str"),
                             pdb_name=dict(type="str"),
                             admin_password=dict(type="str", required=True, no_log=True),
                             character_set=dict(type="str"),
@@ -1320,11 +1394,15 @@ def main():
                             ),
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
+                            db_domain=dict(type="str"),
                             database_id=dict(type="str"),
                             backup_tde_password=dict(type="str", no_log=True),
+                            time_stamp_for_point_in_time_recovery=dict(type="str"),
                             backup_id=dict(type="str"),
                         ),
                     ),
+                    freeform_tags=dict(type="dict"),
+                    defined_tags=dict(type="dict"),
                 ),
             ),
             database_edition=dict(
@@ -1396,11 +1474,13 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
+            source_db_system_id=dict(type="str"),
             db_system_id=dict(aliases=["id"], type="str"),
             version=dict(
                 type="dict",
                 options=dict(
                     patch_id=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
                     action=dict(type="str", choices=["APPLY", "PRECHECK"]),
                 ),
             ),

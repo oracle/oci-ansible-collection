@@ -164,6 +164,19 @@ autonomous_container_databases:
             returned: on success
             type: string
             sample: CLOUD
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -188,6 +201,12 @@ autonomous_container_databases:
             returned: on success
             type: string
             sample: RELEASE_UPDATES
+        patch_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch applied on the system.
+            returned: on success
+            type: string
+            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -286,7 +305,7 @@ autonomous_container_databases:
             sample: Uocm:PHX-AD-1
         db_version:
             description:
-                - Oracle Database version of the Autonomous Container Database
+                - Oracle Database version of the Autonomous Container Database.
             returned: on success
             type: string
             sample: db_version_example
@@ -351,10 +370,13 @@ autonomous_container_databases:
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "infrastructure_type": "CLOUD",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
+        "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_window": {

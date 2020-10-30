@@ -52,7 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_database_backup
   oci_database_autonomous_database_backup:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1.phx.examplervkwamqmkukhluitmxsgupmgpv2lt4jf6i4mrksrqk4ysjexample
+    autonomous_database_id: ocid1.autonomousdatabase.oc1.phx.unique_ID
     display_name: Monthly Backup
 
 """

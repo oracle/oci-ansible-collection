@@ -506,7 +506,7 @@ listings:
                     sample: file_extension_example
         regions:
             description:
-                - The regions where the listing is eligible to be deployed.
+                - The regions where you can deploy the listing. (Some listings have restrictions that limit their deployment to United States regions only.)
             returned: on success
             type: complex
             contains:

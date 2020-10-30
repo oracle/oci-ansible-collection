@@ -23,7 +23,7 @@ module: oci_database_exadata_infrastructure
 short_description: Manage an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an ExadataInfrastructure resource in Oracle Cloud Infrastructure
-    - For I(state=present), create Exadata infrastructure.
+    - For I(state=present), creates Exadata Cloud@Customer infrastructure.
     - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate,
       download_exadata_infrastructure_config_file."
 version_added: "2.9"
@@ -98,6 +98,31 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    contacts:
+        description:
+            - The list of contacts for the Exadata infrastructure.
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            name:
+                description:
+                    - The name of the Exadata Infrastructure contact.
+                type: str
+                required: true
+            phone_number:
+                description:
+                    - The phone number for the Exadata Infrastructure contact.
+                type: str
+            email:
+                description:
+                    - The email for the Exadata Infrastructure contact.
+                type: str
+                required: true
+            is_primary:
+                description:
+                    - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                type: bool
+                required: true
     dns_server:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
@@ -210,7 +235,7 @@ exadata_infrastructure:
             sample: CREATING
         display_name:
             description:
-                - The user-friendly name for the Exadata infrastructure. The name does not need to be unique.
+                - The user-friendly name for the Exadata Cloud@Customer infrastructure. The name does not need to be unique.
             returned: on success
             type: string
             sample: display_name_example
@@ -341,6 +366,42 @@ exadata_infrastructure:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        csi_number:
+            description:
+                - The CSI Number of the Exadata infrastructure.
+            returned: on success
+            type: string
+            sample: csi_number_example
+        contacts:
+            description:
+                - The list of contacts for the Exadata infrastructure.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the Exadata Infrastructure contact.
+                    returned: on success
+                    type: string
+                    sample: name_example
+                phone_number:
+                    description:
+                        - The phone number for the Exadata Infrastructure contact.
+                    returned: on success
+                    type: string
+                    sample: phone_number_example
+                email:
+                    description:
+                        - The email for the Exadata Infrastructure contact.
+                    returned: on success
+                    type: string
+                    sample: email_example
+                is_primary:
+                    description:
+                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                    returned: on success
+                    type: bool
+                    sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -382,6 +443,13 @@ exadata_infrastructure:
         "ntp_server": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_details": "lifecycle_details_example",
+        "csi_number": "csi_number_example",
+        "contacts": [{
+            "name": "name_example",
+            "phone_number": "phone_number_example",
+            "email": "email_example",
+            "is_primary": true
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -548,6 +616,16 @@ def main():
             admin_network_cidr=dict(type="str"),
             infini_band_network_cidr=dict(type="str"),
             corporate_proxy=dict(type="str"),
+            contacts=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    name=dict(type="str", required=True),
+                    phone_number=dict(type="str"),
+                    email=dict(type="str", required=True),
+                    is_primary=dict(type="bool", required=True),
+                ),
+            ),
             dns_server=dict(type="list"),
             ntp_server=dict(type="list"),
             freeform_tags=dict(type="dict"),

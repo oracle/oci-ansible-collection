@@ -85,6 +85,7 @@ options:
         type: str
         choices:
             - "NewDbSystem"
+            - "ExistingVmCluster"
             - "ExistingDbSystem"
         required: true
     display_name:
@@ -131,13 +132,19 @@ options:
             - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
               backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
               information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
-              DB systems.
+              systems.
             - Applicable when creation_type is 'NewDbSystem'
         type: list
     hostname:
         description:
             - The hostname for the DB node.
             - Applicable when creation_type is 'NewDbSystem'
+        type: str
+    peer_vm_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM Cluster in which to create the standby database.
+              You must supply this value if creationType is `ExistingVmCluster`.
+            - Applicable when creation_type is 'ExistingVmCluster'
         type: str
     peer_db_system_id:
         description:
@@ -402,7 +409,9 @@ def main():
                 type="str", required=True, choices=["SYNC", "ASYNC", "FASTSYNC"]
             ),
             creation_type=dict(
-                type="str", required=True, choices=["NewDbSystem", "ExistingDbSystem"]
+                type="str",
+                required=True,
+                choices=["NewDbSystem", "ExistingVmCluster", "ExistingDbSystem"],
             ),
             display_name=dict(aliases=["name"], type="str"),
             availability_domain=dict(type="str"),
@@ -411,6 +420,7 @@ def main():
             nsg_ids=dict(type="list"),
             backup_network_nsg_ids=dict(type="list"),
             hostname=dict(type="str"),
+            peer_vm_cluster_id=dict(type="str"),
             peer_db_system_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

@@ -89,9 +89,9 @@ vaults:
         crypto_endpoint:
             description:
                 - The service endpoint to perform cryptographic operations against. Cryptographic operations include
-                  L(Encrypt,https://docs.cloud.oracle.com/api/#/en/key/release/EncryptedData/Encrypt),
-                  L(Decrypt,https://docs.cloud.oracle.com/api/#/en/key/release/DecryptedData/Decrypt),
-                  and L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey) operations.
+                  L(Encrypt,https://docs.cloud.oracle.com/api/#/en/key/latest/EncryptedData/Encrypt),
+                  L(Decrypt,https://docs.cloud.oracle.com/api/#/en/key/latest/DecryptedData/Decrypt),
+                  and L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey) operations.
             returned: on success
             type: string
             sample: crypto_endpoint_example

@@ -19,13 +19,13 @@ except ImportError:
 
 
 # The waiter client for this service uses apigateway WorkRequestsClient
-class GatewayHelperCustom:
+class ApigatewayGatewayHelperCustom:
     def __init__(self, module, resource_type, service_client_class, namespace):
         self.work_request_client = oci_config_utils.create_service_client(
             module, WorkRequestsClient
         )
 
-        super(GatewayHelperCustom, self).__init__(
+        super(ApigatewayGatewayHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
         )
 
@@ -34,15 +34,73 @@ class GatewayHelperCustom:
         return self.work_request_client
 
 
-class DeploymentHelperCustom:
+class ApigatewayDeploymentHelperCustom:
     def __init__(self, module, resource_type, service_client_class, namespace):
         self.work_request_client = oci_config_utils.create_service_client(
             module, WorkRequestsClient
         )
 
-        super(DeploymentHelperCustom, self).__init__(
+        super(ApigatewayDeploymentHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
         )
 
     def get_waiter_client(self):
         return self.work_request_client
+
+
+# The waiter client for this service uses apigateway WorkRequestsClient
+class ApigatewayApiHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayApiHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client
+
+    def get_exclude_attributes(self):
+        return super(ApigatewayApiHelperCustom, self).get_exclude_attributes() + [
+            "content",
+        ]
+
+    # remove the content parameter for the idempotence check
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            ApigatewayApiHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        update_model_dict.pop("content", None)
+        return update_model_dict
+
+
+# The waiter client for this service uses apigateway WorkRequestsClient
+class ApigatewayWaasCertificateHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayWaasCertificateHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client
+
+    def get_exclude_attributes(self):
+        excluded_attributes = super(
+            ApigatewayWaasCertificateHelperCustom, self
+        ).get_exclude_attributes()
+        if self.namespace == "apigateway":
+            return excluded_attributes + [
+                "private_key",
+            ]
+        return excluded_attributes
+
+    def get_entity_type(self):
+        return "certificate"

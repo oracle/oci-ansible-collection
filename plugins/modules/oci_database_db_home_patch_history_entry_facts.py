@@ -23,7 +23,7 @@ module: oci_database_db_home_patch_history_entry_facts
 short_description: Fetches details about one or multiple DbHomePatchHistoryEntry resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DbHomePatchHistoryEntry resources in Oracle Cloud Infrastructure
-    - Gets history of the actions taken for patches for the specified Database Home.
+    - Lists the history of patch operations on the specified Database Home.
     - If I(patch_history_entry_id) is specified, the details of a single DbHomePatchHistoryEntry will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -100,7 +100,7 @@ db_home_patch_history_entries:
             sample: 2013-10-20T19:20:30+01:00
         time_ended:
             description:
-                - The date and time when the patch action completed.
+                - The date and time when the patch action completed
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00

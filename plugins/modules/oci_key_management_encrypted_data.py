@@ -23,7 +23,7 @@ module: oci_key_management_encrypted_data
 short_description: Manage an EncryptedData resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create an EncryptedData resource in Oracle Cloud Infrastructure
-    - For I(state=present), encrypts data using the given L(EncryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/EncryptDataDetails)
+    - For I(state=present), encrypts data using the given L(EncryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/EncryptDataDetails)
       resource.
       Plaintext included in the example request is a base64-encoded value of a UTF-8 string.
 version_added: "2.9"

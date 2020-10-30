@@ -29,7 +29,7 @@ description:
       - softreset - ACPI shutdown and power on
       - reset - power off and power on"
     - "**Note:** Stopping a node affects billing differently, depending on the type of DB system:
-      *Bare metal and Exadata DB systems* - The _stop_ state has no effect on the resources you consume.
+      *Bare metal and Exadata systems* - The _stop_ state has no effect on the resources you consume.
       Billing continues for DB nodes that you stop, and related resources continue
       to apply against any relevant quotas. You must terminate the DB system
       (L(TerminateDbSystem,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystem/TerminateDbSystem))

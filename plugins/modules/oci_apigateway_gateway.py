@@ -46,7 +46,9 @@ options:
         type: str
     endpoint_type:
         description:
-            - Gateway endpoint type.
+            - Gateway endpoint type. `PUBLIC` will have a public ip address assigned to it, while `PRIVATE` will only be
+              accessible on a private IP address on the subnet.
+            - "Example: `PUBLIC` or `PRIVATE`"
             - Required for create using I(state=present).
         type: str
     subnet_id:
@@ -54,6 +56,11 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet in which
               related resources are created.
             - Required for create using I(state=present).
+        type: str
+    certificate_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+            - This parameter is updatable.
         type: str
     freeform_tags:
         description:
@@ -94,20 +101,21 @@ EXAMPLES = """
 - name: Create gateway
   oci_apigateway_gateway:
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    endpoint_type: endpoint_type_example
+    endpoint_type: PUBLIC
     subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
     display_name: My new resource
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update gateway
   oci_apigateway_gateway:
     display_name: My new resource
-    freeform_tags: {'Department': 'Finance'}
+    certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
     gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete gateway
@@ -153,7 +161,9 @@ gateway:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         endpoint_type:
             description:
-                - Gateway endpoint type.
+                - Gateway endpoint type. `PUBLIC` will have a public ip address assigned to it, while `PRIVATE` will only be
+                  accessible on a private IP address on the subnet.
+                - "Example: `PUBLIC` or `PRIVATE`"
             returned: on success
             type: string
             sample: PUBLIC
@@ -196,6 +206,24 @@ gateway:
             returned: on success
             type: string
             sample: hostname_example
+        certificate_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+            returned: on success
+            type: string
+            sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        ip_addresses:
+            description:
+                - An array of IP addresses associated with the gateway.
+            returned: on success
+            type: complex
+            contains:
+                ip_address:
+                    description:
+                        - An IP address.
+                    returned: on success
+                    type: string
+                    sample: ip_address_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -225,6 +253,10 @@ gateway:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "hostname": "hostname_example",
+        "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
+        "ip_addresses": [{
+            "ip_address": "ip_address_example"
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -250,7 +282,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class GatewayHelperGen(OCIResourceHelperBase):
+class ApigatewayGatewayHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_module_resource_id_param(self):
@@ -277,7 +309,11 @@ class GatewayHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = (
+            ["display_name"]
+            if self._use_name_as_identifier()
+            else ["certificate_id", "display_name"]
+        )
 
         return dict(
             (param, self.module.params[param])
@@ -347,10 +383,10 @@ class GatewayHelperGen(OCIResourceHelperBase):
         )
 
 
-GatewayHelperCustom = get_custom_class("GatewayHelperCustom")
+ApigatewayGatewayHelperCustom = get_custom_class("ApigatewayGatewayHelperCustom")
 
 
-class ResourceHelper(GatewayHelperCustom, GatewayHelperGen):
+class ResourceHelper(ApigatewayGatewayHelperCustom, ApigatewayGatewayHelperGen):
     pass
 
 
@@ -364,6 +400,7 @@ def main():
             compartment_id=dict(type="str"),
             endpoint_type=dict(type="str"),
             subnet_id=dict(type="str"),
+            certificate_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             gateway_id=dict(aliases=["id"], type="str"),

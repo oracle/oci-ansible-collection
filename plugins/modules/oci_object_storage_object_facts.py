@@ -74,6 +74,30 @@ options:
               value is used to check the integrity of the encryption key. For more information, see
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
         type: str
+    http_response_content_disposition:
+        description:
+            - This value will be used in Content-Disposition header of the response.
+        type: str
+    http_response_cache_control:
+        description:
+            - This value will be used in Cache-Control header of the response.
+        type: str
+    http_response_content_type:
+        description:
+            - This value will be used in Content-Type header of the response.
+        type: str
+    http_response_content_language:
+        description:
+            - This value will be used in Content-Language header of the response.
+        type: str
+    http_response_content_encoding:
+        description:
+            - This value will be used in Content-Encoding header of the response
+        type: str
+    http_response_expires:
+        description:
+            - This value will be used in Expires header of the response
+        type: str
     prefix:
         description:
             - The string to use for matching against the start of object names in a list query.
@@ -211,6 +235,12 @@ class ObjectFactsHelperGen(OCIResourceFactsHelperBase):
             "opc_sse_customer_algorithm",
             "opc_sse_customer_key",
             "opc_sse_customer_key_sha256",
+            "http_response_content_disposition",
+            "http_response_cache_control",
+            "http_response_content_type",
+            "http_response_content_language",
+            "http_response_content_encoding",
+            "http_response_expires",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -265,6 +295,12 @@ def main():
             opc_sse_customer_algorithm=dict(type="str"),
             opc_sse_customer_key=dict(type="str"),
             opc_sse_customer_key_sha256=dict(type="str"),
+            http_response_content_disposition=dict(type="str"),
+            http_response_cache_control=dict(type="str"),
+            http_response_content_type=dict(type="str"),
+            http_response_content_language=dict(type="str"),
+            http_response_content_encoding=dict(type="str"),
+            http_response_expires=dict(type="str"),
             prefix=dict(type="str"),
             start=dict(type="str"),
             end=dict(type="str"),

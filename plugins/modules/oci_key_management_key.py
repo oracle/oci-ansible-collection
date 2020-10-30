@@ -80,6 +80,17 @@ options:
                     - The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.
                 type: int
                 required: true
+    protection_mode:
+        description:
+            - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
+              A protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed inside
+              the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's RSA wrapping key which persists
+              on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
+              a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
+        type: str
+        choices:
+            - "HSM"
+            - "SOFTWARE"
     key_id:
         description:
             - The OCID of the key.
@@ -192,6 +203,17 @@ key:
                     returned: on success
                     type: int
                     sample: 56
+        protection_mode:
+            description:
+                - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
+                  A protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed
+                  inside
+                  the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's RSA wrapping key which persists
+                  on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
+                  a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
+            returned: on success
+            type: string
+            sample: HSM
         lifecycle_state:
             description:
                 - The key's current lifecycle state.
@@ -230,6 +252,7 @@ key:
             "algorithm": "AES",
             "length": 56
         },
+        "protection_mode": "HSM",
         "lifecycle_state": "ENABLED",
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
@@ -284,7 +307,20 @@ class KeyHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        return dict()
+        optional_list_method_params = ["protection_mode"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
 
     def list_resources(self):
 
@@ -357,6 +393,7 @@ def main():
                     length=dict(type="int", required=True),
                 ),
             ),
+            protection_mode=dict(type="str", choices=["HSM", "SOFTWARE"]),
             key_id=dict(aliases=["id"], type="str"),
             service_endpoint=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),

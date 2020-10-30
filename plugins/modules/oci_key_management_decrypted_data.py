@@ -23,7 +23,7 @@ module: oci_key_management_decrypted_data
 short_description: Manage a DecryptedData resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a DecryptedData resource in Oracle Cloud Infrastructure
-    - For I(state=present), decrypts data using the given L(DecryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/DecryptDataDetails)
+    - For I(state=present), decrypts data using the given L(DecryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/DecryptDataDetails)
       resource.
 version_added: "2.9"
 author: Oracle (@oracle)

@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.10.0] - 2020-10-29
+
+### Added:
+- New modules & features for database service. Added support for resources cloud exdata infrastructure, cloud vm cluster, database software image
+- New modules and features in KMS service. Added support for protection_mode.
+- New features added for container engine (OKE) service.
+- New features added for object storage service.
+- New features and modules added for apigateway service.
+- Added options to set the api_user_private_key and api_user_pass_phrase in the oci_inventory plugin
+- New Identity samples.
+
+### Fixes
+- Inventory plugin issues: [fetch_hosts_from_subcompartments](https://github.com/oracle/oci-ansible-collection/issues/25)
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.23.2)
+
 ## [2.9.0] - 2020-10-15
 
 ### Added:

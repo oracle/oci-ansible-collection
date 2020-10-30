@@ -310,7 +310,7 @@ options:
                         suboptions:
                             is_enabled:
                                 description:
-                                    - Enables pushing of access logs to OCI Public Logging.
+                                    - Enables pushing of access logs to the OCI Object Storage log archival bucket.
                                 type: bool
                     execution_log:
                         description:
@@ -319,12 +319,12 @@ options:
                         suboptions:
                             is_enabled:
                                 description:
-                                    - Enables pushing of execution logs to OCI Public Logging.
+                                    - Enables pushing of execution logs to the OCI Object Storage log archival bucket.
                                 type: bool
                             log_level:
                                 description:
                                     - Specifies the logging level, which affects the log entries pushed to
-                                      OCI Public Logging if `isEnabled` is set to True.
+                                      OCI Object Storage log archival bucket if `isEnabled` is set to True.
                                 type: str
                                 choices:
                                     - "INFO"
@@ -367,7 +367,7 @@ options:
                                     type:
                                         description:
                                             - "Indicates how authorization should be applied. For a type of ANY_OF, an \\"allowedScope\\"
-                                              property must also be specfied. Otherwise, only a type is required. For a type of ANONYMOUS, an
+                                              property must also be specified. Otherwise, only a type is required. For a type of ANONYMOUS, an
                                               authenticated API must have the \\"isAnonymousAccessAllowed\\" property set to \\"true\\" in the authentication
                                               policy."
                                         type: str
@@ -419,6 +419,266 @@ options:
                                             - The time in seconds for the client to cache preflight responses. This is sent as the Access-Control-Max-Age
                                               if greater than 0.
                                         type: int
+                            header_transformations:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    set_headers:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            items:
+                                                description:
+                                                    - The list of headers.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    name:
+                                                        description:
+                                                            - The case-insensitive name of the header.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
+                                                    values:
+                                                        description:
+                                                            - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                              enclosed within
+                                                              ${} delimiters.
+                                                        type: list
+                                                        required: true
+                                                    if_exists:
+                                                        description:
+                                                            - If a header with the same name already exists in the request, OVERWRITE will overwrite the value,
+                                                              APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                        type: str
+                                                        choices:
+                                                            - "OVERWRITE"
+                                                            - "APPEND"
+                                                            - "SKIP"
+                                    rename_headers:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            items:
+                                                description:
+                                                    - The list of headers.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    _from:
+                                                        description:
+                                                            - The original case-insensitive name of the header.  This name must be unique across transformation
+                                                              policies.
+                                                        type: str
+                                                        required: true
+                                                    to:
+                                                        description:
+                                                            - The new name of the header.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
+                                    filter_headers:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            type:
+                                                description:
+                                                    - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                      permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                type: str
+                                                choices:
+                                                    - "ALLOW"
+                                                    - "BLOCK"
+                                                required: true
+                                            items:
+                                                description:
+                                                    - The list of headers.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    name:
+                                                        description:
+                                                            - The case-insensitive name of the header.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
+                            query_parameter_transformations:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    set_query_parameters:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            items:
+                                                description:
+                                                    - The list of query parameters.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    name:
+                                                        description:
+                                                            - The case-sensitive name of the query parameter.  This name must be unique across transformation
+                                                              policies.
+                                                        type: str
+                                                        required: true
+                                                    values:
+                                                        description:
+                                                            - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                              enclosed within
+                                                              ${} delimiters.
+                                                        type: list
+                                                        required: true
+                                                    if_exists:
+                                                        description:
+                                                            - If a query parameter with the same name already exists in the request, OVERWRITE will overwrite
+                                                              the value,
+                                                              APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                        type: str
+                                                        choices:
+                                                            - "OVERWRITE"
+                                                            - "APPEND"
+                                                            - "SKIP"
+                                    rename_query_parameters:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            items:
+                                                description:
+                                                    - The list of query parameters.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    _from:
+                                                        description:
+                                                            - The original case-sensitive name of the query parameter.  This name must be unique across
+                                                              transformation
+                                                              policies.
+                                                        type: str
+                                                        required: true
+                                                    to:
+                                                        description:
+                                                            - The new name of the query parameter.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
+                                    filter_query_parameters:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            type:
+                                                description:
+                                                    - BLOCK drops any query parameters that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                      permits only the parameters in the list and removes all others, so it acts as an inclusion list.
+                                                type: str
+                                                choices:
+                                                    - "ALLOW"
+                                                    - "BLOCK"
+                                                required: true
+                                            items:
+                                                description:
+                                                    - The list of query parameters.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    name:
+                                                        description:
+                                                            - The case-sensitive name of the query parameter.
+                                                        type: str
+                                                        required: true
+                    response_policies:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            header_transformations:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    set_headers:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            items:
+                                                description:
+                                                    - The list of headers.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    name:
+                                                        description:
+                                                            - The case-insensitive name of the header.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
+                                                    values:
+                                                        description:
+                                                            - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                              enclosed within
+                                                              ${} delimiters.
+                                                        type: list
+                                                        required: true
+                                                    if_exists:
+                                                        description:
+                                                            - If a header with the same name already exists in the request, OVERWRITE will overwrite the value,
+                                                              APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                        type: str
+                                                        choices:
+                                                            - "OVERWRITE"
+                                                            - "APPEND"
+                                                            - "SKIP"
+                                    rename_headers:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            items:
+                                                description:
+                                                    - The list of headers.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    _from:
+                                                        description:
+                                                            - The original case-insensitive name of the header.  This name must be unique across transformation
+                                                              policies.
+                                                        type: str
+                                                        required: true
+                                                    to:
+                                                        description:
+                                                            - The new name of the header.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
+                                    filter_headers:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            type:
+                                                description:
+                                                    - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                      permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                type: str
+                                                choices:
+                                                    - "ALLOW"
+                                                    - "BLOCK"
+                                                required: true
+                                            items:
+                                                description:
+                                                    - The list of headers.
+                                                type: list
+                                                required: true
+                                                suboptions:
+                                                    name:
+                                                        description:
+                                                            - The case-insensitive name of the header.  This name must be unique across transformation policies.
+                                                        type: str
+                                                        required: true
                     logging_policies:
                         description:
                             - ""
@@ -431,7 +691,7 @@ options:
                                 suboptions:
                                     is_enabled:
                                         description:
-                                            - Enables pushing of access logs to OCI Public Logging.
+                                            - Enables pushing of access logs to the OCI Object Storage log archival bucket.
                                         type: bool
                             execution_log:
                                 description:
@@ -440,12 +700,12 @@ options:
                                 suboptions:
                                     is_enabled:
                                         description:
-                                            - Enables pushing of execution logs to OCI Public Logging.
+                                            - Enables pushing of execution logs to the OCI Object Storage log archival bucket.
                                         type: bool
                                     log_level:
                                         description:
                                             - Specifies the logging level, which affects the log entries pushed to
-                                              OCI Public Logging if `isEnabled` is set to True.
+                                              OCI Object Storage log archival bucket if `isEnabled` is set to True.
                                         type: str
                                         choices:
                                             - "INFO"
@@ -919,7 +1179,7 @@ deployment:
                             contains:
                                 is_enabled:
                                     description:
-                                        - Enables pushing of access logs to OCI Public Logging.
+                                        - Enables pushing of access logs to the OCI Object Storage log archival bucket.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -931,14 +1191,14 @@ deployment:
                             contains:
                                 is_enabled:
                                     description:
-                                        - Enables pushing of execution logs to OCI Public Logging.
+                                        - Enables pushing of execution logs to the OCI Object Storage log archival bucket.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 log_level:
                                     description:
                                         - Specifies the logging level, which affects the log entries pushed to
-                                          OCI Public Logging if `isEnabled` is set to True.
+                                          OCI Object Storage log archival bucket if `isEnabled` is set to True.
                                     returned: on success
                                     type: string
                                     sample: INFO
@@ -976,7 +1236,7 @@ deployment:
                                         type:
                                             description:
                                                 - "Indicates how authorization should be applied. For a type of ANY_OF, an \\"allowedScope\\"
-                                                  property must also be specfied. Otherwise, only a type is required. For a type of ANONYMOUS, an
+                                                  property must also be specified. Otherwise, only a type is required. For a type of ANONYMOUS, an
                                                   authenticated API must have the \\"isAnonymousAccessAllowed\\" property set to \\"true\\" in the
                                                   authentication
                                                   policy."
@@ -1039,6 +1299,289 @@ deployment:
                                             returned: on success
                                             type: int
                                             sample: 600
+                                header_transformations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        set_headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                items:
+                                                    description:
+                                                        - The list of headers.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        name:
+                                                            description:
+                                                                - The case-insensitive name of the header.  This name must be unique across transformation
+                                                                  policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: X-CorrelationID
+                                                        values:
+                                                            description:
+                                                                - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                                  enclosed within
+                                                                  ${} delimiters.
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        if_exists:
+                                                            description:
+                                                                - If a header with the same name already exists in the request, OVERWRITE will overwrite the
+                                                                  value,
+                                                                  APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: OVERWRITE
+                                        rename_headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                items:
+                                                    description:
+                                                        - The list of headers.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        _from:
+                                                            description:
+                                                                - The original case-insensitive name of the header.  This name must be unique across
+                                                                  transformation policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: X-Username
+                                                        to:
+                                                            description:
+                                                                - The new name of the header.  This name must be unique across transformation policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: X-User-ID
+                                        filter_headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                type:
+                                                    description:
+                                                        - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                          permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: ALLOW
+                                                items:
+                                                    description:
+                                                        - The list of headers.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        name:
+                                                            description:
+                                                                - The case-insensitive name of the header.  This name must be unique across transformation
+                                                                  policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: User-Agent
+                                query_parameter_transformations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        set_query_parameters:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                items:
+                                                    description:
+                                                        - The list of query parameters.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        name:
+                                                            description:
+                                                                - The case-sensitive name of the query parameter.  This name must be unique across
+                                                                  transformation policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: bookIsbn
+                                                        values:
+                                                            description:
+                                                                - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                                  enclosed within
+                                                                  ${} delimiters.
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        if_exists:
+                                                            description:
+                                                                - If a query parameter with the same name already exists in the request, OVERWRITE will
+                                                                  overwrite the value,
+                                                                  APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: OVERWRITE
+                                        rename_query_parameters:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                items:
+                                                    description:
+                                                        - The list of query parameters.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        _from:
+                                                            description:
+                                                                - The original case-sensitive name of the query parameter.  This name must be unique across
+                                                                  transformation
+                                                                  policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: bookId
+                                                        to:
+                                                            description:
+                                                                - The new name of the query parameter.  This name must be unique across transformation policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: bookIsbn
+                                        filter_query_parameters:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                type:
+                                                    description:
+                                                        - BLOCK drops any query parameters that are in the list of items, so it acts as an exclusion list.
+                                                          ALLOW
+                                                          permits only the parameters in the list and removes all others, so it acts as an inclusion list.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: ALLOW
+                                                items:
+                                                    description:
+                                                        - The list of query parameters.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        name:
+                                                            description:
+                                                                - The case-sensitive name of the query parameter.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: bookIsbn
+                        response_policies:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                header_transformations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        set_headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                items:
+                                                    description:
+                                                        - The list of headers.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        name:
+                                                            description:
+                                                                - The case-insensitive name of the header.  This name must be unique across transformation
+                                                                  policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: X-CorrelationID
+                                                        values:
+                                                            description:
+                                                                - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                                  enclosed within
+                                                                  ${} delimiters.
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        if_exists:
+                                                            description:
+                                                                - If a header with the same name already exists in the request, OVERWRITE will overwrite the
+                                                                  value,
+                                                                  APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: OVERWRITE
+                                        rename_headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                items:
+                                                    description:
+                                                        - The list of headers.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        _from:
+                                                            description:
+                                                                - The original case-insensitive name of the header.  This name must be unique across
+                                                                  transformation policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: X-Username
+                                                        to:
+                                                            description:
+                                                                - The new name of the header.  This name must be unique across transformation policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: X-User-ID
+                                        filter_headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                type:
+                                                    description:
+                                                        - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                          permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: ALLOW
+                                                items:
+                                                    description:
+                                                        - The list of headers.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        name:
+                                                            description:
+                                                                - The case-insensitive name of the header.  This name must be unique across transformation
+                                                                  policies.
+                                                            returned: on success
+                                                            type: string
+                                                            sample: User-Agent
                         logging_policies:
                             description:
                                 - ""
@@ -1053,7 +1596,7 @@ deployment:
                                     contains:
                                         is_enabled:
                                             description:
-                                                - Enables pushing of access logs to OCI Public Logging.
+                                                - Enables pushing of access logs to the OCI Object Storage log archival bucket.
                                             returned: on success
                                             type: bool
                                             sample: true
@@ -1065,14 +1608,14 @@ deployment:
                                     contains:
                                         is_enabled:
                                             description:
-                                                - Enables pushing of execution logs to OCI Public Logging.
+                                                - Enables pushing of execution logs to the OCI Object Storage log archival bucket.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         log_level:
                                             description:
                                                 - Specifies the logging level, which affects the log entries pushed to
-                                                  OCI Public Logging if `isEnabled` is set to True.
+                                                  OCI Object Storage log archival bucket if `isEnabled` is set to True.
                                             returned: on success
                                             type: string
                                             sample: INFO
@@ -1278,6 +1821,71 @@ deployment:
                         "exposed_headers": [],
                         "is_allow_credentials_enabled": false,
                         "max_age_in_seconds": 600
+                    },
+                    "header_transformations": {
+                        "set_headers": {
+                            "items": [{
+                                "name": "X-CorrelationID",
+                                "values": [],
+                                "if_exists": "OVERWRITE"
+                            }]
+                        },
+                        "rename_headers": {
+                            "items": [{
+                                "_from": "X-Username",
+                                "to": "X-User-ID"
+                            }]
+                        },
+                        "filter_headers": {
+                            "type": "ALLOW",
+                            "items": [{
+                                "name": "User-Agent"
+                            }]
+                        }
+                    },
+                    "query_parameter_transformations": {
+                        "set_query_parameters": {
+                            "items": [{
+                                "name": "bookIsbn",
+                                "values": [],
+                                "if_exists": "OVERWRITE"
+                            }]
+                        },
+                        "rename_query_parameters": {
+                            "items": [{
+                                "_from": "bookId",
+                                "to": "bookIsbn"
+                            }]
+                        },
+                        "filter_query_parameters": {
+                            "type": "ALLOW",
+                            "items": [{
+                                "name": "bookIsbn"
+                            }]
+                        }
+                    }
+                },
+                "response_policies": {
+                    "header_transformations": {
+                        "set_headers": {
+                            "items": [{
+                                "name": "X-CorrelationID",
+                                "values": [],
+                                "if_exists": "OVERWRITE"
+                            }]
+                        },
+                        "rename_headers": {
+                            "items": [{
+                                "_from": "X-Username",
+                                "to": "X-User-ID"
+                            }]
+                        },
+                        "filter_headers": {
+                            "type": "ALLOW",
+                            "items": [{
+                                "name": "User-Agent"
+                            }]
+                        }
                     }
                 },
                 "logging_policies": {
@@ -1335,7 +1943,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeploymentHelperGen(OCIResourceHelperBase):
+class ApigatewayDeploymentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_module_resource_id_param(self):
@@ -1435,10 +2043,10 @@ class DeploymentHelperGen(OCIResourceHelperBase):
         )
 
 
-DeploymentHelperCustom = get_custom_class("DeploymentHelperCustom")
+ApigatewayDeploymentHelperCustom = get_custom_class("ApigatewayDeploymentHelperCustom")
 
 
-class ResourceHelper(DeploymentHelperCustom, DeploymentHelperGen):
+class ResourceHelper(ApigatewayDeploymentHelperCustom, ApigatewayDeploymentHelperGen):
     pass
 
 
@@ -1622,6 +2230,233 @@ def main():
                                             max_age_in_seconds=dict(type="int"),
                                         ),
                                     ),
+                                    header_transformations=dict(
+                                        type="dict",
+                                        options=dict(
+                                            set_headers=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            name=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                            values=dict(
+                                                                type="list",
+                                                                required=True,
+                                                            ),
+                                                            if_exists=dict(
+                                                                type="str",
+                                                                choices=[
+                                                                    "OVERWRITE",
+                                                                    "APPEND",
+                                                                    "SKIP",
+                                                                ],
+                                                            ),
+                                                        ),
+                                                    )
+                                                ),
+                                            ),
+                                            rename_headers=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            _from=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                            to=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                        ),
+                                                    )
+                                                ),
+                                            ),
+                                            filter_headers=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["ALLOW", "BLOCK"],
+                                                    ),
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            name=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            )
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    query_parameter_transformations=dict(
+                                        type="dict",
+                                        options=dict(
+                                            set_query_parameters=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            name=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                            values=dict(
+                                                                type="list",
+                                                                required=True,
+                                                            ),
+                                                            if_exists=dict(
+                                                                type="str",
+                                                                choices=[
+                                                                    "OVERWRITE",
+                                                                    "APPEND",
+                                                                    "SKIP",
+                                                                ],
+                                                            ),
+                                                        ),
+                                                    )
+                                                ),
+                                            ),
+                                            rename_query_parameters=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            _from=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                            to=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                        ),
+                                                    )
+                                                ),
+                                            ),
+                                            filter_query_parameters=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["ALLOW", "BLOCK"],
+                                                    ),
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            name=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            )
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            response_policies=dict(
+                                type="dict",
+                                options=dict(
+                                    header_transformations=dict(
+                                        type="dict",
+                                        options=dict(
+                                            set_headers=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            name=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                            values=dict(
+                                                                type="list",
+                                                                required=True,
+                                                            ),
+                                                            if_exists=dict(
+                                                                type="str",
+                                                                choices=[
+                                                                    "OVERWRITE",
+                                                                    "APPEND",
+                                                                    "SKIP",
+                                                                ],
+                                                            ),
+                                                        ),
+                                                    )
+                                                ),
+                                            ),
+                                            rename_headers=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            _from=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                            to=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            ),
+                                                        ),
+                                                    )
+                                                ),
+                                            ),
+                                            filter_headers=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["ALLOW", "BLOCK"],
+                                                    ),
+                                                    items=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        required=True,
+                                                        options=dict(
+                                                            name=dict(
+                                                                type="str",
+                                                                required=True,
+                                                            )
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    )
                                 ),
                             ),
                             logging_policies=dict(

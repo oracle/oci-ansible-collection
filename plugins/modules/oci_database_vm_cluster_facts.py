@@ -23,7 +23,7 @@ module: oci_database_vm_cluster_facts
 short_description: Fetches details about one or multiple VmCluster resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple VmCluster resources in Oracle Cloud Infrastructure
-    - Gets a list of the VM clusters in the specified compartment.
+    - Gets a list of the Exadata Cloud@Customer VM clusters in the specified compartment.
     - If I(vm_cluster_id) is specified, the details of a single VmCluster will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -107,6 +107,13 @@ vm_clusters:
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        last_patch_history_entry_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as
+                  a patch operation starts.
+            returned: on success
+            type: string
+            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
                 - The current state of the VM cluster.
@@ -115,7 +122,7 @@ vm_clusters:
             sample: PROVISIONING
         display_name:
             description:
-                - The user-friendly name for the VM cluster. The name does not need to be unique.
+                - The user-friendly name for the Exadata Cloud@Customer VM cluster. The name does not need to be unique.
             returned: on success
             type: string
             sample: display_name_example
@@ -229,6 +236,7 @@ vm_clusters:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "last_patch_history_entry_id": "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "display_name": "display_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",

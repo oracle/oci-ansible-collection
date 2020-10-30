@@ -115,7 +115,7 @@ node_pools:
             sample: v1.9.4
         node_metadata:
             description:
-                - A list of key/value pairs to add to each underlying OCI instance in the node pool.
+                - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
             returned: on success
             type: dict
             sample: {}
@@ -131,9 +131,22 @@ node_pools:
             returned: on success
             type: string
             sample: Oracle-Linux-7.4
+        node_shape_config:
+            description:
+                - The shape configuration of the nodes.
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs available to each node in the node pool.
+                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 3.4
         node_source:
             description:
-                - Source running on the nodes in the node pool.
+                - Deprecated. see `nodeSourceDetails`. Source running on the nodes in the node pool.
             returned: on success
             type: complex
             contains:
@@ -156,6 +169,32 @@ node_pools:
                     returned: on success
                     type: string
                     sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+        node_source_details:
+            description:
+                - Source running on the nodes in the node pool.
+            returned: on success
+            type: complex
+            contains:
+                source_type:
+                    description:
+                        - The source type for the node.
+                          Use `IMAGE` when specifying an OCID of an image.
+                    returned: on success
+                    type: string
+                    sample: IMAGE
+                image_id:
+                    description:
+                        - The OCID of the image used to boot the node.
+                    returned: on success
+                    type: string
+                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                boot_volume_size_in_gbs:
+                    description:
+                        - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
+                          us/iaas/Content/Block/Concepts/bootvolumes.htm) for max custom boot volume sizing and OS-specific requirements.
+                    returned: on success
+                    type: int
+                    sample: 56
         node_shape:
             description:
                 - The name of the node shape of the nodes in the node pool.
@@ -182,7 +221,7 @@ node_pools:
                     sample: myvalue
         ssh_public_key:
             description:
-                - The SSH public key on each node in the node pool.
+                - The SSH public key on each node in the node pool on launch.
             returned: on success
             type: string
             sample: ssh-rsa AAAAB3NzaC1yc2abc123...
@@ -216,6 +255,12 @@ node_pools:
                     returned: on success
                     type: string
                     sample: My Kubernetes Node
+                kubernetes_version:
+                    description:
+                        - The version of Kubernetes this node is running.
+                    returned: on success
+                    type: string
+                    sample: v1.9.4
                 availability_domain:
                     description:
                         - The name of the availability domain in which this node is placed.
@@ -340,10 +385,18 @@ node_pools:
         "node_metadata": {},
         "node_image_id": "ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa",
         "node_image_name": "Oracle-Linux-7.4",
+        "node_shape_config": {
+            "ocpus": 3.4
+        },
         "node_source": {
             "source_type": "IMAGE",
             "source_name": "source_name_example",
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "node_source_details": {
+            "source_type": "IMAGE",
+            "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+            "boot_volume_size_in_gbs": 56
         },
         "node_shape": "VM.Standard2.4",
         "initial_node_labels": [{
@@ -356,6 +409,7 @@ node_pools:
         "nodes": [{
             "id": "ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw",
             "name": "My Kubernetes Node",
+            "kubernetes_version": "v1.9.4",
             "availability_domain": "Uocm:PHX-AD-1",
             "subnet_id": "ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit",
             "node_pool_id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",

@@ -23,7 +23,7 @@ module: oci_database_autonomous_database_facts
 short_description: Fetches details about one or multiple AutonomousDatabase resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AutonomousDatabase resources in Oracle Cloud Infrastructure
-    - Gets a list of Autonomous Databases.
+    - Gets a list of Autonomous Databases based on the query parameters specified.
     - If I(autonomous_database_id) is specified, the details of a single AutonomousDatabase will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -112,6 +112,12 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
+    is_refreshable_clone:
+        description:
+            - Filter on the value of the resource's 'isRefreshableClone' property. A value of `true` returns only refreshable clones.
+              A value of `false` excludes refreshable clones from the returned results. Omitting this parameter returns both refreshable clones and databases
+              that are not refreshable clones.
+        type: bool
     is_data_guard_enabled:
         description:
             - A filter to return only resources that have Data Guard enabled.
@@ -347,7 +353,7 @@ autonomous_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
                 - "**Subnet Restrictions:**
                   - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
-                  - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+                  - For Exadata and virtual machine 2-node RAC systems, do not use a subnet that overlaps with 192.168.128.0/20.
                   - For Autonomous Database, setting this will disable public secure access to the database."
                 - These subnets are used by the Oracle Clusterware private interconnect on the database instance.
                   Specifying an overlapping subnet will cause the private interconnect to malfunction.
@@ -412,15 +418,15 @@ autonomous_databases:
                   Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR
                   (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
                 - "To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
-                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx
-                  2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16\\"]`"
+                  For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
+                  a.<unique_id2>;1.1.0.0/16\\"]`"
             returned: on success
             type: list
             sample: []
         is_auto_scaling_enabled:
             description:
-                - Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for databases on L(shared
-                  Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
+                - Indicates if auto scaling is enabled for the Autonomous Database CPU core count.
             returned: on success
             type: bool
             sample: true
@@ -442,6 +448,64 @@ autonomous_databases:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        is_refreshable_clone:
+            description:
+                - Indicates whether the Autonomous Database is a refreshable clone.
+            returned: on success
+            type: bool
+            sample: true
+        time_of_last_refresh:
+            description:
+                - The date and time when last refresh happened.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_last_refresh_point:
+            description:
+                - The refresh point timestamp (UTC). The refresh point is the time to which the database was most recently refreshed. Data created after the
+                  refresh point is not included in the refresh.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_next_refresh:
+            description:
+                - The date and time of next refresh.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        open_mode:
+            description:
+                - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
+            returned: on success
+            type: string
+            sample: READ_ONLY
+        refreshable_status:
+            description:
+                - The refresh status of the clone. REFRESHING indicates that the clone is currently being refreshed with data from the source Autonomous
+                  Database.
+            returned: on success
+            type: string
+            sample: REFRESHING
+        refreshable_mode:
+            description:
+                - The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous
+                  Database.
+            returned: on success
+            type: string
+            sample: AUTOMATIC
+        source_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create
+                  the current Autonomous Database.
+            returned: on success
+            type: string
+            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+        permission_level:
+            description:
+                - The Autonomous Database permission level. Restricted mode allows access only to admin users.
+            returned: on success
+            type: string
+            sample: RESTRICTED
         time_of_last_switchover:
             description:
                 - The timestamp of the last switchover operation for the Autonomous Database.
@@ -544,6 +608,15 @@ autonomous_databases:
         "data_safe_status": "REGISTERING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
+        "is_refreshable_clone": true,
+        "time_of_last_refresh": "2013-10-20T19:20:30+01:00",
+        "time_of_last_refresh_point": "2013-10-20T19:20:30+01:00",
+        "time_of_next_refresh": "2013-10-20T19:20:30+01:00",
+        "open_mode": "READ_ONLY",
+        "refreshable_status": "REFRESHING",
+        "refreshable_mode": "AUTOMATIC",
+        "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
+        "permission_level": "RESTRICTED",
         "time_of_last_switchover": "2013-10-20T19:20:30+01:00",
         "time_of_last_failover": "2013-10-20T19:20:30+01:00",
         "is_data_guard_enabled": true,
@@ -602,6 +675,7 @@ class AutonomousDatabaseFactsHelperGen(OCIResourceFactsHelperBase):
             "db_version",
             "is_free_tier",
             "display_name",
+            "is_refreshable_clone",
             "is_data_guard_enabled",
         ]
         optional_kwargs = dict(
@@ -667,6 +741,7 @@ def main():
             db_version=dict(type="str"),
             is_free_tier=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
+            is_refreshable_clone=dict(type="bool"),
             is_data_guard_enabled=dict(type="bool"),
         )
     )

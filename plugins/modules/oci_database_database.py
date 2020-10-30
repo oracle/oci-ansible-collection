@@ -24,7 +24,7 @@ short_description: Manage a Database resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Database resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new database in the specified Database Home. If the database version is provided, it must match the version of the
-      Database Home. Applies to Exadata DB systems and Exadata Cloud at Customer.
+      Database Home. Applies to Exadata and Exadata Cloud@Customer systems.
     - "This resource has the following action operations in the M(oci_database_actions) module: restore."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -33,6 +33,7 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     db_version:
         description:
@@ -66,6 +67,11 @@ options:
             db_unique_name:
                 description:
                     - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+                type: str
+            database_software_image_id:
+                description:
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    - Applicable when source is 'NONE'
                 type: str
             pdb_name:
                 description:
@@ -569,6 +575,19 @@ database:
                     returned: on success
                     type: dict
                     sample: {}
+        source_database_point_in_time_recovery_timestamp:
+            description:
+                - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
+                  described in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339)
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        database_software_image_id:
+            description:
+                - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            returned: on success
+            type: string
+            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -603,7 +622,9 @@ database:
             "cdb_default": "cdb_default_example",
             "cdb_ip_default": "cdb_ip_default_example",
             "all_connection_strings": {}
-        }
+        },
+        "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
+        "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -755,6 +776,7 @@ def main():
                 options=dict(
                     db_name=dict(type="str"),
                     db_unique_name=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
                     admin_password=dict(type="str", required=True, no_log=True),
                     character_set=dict(type="str"),

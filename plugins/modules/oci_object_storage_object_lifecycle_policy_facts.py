@@ -78,11 +78,18 @@ object_lifecycle_policies:
                     returned: on success
                     type: string
                     sample: name_example
+                target:
+                    description:
+                        - ""
+                    returned: on success
+                    type: string
+                    sample: target_example
                 action:
                     description:
                         - The action of the object lifecycle policy rule. Rules using the action 'ARCHIVE' move objects into the
                           L(Archive Storage tier,https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm). Rules using the action
-                          'DELETE' permanently delete objects from buckets. 'ARCHIVE' and 'DELETE' are the only two supported
+                          'DELETE' permanently delete objects from buckets. Rules using 'ABORT' abort the uncommitted multipart-uploads
+                          and permanently delete their parts from buckets. 'ARCHIVE', 'DELETE' and 'ABORT' are the only three supported
                           actions at this time.
                     returned: on success
                     type: string
@@ -169,6 +176,7 @@ object_lifecycle_policies:
         "time_created": "2013-10-20T19:20:30+01:00",
         "items": [{
             "name": "name_example",
+            "target": "target_example",
             "action": "action_example",
             "time_amount": 56,
             "time_unit": "DAYS",

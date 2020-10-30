@@ -23,7 +23,7 @@ module: oci_database_autonomous_exadata_infrastructure_ocpus_facts
 short_description: Fetches details about a AutonomousExadataInfrastructureOcpus resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AutonomousExadataInfrastructureOcpus resource in Oracle Cloud Infrastructure
-    - Gets details of the available and consumed OCPUs for the specified Autonomous Exadata Infrastructure instance.
+    - Gets details of the available and consumed OCPUs for the specified Autonomous Exadata Infrastructure resource.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

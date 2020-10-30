@@ -111,7 +111,7 @@ generated_key:
         plaintext:
             description:
                 - "The plaintext data encryption key, a base64-encoded sequence of random bytes, which is
-                  included if the L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey)
+                  included if the L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey)
                   request includes the `includePlaintextKey` parameter and sets its value to \\"true\\"."
             returned: on success
             type: string
@@ -119,7 +119,7 @@ generated_key:
         plaintext_checksum:
             description:
                 - "The checksum of the plaintext data encryption key, which is included if the
-                  L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey)
+                  L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey)
                   request includes the `includePlaintextKey` parameter and sets its value to \\"true\\"."
             returned: on success
             type: string

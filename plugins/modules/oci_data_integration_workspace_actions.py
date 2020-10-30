@@ -23,25 +23,25 @@ module: oci_data_integration_workspace_actions
 short_description: Perform actions on a Workspace resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Workspace resource in Oracle Cloud Infrastructure
-    - For I(action=start), the workspace will be started.
-    - For I(action=stop), the workspace will be stopped.
+    - For I(action=start), starts a workspace.
+    - For I(action=stop), stops a workspace.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     workspace_id:
         description:
-            - DIS workspace id
+            - The workspace ID.
         type: str
         aliases: ["id"]
         required: true
     quiesce_timeout:
         description:
-            - This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.
+            - Used to set the timeout for Data Integration to gracefully close down any running jobs before stopping the workspace.
             - Applicable only for I(action=stop).
         type: int
     is_force_operation:
         description:
-            - This parameter allows users to force close down the workspace.
+            - Used to force close down the workspace.
             - Applicable only for I(action=stop).
         type: bool
     action:
@@ -101,7 +101,7 @@ workspace:
             sample: dns_server_zone_example
         is_private_network_enabled:
             description:
-                - Whether the private network connection is enabled or disabled.
+                - Specifies whether the private network connection is enabled or disabled.
             returned: on success
             type: bool
             sample: true
@@ -170,14 +170,14 @@ workspace:
             sample: CREATING
         state_message:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed
                   state.
             returned: on success
             type: string
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A system-generated and immutable identifier assigned to the workspace upon creation.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx

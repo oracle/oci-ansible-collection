@@ -85,10 +85,17 @@ db_versions:
             returned: on success
             type: bool
             sample: true
+        is_preview_db_version:
+            description:
+                - True if this version of the Oracle Database software is the preview version.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "version": "version_example",
         "is_latest_for_major_version": true,
-        "supports_pdb": true
+        "supports_pdb": true,
+        "is_preview_db_version": true
     }]
 """
 

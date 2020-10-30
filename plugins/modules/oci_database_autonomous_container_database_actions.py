@@ -24,6 +24,8 @@ short_description: Perform actions on an AutonomousContainerDatabase resource in
 description:
     - Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(action=restart), rolling restarts the specified Autonomous Container Database.
+    - For I(action=rotate_autonomous_container_database_encryption_key), creates a new version of an existing L(Vault
+      service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -40,6 +42,7 @@ options:
         required: true
         choices:
             - "restart"
+            - "rotate_autonomous_container_database_encryption_key"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -48,6 +51,11 @@ EXAMPLES = """
   oci_database_autonomous_container_database_actions:
     autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
     action: restart
+
+- name: Perform action rotate_autonomous_container_database_encryption_key on autonomous_container_database
+  oci_database_autonomous_container_database_actions:
+    autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: rotate_autonomous_container_database_encryption_key
 
 """
 
@@ -106,6 +114,19 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: CLOUD
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -130,6 +151,12 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: RELEASE_UPDATES
+        patch_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch applied on the system.
+            returned: on success
+            type: string
+            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -228,7 +255,7 @@ autonomous_container_database:
             sample: Uocm:PHX-AD-1
         db_version:
             description:
-                - Oracle Database version of the Autonomous Container Database
+                - Oracle Database version of the Autonomous Container Database.
             returned: on success
             type: string
             sample: db_version_example
@@ -293,10 +320,13 @@ autonomous_container_database:
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "infrastructure_type": "CLOUD",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
+        "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_window": {
@@ -351,6 +381,7 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         restart
+        rotate_autonomous_container_database_encryption_key
     """
 
     def __init__(self, *args, **kwargs):
@@ -398,6 +429,25 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def rotate_autonomous_container_database_encryption_key(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rotate_autonomous_container_database_encryption_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_container_database_id=self.module.params.get(
+                    "autonomous_container_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 AutonomousContainerDatabaseActionsHelperCustom = get_custom_class(
     "AutonomousContainerDatabaseActionsHelperCustom"
@@ -420,7 +470,14 @@ def main():
             autonomous_container_database_id=dict(
                 aliases=["id"], type="str", required=True
             ),
-            action=dict(type="str", required=True, choices=["restart"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "restart",
+                    "rotate_autonomous_container_database_encryption_key",
+                ],
+            ),
         )
     )
 

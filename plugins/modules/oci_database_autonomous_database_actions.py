@@ -23,12 +23,16 @@ module: oci_database_autonomous_database_actions
 short_description: Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
+    - For I(action=autonomous_database_manual_refresh), initiates a data refresh for an Autonomous Database refreshable clone. Data is refreshed from the source
+      database to the point of a specified timestamp.
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
     - For I(action=fail_over), initiates a failover the specified Autonomous Database to a standby.
     - For I(action=generate_autonomous_database_wallet), creates and downloads a wallet for the specified Autonomous Database.
     - For I(action=register_autonomous_database_data_safe), asynchronously registers this Autonomous Database with Data Safe.
     - For I(action=restart), restarts the specified Autonomous Database.
     - For I(action=restore), restores an Autonomous Database based on the provided request parameters.
+    - For I(action=rotate_autonomous_database_encryption_key), rotate existing AutonomousDatabase L(Vault
+      service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
     - For I(action=start), starts the specified Autonomous Database.
     - For I(action=stop), stops the specified Autonomous Database.
     - For I(action=switchover), initiates a switchover of the specified Autonomous Database to the associated standby database. Applicable only to databases
@@ -42,6 +46,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    time_refresh_cutoff:
+        description:
+            - The timestamp to which the Autonomous Database refreshable clone will be refreshed. Changes made in the primary database after this timestamp are
+              not part of the data refresh.
+            - Applicable only for I(action=autonomous_database_manual_refresh).
+        type: str
     pdb_admin_password:
         description:
             - "The admin password provided during the creation of the database. This password is between 12 and 30 characters long, and must contain at least 1
@@ -51,8 +61,11 @@ options:
         type: str
     generate_type:
         description:
-            - The type of wallet to generate. `SINGLE` is used to generate a wallet for a single database. `ALL` is used to generate wallet for all databases in
-              the region.
+            - The type of wallet to generate.
+            - "**Shared Exadata infrastructure usage:**
+              * `SINGLE` - used to generate a wallet for a single database
+              * `ALL` - used to generate wallet for all databases in the region"
+            - "**Dedicated Exadata infrastructure usage:** Value must be `NULL` if attribute is used."
             - Applicable only for I(action=generate_autonomous_database_wallet).
         type: str
         choices:
@@ -96,12 +109,14 @@ options:
         type: str
         required: true
         choices:
+            - "autonomous_database_manual_refresh"
             - "deregister_autonomous_database_data_safe"
             - "fail_over"
             - "generate_autonomous_database_wallet"
             - "register_autonomous_database_data_safe"
             - "restart"
             - "restore"
+            - "rotate_autonomous_database_encryption_key"
             - "start"
             - "stop"
             - "switchover"
@@ -109,6 +124,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action autonomous_database_manual_refresh on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: autonomous_database_manual_refresh
+
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
     autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
@@ -142,6 +162,11 @@ EXAMPLES = """
     timestamp: 2018-04-11T01:59:07.032Z
     autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
     action: restore
+
+- name: Perform action rotate_autonomous_database_encryption_key on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: rotate_autonomous_database_encryption_key
 
 - name: Perform action start on autonomous_database
   oci_database_autonomous_database_actions:
@@ -377,7 +402,7 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
                 - "**Subnet Restrictions:**
                   - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
-                  - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+                  - For Exadata and virtual machine 2-node RAC systems, do not use a subnet that overlaps with 192.168.128.0/20.
                   - For Autonomous Database, setting this will disable public secure access to the database."
                 - These subnets are used by the Oracle Clusterware private interconnect on the database instance.
                   Specifying an overlapping subnet will cause the private interconnect to malfunction.
@@ -442,15 +467,15 @@ autonomous_database:
                   Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR
                   (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
                 - "To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
-                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx
-                  2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1\\",\\"ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16\\"]`"
+                  For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
+                  a.<unique_id2>;1.1.0.0/16\\"]`"
             returned: on success
             type: list
             sample: []
         is_auto_scaling_enabled:
             description:
-                - Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for databases on L(shared
-                  Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
+                - Indicates if auto scaling is enabled for the Autonomous Database CPU core count.
             returned: on success
             type: bool
             sample: true
@@ -472,6 +497,64 @@ autonomous_database:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        is_refreshable_clone:
+            description:
+                - Indicates whether the Autonomous Database is a refreshable clone.
+            returned: on success
+            type: bool
+            sample: true
+        time_of_last_refresh:
+            description:
+                - The date and time when last refresh happened.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_last_refresh_point:
+            description:
+                - The refresh point timestamp (UTC). The refresh point is the time to which the database was most recently refreshed. Data created after the
+                  refresh point is not included in the refresh.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_of_next_refresh:
+            description:
+                - The date and time of next refresh.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        open_mode:
+            description:
+                - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
+            returned: on success
+            type: string
+            sample: READ_ONLY
+        refreshable_status:
+            description:
+                - The refresh status of the clone. REFRESHING indicates that the clone is currently being refreshed with data from the source Autonomous
+                  Database.
+            returned: on success
+            type: string
+            sample: REFRESHING
+        refreshable_mode:
+            description:
+                - The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous
+                  Database.
+            returned: on success
+            type: string
+            sample: AUTOMATIC
+        source_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create
+                  the current Autonomous Database.
+            returned: on success
+            type: string
+            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+        permission_level:
+            description:
+                - The Autonomous Database permission level. Restricted mode allows access only to admin users.
+            returned: on success
+            type: string
+            sample: RESTRICTED
         time_of_last_switchover:
             description:
                 - The timestamp of the last switchover operation for the Autonomous Database.
@@ -574,6 +657,15 @@ autonomous_database:
         "data_safe_status": "REGISTERING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
+        "is_refreshable_clone": true,
+        "time_of_last_refresh": "2013-10-20T19:20:30+01:00",
+        "time_of_last_refresh_point": "2013-10-20T19:20:30+01:00",
+        "time_of_next_refresh": "2013-10-20T19:20:30+01:00",
+        "open_mode": "READ_ONLY",
+        "refreshable_status": "REFRESHING",
+        "refreshable_mode": "AUTOMATIC",
+        "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
+        "permission_level": "RESTRICTED",
         "time_of_last_switchover": "2013-10-20T19:20:30+01:00",
         "time_of_last_failover": "2013-10-20T19:20:30+01:00",
         "is_data_guard_enabled": true,
@@ -600,6 +692,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import AutonomousDatabaseManualRefreshDetails
     from oci.database.models import DeregisterAutonomousDatabaseDataSafeDetails
     from oci.database.models import GenerateAutonomousDatabaseWalletDetails
     from oci.database.models import RegisterAutonomousDatabaseDataSafeDetails
@@ -613,12 +706,14 @@ except ImportError:
 class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        autonomous_database_manual_refresh
         deregister_autonomous_database_data_safe
         fail_over
         generate_autonomous_database_wallet
         register_autonomous_database_data_safe
         restart
         restore
+        rotate_autonomous_database_encryption_key
         start
         stop
         switchover
@@ -644,6 +739,27 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_autonomous_database,
             autonomous_database_id=self.module.params.get("autonomous_database_id"),
+        )
+
+    def autonomous_database_manual_refresh(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AutonomousDatabaseManualRefreshDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.autonomous_database_manual_refresh,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                autonomous_database_manual_refresh_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def deregister_autonomous_database_data_safe(self):
@@ -766,6 +882,23 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def rotate_autonomous_database_encryption_key(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rotate_autonomous_database_encryption_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def start(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.start_autonomous_database,
@@ -836,6 +969,7 @@ def main():
     module_args.update(
         dict(
             autonomous_database_id=dict(aliases=["id"], type="str", required=True),
+            time_refresh_cutoff=dict(type="str"),
             pdb_admin_password=dict(type="str", no_log=True),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
@@ -848,12 +982,14 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "autonomous_database_manual_refresh",
                     "deregister_autonomous_database_data_safe",
                     "fail_over",
                     "generate_autonomous_database_wallet",
                     "register_autonomous_database_data_safe",
                     "restart",
                     "restore",
+                    "rotate_autonomous_database_encryption_key",
                     "start",
                     "stop",
                     "switchover",
