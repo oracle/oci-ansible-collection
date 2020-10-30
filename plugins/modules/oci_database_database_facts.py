@@ -302,6 +302,19 @@ databases:
                     returned: on success
                     type: dict
                     sample: {}
+        source_database_point_in_time_recovery_timestamp:
+            description:
+                - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
+                  described in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339)
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        database_software_image_id:
+            description:
+                - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            returned: on success
+            type: string
+            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -336,7 +349,9 @@ databases:
             "cdb_default": "cdb_default_example",
             "cdb_ip_default": "cdb_ip_default_example",
             "all_connection_strings": {}
-        }
+        },
+        "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
+        "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

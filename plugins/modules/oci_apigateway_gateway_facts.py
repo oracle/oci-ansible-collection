@@ -39,6 +39,10 @@ options:
             - The ocid of the compartment in which to list resources.
             - Required to list multiple gateways.
         type: str
+    certificate_id:
+        description:
+            - Filter gateways by the certificate ocid.
+        type: str
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -118,7 +122,9 @@ gateways:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         endpoint_type:
             description:
-                - Gateway endpoint type.
+                - Gateway endpoint type. `PUBLIC` will have a public ip address assigned to it, while `PRIVATE` will only be
+                  accessible on a private IP address on the subnet.
+                - "Example: `PUBLIC` or `PRIVATE`"
             returned: on success
             type: string
             sample: PUBLIC
@@ -161,6 +167,24 @@ gateways:
             returned: on success
             type: string
             sample: hostname_example
+        certificate_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+            returned: on success
+            type: string
+            sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        ip_addresses:
+            description:
+                - An array of IP addresses associated with the gateway.
+            returned: on success
+            type: complex
+            contains:
+                ip_address:
+                    description:
+                        - An IP address.
+                    returned: on success
+                    type: string
+                    sample: ip_address_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -208,10 +232,12 @@ gateways:
                     sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
                 endpoint_type:
                     description:
-                        - Gateway endpoint type.
+                        - Gateway endpoint type. `PUBLIC` will have a public ip address assigned to it, while `PRIVATE` will only be
+                          accessible on a private IP address on the subnet.
+                        - "Example: `PUBLIC` or `PRIVATE`"
                     returned: on success
                     type: string
-                    sample: endpoint_type_example
+                    sample: PUBLIC
                 subnet_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet in which
@@ -251,6 +277,12 @@ gateways:
                     returned: on success
                     type: string
                     sample: hostname_example
+                certificate_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    returned: on success
+                    type: string
+                    sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
                 freeform_tags:
                     description:
                         - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -280,19 +312,24 @@ gateways:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "hostname": "hostname_example",
+        "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
+        "ip_addresses": [{
+            "ip_address": "ip_address_example"
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "items": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "My new resource",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "endpoint_type": "endpoint_type_example",
+            "endpoint_type": "PUBLIC",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "lifecycle_state": "lifecycle_state_example",
             "lifecycle_details": "lifecycle_details_example",
             "hostname": "hostname_example",
+            "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx",
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
         }]
@@ -314,7 +351,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class GatewayFactsHelperGen(OCIResourceFactsHelperBase):
+class ApigatewayGatewayFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -334,6 +371,7 @@ class GatewayFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "certificate_id",
             "display_name",
             "lifecycle_state",
             "sort_order",
@@ -351,10 +389,14 @@ class GatewayFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-GatewayFactsHelperCustom = get_custom_class("GatewayFactsHelperCustom")
+ApigatewayGatewayFactsHelperCustom = get_custom_class(
+    "ApigatewayGatewayFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(GatewayFactsHelperCustom, GatewayFactsHelperGen):
+class ResourceFactsHelper(
+    ApigatewayGatewayFactsHelperCustom, ApigatewayGatewayFactsHelperGen
+):
     pass
 
 
@@ -364,6 +406,7 @@ def main():
         dict(
             gateway_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            certificate_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",

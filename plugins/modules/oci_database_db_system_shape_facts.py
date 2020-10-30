@@ -144,6 +144,13 @@ db_system_shapes:
             returned: on success
             type: int
             sample: 56
+        available_core_count_per_node:
+            description:
+                - The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape. Does not
+                  apply to X6, X7, and X8 fixed-shape systems.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
         "name": "name_example",
         "shape_family": "shape_family_example",
@@ -159,7 +166,8 @@ db_system_shapes:
         "available_data_storage_in_t_bs": 56,
         "min_data_storage_in_t_bs": 56,
         "minimum_node_count": 56,
-        "maximum_node_count": 56
+        "maximum_node_count": 56,
+        "available_core_count_per_node": 56
     }]
 """
 

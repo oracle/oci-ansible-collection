@@ -359,6 +359,37 @@ class CreateOperationWorkRequestWaiter(WorkRequestWaiter):
         return get_response.data
 
 
+class CreateDatabaseOperationWorkRequestWaiter(CreateOperationWorkRequestWaiter):
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(CreateDatabaseOperationWorkRequestWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    def get_resource_from_wait_response(self, wait_response):
+        entity_type = self.resource_helper.get_entity_type()
+        identifier = None
+        # work-request response for operation - create clone database returns two resources -
+        # source db & cloned db. To return cloned db additional check on `action_type` is
+        # required.
+        for resource in wait_response.data.resources:
+            if (
+                hasattr(resource, "entity_type")
+                and getattr(resource, "entity_type").lower().strip().replace("-", "")
+                == entity_type.lower()
+                and getattr(resource, "action_type") == "CREATED"
+            ):
+                identifier = resource.identifier
+
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+        get_response = self.resource_helper.get_get_fn()(identifier)
+        return get_response.data
+
+
 class NoneWaiter(Waiter):
     """Waiter which does not wait"""
 
@@ -747,6 +778,11 @@ _WAITER_OVERRIDE_MAP = {
         "namespace",
         "{0}_{1}".format("OFFBOARD", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NamespaceActionWorkRequestWaiter,
+    (
+        "database",
+        "autonomous_database",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateDatabaseOperationWorkRequestWaiter,
 }
 
 

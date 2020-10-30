@@ -85,7 +85,7 @@ RETURN = """
 bucket:
     description:
         - Details of the Bucket resource acted upon by the current operation
-    returned: on success
+    returned: on success for actions [ "make_bucket_writable", ]
     type: complex
     contains:
         namespace:

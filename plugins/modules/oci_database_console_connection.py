@@ -23,7 +23,7 @@ module: oci_database_console_connection
 short_description: Manage a ConsoleConnection resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and delete a ConsoleConnection resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new console connection to the specified dbNode.
+    - For I(state=present), creates a new console connection to the specified database node.
       After the console connection has been created and is available,
       you connect to the console using SSH.
 version_added: "2.9"

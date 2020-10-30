@@ -23,7 +23,7 @@ module: oci_database_db_system_patch_facts
 short_description: Fetches details about one or multiple DbSystemPatch resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DbSystemPatch resources in Oracle Cloud Infrastructure
-    - Lists the patches applicable to the requested DB system.
+    - Lists the patches applicable to the specified DB system.
     - If I(patch_id) is specified, the details of a single DbSystemPatch will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

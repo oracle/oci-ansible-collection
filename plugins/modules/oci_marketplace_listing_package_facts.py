@@ -216,7 +216,8 @@ listing_packages:
                     sample: hint_message_example
         regions:
             description:
-                - List of regions in which this ListingPackage is available.
+                - The regions where you can deploy this listing package. (Some packages have restrictions that limit their deployment to United States regions
+                  only.)
             returned: on success
             type: complex
             contains:
@@ -265,7 +266,7 @@ listing_packages:
             sample: app_catalog_listing_resource_version_example
         image_id:
             description:
-                - The id of the image corresponding to the package.
+                - The ID of the image corresponding to the package.
             returned: on success
             type: string
             sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx

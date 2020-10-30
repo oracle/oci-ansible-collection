@@ -100,7 +100,7 @@ db_system_patch_history_entries:
             sample: 2013-10-20T19:20:30+01:00
         time_ended:
             description:
-                - The date and time when the patch action completed.
+                - The date and time when the patch action completed
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00

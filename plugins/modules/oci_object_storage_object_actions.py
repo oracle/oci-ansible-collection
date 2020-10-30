@@ -24,7 +24,16 @@ short_description: Perform actions on an Object resource in Oracle Cloud Infrast
 description:
     - Perform actions on an Object resource in Oracle Cloud Infrastructure
     - For I(action=copy), creates a request to copy an object within a region or to another region.
+    - "For I(action=reencrypt), re-encrypts the data encryption keys that encrypt the object and its chunks. By default, when you create a bucket, the Object
+      Storage
+      service manages the master encryption key used to encrypt each object's data encryption keys. The encryption mechanism that you specify for
+      the bucket applies to the objects it contains.
+      You can alternatively employ one of these encryption strategies for an object:
+      - You can assign a key that you created and control through the Oracle Cloud Infrastructure Vault service.
+      - You can encrypt an object using your own encryption key. The key you supply is known as a customer-provided encryption key (SSE-C)."
     - For I(action=rename), rename an object in the given Object Storage namespace.
+      See L(Object Names,https://docs.cloud.oracle.com/Content/Object/Tasks/managingobjects.htm#namerequirements)
+      for object naming requirements.
     - For I(action=restore), restores one or more objects specified by the objectName parameter.
       By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
 version_added: "2.9"
@@ -140,6 +149,73 @@ options:
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - Applicable only for I(action=copy).
         type: str
+    object_name:
+        description:
+            - "The name of the object. Avoid entering confidential information.
+              Example: `test/object1.log`"
+            - Required for I(action=reencrypt), I(action=restore).
+        type: str
+    kms_key_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the master encryption key used to call the Vault
+              service to re-encrypt the data encryption keys associated with the object and its chunks. If the kmsKeyId value is
+              empty, whether null or an empty string, the API will perform re-encryption by using the kmsKeyId associated with the
+              bucket or the master encryption key managed by Oracle, depending on the bucket encryption mechanism.
+            - Applicable only for I(action=reencrypt).
+        type: str
+    sse_customer_key:
+        description:
+            - ""
+            - Applicable only for I(action=reencrypt).
+        type: dict
+        suboptions:
+            algorithm:
+                description:
+                    - "Specifies the encryption algorithm. The only supported value is \\"AES256\\"."
+                type: str
+                choices:
+                    - "AES256"
+                required: true
+            key:
+                description:
+                    - Specifies the base64-encoded 256-bit encryption key to use to encrypt or decrypt the object data.
+                type: str
+                required: true
+            key_sha256:
+                description:
+                    - Specifies the base64-encoded SHA256 hash of the encryption key. This value is used to check the integrity
+                      of the encryption key.
+                type: str
+                required: true
+    source_sse_customer_key:
+        description:
+            - ""
+            - Applicable only for I(action=reencrypt).
+        type: dict
+        suboptions:
+            algorithm:
+                description:
+                    - "Specifies the encryption algorithm. The only supported value is \\"AES256\\"."
+                type: str
+                choices:
+                    - "AES256"
+                required: true
+            key:
+                description:
+                    - Specifies the base64-encoded 256-bit encryption key to use to encrypt or decrypt the object data.
+                type: str
+                required: true
+            key_sha256:
+                description:
+                    - Specifies the base64-encoded SHA256 hash of the encryption key. This value is used to check the integrity
+                      of the encryption key.
+                type: str
+                required: true
+    version_id:
+        description:
+            - VersionId used to identify a particular version of the object
+            - Applicable only for I(action=reencrypt)I(action=restore).
+        type: str
     source_name:
         description:
             - The name of the source object to be renamed.
@@ -165,22 +241,12 @@ options:
             - The if-none-match entity tag (ETag) of the new object.
             - Applicable only for I(action=rename).
         type: str
-    object_name:
-        description:
-            - An object that is in an archive storage tier and needs to be restored.
-            - Required for I(action=restore).
-        type: str
     hours:
         description:
             - The number of hours for which this object will be restored.
               By default objects will be restored for 24 hours. You can instead configure the duration using the hours parameter.
             - Applicable only for I(action=restore).
         type: int
-    version_id:
-        description:
-            - The versionId of the object to restore. Current object version is used by default.
-            - Applicable only for I(action=restore).
-        type: str
     action:
         description:
             - The action to perform on the Object.
@@ -188,6 +254,7 @@ options:
         required: true
         choices:
             - "copy"
+            - "reencrypt"
             - "rename"
             - "restore"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -210,6 +277,14 @@ EXAMPLES = """
     bucket_name: my-new-bucket1
     action: copy
 
+- name: Perform action reencrypt on object
+  oci_object_storage_object_actions:
+    kms_key_id: ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+    object_name: test/object1.log
+    action: reencrypt
+
 - name: Perform action rename on object
   oci_object_storage_object_actions:
     source_name: SourceObjectName
@@ -225,7 +300,7 @@ EXAMPLES = """
   oci_object_storage_object_actions:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    object_name: object_name_example
+    object_name: test/object1.log
     action: restore
 
 """
@@ -234,7 +309,7 @@ RETURN = """
 object:
     description:
         - Details of the Object resource acted upon by the current operation
-    returned: on success
+    returned: on success for actions [ "copy", "rename", "restore" ]
     type: complex
     contains:
         name:
@@ -297,6 +372,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.object_storage import ObjectStorageClient
     from oci.object_storage.models import CopyObjectDetails
+    from oci.object_storage.models import ReencryptObjectDetails
     from oci.object_storage.models import RenameObjectDetails
     from oci.object_storage.models import RestoreObjectsDetails
 
@@ -309,6 +385,7 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         copy
+        reencrypt
         rename
         restore
     """
@@ -367,6 +444,32 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def reencrypt(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ReencryptObjectDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.reencrypt_object,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                namespace_name=self.module.params.get("namespace_name"),
+                bucket_name=self.module.params.get("bucket_name"),
+                object_name=self.module.params.get("object_name"),
+                reencrypt_object_details=action_details,
+                version_id=self.module.params.get("version_id"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def rename(self):
@@ -449,16 +552,35 @@ def main():
             opc_source_sse_customer_algorithm=dict(type="str"),
             opc_source_sse_customer_key=dict(type="str"),
             opc_source_sse_customer_key_sha256=dict(type="str"),
+            object_name=dict(type="str"),
+            kms_key_id=dict(type="str"),
+            sse_customer_key=dict(
+                type="dict",
+                options=dict(
+                    algorithm=dict(type="str", required=True, choices=["AES256"]),
+                    key=dict(type="str", required=True),
+                    key_sha256=dict(type="str", required=True),
+                ),
+            ),
+            source_sse_customer_key=dict(
+                type="dict",
+                options=dict(
+                    algorithm=dict(type="str", required=True, choices=["AES256"]),
+                    key=dict(type="str", required=True),
+                    key_sha256=dict(type="str", required=True),
+                ),
+            ),
+            version_id=dict(type="str"),
             source_name=dict(type="str"),
             new_name=dict(type="str"),
             src_obj_if_match_e_tag=dict(type="str"),
             new_obj_if_match_e_tag=dict(type="str"),
             new_obj_if_none_match_e_tag=dict(type="str"),
-            object_name=dict(type="str"),
             hours=dict(type="int"),
-            version_id=dict(type="str"),
             action=dict(
-                type="str", required=True, choices=["copy", "rename", "restore"]
+                type="str",
+                required=True,
+                choices=["copy", "reencrypt", "rename", "restore"],
             ),
         )
     )

@@ -59,6 +59,17 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    protection_mode:
+        description:
+            - A key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed. A
+              protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are
+              performed inside the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's
+              RSA wrapping key which persists on the HSM. All cryptographic operations that use a key with a protection mode of
+              `SOFTWARE` are performed on the server.
+        type: str
+        choices:
+            - "HSM"
+            - "SOFTWARE"
     service_endpoint:
         description:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
@@ -148,6 +159,17 @@ keys:
                     returned: on success
                     type: int
                     sample: 56
+        protection_mode:
+            description:
+                - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
+                  A protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed
+                  inside
+                  the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's RSA wrapping key which persists
+                  on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
+                  a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
+            returned: on success
+            type: string
+            sample: HSM
         lifecycle_state:
             description:
                 - The key's current lifecycle state.
@@ -186,6 +208,7 @@ keys:
             "algorithm": "AES",
             "length": 56
         },
+        "protection_mode": "HSM",
         "lifecycle_state": "ENABLED",
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
@@ -230,6 +253,7 @@ class KeyFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "sort_by",
             "sort_order",
+            "protection_mode",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -259,6 +283,7 @@ def main():
             compartment_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            protection_mode=dict(type="str", choices=["HSM", "SOFTWARE"]),
             display_name=dict(type="str"),
             service_endpoint=dict(type="str", required=True),
         )

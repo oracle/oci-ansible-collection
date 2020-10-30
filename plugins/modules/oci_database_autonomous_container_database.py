@@ -23,8 +23,9 @@ module: oci_database_autonomous_container_database
 short_description: Manage an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
-    - For I(state=present), create a new Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
-    - "This resource has the following action operations in the M(oci_autonomous_container_database_actions) module: restart."
+    - For I(state=present), creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
+    - "This resource has the following action operations in the M(oci_autonomous_container_database_actions) module: restart,
+      rotate_autonomous_container_database_encryption_key."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -203,6 +204,20 @@ options:
                       created before the window.
                       When the value is updated, it is applied to all existing automatic backups.
                 type: int
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+        type: str
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+        type: str
     autonomous_container_database_id:
         description:
             - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -305,6 +320,19 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: CLOUD
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -329,6 +357,12 @@ autonomous_container_database:
             returned: on success
             type: string
             sample: RELEASE_UPDATES
+        patch_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch applied on the system.
+            returned: on success
+            type: string
+            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -427,7 +461,7 @@ autonomous_container_database:
             sample: Uocm:PHX-AD-1
         db_version:
             description:
-                - Oracle Database version of the Autonomous Container Database
+                - Oracle Database version of the Autonomous Container Database.
             returned: on success
             type: string
             sample: db_version_example
@@ -492,10 +526,13 @@ autonomous_container_database:
         "autonomous_exadata_infrastructure_id": "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx",
         "autonomous_vm_cluster_id": "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx",
         "infrastructure_type": "CLOUD",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "patch_model": "RELEASE_UPDATES",
+        "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_window": {
@@ -778,6 +815,9 @@ def main():
                     recovery_window_in_days=dict(type="int"),
                 ),
             ),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
+            vault_id=dict(type="str"),
             autonomous_container_database_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -1,0 +1,118 @@
+---
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Add new user and assign group and policy
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    bob_name: "Bob"
+    bob_user_api_key_passphrase: "bobpassphrase"
+    bob_user_api_key_private_key_path: "{{ temp_certificates_path }}/bob_private_key.pem"
+    bob_user_api_key_pub_key_path: "{{ temp_certificates_path }}/bob_public_key.pem"
+
+    object_readers_group_name: "object_readers_group"
+    sample_compartment_ocid: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+  tasks:
+    - block:
+      - name: Check pre-requisites
+        fail:
+          msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+        when: item not in ansible_env
+        with_items:
+          - "SAMPLE_COMPARTMENT_OCID"
+
+      # Create group
+      - name: Create a group for Object readers
+        oci_identity_group:
+          name: "{{ object_readers_group_name }}"
+          compartment_id: "{{ sample_compartment_ocid }}"
+          description: "A group that are allows to inspect, get objects in buckets in compartment {{ sample_compartment_ocid }}"
+        register: result
+      - set_fact:
+          object_readers_group_ocid: "{{ result.group.id }}"
+
+      - name: Assign a policy statement for this group
+        oci_identity_policy:
+          name: "object_readers_policy"
+          compartment_id: "{{ sample_compartment_ocid }}"
+          description: "Allowed to read buckets and objects in compartment"
+          statements: ["Allow group {{ object_readers_group_name }} to inspect buckets in compartment id {{ sample_compartment_ocid }}",
+                       "Allow group {{ object_readers_group_name }} to inspect objects in compartment id {{ sample_compartment_ocid }}"]
+        register: result
+      - set_fact:
+          object_readers_policy_ocid: "{{ result.policy.id }}"
+
+      # Create Bob User
+      - name: Create the user "Bob"
+        oci_identity_user:
+          name: "{{bob_name}}"
+          description: 'Ansible Test User - Bob'
+          compartment_id: "{{ sample_compartment_ocid }}"
+        register: result
+      - set_fact:
+          bob_user_ocid: "{{ result.user['id'] }}"
+      - debug:
+          msg: "Created bob {{ bob_user_ocid }}"
+
+      - name: Asign user to group
+        oci_identity_user_group_membership:
+          user_id: "{{ bob_user_ocid }}"
+          group_id: "{{ object_readers_group_ocid }}"
+          compartment_id: "{{ sample_compartment_ocid}}"
+        register: result
+      - set_fact:
+          user_group_membership_ocid: "{{ result.user_group_membership['id'] }}"
+
+      - name: Create user password
+        oci_identity_ui_password:
+          user_id: "{{ bob_user_ocid }}"
+        register: result
+      - set_fact:
+          user_password: "{{ result.ui_password['password'] }}"
+
+      # These steps are needed to add an API key for the user
+      - name: Create a temporary directory to house temporary SSH keypairs
+        tempfile:
+          state: directory
+          suffix: cert
+        register: result
+      - set_fact:
+          temp_certificates_path: "{{ result.path }}"
+
+      - name: Create a private key for Bob
+        openssl_privatekey:
+          path:  "{{ bob_user_api_key_private_key_path }}"
+          size: 2048
+          cipher: aes128
+          passphrase: "{{ bob_user_api_key_passphrase }}"
+      - name: Create a public key from that temp private key
+        openssl_publickey:
+          path: "{{ bob_user_api_key_pub_key_path }}"
+          privatekey_path: "{{ bob_user_api_key_private_key_path }}"
+          privatekey_passphrase: "{{ bob_user_api_key_passphrase }}"
+          force: True
+        register: result
+
+      - name: Upload an API Signing Key for Bob
+        oci_identity_api_key:
+          user_id: "{{ bob_user_ocid }}"
+          key: "{{ lookup('file', bob_user_api_key_pub_key_path) }}"
+        register: result
+      - set_fact:
+           bob_api_signing_key_ocid: "{{ result.api_key.key_id }}"
+           bob_api_signing_key_fingerprint: "{{ result.api_key.fingerprint }}"
+
+      - import_tasks: teardown.yaml
+
+      rescue:
+
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "The sample execution failed."

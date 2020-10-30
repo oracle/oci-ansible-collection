@@ -19,7 +19,7 @@ DOCUMENTATION = """
         plugin:
             description: token that ensures this is a source file for the 'oci' plugin.
             required: True
-            choices: ['oci']
+            choices: ['oracle.oci.oci']
         config_file:
             description: The oci config path.
             env:
@@ -28,6 +28,23 @@ DOCUMENTATION = """
              description: The config profile to use.
              env:
                - name: OCI_CONFIG_PROFILE
+        api_user_key_file:
+            description: Full path and filename of the private key (in PEM format). If the key is encrypted with
+                         a pass-phrase, the pass_phrase option must also be provided.
+                         Preference order is .oci.yml > OCI_USER_KEY_FILE environment variable > settings from config file
+                         This option is required if the private key is not specified through a configuration
+                         file (See config_file)
+            type: str
+            env:
+                - name: OCI_USER_KEY_FILE
+        api_user_key_pass_phrase:
+            description: Passphrase used by the key referenced in api_user_key_file, if it is encrypted.
+                         Preference order is .oci.yml > OCI_USER_KEY_PASS_PHRASE environment variable > settings from config file
+                         This option is required if the passphrase is not specified through a configuration
+                         file (See config_file)
+            type: str
+            env:
+                - name: OCI_USER_KEY_PASS_PHRASE
         instance_principal_authentication:
              description: Use instance principal based authentication.
                  If not set, the API key in your config will be used.
@@ -233,6 +250,26 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         elif "OCI_CONFIG_PROFILE" in os.environ:
             self.params["profile"] = os.environ.get("OCI_CONFIG_PROFILE")
 
+    def _get_key_file(self):
+        # preference order: .oci.yml > environment variable > settings from config file
+        if self.get_option("api_user_key_file") is not None:
+            self.params["key_file"] = os.path.expanduser(
+                self.get_option("api_user_key_file")
+            )
+        elif "OCI_USER_KEY_FILE" in os.environ:
+            self.params["key_file"] = os.path.expanduser(
+                os.path.expandvars(os.environ.get("OCI_USER_KEY_FILE"))
+            )
+
+    def _get_pass_phrase(self):
+        # preference order: .oci.yml > environment variable > settings from config file
+        if self.get_option("api_user_key_pass_phrase") is not None:
+            self.params["pass_phrase"] = self.get_option("api_user_key_pass_phrase")
+        elif "OCI_USER_KEY_PASS_PHRASE" in os.environ:
+            self.params["pass_phrase"] = os.path.expandvars(
+                os.environ.get("OCI_USER_KEY_PASS_PHRASE")
+            )
+
     def _get_hostname_format(self):
         # Preference order: .oci.yml > environment variable
         if self.get_option("hostname_format"):
@@ -393,7 +430,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                                 compartment.id
                             )
                         )
-                    if value["fetch_hosts_from_subcompartments"] and (
+                    if value.get("fetch_hosts_from_subcompartments") and (
                         "tenancy" in compartment.id
                     ):
                         fetching_hosts_from_all_compartments = True
@@ -1168,7 +1205,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self.compartments_info = dict()
         it = 0
         for item in options["compartments"]["value"]:
-            self.display.warning(" --- compartments item: {0}".format(item))
+            self.log(" compartments item: {0}".format(item))
             self.compartments_info[it] = dict()
             if "compartment_ocid" in item:
                 self.compartments_info[it]["compartment_ocid"] = item[
@@ -1233,6 +1270,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         config_data = self._read_config_data(path)
         # read oci config
         self.read_config()
+
+        # read the key_file and passphrase
+        self._get_key_file()
+        self._get_pass_phrase()
 
         regions, filters, hostnames = self._get_query_options(config_data)
 

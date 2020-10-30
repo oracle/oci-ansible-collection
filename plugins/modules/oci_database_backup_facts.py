@@ -23,7 +23,7 @@ module: oci_database_backup_facts
 short_description: Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
-    - Gets a list of backups based on the databaseId or compartmentId specified. Either one of the query parameters must be provided.
+    - Gets a list of backups based on the `databaseId` or `compartmentId` specified. Either one of these query parameters must be provided.
     - If I(backup_id) is specified, the details of a single Backup will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

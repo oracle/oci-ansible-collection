@@ -23,7 +23,7 @@ module: oci_database_autonomous_exadata_infrastructure
 short_description: Manage an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
-    - For I(state=present), launches a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
+    - For I(state=present), creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

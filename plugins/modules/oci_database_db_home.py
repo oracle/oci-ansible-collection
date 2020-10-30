@@ -23,8 +23,8 @@ module: oci_database_db_home
 short_description: Manage a DbHome resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DbHome resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Database Home in the specified DB system based on the request parameters you provide. Applies to bare metal DB
-      systems, Exadata DB systems, and Exadata Cloud at Customer systems.
+    - For I(state=present), creates a new Database Home in the specified database system based on the request parameters you provide. Applies to bare metal DB
+      systems, Exadata systems, and Exadata Cloud@Customer systems.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -34,6 +34,10 @@ options:
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
+    database_software_image_id:
+        description:
+            - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        type: str
     source:
         description:
             - "The source of database: NONE for creating a new database. DB_BACKUP for creating a new database by restoring from a database backup."
@@ -41,6 +45,7 @@ options:
         choices:
             - "DATABASE"
             - "DB_BACKUP"
+            - "VM_CLUSTER_BACKUP"
             - "NONE"
             - "VM_CLUSTER_NEW"
         default: "NONE"
@@ -52,7 +57,7 @@ options:
     database:
         description:
             - ""
-            - Required when source is one of ['DATABASE', 'DB_BACKUP']
+            - Required when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
         type: dict
         suboptions:
             database_id:
@@ -63,7 +68,7 @@ options:
             backup_tde_password:
                 description:
                     - The password to open the TDE wallet.
-                    - Required when source is one of ['DATABASE', 'DB_BACKUP']
+                    - Required when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
                 type: str
             admin_password:
                 description:
@@ -81,10 +86,21 @@ options:
                       eight alphanumeric characters. Special characters are not permitted.
                     - Required when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
+            time_stamp_for_point_in_time_recovery:
+                description:
+                    - The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to create
+                      the database.
+                    - Applicable when source is 'DATABASE'
+                type: str
             backup_id:
                 description:
                     - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-                    - Required when source is 'DB_BACKUP'
+                    - Required when source is one of ['VM_CLUSTER_BACKUP', 'DB_BACKUP']
+                type: str
+            database_software_image_id:
+                description:
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
             pdb_name:
                 description:
@@ -215,16 +231,16 @@ options:
                       For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: dict
+    vm_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
+            - Required when source is one of ['VM_CLUSTER_BACKUP', 'VM_CLUSTER_NEW']
+        type: str
     db_version:
         description:
             - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
             - Required when source is one of ['VM_CLUSTER_NEW', 'NONE']
-        type: str
-    vm_cluster_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
-            - Required when source is 'VM_CLUSTER_NEW'
         type: str
     db_home_id:
         description:
@@ -242,6 +258,11 @@ options:
             patch_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
+                    - This parameter is updatable.
+                type: str
+            database_software_image_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
                     - This parameter is updatable.
                 type: str
             action:
@@ -401,6 +422,12 @@ db_home:
             returned: on success
             type: list
             sample: []
+        database_software_image_id:
+            description:
+                - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            returned: on success
+            type: string
+            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -413,7 +440,8 @@ db_home:
         "db_home_location": "db_home_location_example",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "one_off_patches": []
+        "one_off_patches": [],
+        "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -560,10 +588,17 @@ def main():
     module_args.update(
         dict(
             display_name=dict(aliases=["name"], type="str"),
+            database_software_image_id=dict(type="str"),
             source=dict(
                 type="str",
                 default="NONE",
-                choices=["DATABASE", "DB_BACKUP", "NONE", "VM_CLUSTER_NEW"],
+                choices=[
+                    "DATABASE",
+                    "DB_BACKUP",
+                    "VM_CLUSTER_BACKUP",
+                    "NONE",
+                    "VM_CLUSTER_NEW",
+                ],
             ),
             db_system_id=dict(type="str"),
             database=dict(
@@ -574,7 +609,9 @@ def main():
                     admin_password=dict(type="str", required=True, no_log=True),
                     db_unique_name=dict(type="str"),
                     db_name=dict(type="str"),
+                    time_stamp_for_point_in_time_recovery=dict(type="str"),
                     backup_id=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
                     character_set=dict(type="str"),
                     ncharacter_set=dict(type="str"),
@@ -627,13 +664,14 @@ def main():
                     defined_tags=dict(type="dict"),
                 ),
             ),
-            db_version=dict(type="str"),
             vm_cluster_id=dict(type="str"),
+            db_version=dict(type="str"),
             db_home_id=dict(aliases=["id"], type="str"),
             patch_details=dict(
                 type="dict",
                 options=dict(
                     patch_id=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
                     action=dict(type="str", choices=["APPLY", "PRECHECK"]),
                 ),
             ),

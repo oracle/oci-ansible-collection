@@ -23,7 +23,7 @@ module: oci_database_db_node_facts
 short_description: Fetches details about one or multiple DbNode resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DbNode resources in Oracle Cloud Infrastructure
-    - Gets a list of database nodes in the specified DB system and compartment. A database node is a server running database software.
+    - Lists the database nodes in the specified DB system and compartment. A database node is a server running database software.
     - If I(db_node_id) is specified, the details of a single DbNode will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

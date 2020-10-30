@@ -23,7 +23,7 @@ module: oci_database_backup_destination
 short_description: Manage a BackupDestination resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BackupDestination resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a backup destination.
+    - For I(state=present), creates a backup destination in an Exadata Cloud@Customer system.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

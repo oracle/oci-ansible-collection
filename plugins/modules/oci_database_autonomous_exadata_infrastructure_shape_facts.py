@@ -23,8 +23,8 @@ module: oci_database_autonomous_exadata_infrastructure_shape_facts
 short_description: Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
-    - Gets a list of the shapes that can be used to launch a new Autonomous Exadata Infrastructure DB system. The shape determines resources to allocate to the
-      DB system (CPU cores, memory and storage).
+    - Gets a list of the shapes that can be used to launch a new Autonomous Exadata Infrastructure resource. The shape determines resources to allocate (CPU
+      cores, memory and storage).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

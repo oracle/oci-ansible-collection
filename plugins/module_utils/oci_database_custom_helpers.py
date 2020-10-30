@@ -52,6 +52,9 @@ class AutonomousDatabaseRegionalWalletHelperCustom:
     def is_update(self):
         return True
 
+    def get_default_module_wait_timeout(self):
+        return int(1 * 2400)
+
 
 class AutonomousDatabaseActionsHelperCustom:
     REGISTER_AUTONOMOUS_DATABASE_DATA_SAFE = "register_autonomous_database_data_safe"
@@ -167,6 +170,8 @@ class DbSystemHelperCustom:
             # This means that if the user updates db_home in their playbook after the initial create, the resource
             # will continue to match and will not be updated
             "db_home",
+            # attribute source_db_system_id is not returned on GetDbSystem
+            "source_db_system_id",
         ]
 
     def is_update_necessary(self, existing_resource_dict):
@@ -441,6 +446,14 @@ class AutonomousContainerDatabaseHelperCustom:
             )
         return super(AutonomousContainerDatabaseHelperCustom, self).list_resources()
 
+    def get_exclude_attributes(self):
+        exclude_attributes = super(
+            AutonomousContainerDatabaseHelperCustom, self
+        ).get_exclude_attributes()
+        return exclude_attributes + [
+            "kms_key_version_id",
+        ]
+
 
 class VmClusterNetworkHelperCustom:
     def get_get_fn(self):
@@ -633,3 +646,63 @@ class BackupDestinationHelperCustom:
         return super(BackupDestinationHelperCustom, self).is_update_necessary(
             existing_resource_dict
         )
+
+
+class CloudVmClusterHelperCustom:
+
+    # We chose to exclude attribute `hostname` for sake of idempotency. API creates Cloud VM cluster resource by
+    # appending some random string to the value passed for attribute - `hostname`.
+    # e.g.If we pass value as `hostname-example` API launches VM Cluster with hostname value as `hostname-example-pixd`
+    # API randomizes hostname to avoid duplication.
+    def get_exclude_attributes(self):
+        exclude_attributes = super(
+            CloudVmClusterHelperCustom, self
+        ).get_exclude_attributes()
+        return exclude_attributes + [
+            "hostname",
+        ]
+
+
+class CloudVmClusterIormConfigHelperCustom:
+    def is_update_necessary(self, existing_resource_dict):
+        existing_db_plans_list = existing_resource_dict["db_plans"]
+        update_db_plans_list = self.module.params.get("db_plans", None)
+
+        if update_db_plans_list is not None:
+
+            for update_db_plan in update_db_plans_list:
+                is_update_db_plan_available = False
+                for existing_db_plan in existing_db_plans_list:
+                    if update_db_plan["db_name"] == existing_db_plan["db_name"]:
+                        if update_db_plan["share"] != existing_db_plan["share"]:
+                            return True
+                        is_update_db_plan_available = True
+                if not is_update_db_plan_available:
+                    return True
+
+        return super(CloudVmClusterIormConfigHelperCustom, self).is_update_necessary(
+            existing_resource_dict
+        )
+
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            CloudVmClusterIormConfigHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        update_model_dict.pop("db_plans", None)
+        return update_model_dict
+
+
+class DbSystemActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        db_system = resource or self.get_resource().data
+        if action == "migrate_exadata_db_system_resource_model":
+            if db_system.lifecycle_state == "MIGRATED":
+                return False
+        return super(DbSystemActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+
+class DatabaseSoftwareImageHelperCustom:
+    def get_default_module_wait_timeout(self):
+        return int(1 * 2400)

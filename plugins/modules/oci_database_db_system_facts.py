@@ -23,8 +23,8 @@ module: oci_database_db_system_facts
 short_description: Fetches details about one or multiple DbSystem resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DbSystem resources in Oracle Cloud Infrastructure
-    - Gets a list of the DB systems in the specified compartment. You can specify a backupId to list only the DB systems that support creating a database using
-      this backup in this compartment.
+    - Lists the DB systems in the specified compartment. You can specify a `backupId` to list only the DB systems that support creating a database using this
+      backup in this compartment.
     - If I(db_system_id) is specified, the details of a single DbSystem will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -72,6 +72,8 @@ options:
             - "TERMINATING"
             - "TERMINATED"
             - "FAILED"
+            - "MIGRATED"
+            - "MAINTENANCE_IN_PROGRESS"
     availability_domain:
         description:
             - A filter to return only resources that match the given availability domain exactly.
@@ -110,45 +112,46 @@ db_systems:
             contains:
                 lifecycle_state:
                     description:
-                        - The current config state of IORM settings for this Exadata System.
+                        - The current state of IORM configuration for the Exadata DB system.
                     returned: on success
                     type: string
                     sample: BOOTSTRAPPING
                 lifecycle_details:
                     description:
-                        - Additional information about the current lifecycleState.
+                        - Additional information about the current `lifecycleState`.
                     returned: on success
                     type: string
                     sample: lifecycle_details_example
                 objective:
                     description:
-                        - "Value for the IORM objective
-                          Default is \\"Auto\\""
+                        - The current value for the IORM objective.
+                          The default is `AUTO`.
                     returned: on success
                     type: string
                     sample: LOW_LATENCY
                 db_plans:
                     description:
-                        - Array of IORM Setting for all the database in
-                          this Exadata DB System
+                        - An array of IORM settings for all the database in
+                          the Exadata DB system.
                     returned: on success
                     type: complex
                     contains:
                         db_name:
                             description:
-                                - Database Name. For default DbPlan, the dbName will always be `default`
+                                - The database name. For the default `DbPlan`, the `dbName` is `default`.
                             returned: on success
                             type: string
                             sample: db_name_example
                         share:
                             description:
-                                - Relative priority of a database
+                                - The relative priority of this database.
                             returned: on success
                             type: int
                             sample: 56
                         flash_cache_limit:
                             description:
-                                - Flash Cache limit, internally configured based on shares
+                                - The flash cache limit for this database. This value is internally configured based on the share value assigned to the
+                                  database.
                             returned: on success
                             type: string
                             sample: flash_cache_limit_example
@@ -217,7 +220,7 @@ db_systems:
                 - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
                   backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For
                   more information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only
-                  to Exadata DB systems.
+                  to Exadata systems.
             returned: on success
             type: list
             sample: []
@@ -282,7 +285,7 @@ db_systems:
             sample: 56
         cluster_name:
             description:
-                - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an an alphabetic character, and may
+                - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may
                   contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
             returned: on success
             type: string
@@ -487,6 +490,19 @@ db_systems:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        source_db_system_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            returned: on success
+            type: string
+            sample: ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        point_in_time_data_disk_clone_timestamp:
+            description:
+                - The point in time for a cloned database system when the data disks were cloned from the source database system, as described in L(RFC
+                  3339,https://tools.ietf.org/rfc/rfc3339).
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
     sample: [{
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -549,7 +565,9 @@ db_systems:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "source_db_system_id": "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+        "point_in_time_data_disk_clone_timestamp": "2013-10-20T19:20:30+01:00"
     }]
 """
 
@@ -633,6 +651,8 @@ def main():
                     "TERMINATING",
                     "TERMINATED",
                     "FAILED",
+                    "MIGRATED",
+                    "MAINTENANCE_IN_PROGRESS",
                 ],
             ),
             availability_domain=dict(type="str"),

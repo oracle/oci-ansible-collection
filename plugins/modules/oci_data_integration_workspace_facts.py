@@ -23,29 +23,30 @@ module: oci_data_integration_workspace_facts
 short_description: Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
-    - Returns a list of Data Integration Workspaces.
+    - Retrieves a list of Data Integration workspaces.
     - If I(workspace_id) is specified, the details of a single Workspace will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     workspace_id:
         description:
-            - DIS workspace id
+            - The workspace ID.
             - Required to get a specific workspace.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - The OCID of the compartment containing the resources you want to list.
             - Required to list multiple workspaces.
         type: str
     name:
         description:
-            - This filter parameter can be used to filter by the name of the object.
+            - Used to filter by the name of the object.
         type: str
     lifecycle_state:
         description:
-            - Lifecycle state of the resource.
+            - The lifecycle state of a resource. When specified, the operation only returns resources that match the given lifecycle state. When not specified,
+              all lifecycle states are processed as a match.
         type: str
         choices:
             - "CREATING"
@@ -60,16 +61,16 @@ options:
             - "STOPPED"
     sort_order:
         description:
-            - This parameter is used to control the sort order.  Supported values are `ASC` (ascending) and `DESC` (descending).
+            - Specifies sort order to use, either `ASC` (ascending) or `DESC` (descending).
         type: str
         choices:
             - "ASC"
             - "DESC"
     sort_by:
         description:
-            - This parameter allows users to specify a sort field.  Supported sort fields are `name`, `identifier`, `timeCreated`, and `timeUpdated`.  Default
-              sort order is the descending order of `timeCreated` (most recently created objects at the top).  Sorting related parameters are ignored when
-              parameter `query` is present (search operation and sorting order is by relevance score in descending order).
+            - Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other
+              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is
+              by relevance score in descending order).
         type: str
         choices:
             - "TIME_CREATED"
@@ -121,7 +122,7 @@ workspaces:
             sample: dns_server_zone_example
         is_private_network_enabled:
             description:
-                - Whether the private network connection is enabled or disabled.
+                - Specifies whether the private network connection is enabled or disabled.
             returned: on success
             type: bool
             sample: true
@@ -190,14 +191,14 @@ workspaces:
             sample: CREATING
         state_message:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed
                   state.
             returned: on success
             type: string
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A system-generated and immutable identifier assigned to the workspace upon creation.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx

@@ -23,7 +23,7 @@ module: oci_database_db_home_facts
 short_description: Fetches details about one or multiple DbHome resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DbHome resources in Oracle Cloud Infrastructure
-    - Gets a list of Database Homes in the specified DB system and compartment. A Database Home is a directory where Oracle Database software is installed.
+    - Lists the Database Homes in the specified DB system and compartment. A Database Home is a directory where Oracle Database software is installed.
     - If I(db_home_id) is specified, the details of a single DbHome will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -178,6 +178,12 @@ db_homes:
             returned: on success
             type: list
             sample: []
+        database_software_image_id:
+            description:
+                - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+            returned: on success
+            type: string
+            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -190,7 +196,8 @@ db_homes:
         "db_home_location": "db_home_location_example",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "one_off_patches": []
+        "one_off_patches": [],
+        "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

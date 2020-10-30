@@ -23,7 +23,7 @@ module: oci_key_management_key_version_facts
 short_description: Fetches details about one or multiple KeyVersion resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple KeyVersion resources in Oracle Cloud Infrastructure
-    - Lists all L(KeyVersion,https://docs.cloud.oracle.com/api/#/en/key/release/KeyVersion/) resources for the specified
+    - Lists all L(KeyVersion,https://docs.cloud.oracle.com/api/#/en/key/latest/KeyVersion/) resources for the specified
       master encryption key.
     - As a management operation, this call is subject to a Key Management limit that applies to the total number
       of requests across all management read operations. Key Management might throttle this call to reject an

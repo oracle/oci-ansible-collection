@@ -23,7 +23,7 @@ module: oci_database_vm_cluster_network_facts
 short_description: Fetches details about one or multiple VmClusterNetwork resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple VmClusterNetwork resources in Oracle Cloud Infrastructure
-    - Gets a list of the VM cluster networks in the specified compartment.
+    - Gets a list of the Exadata Cloud@Customer VM cluster networks in the specified compartment.
     - If I(vm_cluster_network_id) is specified, the details of a single VmClusterNetwork will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

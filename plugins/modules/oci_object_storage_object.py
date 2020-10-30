@@ -23,7 +23,7 @@ module: oci_object_storage_object
 short_description: Manage an Object resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an Object resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_object_actions) module: copy, rename, restore."
+    - "This resource has the following action operations in the M(oci_object_actions) module: copy, reencrypt, rename, restore."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

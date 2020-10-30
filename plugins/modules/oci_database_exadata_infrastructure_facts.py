@@ -23,7 +23,7 @@ module: oci_database_exadata_infrastructure_facts
 short_description: Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
-    - Gets a list of the Exadata infrastructure in the specified compartment.
+    - Gets a list of the Exadata Cloud@Customer infrastructure resources in the specified compartment.
     - If I(exadata_infrastructure_id) is specified, the details of a single ExadataInfrastructure will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -115,7 +115,7 @@ exadata_infrastructures:
             sample: CREATING
         display_name:
             description:
-                - The user-friendly name for the Exadata infrastructure. The name does not need to be unique.
+                - The user-friendly name for the Exadata Cloud@Customer infrastructure. The name does not need to be unique.
             returned: on success
             type: string
             sample: display_name_example
@@ -246,6 +246,42 @@ exadata_infrastructures:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        csi_number:
+            description:
+                - The CSI Number of the Exadata infrastructure.
+            returned: on success
+            type: string
+            sample: csi_number_example
+        contacts:
+            description:
+                - The list of contacts for the Exadata infrastructure.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the Exadata Infrastructure contact.
+                    returned: on success
+                    type: string
+                    sample: name_example
+                phone_number:
+                    description:
+                        - The phone number for the Exadata Infrastructure contact.
+                    returned: on success
+                    type: string
+                    sample: phone_number_example
+                email:
+                    description:
+                        - The email for the Exadata Infrastructure contact.
+                    returned: on success
+                    type: string
+                    sample: email_example
+                is_primary:
+                    description:
+                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                    returned: on success
+                    type: bool
+                    sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -287,6 +323,13 @@ exadata_infrastructures:
         "ntp_server": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_details": "lifecycle_details_example",
+        "csi_number": "csi_number_example",
+        "contacts": [{
+            "name": "name_example",
+            "phone_number": "phone_number_example",
+            "email": "email_example",
+            "is_primary": true
+        }],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

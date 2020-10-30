@@ -153,7 +153,7 @@
     instance_id: "{{ public_subnet_instance_id }}"
   register: result
 - name: Get details of the VNIC
-  oci_vnic_facts:
+  oci_network_vnic_facts:
     id: "{{ result.vnic_attachments[0].vnic_id }}"
   register: result
 - set_fact:

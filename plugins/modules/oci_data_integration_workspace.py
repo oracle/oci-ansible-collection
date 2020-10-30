@@ -23,7 +23,7 @@ module: oci_data_integration_workspace
 short_description: Manage a Workspace resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Data Integration Workspace ready for performing data integration.
+    - For I(state=present), creates a new Data Integration workspace ready for performing data integration tasks.
     - "This resource has the following action operations in the M(oci_workspace_actions) module: start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -60,7 +60,7 @@ options:
         type: dict
     description:
         description:
-            - A detailed description for the workspace.
+            - A user defined description for the workspace.
             - This parameter is updatable.
         type: str
     display_name:
@@ -80,22 +80,22 @@ options:
         type: str
     is_private_network_enabled:
         description:
-            - Whether the private network connection is enabled or disabled.
+            - Specifies whether the private network connection is enabled or disabled.
         type: bool
     workspace_id:
         description:
-            - DIS workspace id
+            - The workspace ID.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
     quiesce_timeout:
         description:
-            - This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.
+            - Used to set the timeout for Data Integration to gracefully close down any running jobs before stopping the workspace.
         type: int
     is_force_operation:
         description:
-            - This parameter allows users to force close down the workspace.
+            - Used to force close down the workspace.
         type: bool
     state:
         description:
@@ -175,7 +175,7 @@ workspace:
             sample: dns_server_zone_example
         is_private_network_enabled:
             description:
-                - Whether the private network connection is enabled or disabled.
+                - Specifies whether the private network connection is enabled or disabled.
             returned: on success
             type: bool
             sample: true
@@ -244,14 +244,14 @@ workspace:
             sample: CREATING
         state_message:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed
                   state.
             returned: on success
             type: string
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A system-generated and immutable identifier assigned to the workspace upon creation.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
