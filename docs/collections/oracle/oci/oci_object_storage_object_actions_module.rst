@@ -44,7 +44,8 @@ Synopsis
 
 - Perform actions on an Object resource in Oracle Cloud Infrastructure
 - For *action=copy*, creates a request to copy an object within a region or to another region.
-- For *action=rename*, rename an object in the given Object Storage namespace.
+- For *action=reencrypt*, re-encrypts the data encryption keys that encrypt the object and its chunks. By default, when you create a bucket, the Object Storage service manages the master encryption key used to encrypt each object's data encryption keys. The encryption mechanism that you specify for the bucket applies to the objects it contains. You can alternatively employ one of these encryption strategies for an object: - You can assign a key that you created and control through the Oracle Cloud Infrastructure Vault service. - You can encrypt an object using your own encryption key. The key you supply is known as a customer-provided encryption key (SSE-C).
+- For *action=rename*, rename an object in the given Object Storage namespace. See `Object Names <https://docs.cloud.oracle.com/Content/Object/Tasks/managingobjects.htm#namerequirements>`_ for object naming requirements.
 - For *action=restore*, restores one or more objects specified by the objectName parameter. By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
 
 .. Aliases
@@ -69,12 +70,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -85,6 +86,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>copy</li>
+                                                                                                                                                                                                <li>reencrypt</li>
                                                                                                                                                                                                 <li>rename</li>
                                                                                                                                                                                                 <li>restore</li>
                                                                                     </ul>
@@ -94,7 +96,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -109,7 +111,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -124,7 +126,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -139,7 +141,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -154,7 +156,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -174,7 +176,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#parameter-bucket_name" title="Permalink to this option"></a>
@@ -189,7 +191,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -204,7 +206,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -219,7 +221,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_bucket"></div>
                     <b>destination_bucket</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_bucket" title="Permalink to this option"></a>
@@ -235,7 +237,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_namespace"></div>
                     <b>destination_namespace</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_namespace" title="Permalink to this option"></a>
@@ -251,7 +253,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_object_if_match_e_tag"></div>
                     <b>destination_object_if_match_e_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_object_if_match_e_tag" title="Permalink to this option"></a>
@@ -267,7 +269,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_object_if_none_match_e_tag"></div>
                     <b>destination_object_if_none_match_e_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_object_if_none_match_e_tag" title="Permalink to this option"></a>
@@ -283,7 +285,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_object_metadata"></div>
                     <b>destination_object_metadata</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_object_metadata" title="Permalink to this option"></a>
@@ -299,7 +301,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_object_name"></div>
                     <b>destination_object_name</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_object_name" title="Permalink to this option"></a>
@@ -315,7 +317,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-destination_region"></div>
                     <b>destination_region</b>
                     <a class="ansibleOptionLink" href="#parameter-destination_region" title="Permalink to this option"></a>
@@ -331,7 +333,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-hours"></div>
                     <b>hours</b>
                     <a class="ansibleOptionLink" href="#parameter-hours" title="Permalink to this option"></a>
@@ -347,7 +349,23 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-kms_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the master encryption key used to call the Vault service to re-encrypt the data encryption keys associated with the object and its chunks. If the kmsKeyId value is empty, whether null or an empty string, the API will perform re-encryption by using the kmsKeyId associated with the bucket or the master encryption key managed by Oracle, depending on the bucket encryption mechanism.</div>
+                                            <div>Applicable only for <em>action=reencrypt</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-namespace_name"></div>
                     <b>namespace_name</b>
                     <a class="ansibleOptionLink" href="#parameter-namespace_name" title="Permalink to this option"></a>
@@ -362,7 +380,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-new_name"></div>
                     <b>new_name</b>
                     <a class="ansibleOptionLink" href="#parameter-new_name" title="Permalink to this option"></a>
@@ -378,7 +396,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-new_obj_if_match_e_tag"></div>
                     <b>new_obj_if_match_e_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-new_obj_if_match_e_tag" title="Permalink to this option"></a>
@@ -394,7 +412,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-new_obj_if_none_match_e_tag"></div>
                     <b>new_obj_if_none_match_e_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-new_obj_if_none_match_e_tag" title="Permalink to this option"></a>
@@ -410,7 +428,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-object_name"></div>
                     <b>object_name</b>
                     <a class="ansibleOptionLink" href="#parameter-object_name" title="Permalink to this option"></a>
@@ -421,12 +439,12 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An object that is in an archive storage tier and needs to be restored.</div>
-                                            <div>Required for <em>action=restore</em>.</div>
+                                            <div>The name of the object. Avoid entering confidential information. Example: `test/object1.log`</div>
+                                            <div>Required for <em>action=reencrypt</em>, <em>action=restore</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-opc_source_sse_customer_algorithm"></div>
                     <b>opc_source_sse_customer_algorithm</b>
                     <a class="ansibleOptionLink" href="#parameter-opc_source_sse_customer_algorithm" title="Permalink to this option"></a>
@@ -442,7 +460,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-opc_source_sse_customer_key"></div>
                     <b>opc_source_sse_customer_key</b>
                     <a class="ansibleOptionLink" href="#parameter-opc_source_sse_customer_key" title="Permalink to this option"></a>
@@ -458,7 +476,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-opc_source_sse_customer_key_sha256"></div>
                     <b>opc_source_sse_customer_key_sha256</b>
                     <a class="ansibleOptionLink" href="#parameter-opc_source_sse_customer_key_sha256" title="Permalink to this option"></a>
@@ -474,7 +492,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-opc_sse_customer_algorithm"></div>
                     <b>opc_sse_customer_algorithm</b>
                     <a class="ansibleOptionLink" href="#parameter-opc_sse_customer_algorithm" title="Permalink to this option"></a>
@@ -490,7 +508,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-opc_sse_customer_key"></div>
                     <b>opc_sse_customer_key</b>
                     <a class="ansibleOptionLink" href="#parameter-opc_sse_customer_key" title="Permalink to this option"></a>
@@ -506,7 +524,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-opc_sse_customer_key_sha256"></div>
                     <b>opc_sse_customer_key_sha256</b>
                     <a class="ansibleOptionLink" href="#parameter-opc_sse_customer_key_sha256" title="Permalink to this option"></a>
@@ -522,7 +540,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -537,7 +555,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source_name"></div>
                     <b>source_name</b>
                     <a class="ansibleOptionLink" href="#parameter-source_name" title="Permalink to this option"></a>
@@ -553,7 +571,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source_object_if_match_e_tag"></div>
                     <b>source_object_if_match_e_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-source_object_if_match_e_tag" title="Permalink to this option"></a>
@@ -569,7 +587,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source_object_name"></div>
                     <b>source_object_name</b>
                     <a class="ansibleOptionLink" href="#parameter-source_object_name" title="Permalink to this option"></a>
@@ -585,7 +603,75 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-source_sse_customer_key"></div>
+                    <b>source_sse_customer_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_sse_customer_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=reencrypt</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_sse_customer_key/algorithm"></div>
+                    <b>algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_sse_customer_key/algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AES256</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the encryption algorithm. The only supported value is &quot;AES256&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_sse_customer_key/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_sse_customer_key/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the base64-encoded 256-bit encryption key to use to encrypt or decrypt the object data.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_sse_customer_key/key_sha256"></div>
+                    <b>key_sha256</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_sse_customer_key/key_sha256" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the base64-encoded SHA256 hash of the encryption key. This value is used to check the integrity of the encryption key.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source_version_id"></div>
                     <b>source_version_id</b>
                     <a class="ansibleOptionLink" href="#parameter-source_version_id" title="Permalink to this option"></a>
@@ -601,7 +687,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-src_obj_if_match_e_tag"></div>
                     <b>src_obj_if_match_e_tag</b>
                     <a class="ansibleOptionLink" href="#parameter-src_obj_if_match_e_tag" title="Permalink to this option"></a>
@@ -617,7 +703,75 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-sse_customer_key"></div>
+                    <b>sse_customer_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-sse_customer_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=reencrypt</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sse_customer_key/algorithm"></div>
+                    <b>algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-sse_customer_key/algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AES256</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the encryption algorithm. The only supported value is &quot;AES256&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sse_customer_key/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-sse_customer_key/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the base64-encoded 256-bit encryption key to use to encrypt or decrypt the object data.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sse_customer_key/key_sha256"></div>
+                    <b>key_sha256</b>
+                    <a class="ansibleOptionLink" href="#parameter-sse_customer_key/key_sha256" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the base64-encoded SHA256 hash of the encryption key. This value is used to check the integrity of the encryption key.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -632,7 +786,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-version_id"></div>
                     <b>version_id</b>
                     <a class="ansibleOptionLink" href="#parameter-version_id" title="Permalink to this option"></a>
@@ -643,12 +797,12 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The versionId of the object to restore. Current object version is used by default.</div>
-                                            <div>Applicable only for <em>action=restore</em>.</div>
+                                            <div>VersionId used to identify a particular version of the object</div>
+                                            <div>Applicable only for <em>action=reencrypt</em><em>action=restore</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -667,7 +821,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -719,6 +873,14 @@ Examples
         bucket_name: my-new-bucket1
         action: copy
 
+    - name: Perform action reencrypt on object
+      oci_object_storage_object_actions:
+        kms_key_id: ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva
+        namespace_name: namespace_name_example
+        bucket_name: my-new-bucket1
+        object_name: test/object1.log
+        action: reencrypt
+
     - name: Perform action rename on object
       oci_object_storage_object_actions:
         source_name: SourceObjectName
@@ -734,7 +896,7 @@ Examples
       oci_object_storage_object_actions:
         namespace_name: namespace_name_example
         bucket_name: my-new-bucket1
-        object_name: object_name_example
+        object_name: test/object1.log
         action: restore
 
 
@@ -767,7 +929,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
-                <td>on success</td>
+                <td>on success for actions [ &quot;copy&quot;, &quot;rename&quot;, &quot;restore&quot; ]</td>
                 <td>
                                             <div>Details of the Object resource acted upon by the current operation</div>
                                         <br/>

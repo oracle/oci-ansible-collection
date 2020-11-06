@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
-- Gets a list of the Maintenance Runs in the specified compartment.
+- Gets a list of the maintenance runs in the specified compartment.
 - If *maintenance_run_id* is specified, the details of a single MaintenanceRun will be returned.
 
 .. Aliases
@@ -265,7 +265,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Maintenance Run OCID.</div>
+                                            <div>The maintenance run OCID.</div>
                                             <div>Required to get a specific maintenance_run.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -373,6 +373,7 @@ Parameters
                                                                                                                                                                 <li>AUTONOMOUS_EXADATA_INFRASTRUCTURE</li>
                                                                                                                                                                                                 <li>AUTONOMOUS_CONTAINER_DATABASE</li>
                                                                                                                                                                                                 <li>EXADATA_DB_SYSTEM</li>
+                                                                                                                                                                                                <li>CLOUD_EXADATA_INFRASTRUCTURE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -459,7 +460,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of MaintenanceRun resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;SCHEDULED&#x27;, &#x27;maintenance_subtype&#x27;: &#x27;QUARTERLY&#x27;, &#x27;maintenance_type&#x27;: &#x27;PLANNED&#x27;, &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;AUTONOMOUS_EXADATA_INFRASTRUCTURE&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;SCHEDULED&#x27;, &#x27;maintenance_subtype&#x27;: &#x27;QUARTERLY&#x27;, &#x27;maintenance_type&#x27;: &#x27;PLANNED&#x27;, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;AUTONOMOUS_EXADATA_INFRASTRUCTURE&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -492,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The text describing this Maintenance Run.</div>
+                                            <div>Description of the maintenance run.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -510,7 +511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user-friendly name for the Maintenance Run.</div>
+                                            <div>The user-friendly name for the maintenance run.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -528,7 +529,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Maintenance Run.</div>
+                                            <div>The OCID of the maintenance run.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -564,7 +565,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the Maintenance Run.</div>
+                                            <div>The current state of the maintenance run.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SCHEDULED</div>
@@ -609,6 +610,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/patch_id"></div>
+                    <b>patch_id</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/patch_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the patch to be applied in the maintenance run.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/target_resource_id"></div>
                     <b>target_resource_id</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/target_resource_id" title="Permalink to this return value"></a>
@@ -618,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the target resource on which the Maintenance Run occurs.</div>
+                                            <div>The ID of the target resource on which the maintenance run occurs.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -636,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of the target resource on which the Maintenance Run occurs.</div>
+                                            <div>The type of the target resource on which the maintenance run occurs.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUTONOMOUS_EXADATA_INFRASTRUCTURE</div>
@@ -654,7 +673,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Maintenance Run was completed.</div>
+                                            <div>The date and time the maintenance run was completed.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
@@ -672,7 +691,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Maintenance Run is scheduled for.</div>
+                                            <div>The date and time the maintenance run is scheduled to occur.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
@@ -690,7 +709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Maintenance Run starts.</div>
+                                            <div>The date and time the maintenance run starts.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>

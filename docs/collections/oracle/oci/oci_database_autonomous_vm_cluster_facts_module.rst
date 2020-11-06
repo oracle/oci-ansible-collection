@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AutonomousVmCluster resources in Oracle Cloud Infrastructure
-- Gets a list of Autonomous VM clusters in the specified compartment.
+- Gets a list of Exadata Cloud@Customer Autonomous VM clusters in the specified compartment.
 - If *autonomous_vm_cluster_id* is specified, the details of a single AutonomousVmCluster will be returned.
 
 .. Aliases

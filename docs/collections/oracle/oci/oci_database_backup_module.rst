@@ -391,7 +391,7 @@ Examples
     
     - name: Create backup
       oci_database_backup:
-        database_id: ocid1.database.oc1.phx.abuxgljrvkwamqmkukhluitmxsgupmgpv2lt4jf6i4mrksrqk4ysjhfjbjyq
+        database_id: ocid1.database.oc1.phx.unique_ID
         display_name: Monthly Backup
 
     - name: Delete backup

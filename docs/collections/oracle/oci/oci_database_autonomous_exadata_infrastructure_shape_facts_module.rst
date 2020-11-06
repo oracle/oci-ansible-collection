@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
-- Gets a list of the shapes that can be used to launch a new Autonomous Exadata Infrastructure DB system. The shape determines resources to allocate to the DB system (CPU cores, memory and storage).
+- Gets a list of the shapes that can be used to launch a new Autonomous Exadata Infrastructure resource. The shape determines resources to allocate (CPU cores, memory and storage).
 
 .. Aliases
 

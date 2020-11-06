@@ -448,7 +448,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the image corresponding to the package.</div>
+                                            <div>The ID of the image corresponding to the package.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -613,7 +613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of regions in which this ListingPackage is available.</div>
+                                            <div>The regions where you can deploy this listing package. (Some packages have restrictions that limit their deployment to United States regions only.)</div>
                                         <br/>
                                     </td>
             </tr>

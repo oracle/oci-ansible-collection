@@ -509,7 +509,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The service endpoint to perform cryptographic operations against. Cryptographic operations include <a href='https://docs.cloud.oracle.com/api/#/en/key/release/EncryptedData/Encrypt'>Encrypt</a>, <a href='https://docs.cloud.oracle.com/api/#/en/key/release/DecryptedData/Decrypt'>Decrypt</a>, and <a href='https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> operations.</div>
+                                            <div>The service endpoint to perform cryptographic operations against. Cryptographic operations include <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/EncryptedData/Encrypt'>Encrypt</a>, <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/DecryptedData/Decrypt'>Decrypt</a>, and <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> operations.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">crypto_endpoint_example</div>

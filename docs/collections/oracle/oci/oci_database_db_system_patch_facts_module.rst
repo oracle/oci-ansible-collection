@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple DbSystemPatch resources in Oracle Cloud Infrastructure
-- Lists the patches applicable to the requested DB system.
+- Lists the patches applicable to the specified DB system.
 - If *patch_id* is specified, the details of a single DbSystemPatch will be returned.
 
 .. Aliases

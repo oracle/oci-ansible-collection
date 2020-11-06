@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new DB system in the specified compartment and availability domain. The Oracle Database edition that you specify applies to all the databases on that DB system. The selected edition cannot be changed.
 - An initial database is created on the DB system based on the request parameters you provide and some default options. For detailed information about default options, see the following:
 - - `Bare metal and virtual machine DB system default options <https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase>`_ - `Exadata DB system default options <https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase>`_
+- This resource has the following action operations in the :ref:`oci_db_system_actions <ansible_collections.oci_db_system_actions_module>` module: migrate_exadata_db_system_resource_model.
 
 .. Aliases
 
@@ -181,7 +182,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata DB systems.</div>
+                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata systems.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -213,7 +214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.</div>
+                                            <div>The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -334,7 +335,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Database Edition that applies to all the databases on the DB system. Exadata DB systems and 2-node RAC DB systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>Required when source is one of [&#x27;DATABASE&#x27;, &#x27;NONE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -463,6 +464,24 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_backup_config"></div>
                     <b>db_backup_config</b>
                     <a class="ansibleOptionLink" href="#parameter-db_home/database/db_backup_config" title="Permalink to this option"></a>
@@ -474,7 +493,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                            <div>Applicable when source is one of [&#x27;DB_SYSTEM&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -684,6 +703,24 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_domain"></div>
+                    <b>db_domain</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/db_domain" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network structure.</div>
+                                            <div>Applicable when source is &#x27;DB_SYSTEM&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-db_home/database/db_name"></div>
                     <b>db_name</b>
                     <a class="ansibleOptionLink" href="#parameter-db_home/database/db_name" title="Permalink to this option"></a>
@@ -752,7 +789,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                            <div>Applicable when source is one of [&#x27;DB_SYSTEM&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -771,7 +808,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
-                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                            <div>Applicable when source is one of [&#x27;DB_SYSTEM&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -810,7 +847,42 @@ Parameters
                                             <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/time_stamp_for_point_in_time_recovery"></div>
+                    <b>time_stamp_for_point_in_time_recovery</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/time_stamp_for_point_in_time_recovery" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to create the database.</div>
+                                            <div>Applicable when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
                     
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
@@ -831,6 +903,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Applicable when source is &#x27;DB_SYSTEM&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-db_home/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-db_home/display_name" title="Permalink to this option"></a>
@@ -844,6 +933,24 @@ Parameters
                                             <div>The user-provided name of the Database Home.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>Applicable when source is &#x27;DB_SYSTEM&#x27;</div>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -934,6 +1041,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of redundancy configured for the DB system. Normal is 2-way redundancy, recommended for test and development systems. High is 3-way redundancy, recommended for production systems.</div>
+                                            <div>Applicable when source is one of [&#x27;DATABASE&#x27;, &#x27;NONE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1294,6 +1402,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-private_ip"></div>
+                    <b>private_ip</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_ip" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A private IP address of your choice. Must be an available IP address within the subnet&#x27;s CIDR. If you don&#x27;t specify a value, Oracle automatically assigns a private IP address from the subnet.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -1337,12 +1460,29 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>NONE</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>DB_SYSTEM</li>
                                                                                                                                                                                                 <li>DATABASE</li>
                                                                                                                                                                                                 <li>DB_BACKUP</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The source of the database: Use `NONE` for creating a new database. Use `DB_BACKUP` for creating a new database by restoring from a backup. Use `DATABASE` for creating a new database from an existing database, including archive redo log data. The default is `NONE`.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-source_db_system_id"></div>
+                    <b>source_db_system_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_db_system_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system.</div>
+                                            <div>Required when source is &#x27;DB_SYSTEM&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1490,6 +1630,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-version/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-version/database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the database software image.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-version/patch_id"></div>
                     <b>patch_id</b>
                     <a class="ansibleOptionLink" href="#parameter-version/patch_id" title="Permalink to this option"></a>
@@ -1574,7 +1731,7 @@ Examples
             db_backup_config:
               backup_destination_details:
               - type: RECOVERY_APPLIANCE
-                id: ocid1.bkupdest.oc1.phx.ckiuzhel9ro23wokzhllxfuo8acbzcygqo5kcbhqbhcjoknfuzlh2t8xcttl
+                id: ocid1.bkupdest.oc1.phx.unique_ID
                 vpc_user: vpcUser1
                 vpc_password: password
               recovery_window_in_days: 30
@@ -1599,7 +1756,7 @@ Examples
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
         version:
-          patch_id: ocid1.patch.oc1.phx.aaaaaaaahlnxiytzxhvat7fxcycge3tlxmmraivbtomh32j5lmjhf44zsqqa
+          patch_id: ocid1.patch.oc1.phx.unique_ID
           action: APPLY
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -1610,7 +1767,7 @@ Examples
       oci_database_db_system:
         cpu_core_count: 10
         version:
-          patch_id: ocid1.patch.oc1.phx.aaaaaaaahlnxiytzxhvat7fxcycge3tlxmmraivbtomh32j5lmjhf44zsqqa
+          patch_id: ocid1.patch.oc1.phx.unique_ID
           action: APPLY
         ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
 
@@ -1664,7 +1821,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DbSystem resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;point_in_time_data_disk_clone_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;source_db_system_id&#x27;: &#x27;ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1697,7 +1854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata DB systems.</div>
+                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata systems.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1732,7 +1889,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.</div>
+                                            <div>The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cluster_name_example</div>
@@ -2036,7 +2193,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of IORM Setting for all the database in this Exadata DB System</div>
+                                            <div>An array of IORM settings for all the database in the Exadata DB system.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -2054,7 +2211,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Database Name. For default DbPlan, the dbName will always be `default`</div>
+                                            <div>The database name. For the default `DbPlan`, the `dbName` is `default`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_name_example</div>
@@ -2074,7 +2231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Flash Cache limit, internally configured based on shares</div>
+                                            <div>The flash cache limit for this database. This value is internally configured based on the share value assigned to the database.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">flash_cache_limit_example</div>
@@ -2094,7 +2251,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Relative priority of a database</div>
+                                            <div>The relative priority of this database.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2114,7 +2271,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional information about the current lifecycleState.</div>
+                                            <div>Additional information about the current `lifecycleState`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
@@ -2133,7 +2290,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current config state of IORM settings for this Exadata System.</div>
+                                            <div>The current state of IORM configuration for the Exadata DB system.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BOOTSTRAPPING</div>
@@ -2152,7 +2309,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value for the IORM objective Default is &quot;Auto&quot;</div>
+                                            <div>The current value for the IORM objective. The default is `AUTO`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LOW_LATENCY</div>
@@ -2487,6 +2644,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/point_in_time_data_disk_clone_timestamp"></div>
+                    <b>point_in_time_data_disk_clone_timestamp</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/point_in_time_data_disk_clone_timestamp" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The point in time for a cloned database system when the data disks were cloned from the source database system, as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/reco_storage_size_in_gb"></div>
                     <b>reco_storage_size_in_gb</b>
                     <a class="ansibleOptionLink" href="#return-db_system/reco_storage_size_in_gb" title="Permalink to this return value"></a>
@@ -2553,6 +2728,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/source_db_system_id"></div>
+                    <b>source_db_system_id</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/source_db_system_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

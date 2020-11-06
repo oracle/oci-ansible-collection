@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple KeyVersion resources in Oracle Cloud Infrastructure
-- Lists all `KeyVersion <https://docs.cloud.oracle.com/api/#/en/key/release/KeyVersion/>`_ resources for the specified master encryption key.
+- Lists all `KeyVersion <https://docs.cloud.oracle.com/api/#/en/key/latest/KeyVersion/>`_ resources for the specified master encryption key.
 - As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management read operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management read operations exceeds 10 requests per second for a given tenancy.
 - If *key_version_id* is specified, the details of a single KeyVersion will be returned.
 

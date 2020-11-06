@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a Workspace resource in Oracle Cloud Infrastructure
-- For *action=start*, the workspace will be started.
-- For *action=stop*, the workspace will be stopped.
+- For *action=start*, starts a workspace.
+- For *action=stop*, stops a workspace.
 
 .. Aliases
 
@@ -217,7 +217,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to force close down the workspace.</div>
+                                            <div>Used to force close down the workspace.</div>
                                             <div>Applicable only for <em>action=stop</em>.</div>
                                                         </td>
             </tr>
@@ -233,7 +233,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.</div>
+                                            <div>Used to set the timeout for Data Integration to gracefully close down any running jobs before stopping the workspace.</div>
                                             <div>Applicable only for <em>action=stop</em>.</div>
                                                         </td>
             </tr>
@@ -313,7 +313,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DIS workspace id</div>
+                                            <div>The workspace ID.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -525,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>A system-generated and immutable identifier assigned to the workspace upon creation.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -543,7 +543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the private network connection is enabled or disabled.</div>
+                                            <div>Specifies whether the private network connection is enabled or disabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -579,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">state_message_example</div>

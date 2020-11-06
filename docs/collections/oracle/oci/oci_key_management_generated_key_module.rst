@@ -494,7 +494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The plaintext data encryption key, a base64-encoded sequence of random bytes, which is included if the <a href='https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> request includes the `includePlaintextKey` parameter and sets its value to &quot;true&quot;.</div>
+                                            <div>The plaintext data encryption key, a base64-encoded sequence of random bytes, which is included if the <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> request includes the `includePlaintextKey` parameter and sets its value to &quot;true&quot;.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plaintext_example</div>
@@ -512,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The checksum of the plaintext data encryption key, which is included if the <a href='https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> request includes the `includePlaintextKey` parameter and sets its value to &quot;true&quot;.</div>
+                                            <div>The checksum of the plaintext data encryption key, which is included if the <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> request includes the `includePlaintextKey` parameter and sets its value to &quot;true&quot;.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plaintext_checksum_example</div>

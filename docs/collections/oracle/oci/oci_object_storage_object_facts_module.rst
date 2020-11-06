@@ -245,6 +245,96 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-http_response_cache_control"></div>
+                    <b>http_response_cache_control</b>
+                    <a class="ansibleOptionLink" href="#parameter-http_response_cache_control" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be used in Cache-Control header of the response.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-http_response_content_disposition"></div>
+                    <b>http_response_content_disposition</b>
+                    <a class="ansibleOptionLink" href="#parameter-http_response_content_disposition" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be used in Content-Disposition header of the response.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-http_response_content_encoding"></div>
+                    <b>http_response_content_encoding</b>
+                    <a class="ansibleOptionLink" href="#parameter-http_response_content_encoding" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be used in Content-Encoding header of the response</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-http_response_content_language"></div>
+                    <b>http_response_content_language</b>
+                    <a class="ansibleOptionLink" href="#parameter-http_response_content_language" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be used in Content-Language header of the response.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-http_response_content_type"></div>
+                    <b>http_response_content_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-http_response_content_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be used in Content-Type header of the response.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-http_response_expires"></div>
+                    <b>http_response_expires</b>
+                    <a class="ansibleOptionLink" href="#parameter-http_response_expires" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be used in Expires header of the response</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-namespace_name"></div>
                     <b>namespace_name</b>
                     <a class="ansibleOptionLink" href="#parameter-namespace_name" title="Permalink to this option"></a>

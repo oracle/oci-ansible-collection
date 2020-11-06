@@ -303,7 +303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ObjectLifecyclePolicy resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;action_example&#x27;, &#x27;is_enabled&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name_filter&#x27;: {&#x27;exclusion_patterns&#x27;: [], &#x27;inclusion_patterns&#x27;: [], &#x27;inclusion_prefixes&#x27;: []}, &#x27;time_amount&#x27;: 56, &#x27;time_unit&#x27;: &#x27;DAYS&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;action_example&#x27;, &#x27;is_enabled&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name_filter&#x27;: {&#x27;exclusion_patterns&#x27;: [], &#x27;inclusion_patterns&#x27;: [], &#x27;inclusion_prefixes&#x27;: []}, &#x27;target&#x27;: &#x27;target_example&#x27;, &#x27;time_amount&#x27;: 56, &#x27;time_unit&#x27;: &#x27;DAYS&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -336,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. &#x27;ARCHIVE&#x27; and &#x27;DELETE&#x27; are the only two supported actions at this time.</div>
+                                            <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. Rules using &#x27;ABORT&#x27; abort the uncommitted multipart-uploads and permanently delete their parts from buckets. &#x27;ARCHIVE&#x27;, &#x27;DELETE&#x27; and &#x27;ABORT&#x27; are the only three supported actions at this time.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_example</div>
@@ -456,6 +456,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-object_lifecycle_policies/items/target"></div>
+                    <b>target</b>
+                    <a class="ansibleOptionLink" href="#return-object_lifecycle_policies/items/target" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_example</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>

@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
-- For *action=download_vm_cluster_network_config_file*, downloads the configuration file for the specified VM Cluster Network.
-- For *action=validate*, validates the specified VM cluster network.
+- For *action=download_vm_cluster_network_config_file*, downloads the configuration file for the specified Exadata Cloud@Customer VM cluster network.
+- For *action=validate*, validates the specified Exadata Cloud@Customer VM cluster network.
 
 .. Aliases
 

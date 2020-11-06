@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
-- Returns a list of Data Integration Workspaces.
+- Retrieves a list of Data Integration workspaces.
 - If *workspace_id* is specified, the details of a single Workspace will be returned.
 
 .. Aliases
@@ -164,7 +164,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the compartment in which to list resources.</div>
+                                            <div>The OCID of the compartment containing the resources you want to list.</div>
                                             <div>Required to list multiple workspaces.</div>
                                                         </td>
             </tr>
@@ -237,7 +237,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Lifecycle state of the resource.</div>
+                                            <div>The lifecycle state of a resource. When specified, the operation only returns resources that match the given lifecycle state. When not specified, all lifecycle states are processed as a match.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -252,7 +252,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This filter parameter can be used to filter by the name of the object.</div>
+                                            <div>Used to filter by the name of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -286,7 +286,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to specify a sort field.  Supported sort fields are `name`, `identifier`, `timeCreated`, and `timeUpdated`.  Default sort order is the descending order of `timeCreated` (most recently created objects at the top).  Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).</div>
+                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -305,7 +305,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This parameter is used to control the sort order.  Supported values are `ASC` (ascending) and `DESC` (descending).</div>
+                                            <div>Specifies sort order to use, either `ASC` (ascending) or `DESC` (descending).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,7 +335,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DIS workspace id</div>
+                                            <div>The workspace ID.</div>
                                             <div>Required to get a specific workspace.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -546,7 +546,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>A system-generated and immutable identifier assigned to the workspace upon creation.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -564,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the private network connection is enabled or disabled.</div>
+                                            <div>Specifies whether the private network connection is enabled or disabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -600,7 +600,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">state_message_example</div>

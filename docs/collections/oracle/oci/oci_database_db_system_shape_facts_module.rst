@@ -317,7 +317,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbSystemShape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_core_count_per_node&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -333,6 +333,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The maximum number of CPU cores that can be enabled on the DB system for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_core_count_per_node"></div>
+                    <b>available_core_count_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_core_count_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape. Does not apply to X6, X7, and X8 fixed-shape systems.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
