@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create an EncryptedData resource in Oracle Cloud Infrastructure
-- For *state=present*, encrypts data using the given `EncryptDataDetails <https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/EncryptDataDetails>`_ resource. Plaintext included in the example request is a base64-encoded value of a UTF-8 string.
+- For *state=present*, encrypts data using the given `EncryptDataDetails <https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/EncryptDataDetails>`_ resource. Plaintext included in the example request is a base64-encoded value of a UTF-8 string.
 
 .. Aliases
 

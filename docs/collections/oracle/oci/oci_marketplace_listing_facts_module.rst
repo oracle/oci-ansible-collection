@@ -1334,7 +1334,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The regions where the listing is eligible to be deployed.</div>
+                                            <div>The regions where you can deploy the listing. (Some listings have restrictions that limit their deployment to United States regions only.)</div>
                                         <br/>
                                     </td>
             </tr>

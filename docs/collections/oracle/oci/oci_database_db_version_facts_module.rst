@@ -336,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbVersion resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;is_latest_for_major_version&#x27;: True, &#x27;supports_pdb&#x27;: True, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;is_latest_for_major_version&#x27;: True, &#x27;is_preview_db_version&#x27;: True, &#x27;supports_pdb&#x27;: True, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -352,6 +352,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>True if this version of the Oracle Database software is the latest version for a release.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_versions/is_preview_db_version"></div>
+                    <b>is_preview_db_version</b>
+                    <a class="ansibleOptionLink" href="#return-db_versions/is_preview_db_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if this version of the Oracle Database software is the preview version.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

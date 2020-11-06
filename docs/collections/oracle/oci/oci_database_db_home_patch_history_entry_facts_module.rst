@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple DbHomePatchHistoryEntry resources in Oracle Cloud Infrastructure
-- Gets history of the actions taken for patches for the specified Database Home.
+- Lists the history of patch operations on the specified Database Home.
 - If *patch_history_entry_id* is specified, the details of a single DbHomePatchHistoryEntry will be returned.
 
 .. Aliases
@@ -415,7 +415,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time when the patch action completed.</div>
+                                            <div>The date and time when the patch action completed</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>

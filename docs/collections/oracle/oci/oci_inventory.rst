@@ -59,13 +59,53 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                             <th>Configuration</th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
+                    <b>api_user_key_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_USER_KEY_FILE
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Full path and filename of the private key (in PEM format). If the key is encrypted with a pass-phrase, the pass_phrase option must also be provided. Preference order is .oci.yml &gt; OCI_USER_KEY_FILE environment variable &gt; settings from config file This option is required if the private key is not specified through a configuration file (See config_file)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
+                    <b>api_user_key_pass_phrase</b>
+                    <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_USER_KEY_PASS_PHRASE
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Passphrase used by the key referenced in api_user_key_file, if it is encrypted. Preference order is .oci.yml &gt; OCI_USER_KEY_PASS_PHRASE environment variable &gt; settings from config file This option is required if the passphrase is not specified through a configuration file (See config_file)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cache"></div>
                     <b>cache</b>
                     <a class="ansibleOptionLink" href="#parameter-cache" title="Permalink to this option"></a>
@@ -94,7 +134,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cache_connection"></div>
                     <b>cache_connection</b>
                     <a class="ansibleOptionLink" href="#parameter-cache_connection" title="Permalink to this option"></a>
@@ -125,7 +165,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cache_plugin"></div>
                     <b>cache_plugin</b>
                     <a class="ansibleOptionLink" href="#parameter-cache_plugin" title="Permalink to this option"></a>
@@ -157,7 +197,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cache_prefix"></div>
                     <b>cache_prefix</b>
                     <a class="ansibleOptionLink" href="#parameter-cache_prefix" title="Permalink to this option"></a>
@@ -189,7 +229,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cache_timeout"></div>
                     <b>cache_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-cache_timeout" title="Permalink to this option"></a>
@@ -221,7 +261,101 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-compartments"></div>
+                    <b>compartments</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartments" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional. If compartment is not specified, the plugin fetches all compartments from the tenancy</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartments/compartment_name"></div>
+                    <b>compartment_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartments/compartment_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>Name of the compartment. If None and `compartment_ocid` is not set, all the compartments including the root compartment are returned.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartments/compartment_ocid"></div>
+                    <b>compartment_ocid</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartments/compartment_ocid" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>OCID of the compartment. If None, root compartment is assumed to be the default value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartments/fetch_hosts_from_subcompartments"></div>
+                    <b>fetch_hosts_from_subcompartments</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartments/fetch_hosts_from_subcompartments" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>Flag used to fetch hosts from subcompartments. Default value is set to True</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartments/parent_compartment_ocid"></div>
+                    <b>parent_compartment_ocid</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartments/parent_compartment_ocid" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>This option is not needed when the compartment_ocid option is used, it is needed when compartment_name is used. OCID of the parent compartment. If None, root compartment is assumed to be parent.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-compose"></div>
                     <b>compose</b>
                     <a class="ansibleOptionLink" href="#parameter-compose" title="Permalink to this option"></a>
@@ -239,7 +373,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file"></div>
                     <b>config_file</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file" title="Permalink to this option"></a>
@@ -259,7 +393,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile"></div>
                     <b>config_profile</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile" title="Permalink to this option"></a>
@@ -279,7 +413,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-enable_parallel_processing"></div>
                     <b>enable_parallel_processing</b>
                     <a class="ansibleOptionLink" href="#parameter-enable_parallel_processing" title="Permalink to this option"></a>
@@ -292,11 +426,11 @@ Parameters
                                                     <td>
                                                                                             </td>
                                                 <td>
-                                            <div>Use multiple threads to speedup lookup.</div>
+                                            <div>Use multiple threads to speedup lookup. Default is set to True</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-fetch_db_hosts"></div>
                     <b>fetch_db_hosts</b>
                     <a class="ansibleOptionLink" href="#parameter-fetch_db_hosts" title="Permalink to this option"></a>
@@ -313,7 +447,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-filters"></div>
                     <b>filters</b>
                     <a class="ansibleOptionLink" href="#parameter-filters" title="Permalink to this option"></a>
@@ -330,7 +464,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-groups"></div>
                     <b>groups</b>
                     <a class="ansibleOptionLink" href="#parameter-groups" title="Permalink to this option"></a>
@@ -348,7 +482,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-hostname_format"></div>
                     <b>hostname_format</b>
                     <a class="ansibleOptionLink" href="#parameter-hostname_format" title="Permalink to this option"></a>
@@ -368,7 +502,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-hostnames"></div>
                     <b>hostnames</b>
                     <a class="ansibleOptionLink" href="#parameter-hostnames" title="Permalink to this option"></a>
@@ -385,7 +519,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-instance_principal_authentication"></div>
                     <b>instance_principal_authentication</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_principal_authentication" title="Permalink to this option"></a>
@@ -405,7 +539,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-keyed_groups"></div>
                     <b>keyed_groups</b>
                     <a class="ansibleOptionLink" href="#parameter-keyed_groups" title="Permalink to this option"></a>
@@ -423,7 +557,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-plugin"></div>
                     <b>plugin</b>
                     <a class="ansibleOptionLink" href="#parameter-plugin" title="Permalink to this option"></a>
@@ -433,7 +567,7 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>oci</li>
+                                                                                                                                                                <li>oracle.oci.oci</li>
                                                                                     </ul>
                                                                             </td>
                                                     <td>
@@ -443,7 +577,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-regions"></div>
                     <b>regions</b>
                     <a class="ansibleOptionLink" href="#parameter-regions" title="Permalink to this option"></a>
@@ -460,7 +594,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-strict"></div>
                     <b>strict</b>
                     <a class="ansibleOptionLink" href="#parameter-strict" title="Permalink to this option"></a>
@@ -516,7 +650,10 @@ Examples
     # Select compartment by ocid or name
     compartments:
       - compartment_ocid: ocid1.compartment.oc1..xxxxxx
-      - compartment_name: "test"
+        fetch_hosts_from_subcompartments: false
+
+      - compartment_name: "test_compartment"
+        parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
 
     # Example filtering using hostname IP
     hostnames:

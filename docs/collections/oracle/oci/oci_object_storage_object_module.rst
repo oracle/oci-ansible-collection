@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to update and delete an Object resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the :ref:`oci_object_actions <ansible_collections.oci_object_actions_module>` module: copy, rename, restore.
+- This resource has the following action operations in the :ref:`oci_object_actions <ansible_collections.oci_object_actions_module>` module: copy, reencrypt, rename, restore.
 
 .. Aliases
 

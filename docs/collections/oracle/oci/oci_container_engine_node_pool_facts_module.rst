@@ -379,7 +379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of NodePool resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq&#x27;, &#x27;id&#x27;: &#x27;ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;mykey&#x27;, &#x27;value&#x27;: &#x27;myvalue&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;v1.9.4&#x27;, &#x27;name&#x27;: &#x27;My Node Pool&#x27;, &#x27;node_config_details&#x27;: {&#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa&#x27;, &#x27;node_image_name&#x27;: &#x27;Oracle-Linux-7.4&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;VM.Standard2.4&#x27;, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw&#x27;, &#x27;lifecycle_details&#x27;: &#x27;waiting for SSH&#x27;, &#x27;lifecycle_state&#x27;: &#x27;UPDATING&#x27;, &#x27;name&#x27;: &#x27;My Kubernetes Node&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;LimitExceeded&#x27;, &#x27;message&#x27;: &#x27;error validating payload&#x27;, &#x27;opc_request_id&#x27;: &#x27;BDA258F920471CFA70CF3655A836EAC3/AC26D111CE04292D5398192DCACCD85F/D74FF67547281CFA70CF3655A60B6DF5&#x27;, &#x27;status&#x27;: &#x27;429&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;private_ip&#x27;: &#x27;10.0.1.1&#x27;, &#x27;public_ip&#x27;: &#x27;129.1.2.3&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit&#x27;}], &#x27;quantity_per_subnet&#x27;: 1, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2abc123...&#x27;, &#x27;subnet_ids&#x27;: []}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq&#x27;, &#x27;id&#x27;: &#x27;ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;mykey&#x27;, &#x27;value&#x27;: &#x27;myvalue&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;v1.9.4&#x27;, &#x27;name&#x27;: &#x27;My Node Pool&#x27;, &#x27;node_config_details&#x27;: {&#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa&#x27;, &#x27;node_image_name&#x27;: &#x27;Oracle-Linux-7.4&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;VM.Standard2.4&#x27;, &#x27;node_shape_config&#x27;: {&#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;id&#x27;: &#x27;ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw&#x27;, &#x27;kubernetes_version&#x27;: &#x27;v1.9.4&#x27;, &#x27;lifecycle_details&#x27;: &#x27;waiting for SSH&#x27;, &#x27;lifecycle_state&#x27;: &#x27;UPDATING&#x27;, &#x27;name&#x27;: &#x27;My Kubernetes Node&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;LimitExceeded&#x27;, &#x27;message&#x27;: &#x27;error validating payload&#x27;, &#x27;opc_request_id&#x27;: &#x27;BDA258F920471CFA70CF3655A836EAC3/AC26D111CE04292D5398192DCACCD85F/D74FF67547281CFA70CF3655A60B6DF5&#x27;, &#x27;status&#x27;: &#x27;429&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq&#x27;, &#x27;private_ip&#x27;: &#x27;10.0.1.1&#x27;, &#x27;public_ip&#x27;: &#x27;129.1.2.3&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit&#x27;}], &#x27;quantity_per_subnet&#x27;: 1, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2abc123...&#x27;, &#x27;subnet_ids&#x27;: []}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -670,7 +670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of key/value pairs to add to each underlying OCI instance in the node pool.</div>
+                                            <div>A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -695,6 +695,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_shape_config"></div>
+                    <b>node_shape_config</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_shape_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The shape configuration of the nodes.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_shape_config/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of OCPUs available to each node in the node pool. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/'>here</a> for details.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pools/node_source"></div>
                     <b>node_source</b>
                     <a class="ansibleOptionLink" href="#return-node_pools/node_source" title="Permalink to this return value"></a>
@@ -704,7 +740,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source running on the nodes in the node pool.</div>
+                                            <div>Deprecated. see `nodeSourceDetails`. Source running on the nodes in the node pool.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -760,6 +796,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The source type of this option. `IMAGE` means the OCID is of an image.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IMAGE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details"></div>
+                    <b>node_source_details</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_source_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Source running on the nodes in the node pool.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details/boot_volume_size_in_gbs"></div>
+                    <b>boot_volume_size_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_source_details/boot_volume_size_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The size of the boot volume in GBs. Minimum value is 50 GB. See <a href='https://docs.cloud.oracle.com/en- us/iaas/Content/Block/Concepts/bootvolumes.htm'>here</a> for max custom boot volume sizing and OS-specific requirements.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details/image_id"></div>
+                    <b>image_id</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_source_details/image_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the image used to boot the node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/node_source_details/source_type"></div>
+                    <b>source_type</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/node_source_details/source_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The source type for the node. Use `IMAGE` when specifying an OCID of an image.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IMAGE</div>
@@ -837,6 +947,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pools/nodes/kubernetes_version"></div>
+                    <b>kubernetes_version</b>
+                    <a class="ansibleOptionLink" href="#return-node_pools/nodes/kubernetes_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The version of Kubernetes this node is running.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">v1.9.4</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1101,7 +1230,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The SSH public key on each node in the node pool.</div>
+                                            <div>The SSH public key on each node in the node pool on launch.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ssh-rsa AAAAB3NzaC1yc2abc123...</div>

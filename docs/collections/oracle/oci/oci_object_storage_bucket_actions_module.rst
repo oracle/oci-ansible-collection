@@ -359,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
-                <td>on success</td>
+                <td>on success for actions [ &quot;make_bucket_writable&quot;, ]</td>
                 <td>
                                             <div>Details of the Bucket resource acted upon by the current operation</div>
                                         <br/>

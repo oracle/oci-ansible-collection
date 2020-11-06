@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a AutonomousExadataInfrastructureOcpus resource in Oracle Cloud Infrastructure
-- Gets details of the available and consumed OCPUs for the specified Autonomous Exadata Infrastructure instance.
+- Gets details of the available and consumed OCPUs for the specified Autonomous Exadata Infrastructure resource.
 
 .. Aliases
 

@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ConsoleConnection resources in Oracle Cloud Infrastructure
-- Lists the console connections for the specified Db node.
+- Lists the console connections for the specified database node.
 - If *console_connection_id* is specified, the details of a single ConsoleConnection will be returned.
 
 .. Aliases

@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a BackupDestination resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a backup destination.
+- For *state=present*, creates a backup destination in an Exadata Cloud@Customer system.
 
 .. Aliases
 

@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *state=present*, launches a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
+- For *state=present*, creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
 
 .. Aliases
 

@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
-- Gets a list of backups based on the databaseId or compartmentId specified. Either one of the query parameters must be provided.
+- Gets a list of backups based on the `databaseId` or `compartmentId` specified. Either one of these query parameters must be provided.
 - If *backup_id* is specified, the details of a single Backup will be returned.
 
 .. Aliases

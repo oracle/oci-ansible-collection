@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple GiVersion resources in Oracle Cloud Infrastructure
-- Gets a list of supported GI versions for VM Cluster.
+- Gets a list of supported GI versions for the Exadata Cloud@Customer VM cluster.
 
 .. Aliases
 

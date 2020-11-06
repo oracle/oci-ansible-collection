@@ -181,7 +181,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata DB systems.</div>
+                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata systems.</div>
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
@@ -227,6 +227,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>NewDbSystem</li>
+                                                                                                                                                                                                <li>ExistingVmCluster</li>
                                                                                                                                                                                                 <li>ExistingDbSystem</li>
                                                                                     </ul>
                                                                             </td>
@@ -367,6 +368,22 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system in which to create the standby database. You must supply this value if creationType is `ExistingDbSystem`.</div>
                                             <div>Applicable when creation_type is &#x27;ExistingDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_vm_cluster_id"></div>
+                    <b>peer_vm_cluster_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_vm_cluster_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VM Cluster in which to create the standby database. You must supply this value if creationType is `ExistingVmCluster`.</div>
+                                            <div>Applicable when creation_type is &#x27;ExistingVmCluster&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>

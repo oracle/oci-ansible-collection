@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a DbHome resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Database Home in the specified DB system based on the request parameters you provide. Applies to bare metal DB systems, Exadata DB systems, and Exadata Cloud at Customer systems.
+- For *state=present*, creates a new Database Home in the specified database system based on the request parameters you provide. Applies to bare metal DB systems, Exadata systems, and Exadata Cloud@Customer systems.
 
 .. Aliases
 
@@ -212,7 +212,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required when source is one of [&#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
+                                            <div>Required when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -245,7 +245,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The backup <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
-                                            <div>Required when source is &#x27;DB_BACKUP&#x27;</div>
+                                            <div>Required when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -262,7 +262,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The password to open the TDE wallet.</div>
-                                            <div>Required when source is one of [&#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
+                                            <div>Required when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;DATABASE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -298,6 +298,23 @@ Parameters
                                                                 <td>
                                             <div>The database <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -634,7 +651,39 @@ Parameters
                                             <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/time_stamp_for_point_in_time_recovery"></div>
+                    <b>time_stamp_for_point_in_time_recovery</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/time_stamp_for_point_in_time_recovery" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to create the database.</div>
+                                            <div>Applicable when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
                     
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-db_home_id"></div>
@@ -792,6 +841,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-patch_details/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-patch_details/database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the database software image.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-patch_details/patch_id"></div>
                     <b>patch_id</b>
                     <a class="ansibleOptionLink" href="#parameter-patch_details/patch_id" title="Permalink to this option"></a>
@@ -856,6 +922,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>DATABASE</li>
                                                                                                                                                                                                 <li>DB_BACKUP</li>
+                                                                                                                                                                                                <li>VM_CLUSTER_BACKUP</li>
                                                                                                                                                                                                 <li><div style="color: blue"><b>NONE</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>VM_CLUSTER_NEW</li>
                                                                                     </ul>
@@ -913,7 +980,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VM cluster.</div>
-                                            <div>Required when source is &#x27;VM_CLUSTER_NEW&#x27;</div>
+                                            <div>Required when source is one of [&#x27;VM_CLUSTER_BACKUP&#x27;, &#x27;VM_CLUSTER_NEW&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1041,7 +1108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DbHome resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_home_location&#x27;: &#x27;db_home_location_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;one_off_patches&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_home_location&#x27;: &#x27;db_home_location_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;one_off_patches&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1060,6 +1127,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_home/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#return-db_home/database_software_image_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

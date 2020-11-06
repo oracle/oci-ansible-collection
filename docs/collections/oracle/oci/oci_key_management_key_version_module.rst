@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create a KeyVersion resource in Oracle Cloud Infrastructure
-- For *state=present*, generates a new `KeyVersion <https://docs.cloud.oracle.com/api/#/en/key/release/KeyVersion/>`_ resource that provides new cryptographic material for a master encryption key. The key must be in an `ENABLED` state to be rotated.
+- For *state=present*, generates a new `KeyVersion <https://docs.cloud.oracle.com/api/#/en/key/latest/KeyVersion/>`_ resource that provides new cryptographic material for a master encryption key. The key must be in an `ENABLED` state to be rotated.
 - As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all  management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
 - This resource has the following action operations in the :ref:`oci_key_version_actions <ansible_collections.oci_key_version_actions_module>` module: cancel_key_version_deletion, schedule_key_version_deletion.
 

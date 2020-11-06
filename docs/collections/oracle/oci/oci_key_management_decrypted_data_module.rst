@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create a DecryptedData resource in Oracle Cloud Infrastructure
-- For *state=present*, decrypts data using the given `DecryptDataDetails <https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/DecryptDataDetails>`_ resource.
+- For *state=present*, decrypts data using the given `DecryptDataDetails <https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/DecryptDataDetails>`_ resource.
 
 .. Aliases
 

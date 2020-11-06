@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple VmClusterNetwork resources in Oracle Cloud Infrastructure
-- Gets a list of the VM cluster networks in the specified compartment.
+- Gets a list of the Exadata Cloud@Customer VM cluster networks in the specified compartment.
 - If *vm_cluster_network_id* is specified, the details of a single VmClusterNetwork will be returned.
 
 .. Aliases

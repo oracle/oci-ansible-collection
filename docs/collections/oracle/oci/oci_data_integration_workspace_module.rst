@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Data Integration Workspace ready for performing data integration.
+- For *state=present*, creates a new Data Integration workspace ready for performing data integration tasks.
 - This resource has the following action operations in the :ref:`oci_workspace_actions <ansible_collections.oci_workspace_actions_module>` module: start, stop.
 
 .. Aliases
@@ -213,6 +213,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -227,7 +228,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A detailed description for the workspace.</div>
+                                            <div>A user defined description for the workspace.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +247,7 @@ Parameters
                                             <div>A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -310,6 +313,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -328,7 +332,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to force close down the workspace.</div>
+                                            <div>Used to force close down the workspace.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -347,7 +351,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether the private network connection is enabled or disabled.</div>
+                                            <div>Specifies whether the private network connection is enabled or disabled.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -377,7 +381,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.</div>
+                                            <div>Used to set the timeout for Data Integration to gracefully close down any running jobs before stopping the workspace.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -507,7 +511,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DIS workspace id</div>
+                                            <div>The workspace ID.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -741,7 +745,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>A system-generated and immutable identifier assigned to the workspace upon creation.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -759,7 +763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the private network connection is enabled or disabled.</div>
+                                            <div>Specifies whether the private network connection is enabled or disabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -795,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">state_message_example</div>

@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an AutonomousVmCluster resource in Oracle Cloud Infrastructure
-- For *state=present*, creates an Autonomous VM cluster.
+- For *state=present*, creates an Autonomous VM cluster for Exadata Cloud@Customer.
 
 .. Aliases
 
