@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple DbVersion resources in Oracle Cloud Infrastructure
 - Gets a list of supported Oracle Database versions.
 
+
 .. Aliases
 
 

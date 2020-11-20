@@ -1,0 +1,51 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+sample_public_subnet_egress_security_rules:
+  # Allow access to HTTP(S) for cloud-init (yum, pip to work)
+  - destination: "{{ all_cidr_block }}"
+    protocol: "{{ tcp_protocol }}"
+    tcp_options:
+      destination_port_range:
+        min: {{ http_port }}
+        max: {{ http_port }}
+  - destination: "{{ all_cidr_block }}"
+    protocol: "{{ tcp_protocol }}"
+    tcp_options:
+      destination_port_range:
+        min: {{ https_port }}
+        max: {{ https_port }}
+  - destination: "{{ subnet_cidr_block_ad2 }}"
+    protocol: "{{ tcp_protocol }}"
+    tcp_options:
+      destination_port_range:
+        min: 22
+        max: 22
+
+  - destination: "{{ cidr_block }}"
+    protocol: "{{ tcp_protocol }}"
+    tcp_options:
+      destination_port_range:
+        min: 2048
+        max: 2050
+  - destination: "{{ cidr_block }}"
+    protocol: "{{ tcp_protocol }}"
+    tcp_options:
+      destination_port_range:
+        min: 111
+        max: 111
+  - destination: "{{ cidr_block }}"
+    protocol: "{{ udp_protocol }}"
+    udp_options:
+      destination_port_range:
+        min: 2048
+        max: 2048
+  - destination: "{{ cidr_block }}"
+    protocol: "{{ udp_protocol }}"
+    udp_options:
+      destination_port_range:
+        min: 111
+        max: 111

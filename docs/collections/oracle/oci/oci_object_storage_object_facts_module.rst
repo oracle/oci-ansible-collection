@@ -47,6 +47,7 @@ Synopsis
 - To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized, talk to an administrator. If you are an administrator who needs to write policies to give users access, see `Getting Started with Policies <https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm>`_.
 - If *object_name* is specified, the details of a single Object will be returned.
 
+
 .. Aliases
 
 
@@ -657,7 +658,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the object was created, as described in <a href='https://tools.ietf.org/html/rfc2616#section-14.29'>RFC 2616</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -675,7 +676,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the object was modified, as described in <a href='https://tools.ietf.org/rfc/rfc2616'>RFC 2616</a>, section 14.29.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple TableUsage resources in Oracle Cloud Infrastructure
 - Get table usage info.
 
+
 .. Aliases
 
 

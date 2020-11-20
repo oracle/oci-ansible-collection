@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AutonomousDbPreviewVersion resources in Oracle Cloud Infrastructure
 - Gets a list of supported Autonomous Database versions. Note that preview version software is only available for databases with `shared Exadata infrastructure <https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI>`_.
 
+
 .. Aliases
 
 
@@ -380,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the preview version availability begins.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -398,7 +399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the preview version availability ends.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a PolicyConfig resource in Oracle Cloud Infrastructure
 - Gets the configuration of a WAAS policy.
 
+
 .. Aliases
 
 

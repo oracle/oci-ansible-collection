@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a BootVolumeKmsKey resource in Oracle Cloud Infrastructure
 - Gets the Key Management encryption key assigned to the specified boot volume.
 
+
 .. Aliases
 
 

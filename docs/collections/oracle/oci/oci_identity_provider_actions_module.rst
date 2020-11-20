@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on an IdentityProvider resource in Oracle Cloud Infrastructure
 - For *action=reset_idp_scim_client*, resets the OAuth2 client credentials for the SCIM client associated with this identity provider.
 
+
 .. Aliases
 
 

@@ -299,7 +299,11 @@ class VirtualCircuitActionsHelperCustom:
             return oci_common_utils.get_result(
                 changed=False,
                 resource_type=self.resource_type,
-                resource=to_dict(existing_public_prefixes),
+                resource=to_dict(
+                    BulkAddVirtualCircuitPublicPrefixesDetails(
+                        public_prefixes=existing_public_prefixes
+                    )
+                ),
             )
         else:
             self.module.params["public_prefixes"] = public_prefixes_to_add
@@ -321,7 +325,11 @@ class VirtualCircuitActionsHelperCustom:
             return oci_common_utils.get_result(
                 changed=False,
                 resource_type=self.resource_type,
-                resource=to_dict(existing_public_prefixes),
+                resource=to_dict(
+                    BulkAddVirtualCircuitPublicPrefixesDetails(
+                        public_prefixes=existing_public_prefixes
+                    )
+                ),
             )
         else:
             self.module.params["public_prefixes"] = public_prefixes_to_delete
@@ -591,3 +599,55 @@ class IpSecConnectionTunnelCpeDeviceConfigContentFactsHelperCustom:
         # charset parameter from the header, it works fine.
         # TODO: Remove this once the issue with API is fixed
         patch_base_client_call_api(self.client)
+
+
+class PublicIpPoolActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == "add_public_ip_pool_capacity":
+            if (
+                resource.cidr_blocks
+                and self.module.params.get("cidr_block") in resource.cidr_blocks
+            ):
+                return False
+            return True
+        elif action == "remove_public_ip_pool_capacity":
+            if (
+                resource.cidr_blocks
+                and self.module.params.get("cidr_block") in resource.cidr_blocks
+            ):
+                return True
+            return False
+        return super(PublicIpPoolActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+
+class ByoipRangeActionsHelperCustom:
+    LIFECYCLE_DETAILS_ACTIVE = "ACTIVE"
+    LIFECYCLE_DETAILS_PROVISIONED = "PROVISIONED"
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == "advertise":
+            if (
+                resource.lifecycle_state == self.LIFECYCLE_DETAILS_ACTIVE
+                and resource.lifecycle_details == self.LIFECYCLE_DETAILS_ACTIVE
+            ):
+                return False
+            return True
+        elif action == "withdraw":
+            if (
+                resource.lifecycle_state == self.LIFECYCLE_DETAILS_ACTIVE
+                and resource.lifecycle_details == self.LIFECYCLE_DETAILS_ACTIVE
+            ):
+                return True
+            return False
+        elif action == "validate":
+            if (
+                resource.lifecycle_state == self.LIFECYCLE_DETAILS_ACTIVE
+                and resource.lifecycle_details == self.LIFECYCLE_DETAILS_PROVISIONED
+            ):
+                return False
+            return False
+        super(ByoipRangeActionsHelperCustom, self).is_action_necessary(action, resource)

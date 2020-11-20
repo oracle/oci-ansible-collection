@@ -50,6 +50,7 @@ Synopsis
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 - This resource has the following action operations in the :ref:`oci_identity_provider_actions <ansible_collections.oci_identity_provider_actions_module>` module: reset_idp_scim_client.
 
+
 .. Aliases
 
 
@@ -880,7 +881,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

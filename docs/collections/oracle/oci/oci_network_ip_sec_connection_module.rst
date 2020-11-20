@@ -51,6 +51,7 @@ Synopsis
 -  * `IPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/>`_ * `IPSecConnectionTunnelSharedSecret <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/>`_
 - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/Content/Network/Tasks/configuringCPE.htm>`_.
 
+
 .. Aliases
 
 
@@ -969,7 +970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

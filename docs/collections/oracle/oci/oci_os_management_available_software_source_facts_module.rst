@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AvailableSoftwareSource resources in Oracle Cloud Infrastructure
 - Returns a list of available software sources for a Managed Instance.
 
+
 .. Aliases
 
 

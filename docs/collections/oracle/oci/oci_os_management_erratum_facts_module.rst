@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a Erratum resource in Oracle Cloud Infrastructure
 - Returns a specific erratum.
 
+
 .. Aliases
 
 

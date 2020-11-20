@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a ResourceAvailability resource in Oracle Cloud Infrastructure
 - For a given compartmentId, resource limit name, and scope, returns the following: - the number of available resources associated with the given limit - the usage in the selected compartment for the given limit Note: not all resource limits support this API. If the value is not available, the API will return 404.
 
+
 .. Aliases
 
 

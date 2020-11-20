@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
 - This resource has the following action operations in the :ref:`oci_autonomous_container_database_actions <ansible_collections.oci_autonomous_container_database_actions_module>` module: restart, rotate_autonomous_container_database_encryption_key.
 
+
 .. Aliases
 
 
@@ -1597,7 +1598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the Autonomous Container Database was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -46,6 +46,7 @@ Synopsis
 - Returns a list of all Managed Instances.
 - If *managed_instance_id* is specified, the details of a single ManagedInstance will be returned.
 
+
 .. Aliases
 
 

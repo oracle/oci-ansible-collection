@@ -72,6 +72,24 @@ image_shape_compatibility_entries:
             returned: on success
             type: string
             sample: shape_example
+        memory_constraints:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min_in_gbs:
+                    description:
+                        - The minimum amount of memory, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
+                max_in_gbs:
+                    description:
+                        - The maximum amount of memory, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
         ocpu_constraints:
             description:
                 - ""
@@ -93,6 +111,10 @@ image_shape_compatibility_entries:
     sample: [{
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
         "shape": "shape_example",
+        "memory_constraints": {
+            "min_in_gbs": 56,
+            "max_in_gbs": 56
+        },
         "ocpu_constraints": {
             "min": 56,
             "max": 56

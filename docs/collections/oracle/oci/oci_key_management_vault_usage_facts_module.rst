@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a VaultUsage resource in Oracle Cloud Infrastructure
 - Gets the count of keys and key versions in the specified vault to calculate usage against service limits.
 
+
 .. Aliases
 
 

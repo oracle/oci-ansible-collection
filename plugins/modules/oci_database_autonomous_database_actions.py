@@ -26,6 +26,8 @@ description:
     - For I(action=autonomous_database_manual_refresh), initiates a data refresh for an Autonomous Database refreshable clone. Data is refreshed from the source
       database to the point of a specified timestamp.
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
+    - For I(action=disable_autonomous_database_operations_insights), disables Operations Insights for the Autonomous Database resource.
+    - For I(action=enable_autonomous_database_operations_insights), enables the specified Autonomous Database with Operations Insights.
     - For I(action=fail_over), initiates a failover the specified Autonomous Database to a standby.
     - For I(action=generate_autonomous_database_wallet), creates and downloads a wallet for the specified Autonomous Database.
     - For I(action=register_autonomous_database_data_safe), asynchronously registers this Autonomous Database with Data Safe.
@@ -111,6 +113,8 @@ options:
         choices:
             - "autonomous_database_manual_refresh"
             - "deregister_autonomous_database_data_safe"
+            - "disable_autonomous_database_operations_insights"
+            - "enable_autonomous_database_operations_insights"
             - "fail_over"
             - "generate_autonomous_database_wallet"
             - "register_autonomous_database_data_safe"
@@ -134,6 +138,16 @@ EXAMPLES = """
     autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
     pdb_admin_password: pdb_admin_password_example
     action: deregister_autonomous_database_data_safe
+
+- name: Perform action disable_autonomous_database_operations_insights on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: disable_autonomous_database_operations_insights
+
+- name: Perform action enable_autonomous_database_operations_insights on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    action: enable_autonomous_database_operations_insights
 
 - name: Perform action fail_over on autonomous_database
   oci_database_autonomous_database_actions:
@@ -485,6 +499,12 @@ autonomous_database:
             returned: on success
             type: string
             sample: REGISTERING
+        operations_insights_status:
+            description:
+                - Status of the Operations Insights for this Autonomous Database.
+            returned: on success
+            type: string
+            sample: ENABLING
         time_maintenance_begin:
             description:
                 - The date and time when maintenance will begin.
@@ -655,6 +675,7 @@ autonomous_database:
         "whitelisted_ips": [],
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
+        "operations_insights_status": "ENABLING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
         "is_refreshable_clone": true,
@@ -708,6 +729,8 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         autonomous_database_manual_refresh
         deregister_autonomous_database_data_safe
+        disable_autonomous_database_operations_insights
+        enable_autonomous_database_operations_insights
         fail_over
         generate_autonomous_database_wallet
         register_autonomous_database_data_safe
@@ -772,6 +795,40 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
                 deregister_autonomous_database_data_safe_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def disable_autonomous_database_operations_insights(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_autonomous_database_operations_insights,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_autonomous_database_operations_insights(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_autonomous_database_operations_insights,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -984,6 +1041,8 @@ def main():
                 choices=[
                     "autonomous_database_manual_refresh",
                     "deregister_autonomous_database_data_safe",
+                    "disable_autonomous_database_operations_insights",
+                    "enable_autonomous_database_operations_insights",
                     "fail_over",
                     "generate_autonomous_database_wallet",
                     "register_autonomous_database_data_safe",

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple WaasPolicyCustomProtectionRules resources in Oracle Cloud Infrastructure
 - Gets the list of currently configured custom protection rules for a WAAS policy.
 
+
 .. Aliases
 
 

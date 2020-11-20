@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a VolumeKmsKey resource in Oracle Cloud Infrastructure
 - Gets the Key Management encryption key assigned to the specified volume.
 
+
 .. Aliases
 
 

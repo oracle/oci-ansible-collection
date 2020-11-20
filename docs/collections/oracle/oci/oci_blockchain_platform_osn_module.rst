@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a BlockchainPlatformOsn resource in Oracle Cloud Infrastructure
 - For *state=present*, create Blockchain Platform Osn
 
+
 .. Aliases
 
 

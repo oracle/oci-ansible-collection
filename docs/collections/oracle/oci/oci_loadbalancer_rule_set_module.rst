@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a RuleSet resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new rule set associated with the specified load balancer. For more information, see `Managing Rule Sets <https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm>`_.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - Gets all resource versions for a particular listing.
 - If *resource_version* is specified, the details of a single AppCatalogListingResourceVersion will be returned.
 
+
 .. Aliases
 
 
@@ -469,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Date and time the listing resource version was published, in <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> format. Example: `2018-03-20T12:32:53.532Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-03-20T12:32:53.532000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-03-20T12:32:53.532000+00:00</div>
                                     </td>
             </tr>
                     

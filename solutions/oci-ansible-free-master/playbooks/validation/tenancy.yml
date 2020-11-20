@@ -1,0 +1,28 @@
+---
+################################################################
+# This playbook is intended to validate a list of expressions
+# that are required at the global level.  It should be included
+# in every playbook at the top level as an import.
+#
+################################################################
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - "../../vars/defaults.yml"
+    - "../../vars/envs/{{ env }}.yml"
+    - "../../vars/regions/{{ region }}.yml"
+  tasks:
+    - name: Tenancy Validate | Validation block
+      tags: ['always']
+      when: not tenancy_validation | default(False) | bool
+      block:
+        - name: Validate required tenancy items are configured
+          assert:
+            quiet: True
+            that:
+              - oci_tenancy_ocid is regex("^ocid1\..*")
+
+        - name: Tenancy Validate | Set tenancy validation fact
+          set_fact:
+            tenancy_validation: True
+      # End Block

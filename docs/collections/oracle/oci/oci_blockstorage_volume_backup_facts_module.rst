@@ -46,6 +46,7 @@ Synopsis
 - Lists the volume backups in the specified compartment. You can filter the results by volume.
 - If *volume_backup_id* is specified, the details of a single VolumeBackup will be returned.
 
+
 .. Aliases
 
 
@@ -491,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the volume backup will expire and be automatically deleted. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. This parameter will always be present for backups that were created automatically by a scheduled-backup policy. For manually created backups, it will be absent, signifying that there is no expiration time and the backup will last forever until manually deleted.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -670,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the volume backup was created. This is the time the actual point-in-time image of the volume data was taken. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -688,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the request to create the volume backup was received. Format defined by [RFC3339]https://tools.ietf.org/html/rfc3339.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

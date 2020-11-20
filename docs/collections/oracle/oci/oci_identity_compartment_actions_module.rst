@@ -48,6 +48,7 @@ Synopsis
 - For *action=move*, move the compartment to a different parent compartment in the same tenancy. When you move a compartment, all its contents (subcompartments and resources) are moved with it. Note that the `CompartmentId` that you specify in the path is the compartment that you want to move. **IMPORTANT**: After you move a compartment to a new parent compartment, the access policies of the new parent take effect and the policies of the previous parent no longer apply. Ensure that you are aware of the implications for the compartment contents before you move it. For more information, see `Moving a Compartment <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#MoveCompartment>`_.
 - For *action=recover*, recover the compartment from DELETED state to ACTIVE state.
 
+
 .. Aliases
 
 
@@ -645,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on an Alarm resource in Oracle Cloud Infrastructure
 - For *action=remove_alarm_suppression*, removes any existing suppression for the specified alarm. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
+
 .. Aliases
 
 
@@ -709,7 +710,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -729,7 +730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T02:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T02:02:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T02:02:29.600000+00:00</div>
                                     </td>
             </tr>
                     
@@ -749,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -768,7 +769,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-03T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-03T01:02:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-03T01:02:29.600000+00:00</div>
                                     </td>
             </tr>
                     

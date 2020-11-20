@@ -43,7 +43,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Zone resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new zone in the specified compartment. The `compartmentId` query parameter is required if the `Content-Type` header for the request is `text/dns`.
+- For *state=present*, creates a new zone in the specified compartment. If the `Content-Type` header for the request is `text/dns`, the `compartmentId` query parameter is required. Additionally, for `text/dns`, the `scope` and `viewId` query parameters are required to create a private zone.
+
 
 .. Aliases
 
@@ -564,6 +565,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-scope"></div>
+                    <b>scope</b>
+                    <a class="ansibleOptionLink" href="#parameter-scope" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GLOBAL</li>
+                                                                                                                                                                                                <li>PRIVATE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The scope of the zone.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when migration_source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -596,6 +618,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-view_id"></div>
+                    <b>view_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-view_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value will be null for zones in the global DNS.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when migration_source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -666,7 +705,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of the zone. Must be either `PRIMARY` or `SECONDARY`.</div>
+                                            <div>The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL zones.</div>
                                             <div>Applicable when migration_source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
@@ -752,7 +791,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Zone resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;external_masters&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;secret&#x27;: &#x27;secret_example&#x27;}, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nameservers&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;self_uri&#x27;: &#x27;_self_example&#x27;, &#x27;serial&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;zone_type&#x27;: &#x27;PRIMARY&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;external_masters&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;secret&#x27;: &#x27;secret_example&#x27;}, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_protected&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nameservers&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;scope&#x27;: &#x27;GLOBAL&#x27;, &#x27;self_uri&#x27;: &#x27;_self_example&#x27;, &#x27;serial&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;view_id&#x27;: &#x27;ocid1.view.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;zone_type&#x27;: &#x27;PRIMARY&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -984,6 +1023,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-zone/is_protected"></div>
+                    <b>is_protected</b>
+                    <a class="ansibleOptionLink" href="#return-zone/is_protected" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-zone/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-zone/lifecycle_state" title="Permalink to this return value"></a>
@@ -1056,6 +1113,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-zone/scope"></div>
+                    <b>scope</b>
+                    <a class="ansibleOptionLink" href="#return-zone/scope" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The scope of the zone.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GLOBAL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-zone/self_uri"></div>
                     <b>self_uri</b>
                     <a class="ansibleOptionLink" href="#return-zone/self_uri" title="Permalink to this return value"></a>
@@ -1101,11 +1176,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the resource was created in &quot;YYYY-MM-ddThh:mmZ&quot; format with a Z offset, as defined by RFC 3339.</div>
+                                            <div>The date and time the resource was created in &quot;YYYY-MM-ddThh:mm:ssZ&quot; format with a Z offset, as defined by RFC 3339.</div>
                                             <div>**Example:** `2016-07-22T17:23:59:60Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1129,6 +1204,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-zone/view_id"></div>
+                    <b>view_id</b>
+                    <a class="ansibleOptionLink" href="#return-zone/view_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the private view containing the zone. This value will be null for zones in the global DNS, which are publicly resolvable and not part of a private view.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.view.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-zone/zone_type"></div>
                     <b>zone_type</b>
                     <a class="ansibleOptionLink" href="#return-zone/zone_type" title="Permalink to this return value"></a>
@@ -1138,7 +1231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of the zone. Must be either `PRIMARY` or `SECONDARY`.</div>
+                                            <div>The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL zones.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>

@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a CatalogPrivateEndpoint resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new private reverse connection endpoint.
 
+
 .. Aliases
 
 
@@ -699,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the private endpoint was created. An <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -717,7 +718,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the private endpoint was updated. An <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

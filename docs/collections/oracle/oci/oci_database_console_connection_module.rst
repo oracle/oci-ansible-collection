@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create and delete a ConsoleConnection resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new console connection to the specified database node. After the console connection has been created and is available, you connect to the console using SSH.
 
+
 .. Aliases
 
 

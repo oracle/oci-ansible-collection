@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a StackTfConfig resource in Oracle Cloud Infrastructure
 - Returns the Terraform configuration file in .zip format for the specified stack. Returns an error if no zip file is found.
 
+
 .. Aliases
 
 

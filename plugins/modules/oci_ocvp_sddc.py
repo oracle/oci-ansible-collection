@@ -36,9 +36,10 @@ options:
         type: str
     display_name:
         description:
-            - A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
-              whitespaces, dashes and underscores.
-              Avoid entering confidential information.
+            - "A descriptive name for the SDDC.
+              SDDC name requirements are 1-16 character length limit, Must start with a letter, Must be English letters, numbers, - only, No repeating hyphens,
+              Must be unique within the region.
+              Avoid entering confidential information."
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -76,6 +77,15 @@ options:
               3 ESXi hosts."
             - Required for create using I(state=present).
         type: int
+    is_hcx_enabled:
+        description:
+            - This flag tells us if HCX is enabled or not.
+        type: bool
+    hcx_vlan_id:
+        description:
+            - This id is required only when hcxEnabled is true
+            - This parameter is updatable.
+        type: str
     ssh_authorized_keys:
         description:
             - One or more public SSH keys to be included in the `~/.ssh/authorized_keys` file for
@@ -200,6 +210,7 @@ EXAMPLES = """
     display_name: display_name_example
     vmware_software_version: vmware_software_version_example
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    hcx_vlan_id: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
     ssh_authorized_keys: ssh_authorized_keys_example
     vsphere_vlan_id: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
     vmotion_vlan_id: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
@@ -514,6 +525,42 @@ sddc:
             returned: on success
             type: string
             sample: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+        hcx_private_ip_id:
+            description:
+                - HCX Private IP
+            returned: on success
+            type: string
+            sample: ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx
+        hcx_fqdn:
+            description:
+                - HCX Fully Qualified Domain Name
+            returned: on success
+            type: string
+            sample: hcx_fqdn_example
+        hcx_initial_password:
+            description:
+                - HCX initial password
+            returned: on success
+            type: string
+            sample: hcx_initial_password_example
+        hcx_vlan_id:
+            description:
+                - HCX vlan id
+            returned: on success
+            type: string
+            sample: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
+        is_hcx_enabled:
+            description:
+                - HCX enabled or not
+            returned: on success
+            type: bool
+            sample: true
+        hcx_on_prem_key:
+            description:
+                - HCX on-premise license key
+            returned: on success
+            type: string
+            sample: hcx_on_prem_key_example
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -580,6 +627,12 @@ sddc:
         "nsx_edge_v_tep_vlan_id": "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_edge_uplink1_vlan_id": "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_edge_uplink2_vlan_id": "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx",
+        "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
+        "hcx_fqdn": "hcx_fqdn_example",
+        "hcx_initial_password": "hcx_initial_password_example",
+        "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_hcx_enabled": true,
+        "hcx_on_prem_key": "hcx_on_prem_key_example",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -726,6 +779,8 @@ def main():
             compartment_id=dict(type="str"),
             instance_display_name_prefix=dict(type="str"),
             esxi_hosts_count=dict(type="int"),
+            is_hcx_enabled=dict(type="bool"),
+            hcx_vlan_id=dict(type="str"),
             ssh_authorized_keys=dict(type="str"),
             workload_network_cidr=dict(type="str"),
             provisioning_subnet_id=dict(type="str"),

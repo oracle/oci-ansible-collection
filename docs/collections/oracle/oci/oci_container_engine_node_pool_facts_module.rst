@@ -46,6 +46,7 @@ Synopsis
 - List all the node pools in a compartment, and optionally filter by cluster.
 - If *node_pool_id* is specified, the details of a single NodePool will be returned.
 
+
 .. Aliases
 
 

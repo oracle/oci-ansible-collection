@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a RetentionRule resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new retention rule in the specified bucket. The new rule will take effect typically within 30 seconds. Note that a maximum of 100 rules are supported on a bucket.
 
+
 .. Aliases
 
 
@@ -623,7 +624,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time that the retention rule was created as per <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -641,7 +642,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time that the retention rule was modified as per <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -659,7 +660,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> after which this rule becomes locked. and can only be deleted by deleting the bucket.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

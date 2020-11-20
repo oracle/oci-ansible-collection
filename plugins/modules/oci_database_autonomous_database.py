@@ -25,8 +25,9 @@ description:
     - This module allows the user to create, update and delete an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Database.
     - "This resource has the following action operations in the M(oci_autonomous_database_actions) module: autonomous_database_manual_refresh,
-      deregister_autonomous_database_data_safe, fail_over, generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore,
-      rotate_autonomous_database_encryption_key, start, stop, switchover."
+      deregister_autonomous_database_data_safe, disable_autonomous_database_operations_insights, enable_autonomous_database_operations_insights, fail_over,
+      generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore, rotate_autonomous_database_encryption_key, start, stop,
+      switchover."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -610,6 +611,12 @@ autonomous_database:
             returned: on success
             type: string
             sample: REGISTERING
+        operations_insights_status:
+            description:
+                - Status of the Operations Insights for this Autonomous Database.
+            returned: on success
+            type: string
+            sample: ENABLING
         time_maintenance_begin:
             description:
                 - The date and time when maintenance will begin.
@@ -780,6 +787,7 @@ autonomous_database:
         "whitelisted_ips": [],
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
+        "operations_insights_status": "ENABLING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
         "is_refreshable_clone": true,

@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a Metric resource in Oracle Cloud Infrastructure
 - For *action=list*, returns metric definitions that match the criteria specified in the request. Compartment OCID required. For information about metrics, see `Metrics Overview <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
 
+
 .. Aliases
 
 

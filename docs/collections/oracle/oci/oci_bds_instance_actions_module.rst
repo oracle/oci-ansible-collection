@@ -50,6 +50,7 @@ Synopsis
 - For *action=remove_cloud_sql*, remove Cloud SQL capability.
 - For *action=restart_node*, restarts a single node of a BDS instance.
 
+
 .. Aliases
 
 

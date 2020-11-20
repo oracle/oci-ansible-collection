@@ -98,13 +98,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create compartment
   oci_identity_compartment:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3exampleuniqueID
+    parent_compartment_id: ocid1.compartment.oc1..aaaaaaaParentCompartmentID
     description: For network components
     name: Network
 
 - name: Update compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_compartment:
-    parent_compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    parent_compartment_id: ocid1.compartment.oc1..aaaaaaaParentCompartmentID
     name: Network
     description: For network components
     freeform_tags: {'Department': 'Finance'}
@@ -114,16 +114,16 @@ EXAMPLES = """
   oci_identity_compartment:
     name: Network
     description: For network components
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3exampleuniqueID
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete compartment
   oci_identity_compartment:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3exampleuniqueID
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     state: absent
 
 - name: Delete compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_compartment:
-    parent_compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    parent_compartment_id: ocid1.compartment.oc1..aaaaaaaParentCompartmentID
     name: Network
     state: absent
 

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a ModelProvenance resource in Oracle Cloud Infrastructure
 - Gets provenance information for specified model.
 
+
 .. Aliases
 
 

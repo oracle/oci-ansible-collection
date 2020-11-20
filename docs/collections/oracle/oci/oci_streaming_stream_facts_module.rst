@@ -46,6 +46,7 @@ Synopsis
 - Lists the streams in the given compartment id. If the compartment id is specified, it will list streams in the compartment, regardless of their stream pool. If the stream pool id is specified, the action will be scoped to that stream pool. The compartment id and stream pool id cannot be specified at the same time.
 - If *stream_id* is specified, the details of a single Stream will be returned.
 
+
 .. Aliases
 
 
@@ -620,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-04-20T00:00:07.405Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-20T00:00:07.405000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-20T00:00:07.405000+00:00</div>
                                     </td>
             </tr>
                     

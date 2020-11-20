@@ -22,7 +22,7 @@ DOCUMENTATION = """
 module: oci_compute_instance_console_connection
 short_description: Manage an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create and delete an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
+    - This module allows the user to create, update and delete an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new console connection to the specified instance.
       After the console connection has been created and is available,
       you connect to the console using SSH.
@@ -35,6 +35,7 @@ options:
             - Defined tags for this resource. Each key is predefined and scoped to a
               namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     freeform_tags:
         description:
@@ -42,6 +43,7 @@ options:
               predefined name, type, or namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     instance_id:
         description:
@@ -56,6 +58,7 @@ options:
     instance_console_connection_id:
         description:
             - The OCID of the instance console connection.
+            - Required for update using I(state=present).
             - Required for delete using I(state=absent).
         type: str
         aliases: ["id"]
@@ -67,7 +70,7 @@ options:
     state:
         description:
             - The state of the InstanceConsoleConnection.
-            - Use I(state=present) to create an InstanceConsoleConnection.
+            - Use I(state=present) to create or update an InstanceConsoleConnection.
             - Use I(state=absent) to delete an InstanceConsoleConnection.
         type: str
         required: false
@@ -82,6 +85,12 @@ EXAMPLES = """
     instance_id: ocid1.instance.oc1.phx.unique_ID
     compartment_id: ocid1.compartment.oc1.phx.unique_ID
     public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+
+- name: Update instance_console_connection
+  oci_compute_instance_console_connection:
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete instance_console_connection
   oci_compute_instance_console_connection:
@@ -183,6 +192,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.core import ComputeClient
     from oci.core.models import CreateInstanceConsoleConnectionDetails
+    from oci.core.models import UpdateInstanceConsoleConnectionDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -190,7 +200,7 @@ except ImportError:
 
 
 class InstanceConsoleConnectionHelperGen(OCIResourceHelperBase):
-    """Supported operations: create, get, list and delete"""
+    """Supported operations: create, update, get, list and delete"""
 
     def get_module_resource_id_param(self):
         return "instance_console_connection_id"
@@ -263,6 +273,29 @@ class InstanceConsoleConnectionHelperGen(OCIResourceHelperBase):
             ),
         )
 
+    def get_update_model_class(self):
+        return UpdateInstanceConsoleConnectionDetails
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_instance_console_connection,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_console_connection_id=self.module.params.get(
+                    "instance_console_connection_id"
+                ),
+                update_instance_console_connection_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.UPDATE_OPERATION_KEY,
+            ),
+        )
+
     def delete_resource(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_instance_console_connection,
@@ -325,6 +358,8 @@ def main():
 
     if resource_helper.is_delete():
         result = resource_helper.delete()
+    elif resource_helper.is_update():
+        result = resource_helper.update()
     elif resource_helper.is_create():
         result = resource_helper.create()
 

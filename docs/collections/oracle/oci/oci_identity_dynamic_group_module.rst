@@ -49,6 +49,7 @@ Synopsis
 - You must also specify a *description* for the dynamic group (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateDynamicGroup <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/DynamicGroup/UpdateDynamicGroup>`_.
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 
+
 .. Aliases
 
 
@@ -694,7 +695,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

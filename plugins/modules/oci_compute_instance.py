@@ -362,16 +362,16 @@ options:
                 type: bool
     availability_config:
         description:
-            - ""
+            - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
             - This parameter is updatable.
         type: dict
         suboptions:
             recovery_action:
                 description:
-                    - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
-                      * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
-                      will be restored to the power state it was in before maintenance.
-                      * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                    - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
+                      * `RESTORE_INSTANCE` - The instance is restored to the lifecycle state it was in before the maintenance event.
+                      If the instance was running, it is automatically rebooted. This is the default action when a value is not set.
+                      * `STOP_INSTANCE` - The instance is recovered in the stopped state."
                     - This parameter is updatable.
                 type: str
                 choices:
@@ -451,6 +451,11 @@ options:
             ocpus:
                 description:
                     - The total number of OCPUs available to the instance.
+                    - This parameter is updatable.
+                type: float
+            memory_in_gbs:
+                description:
+                    - The total amount of memory available to the instance, in gigabytes.
                     - This parameter is updatable.
                 type: float
     source_details:
@@ -783,16 +788,16 @@ instance:
                     sample: true
         availability_config:
             description:
-                - ""
+                - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
             returned: on success
             type: complex
             contains:
                 recovery_action:
                     description:
-                        - "Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance.
-                          * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances
-                          will be restored to the power state it was in before maintenance.
-                          * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance."
+                        - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
+                          * `RESTORE_INSTANCE` - The instance is restored to the lifecycle state it was in before the maintenance event.
+                          If the instance was running, it is automatically rebooted. This is the default action when a value is not set.
+                          * `STOP_INSTANCE` - The instance is recovered in the stopped state."
                     returned: on success
                     type: string
                     sample: RESTORE_INSTANCE
@@ -1248,7 +1253,12 @@ def main():
                 ),
             ),
             shape=dict(type="str"),
-            shape_config=dict(type="dict", options=dict(ocpus=dict(type="float"))),
+            shape_config=dict(
+                type="dict",
+                options=dict(
+                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                ),
+            ),
             source_details=dict(
                 type="dict",
                 options=dict(

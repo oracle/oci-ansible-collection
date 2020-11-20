@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a FastConnectProviderServiceKey resource in Oracle Cloud Infrastructure
 - Gets the specified provider service key's information. Use this operation to validate a provider service key. An invalid key returns a 404 error.
 
+
 .. Aliases
 
 

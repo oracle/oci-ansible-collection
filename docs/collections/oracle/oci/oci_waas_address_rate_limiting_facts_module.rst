@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a AddressRateLimiting resource in Oracle Cloud Infrastructure
 - Gets the address rate limiting settings of the Web Application Firewall configuration for a WAAS policy.
 
+
 .. Aliases
 
 

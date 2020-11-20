@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create an ExportedKeyData resource in Oracle Cloud Infrastructure
 - For *state=present*, exports a specific version of a master encryption key according to the details of the request. For their protection, keys that you create and store on a hardware security module (HSM) can never leave the HSM. You can only export keys stored on the server. For export, the key version is encrypted by an RSA public key that you provide.
 
+
 .. Aliases
 
 
@@ -513,7 +514,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time this key version was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

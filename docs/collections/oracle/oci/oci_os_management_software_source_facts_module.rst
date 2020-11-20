@@ -46,6 +46,7 @@ Synopsis
 - Returns a list of all Software Sources.
 - If *software_source_id* is specified, the details of a single SoftwareSource will be returned.
 
+
 .. Aliases
 
 

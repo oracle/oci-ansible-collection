@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a StackTfState resource in Oracle Cloud Infrastructure
 - Returns the Terraform state for the specified stack.
 
+
 .. Aliases
 
 

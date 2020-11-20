@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create and delete a Certificate resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an asynchronous request to add an SSL certificate bundle.
 
+
 .. Aliases
 
 

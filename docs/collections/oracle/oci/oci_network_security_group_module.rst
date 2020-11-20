@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a NetworkSecurityGroup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new network security group for the specified VCN.
 
+
 .. Aliases
 
 
@@ -619,7 +620,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

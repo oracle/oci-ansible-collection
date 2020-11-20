@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
 - Gets a secret bundle that matches either the specified `stage`, `label`, or `versionNumber` parameter. If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
 
+
 .. Aliases
 
 
@@ -463,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time when the secret bundle was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -481,7 +482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when to delete the secret version, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -499,7 +500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when the secret version will expire, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

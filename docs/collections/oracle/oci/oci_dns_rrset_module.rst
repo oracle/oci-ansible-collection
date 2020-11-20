@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to update, patch and delete a Rrset resource in Oracle Cloud Infrastructure
 - This module does not support check mode
 
+
 .. Aliases
 
 
@@ -366,7 +367,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The canonical name for the record&#x27;s type, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).</div>
+                                            <div>The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns- parameters/dns-parameters.xhtml#dns-parameters-4).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -414,6 +415,26 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The type of the target RRSet within the target zone.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-scope"></div>
+                    <b>scope</b>
+                    <a class="ansibleOptionLink" href="#parameter-scope" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GLOBAL</li>
+                                                                                                                                                                                                <li>PRIVATE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies to operate only on resources that have a matching DNS scope.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -570,7 +591,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The canonical name for the record&#x27;s type, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).</div>
+                                            <div>The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns- parameters/dns-parameters.xhtml#dns-parameters-4).</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -592,6 +613,22 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-view_id"></div>
+                    <b>view_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-view_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the view the resource is associated with.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-zone_name_or_id"></div>
@@ -813,7 +850,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The canonical name for the record&#x27;s type, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).</div>
+                                            <div>The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rtype_example</div>

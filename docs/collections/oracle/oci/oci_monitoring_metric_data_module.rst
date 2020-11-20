@@ -51,6 +51,7 @@ Synopsis
 - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
 - This resource has the following action operations in the :ref:`oci_metric_data_actions <ansible_collections.oci_metric_data_actions_module>` module: summarize_metrics_data.
 
+
 .. Aliases
 
 
@@ -681,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

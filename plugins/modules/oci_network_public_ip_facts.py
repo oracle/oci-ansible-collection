@@ -81,6 +81,10 @@ options:
         choices:
             - "EPHEMERAL"
             - "RESERVED"
+    public_ip_pool_id:
+        description:
+            - A filter to return only resources that belong to the given public IP pool.
+        type: str
     private_ip_id:
         description:
             - OCID of the private IP that the public IP is assigned to. Use I(private_ip_id) to retrieve information of a public IP assigned to it.
@@ -240,6 +244,12 @@ public_ips:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        public_ip_pool_id:
+            description:
+                - OCID of the pool object created by the current tenancy
+            returned: on success
+            type: string
+            sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "assigned_entity_id": "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx",
         "assigned_entity_type": "PRIVATE_IP",
@@ -254,7 +264,8 @@ public_ips:
         "lifetime": "EPHEMERAL",
         "private_ip_id": "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx",
         "scope": "REGION",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "public_ip_pool_id": "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 
@@ -297,6 +308,7 @@ class PublicIpFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "availability_domain",
             "lifetime",
+            "public_ip_pool_id",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -328,6 +340,7 @@ def main():
             compartment_id=dict(type="str"),
             availability_domain=dict(type="str"),
             lifetime=dict(type="str", choices=["EPHEMERAL", "RESERVED"]),
+            public_ip_pool_id=dict(type="str"),
             private_ip_id=dict(type="str"),
             ip_address=dict(type="str"),
             display_name=dict(type="str"),

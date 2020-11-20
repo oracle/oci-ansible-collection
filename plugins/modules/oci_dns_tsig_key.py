@@ -68,6 +68,14 @@ options:
             - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     tsig_key_id:
         description:
             - The OCID of the target TSIG key.
@@ -110,6 +118,7 @@ EXAMPLES = """
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
 
 - name: Update tsig_key
@@ -275,7 +284,7 @@ class TsigKeyHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["name"]
+        optional_list_method_params = ["name", "scope"]
 
         return dict(
             (param, self.module.params[param])
@@ -305,7 +314,10 @@ class TsigKeyHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_tsig_key,
             call_fn_args=(),
-            call_fn_kwargs=dict(create_tsig_key_details=create_details,),
+            call_fn_kwargs=dict(
+                create_tsig_key_details=create_details,
+                scope=self.module.params.get("scope"),
+            ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -327,6 +339,7 @@ class TsigKeyHelperGen(OCIResourceHelperBase):
                 tsig_key_id=self.module.params.get("tsig_key_id"),
                 update_tsig_key_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -344,6 +357,7 @@ class TsigKeyHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 tsig_key_id=self.module.params.get("tsig_key_id"),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -374,6 +388,7 @@ def main():
             secret=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             tsig_key_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

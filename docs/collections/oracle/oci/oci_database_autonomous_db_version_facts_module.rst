@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AutonomousDbVersion resources in Oracle Cloud Infrastructure
 - Gets a list of supported Autonomous Database versions.
 
+
 .. Aliases
 
 

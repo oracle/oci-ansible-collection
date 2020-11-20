@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
 - Lists all services supporting logging.
 
+
 .. Aliases
 
 

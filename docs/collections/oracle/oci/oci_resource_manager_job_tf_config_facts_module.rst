@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a JobTfConfig resource in Oracle Cloud Infrastructure
 - Returns the Terraform configuration file for the specified job in .zip format. Returns an error if no zip file is found.
 
+
 .. Aliases
 
 

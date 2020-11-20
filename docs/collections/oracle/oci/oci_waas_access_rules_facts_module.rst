@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AccessRules resources in Oracle Cloud Infrastructure
 - Gets the currently configured access rules for the Web Application Firewall configuration of a specified WAAS policy. The order of the access rules is important. The rules will be checked in the order they are specified and the first matching rule will be used.
 
+
 .. Aliases
 
 

@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a Stream resource in Oracle Cloud Infrastructure
 - For *state=present*, starts the provisioning of a new stream. The stream will be created in the given compartment id or stream pool id, depending on which parameter is specified. Compartment id and stream pool id cannot be specified at the same time. To track the progress of the provisioning, you can periodically call `GetStream <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/streaming/20180418/Stream/GetStream>`_. In the response, the `lifecycleState` parameter of the `Stream <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/streaming/20180418/Stream/>`_ object tells you its current state.
 
+
 .. Aliases
 
 
@@ -736,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-04-20T00:00:07.405Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-20T00:00:07.405000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-20T00:00:07.405000+00:00</div>
                                     </td>
             </tr>
                     

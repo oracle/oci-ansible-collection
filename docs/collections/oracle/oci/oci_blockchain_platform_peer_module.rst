@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a BlockchainPlatformPeer resource in Oracle Cloud Infrastructure
 - For *state=present*, create Blockchain Platform Peer
 
+
 .. Aliases
 
 

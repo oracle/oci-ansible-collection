@@ -94,6 +94,10 @@ options:
               L(UpdatePublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/UpdatePublicIp).
             - This parameter is updatable.
         type: str
+    public_ip_pool_id:
+        description:
+            - OCID of the pool object created by the current tenancy
+        type: str
     public_ip_id:
         description:
             - The OCID of the public IP.
@@ -294,6 +298,12 @@ public_ip:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        public_ip_pool_id:
+            description:
+                - OCID of the pool object created by the current tenancy
+            returned: on success
+            type: string
+            sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "assigned_entity_id": "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx",
         "assigned_entity_type": "PRIVATE_IP",
@@ -308,7 +318,8 @@ public_ip:
         "lifetime": "EPHEMERAL",
         "private_ip_id": "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx",
         "scope": "REGION",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "public_ip_pool_id": "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -361,7 +372,7 @@ class PublicIpHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["lifetime"]
+        optional_list_method_params = ["lifetime", "public_ip_pool_id"]
 
         return dict(
             (param, self.module.params[param])
@@ -458,6 +469,7 @@ def main():
             freeform_tags=dict(type="dict"),
             lifetime=dict(type="str", choices=["EPHEMERAL", "RESERVED"]),
             private_ip_id=dict(type="str"),
+            public_ip_pool_id=dict(type="str"),
             public_ip_id=dict(aliases=["id"], type="str"),
             scope=dict(type="str", choices=["REGION", "AVAILABILITY_DOMAIN"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),

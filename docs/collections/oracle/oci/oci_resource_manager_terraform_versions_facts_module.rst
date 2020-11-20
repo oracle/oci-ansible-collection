@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple TerraformVersions resources in Oracle Cloud Infrastructure
 - Returns a list of supported Terraform versions for use with stacks.
 
+
 .. Aliases
 
 

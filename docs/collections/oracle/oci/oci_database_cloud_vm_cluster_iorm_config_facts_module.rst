@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a CloudVmClusterIormConfig resource in Oracle Cloud Infrastructure
 - Gets the IORM configuration for the specified cloud VM cluster. If you have not specified an IORM configuration, the default configuration is returned.
 
+
 .. Aliases
 
 

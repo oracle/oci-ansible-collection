@@ -1,0 +1,44 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Delete IPSec connection
+  oci_network_ip_sec_connection:
+    id: "{{ ipsec_id }}"
+    state: absent
+
+- name: Update default route table to drop reference to DRG
+  oci_network_route_table:
+    id: "{{ default_route_table_id }}"
+    route_rules: []
+
+- name: Delete CPE
+  oci_network_cpe:
+    id: "{{ cpe_id }}"
+    state: absent
+
+- name: Delete DRG attachment
+  oci_network_drg_attachment:
+    id: "{{ drg_attachment_id }}"
+    state: absent
+
+- name: Delete DRG
+  oci_network_drg:
+    id: "{{ drg_id }}"
+    state: absent
+
+- name: Delete subnets
+  oci_network_subnet:
+    id: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ ad1_subnet_id }}"
+    - "{{ ad2_subnet_id }}"
+
+- name: Delete the VCN
+  oci_network_vcn:
+    vcn_id: "{{ vcn_id }}"
+    state: absent

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a InstancePoolLoadBalancerAttachment resource in Oracle Cloud Infrastructure
 - Gets information about a load balancer that is attached to the specified instance pool.
 
+
 .. Aliases
 
 

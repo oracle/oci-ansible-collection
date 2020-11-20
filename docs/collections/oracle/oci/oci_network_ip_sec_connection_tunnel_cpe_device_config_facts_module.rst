@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a IpSecConnectionTunnelCpeDeviceConfig resource in Oracle Cloud Infrastructure
 - Gets the set of CPE configuration answers for the tunnel, which the customer provided in `UpdateTunnelCpeDeviceConfig <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig>`_. To get the full set of content for the tunnel (any answers merged with the template of other information specific to the CPE device type), use `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_.
 
+
 .. Aliases
 
 

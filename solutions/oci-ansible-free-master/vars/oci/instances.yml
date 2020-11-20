@@ -1,0 +1,8 @@
+---
+instance:
+  count: 2
+  os: 'Oracle Linux'
+  os_version: '7.8'
+  sort_by: 'TIMECREATED'
+  sort_order: 'DESC'
+  shape: 'VM.Standard.E2.1.Micro'

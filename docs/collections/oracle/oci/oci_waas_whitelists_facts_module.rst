@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Whitelists resources in Oracle Cloud Infrastructure
 - Gets the list of whitelists defined in the Web Application Firewall configuration for a WAAS policy.
 
+
 .. Aliases
 
 

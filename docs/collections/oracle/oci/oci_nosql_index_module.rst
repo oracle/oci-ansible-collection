@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create and delete an Index resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new index on the table identified by tableNameOrId.
 
+
 .. Aliases
 
 

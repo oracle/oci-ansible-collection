@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple DedicatedVmHostInstanceShape resources in Oracle Cloud Infrastructure
 - Lists the shapes that can be used to launch a virtual machine instance on a dedicated virtual machine host within the specified compartment. You can filter the list by compatibility with a specific dedicated virtual machine host shape.
 
+
 .. Aliases
 
 

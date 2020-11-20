@@ -49,6 +49,7 @@ Synopsis
 - **Important:** When creating a virtual circuit, you specify a DRG for the traffic to flow through. Make sure you attach the DRG to your VCN and confirm the VCN's routing sends traffic to the DRG. Otherwise traffic will not flow. For more information, see `Route Tables <https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm>`_.
 - This resource has the following action operations in the :ref:`oci_virtual_circuit_actions <ansible_collections.oci_virtual_circuit_actions_module>` module: bulk_add_virtual_circuit_public_prefixes, bulk_delete_virtual_circuit_public_prefixes.
 
+
 .. Aliases
 
 
@@ -1336,7 +1337,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

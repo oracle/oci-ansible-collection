@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple WafTrafficDatum resources in Oracle Cloud Infrastructure
 - Gets the Web Application Firewall traffic data for a WAAS policy. Sorted by `timeObserved` in ascending order (starting from oldest data).
 
+
 .. Aliases
 
 
@@ -371,7 +372,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the traffic was observed, rounded down to the start of the range, and expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                                 <tr>

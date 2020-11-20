@@ -111,6 +111,14 @@ options:
         choices:
             - "PUBLIC"
             - "PRIVATE"
+    instance_license_type:
+        description:
+            - Flag indicating whether the instance license is new cloud or bring your own license
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "NEW"
+            - "BYOL"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -159,6 +167,7 @@ EXAMPLES = """
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     name: name_example
     waf_primary_domain: waf_primary_domain_example
+    instance_license_type: NEW
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -293,6 +302,12 @@ oce_instance:
             returned: on success
             type: string
             sample: PUBLIC
+        instance_license_type:
+            description:
+                - Flag indicating whether the instance license is new cloud or bring your own license
+            returned: on success
+            type: string
+            sample: NEW
         time_created:
             description:
                 - The time the the OceInstance was created. An RFC3339 formatted datetime string
@@ -358,6 +373,7 @@ oce_instance:
         "admin_email": "admin_email_example",
         "waf_primary_domain": "waf_primary_domain_example",
         "instance_access_type": "PUBLIC",
+        "instance_license_type": "NEW",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -509,6 +525,7 @@ def main():
             upgrade_schedule=dict(type="str"),
             waf_primary_domain=dict(type="str"),
             instance_access_type=dict(type="str", choices=["PUBLIC", "PRIVATE"]),
+            instance_license_type=dict(type="str", choices=["NEW", "BYOL"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             oce_instance_id=dict(aliases=["id"], type="str"),

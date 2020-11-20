@@ -48,6 +48,7 @@ Synopsis
 - For *action=enable*, enables a master encryption key so it can be used for encryption, decryption, or generating new data encryption keys. As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
 - For *action=schedule_key_deletion*, schedules the deletion of the specified key. This sets the lifecycle state of the key to `PENDING_DELETION` and then deletes it after the specified retention period ends. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 
+
 .. Aliases
 
 
@@ -617,7 +618,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -635,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when to delete the key, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

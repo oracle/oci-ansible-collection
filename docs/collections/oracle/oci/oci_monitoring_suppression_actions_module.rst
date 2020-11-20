@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a Suppression resource in Oracle Cloud Infrastructure
 - For *action=remove_alarm*, removes any existing suppression for the specified alarm. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
 
+
 .. Aliases
 
 
@@ -295,14 +296,4 @@ Authors
 
 
 .. Parsing errors
-
-There were some errors parsing the documentation for this plugin.  Please file a bug with the collection.
-
-The errors were:
-
-* ::
-
-        Unable to normalize oci_monitoring_suppression_actions: return due to: 1 validation error for PluginReturnSchema
-        return -> suppression -> contains
-          value is not a valid dict (type=type_error.dict)
 

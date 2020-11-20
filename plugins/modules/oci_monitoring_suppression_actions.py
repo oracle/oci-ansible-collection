@@ -4,7 +4,6 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
 # See LICENSE.TXT for details.
-# GENERATED FILE - DO NOT EDIT - MANUAL CHANGES WILL BE OVERWRITTEN
 
 
 from __future__ import absolute_import, division, print_function
@@ -13,7 +12,7 @@ __metaclass__ = type
 
 ANSIBLE_METADATA = {
     "metadata_version": "1.1",
-    "status": ["preview"],
+    "status": ["deprecated"],
     "supported_by": "community",
 }
 
@@ -56,15 +55,6 @@ EXAMPLES = """
 
 """
 
-RETURN = """
-suppression:
-    description:
-        - Details of the Suppression resource acted upon by the current operation
-    returned: on success
-    type: complex
-    contains: TODO - No response model found or could be returning binary data.
-    sample: TODO - No response model found or could be returning binary data.
-"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (

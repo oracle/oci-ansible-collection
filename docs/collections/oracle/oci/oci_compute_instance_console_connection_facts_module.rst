@@ -47,6 +47,7 @@ Synopsis
 - For more information about console access, see `Accessing the Console <https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm>`_.
 - If *instance_console_connection_id* is specified, the details of a single InstanceConsoleConnection will be returned.
 
+
 .. Aliases
 
 

@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create and update a ModelProvenance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates provenance information for the specified model.
 
+
 .. Aliases
 
 

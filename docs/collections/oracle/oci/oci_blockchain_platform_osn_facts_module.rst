@@ -46,6 +46,7 @@ Synopsis
 - List Blockchain Platform OSNs
 - If *osn_id* is specified, the details of a single BlockchainPlatformOsn will be returned.
 
+
 .. Aliases
 
 

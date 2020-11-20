@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a ProtectionSettings resource in Oracle Cloud Infrastructure
 - Gets the protection settings in the Web Application Firewall configuration for a WAAS policy.
 
+
 .. Aliases
 
 

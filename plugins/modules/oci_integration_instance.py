@@ -82,6 +82,14 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
+    consumption_model:
+        description:
+            - Optional parameter specifying which entitlement to use for billing purposes. Only required if the account possesses more than one entitlement.
+        type: str
+        choices:
+            - "UCM"
+            - "GOV"
+            - "OIC4SAAS"
     is_file_server_enabled:
         description:
             - The file server is enabled or not.
@@ -241,6 +249,12 @@ integration_instance:
             returned: on success
             type: bool
             sample: true
+        consumption_model:
+            description:
+                - The entitlement used for billing purposes.
+            returned: on success
+            type: string
+            sample: UCM
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -255,7 +269,8 @@ integration_instance:
         "is_byol": true,
         "instance_url": "instance_url_example",
         "message_packs": 56,
-        "is_file_server_enabled": true
+        "is_file_server_enabled": true,
+        "consumption_model": "UCM"
     }
 """
 
@@ -408,6 +423,7 @@ def main():
             is_byol=dict(type="bool"),
             idcs_at=dict(type="str"),
             message_packs=dict(type="int"),
+            consumption_model=dict(type="str", choices=["UCM", "GOV", "OIC4SAAS"]),
             is_file_server_enabled=dict(type="bool"),
             integration_instance_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

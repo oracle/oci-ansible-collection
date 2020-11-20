@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new Managed Instance Group on the management system. This will not contain any managed instances after it is first created, and they must be added later.
 - This resource has the following action operations in the :ref:`oci_managed_instance_group_actions <ansible_collections.oci_managed_instance_group_actions_module>` module: attach_managed_instance, detach_managed_instance.
 
+
 .. Aliases
 
 

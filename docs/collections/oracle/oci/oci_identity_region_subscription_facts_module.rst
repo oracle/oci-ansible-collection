@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple RegionSubscription resources in Oracle Cloud Infrastructure
 - Lists the region subscriptions for the specified tenancy.
 
+
 .. Aliases
 
 

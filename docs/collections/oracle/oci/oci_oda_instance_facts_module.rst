@@ -47,6 +47,7 @@ Synopsis
 - If the `opc-next-page` header appears in the response, then there are more items to retrieve. To get the next page in the subsequent GET request, include the header's value as the `page` query parameter.
 - If *oda_instance_id* is specified, the details of a single OdaInstance will be returned.
 
+
 .. Aliases
 
 
@@ -607,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When the Digital Assistant instance was created. A date-time string as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -625,7 +626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When the Digital Assistance instance was last updated. A date-time string as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

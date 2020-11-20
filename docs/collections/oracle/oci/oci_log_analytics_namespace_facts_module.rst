@@ -46,6 +46,7 @@ Synopsis
 - List Namespaces.
 - If *namespace_name* is specified, the details of a single Namespace will be returned.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new Data Integration workspace ready for performing data integration tasks.
 - This resource has the following action operations in the :ref:`oci_workspace_actions <ansible_collections.oci_workspace_actions_module>` module: start, stop.
 
+
 .. Aliases
 
 

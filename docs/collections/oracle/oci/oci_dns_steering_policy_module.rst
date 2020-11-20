@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a SteeringPolicy resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new steering policy in the specified compartment. For more information on creating policies with templates, see `Traffic Management API Guide <https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Concepts/trafficmanagementapi.htm>`_.
 
+
 .. Aliases
 
 
@@ -203,7 +204,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The canonical name for the record&#x27;s type. Only A, AAAA, and CNAME are supported. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm'>Supported DNS Resource Record Types</a>.</div>
+                                            <div>The type of DNS record, such as A or CNAME. Only A, AAAA, and CNAME are supported. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm'>Supported DNS Resource Record Types</a>.</div>
                                                         </td>
             </tr>
                     
@@ -758,6 +759,26 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-scope"></div>
+                    <b>scope</b>
+                    <a class="ansibleOptionLink" href="#parameter-scope" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GLOBAL</li>
+                                                                                                                                                                                                <li>PRIVATE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies to operate only on resources that have a matching DNS scope.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -1190,7 +1211,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The canonical name for the record&#x27;s type. Only A, AAAA, and CNAME are supported. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm'>Supported DNS Resource Record Types</a>.</div>
+                                            <div>The type of DNS record, such as A or CNAME. Only A, AAAA, and CNAME are supported. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm'>Supported DNS Resource Record Types</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">rtype_example</div>
@@ -1606,7 +1627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Example:** `2016-07-22T17:23:59:60Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

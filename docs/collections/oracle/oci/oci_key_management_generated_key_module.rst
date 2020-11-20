@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create a GeneratedKey resource in Oracle Cloud Infrastructure
 - For *state=present*, generates a key that you can use to encrypt or decrypt data.
 
+
 .. Aliases
 
 

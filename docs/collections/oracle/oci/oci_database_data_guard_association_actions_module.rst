@@ -47,6 +47,7 @@ Synopsis
 - For *action=reinstate*, reinstates the database identified by the `databaseId` parameter into the standby role in a Data Guard association.
 - For *action=switchover*, performs a switchover to transition the primary database of a Data Guard association into a standby role. The standby database associated with the `dataGuardAssociationId` assumes the primary database role. A switchover guarantees no data loss.
 
+
 .. Aliases
 
 
@@ -645,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the Data Guard association was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

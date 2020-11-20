@@ -55,6 +55,14 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     steering_policy_attachment_id:
         description:
             - The OCID of the target steering policy attachment.
@@ -255,7 +263,12 @@ class SteeringPolicyAttachmentHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name", "steering_policy_id", "zone_id"]
+        optional_list_method_params = [
+            "display_name",
+            "steering_policy_id",
+            "zone_id",
+            "scope",
+        ]
 
         return dict(
             (param, self.module.params[param])
@@ -289,6 +302,7 @@ class SteeringPolicyAttachmentHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 create_steering_policy_attachment_details=create_details,
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
@@ -313,6 +327,7 @@ class SteeringPolicyAttachmentHelperGen(OCIResourceHelperBase):
                 ),
                 update_steering_policy_attachment_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -332,6 +347,7 @@ class SteeringPolicyAttachmentHelperGen(OCIResourceHelperBase):
                     "steering_policy_attachment_id"
                 ),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -364,6 +380,7 @@ def main():
             zone_id=dict(type="str"),
             domain_name=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             steering_policy_attachment_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
             compartment_id=dict(type="str"),

@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple Zone resources in Oracl
 description:
     - Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
     - Gets a list of all zones in the specified compartment. The collection
-      can be filtered by name, time created, and zone type.
+      can be filtered by name, time created, scope, associated view, and zone type.
     - If I(zone_name_or_id) is specified, the details of a single Zone will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -41,6 +41,17 @@ options:
               conditional on the selected representation's modification date being more
               recent than the date provided in the field-value.  Transfer of the
               selected representation's data is avoided if that data has not changed.
+        type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - The OCID of the view the resource is associated with.
         type: str
     compartment_id:
         description:
@@ -130,7 +141,7 @@ zones:
             sample: name_example
         zone_type:
             description:
-                - The type of the zone. Must be either `PRIMARY` or `SECONDARY`.
+                - The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL zones.
             returned: on success
             type: string
             sample: PRIMARY
@@ -140,6 +151,20 @@ zones:
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        view_id:
+            description:
+                - The OCID of the private view containing the zone. This value will
+                  be null for zones in the global DNS, which are publicly resolvable and
+                  not part of a private view.
+            returned: on success
+            type: string
+            sample: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+        scope:
+            description:
+                - The scope of the zone.
+            returned: on success
+            type: string
+            sample: GLOBAL
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -223,7 +248,7 @@ zones:
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - "The date and time the resource was created in \\"YYYY-MM-ddThh:mmZ\\" format
+                - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
                   with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
@@ -249,6 +274,12 @@ zones:
             returned: on success
             type: string
             sample: ACTIVE
+        is_protected:
+            description:
+                - A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed.
+            returned: on success
+            type: bool
+            sample: true
         nameservers:
             description:
                 - The authoritative nameservers for the zone.
@@ -265,6 +296,8 @@ zones:
         "name": "name_example",
         "zone_type": "PRIMARY",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "view_id": "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx",
+        "scope": "GLOBAL",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "external_masters": [{
@@ -283,6 +316,7 @@ zones:
         "version": "version_example",
         "serial": 56,
         "lifecycle_state": "ACTIVE",
+        "is_protected": true,
         "nameservers": [{
             "hostname": "hostname_example"
         }]
@@ -320,6 +354,8 @@ class ZoneFactsHelperGen(OCIResourceFactsHelperBase):
     def get_resource(self):
         optional_get_method_params = [
             "if_modified_since",
+            "scope",
+            "view_id",
             "compartment_id",
         ]
         optional_kwargs = dict(
@@ -343,6 +379,8 @@ class ZoneFactsHelperGen(OCIResourceFactsHelperBase):
             "lifecycle_state",
             "sort_by",
             "sort_order",
+            "scope",
+            "view_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -369,6 +407,8 @@ def main():
         dict(
             zone_name_or_id=dict(aliases=["zone_id", "id"], type="str"),
             if_modified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
             compartment_id=dict(type="str"),
             name=dict(aliases=["zone_name"], type="str"),
             name_contains=dict(type="str"),

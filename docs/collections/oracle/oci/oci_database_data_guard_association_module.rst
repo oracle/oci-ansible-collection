@@ -47,6 +47,7 @@ Synopsis
 - All Oracle Cloud Infrastructure resources, including Data Guard associations, get an Oracle-assigned, unique ID called an Oracle Cloud Identifier (OCID). When you create a resource, you can find its OCID in the response. You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the Console. For more information, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
 - This resource has the following action operations in the :ref:`oci_data_guard_association_actions <ansible_collections.oci_data_guard_association_actions_module>` module: failover, reinstate, switchover.
 
+
 .. Aliases
 
 
@@ -866,7 +867,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the Data Guard association was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

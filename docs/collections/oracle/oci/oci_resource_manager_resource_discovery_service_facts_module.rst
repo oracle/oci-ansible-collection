@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
 - Returns a list of supported services for Resource Discovery. For reference on service names, see the `Terraform provider documentation <https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services>`_.
 
+
 .. Aliases
 
 

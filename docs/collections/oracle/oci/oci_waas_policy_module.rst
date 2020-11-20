@@ -52,6 +52,7 @@ Synopsis
 - **Note:** After sending the POST request, the new object's state will temporarily be `CREATING`. Ensure that the resource's state has changed to `ACTIVE` before use.
 - This resource has the following action operations in the :ref:`oci_waas_policy_actions <ansible_collections.oci_waas_policy_actions_module>` module: accept_recommendations, purge_cache.
 
+
 .. Aliases
 
 
@@ -5231,7 +5232,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the policy was created, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                                 <tr>

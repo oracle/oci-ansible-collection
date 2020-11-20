@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a Listener resource in Oracle Cloud Infrastructure
 - For *state=present*, adds a listener to a load balancer.
 
+
 .. Aliases
 
 

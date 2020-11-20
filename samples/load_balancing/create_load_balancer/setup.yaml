@@ -1,0 +1,253 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_COMPARTMENT_OCID"
+    - "SAMPLE_TENANCY_OCID"
+
+# ===========================================================================================
+# Use a jinja2 template of the ingress and egress security rules to generate
+# a templated version of the final rules.
+- name: create ingress rules yaml body
+  template: src=templates/sample_public_subnet_ingress_security_rules.yaml.j2 dest=/tmp/sample_public_subnet_ingress_security_rules.yaml
+- name: create egress yaml body
+  template: src=templates/sample_public_subnet_egress_security_rules.yaml.j2 dest=/tmp/sample_public_subnet_egress_security_rules.yaml
+#===========================================================================================
+# Load the variables defined in the generated files
+- name: Load the variables defined in the ingress rules yaml body
+  include_vars:
+    file: /tmp/sample_public_subnet_ingress_security_rules.yaml
+    name: loaded_ingress
+
+- name: Load the variables defined in the egress rules yaml body
+  include_vars:
+    file: /tmp/sample_public_subnet_egress_security_rules.yaml
+    name: loaded_egress
+#===========================================================================================
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ compartment_id }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ cidr_block }}"
+    dns_label: "{{ dns_label }}"
+  register: result
+
+- set_fact:
+    sample_vcn_id: "{{ result.vcn.id }}"
+#===========================================================================================
+- name: Get Two availability domains for subnets
+  oci_identity_availability_domain_facts:
+    compartment_id: "{{compartment_id}}"
+  register: oci_ads
+- set_fact:
+    sample_availability_domain_ad1: "{{oci_ads.availability_domains[1].name}}"
+    sample_availability_domain_ad2: "{{oci_ads.availability_domains[2].name}}"
+
+- debug: msg="ADs within the ashburn region {{sample_availability_domain_ad1}} {{sample_availability_domain_ad2}}"
+# ===========================================================================================
+- name: Create Internet Gateway
+  oci_network_internet_gateway:
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+    name: '{{ ig_name }}'
+    is_enabled: 'yes'
+    state: 'present'
+  register: result
+- set_fact:
+    sample_ig_id: "{{ result.internet_gateway.id }}"
+# ===========================================================================================
+- name: Create a Route Table
+  oci_network_route_table:
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+    name: '{{ rt_name }}'
+    route_rules:
+        - cidr_block: '{{ all_cidr_block }}'
+          network_entity_id: '{{ sample_ig_id }}'
+    state: 'present'
+  register: result
+
+- set_fact:
+    sample_rt_id: "{{ result.route_table.id }}"
+# ===========================================================================================
+- name: Create security list
+  oci_network_security_list:
+    name: '{{ sec_list_name }}'
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+    state: 'present'
+    ingress_security_rules: '{{ loaded_ingress.sample_public_subnet_ingress_security_rules }}'
+    egress_security_rules: '{{ loaded_egress.sample_public_subnet_egress_security_rules }}'
+  register: result
+- set_fact:
+    sample_sec_list_id: "{{ result.security_list.id }}"
+# ===========================================================================================
+- name: Create a subnet in AD1
+  oci_network_subnet:
+    availability_domain: "{{ sample_availability_domain_ad1 }}"
+    name: '{{ sample_subnet_ad1}}'
+    dns_label: '{{ sample_subnet_ad1}}'
+    route_table_id: '{{ sample_rt_id }}'
+    security_list_ids: ['{{ sample_sec_list_id }}']
+    cidr_block: "{{ subnet_cidr_block_ad1 }}"
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+  register: result
+
+- set_fact:
+    sample_subnet_id_ad1: "{{ result.subnet.id }}"
+# ===========================================================================================
+- name: Create a subnet in AD2
+  oci_network_subnet:
+    availability_domain: "{{ sample_availability_domain_ad2 }}"
+    name: '{{ sample_subnet_ad2}}'
+    dns_label: '{{ sample_subnet_ad2}}'
+    route_table_id: '{{ sample_rt_id }}'
+    security_list_ids: ['{{ sample_sec_list_id }}']
+    cidr_block: "{{ subnet_cidr_block_ad2 }}"
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+  register: result
+
+- set_fact:
+    sample_subnet_id_ad2: "{{ result.subnet.id }}"
+# ===========================================================================================
+# Find appropriate image to launch compute instance.
+- name: Get images list
+  oci_compute_image_facts:
+    compartment_id: "{{ tenancy_ocid }}"
+    operating_system: "Oracle Linux"
+    operating_system_version: "7.8"
+    sort_by: "TIMECREATED"
+  register: output
+
+- set_fact:
+    sample_app_server_image_id: "{{ item.id }}"
+  loop: "{{ output.images }}"
+  when: item.display_name.find("GPU") == -1
+#==========================================================================================
+- name: Launch First App Server Instance in Availability Domain 1
+  oci_compute_instance:
+    name: "{{ sample_app_server_instance_one_name }}"
+    image_id: "{{ sample_app_server_image_id }}"
+    shape: "{{ sample_app_server_shape }}"
+    compartment_id: "{{ compartment_id }}"
+    availability_domain: "{{ sample_availability_domain_ad1 }}"
+    metadata:
+        user_data: "{{ lookup('file', '{{ playbook_dir}}/files/user_data.tpl')| b64encode}}"
+    create_vnic_details:
+        hostname_label: "{{ sample_app_server_instance_one_name }}"
+        subnet_id: "{{ sample_subnet_id_ad1 }}"
+  register: result
+
+- set_fact:
+    sample_app_server_instance_one_id: "{{ result.instance.id }}"
+# ===========================================================================================
+- name: Get VNIC attachments of App Server Instance 1
+  oci_compute_vnic_attachment_facts:
+    compartment_id: '{{ compartment_id }}'
+    instance_id: '{{ sample_app_server_instance_one_id }}'
+  register: vnic_attachment_details
+
+- name: Get Private Ip address of  App Server Instance 1
+  oci_network_vnic_facts:
+    id: '{{ vnic_attachment_details.vnic_attachments[0].vnic_id }}'
+  register: vnic_details
+
+- debug:
+    msg: "{{ vnic_details }}"
+
+- set_fact:
+    sample_app_server_instance_one_private_ip: "{{ vnic_details.vnic.private_ip }}"
+# ===========================================================================================
+- name: Launch Second App Server Instance in Availability Domain 2
+  oci_compute_instance:
+    name: "{{ sample_app_server_instance_two_name }}"
+    image_id: "{{ sample_app_server_image_id }}"
+    shape: "{{ sample_app_server_shape }}"
+    compartment_id: "{{ compartment_id }}"
+    availability_domain: "{{ sample_availability_domain_ad2 }}"
+    metadata:
+        user_data: "{{ lookup('file', '{{ playbook_dir}}/files/user_data.tpl')| b64encode}}"
+    create_vnic_details:
+        hostname_label: "{{ sample_app_server_instance_two_name }}"
+        subnet_id: "{{ sample_subnet_id_ad2 }}"
+  register: result
+
+- set_fact:
+    sample_app_server_instance_two_id: "{{ result.instance.id }}"
+# ===========================================================================================
+- name: Get VNIC attachments of App Server Instance 2
+  oci_compute_vnic_attachment_facts:
+    compartment_id: '{{ compartment_id }}'
+    instance_id: '{{ sample_app_server_instance_two_id }}'
+  register: vnic_attachment_details
+
+- name: Get Private Ip address of  App Server Instance 2
+  oci_network_vnic_facts:
+    id: '{{ vnic_attachment_details.vnic_attachments[0].vnic_id }}'
+  register: vnic_details
+
+- debug:
+    msg: "{{ vnic_details }}"
+
+- set_fact:
+    sample_app_server_instance_two_private_ip: "{{ vnic_details.vnic.private_ip }}"
+# ===========================================================================================
+# A self-singed temporary certificate is used in this sample, so that the sample can be run without any dependencies,
+# and the certificate can be validated. In production environment, a valid certificate should be used.
+- name: create temporary directory for certificates
+  tempfile:
+    state: directory
+    suffix: cert
+  register: result
+
+- set_fact:
+    cert_path: "{{ result.path }}"
+# ===========================================================================================
+- name: Generate CA Cert Key
+  openssl_privatekey:
+    path: "{{cert_path}}/ca_key.pem"
+    type: RSA
+    size: 2048
+# ===========================================================================================
+- name: Generate CA cert
+  command: openssl req \
+        -x509 -new -days 365 \
+        -subj '/C=IN/ST=KA/L=Bangalore/O=Ansible/CN=www.ansible.oracle.com'
+        -key "{{cert_path}}/ca_key.pem" \
+        -out "{{cert_path}}/ca_cert.pem"
+  args:
+      creates: "{{cert_path}}/ca_cert.pem"
+# ===========================================================================================
+- name: Generate Server Private Key Without Passphrase
+  openssl_privatekey:
+      path: "{{cert_path}}/private_key.pem"
+      type: RSA
+      size: 2048
+# ===========================================================================================
+- name: Generate Certificate Signing Request With Normal Private Key
+  openssl_csr:
+    path: "{{cert_path}}/csr.pem"
+    privatekey_path: "{{cert_path}}/private_key.pem"
+    country_name: IN
+    organization_name: Ansible
+    state_or_province_name: KA
+    locality_name: Bangalore
+    common_name: www.ansible.oracle.com
+# ===========================================================================================
+- name: Generate CA signed Certificate Without Passphrase
+  command: openssl x509 -req \
+        -days 1825 -CA "{{cert_path}}/ca_cert.pem" -CAkey "{{cert_path}}/ca_key.pem" -CAcreateserial \
+        -in "{{cert_path}}/csr.pem" \
+        -out "{{cert_path}}/cert.pem"
+  args:
+    creates: "{{cert_path}}/cert.pem"

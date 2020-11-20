@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AnnouncementsCollection resources in Oracle Cloud Infrastructure
 - Gets a list of announcements for the current tenancy.
 
+
 .. Aliases
 
 
@@ -633,7 +634,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The actual value of the first time value for the event. Typically, this is the time an event started, but the meaning can vary, depending on the announcement type.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -671,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The actual value of the second time value. Typically, this is the time an event ended, but the meaning can vary, depending on the announcement type.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

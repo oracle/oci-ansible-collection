@@ -47,6 +47,7 @@ Synopsis
 - As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning read operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning read operations exceeds 10 requests per second for a given tenancy.
 - If *vault_id* is specified, the details of a single Vault will be returned.
 
+
 .. Aliases
 
 
@@ -528,7 +529,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -546,7 +547,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property to indicate when to delete the vault, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2018-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

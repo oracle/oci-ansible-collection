@@ -49,6 +49,7 @@ Synopsis
 - For traffic to flow between a subnet and an internet gateway, you must create a route rule accordingly in the subnet's route table (for example, 0.0.0.0/0 > internet gateway). See `UpdateRouteTable <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/UpdateRouteTable>`_.
 - You must specify whether the internet gateway is enabled when you create it. If it's disabled, that means no traffic will flow to/from the internet even if there's a route rule that enables that traffic. You can later use `UpdateInternetGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/InternetGateway/UpdateInternetGateway>`_ to easily disable/enable the gateway without changing the route rule.
 
+
 .. Aliases
 
 
@@ -665,7 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

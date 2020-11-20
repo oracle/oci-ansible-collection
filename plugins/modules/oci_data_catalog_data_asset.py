@@ -24,7 +24,8 @@ short_description: Manage a DataAsset resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DataAsset resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new data asset.
-    - "This resource has the following action operations in the M(oci_data_asset_actions) module: import_connection, parse_connection, validate_connection."
+    - "This resource has the following action operations in the M(oci_data_asset_actions) module: add_data_selector_patterns, import_connection,
+      parse_connection, remove_data_selector_patterns, validate_connection."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -52,6 +53,29 @@ options:
             - The key of the data asset type. This can be obtained via the '/types' endpoint.
             - Required for create using I(state=present).
         type: str
+    custom_property_members:
+        description:
+            - The list of customized properties along with the values for this object
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            key:
+                description:
+                    - Unique Identifier of the attribute which is ID
+                type: str
+            display_name:
+                description:
+                    - Name of the custom property
+                type: str
+                aliases: ["name"]
+            value:
+                description:
+                    - The custom property value
+                type: str
+            namespace_name:
+                description:
+                    - Namespace name of the custom property
+                type: str
     properties:
         description:
             - "A map of maps that contains the properties which are specific to the data asset type. Each data asset type
@@ -197,6 +221,134 @@ data_asset:
             returned: on success
             type: string
             sample: uri_example
+        custom_property_members:
+            description:
+                - The list of customized properties along with the values for this object
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique Identifier of the attribute which is ID
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - Display name of the custom property
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                description:
+                    description:
+                        - Description of the custom property
+                    returned: on success
+                    type: string
+                    sample: description_example
+                value:
+                    description:
+                        - The custom property value
+                    returned: on success
+                    type: string
+                    sample: value_example
+                data_type:
+                    description:
+                        - The data type of the custom property
+                    returned: on success
+                    type: string
+                    sample: TEXT
+                namespace_name:
+                    description:
+                        - Namespace name of the custom property
+                    returned: on success
+                    type: string
+                    sample: namespace_name_example
+                namespace_key:
+                    description:
+                        - Unique namespace key that is immutable
+                    returned: on success
+                    type: string
+                    sample: namespace_key_example
+                is_multi_valued:
+                    description:
+                        - If this field allows multiple values to be set
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_hidden:
+                    description:
+                        - If this field is a hidden field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_editable:
+                    description:
+                        - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_list_type:
+                    description:
+                        - Is this property allowed to have list of values
+                    returned: on success
+                    type: bool
+                    sample: true
+                allowed_values:
+                    description:
+                        - Allowed values for the custom property if any
+                    returned: on success
+                    type: list
+                    sample: []
+        data_selector_patterns:
+            description:
+                - The list of data selector patterns used in the harvest for this data asset to derive logical entities.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique pattern key that is immutable.
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - A user-friendly display name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                description:
+                    description:
+                        - Detailed description of the pattern.
+                    returned: on success
+                    type: string
+                    sample: description_example
+                catalog_id:
+                    description:
+                        - The data catalog's OCID.
+                    returned: on success
+                    type: string
+                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+                time_created:
+                    description:
+                        - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                          Example: `2019-03-25T21:10:29.600Z`"
+                    returned: on success
+                    type: string
+                    sample: 2019-03-25T21:10:29.600Z
+                expression:
+                    description:
+                        - The expression used in the pattern that may include qualifiers.
+                    returned: on success
+                    type: string
+                    sample: expression_example
+                lifecycle_state:
+                    description:
+                        - State of the pattern.
+                    returned: on success
+                    type: string
+                    sample: CREATING
         properties:
             description:
                 - "A map of maps that contains the properties which are specific to the asset type. Each data asset type
@@ -220,6 +372,29 @@ data_asset:
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "uri": "uri_example",
+        "custom_property_members": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "value": "value_example",
+            "data_type": "TEXT",
+            "namespace_name": "namespace_name_example",
+            "namespace_key": "namespace_key_example",
+            "is_multi_valued": true,
+            "is_hidden": true,
+            "is_editable": true,
+            "is_list_type": true,
+            "allowed_values": []
+        }],
+        "data_selector_patterns": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_created": "2019-03-25T21:10:29.600Z",
+            "expression": "expression_example",
+            "lifecycle_state": "CREATING"
+        }],
         "properties": {}
     }
 """
@@ -375,6 +550,16 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             type_key=dict(type="str"),
+            custom_property_members=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    key=dict(type="str"),
+                    display_name=dict(aliases=["name"], type="str"),
+                    value=dict(type="str"),
+                    namespace_name=dict(type="str"),
+                ),
+            ),
             properties=dict(type="dict"),
             data_asset_key=dict(aliases=["key"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

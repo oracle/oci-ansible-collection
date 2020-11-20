@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a Log resource in Oracle Cloud Infrastructure
 - For *action=change_log_log_group*, moves a log into a different log group within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.
 
+
 .. Aliases
 
 
@@ -779,7 +780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time the resource was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -797,7 +798,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time the resource was last modified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

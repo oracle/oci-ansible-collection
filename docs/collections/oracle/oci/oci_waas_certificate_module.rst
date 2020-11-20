@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, allows an SSL certificate to be added to a WAAS policy. The Web Application Firewall terminates SSL connections to inspect requests in runtime, and then re-encrypts requests before sending them to the origin for fulfillment.
 - For more information, see `WAF Settings <https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafsettings.htm>`_.
 
+
 .. Aliases
 
 
@@ -1159,7 +1160,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the certificate was created, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1177,7 +1178,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the certificate will expire, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1195,7 +1196,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the certificate will become valid, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                                 <tr>

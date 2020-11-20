@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a ManagementAgent resource in Oracle Cloud Infrastructure
 - For *action=deploy_plugins*, deploys Plugins to a given list of agentIds.
 
+
 .. Aliases
 
 

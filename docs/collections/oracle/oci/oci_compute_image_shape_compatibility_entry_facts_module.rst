@@ -46,6 +46,7 @@ Synopsis
 - Lists the compatible shapes for the specified image.
 - If *shape_name* is specified, the details of a single ImageShapeCompatibilityEntry will be returned.
 
+
 .. Aliases
 
 
@@ -309,7 +310,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ImageShapeCompatibilityEntry resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ocpu_constraints&#x27;: {&#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;memory_constraints&#x27;: {&#x27;max_in_gbs&#x27;: 56, &#x27;min_in_gbs&#x27;: 56}, &#x27;ocpu_constraints&#x27;: {&#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -330,6 +331,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-image_shape_compatibility_entries/memory_constraints"></div>
+                    <b>memory_constraints</b>
+                    <a class="ansibleOptionLink" href="#return-image_shape_compatibility_entries/memory_constraints" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-image_shape_compatibility_entries/memory_constraints/max_in_gbs"></div>
+                    <b>max_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-image_shape_compatibility_entries/memory_constraints/max_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum amount of memory, in gigabytes.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-image_shape_compatibility_entries/memory_constraints/min_in_gbs"></div>
+                    <b>min_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-image_shape_compatibility_entries/memory_constraints/min_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum amount of memory, in gigabytes.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

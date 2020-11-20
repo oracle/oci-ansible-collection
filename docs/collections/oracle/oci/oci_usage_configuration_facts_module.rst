@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 - Returns the list of config for UI dropdown list
 
+
 .. Aliases
 
 

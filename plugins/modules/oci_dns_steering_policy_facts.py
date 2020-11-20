@@ -41,6 +41,13 @@ options:
               recent than the date provided in the field-value.  Transfer of the
               selected representation's data is avoided if that data has not changed.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     compartment_id:
         description:
             - The OCID of the compartment the resource belongs to.
@@ -229,7 +236,7 @@ steering_policies:
                     sample: name_example
                 rtype:
                     description:
-                        - The canonical name for the record's type. Only A, AAAA, and CNAME are supported. For more
+                        - The type of DNS record, such as A or CNAME. Only A, AAAA, and CNAME are supported. For more
                           information, see L(Supported DNS Resource Record
                           Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
                     returned: on success
@@ -489,6 +496,7 @@ class SteeringPolicyFactsHelperGen(OCIResourceFactsHelperBase):
     def get_resource(self):
         optional_get_method_params = [
             "if_modified_since",
+            "scope",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -512,6 +520,7 @@ class SteeringPolicyFactsHelperGen(OCIResourceFactsHelperBase):
             "lifecycle_state",
             "sort_by",
             "sort_order",
+            "scope",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -540,6 +549,7 @@ def main():
         dict(
             steering_policy_id=dict(aliases=["id"], type="str"),
             if_modified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),

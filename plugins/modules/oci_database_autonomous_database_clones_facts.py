@@ -400,6 +400,12 @@ autonomous_database_clones:
             returned: on success
             type: string
             sample: REGISTERING
+        operations_insights_status:
+            description:
+                - Status of the Operations Insights for this Autonomous Database.
+            returned: on success
+            type: string
+            sample: ENABLING
         time_maintenance_begin:
             description:
                 - The date and time when maintenance will begin.
@@ -570,6 +576,7 @@ autonomous_database_clones:
         "whitelisted_ips": [],
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
+        "operations_insights_status": "ENABLING",
         "time_maintenance_begin": "2013-10-20T19:20:30+01:00",
         "time_maintenance_end": "2013-10-20T19:20:30+01:00",
         "is_refreshable_clone": true,

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple RunLog resources in Oracle Cloud Infrastructure
 - Retrieves summaries of the run's logs.
 
+
 .. Aliases
 
 
@@ -392,7 +393,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the object was created, as described in <a href='https://tools.ietf.org/rfc/rfc2616'>RFC 2616</a>, section 14.29.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

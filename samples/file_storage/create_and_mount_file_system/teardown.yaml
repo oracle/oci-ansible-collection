@@ -1,0 +1,61 @@
+---
+# Copyright (c) 2018, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+# ===========================================================================================
+- name: Delete instances
+  oci_compute_instance:
+    id: '{{ item }}'
+    state: 'absent'
+  with_items:
+    - "{{ first_instance_id }}"
+    - "{{ second_instance_id }}"
+# ===========================================================================================
+- name: Delete Export
+  oci_file_storage_export:
+    id: "{{ export_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Delete Mount Target
+  oci_file_storage_mount_target:
+    id: "{{ mount_target_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Delete File System
+  oci_file_storage_file_system:
+    id: "{{ file_system_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Delete subnets
+  oci_network_subnet:
+    subnet_id: '{{ sample_subnet_id_ad2 }}'
+    state: 'absent'
+# ===========================================================================================
+- name: Delete Route Table
+  oci_network_route_table:
+    id: "{{ sample_rt_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Delete Security List
+  oci_network_security_list:
+    id: "{{ sample_sec_list_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Delete internet gateway
+  oci_network_internet_gateway:
+    id: "{{ sample_ig_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Delete  VCN
+  oci_network_vcn:
+    vcn_id: "{{ sample_vcn_id }}"
+    state: 'absent'
+# ===========================================================================================
+- name: Clean artifact path
+  file:
+    state: absent
+    path: "{{ temp_certificates_path }}"
+  when: temp_certificates_path is defined

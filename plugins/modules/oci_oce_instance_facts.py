@@ -196,6 +196,12 @@ oce_instances:
             returned: on success
             type: string
             sample: PUBLIC
+        instance_license_type:
+            description:
+                - Flag indicating whether the instance license is new cloud or bring your own license
+            returned: on success
+            type: string
+            sample: NEW
         time_created:
             description:
                 - The time the the OceInstance was created. An RFC3339 formatted datetime string
@@ -261,6 +267,7 @@ oce_instances:
         "admin_email": "admin_email_example",
         "waf_primary_domain": "waf_primary_domain_example",
         "instance_access_type": "PUBLIC",
+        "instance_license_type": "NEW",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create and delete a Suppression resource in Oracle Cloud Infrastructure
 - For *state=present*, adds recipient email addresses to the suppression list for a tenancy. Addresses added to the suppression list via the API are denoted as "MANUAL" in the `reason` field. *Note:* All email addresses added to the suppression list are normalized to include only lowercase letters.
 
+
 .. Aliases
 
 
@@ -472,7 +473,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the suppression was added in &quot;YYYY-MM-ddThh:mmZ&quot; format with a Z offset, as defined by RFC 3339.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

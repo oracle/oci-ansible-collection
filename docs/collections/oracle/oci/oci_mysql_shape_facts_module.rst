@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
 - Gets a list of the shapes you can use to create a new MySQL DB System. The shape determines the resources allocated to the DB System: CPU cores and memory for VM shapes; CPU cores, memory and storage for non-VM (or bare metal) shapes.
 
+
 .. Aliases
 
 

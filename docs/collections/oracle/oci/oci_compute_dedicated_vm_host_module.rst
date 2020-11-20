@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a DedicatedVmHost resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new dedicated virtual machine host in the specified compartment and the specified availability domain. Dedicated virtual machine hosts enable you to run your Compute virtual machine (VM) instances on dedicated servers that are a single tenant and not shared with other customers. For more information, see `Dedicated Virtual Machine Hosts <https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/dedicatedvmhosts.htm>`_.
 
+
 .. Aliases
 
 
@@ -732,7 +733,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

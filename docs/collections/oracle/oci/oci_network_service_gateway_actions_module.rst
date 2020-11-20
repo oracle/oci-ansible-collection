@@ -46,6 +46,7 @@ Synopsis
 - For *action=attach_service_id*, adds the specified `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/>`_ to the list of enabled `Service` objects for the specified gateway. You must also set up a route rule with the `cidrBlock` of the `Service` as the rule's destination and the service gateway as the rule's target. See `Route Table <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/>`_. **Note:** The `AttachServiceId` operation is an easy way to add an individual `Service` to the service gateway. Compare it with `UpdateServiceGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway>`_, which replaces the entire existing list of enabled `Service` objects with the list that you provide in the `Update` call.
 - For *action=detach_service_id*, removes the specified `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/>`_ from the list of enabled `Service` objects for the specified gateway. You do not need to remove any route rules that specify this `Service` object's `cidrBlock` as the destination CIDR. However, consider removing the rules if your intent is to permanently disable use of the `Service` through this service gateway. **Note:** The `DetachServiceId` operation is an easy way to remove an individual `Service` from the service gateway. Compare it with `UpdateServiceGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway>`_, which replaces the entire existing list of enabled `Service` objects with the list that you provide in the `Update` call. `UpdateServiceGateway` also lets you block all traffic through the service gateway without having to remove each of the individual `Service` objects.
 
+
 .. Aliases
 
 
@@ -586,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

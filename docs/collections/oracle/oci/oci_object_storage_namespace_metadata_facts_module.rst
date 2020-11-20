@@ -46,6 +46,7 @@ Synopsis
 - Gets the metadata for the Object Storage namespace, which contains defaultS3CompartmentId and defaultSwiftCompartmentId.
 - Any user with the OBJECTSTORAGE_NAMESPACE_READ permission will be able to see the current metadata. If you are not authorized, talk to an administrator. If you are an administrator who needs to write policies to give users access, see `Getting Started with Policies <https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm>`_.
 
+
 .. Aliases
 
 

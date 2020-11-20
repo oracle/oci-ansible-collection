@@ -36,6 +36,22 @@ options:
             - Shape name.
         type: str
         required: true
+    memory_constraints:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            min_in_gbs:
+                description:
+                    - The minimum amount of memory, in gigabytes.
+                    - This parameter is updatable.
+                type: int
+            max_in_gbs:
+                description:
+                    - The maximum amount of memory, in gigabytes.
+                    - This parameter is updatable.
+                type: int
     ocpu_constraints:
         description:
             - ""
@@ -97,6 +113,24 @@ image_shape_compatibility_entry:
             returned: on success
             type: string
             sample: shape_example
+        memory_constraints:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                min_in_gbs:
+                    description:
+                        - The minimum amount of memory, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
+                max_in_gbs:
+                    description:
+                        - The maximum amount of memory, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
         ocpu_constraints:
             description:
                 - ""
@@ -118,6 +152,10 @@ image_shape_compatibility_entry:
     sample: {
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
         "shape": "shape_example",
+        "memory_constraints": {
+            "min_in_gbs": 56,
+            "max_in_gbs": 56
+        },
         "ocpu_constraints": {
             "min": 56,
             "max": 56
@@ -255,6 +293,10 @@ def main():
         dict(
             image_id=dict(type="str", required=True),
             shape_name=dict(type="str", required=True),
+            memory_constraints=dict(
+                type="dict",
+                options=dict(min_in_gbs=dict(type="int"), max_in_gbs=dict(type="int")),
+            ),
             ocpu_constraints=dict(
                 type="dict", options=dict(min=dict(type="int"), max=dict(type="int"))
             ),

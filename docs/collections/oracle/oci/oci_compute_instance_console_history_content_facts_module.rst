@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a InstanceConsoleHistoryContent resource in Oracle Cloud Infrastructure
 - Gets the actual console history data (not the metadata). See `CaptureConsoleHistory <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ConsoleHistory/CaptureConsoleHistory>`_ for details about using the console history operations.
 
+
 .. Aliases
 
 

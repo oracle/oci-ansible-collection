@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a configuration source provider in the specified compartment. For more information, see `To create a configuration source provider <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateConfigurationSourceProvider>`_.
 
+
 .. Aliases
 
 
@@ -719,7 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the configuration source provider was created. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

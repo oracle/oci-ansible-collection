@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple ManagedListType resources in Oracle Cloud Infrastructure
 - Returns all ManagedList types supported by Cloud Guard
 
+
 .. Aliases
 
 

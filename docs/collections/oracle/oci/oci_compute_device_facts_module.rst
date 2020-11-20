@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Device resources in Oracle Cloud Infrastructure
 - Gets a list of all the devices for given instance. You can optionally filter results by device availability.
 
+
 .. Aliases
 
 

@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on an Image resource in Oracle Cloud Infrastructure
 - For *action=export*, exports the specified image to the Oracle Cloud Infrastructure Object Storage service. You can use the Object Storage URL, or the namespace, bucket name, and object name when specifying the location to export to. For more information about exporting images, see `Image Import/Export <https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm>`_. To perform an image export, you need write access to the Object Storage bucket for the image, see `Let Users Write Objects to Object Storage Buckets <https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm#Let4>`_. See `Object Storage URLs <https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs>`_ and `Using Pre-Authenticated Requests <https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm>`_ for constructing URLs for image import/export.
 
+
 .. Aliases
 
 
@@ -864,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

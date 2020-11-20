@@ -46,6 +46,7 @@ Synopsis
 - Get a list of supported and available MySQL database major versions.
 - The list is sorted by version family.
 
+
 .. Aliases
 
 

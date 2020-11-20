@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a PathRouteSet resource in Oracle Cloud Infrastructure
 - For *state=present*, adds a path route set to a load balancer. For more information, see `Managing Request Routing <https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm>`_.
 
+
 .. Aliases
 
 

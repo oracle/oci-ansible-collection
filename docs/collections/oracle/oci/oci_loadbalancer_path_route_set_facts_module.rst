@@ -46,6 +46,7 @@ Synopsis
 - Lists all path route sets associated with the specified load balancer.
 - If *path_route_set_name* is specified, the details of a single PathRouteSet will be returned.
 
+
 .. Aliases
 
 

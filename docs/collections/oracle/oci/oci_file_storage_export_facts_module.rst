@@ -46,6 +46,7 @@ Synopsis
 - Lists export resources by compartment, file system, or export set. You must specify an export set ID, a file system ID, and / or a compartment ID.
 - If *export_id* is specified, the details of a single Export will be returned.
 
+
 .. Aliases
 
 
@@ -646,7 +647,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

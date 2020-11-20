@@ -54,6 +54,7 @@ Synopsis
 - For *action=install_windows_update*, installs a Windows update on a managed instance.
 - For *action=remove_package*, removes an installed package from a managed instance.
 
+
 .. Aliases
 
 

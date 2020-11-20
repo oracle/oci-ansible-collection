@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a NodePool resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new node pool.
 
+
 .. Aliases
 
 

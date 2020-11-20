@@ -46,6 +46,7 @@ Synopsis
 - Lists the available `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/>`_ objects that you can enable for a service gateway in this region.
 - If *service_id* is specified, the details of a single Service will be returned.
 
+
 .. Aliases
 
 

@@ -220,6 +220,133 @@ types:
             returned: on success
             type: string
             sample: uri_example
+        custom_properties:
+            description:
+                - Custom properties associated with this Type.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique custom property key that is immutable.
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - Display name of the custom property
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                description:
+                    description:
+                        - Description of the custom property
+                    returned: on success
+                    type: string
+                    sample: description_example
+                data_type:
+                    description:
+                        - Data type of the custom property
+                    returned: on success
+                    type: string
+                    sample: TEXT
+                namespace_name:
+                    description:
+                        - Namespace name of the custom property
+                    returned: on success
+                    type: string
+                    sample: namespace_name_example
+                is_sortable:
+                    description:
+                        - If this field allows to sort from UI
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_filterable:
+                    description:
+                        - If this field allows to filter or create facets from UI
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_multi_valued:
+                    description:
+                        - If this field allows multiple values to be set
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_hidden:
+                    description:
+                        - If this field is a hidden field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_editable:
+                    description:
+                        - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_service_defined:
+                    description:
+                        - If this field is defined by service or by a user
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_hidden_in_search:
+                    description:
+                        - If this field is allowed to pop in search results
+                    returned: on success
+                    type: bool
+                    sample: true
+                time_created:
+                    description:
+                        - "The date and time the custom property was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                          Example: `2019-03-25T21:10:29.600Z`"
+                    returned: on success
+                    type: string
+                    sample: 2019-03-25T21:10:29.600Z
+                lifecycle_state:
+                    description:
+                        - The current state of the custom property.
+                    returned: on success
+                    type: string
+                    sample: CREATING
+                usage_count:
+                    description:
+                        - Total number of first class objects using this custom property
+                    returned: on success
+                    type: int
+                    sample: 56
+                scope:
+                    description:
+                        - Type or scope of the custom property belongs to. This will be an array of type id it will be belongs to
+                    returned: on success
+                    type: complex
+                    contains:
+                        type_id:
+                            description:
+                                - Unique type key identifier
+                            returned: on success
+                            type: string
+                            sample: ocid1.type.oc1..xxxxxxEXAMPLExxxxxx
+                        type_name:
+                            description:
+                                - Name of the type associated with
+                            returned: on success
+                            type: string
+                            sample: type_name_example
+                        count:
+                            description:
+                                - Number of objects associated with this type
+                            returned: on success
+                            type: int
+                            sample: 56
+                allowed_values:
+                    description:
+                        - Allowed values for the custom property if any
+                    returned: on success
+                    type: list
+                    sample: []
         count:
             description:
                 - Total number of items returned.
@@ -287,6 +414,29 @@ types:
         "type_category": "type_category_example",
         "external_type_name": "external_type_name_example",
         "uri": "uri_example",
+        "custom_properties": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "data_type": "TEXT",
+            "namespace_name": "namespace_name_example",
+            "is_sortable": true,
+            "is_filterable": true,
+            "is_multi_valued": true,
+            "is_hidden": true,
+            "is_editable": true,
+            "is_service_defined": true,
+            "is_hidden_in_search": true,
+            "time_created": "2019-03-25T21:10:29.600Z",
+            "lifecycle_state": "CREATING",
+            "usage_count": 56,
+            "scope": [{
+                "type_id": "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx",
+                "type_name": "type_name_example",
+                "count": 56
+            }],
+            "allowed_values": []
+        }],
         "count": 56,
         "items": [{
             "key": "key_example",

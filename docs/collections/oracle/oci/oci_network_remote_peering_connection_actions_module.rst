@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a RemotePeeringConnection resource in Oracle Cloud Infrastructure
 - For *action=connect*, connects this RPC to another one in a different region. This operation must be called by the VCN administrator who is designated as the *requestor* in the peering relationship. The *acceptor* must implement an Identity and Access Management (IAM) policy that gives the requestor permission to connect to RPCs in the acceptor's compartment. Without that permission, this operation will fail. For more information, see `VCN Peering <https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm>`_.
 
+
 .. Aliases
 
 
@@ -577,7 +578,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     
