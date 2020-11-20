@@ -113,6 +113,84 @@ connection:
             returned: on success
             type: string
             sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+        custom_property_members:
+            description:
+                - The list of customized properties along with the values for this object
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique Identifier of the attribute which is ID
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - Display name of the custom property
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                description:
+                    description:
+                        - Description of the custom property
+                    returned: on success
+                    type: string
+                    sample: description_example
+                value:
+                    description:
+                        - The custom property value
+                    returned: on success
+                    type: string
+                    sample: value_example
+                data_type:
+                    description:
+                        - The data type of the custom property
+                    returned: on success
+                    type: string
+                    sample: TEXT
+                namespace_name:
+                    description:
+                        - Namespace name of the custom property
+                    returned: on success
+                    type: string
+                    sample: namespace_name_example
+                namespace_key:
+                    description:
+                        - Unique namespace key that is immutable
+                    returned: on success
+                    type: string
+                    sample: namespace_key_example
+                is_multi_valued:
+                    description:
+                        - If this field allows multiple values to be set
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_hidden:
+                    description:
+                        - If this field is a hidden field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_editable:
+                    description:
+                        - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_list_type:
+                    description:
+                        - Is this property allowed to have list of values
+                    returned: on success
+                    type: bool
+                    sample: true
+                allowed_values:
+                    description:
+                        - Allowed values for the custom property if any
+                    returned: on success
+                    type: list
+                    sample: []
         properties:
             description:
                 - "A map of maps that contains the properties which are specific to the connection type. Each connection type
@@ -173,6 +251,20 @@ connection:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
+        "custom_property_members": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "value": "value_example",
+            "data_type": "TEXT",
+            "namespace_name": "namespace_name_example",
+            "namespace_key": "namespace_key_example",
+            "is_multi_valued": true,
+            "is_hidden": true,
+            "is_editable": true,
+            "is_list_type": true,
+            "allowed_values": []
+        }],
         "properties": {},
         "external_key": "external_key_example",
         "time_status_updated": "2013-10-20T19:20:30+01:00",

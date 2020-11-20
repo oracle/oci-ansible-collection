@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a ApiValidations resource in Oracle Cloud Infrastructure
 - Gets the API validation results.
 
+
 .. Aliases
 
 

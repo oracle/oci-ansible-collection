@@ -44,6 +44,7 @@ Synopsis
 - Get inventory hosts from oci.
 - Uses a <name>.oci.yaml (or <name>.oci.yml) YAML configuration file.
 
+
 .. Aliases
 
 

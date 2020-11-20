@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple HealthChecksVantagePoint resources in Oracle Cloud Infrastructure
 - Gets information about all vantage points available to the user.
 
+
 .. Aliases
 
 

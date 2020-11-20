@@ -61,6 +61,12 @@ class AutonomousDatabaseActionsHelperCustom:
     DEREGISTER_AUTONOMOUS_DATABASE_DATA_SAFE = (
         "deregister_autonomous_database_data_safe"
     )
+    ENABLE_AUTONOMOUS_DATABASE_OPERATIONS_INSIGHTS = (
+        "enable_autonomous_database_operations_insights"
+    )
+    DISABLE_AUTONOMOUS_DATABASE_OPERATIONS_INSIGHTS = (
+        "disable_autonomous_database_operations_insights"
+    )
 
     def generate_autonomous_database_wallet(self):
         wallet_file = self.module.params.get("wallet_file")
@@ -110,6 +116,10 @@ class AutonomousDatabaseActionsHelperCustom:
             and resource.data_safe_status == "NOT_REGISTERED"
         ):
             return False
+        elif action == self.ENABLE_AUTONOMOUS_DATABASE_OPERATIONS_INSIGHTS:
+            return resource.operations_insights_status != "ENABLED"
+        elif action == self.DISABLE_AUTONOMOUS_DATABASE_OPERATIONS_INSIGHTS:
+            return resource.operations_insights_status != "NOT_ENABLED"
         else:
             return super(
                 AutonomousDatabaseActionsHelperCustom, self

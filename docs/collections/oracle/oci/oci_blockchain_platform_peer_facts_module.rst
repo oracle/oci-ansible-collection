@@ -46,6 +46,7 @@ Synopsis
 - List Blockchain Platform Peers
 - If *peer_id* is specified, the details of a single BlockchainPlatformPeer will be returned.
 
+
 .. Aliases
 
 

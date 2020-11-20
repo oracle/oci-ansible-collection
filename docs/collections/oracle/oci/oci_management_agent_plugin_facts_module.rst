@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple ManagementAgentPlugin resources in Oracle Cloud Infrastructure
 - Returns a list of managementAgentPlugins.
 
+
 .. Aliases
 
 

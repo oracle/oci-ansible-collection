@@ -42,9 +42,10 @@ Synopsis
 
 .. Description
 
-- This module allows the user to create and delete an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
+- This module allows the user to create, update and delete an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new console connection to the specified instance. After the console connection has been created and is available, you connect to the console using SSH.
 - For more information about console access, see `Accessing the Console <https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm>`_.
+
 
 .. Aliases
 
@@ -212,6 +213,7 @@ Parameters
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -247,6 +249,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -262,6 +265,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the instance console connection.</div>
+                                            <div>Required for update using <em>state=present</em>.</div>
                                             <div>Required for delete using <em>state=absent</em>.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -345,7 +349,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The state of the InstanceConsoleConnection.</div>
-                                            <div>Use <em>state=present</em> to create an InstanceConsoleConnection.</div>
+                                            <div>Use <em>state=present</em> to create or update an InstanceConsoleConnection.</div>
                                             <div>Use <em>state=absent</em> to delete an InstanceConsoleConnection.</div>
                                                         </td>
             </tr>
@@ -425,6 +429,12 @@ Examples
         instance_id: ocid1.instance.oc1.phx.unique_ID
         compartment_id: ocid1.compartment.oc1.phx.unique_ID
         public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+
+    - name: Update instance_console_connection
+      oci_compute_instance_console_connection:
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete instance_console_connection
       oci_compute_instance_console_connection:

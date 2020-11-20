@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new database in the specified Database Home. If the database version is provided, it must match the version of the Database Home. Applies to Exadata and Exadata Cloud@Customer systems.
 - This resource has the following action operations in the :ref:`oci_database_actions <ansible_collections.oci_database_actions_module>` module: restore.
 
+
 .. Aliases
 
 
@@ -1639,7 +1640,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the latest database backup was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1729,7 +1730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a></div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1747,7 +1748,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the database was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

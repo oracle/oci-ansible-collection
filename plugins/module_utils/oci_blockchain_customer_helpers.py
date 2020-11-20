@@ -46,6 +46,9 @@ class BlockchainPlatformHelperCustom:
     def get_entity_type(self):
         return "instance"
 
+    def get_default_module_wait_timeout(self):
+        return 2400
+
 
 class BlockchainPlatformActionsHelperCustom:
     def get_action_idempotent_states(self, action):

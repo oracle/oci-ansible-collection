@@ -46,6 +46,7 @@ Synopsis
 - Lists applications for a compartment.
 - If *application_id* is specified, the details of a single Application will be returned.
 
+
 .. Aliases
 
 
@@ -555,7 +556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-09-12T22:47:12.613Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-09-12T22:47:12.613000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-09-12T22:47:12.613000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -573,7 +574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the application was updated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2018-09-12T22:47:12.613Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-09-12T22:47:12.613000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-09-12T22:47:12.613000+00:00</div>
                                     </td>
             </tr>
                     

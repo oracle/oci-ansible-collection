@@ -46,6 +46,7 @@ Synopsis
 - Lists pre-authenticated requests for the bucket.
 - If *par_id* is specified, the details of a single PreauthenticatedRequest will be returned.
 
+
 .. Aliases
 
 
@@ -447,7 +448,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date when the pre-authenticated request was created as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -465,7 +466,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The expiration date for the pre-authenticated request as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a>. After this date the pre- authenticated request will no longer be valid.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

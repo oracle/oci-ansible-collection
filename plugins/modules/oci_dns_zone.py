@@ -23,9 +23,9 @@ module: oci_dns_zone
 short_description: Manage a Zone resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Zone resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new zone in the specified compartment. The `compartmentId`
-      query parameter is required if the `Content-Type` header for the
-      request is `text/dns`.
+    - For I(state=present), creates a new zone in the specified compartment. If the `Content-Type` header for the request is `text/dns`, the
+      `compartmentId` query parameter is required. Additionally, for `text/dns`, the `scope` and `viewId` query
+      parameters are required to create a private zone.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -68,12 +68,28 @@ options:
         type: dict
     zone_type:
         description:
-            - The type of the zone. Must be either `PRIMARY` or `SECONDARY`.
+            - The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL
+              zones.
             - Applicable when migration_source is 'NONE'
         type: str
         choices:
             - "PRIMARY"
             - "SECONDARY"
+    view_id:
+        description:
+            - This value will be null for zones in the global DNS.
+            - This parameter is updatable.
+            - Applicable when migration_source is 'NONE'
+        type: str
+    scope:
+        description:
+            - The scope of the zone.
+            - This parameter is updatable.
+            - Applicable when migration_source is 'NONE'
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     external_masters:
         description:
             - External master servers for the zone. `externalMasters` becomes a
@@ -226,7 +242,7 @@ zone:
             sample: name_example
         zone_type:
             description:
-                - The type of the zone. Must be either `PRIMARY` or `SECONDARY`.
+                - The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL zones.
             returned: on success
             type: string
             sample: PRIMARY
@@ -236,6 +252,20 @@ zone:
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        view_id:
+            description:
+                - The OCID of the private view containing the zone. This value will
+                  be null for zones in the global DNS, which are publicly resolvable and
+                  not part of a private view.
+            returned: on success
+            type: string
+            sample: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+        scope:
+            description:
+                - The scope of the zone.
+            returned: on success
+            type: string
+            sample: GLOBAL
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -319,7 +349,7 @@ zone:
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         time_created:
             description:
-                - "The date and time the resource was created in \\"YYYY-MM-ddThh:mmZ\\" format
+                - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
                   with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
@@ -345,6 +375,12 @@ zone:
             returned: on success
             type: string
             sample: ACTIVE
+        is_protected:
+            description:
+                - A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed.
+            returned: on success
+            type: bool
+            sample: true
         nameservers:
             description:
                 - The authoritative nameservers for the zone.
@@ -361,6 +397,8 @@ zone:
         "name": "name_example",
         "zone_type": "PRIMARY",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "view_id": "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx",
+        "scope": "GLOBAL",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "external_masters": [{
@@ -379,6 +417,7 @@ zone:
         "version": "version_example",
         "serial": 56,
         "lifecycle_state": "ACTIVE",
+        "is_protected": true,
         "nameservers": [{
             "hostname": "hostname_example"
         }]
@@ -433,7 +472,7 @@ class ZoneHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["name", "zone_type"]
+        optional_list_method_params = ["name", "zone_type", "scope", "view_id"]
 
         return dict(
             (param, self.module.params[param])
@@ -466,6 +505,8 @@ class ZoneHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 create_zone_details=create_details,
                 compartment_id=self.module.params.get("compartment_id"),
+                scope=self.module.params.get("scope"),
+                view_id=self.module.params.get("view_id"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
@@ -488,6 +529,8 @@ class ZoneHelperGen(OCIResourceHelperBase):
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 update_zone_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
+                view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
@@ -506,6 +549,8 @@ class ZoneHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
+                view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
@@ -539,6 +584,8 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             zone_type=dict(type="str", choices=["PRIMARY", "SECONDARY"]),
+            view_id=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             external_masters=dict(
                 type="list",
                 elements="dict",

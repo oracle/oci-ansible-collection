@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new Scheduled Job to perform a specific package operation on a set of managed instances or managed instance groups.  Can be created as a one-time execution in the future, or as a recurring execution that repeats on a defined interval.
 - This resource has the following action operations in the :ref:`oci_scheduled_job_actions <ansible_collections.oci_scheduled_job_actions_module>` module: run_scheduled_job_now, skip_next_scheduled_job_execution.
 
+
 .. Aliases
 
 
@@ -1170,7 +1171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>the time of the last execution of this Scheduled Job</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1188,7 +1189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>the time of the next execution of this Scheduled Job</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

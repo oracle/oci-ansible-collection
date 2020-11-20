@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple ThreatFeeds resources in Oracle Cloud Infrastructure
 - Gets the list of available web application threat intelligence feeds and the actions set for each feed. The list is sorted by `key`, in ascending order.
 
+
 .. Aliases
 
 

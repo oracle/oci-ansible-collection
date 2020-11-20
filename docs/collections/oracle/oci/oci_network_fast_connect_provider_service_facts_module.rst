@@ -48,6 +48,7 @@ Synopsis
 - For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm>`_.
 - If *provider_service_id* is specified, the details of a single FastConnectProviderService will be returned.
 
+
 .. Aliases
 
 

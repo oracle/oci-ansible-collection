@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
 - Gets the list of all the categories for listings published to Oracle Cloud Infrastructure Marketplace. Categories apply to the software product provided by the listing.
 
+
 .. Aliases
 
 

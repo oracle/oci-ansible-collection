@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 - GET Cloud Guard Configuration Details for a Tenancy.
 
+
 .. Aliases
 
 

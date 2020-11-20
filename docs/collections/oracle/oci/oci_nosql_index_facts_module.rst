@@ -46,6 +46,7 @@ Synopsis
 - Get a list of indexes on a table.
 - If *index_name* is specified, the details of a single Index will be returned.
 
+
 .. Aliases
 
 

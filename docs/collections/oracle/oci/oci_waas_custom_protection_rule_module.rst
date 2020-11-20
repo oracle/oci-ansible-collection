@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new custom protection rule in the specified compartment.
 - Custom protection rules allow you to create rules in addition to the rulesets provided by the Web Application Firewall service, including rules from `ModSecurity <https://modsecurity.org/>`_. The syntax for custom rules is based on the ModSecurity syntax. For more information about custom protection rules, see `Custom Protection Rules <https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/customprotectionrules.htm>`_.
 
+
 .. Aliases
 
 
@@ -708,7 +709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the protection rule was created, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                     

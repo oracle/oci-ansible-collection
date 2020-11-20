@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple CrossConnectLocation resources in Oracle Cloud Infrastructure
 - Lists the available FastConnect locations for cross-connect installation. You need this information so you can specify your desired location when you create a cross-connect.
 
+
 .. Aliases
 
 

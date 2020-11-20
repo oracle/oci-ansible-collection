@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple HttpProbeResult resources in Oracle Cloud Infrastructure
 - Gets the HTTP probe results for the specified probe or monitor, where the `probeConfigurationId` is the OCID of either a monitor or an on-demand probe.
 
+
 .. Aliases
 
 

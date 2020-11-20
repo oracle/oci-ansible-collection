@@ -8,12 +8,25 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+
+logger = oci_common_utils.get_logger("oci_data_catalog_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
+
 
 class DataCatalogDataAssetHelperCustom:
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `data_asset_key`.
     # overriding this method due to naming mismatch in input parameter (data_asset_key) and output parameter (key)
     def get_get_model_from_summary_model(self, summary_model):
-        return self.client.get_data_asset(
+        return oci_common_utils.call_with_backoff(
+            self.client.get_data_asset,
             catalog_id=self.module.params.get("catalog_id"),
             data_asset_key=summary_model.key,
         ).data
@@ -21,7 +34,8 @@ class DataCatalogDataAssetHelperCustom:
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `connection_key`.
     # overriding this method due to naming mismatch in input parameter (connection_key) and output parameter (key)
     def set_required_ids_in_module_when_name_is_identifier(self, resource):
-        self.module.params["data_asset_key"] = resource["key"]
+        id_param = self.get_module_resource_id_param()
+        self.module.params[id_param] = resource["key"]
 
 
 class DataCatalogConnectionHelperCustom:
@@ -38,7 +52,8 @@ class DataCatalogConnectionHelperCustom:
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `connection_key`.
     # overriding this method due to naming mismatch in input parameter (connection_key) and output parameter (key)
     def get_get_model_from_summary_model(self, summary_model):
-        return self.client.get_connection(
+        return oci_common_utils.call_with_backoff(
+            self.client.get_connection,
             catalog_id=self.module.params.get("catalog_id"),
             data_asset_key=summary_model.data_asset_key,
             connection_key=summary_model.key,
@@ -47,7 +62,8 @@ class DataCatalogConnectionHelperCustom:
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `connection_key`.
     # overriding this method due to naming mismatch in input parameter (connection_key) and output parameter (key)
     def set_required_ids_in_module_when_name_is_identifier(self, resource):
-        self.module.params["connection_key"] = resource["key"]
+        id_param = self.get_module_resource_id_param()
+        self.module.params[id_param] = resource["key"]
 
 
 class DataCatalogCatalogActionsHelperCustom:
@@ -66,3 +82,49 @@ class DataCatalogCatalogActionsHelperCustom:
         return super(DataCatalogCatalogActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+class DataCatalogNamespaceHelperCustom:
+    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key`.
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_namespace,
+            catalog_id=self.module.params.get("catalog_id"),
+            namespace_id=summary_model.key,
+        ).data
+
+    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key`.
+    # overriding this method due to mismatch in primary_identifier by the service and ansible module
+    def set_required_ids_in_module_when_name_is_identifier(self, resource):
+        id_param = self.get_module_resource_id_param()
+        self.module.params[id_param] = resource["key"]
+
+
+class DataCatalogCustomPropertyHelperCustom:
+    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key`.
+    def get_get_model_from_summary_model(self, summary_model):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_custom_property,
+            catalog_id=self.module.params.get("catalog_id"),
+            namespace_id=self.module.params.get("namespace_id"),
+            custom_property_key=summary_model.key,
+        ).data
+
+    # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `custom_property_key`.
+    # overriding this method due to naming mismatch in input parameter (custom_property_key) and output parameter (key)
+    def set_required_ids_in_module_when_name_is_identifier(self, resource):
+        id_param = self.get_module_resource_id_param()
+        self.module.params[id_param] = resource["key"]
+
+    def get_exclude_attributes(self):
+        return super(
+            DataCatalogCustomPropertyHelperCustom, self
+        ).get_exclude_attributes() + ["properties"]
+
+    # remove the content parameter for the idempotence check
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            DataCatalogCustomPropertyHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        update_model_dict.pop("properties", None)
+        return update_model_dict

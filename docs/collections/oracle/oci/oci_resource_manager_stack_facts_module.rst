@@ -46,6 +46,7 @@ Synopsis
 - Returns a list of stacks. - If called using the compartment ID, returns all stacks in the specified compartment. - If called using the stack ID, returns the specified stack.
 - If *stack_id* is specified, the details of a single Stack will be returned.
 
+
 .. Aliases
 
 
@@ -733,7 +734,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time at which the stack was created. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -751,7 +752,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the drift detection was last executed. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

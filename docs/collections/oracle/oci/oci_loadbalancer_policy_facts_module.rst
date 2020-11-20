@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple LoadBalancerPolicy resources in Oracle Cloud Infrastructure
 - Lists the available load balancer policies.
 
+
 .. Aliases
 
 

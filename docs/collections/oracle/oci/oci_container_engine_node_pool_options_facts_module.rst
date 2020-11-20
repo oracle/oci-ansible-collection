@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a NodePoolOptions resource in Oracle Cloud Infrastructure
 - Get options available for node pools.
 
+
 .. Aliases
 
 

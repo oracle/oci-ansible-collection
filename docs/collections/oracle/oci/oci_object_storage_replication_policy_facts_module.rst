@@ -46,6 +46,7 @@ Synopsis
 - List the replication policies associated with a bucket.
 - If *replication_id* is specified, the details of a single ReplicationPolicy will be returned.
 
+
 .. Aliases
 
 
@@ -468,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date when the replication policy was created as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -486,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Changes made to the source bucket before this time has been replicated.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

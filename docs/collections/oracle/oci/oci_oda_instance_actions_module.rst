@@ -46,6 +46,7 @@ Synopsis
 - For *action=start*, starts an inactive Digital Assistant instance. Once active, the instance will be accessible and metering of requests will be started again.
 - For *action=stop*, stops an active Digital Assistant instance. Once inactive, the instance will not be accessible and metering of requests will be stopped until the instance is started again. Data associated with the instance is not affected.
 
+
 .. Aliases
 
 
@@ -564,7 +565,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When the Digital Assistant instance was created. A date-time string as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -582,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When the Digital Assistance instance was last updated. A date-time string as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>, section 14.29.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

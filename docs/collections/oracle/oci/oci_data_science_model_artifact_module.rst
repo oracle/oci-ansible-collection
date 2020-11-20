@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create a ModelArtifact resource in Oracle Cloud Infrastructure
 - For *state=present*, creates model artifact for specified model.
 
+
 .. Aliases
 
 

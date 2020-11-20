@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple InstalledWindowsUpdate resources in Oracle Cloud Infrastructure
 - Returns a list of installed Windows updates for a Managed Instance. This is only applicable to Windows instances.
 
+
 .. Aliases
 
 

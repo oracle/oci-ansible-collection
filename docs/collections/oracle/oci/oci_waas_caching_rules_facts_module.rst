@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple CachingRules resources in Oracle Cloud Infrastructure
 - Gets the currently configured caching rules for the Web Application Firewall configuration of a specified WAAS policy. The rules are processed in the order they are specified in and the first matching rule will be used when processing a request.
 
+
 .. Aliases
 
 

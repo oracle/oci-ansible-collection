@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a AnnouncementUserStatusDetails resource in Oracle Cloud Infrastructure
 - Gets information about whether a specific announcement was acknowledged by a user.
 
+
 .. Aliases
 
 

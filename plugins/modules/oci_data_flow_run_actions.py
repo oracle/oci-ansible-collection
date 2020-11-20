@@ -61,8 +61,9 @@ run:
     contains:
         archive_uri:
             description:
-                - An Oracle Cloud Infrastructure URI of an archive (zip) file that may used to support the execution of the application.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
+                  Java, or Scala application.
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: archive_uri_example
@@ -100,7 +101,7 @@ run:
         configuration:
             description:
                 - "The Spark configuration passed to the running process.
-                  See https://spark.apache.org/docs/latest/configuration.html#available-properties
+                  See https://spark.apache.org/docs/latest/configuration.html#available-properties.
                   Example: { \\"spark.app.name\\" : \\"My App Name\\", \\"spark.shuffle.io.maxRetries\\" : \\"4\\" }
                   Note: Not all Spark properties are permitted to be set.  Attempting to set a property that is
                   not allowed to be overwritten will cause a 400 status to be returned."
@@ -148,7 +149,7 @@ run:
         file_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: file_uri_example
@@ -187,7 +188,7 @@ run:
         logs_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: logs_bucket_uri_example
@@ -199,7 +200,7 @@ run:
             sample: 56
         opc_request_id:
             description:
-                - Unique Oracle-assigned identifier for the request.
+                - Unique Oracle assigned identifier for the request.
                   If you need to contact Oracle about a particular request, please provide the request ID.
             returned: on success
             type: string
@@ -242,6 +243,40 @@ run:
                     returned: on success
                     type: string
                     sample: value_example
+        private_endpoint_dns_zones:
+            description:
+                - "An array of DNS zone names.
+                  Example: `[ \\"app.examplecorp.com\\", \\"app.examplecorp2.com\\" ]`"
+            returned: on success
+            type: list
+            sample: []
+        private_endpoint_max_host_count:
+            description:
+                - The maximum number of hosts to be accessed through the private endpoint. This value is used
+                  to calculate the relevant CIDR block and should be a multiple of 256.  If the value is not a
+                  multiple of 256, it is rounded up to the next multiple of 256. For example, 300 is rounded up
+                  to 512.
+            returned: on success
+            type: int
+            sample: 56
+        private_endpoint_nsg_ids:
+            description:
+                - An array of network security group OCIDs.
+            returned: on success
+            type: list
+            sample: []
+        private_endpoint_id:
+            description:
+                - The OCID of a private endpoint.
+            returned: on success
+            type: string
+            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        private_endpoint_subnet_id:
+            description:
+                - The OCID of a subnet.
+            returned: on success
+            type: string
+            sample: ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx
         run_duration_in_milliseconds:
             description:
                 - The duration of the run in milliseconds.
@@ -278,7 +313,7 @@ run:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
                   for BATCH SQL runs.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: warehouse_bucket_uri_example
@@ -310,6 +345,11 @@ run:
             "name": "name_example",
             "value": "value_example"
         }],
+        "private_endpoint_dns_zones": [],
+        "private_endpoint_max_host_count": 56,
+        "private_endpoint_nsg_ids": [],
+        "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "private_endpoint_subnet_id": "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "run_duration_in_milliseconds": 56,
         "spark_version": "spark_version_example",
         "time_created": "2018-04-03T21:10:29.600Z",

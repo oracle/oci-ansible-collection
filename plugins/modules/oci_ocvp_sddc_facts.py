@@ -380,6 +380,42 @@ sddcs:
             returned: on success
             type: string
             sample: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+        hcx_private_ip_id:
+            description:
+                - HCX Private IP
+            returned: on success
+            type: string
+            sample: ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx
+        hcx_fqdn:
+            description:
+                - HCX Fully Qualified Domain Name
+            returned: on success
+            type: string
+            sample: hcx_fqdn_example
+        hcx_initial_password:
+            description:
+                - HCX initial password
+            returned: on success
+            type: string
+            sample: hcx_initial_password_example
+        hcx_vlan_id:
+            description:
+                - HCX vlan id
+            returned: on success
+            type: string
+            sample: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
+        is_hcx_enabled:
+            description:
+                - HCX enabled or not
+            returned: on success
+            type: bool
+            sample: true
+        hcx_on_prem_key:
+            description:
+                - HCX on-premise license key
+            returned: on success
+            type: string
+            sample: hcx_on_prem_key_example
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -477,6 +513,18 @@ sddcs:
                     returned: on success
                     type: int
                     sample: 56
+                hcx_fqdn:
+                    description:
+                        - HCX Fully Qualified Domain Name
+                    returned: on success
+                    type: string
+                    sample: hcx_fqdn_example
+                is_hcx_enabled:
+                    description:
+                        - HCX enabled or not
+                    returned: on success
+                    type: bool
+                    sample: true
                 vcenter_fqdn:
                     description:
                         - FQDN for vCenter
@@ -557,6 +605,12 @@ sddcs:
         "nsx_edge_v_tep_vlan_id": "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_edge_uplink1_vlan_id": "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_edge_uplink2_vlan_id": "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx",
+        "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
+        "hcx_fqdn": "hcx_fqdn_example",
+        "hcx_initial_password": "hcx_initial_password_example",
+        "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_hcx_enabled": true,
+        "hcx_on_prem_key": "hcx_on_prem_key_example",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -569,6 +623,8 @@ sddcs:
             "vmware_software_version": "vmware_software_version_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "esxi_hosts_count": 56,
+            "hcx_fqdn": "hcx_fqdn_example",
+            "is_hcx_enabled": true,
             "vcenter_fqdn": "vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
             "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
             "time_created": "2016-08-25T21:10:29.600Z",

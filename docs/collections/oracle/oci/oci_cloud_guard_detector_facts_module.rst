@@ -46,6 +46,7 @@ Synopsis
 - Returns detector catalog - list of detectors supported by Cloud Guard
 - If *detector_id* is specified, the details of a single Detector will be returned.
 
+
 .. Aliases
 
 

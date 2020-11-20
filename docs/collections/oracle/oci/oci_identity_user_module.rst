@@ -51,6 +51,7 @@ Synopsis
 - A new user has no permissions until you place the user in one or more groups (see `AddUserToGroup <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/UserGroupMembership/AddUserToGroup>`_). If the user needs to access the Console, you need to provide the user a password (see `CreateOrResetUIPassword <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/UIPassword/CreateOrResetUIPassword>`_). If the user needs to access the Oracle Cloud Infrastructure REST API, you need to upload a public API signing key for that user (see `Required Keys and OCIDs <https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm>`_ and also `UploadApiKey <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/ApiKey/UploadApiKey>`_).
 - **Important:** Make sure to inform the new user which compartment(s) they have access to.
 
+
 .. Aliases
 
 
@@ -880,7 +881,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

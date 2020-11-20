@@ -1,0 +1,24 @@
+---
+- name: Main | Import ATP.YML task file
+  import_tasks: atp.yml
+  tags: ['mushop_infra', 'atp']
+
+- name: Main | Import OS_BUCKETS.YML task file
+  import_tasks: os_buckets.yml
+  tags: ['mushop_infra', 'object_storage']
+
+- name: Main | Import OS_OBJECTS.YML
+  import_tasks: os_objects.yml
+  tags: ['mushop_infra', 'object_storage', 'os_objects']
+
+- name: Main | Import OS_PARS.YML
+  import_tasks: os_pars.yml
+  tags: ['mushop_infra', 'object_storage', 'os_pars']
+
+- name: Main | Import INSTANCES.YML task file
+  import_tasks: instances.yml
+  tags: ['mushop_infra', 'instances']
+
+- name: Main | Import INSTANCES.YML task file
+  import_tasks: load_balancer.yml
+  tags: ['mushop_infra', 'lbaas']

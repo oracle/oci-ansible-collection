@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a ClusterOptions resource in Oracle Cloud Infrastructure
 - Get options available for clusters.
 
+
 .. Aliases
 
 

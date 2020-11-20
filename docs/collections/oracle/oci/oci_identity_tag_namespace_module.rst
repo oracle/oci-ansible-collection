@@ -49,6 +49,7 @@ Synopsis
 - You must also specify a *description* for the namespace. It does not have to be unique, and you can change it with `UpdateTagNamespace <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/TagNamespace/UpdateTagNamespace>`_.
 - This resource has the following action operations in the :ref:`oci_tag_namespace_actions <ansible_collections.oci_tag_namespace_actions_module>` module: cascade_delete.
 
+
 .. Aliases
 
 
@@ -679,7 +680,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Date and time the tagNamespace was created, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

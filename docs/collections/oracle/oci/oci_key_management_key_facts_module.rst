@@ -47,6 +47,7 @@ Synopsis
 - As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management read operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management read operations exceeds 10 requests per second for a given tenancy.
 - If *key_id* is specified, the details of a single Key will be returned.
 
+
 .. Aliases
 
 
@@ -619,7 +620,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -637,7 +638,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when to delete the key, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

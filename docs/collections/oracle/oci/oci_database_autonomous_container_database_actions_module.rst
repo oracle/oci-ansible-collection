@@ -46,6 +46,7 @@ Synopsis
 - For *action=restart*, rolling restarts the specified Autonomous Container Database.
 - For *action=rotate_autonomous_container_database_encryption_key*, creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
 
+
 .. Aliases
 
 
@@ -1028,7 +1029,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the Autonomous Container Database was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

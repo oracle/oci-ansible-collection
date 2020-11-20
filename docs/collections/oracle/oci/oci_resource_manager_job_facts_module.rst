@@ -47,6 +47,7 @@ Synopsis
 - - To list all jobs in a stack, provide the stack `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_. - To list all jobs in a compartment, provide the compartment `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_. - To return a specific job, provide the job `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - If *job_id* is specified, the details of a single Job will be returned.
 
+
 .. Aliases
 
 
@@ -898,7 +899,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the job was created. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -916,7 +917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the job stopped running, irrespective of whether the job ran successfully. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

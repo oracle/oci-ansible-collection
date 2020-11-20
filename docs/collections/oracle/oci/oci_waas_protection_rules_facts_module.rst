@@ -46,6 +46,7 @@ Synopsis
 - Gets the list of available protection rules for a WAAS policy. Use the `GetWafConfig` operation to view a list of currently configured protection rules for the Web Application Firewall, or use the `ListRecommendations` operation to get a list of recommended protection rules for the Web Application Firewall. The list is sorted by `key`, in ascending order.
 - If *protection_rule_key* is specified, the details of a single ProtectionRules will be returned.
 
+
 .. Aliases
 
 

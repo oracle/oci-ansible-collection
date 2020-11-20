@@ -46,6 +46,7 @@ Synopsis
 - For *action=run_scheduled_job_now*, this will trigger an already created Scheduled Job to being executing immediately instead of waiting for its next regularly scheduled time.
 - For *action=skip_next_scheduled_job_execution*, this will force an already created Scheduled Job to skip its next regularly scheduled execution
 
+
 .. Aliases
 
 
@@ -694,7 +695,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>the time of the last execution of this Scheduled Job</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -712,7 +713,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>the time of the next execution of this Scheduled Job</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

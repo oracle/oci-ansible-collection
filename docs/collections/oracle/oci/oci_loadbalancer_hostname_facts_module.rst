@@ -46,6 +46,7 @@ Synopsis
 - Lists all hostname resources associated with the specified load balancer.
 - If *name* is specified, the details of a single Hostname will be returned.
 
+
 .. Aliases
 
 

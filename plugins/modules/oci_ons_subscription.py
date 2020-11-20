@@ -50,7 +50,8 @@ options:
                 * `EMAIL`
                 * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
                 * `PAGERDUTY`
-                * `SLACK`"
+                * `SLACK`
+                * `ORACLE_FUNCTIONS`"
             - For information about subscription protocols, see
               L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             - Required for create using I(state=present).

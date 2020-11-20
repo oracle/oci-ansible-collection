@@ -51,6 +51,7 @@ Synopsis
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 - This resource has the following action operations in the :ref:`oci_compartment_actions <ansible_collections.oci_compartment_actions_module>` module: bulk_delete_resources, bulk_move_resources, move, recover.
 
+
 .. Aliases
 
 
@@ -433,13 +434,13 @@ Examples
     
     - name: Create compartment
       oci_identity_compartment:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3exampleuniqueID
+        parent_compartment_id: ocid1.compartment.oc1..aaaaaaaParentCompartmentID
         description: For network components
         name: Network
 
     - name: Update compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_compartment:
-        parent_compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        parent_compartment_id: ocid1.compartment.oc1..aaaaaaaParentCompartmentID
         name: Network
         description: For network components
         freeform_tags: {'Department': 'Finance'}
@@ -449,16 +450,16 @@ Examples
       oci_identity_compartment:
         name: Network
         description: For network components
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3exampleuniqueID
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete compartment
       oci_identity_compartment:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3exampleuniqueID
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         state: absent
 
     - name: Delete compartment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_compartment:
-        parent_compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        parent_compartment_id: ocid1.compartment.oc1..aaaaaaaParentCompartmentID
         name: Network
         state: absent
 
@@ -678,7 +679,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

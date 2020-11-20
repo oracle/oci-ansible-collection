@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.11.0] - 2020-11-19
+
+### Added
+- Support for Private DNS
+- Support for BYOIP
+- New Compute Samples
+- New always-free solutions
+- New samples for File Storage, Load Balancing & Networking.
+- Added Compute-Instance-Agent service (Oracle Cloud Agent API)
+- Added new modules and features to Data-Catalog service
+- Added features to multiple core and vmware (ocvp) modules
+- Added new features to Integration modules.
+- Added new features and modules to Data Flow service.
+- Added `oci_management_agent_plugin_facts` module
+
+### Fixes
+- Password return issue on creation of SMTP_credential creation [Github issue link](https://github.com/oracle/oci-ansible-collection/issues/29)
+- Fixed the `oci_identity_compartment` create example in the module
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.24.0)
+
+### Deprecated:
+- Module `oci_monitoring_suppression_actions` is deprecated use `oci_monitoring_alarm_actions` instead.
+
 ## [2.10.0] - 2020-10-29
 
 ### Added:

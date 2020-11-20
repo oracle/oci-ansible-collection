@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration file. The Terraform configuration file can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
 - This resource has the following action operations in the :ref:`oci_stack_actions <ansible_collections.oci_stack_actions_module>` module: detect_stack_drift.
 
+
 .. Aliases
 
 
@@ -1050,7 +1051,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time at which the stack was created. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1068,7 +1069,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the drift detection was last executed. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

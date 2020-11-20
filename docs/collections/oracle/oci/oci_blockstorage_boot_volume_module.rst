@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a BootVolume resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new boot volume in the specified compartment from an existing boot volume or a boot volume backup. For general information about boot volumes, see `Boot Volumes <https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm>`_. You may optionally specify a *display name* for the volume, which is simply a friendly name or description. It does not have to be unique, and you can change it. Avoid entering confidential information.
 
+
 .. Aliases
 
 
@@ -983,7 +984,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the boot volume was created. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

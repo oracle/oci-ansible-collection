@@ -70,6 +70,10 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the gateway belongs to.
             - Required for create using I(state=present).
         type: str
+    public_ip_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Public IP associated with the NAT gateway.
+        type: str
     nat_gateway_id:
         description:
             - The NAT gateway's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -199,6 +203,12 @@ nat_gateway:
             returned: on success
             type: string
             sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        public_ip_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Public IP associated with the NAT gateway.
+            returned: on success
+            type: string
+            sample: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -209,7 +219,8 @@ nat_gateway:
         "lifecycle_state": "PROVISIONING",
         "nat_ip": "nat_ip_example",
         "time_created": "2016-08-25T21:10:29.600Z",
-        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "public_ip_id": "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -360,6 +371,7 @@ def main():
             freeform_tags=dict(type="dict"),
             block_traffic=dict(type="bool"),
             vcn_id=dict(type="str"),
+            public_ip_id=dict(type="str"),
             nat_gateway_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

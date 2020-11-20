@@ -183,6 +183,12 @@ integration_instances:
             returned: on success
             type: bool
             sample: true
+        consumption_model:
+            description:
+                - The entitlement used for billing purposes.
+            returned: on success
+            type: string
+            sample: UCM
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -197,7 +203,8 @@ integration_instances:
         "is_byol": true,
         "instance_url": "instance_url_example",
         "message_packs": 56,
-        "is_file_server_enabled": true
+        "is_file_server_enabled": true,
+        "consumption_model": "UCM"
     }]
 """
 

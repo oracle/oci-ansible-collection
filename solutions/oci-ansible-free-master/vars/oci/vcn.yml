@@ -1,0 +1,7 @@
+---
+vcn_cidr_prefix: '10.1'
+
+vcn:
+  cidr_block: "{{ vcn_cidr_prefix }}.0.0/16"
+  compartment_id: "{{ oci_tenancy_ocid }}"
+  dns_label: 'mushop'

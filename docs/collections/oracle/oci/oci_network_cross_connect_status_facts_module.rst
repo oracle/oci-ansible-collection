@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a CrossConnectStatus resource in Oracle Cloud Infrastructure
 - Gets the status of the specified cross-connect.
 
+
 .. Aliases
 
 

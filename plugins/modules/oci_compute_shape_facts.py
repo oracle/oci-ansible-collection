@@ -171,6 +171,18 @@ shapes:
                     returned: on success
                     type: float
                     sample: 3.4
+                min_per_ocpu_in_gbs:
+                    description:
+                        - The minimum amount of memory per OCPU available for this shape, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                max_per_ocpu_in_gbs:
+                    description:
+                        - The maximum amount of memory per OCPU available for this shape, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
         networking_bandwidth_options:
             description:
                 - ""
@@ -238,7 +250,9 @@ shapes:
         "memory_options": {
             "min_in_g_bs": 3.4,
             "max_in_g_bs": 3.4,
-            "default_per_ocpu_in_g_bs": 3.4
+            "default_per_ocpu_in_g_bs": 3.4,
+            "min_per_ocpu_in_gbs": 3.4,
+            "max_per_ocpu_in_gbs": 3.4
         },
         "networking_bandwidth_options": {
             "min_in_gbps": 3.4,

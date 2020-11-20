@@ -141,7 +141,7 @@ options:
                 required: true
             rtype:
                 description:
-                    - The canonical name for the record's type. Only A, AAAA, and CNAME are supported. For more
+                    - The type of DNS record, such as A or CNAME. Only A, AAAA, and CNAME are supported. For more
                       information, see L(Supported DNS Resource Record Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
                 type: str
                 required: true
@@ -314,6 +314,14 @@ options:
                       remain to be processed, the answer will be chosen from the remaining list of answers."
                     - Applicable when rule_type is 'LIMIT'
                 type: int
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     steering_policy_id:
         description:
             - The OCID of the target steering policy.
@@ -537,7 +545,7 @@ steering_policy:
                     sample: name_example
                 rtype:
                     description:
-                        - The canonical name for the record's type. Only A, AAAA, and CNAME are supported. For more
+                        - The type of DNS record, such as A or CNAME. Only A, AAAA, and CNAME are supported. For more
                           information, see L(Supported DNS Resource Record
                           Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
                     returned: on success
@@ -815,9 +823,9 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
 
     def get_optional_kwargs_for_list(self):
         optional_list_method_params = (
-            ["display_name"]
+            ["display_name", "scope"]
             if self._use_name_as_identifier()
-            else ["display_name", "health_check_monitor_id", "template"]
+            else ["display_name", "health_check_monitor_id", "template", "scope"]
         )
 
         return dict(
@@ -850,7 +858,10 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_steering_policy,
             call_fn_args=(),
-            call_fn_kwargs=dict(create_steering_policy_details=create_details,),
+            call_fn_kwargs=dict(
+                create_steering_policy_details=create_details,
+                scope=self.module.params.get("scope"),
+            ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -872,6 +883,7 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
                 steering_policy_id=self.module.params.get("steering_policy_id"),
                 update_steering_policy_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -889,6 +901,7 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 steering_policy_id=self.module.params.get("steering_policy_id"),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -980,6 +993,7 @@ def main():
                     default_count=dict(type="int"),
                 ),
             ),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             steering_policy_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

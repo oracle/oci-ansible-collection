@@ -57,6 +57,17 @@ options:
               Will match any record whose L(type,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4) (case-insensitive)
               equals the provided value.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - The OCID of the view the resource is associated with.
+        type: str
     sort_by:
         description:
             - The field by which to sort records.
@@ -131,8 +142,8 @@ domain_records:
             sample: rrset_version_example
         rtype:
             description:
-                - The canonical name for the record's type, such as A or CNAME. For more
-                  information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+                - The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-
+                  parameters/dns-parameters.xhtml#dns-parameters-4).
             returned: on success
             type: string
             sample: rtype_example
@@ -182,6 +193,8 @@ class DomainRecordsFactsHelperGen(OCIResourceFactsHelperBase):
             "if_modified_since",
             "zone_version",
             "rtype",
+            "scope",
+            "view_id",
             "sort_by",
             "sort_order",
             "compartment_id",
@@ -221,6 +234,8 @@ def main():
             if_modified_since=dict(type="str"),
             zone_version=dict(type="str"),
             rtype=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
             sort_by=dict(type="str", choices=["rtype", "ttl"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             compartment_id=dict(type="str"),

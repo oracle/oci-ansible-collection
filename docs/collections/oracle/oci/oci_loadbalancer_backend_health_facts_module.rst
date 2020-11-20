@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a BackendHealth resource in Oracle Cloud Infrastructure
 - Gets the current health status of the specified backend server.
 
+
 .. Aliases
 
 
@@ -416,7 +417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2017-06-02T18:28:11+00:00`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-06-02T18:28:11</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-06-02T18:28:11+00:00</div>
                                     </td>
             </tr>
                     

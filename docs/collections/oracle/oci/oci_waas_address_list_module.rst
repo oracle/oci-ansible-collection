@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete an AddressList resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an address list in a set compartment and allows it to be used in a WAAS policy and referenced by access rules. Addresses can be IP addresses and CIDR notations.
 
+
 .. Aliases
 
 
@@ -651,7 +652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the address list was created, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                     

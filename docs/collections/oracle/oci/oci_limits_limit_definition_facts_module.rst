@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple LimitDefinition resources in Oracle Cloud Infrastructure
 - Includes a list of resource limits that are currently supported. If the 'areQuotasSupported' property is true, you can create quota policies on top of this limit at the compartment level.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - For *action=attach_managed_instance*, adds a Managed Instance to a Managed Instance Group. After the Managed Instance has been added, then operations can be performed on the Managed Instance Group which will then apply to all Managed Instances in the group.
 - For *action=detach_managed_instance*, removes a Managed Instance from a Managed Instance Group.
 
+
 .. Aliases
 
 

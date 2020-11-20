@@ -49,6 +49,7 @@ Synopsis
 - To get the image ID to launch an instance, issue a `GetAppCatalogListingResourceVersion <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion>`_ API call. Lastly, to launch the instance, use the image ID of the listing resource version to issue a `LaunchInstance <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance>`_ API call.
 - If *listing_id* is specified, the details of a single Listing will be returned.
 
+
 .. Aliases
 
 
@@ -1782,7 +1783,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The release date of the listing.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

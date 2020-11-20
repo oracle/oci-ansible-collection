@@ -46,6 +46,7 @@ Synopsis
 - For *action=start*, starts a workspace.
 - For *action=stop*, stops a workspace.
 
+
 .. Aliases
 
 

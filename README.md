@@ -69,12 +69,13 @@ The modules honor the [SDK configuration](https://docs.us-phoenix-1.oraclecloud.
 
 #### For more info about installation and troubleshooting check the [Installation Guide](https://github.com/oracle/oci-ansible-collections/blob/master/InstallationGuide.md).
 
-## Samples
+## Samples and Solutions
 
 The project includes a catalog of Oracle Cloud Infrastructure Ansible module samples that illustrate using the modules 
-to carry out common infrastructure provisioning and configuration tasks. The samples are organized in groups associated 
-with Oracle Cloud Infrastructure services under [the samples directory on GitHub](https://github.com/oracle/oci-ansible-collections/tree/master/samples).
+to carry out common infrastructure provisioning and configuration tasks.
+* The samples are organized in groups associated with Oracle Cloud Infrastructure services under [the samples directory on GitHub](https://github.com/oracle/oci-ansible-collections/tree/master/samples).
 Begin by reviewing the Readme.md file that you will find in each sample's root directory.
+* The solutions are available under [the solutions directory on GitHub](https://github.com/oracle/oci-ansible-collections/tree/master/solutions)
 
 ## Documentation
 Module HTML documentation is available on [readthedocs.io](https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/index.html).

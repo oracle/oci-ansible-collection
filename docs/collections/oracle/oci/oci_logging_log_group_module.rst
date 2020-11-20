@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a LogGroup resource in Oracle Cloud Infrastructure
 - For *state=present*, create new log group with unique display name. This call fails if log group is already created with same displayName in the compartment.
 
+
 .. Aliases
 
 
@@ -636,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time the resource was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -654,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time the resource was last modified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

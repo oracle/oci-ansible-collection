@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AvailableWindowsUpdate resources in Oracle Cloud Infrastructure
 - Returns a list of available Windows updates for a Managed Instance. This is only applicable to Windows instances.
 
+
 .. Aliases
 
 

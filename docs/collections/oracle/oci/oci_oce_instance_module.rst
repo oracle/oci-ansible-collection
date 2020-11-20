@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete an OceInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new OceInstance.
 
+
 .. Aliases
 
 
@@ -367,6 +368,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_license_type"></div>
+                    <b>instance_license_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_license_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NEW</li>
+                                                                                                                                                                                                <li>BYOL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Flag indicating whether the instance license is new cloud or bring your own license</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-instance_usage_type"></div>
                     <b>instance_usage_type</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_usage_type" title="Permalink to this option"></a>
@@ -636,6 +657,7 @@ Examples
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         name: name_example
         waf_primary_domain: waf_primary_domain_example
+        instance_license_type: NEW
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -691,7 +713,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the OceInstance resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_email&#x27;: &#x27;admin_email_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;guid&#x27;: &#x27;guid_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_tenancy&#x27;: &#x27;idcs_tenancy_example&#x27;, &#x27;identity_stripe&#x27;: {&#x27;service_name&#x27;: &#x27;secondstripe&#x27;, &#x27;tenancy&#x27;: &#x27;idcs-8416ebdd0d674f84803f4193cce026e9&#x27;}, &#x27;instance_access_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;instance_usage_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_storage_namespace&#x27;: &#x27;object_storage_namespace_example&#x27;, &#x27;service&#x27;: {}, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenancy_name&#x27;: &#x27;tenancy_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_schedule&#x27;: &#x27;UPGRADE_IMMEDIATELY&#x27;, &#x27;waf_primary_domain&#x27;: &#x27;waf_primary_domain_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_email&#x27;: &#x27;admin_email_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;guid&#x27;: &#x27;guid_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_tenancy&#x27;: &#x27;idcs_tenancy_example&#x27;, &#x27;identity_stripe&#x27;: {&#x27;service_name&#x27;: &#x27;secondstripe&#x27;, &#x27;tenancy&#x27;: &#x27;idcs-8416ebdd0d674f84803f4193cce026e9&#x27;}, &#x27;instance_access_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;instance_license_type&#x27;: &#x27;NEW&#x27;, &#x27;instance_usage_type&#x27;: &#x27;PRIMARY&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_storage_namespace&#x27;: &#x27;object_storage_namespace_example&#x27;, &#x27;service&#x27;: {}, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenancy_name&#x27;: &#x27;tenancy_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_schedule&#x27;: &#x27;UPGRADE_IMMEDIATELY&#x27;, &#x27;waf_primary_domain&#x27;: &#x27;waf_primary_domain_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -914,6 +936,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-oce_instance/instance_license_type"></div>
+                    <b>instance_license_type</b>
+                    <a class="ansibleOptionLink" href="#return-oce_instance/instance_license_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Flag indicating whether the instance license is new cloud or bring your own license</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NEW</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-oce_instance/instance_usage_type"></div>
                     <b>instance_usage_type</b>
                     <a class="ansibleOptionLink" href="#return-oce_instance/instance_usage_type" title="Permalink to this return value"></a>
@@ -1068,7 +1108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the the OceInstance was created. An RFC3339 formatted datetime string</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1086,7 +1126,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the OceInstance was updated. An RFC3339 formatted datetime string</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -49,6 +49,7 @@ Synopsis
 -  * `GetCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent>`_ * `GetIpsecCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent>`_ * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_
 - If *cpe_device_shape_id* is specified, the details of a single CpeDeviceShape will be returned.
 
+
 .. Aliases
 
 

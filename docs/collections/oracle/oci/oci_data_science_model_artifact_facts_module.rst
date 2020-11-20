@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a ModelArtifact resource in Oracle Cloud Infrastructure
 - Downloads model artifact content for specified model.
 
+
 .. Aliases
 
 

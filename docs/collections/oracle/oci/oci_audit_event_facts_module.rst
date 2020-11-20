@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AuditEvent resources in Oracle Cloud Infrastructure
 - Returns all the audit events processed for the specified compartment within the specified time range.
 
+
 .. Aliases
 
 
@@ -1087,7 +1088,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-09-18T00:10:59.278Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-09-18T00:10:59.278000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-09-18T00:10:59.278000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1201,7 +1202,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-09-18T00:10:59.252Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-09-18T00:10:59.252000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-09-18T00:10:59.252000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

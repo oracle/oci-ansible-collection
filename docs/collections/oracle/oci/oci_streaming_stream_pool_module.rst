@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a StreamPool resource in Oracle Cloud Infrastructure
 - For *state=present*, starts the provisioning of a new stream pool. To track the progress of the provisioning, you can periodically call GetStreamPool. In the response, the `lifecycleState` parameter of the object tells you its current state.
 
+
 .. Aliases
 
 
@@ -1058,7 +1059,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2018-04-20T00:00:07.405Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-20T00:00:07.405000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-04-20T00:00:07.405000+00:00</div>
                                     </td>
             </tr>
                     

@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
 - For *action=launch*, launches an instance from an instance configuration. If the instance configuration does not include all of the parameters that are required to launch an instance, such as the availability domain and subnet ID, you must provide these parameters when you launch an instance from the instance configuration. For more information, see the `InstanceConfiguration <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/InstanceConfiguration/>`_ resource.
 
+
 .. Aliases
 
 
@@ -747,7 +748,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>Options for defining the availabiity of a VM instance after a maintenance event that impacts the underlying hardware.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -768,7 +769,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance. * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances will be restored to the power state it was in before maintenance. * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance.</div>
+                                            <div>The lifecycle state for an instance when it is recovered after infrastructure maintenance. * `RESTORE_INSTANCE` - The instance is restored to the lifecycle state it was in before the maintenance event. If the instance was running, it is automatically rebooted. This is the default action when a value is not set. * `STOP_INSTANCE` - The instance is recovered in the stopped state.</div>
                                                         </td>
             </tr>
                     
@@ -1391,6 +1392,23 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-launch_details/shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-launch_details/shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory available to the instance, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-launch_details/shape_config/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#parameter-launch_details/shape_config/ocpus" title="Permalink to this option"></a>
@@ -1891,7 +1909,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1908,7 +1926,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Actions customers can specify that would be applied to their instances after scheduled or unexpected host maintenance. * `RESTORE_INSTANCE` - This would be the default action if recoveryAction is not set. VM instances will be restored to the power state it was in before maintenance. * `STOP_INSTANCE` - This action allow customers to have their VM instances be stopped after maintenance.</div>
+                                            <div>The lifecycle state for an instance when it is recovered after infrastructure maintenance. * `RESTORE_INSTANCE` - The instance is restored to the lifecycle state it was in before the maintenance event. If the instance was running, it is automatically rebooted. This is the default action when a value is not set. * `STOP_INSTANCE` - The instance is recovered in the stopped state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RESTORE_INSTANCE</div>
@@ -2698,7 +2716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2716,7 +2734,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the instance is expected to be stopped / started,  in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. After that time if instance hasn&#x27;t been rebooted, Oracle will reboot the instance within 24 hours of the due time. Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state. Example: `2018-05-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-05-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-05-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

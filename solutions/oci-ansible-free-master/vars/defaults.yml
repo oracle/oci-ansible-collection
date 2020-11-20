@@ -1,0 +1,25 @@
+---
+# Deployment settings
+env: 'free'
+region: 'us-ashburn-1'
+
+# Global list of playbook flags
+auto_confirm: False
+
+# Global list of condition to validate as an initial play
+global_validate_list:
+  - lookup('env', 'OCI_TENANCY') is regex("^ocid1\..*")
+  - ((region|length > 0) | default(False))
+  - (env|length > 0) | default(False)
+
+# Default SSH pubkey to use for OCI Compute instance
+global_ssh_pubkey: "{{ lookup('env', 'OCI_ANSIBLE_FREE_PUBKEY') or '~/.ssh/id_rsa.pub' }}"
+
+# Regional URL for object storage
+global_objstr_url: "https://objectstorage.{{ region }}.oraclecloud.com"
+
+oci_ansible_free_default_tags:
+  env: "{{ env }}"
+  region: "{{ region }}"
+  vcn: 'ocifree-vcn'
+  product: 'mushup'

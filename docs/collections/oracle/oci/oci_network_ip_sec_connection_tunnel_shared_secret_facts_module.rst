@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
 - Gets the specified tunnel's shared secret (pre-shared key). To get other information about the tunnel, use `GetIPSecConnectionTunnel <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/GetIPSecConnectionTunnel>`_.
 
+
 .. Aliases
 
 

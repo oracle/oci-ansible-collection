@@ -48,6 +48,7 @@ Synopsis
 - After you send your request, the new service connector's state is temporarily CREATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm>`_.
 - This resource has the following action operations in the :ref:`oci_service_connector_actions <ansible_collections.oci_service_connector_actions_module>` module: activate, deactivate.
 
+
 .. Aliases
 
 
@@ -1417,7 +1418,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the service connector was created. Format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1435,7 +1436,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the service connector was updated. Format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

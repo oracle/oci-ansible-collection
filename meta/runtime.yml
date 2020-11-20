@@ -1,0 +1,8 @@
+---
+requires_ansible: ">=2.10"
+plugin_routing:
+  modules:
+    oci_monitoring_suppression_actions:
+      deprecation:
+        removal_version: '3.0.0'
+        warning_text: oci_monitoring_suppression_actions will be removed in a future release of this collection. Use oci_monitoring_alarm_actions instead.

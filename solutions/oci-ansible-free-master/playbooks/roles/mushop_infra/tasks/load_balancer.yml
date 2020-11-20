@@ -1,0 +1,44 @@
+---
+- name: LBaaS | Create load_balancer
+  oci_loadbalancer_load_balancer:
+    tenancy: "{{ oci_tenancy_ocid }}"
+    region: "{{ region }}"
+    compartment_id: "{{ vcn_reg.vcn.compartment_id }}"
+    display_name: "{{ env }}-{{ region }}-mushop-lb"
+    shape_name: "{{ load_balancer.shape }}"
+    is_private: False
+    subnet_ids:
+      - "{{ public_subnet_reg.subnet.id }}"
+    freeform_tags: "{{ oci_ansible_free_default_tags }}"
+  register: oci_lb_reg
+
+- name: LBaaS | Create mushop LBaaS backend_set
+  oci_loadbalancer_backend_set:
+    name: "{{ env }}-{{ region }}-mushop-bes"
+    policy: "{{ load_balancer.policy }}"
+    health_checker: "{{ load_balancer.health_checker }}"
+    load_balancer_id: "{{ oci_lb_reg.load_balancer.id }}"
+
+- name: LBaaS | Create mushop LBaaS Backend
+  oci_loadbalancer_backend:
+    ip_address: "{{ backend_instance.primary_private_ip }}"
+    port: "{{ load_balancer.backend.port }}"
+    weight: "{{ load_balancer.backend.weight }}"
+    backup: "{{ load_balancer.backend.backup }}"
+    drain: "{{ load_balancer.backend.drain }}"
+    offline: "{{ load_balancer.backend.offline }}"
+    load_balancer_id: "{{ oci_lb_reg.load_balancer.id }}"
+    backend_set_name: "{{ env }}-{{ region }}-mushop-bes"
+  loop: "{{ oci_instance_reg.results | map(attribute='instance') | list }}"
+  loop_control:
+    loop_var: backend_instance
+    label: "{{ backend_instance.display_name }}"
+
+- name: LBaaS | Create mushop listener
+  oci_loadbalancer_listener:
+    name: "{{ env }}-{{ region }}-mushop-listener"
+    default_backend_set_name: "{{ env }}-{{ region }}-mushop-bes"
+    port: "{{ load_balancer.listener.port }}"
+    protocol: "{{ load_balancer.listener.protocol }}"
+    load_balancer_id: "{{ oci_lb_reg.load_balancer.id }}"
+    connection_configuration: "{{ load_balancer.listener.connection_configuration | default(omit) }}"

@@ -46,6 +46,7 @@ Synopsis
 - Lists the volume group backups in the specified compartment. You can filter the results by volume group. For more information, see `Volume Groups <https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm>`_.
 - If *volume_group_backup_id* is specified, the details of a single VolumeGroupBackup will be returned.
 
+
 .. Aliases
 
 
@@ -544,7 +545,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the volume group backup was created. This is the time the actual point-in-time image of the volume group data was taken. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -562,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the request to create the volume group backup was received. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple SupportedVmwareSoftwareVersion resources in Oracle Cloud Infrastructure
 - Lists the versions of bundled VMware software supported by the Oracle Cloud VMware Solution.
 
+
 .. Aliases
 
 

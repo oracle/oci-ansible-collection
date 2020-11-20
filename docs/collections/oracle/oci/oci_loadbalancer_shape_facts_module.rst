@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple LoadBalancerShape resources in Oracle Cloud Infrastructure
 - Lists the valid load balancer shapes.
 
+
 .. Aliases
 
 

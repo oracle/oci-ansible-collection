@@ -1,0 +1,203 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Set up 2 private subnets, dynamic routing gateway, CPE and an IPSec VPN
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    # common networking definitions
+    quad_zero_route: "0.0.0.0/0"
+    TCP_protocol: "6"
+    HTTPS_port: "443"
+    HTTP_port: "80"
+    Oracle_DB_port: "1521"
+
+    vcn_name: "mytestvcn"
+    vcn_cidr_block: "172.16.0.0/16"
+    vcn_dns_label: "mytestvcn"
+
+    # route all internet access to the dynamic routing gateway
+    route_table_rules:
+      - cidr_block: "{{ quad_zero_route }}"
+        network_entity_id: "{{ drg_id }}"
+
+    subnet1_cidr: "172.16.1.0/24"
+    subnet2_cidr: "172.16.2.0/24"
+
+    subnet1_name: "mytestsubnet_ad1"
+    subnet2_name: "mytestsubnet_ad2"
+
+    subnet1_dns_label: "mytestsubnet1"
+    subnet2_dns_label: "mytestsubnet2"
+
+    instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
+
+    instance1_name: "test_instance_1"
+    instance2_name: "test_instance_2"
+
+    instance1_hostname: "mytestinstance1"
+    instance2_hostname: "mytestinstance2"
+
+    drg_name: "sample_drg"
+    drg_attachment_name: "sample_drg_attachment_name"
+
+    cpe_name: "sample_cpe"
+    ipsec_name: "sample_ipsec"
+
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    ad1: "{{ lookup('env', 'SAMPLE_AD1_NAME') }}"
+    ad2: "{{ lookup('env', 'SAMPLE_AD2_NAME') }}"
+    sample_compartment: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    tenancy_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
+    static_route: 172.16.10.0/24
+
+  tasks:
+    - block:
+      - import_tasks: setup.yaml
+
+      - name: Create a dynamic routing gateway(DRG)
+        oci_network_drg:
+          compartment_id: "{{ sample_compartment }}"
+          name: "{{ drg_name }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          drg_id: "{{result.drg.id }}"
+
+      - name: Attach the DRG to the VCN
+        oci_network_drg_attachment:
+          drg_id: "{{ drg_id }}"
+          name: "{{ drg_attachment_name }}"
+          vcn_id: "{{ vcn_id }}"
+          compartment_id: "{{ sample_compartment }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          drg_attachment_id: "{{ result.drg_attachment.id }}"
+
+      - name: Create customer premises equipment(CPE)
+        oci_network_cpe:
+          compartment_id: "{{ sample_compartment }}"
+          name: "{{ cpe_name }}"
+          ip_address: '189.44.2.135'
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          cpe_id: "{{ result.cpe.id }}"
+
+      - name: Create an IPSec connection
+        oci_network_ip_sec_connection:
+          compartment_id: "{{ sample_compartment }}"
+          name: "{{ ipsec_name }}"
+          cpe_id: "{{ cpe_id }}"
+          drg_id: "{{ drg_id }}"
+          static_routes:
+            - "{{ static_route }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          ipsec_id: "{{ result.ip_sec_connection.id }}"
+
+      - name: Update default route table to enable communication via the VPN
+        oci_network_route_table:
+          id: "{{ default_route_table_id }}"
+          route_rules: "{{ route_table_rules }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+
+      - name: create ingress rules yaml body
+        template: src=./templates/ingress_security_rules.yaml.j2 dest=/tmp/ingress_security_rules.yaml
+
+      # Load the variables defined in the generated files
+      - name: load the variables defined in the ingress rules yaml body
+        include_vars:
+          file: /tmp/ingress_security_rules.yaml
+          name: loaded_ingress
+      - name: print loaded_ingress
+        debug:
+          msg: "loaded ingress is {{loaded_ingress}}"
+
+      - name: Update default security list to add additional rules
+        oci_network_security_list:
+          id: "{{ default_security_list_id }}"
+          ingress_security_rules: "{{ loaded_ingress.ingress_security_rules_for_default_sec_list }}"
+          purge_security_rules: 'no'
+        register: result
+      - debug:
+          msg: "{{ result }}"
+
+      # Find appropriate image to launch compute instance.
+      - name: Get images list
+        oci_compute_image_facts:
+          compartment_id: "{{ tenancy_ocid }}"
+          operating_system: "Oracle Linux"
+          operating_system_version: "7.8"
+          sort_by: "TIMECREATED"
+        register: output
+
+      - set_fact:
+          instance_image: "{{ item.id }}"
+        loop: "{{ output.images }}"
+        when: item.display_name.find("GPU") == -1
+
+  # To launch instances, uncomment following task.
+
+  #    - name: Launch instances in the two private subnets
+  #      oci_instance:
+  #        availability_domain: "{{ item.ad }}"
+  #        compartment_id: "{{ sample_compartment }}"
+  #        name: "{{ item.name }}"
+  #        image_id: "{{ instance_image }}"
+  #        shape: "{{ instance_shape }}"
+  #        vnic:
+  #          assign_public_ip: False
+  #          hostname_label: "{{ item.label }}"
+  #          subnet_id: "{{ item.subnet_id }}"
+  #      loop:
+  #        - { ad: '{{ ad1 }}', name: '{{ instance1_name }}', label: '{{ instance1_hostname }}', subnet_id: '{{ ad1_subnet_id }}' }
+  #        - { ad: '{{ ad2 }}', name: '{{ instance2_name }}', label: '{{ instance2_hostname }}', subnet_id: '{{ ad2_subnet_id }}' }
+  #      register: result
+
+  # Although you can launch instances into your subnets, you won't be able to communicate with them from your
+  # on-premises network until your network administrator configures your on-premises router
+  # (see https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm). After that, your IPSec
+  # connection should be up and running. You can confirm its status by using OCI Ansible module
+  # oci_network_ip_sec_connection_device_status_facts. You can also confirm the IPSec connection is up by pinging the
+  # instances from your on-premises network.
+
+      - name: Get configuration information required for configuring CPE router - required by network administrator to configure on-premises router
+        oci_network_ip_sec_connection_device_config_facts:
+          ipsc_id: "{{ ipsec_id }}"
+        register: result
+      - debug:
+          msg: "{{ result.ip_sec_connection_device_config }}"
+
+      - name: Get the connection status of IPSec connection
+        oci_network_ip_sec_connection_device_status_facts:
+          ipsc_id: "{{ ipsec_id }}"
+        register: result
+      - debug:
+          msg: "{{ result.ip_sec_connection_device_status }}"
+
+      - import_tasks: teardown.yaml
+
+      rescue:
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

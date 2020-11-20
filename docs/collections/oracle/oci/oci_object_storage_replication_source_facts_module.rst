@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple ReplicationSource resources in Oracle Cloud Infrastructure
 - List the replication sources of a destination bucket.
 
+
 .. Aliases
 
 

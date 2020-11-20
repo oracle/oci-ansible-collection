@@ -23,8 +23,10 @@ module: oci_data_catalog_data_asset_actions
 short_description: Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
+    - For I(action=add_data_selector_patterns), add data selector pattern to the data asset.
     - For I(action=import_connection), import new connection for this data asset.
     - For I(action=parse_connection), parse data asset references through connections from this data asset.
+    - For I(action=remove_data_selector_patterns), remove data selector pattern from the data asset.
     - For I(action=validate_connection), validate connection by connecting to the data asset using credentials in metadata.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -39,9 +41,15 @@ options:
             - Unique data asset key.
         type: str
         required: true
+    items:
+        description:
+            - Collection of pattern Ids.
+            - Required for I(action=add_data_selector_patterns), I(action=remove_data_selector_patterns).
+        type: list
     connection_detail:
         description:
             - ""
+            - Applicable only for I(action=import_connection)I(action=parse_connection)I(action=validate_connection).
         type: dict
         suboptions:
             description:
@@ -58,6 +66,66 @@ options:
                 description:
                     - The key of the object type. Type key's can be found via the '/types' endpoint.
                 type: str
+            custom_property_members:
+                description:
+                    - The list of customized properties along with the values for this object
+                type: list
+                suboptions:
+                    key:
+                        description:
+                            - Unique Identifier of the attribute which is ID
+                        type: str
+                    display_name:
+                        description:
+                            - Name of the custom property
+                        type: str
+                        aliases: ["name"]
+                    value:
+                        description:
+                            - The custom property value
+                        type: str
+                    namespace_name:
+                        description:
+                            - Namespace name of the custom property
+                        type: str
+                    description:
+                        description:
+                            - Description of the custom property
+                        type: str
+                    data_type:
+                        description:
+                            - The data type of the custom property
+                        type: str
+                        choices:
+                            - "TEXT"
+                            - "RICH_TEXT"
+                            - "BOOLEAN"
+                            - "NUMBER"
+                            - "DATE"
+                    namespace_key:
+                        description:
+                            - Unique namespace key that is immutable
+                        type: str
+                    is_multi_valued:
+                        description:
+                            - If this field allows multiple values to be set
+                        type: bool
+                    is_hidden:
+                        description:
+                            - If this field is a hidden field
+                        type: bool
+                    is_editable:
+                        description:
+                            - If this field is a editable field
+                        type: bool
+                    is_list_type:
+                        description:
+                            - Is this property allowed to have list of values
+                        type: bool
+                    allowed_values:
+                        description:
+                            - Allowed values for the custom property if any
+                        type: list
             properties:
                 description:
                     - "A map of maps that contains the properties which are specific to the connection type. Each connection type
@@ -153,13 +221,21 @@ options:
         type: str
         required: true
         choices:
+            - "add_data_selector_patterns"
             - "import_connection"
             - "parse_connection"
+            - "remove_data_selector_patterns"
             - "validate_connection"
-extends_documentation_fragment: [ oracle.oci.oracle ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action add_data_selector_patterns on data_asset
+  oci_data_catalog_data_asset_actions:
+    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    data_asset_key: data_asset_key_example
+    action: add_data_selector_patterns
+
 - name: Perform action import_connection on data_asset
   oci_data_catalog_data_asset_actions:
     catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
@@ -171,6 +247,12 @@ EXAMPLES = """
     catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
     data_asset_key: data_asset_key_example
     action: parse_connection
+
+- name: Perform action remove_data_selector_patterns on data_asset
+  oci_data_catalog_data_asset_actions:
+    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    data_asset_key: data_asset_key_example
+    action: remove_data_selector_patterns
 
 - name: Perform action validate_connection on data_asset
   oci_data_catalog_data_asset_actions:
@@ -261,6 +343,134 @@ data_asset:
             returned: on success
             type: string
             sample: uri_example
+        custom_property_members:
+            description:
+                - The list of customized properties along with the values for this object
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique Identifier of the attribute which is ID
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - Display name of the custom property
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                description:
+                    description:
+                        - Description of the custom property
+                    returned: on success
+                    type: string
+                    sample: description_example
+                value:
+                    description:
+                        - The custom property value
+                    returned: on success
+                    type: string
+                    sample: value_example
+                data_type:
+                    description:
+                        - The data type of the custom property
+                    returned: on success
+                    type: string
+                    sample: TEXT
+                namespace_name:
+                    description:
+                        - Namespace name of the custom property
+                    returned: on success
+                    type: string
+                    sample: namespace_name_example
+                namespace_key:
+                    description:
+                        - Unique namespace key that is immutable
+                    returned: on success
+                    type: string
+                    sample: namespace_key_example
+                is_multi_valued:
+                    description:
+                        - If this field allows multiple values to be set
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_hidden:
+                    description:
+                        - If this field is a hidden field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_editable:
+                    description:
+                        - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_list_type:
+                    description:
+                        - Is this property allowed to have list of values
+                    returned: on success
+                    type: bool
+                    sample: true
+                allowed_values:
+                    description:
+                        - Allowed values for the custom property if any
+                    returned: on success
+                    type: list
+                    sample: []
+        data_selector_patterns:
+            description:
+                - The list of data selector patterns used in the harvest for this data asset to derive logical entities.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Unique pattern key that is immutable.
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - A user-friendly display name. Does not have to be unique, and it's changeable.
+                          Avoid entering confidential information.
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                description:
+                    description:
+                        - Detailed description of the pattern.
+                    returned: on success
+                    type: string
+                    sample: description_example
+                catalog_id:
+                    description:
+                        - The data catalog's OCID.
+                    returned: on success
+                    type: string
+                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+                time_created:
+                    description:
+                        - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                          Example: `2019-03-25T21:10:29.600Z`"
+                    returned: on success
+                    type: string
+                    sample: 2019-03-25T21:10:29.600Z
+                expression:
+                    description:
+                        - The expression used in the pattern that may include qualifiers.
+                    returned: on success
+                    type: string
+                    sample: expression_example
+                lifecycle_state:
+                    description:
+                        - State of the pattern.
+                    returned: on success
+                    type: string
+                    sample: CREATING
         properties:
             description:
                 - "A map of maps that contains the properties which are specific to the asset type. Each data asset type
@@ -284,6 +494,29 @@ data_asset:
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "uri": "uri_example",
+        "custom_property_members": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "value": "value_example",
+            "data_type": "TEXT",
+            "namespace_name": "namespace_name_example",
+            "namespace_key": "namespace_key_example",
+            "is_multi_valued": true,
+            "is_hidden": true,
+            "is_editable": true,
+            "is_list_type": true,
+            "allowed_values": []
+        }],
+        "data_selector_patterns": [{
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "description": "description_example",
+            "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_created": "2019-03-25T21:10:29.600Z",
+            "expression": "expression_example",
+            "lifecycle_state": "CREATING"
+        }],
         "properties": {}
     }
 """
@@ -300,6 +533,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_catalog import DataCatalogClient
+    from oci.data_catalog.models import DataSelectorPatternDetails
     from oci.data_catalog.models import ImportConnectionDetails
     from oci.data_catalog.models import ParseConnectionDetails
     from oci.data_catalog.models import ValidateConnectionDetails
@@ -312,8 +546,10 @@ except ImportError:
 class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_data_selector_patterns
         import_connection
         parse_connection
+        remove_data_selector_patterns
         validate_connection
     """
 
@@ -332,6 +568,30 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
             self.client.get_data_asset,
             catalog_id=self.module.params.get("catalog_id"),
             data_asset_key=self.module.params.get("data_asset_key"),
+        )
+
+    def add_data_selector_patterns(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DataSelectorPatternDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_data_selector_patterns,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                catalog_id=self.module.params.get("catalog_id"),
+                data_asset_key=self.module.params.get("data_asset_key"),
+                data_selector_pattern_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def import_connection(self):
@@ -383,6 +643,30 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def remove_data_selector_patterns(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DataSelectorPatternDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_data_selector_patterns,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                catalog_id=self.module.params.get("catalog_id"),
+                data_asset_key=self.module.params.get("data_asset_key"),
+                data_selector_pattern_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def validate_connection(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ValidateConnectionDetails
@@ -421,18 +705,46 @@ class ResourceHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=False, supports_wait=False
+        supports_create=False, supports_wait=True
     )
     module_args.update(
         dict(
             catalog_id=dict(type="str", required=True),
             data_asset_key=dict(type="str", required=True),
+            items=dict(type="list"),
             connection_detail=dict(
                 type="dict",
                 options=dict(
                     description=dict(type="str"),
                     display_name=dict(aliases=["name"], type="str"),
                     type_key=dict(type="str"),
+                    custom_property_members=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            key=dict(type="str"),
+                            display_name=dict(aliases=["name"], type="str"),
+                            value=dict(type="str"),
+                            namespace_name=dict(type="str"),
+                            description=dict(type="str"),
+                            data_type=dict(
+                                type="str",
+                                choices=[
+                                    "TEXT",
+                                    "RICH_TEXT",
+                                    "BOOLEAN",
+                                    "NUMBER",
+                                    "DATE",
+                                ],
+                            ),
+                            namespace_key=dict(type="str"),
+                            is_multi_valued=dict(type="bool"),
+                            is_hidden=dict(type="bool"),
+                            is_editable=dict(type="bool"),
+                            is_list_type=dict(type="bool"),
+                            allowed_values=dict(type="list"),
+                        ),
+                    ),
                     properties=dict(type="dict"),
                     enc_properties=dict(type="dict"),
                     is_default=dict(type="bool"),
@@ -466,8 +778,10 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "add_data_selector_patterns",
                     "import_connection",
                     "parse_connection",
+                    "remove_data_selector_patterns",
                     "validate_connection",
                 ],
             ),

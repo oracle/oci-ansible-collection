@@ -1,0 +1,26 @@
+---
+################################################################
+# This playbook is intended to validate a list of expressions
+# that are required at the global level.  It should be included
+# in every playbook at the top level as an import.
+#
+################################################################
+- hosts: localhost
+  gather_facts: False
+  vars_files:
+    - "../../vars/defaults.yml"
+  tasks:
+    - name: Global Validate | Validation block
+      tags: ['always']
+      when: not global_validation | default(False) | bool
+      block:
+        - name: Global Validate | Validate required common items are configured
+          assert:
+            quiet: True
+            that: "{{ global_validate_list }}"
+            fail_msg: "FAIL:  Common validation playbook failed on the above."
+          tags: ['always']
+
+        - name: Global Validate | Set validation fact
+          set_fact:
+            global_validation: True

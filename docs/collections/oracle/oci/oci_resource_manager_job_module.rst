@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a Job resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a job.
 
+
 .. Aliases
 
 
@@ -1139,7 +1140,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the job was created. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1157,7 +1158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the job stopped running, irrespective of whether the job ran successfully. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

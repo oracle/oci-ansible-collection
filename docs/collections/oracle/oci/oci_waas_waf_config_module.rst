@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to update a WafConfig resource in Oracle Cloud Infrastructure
 
+
 .. Aliases
 
 

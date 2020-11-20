@@ -47,6 +47,7 @@ Synopsis
 - Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides a URL for fetching the next page.
 - If *monitor_id* is specified, the details of a single PingMonitor will be returned.
 
+
 .. Aliases
 
 
@@ -613,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The RFC 3339-formatted creation date and time of the probe.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

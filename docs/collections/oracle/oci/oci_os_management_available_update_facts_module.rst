@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple AvailableUpdate resources in Oracle Cloud Infrastructure
 - Returns a list of available updates for a Managed Instance.
 
+
 .. Aliases
 
 

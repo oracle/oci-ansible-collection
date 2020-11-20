@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a HttpRedirect resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new HTTP Redirect on the WAF edge.
 
+
 .. Aliases
 
 
@@ -899,7 +900,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the policy was created, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                     

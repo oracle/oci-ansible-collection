@@ -1,0 +1,256 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Create a public load balancer instance and print the details
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    vcn_name: "sample_load_balancer_vcn"
+    cidr_block: "10.1.0.0/16"
+    dns_label: "samplelbvcn"
+    ig_name: "sample_ig"
+    rt_name: "sample_rt"
+    sec_list_name: "sample_sec_list"
+
+    sample_subnet_ad1: 'subnetad1'
+    sample_subnet_ad2: 'subnetad2'
+    subnet_cidr_block_ad1: "10.1.20.0/24"
+    subnet_cidr_block_ad2: "10.1.21.0/24"
+    all_cidr_block: '0.0.0.0/0'
+    all_protocol: 'all'
+    tcp_protocol: '6'
+
+    sample_app_server_instance_one_name: 'AS-1'
+    sample_app_server_instance_two_name: 'AS-2'
+    sample_app_server_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
+
+    lb_name: "sample_load_balancer"
+    sample_shape: "100Mbps"
+    sample_backend_set_name: 'sample_backend_set'
+    sample_backend_set_policy: 'ROUND_ROBIN'
+
+    # Initialize values for certificates
+    sample_ca_certificate: |
+      -----BEGIN CERTIFICATE-----
+      MIIDzDCCArSgAwIBAgIJAOG8yZKCzTUeMA0GCSqGSIb3DQEBCwUAMHsxCzAJBgNV
+      BAYTAlVTMQswCQYDVQQIDAJXQTEQMA4GA1UEBwwHU2VhdHRsZTENMAsGA1UECgwE
+      VGVzdDENMAsGA1UECwwEVGVzdDERMA8GA1UEAwwIdGVzdC5jb20xHDAaBgkqhkiG
+      9w0BCQEWDXRlc3RAdGVzdC5jb20wHhcNMjAwNDA2MjMzODEyWhcNMjEwNDA2MjMz
+      ODEyWjB7MQswCQYDVQQGEwJVUzELMAkGA1UECAwCV0ExEDAOBgNVBAcMB1NlYXR0
+      bGUxDTALBgNVBAoMBFRlc3QxDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3Qu
+      Y29tMRwwGgYJKoZIhvcNAQkBFg10ZXN0QHRlc3QuY29tMIIBIjANBgkqhkiG9w0B
+      AQEFAAOCAQ8AMIIBCgKCAQEAucagMzyi2DGr7Rf9ggKxAPFnZ0ilqzx9v0QXL+gR
+      qGOYAkVSXvBugTuEGLTi/DcekColURv/oGoUjefcEFXkmiHeEwZ/cH4SB1aJwCcu
+      x8syuGI2P244IdwuNz98SnTinoXtS+oV2oq4ZsX4fwfT3speNCxhFLA3m0SUWe/Z
+      Od5te06AmRWlUWZs+id64m+ydTKiDUfPwhkYg5pOnAVcGqXyZn/5wKia7yr6fJHD
+      AlSgdmRacfsRI2bYr6/7kQHG6F2Ov5BTA/nxfchmpg93Dsl9AC4JlMic0Djr9gx4
+      FMDQZP546wd1dbTjzv8o/MIDsWba4sUFj76rI4JgoDfOlwIDAQABo1MwUTAdBgNV
+      HQ4EFgQUpThPFaFdPtpRqgmT8Sr1xhjHgdYwHwYDVR0jBBgwFoAUpThPFaFdPtpR
+      qgmT8Sr1xhjHgdYwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEA
+      fpkgBsdGB3q0mWM50J37gRST41A9mIMk2v10XT6Bvzm19zkVx+7UapO5DB8pnAxt
+      ZOVdnSOdbNRIAZhnk5fVNthz5HVD2pC88l9vXX/GK0bRwXukhONBH86wkAD3TMif
+      EbEnmnQPK5pVZgjuEpMF36YcXDYoaaGmbFYTzjLI0s0Qoy8jQIHQbVrfg+aYLE72
+      adGq4JnijHpveJQELudLZGxG32s/s7kw3mncoLhwMDPrNf3u+017HSBquq6lK40Z
+      J30RtD0XxdyRKetnlH9s+1/ai3oOLF6q21fQkhBPVnkIUoGqwewr+xvnaCrEbIMA
+      fcv0xgq9XnUMI7t2okmjvg==
+      -----END CERTIFICATE-----
+
+
+    sample_private_key: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5xqAzPKLYMavt
+      F/2CArEA8WdnSKWrPH2/RBcv6BGoY5gCRVJe8G6BO4QYtOL8Nx6QKiVRG/+gahSN
+      59wQVeSaId4TBn9wfhIHVonAJy7HyzK4YjY/bjgh3C43P3xKdOKehe1L6hXairhm
+      xfh/B9Peyl40LGEUsDebRJRZ79k53m17ToCZFaVRZmz6J3rib7J1MqINR8/CGRiD
+      mk6cBVwapfJmf/nAqJrvKvp8kcMCVKB2ZFpx+xEjZtivr/uRAcboXY6/kFMD+fF9
+      yGamD3cOyX0ALgmUyJzQOOv2DHgUwNBk/njrB3V1tOPO/yj8wgOxZtrixQWPvqsj
+      gmCgN86XAgMBAAECggEAIVjaINhdktk3t1N7Gf9JrpWmrg+ITXiKSe77CoppwQQ/
+      oQi4hHo8G86HI7g0lnl+bvphwHF6LV1dWyungPcqFdDGgDvGXHcE3XRXPbrK1upO
+      rHJUsoYiZVGUqi4nLWZV14bK1bmrOpN0Dl6zAHpzOaaxykO9GW2YTbK9vncjUxOf
+      rhjU8zakzFuxEl5gP4+7rK7Jtj55yWoeaQvozxtkUMGBlb9OFoY6YeIRlz73sHMj
+      s0xbUSDev1EF0V5RmON7qbUvETzw8EjVKS6vf6uoygmyz2nxPHATsBxpGzdRlTdp
+      5zPVkqttHViFcKHwWpHrxs/eGFtpVxE4XvpgOtm74QKBgQDqHDpwZbxXGmpzQQ0a
+      tSAInSHCte5WDeEi8UcZDxXwbFauzSFzH2UsCQQMk7QNAWC9kSJQ+rWtun+Eel/L
+      qfQ+IxKXMZQB1iEERlK+WqqHhmJ2bEJuj9f3YT8zike7HEYbtvMAyYv2lbHbannc
+      kbwwW2EY+XVLOinKRgGOVM5PMwKBgQDLJXF7yZkFulMp5roL9kyL5DLa4SNVJbpF
+      D+F83KoO4zGH29o4grQjFImQIiExtSlqdX2bJbSig3UZ1f7ozclHX7FQuSjshzRK
+      66WEd7f3gQlYuWuiiloOJRJqLOmgwZ6AInk3ZtXwtqE4aqCb92CQCLvsYnIS5HQ/
+      pzbZqq8TDQKBgEjtGCsxFdVQTj6u0eUy7NKiGAUuZRr7YdlfrZUZxOzK4sm67qOM
+      8RghithcHmc6uabzkewF3RhMEzLyZ+rqe0Hr7PuaHw/fYxOQ0G+pkJt8+ikHmj4U
+      ouLVsTld5vBbY194wwPIxMfAY9IEvgc+go/Rt1JvSuFvMdtnqU5sDoRPAoGBAKGF
+      J/IQnIadWzpZpVuVfc9MpdK6Z2lwEeaPde3dVal4ow0ulReRdMDft3DOci4fqMpo
+      mHIfTLxaYWUlbQSVepAxWb6hOhS2e7GGI5hrx+4WvuO4qggWkPvmJfods7SJvgiL
+      YG3Yagp2a0F8Ji9cRX7AMwsES0cSNgvWXBo9R+6RAoGAI/XKpu4ZbXIMUHfTAQJD
+      tnZNEHnOGYvlDVsBHwxILsValmf8cUTD3u2uiE/I7PYTIzQXNri/aAxox0CfTqa1
+      wRu4gsq9C7uBVrWZ8yFEgtdVpe5zHP2c2YeNucrrkt9roDB+tXlqejuOMMbAXMjF
+      lwcREdxkk8nRS6gYToEvIqg=
+      -----END PRIVATE KEY-----
+
+    sample_public_certificate: |
+      -----BEGIN CERTIFICATE-----
+      MIIDzDCCArSgAwIBAgIJAOG8yZKCzTUeMA0GCSqGSIb3DQEBCwUAMHsxCzAJBgNV
+      BAYTAlVTMQswCQYDVQQIDAJXQTEQMA4GA1UEBwwHU2VhdHRsZTENMAsGA1UECgwE
+      VGVzdDENMAsGA1UECwwEVGVzdDERMA8GA1UEAwwIdGVzdC5jb20xHDAaBgkqhkiG
+      9w0BCQEWDXRlc3RAdGVzdC5jb20wHhcNMjAwNDA2MjMzODEyWhcNMjEwNDA2MjMz
+      ODEyWjB7MQswCQYDVQQGEwJVUzELMAkGA1UECAwCV0ExEDAOBgNVBAcMB1NlYXR0
+      bGUxDTALBgNVBAoMBFRlc3QxDTALBgNVBAsMBFRlc3QxETAPBgNVBAMMCHRlc3Qu
+      Y29tMRwwGgYJKoZIhvcNAQkBFg10ZXN0QHRlc3QuY29tMIIBIjANBgkqhkiG9w0B
+      AQEFAAOCAQ8AMIIBCgKCAQEAucagMzyi2DGr7Rf9ggKxAPFnZ0ilqzx9v0QXL+gR
+      qGOYAkVSXvBugTuEGLTi/DcekColURv/oGoUjefcEFXkmiHeEwZ/cH4SB1aJwCcu
+      x8syuGI2P244IdwuNz98SnTinoXtS+oV2oq4ZsX4fwfT3speNCxhFLA3m0SUWe/Z
+      Od5te06AmRWlUWZs+id64m+ydTKiDUfPwhkYg5pOnAVcGqXyZn/5wKia7yr6fJHD
+      AlSgdmRacfsRI2bYr6/7kQHG6F2Ov5BTA/nxfchmpg93Dsl9AC4JlMic0Djr9gx4
+      FMDQZP546wd1dbTjzv8o/MIDsWba4sUFj76rI4JgoDfOlwIDAQABo1MwUTAdBgNV
+      HQ4EFgQUpThPFaFdPtpRqgmT8Sr1xhjHgdYwHwYDVR0jBBgwFoAUpThPFaFdPtpR
+      qgmT8Sr1xhjHgdYwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEA
+      fpkgBsdGB3q0mWM50J37gRST41A9mIMk2v10XT6Bvzm19zkVx+7UapO5DB8pnAxt
+      ZOVdnSOdbNRIAZhnk5fVNthz5HVD2pC88l9vXX/GK0bRwXukhONBH86wkAD3TMif
+      EbEnmnQPK5pVZgjuEpMF36YcXDYoaaGmbFYTzjLI0s0Qoy8jQIHQbVrfg+aYLE72
+      adGq4JnijHpveJQELudLZGxG32s/s7kw3mncoLhwMDPrNf3u+017HSBquq6lK40Z
+      J30RtD0XxdyRKetnlH9s+1/ai3oOLF6q21fQkhBPVnkIUoGqwewr+xvnaCrEbIMA
+      fcv0xgq9XnUMI7t2okmjvg==
+      -----END CERTIFICATE-----
+
+    sample_certificate_name: "sample_certs"
+
+    # Initialize values for listeners
+    http_listener_name: 'http_listener'
+    https_listener_name: 'https_listener'
+    http_port: 80
+    https_port: 443
+
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    compartment_id: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    tenancy_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
+
+# Create a public load balancer with the variables initialized in the beginning
+  tasks:
+    - block:
+      - include_tasks: setup.yaml
+      - name: Create Public Load Balancer
+        oci_loadbalancer_load_balancer:
+          compartment_id: "{{ compartment_id }}"
+          name: "{{ lb_name }}"
+          shape_name: "{{ sample_shape }}"
+          #A public load balancer is regional in scope and requires two subnets, each
+          #in a separate availability domain. One subnet hosts the primary load balancer
+          #and the other hosts a standby load balancer to ensure accessibility even during
+          #an availability domain outage.
+          subnet_ids:
+            - "{{ sample_subnet_id_ad1 }}"
+            - "{{ sample_subnet_id_ad2 }}"
+          state: 'present'
+        register: result
+      - debug:
+         msg: "Load balancer details: {{ result.load_balancer}}"
+      - set_fact:
+          public_load_balancer_id: "{{ result.load_balancer.id }}"
+          public_load_balancer_ip_addresses: "{{ result.load_balancer.ip_addresses }}"
+  #==========================================================================================
+      - name: Create Backend Set
+        oci_loadbalancer_backend_set:
+           load_balancer_id: "{{ public_load_balancer_id }}"
+           name: '{{ sample_backend_set_name }}'
+           policy: '{{ sample_backend_set_policy }}'
+           health_checker:
+              interval_in_millis: 30000
+              port: '{{ http_port }}'
+              protocol: "HTTP"
+              response_body_regex: ".*"
+              retries: 3
+              timeout_in_millis: 10000
+              return_code: 200
+              url_path: "/"
+           state: 'present'
+  #==========================================================================================
+      - name: Create Certificate for Listener
+        oci_loadbalancer_certificate:
+           load_balancer_id: "{{ public_load_balancer_id }}"
+           name: '{{ sample_certificate_name }}'
+           ca_certificate: '{{ sample_ca_certificate }}'
+           private_key: '{{ sample_private_key }}'
+           public_certificate: '{{ sample_public_certificate }}'
+           state: 'present'
+   #==========================================================================================
+      - name: Create Listener for HTTP traffic
+        oci_loadbalancer_listener:
+           load_balancer_id: "{{ public_load_balancer_id }}"
+           name: '{{ http_listener_name }}'
+           default_backend_set_name: '{{ sample_backend_set_name }}'
+           port: '{{ http_port }}'
+           protocol: "HTTP"
+           connection_configuration:
+                idle_timeout: 300
+           state: 'present'
+  #==========================================================================================
+      - name: Create Listener for HTTPS traffic
+        oci_loadbalancer_listener:
+           load_balancer_id: "{{ public_load_balancer_id }}"
+           name: '{{ https_listener_name }}'
+           default_backend_set_name: '{{ sample_backend_set_name }}'
+           port: '{{ https_port }}'
+           protocol: "HTTP"
+           ssl_configuration:
+              certificate_name: '{{ sample_certificate_name }}'
+              verify_peer_certificate: False
+           state: 'present'
+  #==========================================================================================
+      - name: Create First Backend
+        oci_loadbalancer_backend:
+           load_balancer_id: "{{ public_load_balancer_id }}"
+           backend_set_name: "{{ sample_backend_set_name }}"
+           ip_address: "{{ sample_app_server_instance_one_private_ip }}"
+           port: '{{ http_port }}'
+           backup: False
+           drain: False
+           offline: False
+           weight: 1
+           state: 'present'
+  #==========================================================================================
+      - name: Create Second Backend
+        oci_loadbalancer_backend:
+           load_balancer_id: "{{ public_load_balancer_id }}"
+           backend_set_name: "{{ sample_backend_set_name }}"
+           ip_address: "{{ sample_app_server_instance_two_private_ip }}"
+           port: '{{ http_port }}'
+           backup: False
+           drain: False
+           offline: False
+           weight: 1
+           state: 'present'
+  #==========================================================================================
+      - name: Check whether the Load Balancer able to access Backends
+        uri:
+           url: 'http://{{public_load_balancer_ip_addresses[0].ip_address}}/'
+           body_format: json
+           timeout: 600
+        register: result
+        retries: 10
+        delay: 60
+        until: result['status']|default(0) == 200
+      - debug:
+          msg: "{{ result.status }} "
+      - assert:
+          that:  "200 == {{ result.status }}"
+  #==========================================================================================
+      - debug:
+          msg: "Load balancer Ip addresses details : {{ public_load_balancer_ip_addresses }}"
+
+  #==========================================================================================
+      - include_tasks: teardown.yaml
+
+      rescue:
+        - include_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

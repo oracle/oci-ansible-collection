@@ -1,0 +1,22 @@
+---
+- name: Pre-flight | Run pre-flight checks
+  assert:
+    quiet: True
+    that:
+      # Ensure VCN variables are valid
+      - vcn.cidr_block | ipaddr('net')
+      - vcn.compartment_id is regex("^ocid1\..*")
+      - vcn.dns_label | length > 0
+    fail_msg: 'FAIL: VCN configuration has failed assertion tests.'
+
+- name: Pre-Flight | List available availability domains
+  oci_identity_availability_domain_facts:
+    compartment_id: "{{ vcn.compartment_id }}"
+  register: available_ads_reg
+
+- name: Pre-Flight | Fail if no availability domains exist
+  fail:
+    msg:
+      - "ERROR: No availability domains found within region {{ region }}."
+      - "{{ available_ads_reg }}"
+  when: available_ads_reg.availability_domains | length < 1

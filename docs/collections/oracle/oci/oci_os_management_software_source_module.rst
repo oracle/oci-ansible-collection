@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new custom Software Source on the management system. This will not contain any packages after it is first created, and they must be added later.
 - This resource has the following action operations in the :ref:`oci_software_source_actions <ansible_collections.oci_software_source_actions_module>` module: add_packages, remove_packages.
 
+
 .. Aliases
 
 

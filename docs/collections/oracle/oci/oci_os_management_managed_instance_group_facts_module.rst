@@ -46,6 +46,7 @@ Synopsis
 - Returns a list of all Managed Instance Groups.
 - If *managed_instance_group_id* is specified, the details of a single ManagedInstanceGroup will be returned.
 
+
 .. Aliases
 
 

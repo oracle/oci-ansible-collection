@@ -59,6 +59,17 @@ options:
         description:
             - The OCID of the compartment the resource belongs to.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - The OCID of the view the resource is associated with.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -122,8 +133,8 @@ rrset:
                     sample: rrset_version_example
                 rtype:
                     description:
-                        - The canonical name for the record's type, such as A or CNAME. For more
-                          information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+                        - The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR)
+                          TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
                     returned: on success
                     type: string
                     sample: rtype_example
@@ -176,6 +187,8 @@ class RrsetFactsHelperGen(OCIResourceFactsHelperBase):
             "if_modified_since",
             "zone_version",
             "compartment_id",
+            "scope",
+            "view_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -214,6 +227,8 @@ def main():
             if_modified_since=dict(type="str"),
             zone_version=dict(type="str"),
             compartment_id=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
         )
     )
 

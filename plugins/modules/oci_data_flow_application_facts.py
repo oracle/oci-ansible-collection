@@ -90,8 +90,9 @@ applications:
     contains:
         archive_uri:
             description:
-                - An Oracle Cloud Infrastructure URI of an archive (zip) file that may used to support the execution of the application.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
+                  Java, or Scala application.
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: archive_uri_example
@@ -117,7 +118,7 @@ applications:
         configuration:
             description:
                 - "The Spark configuration passed to the running process.
-                  See https://spark.apache.org/docs/latest/configuration.html#available-properties
+                  See https://spark.apache.org/docs/latest/configuration.html#available-properties.
                   Example: { \\"spark.app.name\\" : \\"My App Name\\", \\"spark.shuffle.io.maxRetries\\" : \\"4\\" }
                   Note: Not all Spark properties are permitted to be set.  Attempting to set a property that is
                   not allowed to be overwritten will cause a 400 status to be returned."
@@ -165,7 +166,7 @@ applications:
         file_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: file_uri_example
@@ -198,7 +199,7 @@ applications:
         logs_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: logs_bucket_uri_example
@@ -246,6 +247,12 @@ applications:
                     returned: on success
                     type: string
                     sample: value_example
+        private_endpoint_id:
+            description:
+                - The OCID of a private endpoint.
+            returned: on success
+            type: string
+            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
         spark_version:
             description:
                 - The Spark version utilized to run the application.
@@ -270,7 +277,7 @@ applications:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
                   for BATCH SQL runs.
-                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+                  See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: string
             sample: warehouse_bucket_uri_example
@@ -298,6 +305,7 @@ applications:
             "name": "name_example",
             "value": "value_example"
         }],
+        "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "spark_version": "spark_version_example",
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_updated": "2018-04-03T21:10:29.600Z",

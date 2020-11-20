@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple WafLog resources in Oracle Cloud Infrastructure
 - Gets structured Web Application Firewall event logs for a WAAS policy. Sorted by the `timeObserved` in ascending order (starting from the oldest recorded event).
 
+
 .. Aliases
 
 
@@ -1080,7 +1081,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the Web Application Firewall processed the request and logged it.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a Tag resource in Oracle Cloud Infrastructure
 - For *action=bulk_delete*, deletes the specified tag key definitions. This operation triggers a process that removes the tags from all resources in your tenancy. The following actions happen immediately: * If the tag is a cost-tracking tag, the tag no longer counts against your 10 cost-tracking tags limit, even if you do not disable the tag before running this operation. * If the tag is used with dynamic groups, the rules that contain the tag are no longer evaluated against the tag. After you start this operation, the state of the tag changes to DELETING, and tag removal from resources begins. This process can take up to 48 hours depending on the number of resources that are tagged and the regions in which those resources reside. When all tags have been removed, the state changes to DELETED. You cannot restore a deleted tag. After the tag state changes to DELETED, you can use the same tag name again. After you start this operation, you cannot start either the `DeleteTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/DeleteTag>`_ or the `CascadeDeleteTagNamespace <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/TagNamespace/CascadeDeleteTagNamespace>`_ operation until this process completes. In order to delete tags, you must first retire the tags. Use `UpdateTag <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Tag/UpdateTag>`_ to retire a tag.
 
+
 .. Aliases
 
 

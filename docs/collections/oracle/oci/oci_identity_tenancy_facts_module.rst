@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a Tenancy resource in Oracle Cloud Infrastructure
 - Get the specified tenancy's information.
 
+
 .. Aliases
 
 

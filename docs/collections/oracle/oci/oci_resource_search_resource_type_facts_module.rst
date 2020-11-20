@@ -46,6 +46,7 @@ Synopsis
 - Lists all resource types that you can search or query for.
 - If *name* is specified, the details of a single ResourceType will be returned.
 
+
 .. Aliases
 
 

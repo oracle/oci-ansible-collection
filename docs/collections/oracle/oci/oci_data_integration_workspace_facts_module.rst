@@ -46,6 +46,7 @@ Synopsis
 - Retrieves a list of Data Integration workspaces.
 - If *workspace_id* is specified, the details of a single Workspace will be returned.
 
+
 .. Aliases
 
 

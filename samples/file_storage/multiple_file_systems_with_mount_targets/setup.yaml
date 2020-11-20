@@ -1,0 +1,125 @@
+---
+# Copyright (c) 2018, 2019, 2020 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_COMPARTMENT_OCID"
+    - "SAMPLE_TENANCY_OCID"
+
+# ===========================================================================================
+# Use a jinja2 template of the ingress and egress security rules to generate
+# a templated version of the final rules.
+- name: create ingress rules yaml body
+  template: src=templates/sample_public_subnet_ingress_security_rules.yaml.j2 dest=/tmp/sample_public_subnet_ingress_security_rules.yaml
+- name: create egress yaml body
+  template: src=templates/sample_public_subnet_egress_security_rules.yaml.j2 dest=/tmp/sample_public_subnet_egress_security_rules.yaml
+#===========================================================================================
+# Load the variables defined in the generated files
+- name: Load the variables defined in the ingress rules yaml body
+  include_vars:
+    file: /tmp/sample_public_subnet_ingress_security_rules.yaml
+    name: loaded_ingress
+
+- name: Load the variables defined in the egress rules yaml body
+  include_vars:
+    file: /tmp/sample_public_subnet_egress_security_rules.yaml
+    name: loaded_egress
+#===========================================================================================
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ compartment_id }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ cidr_block }}"
+    dns_label: "{{ dns_label }}"
+  register: result
+
+- set_fact:
+    sample_vcn_id: "{{ result.vcn.id }}"
+#===========================================================================================
+- name: Get Availability Domain 2
+  oci_identity_availability_domain_facts:
+    compartment_id: "{{compartment_id}}"
+  register: oci_ads
+- set_fact:
+    sample_availability_domain_ad2: "{{oci_ads.availability_domains[1].name}}"
+
+- debug: msg="ADs within the ashburn region {{sample_availability_domain_ad2}}"
+# ===========================================================================================
+- name: Create Internet Gateway
+  oci_network_internet_gateway:
+            compartment_id: "{{ compartment_id }}"
+            vcn_id: '{{ sample_vcn_id }}'
+            name: '{{ ig_name }}'
+            is_enabled: 'yes'
+            state: 'present'
+  register: result
+- set_fact:
+    sample_ig_id: "{{ result.internet_gateway.id }}"
+# ===========================================================================================
+- name: Create a Route Table
+  oci_network_route_table:
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+    name: '{{ rt_name }}'
+    route_rules:
+        - cidr_block: '{{ all_cidr_block }}'
+          network_entity_id: '{{ sample_ig_id }}'
+    state: 'present'
+  register: result
+
+- set_fact:
+    sample_rt_id: "{{ result.route_table.id }}"
+# ===========================================================================================
+- name: Create security list
+  oci_network_security_list:
+    name: '{{ sec_list_name }}'
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+    state: 'present'
+    ingress_security_rules: '{{ loaded_ingress.sample_public_subnet_ingress_security_rules }}'
+    egress_security_rules: '{{ loaded_egress.sample_public_subnet_egress_security_rules }}'
+  register: result
+- set_fact:
+    sample_sec_list_id: "{{ result.security_list.id }}"
+# ===========================================================================================
+- name: Create a subnet in AD2
+  oci_network_subnet:
+    availability_domain: "{{ sample_availability_domain_ad2 }}"
+    name: '{{ sample_subnet_ad2}}'
+    dns_label: '{{ sample_subnet_ad2}}'
+    route_table_id: '{{ sample_rt_id }}'
+    security_list_ids: ['{{ sample_sec_list_id }}']
+    cidr_block: "{{ subnet_cidr_block_ad2 }}"
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: '{{ sample_vcn_id }}'
+  register: result
+
+- set_fact:
+    sample_subnet_id_ad2: "{{ result.subnet.id }}"
+# ===========================================================================================
+- name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance
+  tempfile:
+    state: directory
+    suffix: cert
+  register: result
+- set_fact:
+    temp_certificates_path: "{{ result.path }}"
+- name: Generate a Private Key
+  openssl_privatekey:
+    path: "{{ temp_certificates_path }}/private_key.pem"
+    type: RSA
+    size: 2048
+- set_fact:
+    my_test_public_key: "{{ temp_certificates_path }}/public_key.pem"
+- name: Generate a Public Key
+  openssl_publickey:
+    path: "{{ my_test_public_key }}"
+    privatekey_path: "{{ temp_certificates_path }}/private_key.pem"
+    format: OpenSSH

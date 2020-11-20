@@ -46,6 +46,7 @@ Synopsis
 - Gets the list of recommended Web Application Firewall protection rules.
 - Use the `POST /waasPolicies/{waasPolicyId}/actions/acceptWafConfigRecommendations` method to accept recommended Web Application Firewall protection rules. For more information, see `WAF Protection Rules <https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafprotectionrules.htm>`_. The list is sorted by `key`, in ascending order.
 
+
 .. Aliases
 
 

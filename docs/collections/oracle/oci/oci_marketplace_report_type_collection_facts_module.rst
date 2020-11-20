@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple ReportTypeCollection resources in Oracle Cloud Infrastructure
 - Lists available types of reports for the compartment.
 
+
 .. Aliases
 
 

@@ -48,6 +48,7 @@ Synopsis
 - The operation returns configuration information for all tunnels in the single specified `IPSecConnection <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/>`_ object. Here are other similar operations:
 -  * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_ returns CPE configuration content for a specific tunnel within an IPSec connection. * `GetCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent>`_ returns CPE configuration content for *all* IPSec connections that use a specific CPE.
 
+
 .. Aliases
 
 

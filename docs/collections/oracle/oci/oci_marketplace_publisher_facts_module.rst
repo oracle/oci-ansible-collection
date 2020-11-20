@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Publisher resources in Oracle Cloud Infrastructure
 - Gets the list of all the publishers of listings available in Oracle Cloud Infrastructure Marketplace.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - For *action=offboard*, off-boards a tenant from Logging Analytics
 - For *action=onboard*, on-boards a tenant to Logging Analytics.
 
+
 .. Aliases
 
 

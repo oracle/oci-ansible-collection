@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create a Kubeconfig resource in Oracle Cloud Infrastructure
 - For *state=present*, create the Kubeconfig YAML for a cluster.
 
+
 .. Aliases
 
 

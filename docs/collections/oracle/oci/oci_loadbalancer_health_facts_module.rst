@@ -46,6 +46,7 @@ Synopsis
 - Lists the summary health statuses for all load balancers in the specified compartment.
 - If *load_balancer_id* is specified, the details of a single LoadBalancerHealth will be returned.
 
+
 .. Aliases
 
 

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple StackResourceDrift resources in Oracle Cloud Infrastructure
 - Lists drift status details for each resource defined in the specified stack. The drift status details for a given resource indicate differences, if any, between the actual state and the expected (defined) state for that resource.
 
+
 .. Aliases
 
 
@@ -460,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time when the drift detection was executed. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                     

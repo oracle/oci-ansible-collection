@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Certificate resources in Oracle Cloud Infrastructure
 - Lists all SSL certificates bundles associated with a given load balancer.
 
+
 .. Aliases
 
 

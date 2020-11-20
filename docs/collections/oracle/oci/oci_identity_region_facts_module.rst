@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Region resources in Oracle Cloud Infrastructure
 - Lists all the regions offered by Oracle Cloud Infrastructure.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new BDS instance.
 - This resource has the following action operations in the :ref:`oci_bds_instance_actions <ansible_collections.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_worker_nodes, change_shape, remove_cloud_sql, restart_node.
 
+
 .. Aliases
 
 

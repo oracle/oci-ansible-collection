@@ -1,0 +1,78 @@
+---
+- name: VCN | Create OCI VCN
+  oci_network_vcn:
+    display_name: "mushop-vcn"
+    cidr_block: "{{ vcn.cidr_block }}"
+    compartment_id: "{{ vcn.compartment_id }}"
+    dns_label: "{{ vcn.dns_label }}"
+    freeform_tags: "{{ oci_ansible_free_default_tags }}"
+    region: "{{ region }}"
+  register: vcn_reg
+
+- name: VCN | Create Internet Gateway
+  oci_network_internet_gateway:
+    display_name: 'mushop-igw'
+    compartment_id: "{{ vcn_reg.vcn.compartment_id }}"
+    vcn_id: "{{ vcn_reg.vcn.id }}"
+    region: "{{ region }}"
+    is_enabled: 'yes'
+    freeform_tags: "{{ oci_ansible_free_default_tags }}"
+  register: igw_reg
+
+
+- name: VCN | Create route table for public subnet
+  oci_network_route_table:
+    display_name: 'mushop-public-rt'
+    compartment_id: "{{ vcn_reg.vcn.compartment_id }}"
+    vcn_id: "{{ vcn_reg.vcn.id }}"
+    region: "{{ region }}"
+    freeform_tags: "{{ oci_ansible_free_default_tags }}"
+    route_rules:
+        - destination: '0.0.0.0/0'
+          destination_type: 'CIDR_BLOCK'
+          network_entity_id: "{{ igw_reg.internet_gateway.id }}"
+  register: rt_reg
+
+- name: VCN | Gather public IP of Ansible Workstation for SSH security list
+  command: "curl https://api.ipify.org/"
+  register: ipify_reg
+- set_fact:
+    ipify_public_ip: "{{ ipify_reg.stdout }}"
+  # ipify_facts:
+  #   api_url: "https://api.ipify.org/"
+  #   timeout: 60
+  # register: ipify_reg
+
+- name: VCN | Create MuShop public security list
+  oci_network_security_list:
+    display_name: 'mushop-public-seclist'
+    compartment_id: "{{ vcn_reg.vcn.compartment_id }}"
+    vcn_id: "{{ vcn_reg.vcn.id }}"
+    region: "{{ region }}"
+    freeform_tags: "{{ oci_ansible_free_default_tags }}"
+    egress_security_rules: "{{ mushop_public_seclist_egress }}"
+    ingress_security_rules:
+      - "{{ mushop_public_seclist_ingress }}"
+      - source: "{{ ipify_public_ip }}/32"
+        protocol: "{{ tcp_protocol }}"
+        tcp_options:
+          destination_port_range:
+            min: 22
+            max: 22
+  register: seclist_reg
+
+- name: VCN | Create MuShop public subnet
+  oci_network_subnet:
+    display_name: 'mushop-public-subnet'
+    cidr_block: "{{ vcn_cidr_prefix }}.21.0/24"
+    compartment_id: "{{ vcn_reg.vcn.compartment_id }}"
+    vcn_id: "{{ vcn_reg.vcn.id }}"
+    region: "{{ region }}"
+    freeform_tags: "{{ oci_ansible_free_default_tags }}"
+    key_by: freeform_tags,display_name
+    prohibit_public_ip_on_vnic: false
+    route_table_id: "{{ rt_reg.route_table.id }}"
+    dns_label: 'public'
+    security_list_ids:
+      - "{{ seclist_reg.security_list.id }}"
+  register: public_subnet_reg

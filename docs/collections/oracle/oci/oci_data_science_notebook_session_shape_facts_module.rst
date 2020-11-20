@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple NotebookSessionShape resources in Oracle Cloud Infrastructure
 - Lists the valid notebook session shapes.
 
+
 .. Aliases
 
 

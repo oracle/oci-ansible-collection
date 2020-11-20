@@ -40,6 +40,7 @@ SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING = [
     "database",
     "mysql",
     "resource_manager",
+    "core",
 ]
 
 logger = oci_common_utils.get_logger("oci_wait_utils")
@@ -597,6 +598,11 @@ _WAITER_OVERRIDE_MAP = {
         "smtp_credential",
         oci_common_utils.DELETE_OPERATION_KEY,
     ): LifecycleStateWaiter,
+    (
+        "identity",
+        "smtp_credential",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateOperationWithCreateOnlyFieldsLifecycleStateWaiter,
     # update_tag can move a tag into ACTIVE or INACTIVE (based on is_retired flag) so we can't wait for active states
     # like usual or it will never complete when retiring a tag.
     # there is no other state we can reliably wait on to determine the update has completed and in all currently
@@ -725,6 +731,16 @@ _WAITER_OVERRIDE_MAP = {
     (
         "data_catalog",
         "connection",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateDataCatalogWaiter,
+    (
+        "data_catalog",
+        "namespace",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): CreateDataCatalogWaiter,
+    (
+        "data_catalog",
+        "custom_property",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): CreateDataCatalogWaiter,
     # mysql UpdateDbSystem doesn't return anything and by default doesn't have a waiter

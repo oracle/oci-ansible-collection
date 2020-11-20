@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a HealthChecker resource in Oracle Cloud Infrastructure
 - Gets the health check policy information for a given load balancer and backend set.
 
+
 .. Aliases
 
 

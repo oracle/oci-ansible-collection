@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple PeerRegionForRemotePeering resources in Oracle Cloud Infrastructure
 - Lists the regions that support remote VCN peering (which is peering across regions). For more information, see `VCN Peering <https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm>`_.
 
+
 .. Aliases
 
 

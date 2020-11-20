@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to update a Whitelists resource in Oracle Cloud Infrastructure
 
+
 .. Aliases
 
 

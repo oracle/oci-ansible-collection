@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
 - Returns log entries for the specified job in JSON format.
 
+
 .. Aliases
 
 
@@ -428,7 +429,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time of the log entry. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

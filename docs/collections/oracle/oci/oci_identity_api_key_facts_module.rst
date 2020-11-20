@@ -46,6 +46,7 @@ Synopsis
 - Lists the API signing keys for the specified user. A user can have a maximum of three keys.
 - Every user has permission to use this API call for *their own user ID*.  An administrator in your organization does not need to write a policy to give users this ability.
 
+
 .. Aliases
 
 
@@ -397,7 +398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

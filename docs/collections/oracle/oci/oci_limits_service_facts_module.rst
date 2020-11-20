@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
 - Returns the list of supported services. This will include the programmatic service name, along with the friendly service name.
 
+
 .. Aliases
 
 

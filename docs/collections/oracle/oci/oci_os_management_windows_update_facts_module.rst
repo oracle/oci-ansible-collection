@@ -46,6 +46,7 @@ Synopsis
 - Returns a list of Windows Updates.
 - If *windows_update* is specified, the details of a single WindowsUpdate will be returned.
 
+
 .. Aliases
 
 

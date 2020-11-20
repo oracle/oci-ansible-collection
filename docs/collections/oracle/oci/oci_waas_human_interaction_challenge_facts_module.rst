@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a HumanInteractionChallenge resource in Oracle Cloud Infrastructure
 - Gets the human interaction challenge settings in the Web Application Firewall configuration for a WAAS policy.
 
+
 .. Aliases
 
 

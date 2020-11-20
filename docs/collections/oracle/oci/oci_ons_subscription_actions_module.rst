@@ -46,6 +46,7 @@ Synopsis
 - For *action=get_unsubscription*, gets the unsubscription details for the specified subscription. Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 - For *action=resend_subscription_confirmation*, resends the confirmation details for the specified subscription. Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 
+
 .. Aliases
 
 
@@ -229,7 +230,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The protocol used for the subscription.</div>
-                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `PAGERDUTY` * `SLACK`</div>
+                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `PAGERDUTY` * `SLACK` * `ORACLE_FUNCTIONS`</div>
                                             <div>For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
                                             <div>Required for <em>action=get_unsubscription</em>.</div>
                                                         </td>

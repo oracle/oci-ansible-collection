@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a log within specified log group. This call fails if log group is already created with same displayName or (service, resource, category) triplet.
 - This resource has the following action operations in the :ref:`oci_log_actions <ansible_collections.oci_log_actions_module>` module: change_log_log_group.
 
+
 .. Aliases
 
 
@@ -1116,7 +1117,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time the resource was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1134,7 +1135,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time the resource was last modified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

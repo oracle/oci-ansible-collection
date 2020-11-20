@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a WafConfig resource in Oracle Cloud Infrastructure
 - Gets the Web Application Firewall configuration details for a WAAS policy.
 
+
 .. Aliases
 
 

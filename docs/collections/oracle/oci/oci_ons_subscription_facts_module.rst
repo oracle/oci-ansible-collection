@@ -47,6 +47,7 @@ Synopsis
 - Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 - If *subscription_id* is specified, the details of a single Subscription will be returned.
 
+
 .. Aliases
 
 

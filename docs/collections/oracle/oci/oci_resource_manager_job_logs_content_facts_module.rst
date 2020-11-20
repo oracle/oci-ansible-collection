@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
 - Returns raw log file for the specified job in text format. Returns a maximum of 100,000 log entries.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - Lists all rule sets associated with the specified load balancer.
 - If *rule_set_name* is specified, the details of a single RuleSet will be returned.
 
+
 .. Aliases
 
 

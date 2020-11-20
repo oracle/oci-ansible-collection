@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple BulkActionResourceTypeCollection resources in Oracle Cloud Infrastructure
 - Lists the resource-types supported by compartment bulk actions. Use this API to help you provide the correct resource-type information to the `BulkDeleteResources <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Compartment/BulkDeleteResources/>`_ and `BulkMoveResources <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Compartment/BulkMoveResources/>`_ operations. The returned list of resource-types provides the appropriate resource-type names to use with the bulk action operations along with the type of identifying information you'll need to provide for each resource-type. Most resource-types just require an `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ to identify a specific resource, but some resource-types, such as buckets, require you to provide other identifying information.
 
+
 .. Aliases
 
 

@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a Backup resource in Oracle Cloud Infrastructure
 - For *state=present*, create a backup of a DB System.
 
+
 .. Aliases
 
 
@@ -847,7 +848,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the backup record was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -865,7 +866,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time at which the backup was updated.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

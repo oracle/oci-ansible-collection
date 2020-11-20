@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple InstallablePackage resources in Oracle Cloud Infrastructure
 - Returns a list of packages available for install on the Managed Instance.
 
+
 .. Aliases
 
 

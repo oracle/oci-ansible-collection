@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a Project resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new project.
 
+
 .. Aliases
 
 
@@ -650,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the resource was created, in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

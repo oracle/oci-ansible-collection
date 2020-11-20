@@ -74,8 +74,8 @@ options:
                 type: str
             rtype:
                 description:
-                    - The canonical name for the record's type, such as A or CNAME. For more
-                      information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+                    - The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-
+                      parameters/dns-parameters.xhtml#dns-parameters-4).
                     - This parameter is updatable.
                 type: str
                 required: true
@@ -92,6 +92,19 @@ options:
               earlier than or equal to the date provided in the field-value.  This
               field accomplishes the same purpose as If-Match for cases where the user
               agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
+        type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - The OCID of the view the resource is associated with.
             - This parameter is updatable.
         type: str
     compartment_id:
@@ -132,8 +145,8 @@ options:
                 type: str
             rtype:
                 description:
-                    - The canonical name for the record's type, such as A or CNAME. For more
-                      information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+                    - The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-
+                      parameters/dns-parameters.xhtml#dns-parameters-4).
                 type: str
             ttl:
                 description:
@@ -227,8 +240,8 @@ zone_records:
             sample: rrset_version_example
         rtype:
             description:
-                - The canonical name for the record's type, such as A or CNAME. For more
-                  information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+                - The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-
+                  parameters/dns-parameters.xhtml#dns-parameters-4).
             returned: on success
             type: string
             sample: rtype_example
@@ -301,6 +314,8 @@ class ZoneRecordsHelperGen(OCIResourceHelperBase):
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 update_zone_records_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
+                view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
@@ -324,6 +339,8 @@ class ZoneRecordsHelperGen(OCIResourceHelperBase):
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 patch_zone_records_details=patch_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
+                scope=self.module.params.get("scope"),
+                view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
@@ -368,6 +385,8 @@ def main():
                 ),
             ),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
             compartment_id=dict(type="str"),
             patch_items=dict(
                 type="list",

@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple VirtualCircuitPublicPrefix resources in Oracle Cloud Infrastructure
 - Lists the public IP prefixes and their details for the specified public virtual circuit.
 
+
 .. Aliases
 
 

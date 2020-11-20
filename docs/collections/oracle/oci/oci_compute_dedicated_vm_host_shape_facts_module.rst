@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple DedicatedVmHostShape resources in Oracle Cloud Infrastructure
 - Lists the shapes that can be used to launch a dedicated virtual machine host within the specified compartment.
 
+
 .. Aliases
 
 

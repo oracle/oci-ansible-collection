@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a MetricData resource in Oracle Cloud Infrastructure
 - For *action=summarize_metrics_data*, returns aggregated data that match the criteria specified in the request. Compartment OCID required. For information on metric queries, see `Building Metric Queries <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/buildingqueries.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_. Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
 
+
 .. Aliases
 
 
@@ -464,7 +465,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

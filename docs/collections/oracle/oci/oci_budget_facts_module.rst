@@ -49,6 +49,7 @@ Synopsis
 - Additional targetTypes would be available in future releases. Clients should ignore new targetType or upgrade to latest version of client SDK to handle new targetType.
 - If *budget_id* is specified, the details of a single Budget will be returned.
 
+
 .. Aliases
 
 
@@ -695,7 +696,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time that budget was created</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -713,7 +714,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time that the budget spend was last computed</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -731,7 +732,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Time that budget was updated</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -1,0 +1,12 @@
+---
+mushop_iconfig_display_name: "{{ env }}-{{ region }}-mushop-iconfig"
+mushop_ipool_display_name: "{{ env }}-{{ region }}-mushop-instancepool"
+mushop_load_balancer:
+  display_name: "{{ env }}-{{ region }}-mushop-lb"
+  backend_set_name: 'mushop_backend'
+  backend_set_port: 80
+  backend_vnic_selection: 'PrimaryVnic'
+  mushop_lb_subnets:
+    - name: "{{ env }}-{{ region }}-mushop-load-balancer"
+      compartment_name: 'ocifree-networks'
+      compartment_parent_name: 'ocifree'

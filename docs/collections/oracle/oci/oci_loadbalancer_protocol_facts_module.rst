@@ -45,6 +45,7 @@ Synopsis
 - Fetches details about one or multiple LoadBalancerProtocol resources in Oracle Cloud Infrastructure
 - Lists all supported traffic protocols.
 
+
 .. Aliases
 
 

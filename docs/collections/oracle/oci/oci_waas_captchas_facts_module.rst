@@ -46,6 +46,7 @@ Synopsis
 - Gets the list of currently configured CAPTCHA challenges in the Web Application Firewall configuration of a WAAS policy.
 - The order of the CAPTCHA challenges is important. The URL for each CAPTCHA will be checked in the order they are created.
 
+
 .. Aliases
 
 

@@ -46,6 +46,7 @@ Synopsis
 - For *action=cancel_secret_version_deletion*, cancels the scheduled deletion of a secret version.
 - For *action=schedule_secret_version_deletion*, schedules the deletion of the specified secret version. This deletes it after the specified retention period ends. You can only delete a secret version if the secret version rotation state is marked as `DEPRECATED`.
 
+
 .. Aliases
 
 
@@ -435,7 +436,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A optional property indicating when the secret version was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -453,7 +454,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when the current secret version will expire, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -471,7 +472,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when to delete the secret version, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
                                     </td>
             </tr>
                                 <tr>

@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create and delete a ReplicationPolicy resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a replication policy for the specified bucket.
 
+
 .. Aliases
 
 
@@ -567,7 +568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date when the replication policy was created as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -585,7 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Changes made to the source bucket before this time has been replicated.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

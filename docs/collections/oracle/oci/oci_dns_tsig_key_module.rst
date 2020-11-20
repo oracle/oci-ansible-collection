@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a TsigKey resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new TSIG key in the specified compartment. There is no `opc-retry-token` header since TSIG key names must be globally unique.
 
+
 .. Aliases
 
 
@@ -333,6 +334,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-scope"></div>
+                    <b>scope</b>
+                    <a class="ansibleOptionLink" href="#parameter-scope" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GLOBAL</li>
+                                                                                                                                                                                                <li>PRIVATE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies to operate only on resources that have a matching DNS scope.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-secret"></div>
                     <b>secret</b>
                     <a class="ansibleOptionLink" href="#parameter-secret" title="Permalink to this option"></a>
@@ -470,6 +491,7 @@ Examples
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
 
     - name: Update tsig_key
@@ -707,7 +729,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Example:** `2016-07-22T17:23:59:60Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -726,7 +748,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Example:** `2016-07-22T17:23:59:60Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T18:20:30</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

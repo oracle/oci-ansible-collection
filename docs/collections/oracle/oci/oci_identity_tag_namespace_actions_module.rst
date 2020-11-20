@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a TagNamespace resource in Oracle Cloud Infrastructure
 - For *action=cascade_delete*, deletes the specified tag namespace. This operation triggers a process that removes all of the tags defined in the specified tag namespace from all resources in your tenancy and then deletes the tag namespace. After you start the delete operation: * New tag key definitions cannot be created under the namespace. * The state of the tag namespace changes to DELETING. * Tag removal from the resources begins. This process can take up to 48 hours depending on the number of tag definitions in the namespace, the number of resources that are tagged, and the locations of the regions in which those resources reside. After all tags are removed, the state changes to DELETED. You cannot restore a deleted tag namespace. After the deleted tag namespace changes its state to DELETED, you can use the name of the deleted tag namespace again. After you start this operation, you cannot start either the `DeleteTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/DeleteTag>`_ or the `BulkDeleteTags <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/BulkDeleteTags>`_ operation until this process completes. To delete a tag namespace, you must first retire it. Use `UpdateTagNamespace <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/TagNamespace/UpdateTagNamespace>`_ to retire a tag namespace.
 
+
 .. Aliases
 
 
