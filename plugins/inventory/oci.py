@@ -1060,7 +1060,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 oci_common_utils.list_all_resources(
                     target_fn=compute_client.list_instances,
                     compartment_id=compartment_ocid,
-                    lifecycle_state="RUNNING",
+                    #lifecycle_state="RUNNING",
                 ),
                 compartment_ocid,
             )
