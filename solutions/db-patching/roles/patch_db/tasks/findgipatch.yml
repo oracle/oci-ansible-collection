@@ -1,0 +1,32 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates.
+#The Universal Permissive License (UPL), Version 1.0
+
+#role: patch_db
+#file: tasks/findgipatch.yml
+
+- name: Fetch available patches for database system - {{ db_system_display_name }}
+  oci_database_db_system_patch_facts:
+    db_system_id: "{{ db_system_ocid }}"
+  register: db_system_patch_facts
+
+- name: Print available patches for database system - {{ db_system_display_name }}
+  debug: 
+    msg: "{{ db_system_patch_facts | json_query('db_system_patches[*].{description: description, id: id,last_action: last_action, version: version, lifecycle_state: lifecycle_state }') }}"
+
+- name: Set facts for patch to be applied to database system - {{ db_system_display_name }}
+  set_fact:
+    db_system_patch_description: "{{ db_system_patch_facts | json_query('db_system_patches[].description | [0]') }}" # 0 - latest and -1 - oldest
+    db_system_patch_id: "{{ db_system_patch_facts | json_query('db_system_patches[].id | [0]') }}" # 0 - latest and -1 - oldest
+
+- name: Patch to be applied to database system - {{ db_system_display_name }}
+  debug: 
+    msg: "Patch to be applied to database system - {{ db_system_display_name }} is {{ db_system_patch_description}} with id {{ db_system_patch_id }}"
+
+- name: Skip if database system already has the latest patch
+  debug: 
+    msg: "No patch available for database system {{ db_system_display_name }} "
+  when: db_system_patch_id|length == 0
+
+...

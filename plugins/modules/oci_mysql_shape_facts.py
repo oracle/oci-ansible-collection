@@ -35,6 +35,13 @@ options:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
         required: true
+    is_supported_for:
+        description:
+            - Return shapes that are supported by the service feature.
+        type: list
+        choices:
+            - "DBSYSTEM"
+            - "ANALYTICSCLUSTER"
     availability_domain:
         description:
             - The name of the Availability Domain.
@@ -78,10 +85,17 @@ shapes:
             returned: on success
             type: int
             sample: 56
+        is_supported_for:
+            description:
+                - What service features the shape is supported for.
+            returned: on success
+            type: list
+            sample: []
     sample: [{
         "name": "name_example",
         "cpu_core_count": 56,
-        "memory_size_in_gbs": 56
+        "memory_size_in_gbs": 56,
+        "is_supported_for": []
     }]
 """
 
@@ -110,6 +124,7 @@ class MysqlShapeFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "is_supported_for",
             "availability_domain",
             "name",
         ]
@@ -137,6 +152,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
+            is_supported_for=dict(
+                type="list", choices=["DBSYSTEM", "ANALYTICSCLUSTER"]
+            ),
             availability_domain=dict(type="str"),
             name=dict(type="str"),
         )

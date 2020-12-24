@@ -34,6 +34,15 @@ options:
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+        type: str
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+        type: str
     database_software_image_id:
         description:
             - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
@@ -106,6 +115,12 @@ options:
                 description:
                     - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric
                       characters. Special characters are not permitted. Pluggable database should not be same as database name.
+                    - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
+                type: str
+            tde_wallet_password:
+                description:
+                    - "The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two
+                      lowercase, two numeric, and two special characters. The special characters must be _, #, or -."
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
             character_set:
@@ -406,7 +421,7 @@ db_home:
             sample: db_home_location_example
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -416,6 +431,12 @@ db_home:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         one_off_patches:
             description:
                 - List of one-off patches for Database Homes.
@@ -440,6 +461,7 @@ db_home:
         "db_home_location": "db_home_location_example",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "one_off_patches": [],
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }
@@ -588,6 +610,8 @@ def main():
     module_args.update(
         dict(
             display_name=dict(aliases=["name"], type="str"),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
             database_software_image_id=dict(type="str"),
             source=dict(
                 type="str",
@@ -613,6 +637,7 @@ def main():
                     backup_id=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
+                    tde_wallet_password=dict(type="str", no_log=True),
                     character_set=dict(type="str"),
                     ncharacter_set=dict(type="str"),
                     db_workload=dict(type="str", choices=["OLTP", "DSS"]),

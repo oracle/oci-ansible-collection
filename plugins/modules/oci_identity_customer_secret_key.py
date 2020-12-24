@@ -24,7 +24,7 @@ short_description: Manage a CustomerSecretKey resource in Oracle Cloud Infrastru
 description:
     - This module allows the user to create, update and delete a CustomerSecretKey resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3
-      compatible API. For information, see
+      compatible API. The secret key consists of an Access Key/Secret Key pair. For information, see
       L(Managing User Credentials,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm).
     - "You must specify a *description* for the secret key (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with

@@ -20,7 +20,7 @@ oracle.oci.oci_functions_function -- Manage a Function resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -85,7 +85,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -498,26 +498,23 @@ Examples
     
     - name: Create function
       oci_functions_function:
-        display_name: display_name_example
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
-        image: phx.ocir.io/ten/functions/function:0.0.1
-        memory_in_mbs: 56
+        application_id: application_OCID
+        display_name: Example Function
+        image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
+        memory_in_mbs: 128
 
     - name: Update function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_functions_function:
-        display_name: display_name_example
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
         image: phx.ocir.io/ten/functions/function:0.0.1
         image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
         memory_in_mbs: 56
         timeout_in_seconds: 56
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: myfunction
+        config:
+          EXAMPLE_KEY: example-value
 
     - name: Update function
       oci_functions_function:
-        image: phx.ocir.io/ten/functions/function:0.0.1
-        image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
         function_id: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete function
@@ -527,8 +524,8 @@ Examples
 
     - name: Delete function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_functions_function:
-        display_name: display_name_example
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+        display_name: Example Function
+        application_id: application_OCID
         state: absent
 
 

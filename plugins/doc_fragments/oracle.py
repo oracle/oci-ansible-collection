@@ -32,7 +32,7 @@ class ModuleDocFragment(object):
         api_user:
             description:
                 - The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the
-                  value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user
+                  value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user
                   is not specified through a configuration file (See C(config_file_location)). To get the user's OCID,
                   please refer U(https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm).
             type: str

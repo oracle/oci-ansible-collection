@@ -170,7 +170,6 @@ class DbSystemHelperCustom:
 
     def get_exclude_attributes(self):
         exclude_attributes = super(DbSystemHelperCustom, self).get_exclude_attributes()
-
         return exclude_attributes + [
             # source is the discriminator and is not returned by the GET model because post-creation
             # it doesn't matter what the DB was created from
@@ -182,6 +181,8 @@ class DbSystemHelperCustom:
             "db_home",
             # attribute source_db_system_id is not returned on GetDbSystem
             "source_db_system_id",
+            # attribute kms_key_version_id is not returned in Get model
+            "kms_key_version_id",
         ]
 
     def is_update_necessary(self, existing_resource_dict):
@@ -198,6 +199,17 @@ class DbSystemHelperCustom:
             )
 
         return needs_update
+
+    # summary model returns None value for attribute `kms_key_id`. This override makes a Get call for each and every resource
+    # returned in list.
+    def list_resources(self):
+        result = [
+            oci_common_utils.call_with_backoff(
+                self.client.get_db_system, db_system_id=db_system.id,
+            ).data
+            for db_system in super(DbSystemHelperCustom, self).list_resources()
+        ]
+        return result
 
 
 class DbHomeHelperCustom:
@@ -230,6 +242,7 @@ class DbHomeHelperCustom:
             # This means that if the user updates database in their playbook after the initial create, the resource
             # will continue to match and will not be updated
             "database",
+            "kms_key_version_id",
         ]
 
     def get_update_model_dict_for_idempotence_check(self, update_model):
@@ -477,6 +490,19 @@ class VmClusterNetworkHelperCustom:
 
         return get_fn
 
+    def list_resources(self):
+        result = [
+            oci_common_utils.call_with_backoff(
+                self.client.get_vm_cluster_network,
+                exadata_infrastructure_id=vm_cluster_networks.exadata_infrastructure_id,
+                vm_cluster_network_id=vm_cluster_networks.id,
+            ).data
+            for vm_cluster_networks in super(
+                VmClusterNetworkHelperCustom, self
+            ).list_resources()
+        ]
+        return result
+
 
 class VmClusterNetworkActionsHelperCustom:
     def get_action_desired_states(self, action):
@@ -581,6 +607,25 @@ class DatabaseHelperCustom:
             if k not in ["backup_id", "backup_tde_password", "admin_password"]:
                 create_model_dict[k] = v
         return create_model_dict
+
+    # model returned by GetDatabase operation doesn't have attribute `kms_key_version_id` & `tde_wallet_password`
+    def get_exclude_attributes(self):
+        exclude_attributes = super(DatabaseHelperCustom, self).get_exclude_attributes()
+        return exclude_attributes + [
+            "kms_key_version_id",
+            "tde_wallet_password",
+        ]
+
+    # attributes `new_admin_password`, `old_tde_wallet_password`, "new_tde_wallet_password" are not returned in GET model
+    # for security reasons.
+    def get_update_model_dict_for_idempotence_check(self, update_model):
+        update_model_dict = super(
+            DatabaseHelperCustom, self
+        ).get_update_model_dict_for_idempotence_check(update_model)
+        update_model_dict.pop("new_admin_password", None)
+        update_model_dict.pop("old_tde_wallet_password", None)
+        update_model_dict.pop("new_tde_wallet_password", None)
+        return update_model_dict
 
 
 class AutonomousVmClusterHelperCustom:

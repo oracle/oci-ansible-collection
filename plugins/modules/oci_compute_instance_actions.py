@@ -53,6 +53,7 @@ options:
             - "softreset"
             - "reset"
             - "softstop"
+            - "senddiagnosticinterrupt"
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -245,6 +246,20 @@ instance:
                 is_consistent_volume_naming_enabled:
                     description:
                         - Whether to enable consistent volume naming feature. Defaults to false.
+                    returned: on success
+                    type: bool
+                    sample: true
+        instance_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                are_legacy_imds_endpoints_disabled:
+                    description:
+                        - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                          Customers who have migrated to /v2 should set this to true for added security.
+                          Default is false.
                     returned: on success
                     type: bool
                     sample: true
@@ -461,6 +476,9 @@ instance:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
+        "instance_options": {
+            "are_legacy_imds_endpoints_disabled": true
+        },
         "availability_config": {
             "recovery_action": "RESTORE_INSTANCE"
         },
@@ -631,6 +649,26 @@ class InstanceActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def senddiagnosticinterrupt(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.instance_action,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_id=self.module.params.get("instance_id"),
+                action="SENDDIAGNOSTICINTERRUPT",
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 InstanceActionsHelperCustom = get_custom_class("InstanceActionsHelperCustom")
 
@@ -649,7 +687,14 @@ def main():
             action=dict(
                 type="str",
                 required=True,
-                choices=["stop", "start", "softreset", "reset", "softstop"],
+                choices=[
+                    "stop",
+                    "start",
+                    "softreset",
+                    "reset",
+                    "softstop",
+                    "senddiagnosticinterrupt",
+                ],
             ),
         )
     )

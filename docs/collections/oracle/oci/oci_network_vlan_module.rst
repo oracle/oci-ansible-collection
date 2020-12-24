@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan -- Manage a Vlan resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -84,7 +84,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -182,9 +182,10 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The range of IPv4 addresses that will be used for layer 3 communication with hosts outside the VLAN. The CIDR must maintain the following rules -</div>
-                                            <div>a. The CIDR block is valid and correctly formatted.</div>
+                                            <div>a. The CIDR block is valid and correctly formatted. b. The new range is within one of the parent VCN ranges.</div>
                                             <div>Example: `192.0.2.0/24`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -520,6 +521,7 @@ Examples
 
     - name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_vlan:
+        cidr_block: 192.0.2.0/24
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
@@ -529,8 +531,8 @@ Examples
 
     - name: Update vlan
       oci_network_vlan:
+        cidr_block: 192.0.2.0/24
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
         vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete vlan

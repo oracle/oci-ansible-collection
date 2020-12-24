@@ -23,7 +23,8 @@ module: oci_database_cloud_exadata_infrastructure
 short_description: Manage a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a cloud Exadata infrastructure resource.
+    - For I(state=present), creates a cloud Exadata infrastructure resource. This resource is used to create an L(Exadata Cloud
+      Service,https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm) instance.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

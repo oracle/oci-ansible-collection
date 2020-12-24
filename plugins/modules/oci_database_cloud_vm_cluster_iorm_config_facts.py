@@ -23,7 +23,7 @@ module: oci_database_cloud_vm_cluster_iorm_config_facts
 short_description: Fetches details about a CloudVmClusterIormConfig resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a CloudVmClusterIormConfig resource in Oracle Cloud Infrastructure
-    - Gets the IORM configuration for the specified cloud VM cluster.
+    - Gets the IORM configuration for the specified cloud VM cluster in an Exadata Cloud Service instance.
       If you have not specified an IORM configuration, the default configuration is returned.
 version_added: "2.9"
 author: Oracle (@oracle)

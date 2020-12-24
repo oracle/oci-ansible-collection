@@ -141,6 +141,16 @@ applications:
             returned: on success
             type: list
             sample: []
+        syslog_url:
+            description:
+                - "A syslog URL to which to send all function logs. Supports tcp, udp, and tcp+tls.
+                  The syslog URL must be reachable from all of the subnets configured for the application.
+                  Note: If you enable the OCI Logging service for this application, the syslogUrl value is ignored. Function logs are sent to the OCI Logging
+                  service, and not to the syslog URL."
+                - "Example: `tcp://logserver.myserver:1234`"
+            returned: on success
+            type: string
+            sample: tcp://logserver.myserver:1234
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -180,6 +190,7 @@ applications:
         "lifecycle_state": "CREATING",
         "config": {},
         "subnet_ids": [],
+        "syslog_url": "tcp://logserver.myserver:1234",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "time_created": "2018-09-12T22:47:12.613Z",

@@ -145,13 +145,13 @@ blockchain_platforms:
             sample: service_version_example
         platform_role:
             description:
-                - "Role of platform - founder or participant"
+                - "Role of platform - FOUNDER or PARTICIPANT"
             returned: on success
             type: string
             sample: FOUNDER
         compute_shape:
             description:
-                - "Type of compute shape - one of Standard, (Enterprise) Small, Medium, Large or Extra Large"
+                - "Compute shape - STANDARD or ENTERPRISE_SMALL or ENTERPRISE_MEDIUM or ENTERPRISE_LARGE or ENTERPRISE_EXTRA_LARGE or ENTERPRISE_CUSTOM"
             returned: on success
             type: string
             sample: STANDARD
@@ -406,7 +406,7 @@ blockchain_platforms:
                     sample: platform_role_example
                 compute_shape:
                     description:
-                        - "Type of compute shape - one of Standard, (Enterprise) Small, Medium, Large or Extra Large"
+                        - "Compute shape - STANDARD or ENTERPRISE_SMALL or ENTERPRISE_MEDIUM or ENTERPRISE_LARGE or ENTERPRISE_EXTRA_LARGE or ENTERPRISE_CUSTOM"
                     returned: on success
                     type: string
                     sample: compute_shape_example

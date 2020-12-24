@@ -1,0 +1,32 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates. All rights reserved.
+#The Universal Permissive License (UPL), Version 1.0
+
+#role: patch_db
+#file: tasks/prepatch.yml
+
+- name: Fetch database system facts for database system(s) - {{ db_system_id }}
+  oci_database_db_system_facts:
+    db_system_id: "{{ db_system_ocid }}"
+  register: db_system_facts
+
+- name: Set facts for database system
+  set_fact:
+    db_system_compartment_ocid: "{{ db_system_facts.db_systems[0].compartment_id }}"
+    #db_system_compartment_ocid: "{{ db_system_facts | json_query('db_systems[].compartment_id | [0]') }}"
+    db_system_display_name: "{{ db_system_facts.db_systems[0].display_name }}"
+    #db_system_display_name: "{{ db_system_facts | json_query('db_systems[].display_name | [0]') }}"
+
+- name: Print database system details - {{ db_system_display_name }}
+  debug: 
+    msg: "{{ db_system_details }}"
+- name: test
+  debug:
+    msg: "{{ db_system_facts.db_systems[0].lifecycle_state }}"
+- name: Fail play when database system {{ db_system_display_name }} lifecycle_state is not AVAILABLE.
+  fail:
+    msg: "Failed due to database system {{ db_system_display_name }} in {{ db_system_state }} state"
+  when: not db_system_available
+
+...

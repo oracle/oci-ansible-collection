@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.12.0] - 2020-12-23
+
+### Added
+- Added support for multiple CIDRs in `oci_network_vcn`
+- Added `instance_options` parameter in `oci_compute_instance` and related modules
+- Added `oci_management_agent_availability_history_facts` module
+- New modules and features in MySQL service. Added modules to manage MySQL Analytics Engine.
+- Added new modules and features in Database service.
+- Added new features to Load Balancing service.
+- Added new features to functions service.
+- Added new module and features to Identity service.
+- Added new features to Container Engine service.
+- Added new features to Blockchain service.
+- Added new features to NoSQL service
+- Added the `debug` option to inventory plugin
+
+### Fixes
+- Fixed the logging for inventory plugin and added warnings
+
+### Solutions
+- Added Database Patching solution
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.26.0)
+
 ## [2.11.0] - 2020-11-19
 
 ### Added

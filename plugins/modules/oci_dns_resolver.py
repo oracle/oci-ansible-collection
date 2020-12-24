@@ -456,8 +456,18 @@ class ResolverHelperGen(OCIResourceHelperBase):
         return self.client.get_resolver
 
     def get_resource(self):
+        optional_params = [
+            "scope",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
-            self.client.get_resolver, resolver_id=self.module.params.get("resolver_id"),
+            self.client.get_resolver,
+            resolver_id=self.module.params.get("resolver_id"),
+            **optional_kwargs
         )
 
     def get_required_kwargs_for_list(self):
@@ -497,6 +507,14 @@ class ResolverHelperGen(OCIResourceHelperBase):
 
     def update_resource(self):
         update_details = self.get_update_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.update_resolver,
             call_fn_args=(),
@@ -504,7 +522,7 @@ class ResolverHelperGen(OCIResourceHelperBase):
                 resolver_id=self.module.params.get("resolver_id"),
                 update_resolver_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,

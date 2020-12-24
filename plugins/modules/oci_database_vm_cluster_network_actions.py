@@ -23,8 +23,9 @@ module: oci_database_vm_cluster_network_actions
 short_description: Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
-    - For I(action=download_vm_cluster_network_config_file), downloads the configuration file for the specified Exadata Cloud@Customer VM cluster network.
-    - For I(action=validate), validates the specified Exadata Cloud@Customer VM cluster network.
+    - For I(action=download_vm_cluster_network_config_file), downloads the configuration file for the specified VM cluster network. Applies to Exadata
+      Cloud@Customer instances only.
+    - For I(action=validate), validates the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

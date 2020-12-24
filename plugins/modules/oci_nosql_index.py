@@ -222,10 +222,19 @@ class IndexHelperGen(OCIResourceHelperBase):
         return self.client.get_index
 
     def get_resource(self):
+        optional_params = [
+            "compartment_id",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_index,
             table_name_or_id=self.module.params.get("table_name_or_id"),
             index_name=self.module.params.get("name"),
+            **optional_kwargs
         )
 
     def get_required_kwargs_for_list(self):

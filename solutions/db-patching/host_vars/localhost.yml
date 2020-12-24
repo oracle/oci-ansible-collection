@@ -1,0 +1,53 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates.
+#The Universal Permissive License (UPL), Version 1.0
+
+#file: host_vars/localhost.yml
+
+
+######################
+# tag_based - Mandatory parameter - Can be True or False
+# When True - Tag based patching - Patch databases on the basis of defined_tag.
+    #################### Tag based patching ##################################################################
+    # Patch databases with tag (e.g. - "defined_tags.operations.environment='dev'" ) in compartment or tenancy
+    # tag and compartment_ocid is mandatory when tag_based is True
+        # When compartment_id = <compartment_ocid>, patch all databases with defined tag in compartment
+        # When compartment_id = <tenancy_ocid>, patch all databases with defined tag in tenancy
+    ##########################################################################################################
+# When False - Non-Tag based patching - Patch databases on the basis of database system ocid.
+    #################### Tag based patching ##################################################################
+    # Patch databases with database system ocid
+    # tag and compartment_ocid is mandatory when tag_based is True
+        # When compartment_id = <compartment_ocid>, patch all databases with defined tag in compartment
+        # When compartment_id = <tenancy_ocid>, patch all databases with defined tag in tenancy
+    ##########################################################################################################
+
+tag_based: False
+ 
+# tag - Required when tag_based is True 
+# Dict
+tag:
+    namespace: "<tag_namespace>"
+    key: "<tag_key>"
+    value: "<tag_value>"
+
+# compartment_id - Required when tag_based is True 
+compartment_id: <compartment_ocid or tenancy_ocid>
+
+# db_system_id - Required when tag_based is False
+# List
+db_system_id:
+    # DB1 - 12c
+    - <db_system_ocid>
+    # DB2 - 18c
+    - <db_system_ocid>
+
+
+# Patch operation to run - Required
+# Dict
+patch_operation:
+    precheck_gi: True
+    patch_gi: False
+    precheck_db: False
+    patch_db: False

@@ -23,7 +23,9 @@ module: oci_database_vm_cluster_network
 short_description: Manage a VmClusterNetwork resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VmClusterNetwork resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates the Exadata Cloud@Customer VM cluster network.
+    - For I(state=present), creates the VM cluster network. Applies to Exadata Cloud@Customer instances only.
+      To create a cloud VM cluster in an Exadata Cloud Service instance, use the L(CreateCloudVmCluster ,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/20160918/CloudVmCluster/CreateCloudVmCluster) operation.
     - "This resource has the following action operations in the M(oci_vm_cluster_network_actions) module: download_vm_cluster_network_config_file, validate."
 version_added: "2.9"
 author: Oracle (@oracle)

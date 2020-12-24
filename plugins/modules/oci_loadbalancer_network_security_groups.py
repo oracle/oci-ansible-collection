@@ -124,6 +124,18 @@ load_balancer:
                     returned: on success
                     type: bool
                     sample: true
+                reserved_ip:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - ""
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         shape_name:
             description:
                 - A template that determines the total pre-provisioned bandwidth (ingress plus egress).
@@ -1221,7 +1233,10 @@ load_balancer:
         "time_created": "2016-08-25T21:10:29.600Z",
         "ip_addresses": [{
             "ip_address": "192.168.0.3",
-            "is_public": true
+            "is_public": true,
+            "reserved_ip": {
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            }
         }],
         "shape_name": "100Mbps",
         "is_private": true,

@@ -522,6 +522,17 @@ options:
                 choices:
                     - "LIVE_MIGRATE"
                     - "REBOOT"
+            instance_options:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    are_legacy_imds_endpoints_disabled:
+                        description:
+                            - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                              Customers who have migrated to /v2 should set this to true for added security.
+                              Default is false.
+                        type: bool
             availability_config:
                 description:
                     - Options for defining the availabiity of a VM instance after a maintenance event that impacts the underlying hardware.
@@ -817,6 +828,20 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+        instance_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                are_legacy_imds_endpoints_disabled:
+                    description:
+                        - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                          Customers who have migrated to /v2 should set this to true for added security.
+                          Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
         availability_config:
             description:
                 - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
@@ -1029,6 +1054,9 @@ instance:
             "remote_data_volume_type": "ISCSI",
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
+        },
+        "instance_options": {
+            "are_legacy_imds_endpoints_disabled": true
         },
         "availability_config": {
             "recovery_action": "RESTORE_INSTANCE"
@@ -1299,6 +1327,12 @@ def main():
                     is_pv_encryption_in_transit_enabled=dict(type="bool"),
                     preferred_maintenance_action=dict(
                         type="str", choices=["LIVE_MIGRATE", "REBOOT"]
+                    ),
+                    instance_options=dict(
+                        type="dict",
+                        options=dict(
+                            are_legacy_imds_endpoints_disabled=dict(type="bool")
+                        ),
                     ),
                     availability_config=dict(
                         type="dict",

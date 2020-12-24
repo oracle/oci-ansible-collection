@@ -23,7 +23,7 @@ module: oci_database_cloud_exadata_infrastructure_facts
 short_description: Fetches details about one or multiple CloudExadataInfrastructure resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple CloudExadataInfrastructure resources in Oracle Cloud Infrastructure
-    - Gets a list of the cloud Exadata infrastructure in the specified compartment.
+    - Gets a list of the cloud Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud Service instances only.
     - If I(cloud_exadata_infrastructure_id) is specified, the details of a single CloudExadataInfrastructure will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

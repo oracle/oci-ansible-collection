@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster_network_actions -- Perform actions on a VmClu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
-- For *action=download_vm_cluster_network_config_file*, downloads the configuration file for the specified Exadata Cloud@Customer VM cluster network.
-- For *action=validate*, validates the specified Exadata Cloud@Customer VM cluster network.
+- For *action=download_vm_cluster_network_config_file*, downloads the configuration file for the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
+- For *action=validate*, validates the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
 
 
 .. Aliases
@@ -104,7 +104,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>

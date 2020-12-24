@@ -31,21 +31,3 @@ class InstanceAgentCommandHelperCustom:
     # it returns back the field `instance_agent_command_id`
     def get_get_model_from_summary_model(self, summary_model):
         return self.get_get_fn()(summary_model.instance_agent_command_id).data
-
-
-class InstanceAgentCommandFactsHelperCustom:
-    # overriding the list_resources method as it is not returning back the `display_name` field in return block.
-    # calling the get_resource method to obtain the `display_name` field of the resource
-    # TODO - this override will be removed once the service team fixes their bug
-    def list_resources(self):
-        command_list = super(
-            InstanceAgentCommandFactsHelperCustom, self
-        ).list_resources()
-        # calling get function on the list of commands as the list_resource is not returnig all fields
-        for i in range(len(command_list)):
-            command = oci_common_utils.call_with_backoff(
-                self.client.get_instance_agent_command,
-                instance_agent_command_id=command_list[i].instance_agent_command_id,
-            ).data
-            command_list[i].display_name = command.display_name
-        return command_list

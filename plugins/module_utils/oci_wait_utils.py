@@ -562,6 +562,18 @@ class NamespaceActionWorkRequestWaiter(WorkRequestWaiter):
         )
 
 
+class BulkEditTagOperationWorkRequestWaiter(WorkRequestWaiter):
+    def get_fetch_func(self):
+        return lambda **kwargs: oci_common_utils.call_with_backoff(
+            self.client.get_tagging_work_request,
+            work_request_id=self.operation_response.headers[WORK_REQUEST_HEADER],
+        )
+
+    # returned response has no body content.
+    def get_resource_from_wait_response(self, wait_response):
+        return None
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -799,6 +811,13 @@ _WAITER_OVERRIDE_MAP = {
         "autonomous_database",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): CreateDatabaseOperationWorkRequestWaiter,
+    # work-request generated for operation `bulk_edit` can not be fetched using the generic Identity work-request api.
+    # all tagging operations, use tagging work request api.
+    (
+        "identity",
+        "tag",
+        "{0}_{1}".format("BULK_EDIT", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): BulkEditTagOperationWorkRequestWaiter,
 }
 
 

@@ -1,0 +1,36 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates.
+#The Universal Permissive License (UPL), Version 1.0
+
+#role: patch_db
+#file: tasks/precheckdb.yml
+
+- name: Run PRECHECK for "{{ db_patch_description }}" with patch id "{{ db_patch_id }}" on database home of database {{ db_unique_name }} and db system {{ db_system_display_name }}
+  oci_database_db_home:
+    db_home_id: "{{ db_home_ocid }}"
+    patch_details:
+      patch_id: "{{ db_patch_id }}"
+      action: 'PRECHECK'
+    state: 'present'
+    wait: true
+    wait_timeout: 3600
+  when: db_patch_id|length > 0
+  register: db_precheck_facts
+
+- name: Check Precheck Status for "{{ db_patch_description }}" with patch id "{{ db_patch_id }}" on database home of database {{ db_unique_name }} and db system {{ db_system_display_name }}
+  oci_database_db_home_patch_history_entry_facts:
+    db_home_id: "{{ db_home_ocid }}"
+    patch_history_entry_id: "{{ db_precheck_facts | json_query('db_home.last_patch_history_entry_id') }}"
+  register: db_home_precheck_status
+
+- name: Print precheck status for "{{ db_patch_description }}" with patch id "{{ db_patch_id }}" on database home of database {{ db_unique_name }} and db system {{ db_system_display_name }}
+  debug:
+    msg: "Patch precheck status for patch id {{ db_patch_description }} - {{ db_patch_id }} on database system {{ db_unique_name }} is {{ db_home_patch_precheck_status }}"
+
+- name: Fail play when precheck lifecycle_state is not SUCCEEDED.
+  fail:
+    msg: "Precheck run FAILED for {{ db_patch_description }} with patch id {{ db_patch_id }} on db system {{ db_unique_name }}"
+  when: not db_home_patch_precheck_status
+
+...

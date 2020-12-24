@@ -223,6 +223,12 @@ management_agents:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        availability_status:
+            description:
+                - The current availability status of managementAgent
+            returned: on success
+            type: string
+            sample: ACTIVE
         lifecycle_state:
             description:
                 - The current state of managementAgent
@@ -271,6 +277,7 @@ management_agents:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "time_last_heartbeat": "2013-10-20T19:20:30+01:00",
+        "availability_status": "ACTIVE",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},

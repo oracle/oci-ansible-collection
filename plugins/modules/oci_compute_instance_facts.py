@@ -283,6 +283,20 @@ instances:
                     returned: on success
                     type: bool
                     sample: true
+        instance_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                are_legacy_imds_endpoints_disabled:
+                    description:
+                        - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                          Customers who have migrated to /v2 should set this to true for added security.
+                          Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
         availability_config:
             description:
                 - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
@@ -507,6 +521,9 @@ instances:
             "remote_data_volume_type": "ISCSI",
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
+        },
+        "instance_options": {
+            "are_legacy_imds_endpoints_disabled": true
         },
         "availability_config": {
             "recovery_action": "RESTORE_INSTANCE"

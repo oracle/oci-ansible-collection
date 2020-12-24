@@ -1,0 +1,47 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates.
+#The Universal Permissive License (UPL), Version 1.0
+
+#role: patch_db
+#file: tasks/main.yml
+
+- name: Run prepatch tasks
+  include: prepatch.yml
+
+# Tasks for database system
+- name: Find applicable patch for database system
+  include: findgipatch.yml
+  when: patch_operation.precheck_gi or patch_operation.patch_gi
+
+- name: Run patch PRECHECK tasks for applicable patch on database system
+  include: precheckgi.yml
+  when: 
+    - patch_operation.precheck_gi or patch_operation.patch_gi
+    - db_system_patch_id | length > 0
+
+- name: Run patch APPLY tasks for applicable patch on database system
+  include: patchgi.yml
+  when: 
+    - patch_operation.patch_gi
+    - db_system_patch_id | length > 0
+
+# Tasks for database home
+
+- name: Find applicable patch for database
+  include: finddbpatch.yml
+  when: patch_operation.precheck_db or patch_operation.patch_db
+
+- name: Run patch PRECHECK tasks for database
+  include: precheckdb.yml
+  when: 
+    - patch_operation.precheck_db or patch_operation.patch_db
+    - db_patch_id | length > 0
+
+- name: Run patch APPLY tasks for database
+  include: patchdb.yml
+  when: 
+    - patch_operation.patch_db
+    - db_patch_id | length > 0
+    
+...

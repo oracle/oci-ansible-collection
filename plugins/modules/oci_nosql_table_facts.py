@@ -74,6 +74,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "INACTIVE"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -157,6 +158,20 @@ tables:
             returned: on success
             type: string
             sample: CREATING
+        is_auto_reclaimable:
+            description:
+                - True if this table can be reclaimed after an idle period.
+            returned: on success
+            type: bool
+            sample: true
+        time_of_expiration:
+            description:
+                - If lifecycleState is INACTIVE, indicates when
+                  this table will be automatically removed.
+                  An RFC3339 formatted datetime string.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
@@ -239,6 +254,16 @@ tables:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Read-only system tag. These predefined keys are scoped to
+                  namespaces.  At present the only supported namespace is
+                  `\\"orcl-cloud\\"`; and the only key in that namespace is
+                  `\\"free-tier-retained\\"`.
+                  Example: `{\\"orcl-cloud\\"\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         items:
             description:
                 - A page of TableSummary objects.
@@ -313,6 +338,20 @@ tables:
                     returned: on success
                     type: string
                     sample: lifecycle_details_example
+                is_auto_reclaimable:
+                    description:
+                        - True if this table can be reclaimed after an idle period.
+                    returned: on success
+                    type: bool
+                    sample: true
+                time_of_expiration:
+                    description:
+                        - If lifecycleState is INACTIVE, indicates when
+                          this table will be automatically removed.
+                          An RFC3339 formatted datetime string.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
                 freeform_tags:
                     description:
                         - "Simple key-value pair that is applied without any predefined
@@ -329,6 +368,28 @@ tables:
                     returned: on success
                     type: dict
                     sample: {'Operations': {'CostCenter': 'US'}}
+                system_tags:
+                    description:
+                        - "Read-only system tag. These predefined keys are scoped to
+                          namespaces.  At present the only supported namespace is
+                          `\\"orcl-cloud\\"`; and the only key in that namespace is
+                          `\\"free-tier-retained\\"`.
+                          Example: `{\\"orcl-cloud\\"\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                    returned: on success
+                    type: dict
+                    sample: {}
+        max_auto_reclaimable_tables:
+            description:
+                - The maximum number of reclaimable tables allowed in the tenancy.
+            returned: on success
+            type: int
+            sample: 56
+        auto_reclaimable_tables:
+            description:
+                - The current number of reclaimable tables in the tenancy.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -341,6 +402,8 @@ tables:
             "max_storage_in_g_bs": 56
         },
         "lifecycle_state": "CREATING",
+        "is_auto_reclaimable": true,
+        "time_of_expiration": "2013-10-20T19:20:30+01:00",
         "lifecycle_details": "lifecycle_details_example",
         "schema": {
             "columns": [{
@@ -356,6 +419,7 @@ tables:
         "ddl_statement": "ddl_statement_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "items": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -369,9 +433,14 @@ tables:
             },
             "lifecycle_state": "lifecycle_state_example",
             "lifecycle_details": "lifecycle_details_example",
+            "is_auto_reclaimable": true,
+            "time_of_expiration": "2013-10-20T19:20:30+01:00",
             "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }]
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
+            "system_tags": {}
+        }],
+        "max_auto_reclaimable_tables": 56,
+        "auto_reclaimable_tables": 56
     }]
 """
 
@@ -463,6 +532,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "INACTIVE",
                 ],
             ),
         )

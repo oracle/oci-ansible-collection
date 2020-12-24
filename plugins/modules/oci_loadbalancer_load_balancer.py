@@ -96,6 +96,15 @@ options:
         choices:
             - "IPV4"
             - "IPV6"
+    reserved_ips:
+        description:
+            - An array of reserved Ips.
+        type: list
+        suboptions:
+            id:
+                description:
+                    - ""
+                type: str
     subnet_ids:
         description:
             - An array of subnet L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -231,6 +240,18 @@ load_balancer:
                     returned: on success
                     type: bool
                     sample: true
+                reserved_ip:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - ""
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         shape_name:
             description:
                 - A template that determines the total pre-provisioned bandwidth (ingress plus egress).
@@ -1328,7 +1349,10 @@ load_balancer:
         "time_created": "2016-08-25T21:10:29.600Z",
         "ip_addresses": [{
             "ip_address": "192.168.0.3",
-            "is_public": true
+            "is_public": true,
+            "reserved_ip": {
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            }
         }],
         "shape_name": "100Mbps",
         "is_private": true,
@@ -1596,6 +1620,9 @@ def main():
             shape_name=dict(type="str"),
             is_private=dict(type="bool"),
             ip_mode=dict(type="str", choices=["IPV4", "IPV6"]),
+            reserved_ips=dict(
+                type="list", elements="dict", options=dict(id=dict(type="str"))
+            ),
             subnet_ids=dict(type="list"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

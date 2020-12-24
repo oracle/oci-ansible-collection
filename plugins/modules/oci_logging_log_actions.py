@@ -23,8 +23,8 @@ module: oci_logging_log_actions
 short_description: Perform actions on a Log resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Log resource in Oracle Cloud Infrastructure
-    - For I(action=change_log_log_group), moves a log into a different log group within the same tenancy.  When provided, If-Match is checked against ETag
-      values of the resource.
+    - For I(action=change_log_log_group), moves a log into a different log group within the same tenancy.  When provided, the If-Match is checked against the
+      ETag values of the resource.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -89,14 +89,14 @@ log:
             sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         log_type:
             description:
-                - The logType that the log object is for, custom or service.
+                - The logType that the log object is for, whether custom or service.
             returned: on success
             type: string
             sample: CUSTOM
@@ -143,7 +143,7 @@ log:
                     contains:
                         source_type:
                             description:
-                                - "The source of the log.
+                                - "The log source.
                                   * **OCISERVICE:** Oracle Service."
                             returned: on success
                             type: string
@@ -186,7 +186,7 @@ log:
                             sample: true
         lifecycle_state:
             description:
-                - The state of an pipeline.
+                - The pipeline state.
             returned: on success
             type: string
             sample: CREATING
@@ -204,7 +204,7 @@ log:
             sample: 2013-10-20T19:20:30+01:00
         retention_duration:
             description:
-                - Log retention duration in days.
+                - Log retention duration in 30-day increments (30, 60, 90 and so on).
             returned: on success
             type: int
             sample: 56

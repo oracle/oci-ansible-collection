@@ -41,18 +41,18 @@ options:
         aliases: ["id"]
     log_type:
         description:
-            - The logType that the log object is for, custom or service.
+            - The logType that the log object is for, whether custom or service.
         type: str
         choices:
             - "CUSTOM"
             - "SERVICE"
     source_service:
         description:
-            - Service created the log object
+            - Service that created the log object.
         type: str
     source_resource:
         description:
-            - Log object resource
+            - Log object resource.
         type: str
     display_name:
         description:
@@ -80,7 +80,7 @@ options:
             - "displayName"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'
+            - The sort order to use, whether 'asc' or 'desc'.
         type: str
         choices:
             - "ASC"
@@ -127,14 +127,14 @@ logs:
             sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         log_type:
             description:
-                - The logType that the log object is for, custom or service.
+                - The logType that the log object is for, whether custom or service.
             returned: on success
             type: string
             sample: CUSTOM
@@ -181,7 +181,7 @@ logs:
                     contains:
                         source_type:
                             description:
-                                - "The source of the log.
+                                - "The log source.
                                   * **OCISERVICE:** Oracle Service."
                             returned: on success
                             type: string
@@ -224,7 +224,7 @@ logs:
                             sample: true
         lifecycle_state:
             description:
-                - The state of an pipeline.
+                - The pipeline state.
             returned: on success
             type: string
             sample: CREATING
@@ -242,7 +242,7 @@ logs:
             sample: 2013-10-20T19:20:30+01:00
         retention_duration:
             description:
-                - Log retention duration in days.
+                - Log retention duration in 30-day increments (30, 60, 90 and so on).
             returned: on success
             type: int
             sample: 56

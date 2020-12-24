@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Database resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new database in the specified Database Home. If the database version is provided, it must match the version of the
       Database Home. Applies to Exadata and Exadata Cloud@Customer systems.
-    - "This resource has the following action operations in the M(oci_database_actions) module: restore."
+    - "This resource has the following action operations in the M(oci_database_actions) module: migrate_vault_key, restore, rotate_vault_key."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -52,6 +52,15 @@ options:
             - "NONE"
             - "DB_BACKUP"
         default: "NONE"
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+        type: str
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+        type: str
     database:
         description:
             - ""
@@ -85,6 +94,12 @@ options:
                       lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
                 type: str
                 required: true
+            tde_wallet_password:
+                description:
+                    - "The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two
+                      lowercase, two numeric, and two special characters. The special characters must be _, #, or -."
+                    - Applicable when source is 'NONE'
+                type: str
             character_set:
                 description:
                     - "The character set for the database.  The default is AL32UTF8. Allowed values are:"
@@ -303,6 +318,23 @@ options:
                             - Proxy URL to connect to object store.
                             - This parameter is updatable.
                         type: str
+    new_admin_password:
+        description:
+            - "A new strong password for SYS, SYSTEM, and the plugbable database ADMIN user. The password must be at least nine characters and contain at least
+              two uppercase, two lowercase, two numeric, and two special characters. The special characters must be _, #, or -."
+            - This parameter is updatable.
+        type: str
+    old_tde_wallet_password:
+        description:
+            - The existing TDE wallet password. You must provide the existing password in order to set a new TDE wallet password.
+            - This parameter is updatable.
+        type: str
+    new_tde_wallet_password:
+        description:
+            - "The new password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two lowercase, two
+              numeric, and two special characters. The special characters must be _, #, or -."
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -352,6 +384,8 @@ EXAMPLES = """
       db_backup_config:
         recovery_window_in_days: 30
         auto_backup_enabled: true
+    kms_key_id: ocid1.key.oc1..unique_ID
+    kms_key_version_id: ocid1.keyversion.oc1..unique_ID
 
 - name: Update database
   oci_database_database:
@@ -444,7 +478,7 @@ database:
             sample: db_unique_name_example
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -575,6 +609,12 @@ database:
                     returned: on success
                     type: dict
                     sample: {}
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -623,6 +663,7 @@ database:
             "cdb_ip_default": "cdb_ip_default_example",
             "all_connection_strings": {}
         },
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }
@@ -771,6 +812,8 @@ def main():
             db_home_id=dict(type="str"),
             db_version=dict(type="str"),
             source=dict(type="str", default="NONE", choices=["NONE", "DB_BACKUP"]),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
             database=dict(
                 type="dict",
                 options=dict(
@@ -779,6 +822,7 @@ def main():
                     database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
                     admin_password=dict(type="str", required=True, no_log=True),
+                    tde_wallet_password=dict(type="str", no_log=True),
                     character_set=dict(type="str"),
                     ncharacter_set=dict(type="str"),
                     db_workload=dict(type="str", choices=["OLTP", "DSS"]),
@@ -877,6 +921,9 @@ def main():
                     ),
                 ),
             ),
+            new_admin_password=dict(type="str", no_log=True),
+            old_tde_wallet_password=dict(type="str", no_log=True),
+            new_tde_wallet_password=dict(type="str", no_log=True),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             perform_final_backup=dict(type="bool"),

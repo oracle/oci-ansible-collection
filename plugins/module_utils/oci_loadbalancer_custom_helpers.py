@@ -304,6 +304,18 @@ class LoadBalancerHelperCustom:
 
         return resource
 
+    # adding this customization to support idempotency for create operation.
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        resource_dict = super(
+            LoadBalancerHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+
+        reserved_ips = []
+        for ip_address in resource_dict["ip_addresses"]:
+            reserved_ips.append(ip_address["reserved_ip"])
+        resource_dict["reserved_ips"] = reserved_ips
+        return resource_dict
+
 
 class LoadBalancerActionsHelperCustom:
     def is_action_necessary(self, action, response_data):

@@ -311,11 +311,22 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
         return self.client.get_domain_records
 
     def get_resource(self):
+        optional_params = [
+            "scope",
+            "view_id",
+            "compartment_id",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.get_default_response_from_resource(
             oci_common_utils.list_all_resources(
                 self.client.get_domain_records,
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 domain=self.module.params.get("domain"),
+                **optional_kwargs
             ).items
         )
 
@@ -324,6 +335,14 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
 
     def update_resource(self):
         update_details = self.get_update_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.update_domain_records,
             call_fn_args=(),
@@ -332,9 +351,9 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
                 domain=self.module.params.get("domain"),
                 update_domain_records_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
                 view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -350,6 +369,14 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
 
     def patch_resource(self):
         patch_details = self.get_patch_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.patch_domain_records,
             call_fn_args=(),
@@ -358,9 +385,9 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
                 domain=self.module.params.get("domain"),
                 patch_domain_records_details=patch_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
                 view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.PATCH_OPERATION_KEY,
@@ -372,6 +399,14 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
         )
 
     def delete_resource(self):
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_domain_records,
             call_fn_args=(),
@@ -379,9 +414,9 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 domain=self.module.params.get("domain"),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
                 view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,

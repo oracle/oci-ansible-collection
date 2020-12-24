@@ -86,6 +86,9 @@ ansible-doc oracle.oci.[module_name]
   ```
 General documentation can be found [here](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/ansible.htm).
 
+## Ansible Tower and AWX
+Oracle Cloud Infrastructure Ansible Collection supports Ansible Tower and AWX. For more information on how to setup the collection with Ansible Tower, follow the [instructions in this blog](https://blogs.oracle.com/cloud-infrastructure/using-oracle-cloud-infrastructure-with-ansible-tower-and-awx).
+To install the Ansible Tower free version (AWX) on an OCI instance, use this [solution](https://github.com/oracle-quickstart/oci-ansible-awx).
 
 ## Help
 - For FAQs and common errors, check the [Frequently Asked Questions](https://github.com/oracle/oci-ansible-collections/blob/master/FAQ.md) page.

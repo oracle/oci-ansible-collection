@@ -23,7 +23,7 @@ module: oci_database_cloud_vm_cluster_update_facts
 short_description: Fetches details about one or multiple CloudVmClusterUpdate resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple CloudVmClusterUpdate resources in Oracle Cloud Infrastructure
-    - Lists the maintenance updates that can be applied to the requested cloud VM cluster.
+    - Lists the maintenance updates that can be applied to the specified cloud VM cluster. Applies to Exadata Cloud Service instances only.
     - If I(update_id) is specified, the details of a single CloudVmClusterUpdate will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -44,6 +44,7 @@ options:
             - A filter to return only resources that match the given update type exactly.
         type: str
         choices:
+            - "GI_UPGRADE"
             - "GI_PATCH"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -96,7 +97,7 @@ cloud_vm_cluster_updates:
                 - The type of cloud VM cluster maintenance update.
             returned: on success
             type: string
-            sample: GI_PATCH
+            sample: GI_UPGRADE
         lifecycle_details:
             description:
                 - Descriptive text providing additional details about the lifecycle state.
@@ -126,7 +127,7 @@ cloud_vm_cluster_updates:
         "description": "description_example",
         "last_action": "ROLLING_APPLY",
         "available_actions": [],
-        "update_type": "GI_PATCH",
+        "update_type": "GI_UPGRADE",
         "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "AVAILABLE",
         "time_released": "2013-10-20T19:20:30+01:00",
@@ -203,7 +204,7 @@ def main():
         dict(
             cloud_vm_cluster_id=dict(type="str", required=True),
             update_id=dict(aliases=["id"], type="str"),
-            update_type=dict(type="str", choices=["GI_PATCH"]),
+            update_type=dict(type="str", choices=["GI_UPGRADE", "GI_PATCH"]),
         )
     )
 

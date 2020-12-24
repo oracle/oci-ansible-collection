@@ -74,6 +74,7 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
+            - "UPDATING"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -97,11 +98,17 @@ vcns:
     contains:
         cidr_block:
             description:
-                - The CIDR IP address block of the VCN.
+                - Deprecated. The first CIDR IP address from cidrBlocks.
                 - "Example: `172.16.0.0/16`"
             returned: on success
             type: string
             sample: 172.16.0.0/16
+        cidr_blocks:
+            description:
+                - The list of IPv4 CIDR blocks the VCN will use.
+            returned: on success
+            type: list
+            sample: []
         compartment_id:
             description:
                 - The OCID of the compartment containing the VCN.
@@ -196,6 +203,7 @@ vcns:
             sample: vcn1.oraclevcn.com
     sample: [{
         "cidr_block": "172.16.0.0/16",
+        "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "default_dhcp_options_id": "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx",
         "default_route_table_id": "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx",
@@ -281,7 +289,13 @@ def main():
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(
                 type="str",
-                choices=["PROVISIONING", "AVAILABLE", "TERMINATING", "TERMINATED"],
+                choices=[
+                    "PROVISIONING",
+                    "AVAILABLE",
+                    "TERMINATING",
+                    "TERMINATED",
+                    "UPDATING",
+                ],
             ),
         )
     )

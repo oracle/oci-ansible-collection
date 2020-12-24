@@ -353,11 +353,12 @@ class TagActionsHelperCustom:
 
         # if sent list is empty or None, return back without performing the action with
         # status of resource as not changed
-        tag_ids = self.module.params.get("tag_definition_ids")
-        if not tag_ids:
-            return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=None
-            )
+        if action == "bulk_delete":
+            tag_ids = self.module.params.get("tag_definition_ids")
+            if not tag_ids:
+                return self.prepare_result(
+                    changed=False, resource_type=self.resource_type, resource=None
+                )
 
         try:
             action_fn()
