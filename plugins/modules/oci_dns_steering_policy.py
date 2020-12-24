@@ -807,9 +807,18 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
         return self.client.get_steering_policy
 
     def get_resource(self):
+        optional_params = [
+            "scope",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_steering_policy,
             steering_policy_id=self.module.params.get("steering_policy_id"),
+            **optional_kwargs
         )
 
     def get_required_kwargs_for_list(self):
@@ -855,12 +864,19 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
 
     def create_resource(self):
         create_details = self.get_create_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_steering_policy,
             call_fn_args=(),
             call_fn_kwargs=dict(
-                create_steering_policy_details=create_details,
-                scope=self.module.params.get("scope"),
+                create_steering_policy_details=create_details, **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
@@ -876,6 +892,14 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
 
     def update_resource(self):
         update_details = self.get_update_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.update_steering_policy,
             call_fn_args=(),
@@ -883,7 +907,7 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
                 steering_policy_id=self.module.params.get("steering_policy_id"),
                 update_steering_policy_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -895,13 +919,21 @@ class SteeringPolicyHelperGen(OCIResourceHelperBase):
         )
 
     def delete_resource(self):
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_steering_policy,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 steering_policy_id=self.module.params.get("steering_policy_id"),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,

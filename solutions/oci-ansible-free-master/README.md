@@ -1,19 +1,3 @@
-# oci-ansible-free
-
-This project is an example at how one can build an OCI infrastructure using Ansible and the oci-ansible-modules.
-
-## Setup
-On OracleLinux 7:
-```
-sudo yum install unzip -y
-python3 -m venv ~/.virtualenvs/oci-ansible-free
-source ~/.virtualenvs/oci-ansible-free/bin/activate
-pip install -r requirements.txt -U
-ansible-galaxy collection install oracle.oci
-export OCI_TENANCY="ocid1.tenancy.oc1..aaaaaa EXAMPLE TENANCY OCID"
-export OCI_ANSIBLE_FREE_PUBKEY=~/.ssh/id_rsa.pub   # This is default, only set if you need to modify
-```
-
 ## MuShop
 ![MuShop Logo](./images/logo.png)
 
@@ -33,6 +17,14 @@ MuShop can be deployed in different ways to explore [Oracle Cloud Infrastructure
 oci-ansible-free
 └── playbooks
     └── site.yml
+```
+
+---
+#### Instructions
+Environment variable OCI_TENANCY is required to be set. OCI_ANSIBLE_FREE_PUBKEY is needed only if the key file needs to be modified
+```
+export OCI_TENANCY="ocid1.tenancy.oc1..aaaaaa EXAMPLE TENANCY OCID"
+export OCI_ANSIBLE_FREE_PUBKEY=~/.ssh/id_rsa.pub   # This is default, only set if you need to modify
 ```
 
 ### Getting Started with MuShop Basic

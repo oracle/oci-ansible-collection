@@ -71,6 +71,7 @@ options:
               b. The new range is within one of the parent VCN ranges.
             - "Example: `10.0.1.0/24`"
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -186,6 +187,7 @@ EXAMPLES = """
 
 - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
+    cidr_block: 10.0.2.0/24
     compartment_id: ocid1.compartment.oc1..unique_ID
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
@@ -196,8 +198,8 @@ EXAMPLES = """
 
 - name: Update subnet
   oci_network_subnet:
+    cidr_block: 10.0.2.0/24
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
     subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete subnet

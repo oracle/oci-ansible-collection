@@ -58,6 +58,15 @@ options:
               application.
             - Required for create using I(state=present).
         type: list
+    syslog_url:
+        description:
+            - "A syslog URL to which to send all function logs. Supports tcp, udp, and tcp+tls.
+              The syslog URL must be reachable from all of the subnets configured for the application.
+              Note: If you enable the OCI Logging service for this application, the syslogUrl value is ignored. Function logs are sent to the OCI Logging
+              service, and not to the syslog URL."
+            - "Example: `tcp://logserver.myserver:1234`"
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -94,20 +103,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create application
   oci_functions_application:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    display_name: display_name_example
+    compartment_id: ocid1.compartment.oc1..unique_ID
+    display_name: Example Application
+    subnet_ids:
+    - ocid1.subnet.oc1..unique_ID
 
 - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    syslog_url: tcp://logserver.myserver:1234
+    display_name: myapplication
+    config:
+      EXAMPLE_KEY: example-value
 
 - name: Update application
   oci_functions_application:
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete application
@@ -117,8 +126,8 @@ EXAMPLES = """
 
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    display_name: display_name_example
+    compartment_id: ocid1.compartment.oc1..unique_ID
+    display_name: Example Application
     state: absent
 
 """
@@ -172,6 +181,16 @@ application:
             returned: on success
             type: list
             sample: []
+        syslog_url:
+            description:
+                - "A syslog URL to which to send all function logs. Supports tcp, udp, and tcp+tls.
+                  The syslog URL must be reachable from all of the subnets configured for the application.
+                  Note: If you enable the OCI Logging service for this application, the syslogUrl value is ignored. Function logs are sent to the OCI Logging
+                  service, and not to the syslog URL."
+                - "Example: `tcp://logserver.myserver:1234`"
+            returned: on success
+            type: string
+            sample: tcp://logserver.myserver:1234
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -211,6 +230,7 @@ application:
         "lifecycle_state": "CREATING",
         "config": {},
         "subnet_ids": [],
+        "syslog_url": "tcp://logserver.myserver:1234",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "time_created": "2018-09-12T22:47:12.613Z",
@@ -363,6 +383,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             config=dict(type="dict"),
             subnet_ids=dict(type="list"),
+            syslog_url=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             application_id=dict(aliases=["id"], type="str"),

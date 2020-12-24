@@ -1,0 +1,82 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates.
+#The Universal Permissive License (UPL), Version 1.0
+
+#role: patch_db
+#file: tasks/finddbpatch.yml
+
+- name: Fetch database home on database system - {{ db_system_display_name }}
+  oci_database_db_home_facts:
+    db_system_id: "{{ db_system_ocid }}"
+    compartment_id: "{{ db_system_compartment_ocid }}"
+  register: db_home_facts
+
+- name: Print database home details on database system - {{ db_system_display_name }}
+  debug: 
+    msg: "{{ db_home_details }}"
+
+- name: Fail play when database home lifecycle_state on database system {{ db_system_display_name }} is not AVAILABLE.
+  fail:
+    msg: "Failed due to database home on {{ db_system_display_name }} in {{ db_home_state }} state"
+  when: not db_home_available
+
+- name: Set facts for database home on database system - {{ db_system_display_name }}
+  set_fact:
+    db_home_ocid: "{{ db_home_facts | json_query('db_homes[].id | [0]') }}"
+
+- name: Fetch databases under database home on database system - {{ db_system_display_name }}
+  oci_database_database_facts:
+    compartment_id: "{{ db_system_compartment_ocid }}"
+    db_home_id: "{{ db_home_ocid }}"
+  register: database_facts
+
+- name: Print database facts for database under database home on database system - {{ db_system_display_name }}
+  debug:
+    msg: "{{ database_facts | json_query('databases[*].{db_home_id: db_home_id, db_name: db_name, db_unique_name: db_unique_name }') }}"
+
+- name: Set facts for database on database system - {{ db_system_display_name }}
+  set_fact:
+    db_name: "{{ database_facts | json_query('databases[].db_name | [0]') }}"
+    db_unique_name: "{{ database_facts | json_query('databases[].db_unique_name | [0]') }}"
+
+#- name: Fetch patch history for database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }}
+#  oci_db_home_patch_history_entry_facts:
+#    db_home_id: "{{ db_home_ocid }}"
+#    patch_history_entry_id: "{{ db_home_patch_history_entry_id }}"
+#  register: db_home_patch_history
+
+#- name: Print patch history for database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }}
+#  debug: 
+#    msg: "{{ db_home_patch_history | json_query('db_home_patch_history_entries[].{id: id, lifecycle_state: lifecycle_state, patch_id: patch_id, time_started: time_started, time_ended: time_ended,last_patch_history_entry_id: last_patch_history_entry_id }') }}"
+
+- name: Fetch available database home patches for database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }}
+  oci_database_db_home_patch_facts:
+    db_home_id: "{{ db_home_ocid }}"
+  register: db_home_patch_facts
+
+- name: Print available database home patches for database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }}
+  debug: 
+    msg: "{{ db_home_patch_facts | json_query('db_home_patches[*].{description: description, id: id, version: version }') }}"
+
+- name: Set facts for patch to be applied to database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }}
+  set_fact:
+    db_patch_description: "{{ db_home_patch_facts | json_query('db_home_patches[].description | [0]') }}" # 0 - latest and -1 - oldest
+#   db_patch_description: "{{ db_home_patch_facts | json_query('db_home_patches[].description | ['{{ db_patch_ver }}']') }}"
+    db_patch_id: "{{ db_home_patch_facts | json_query('db_home_patches[].id | [0]') }}" # 0 - latest and -1 - oldest
+#    db_patch_id: "{{ db_home_patch_facts | json_query('db_home_patches[].id | [{{ db_patch_ver }}]') }}"
+
+- name: Patch to be applied to database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }}
+  debug: 
+    msg: "Patch to be applied to database home of database {{ db_unique_name }} on database system - {{ db_system_display_name }} is {{ db_patch_description}} with id {{ db_patch_id }}"
+
+- name: Skip if database home already has the latest patch
+  debug:
+    msg: "No patch available for database system {{ db_system_display_name }} "
+  when: db_patch_id|length == 0
+
+#  meta: end_play
+#  when: db_patch_id|length == 0
+
+...
+

@@ -79,6 +79,7 @@ options:
             - "AVAILABLE"
             - "TERMINATING"
             - "TERMINATED"
+            - "UPDATING"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -338,7 +339,13 @@ def main():
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(
                 type="str",
-                choices=["PROVISIONING", "AVAILABLE", "TERMINATING", "TERMINATED"],
+                choices=[
+                    "PROVISIONING",
+                    "AVAILABLE",
+                    "TERMINATING",
+                    "TERMINATED",
+                    "UPDATING",
+                ],
             ),
         )
     )

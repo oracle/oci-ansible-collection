@@ -162,7 +162,7 @@ db_homes:
             sample: db_home_location_example
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -172,6 +172,12 @@ db_homes:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         one_off_patches:
             description:
                 - List of one-off patches for Database Homes.
@@ -196,6 +202,7 @@ db_homes:
         "db_home_location": "db_home_location_example",
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "one_off_patches": [],
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }]

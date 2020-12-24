@@ -23,7 +23,7 @@ module: oci_database_exadata_infrastructure_actions
 short_description: Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
-    - For I(action=activate), activates the specified Exadata Cloud@Customer infrastructure.
+    - For I(action=activate), activates the specified Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
     - For I(action=download_exadata_infrastructure_config_file), downloads the configuration file for the specified Exadata Cloud@Customer infrastructure.
 version_added: "2.9"
 author: Oracle (@oracle)

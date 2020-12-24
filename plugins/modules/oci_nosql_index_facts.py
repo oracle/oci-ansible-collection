@@ -60,6 +60,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "INACTIVE"
     sort_order:
         description:
             - The sort order to use, either 'ASC' or 'DESC'.
@@ -328,6 +329,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "INACTIVE",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

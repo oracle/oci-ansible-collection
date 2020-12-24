@@ -20,7 +20,7 @@ oracle.oci.oci_logging_unified_agent_configuration -- Manage an UnifiedAgentConf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
-- For *state=present*, create unified agent config registration
+- For *state=present*, create unified agent configuration registration.
 
 
 .. Aliases
@@ -84,7 +84,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,7 +245,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The display name of a user-friendly name. It has to be unique within enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>The user-friendly display name. This must be unique within the enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                             <div>Required for update using <em>state=present</em> with unified_agent_configuration_id present.</div>
                                             <div>Required for create, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
@@ -401,7 +401,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Type of unified agent service configuration.</div>
+                                            <div>Type of Unified Agent service configuration.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -560,7 +560,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specify time field for event time. If the event doesn&#x27;t have this field, current time is used.</div>
+                                            <div>Specify time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -658,7 +658,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified</div>
+                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -702,7 +702,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>If true, empty string field is replaced with nil</div>
+                                            <div>If true, an empty string field is replaced with nil.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -847,7 +847,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specify null value pattern</div>
+                                            <div>Specify the null value pattern.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -880,7 +880,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>type of fluent parser.</div>
+                                            <div>Type of fluent parser.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -918,7 +918,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Process value using specified format. This is available only when time_type is string.</div>
+                                            <div>Process value using the specified format. This is available only when time_type is a string.</div>
                                             <div>Applicable when parser_type is &#x27;MULTILINE_GROK&#x27;</div>
                                                         </td>
             </tr>
@@ -938,7 +938,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specify time field for event time. If the event doesn&#x27;t have this field, current time is used.</div>
+                                            <div>Specify the time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
                                             <div>Applicable when parser_type is &#x27;MULTILINE_GROK&#x27;</div>
                                                         </td>
             </tr>
@@ -958,7 +958,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Use specified timezone. One can parse/format the time value in the specified timezone.</div>
+                                            <div>Use the specified time zone. The time value can be parsed or formatted in the specified time zone.</div>
                                             <div>Applicable when parser_type is &#x27;MULTILINE_GROK&#x27;</div>
                                                         </td>
             </tr>
@@ -978,7 +978,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name key to tag this grok pattern</div>
+                                            <div>The name key to tag this grok pattern.</div>
                                             <div>Applicable when parser_type is &#x27;MULTILINE_GROK&#x27;</div>
                                                         </td>
             </tr>
@@ -998,7 +998,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The grok pattern</div>
+                                            <div>The grok pattern.</div>
                                             <div>Required when parser_type is &#x27;MULTILINE_GROK&#x27;</div>
                                                         </td>
             </tr>
@@ -1103,7 +1103,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specify timeout for parse processing. This is mainly for detecting wrong regexp pattern.</div>
+                                            <div>Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1121,7 +1121,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specify types for converting field into other type.</div>
+                                            <div>Specify types for converting a field into another type.</div>
                                                         </td>
             </tr>
                     
@@ -1161,7 +1161,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>unified schema logging source Type</div>
+                                            <div>Unified schema logging source type.</div>
                                                         </td>
             </tr>
                     
@@ -1214,7 +1214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the unified agent configuration.</div>
+                                            <div>The OCID of the Unified Agent configuration.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -1436,7 +1436,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The display name of a user-friendly name. It has to be unique within enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>The user-friendly display name. This must be unique within the enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -1542,7 +1542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of an pipeline.</div>
+                                            <div>The pipeline state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1577,7 +1577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of unified agent service configuration.</div>
+                                            <div>Type of Unified Agent service configuration.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LOGGING</div>
@@ -1751,7 +1751,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify time field for event time. If the event doesn&#x27;t have this field, current time is used.</div>
+                                            <div>Specify time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_key_example</div>
@@ -1854,7 +1854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified</div>
+                                            <div>If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1896,7 +1896,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If true, empty string field is replaced with nil</div>
+                                            <div>If true, an empty string field is replaced with nil.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -2041,7 +2041,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify null value pattern</div>
+                                            <div>Specify the null value pattern.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">null_value_pattern_example</div>
@@ -2062,7 +2062,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>type of fluent parser.</div>
+                                            <div>Type of fluent parser.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUDITD</div>
@@ -2103,7 +2103,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Process value using specified format. This is available only when time_type is string.</div>
+                                            <div>Process value using the specified format. This is available only when time_type is a string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_format_example</div>
@@ -2125,7 +2125,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify time field for event time. If the event doesn&#x27;t have this field, current time is used.</div>
+                                            <div>Specify the time field for the event time. If the event doesn&#x27;t have this field, the current time is used.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_key_example</div>
@@ -2147,7 +2147,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Use specified timezone. One can parse/format the time value in the specified timezone.</div>
+                                            <div>Use the specified time zone. The time value can be parsed or formatted in the specified time zone.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_time_zone_example</div>
@@ -2169,7 +2169,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name key to tag this grok pattern</div>
+                                            <div>The name key to tag this grok pattern.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -2191,7 +2191,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The grok pattern</div>
+                                            <div>The grok pattern.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pattern_example</div>
@@ -2297,7 +2297,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify timeout for parse processing. This is mainly for detecting wrong regexp pattern.</div>
+                                            <div>Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2318,7 +2318,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specify types for converting field into other type.</div>
+                                            <div>Specify types for converting a field into another type.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -2355,7 +2355,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>unified schema logging source Type</div>
+                                            <div>Unified schema logging source type.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LOG_TAIL</div>

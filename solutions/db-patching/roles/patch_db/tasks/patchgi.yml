@@ -1,0 +1,40 @@
+---
+
+#Copyright © 2020, Oracle and/or its affiliates.
+#The Universal Permissive License (UPL), Version 1.0
+
+#role: patch_db
+#file: tasks/patchgi.yml
+
+- name: Run APPLY for "{{ db_system_patch_description }}" with patch id "{{ db_system_patch_id }}" on db system {{ db_system_display_name }}
+  oci_database_db_system:
+    db_system_id: "{{ db_system_ocid }}"
+    version:
+      patch_id: "{{ db_system_patch_id }}"
+      action: 'APPLY'
+    state: 'present'
+    wait: true
+    wait_timeout: 7200
+  when: db_system_patch_id|length > 0 and db_system_patch_precheck_status
+  register: db_system_apply_facts
+
+- name: Print database system patch apply operation details  
+  debug:
+    msg: "{{ db_system_apply_facts }}"
+
+- name: Check Apply Status Status for "{{ db_system_patch_description }}" with patch id "{{ db_system_patch_id }}" on db system {{ db_system_display_name }}
+  oci_database_db_system_patch_history_entry_facts:
+    db_system_id: "{{ db_system_ocid }}"
+    patch_history_entry_id: "{{ db_system_apply_facts | json_query('db_system.last_patch_history_entry_id') }}"
+  register: db_system_apply_status
+
+- name: Print precheck status for "{{ db_system_patch_description }}" with patch id "{{ db_system_patch_id }}" on database system {{ db_system_display_name }}
+  debug:
+    msg: "Patch apply status for patch id {{ db_system_patch_description }} - {{ db_system_patch_id }} on database system {{ db_system_display_name }} is {{ db_system_patch_precheck_status }}"
+
+- name: Fail play when apply lifecycle_state is not SUCCEEDED.
+  fail:
+    msg: "Apply run FAILED for {{ db_system_patch_description }} with patch id {{ db_system_patch_id }} on db system {{ db_system_display_name }}"
+  when: not db_system_patch_apply_status
+  
+...

@@ -20,7 +20,7 @@ oracle.oci.oci_identity_customer_secret_key -- Manage a CustomerSecretKey resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a CustomerSecretKey resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3 compatible API. For information, see `Managing User Credentials <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm>`_.
+- For *state=present*, creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3 compatible API. The secret key consists of an Access Key/Secret Key pair. For information, see `Managing User Credentials <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm>`_.
 - You must specify a *description* for the secret key (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateCustomerSecretKey <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/CustomerSecretKeySummary/UpdateCustomerSecretKey>`_.
 - Every user has permission to create a secret key for *their own user ID*. An administrator in your organization does not need to write a policy to give users this ability. To compare, administrators who have permission to the tenancy can use this operation to create a secret key for any user, including themselves.
 
@@ -86,7 +86,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -684,6 +684,20 @@ instance_configurations:
                             returned: on success
                             type: string
                             sample: LIVE_MIGRATE
+                        instance_options:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                are_legacy_imds_endpoints_disabled:
+                                    description:
+                                        - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                                          Customers who have migrated to /v2 should set this to true for added security.
+                                          Default is false.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                         availability_config:
                             description:
                                 - Options for defining the availabiity of a VM instance after a maintenance event that impacts the underlying hardware.
@@ -898,6 +912,9 @@ instance_configurations:
                 },
                 "is_pv_encryption_in_transit_enabled": true,
                 "preferred_maintenance_action": "LIVE_MIGRATE",
+                "instance_options": {
+                    "are_legacy_imds_endpoints_disabled": true
+                },
                 "availability_config": {
                     "recovery_action": "RESTORE_INSTANCE"
                 }

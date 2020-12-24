@@ -54,7 +54,6 @@ options:
     variables:
         description:
             - ""
-            - Required for create using I(state=present).
         type: dict
         suboptions:
             completion_type:
@@ -80,6 +79,7 @@ options:
                 choices:
                     - "READ-UNCOMMITTED"
                     - "READ-COMMITED"
+                    - "READ-COMMITTED"
                     - "REPEATABLE-READ"
                     - "SERIALIZABLE"
             innodb_ft_server_stopword_table:
@@ -112,7 +112,7 @@ options:
                 type: bool
             mysqlx_enable_hello_notice:
                 description:
-                    - "(\\"mysqlx_enable_hello_notice\\")"
+                    - "(\\"mysqlx_enable_hello_notice\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: bool
             sql_require_primary_key:
                 description:
@@ -124,7 +124,7 @@ options:
                 type: bool
             binlog_expire_logs_seconds:
                 description:
-                    - "(\\"binlog_expire_logs_seconds\\")"
+                    - "(\\"binlog_expire_logs_seconds\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             innodb_buffer_pool_size:
                 description:
@@ -152,7 +152,7 @@ options:
                 type: int
             generated_random_password_length:
                 description:
-                    - "(\\"generated_random_password_length\\")"
+                    - "(\\"generated_random_password_length\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             information_schema_stats_expiry:
                 description:
@@ -192,39 +192,39 @@ options:
                 type: int
             mysqlx_connect_timeout:
                 description:
-                    - "(\\"mysqlx_connect_timeout\\")"
+                    - "(\\"mysqlx_connect_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_document_id_unique_prefix:
                 description:
-                    - "(\\"mysqlx_document_id_unique_prefix\\")"
+                    - "(\\"mysqlx_document_id_unique_prefix\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_idle_worker_thread_timeout:
                 description:
-                    - "(\\"mysqlx_idle_worker_thread_timeout\\")"
+                    - "(\\"mysqlx_idle_worker_thread_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_interactive_timeout:
                 description:
-                    - "(\\"mysqlx_interactive_timeout\\")"
+                    - "(\\"mysqlx_interactive_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_max_allowed_packet:
                 description:
-                    - "(\\"mysqlx_max_allowed_packet\\")"
+                    - "(\\"mysqlx_max_allowed_packet\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_min_worker_threads:
                 description:
-                    - "(\\"mysqlx_min_worker_threads\\")"
+                    - "(\\"mysqlx_min_worker_threads\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_read_timeout:
                 description:
-                    - "(\\"mysqlx_read_timeout\\")"
+                    - "(\\"mysqlx_read_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_wait_timeout:
                 description:
-                    - "(\\"mysqlx_wait_timeout\\")"
+                    - "(\\"mysqlx_wait_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             mysqlx_write_timeout:
                 description:
-                    - "(\\"mysqlx_write_timeout\\")"
+                    - "(\\"mysqlx_write_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             parser_max_mem_size:
                 description:
@@ -232,11 +232,11 @@ options:
                 type: int
             query_alloc_block_size:
                 description:
-                    - "(\\"query_alloc_block_size\\")"
+                    - "(\\"query_alloc_block_size\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             query_prealloc_size:
                 description:
-                    - "(\\"query_prealloc_size\\")"
+                    - "(\\"query_prealloc_size\\") DEPRECATED -- variable should not be settable and will be ignored"
                 type: int
             sql_mode:
                 description:
@@ -262,9 +262,13 @@ options:
                 description:
                     - "Limit the upper bound of accepted compression levels for the zstd algorithm. (\\"mysqlx_zstd_max_client_compression_level\\")"
                 type: int
-            mysql_zstd_default_compression_level:
+            mysqlx_zstd_default_compression_level:
                 description:
                     - "Set the default compression level for the zstd algorithm. (\\"mysqlx_zstd_default_compression_level\\")"
+                type: int
+            mysql_zstd_default_compression_level:
+                description:
+                    - "DEPRECATED -- typo of mysqlx_zstd_default_compression_level. variable will be ignored."
                 type: int
     parent_configuration_id:
         description:
@@ -273,13 +277,13 @@ options:
         type: str
     freeform_tags:
         description:
-            - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
     defined_tags:
         description:
-            - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -464,7 +468,7 @@ configuration:
                     sample: true
                 mysqlx_enable_hello_notice:
                     description:
-                        - "(\\"mysqlx_enable_hello_notice\\")"
+                        - "(\\"mysqlx_enable_hello_notice\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: bool
                     sample: true
@@ -482,7 +486,7 @@ configuration:
                     sample: true
                 binlog_expire_logs_seconds:
                     description:
-                        - "(\\"binlog_expire_logs_seconds\\")"
+                        - "(\\"binlog_expire_logs_seconds\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
@@ -524,7 +528,7 @@ configuration:
                     sample: 56
                 generated_random_password_length:
                     description:
-                        - "(\\"generated_random_password_length\\")"
+                        - "(\\"generated_random_password_length\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
@@ -584,55 +588,55 @@ configuration:
                     sample: 56
                 mysqlx_connect_timeout:
                     description:
-                        - "(\\"mysqlx_connect_timeout\\")"
+                        - "(\\"mysqlx_connect_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_document_id_unique_prefix:
                     description:
-                        - "(\\"mysqlx_document_id_unique_prefix\\")"
+                        - "(\\"mysqlx_document_id_unique_prefix\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_idle_worker_thread_timeout:
                     description:
-                        - "(\\"mysqlx_idle_worker_thread_timeout\\")"
+                        - "(\\"mysqlx_idle_worker_thread_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_interactive_timeout:
                     description:
-                        - "(\\"mysqlx_interactive_timeout\\")"
+                        - "(\\"mysqlx_interactive_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_max_allowed_packet:
                     description:
-                        - "(\\"mysqlx_max_allowed_packet\\")"
+                        - "(\\"mysqlx_max_allowed_packet\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_min_worker_threads:
                     description:
-                        - "(\\"mysqlx_min_worker_threads\\")"
+                        - "(\\"mysqlx_min_worker_threads\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_read_timeout:
                     description:
-                        - "(\\"mysqlx_read_timeout\\")"
+                        - "(\\"mysqlx_read_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_wait_timeout:
                     description:
-                        - "(\\"mysqlx_wait_timeout\\")"
+                        - "(\\"mysqlx_wait_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 mysqlx_write_timeout:
                     description:
-                        - "(\\"mysqlx_write_timeout\\")"
+                        - "(\\"mysqlx_write_timeout\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
@@ -644,13 +648,13 @@ configuration:
                     sample: 56
                 query_alloc_block_size:
                     description:
-                        - "(\\"query_alloc_block_size\\")"
+                        - "(\\"query_alloc_block_size\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
                 query_prealloc_size:
                     description:
-                        - "(\\"query_prealloc_size\\")"
+                        - "(\\"query_prealloc_size\\") DEPRECATED -- variable should not be settable and will be ignored"
                     returned: on success
                     type: int
                     sample: 56
@@ -690,9 +694,15 @@ configuration:
                     returned: on success
                     type: int
                     sample: 56
-                mysql_zstd_default_compression_level:
+                mysqlx_zstd_default_compression_level:
                     description:
                         - "Set the default compression level for the zstd algorithm. (\\"mysqlx_zstd_default_compression_level\\")"
+                    returned: on success
+                    type: int
+                    sample: 56
+                mysql_zstd_default_compression_level:
+                    description:
+                        - "DEPRECATED -- typo of mysqlx_zstd_default_compression_level. variable will be ignored."
                     returned: on success
                     type: int
                     sample: 56
@@ -706,14 +716,14 @@ configuration:
             sample: ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
         freeform_tags:
             description:
-                - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
                   Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
@@ -777,6 +787,7 @@ configuration:
             "mysqlx_lz4_max_client_compression_level": 56,
             "mysqlx_lz4_default_compression_level": 56,
             "mysqlx_zstd_max_client_compression_level": 56,
+            "mysqlx_zstd_default_compression_level": 56,
             "mysql_zstd_default_compression_level": 56
         },
         "parent_configuration_id": "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx",
@@ -947,6 +958,7 @@ def main():
                         choices=[
                             "READ-UNCOMMITTED",
                             "READ-COMMITED",
+                            "READ-COMMITTED",
                             "REPEATABLE-READ",
                             "SERIALIZABLE",
                         ],
@@ -996,6 +1008,7 @@ def main():
                     mysqlx_lz4_max_client_compression_level=dict(type="int"),
                     mysqlx_lz4_default_compression_level=dict(type="int"),
                     mysqlx_zstd_max_client_compression_level=dict(type="int"),
+                    mysqlx_zstd_default_compression_level=dict(type="int"),
                     mysql_zstd_default_compression_level=dict(type="int"),
                 ),
             ),

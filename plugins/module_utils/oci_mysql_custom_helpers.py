@@ -9,13 +9,16 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import (
-    oci_config_utils,
     oci_common_utils,
+    oci_wait_utils,
 )
 from ansible.module_utils import six
 
 try:
-    from oci.mysql import WorkRequestsClient
+    # from oci.mysql import WorkRequestsClient
+    import oci
+    from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
+    from oci.util import to_dict
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -59,18 +62,23 @@ class MysqlDbSystemActionsHelperCustom:
 
 # The waiter client for this service uses mysql WorkRequestsClient
 class MysqlDbSystemHelperCustom:
-    def __init__(self, module, resource_type, service_client_class, namespace):
-        self.work_request_client = oci_config_utils.create_service_client(
-            module, WorkRequestsClient
-        )
+    # def __init__(self, module, resource_type, service_client_class, namespace):
+    #     self.work_request_client = oci_config_utils.create_service_client(
+    #         module, WorkRequestsClient
+    #     )
+    #
+    #     super(MysqlDbSystemHelperCustom, self).__init__(
+    #         module, resource_type, service_client_class, namespace
+    #     )
+    #
+    # # override the waiting client with the WorkRequestsClient
+    # def get_waiter_client(self):
+    #     return self.work_request_client
 
-        super(MysqlDbSystemHelperCustom, self).__init__(
-            module, resource_type, service_client_class, namespace
-        )
-
-    # override the waiting client with the WorkRequestsClient
-    def get_waiter_client(self):
-        return self.work_request_client
+    # def get_wait_for_states_for_operation(self, operation, is_work_request=False):
+    #     return super(MysqlDbSystemHelperCustom, self).get_wait_for_states_for_operation(
+    #         operation, False
+    #     )
 
     # get model doesn't return admin_username and admin_password of existing database resources. Thus, excluding
     # these for idempotency.
@@ -127,3 +135,161 @@ class MysqlDbSystemHelperCustom:
         return oci_common_utils.convert_input_data_to_model_class(
             params_to_pass_in_update_call, self.get_update_model_class()
         )
+
+    def create_resource(self):
+        create_details = self.get_create_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.create_db_system,
+            call_fn_args=(),
+            call_fn_kwargs=dict(create_db_system_details=create_details,),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.CREATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.CREATE_OPERATION_KEY
+            ),
+        )
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_db_system,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                db_system_id=self.module.params.get("db_system_id"),
+                update_db_system_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.UPDATE_OPERATION_KEY
+            ),
+        )
+
+    def delete_resource(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.delete_db_system,
+            call_fn_args=(),
+            call_fn_kwargs=dict(db_system_id=self.module.params.get("db_system_id"),),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.DELETE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.DELETE_OPERATION_KEY
+            ),
+        )
+
+
+class MysqlAnalyticsClusterActionsHelperCustom:
+    ADD_ACTION_KEY = "add"
+    STOP_ACTION_KEY = "stop"
+
+    def perform_action(self, action):
+        if action != self.ADD_ACTION_KEY:
+            return super(MysqlAnalyticsClusterActionsHelperCustom, self).perform_action(
+                action
+            )
+
+        try:
+            db_system_get_response = oci_common_utils.call_with_backoff(
+                self.client.get_db_system,
+                db_system_id=self.module.params.get("db_system_id"),
+            )
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Getting db system failed with exception: {0}".format(se.message)
+            )
+        else:
+            db_system = to_dict(db_system_get_response.data)
+
+        if db_system.get("is_analytics_cluster_attached") or self.check_mode:
+            resource = self.get_resource().data
+            return self.prepare_result(
+                changed=False,
+                resource_type=self.resource_type,
+                resource=to_dict(resource),
+            )
+
+        try:
+            actioned_resource = self.add()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(actioned_resource),
+            )
+
+    def get_action_desired_states(self, action):
+        action_desired_states = super(
+            MysqlAnalyticsClusterActionsHelperCustom, self
+        ).get_action_desired_states(action)
+
+        if action.lower() == self.STOP_ACTION_KEY:
+            return action_desired_states + [
+                "INACTIVE",
+            ]
+        return action_desired_states
+
+    def get_action_idempotent_states(self, action):
+        action_idempotent_states = super(
+            MysqlAnalyticsClusterActionsHelperCustom, self
+        ).get_action_idempotent_states(action)
+
+        if action.lower() == self.STOP_ACTION_KEY:
+            return action_idempotent_states + [
+                "INACTIVE",
+            ]
+        return action_idempotent_states
+
+
+class MysqlAnalyticsClusterMemoryEstimateActionsHelperCustom:
+    GENERATE_ACTION_KEY = "generate"
+
+    def perform_action(self, action):
+        if action != self.GENERATE_ACTION_KEY:
+            return super(
+                MysqlAnalyticsClusterMemoryEstimateActionsHelperCustom, self
+            ).perform_action(action)
+
+        try:
+            oci_common_utils.call_with_backoff(
+                self.client.generate_analytics_cluster_memory_estimate,
+                db_system_id=self.module.params.get("db_system_id"),
+            )
+            initial_response = self.get_resource()
+            wait_response = oci.wait_until(
+                self.client,
+                initial_response,
+                evaluate_response=lambda response: response.data.status
+                in oci_common_utils.WORK_REQUEST_COMPLETED_STATES,
+                max_wait_seconds=self.get_wait_timeout(),
+            )
+            if wait_response.data and hasattr(wait_response.data, "status"):
+                if (
+                    wait_response.data.status
+                    in oci_common_utils.WORK_REQUEST_FAILED_STATES
+                ):
+                    self.module.fail_json(msg="Generating memory estimate failed.")
+            actioned_resource = wait_response.data
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(actioned_resource),
+            )

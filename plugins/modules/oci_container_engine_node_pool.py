@@ -105,6 +105,11 @@ options:
                       See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
                     - This parameter is updatable.
                 type: float
+            memory_in_gbs:
+                description:
+                    - The total amount of memory available to each node, in gigabytes.
+                    - This parameter is updatable.
+                type: float
     initial_node_labels:
         description:
             - A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
@@ -293,6 +298,12 @@ node_pool:
                     description:
                         - The total number of OCPUs available to each node in the node pool.
                           See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 3.4
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory available to each node, in gigabytes.
                     returned: on success
                     type: float
                     sample: 3.4
@@ -538,7 +549,8 @@ node_pool:
         "node_image_id": "ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa",
         "node_image_name": "Oracle-Linux-7.4",
         "node_shape_config": {
-            "ocpus": 3.4
+            "ocpus": 3.4,
+            "memory_in_gbs": 3.4
         },
         "node_source": {
             "source_type": "IMAGE",
@@ -735,7 +747,12 @@ def main():
                 ),
             ),
             node_shape=dict(type="str"),
-            node_shape_config=dict(type="dict", options=dict(ocpus=dict(type="float"))),
+            node_shape_config=dict(
+                type="dict",
+                options=dict(
+                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                ),
+            ),
             initial_node_labels=dict(
                 type="list",
                 elements="dict",

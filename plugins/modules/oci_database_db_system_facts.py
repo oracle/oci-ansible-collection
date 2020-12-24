@@ -74,6 +74,7 @@ options:
             - "FAILED"
             - "MIGRATED"
             - "MAINTENANCE_IN_PROGRESS"
+            - "NEEDS_ATTENTION"
     availability_domain:
         description:
             - A filter to return only resources that match the given availability domain exactly.
@@ -271,6 +272,12 @@ db_systems:
             returned: on success
             type: string
             sample: domain_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         version:
             description:
                 - The Oracle Database version of the DB system.
@@ -331,7 +338,7 @@ db_systems:
             sample: 2013-10-20T19:20:30+01:00
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -531,6 +538,7 @@ db_systems:
         "time_zone": "time_zone_example",
         "hostname": "hostname_example",
         "domain": "domain_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "version": "version_example",
         "cpu_core_count": 56,
         "cluster_name": "cluster_name_example",
@@ -653,6 +661,7 @@ def main():
                     "FAILED",
                     "MIGRATED",
                     "MAINTENANCE_IN_PROGRESS",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             availability_domain=dict(type="str"),

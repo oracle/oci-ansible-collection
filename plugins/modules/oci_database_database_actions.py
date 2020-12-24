@@ -23,7 +23,11 @@ module: oci_database_database_actions
 short_description: Perform actions on a Database resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Database resource in Oracle Cloud Infrastructure
+    - For I(action=migrate_vault_key), changes encryption key management from customer-managed, using the L(Vault
+      service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
     - For I(action=restore), restore a Database based on the request parameters you provide.
+    - For I(action=rotate_vault_key), creates a new version of an existing L(Vault
+      service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -33,17 +37,31 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            - Required for I(action=migrate_vault_key).
+        type: str
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            - Applicable only for I(action=migrate_vault_key).
+        type: str
     database_scn:
         description:
             - Restores using the backup with the System Change Number (SCN) specified.
+            - Applicable only for I(action=restore).
         type: str
     timestamp:
         description:
             - Restores to the timestamp specified.
+            - Applicable only for I(action=restore).
         type: str
     latest:
         description:
             - Restores to the last known good state with the least possible data loss.
+            - Applicable only for I(action=restore).
         type: bool
     action:
         description:
@@ -51,15 +69,28 @@ options:
         type: str
         required: true
         choices:
+            - "migrate_vault_key"
             - "restore"
+            - "rotate_vault_key"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action migrate_vault_key on database
+  oci_database_database_actions:
+    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+    action: migrate_vault_key
+
 - name: Perform action restore on database
   oci_database_database_actions:
     database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
     action: restore
+
+- name: Perform action rotate_vault_key on database
+  oci_database_database_actions:
+    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    action: rotate_vault_key
 
 """
 
@@ -140,7 +171,7 @@ database:
             sample: db_unique_name_example
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -271,6 +302,12 @@ database:
                     returned: on success
                     type: dict
                     sample: {}
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -319,6 +356,7 @@ database:
             "cdb_ip_default": "cdb_ip_default_example",
             "all_connection_strings": {}
         },
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }
@@ -337,6 +375,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import MigrateVaultKeyDetails
     from oci.database.models import RestoreDatabaseDetails
 
     HAS_OCI_PY_SDK = True
@@ -347,7 +386,9 @@ except ImportError:
 class DatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        migrate_vault_key
         restore
+        rotate_vault_key
     """
 
     def __init__(self, *args, **kwargs):
@@ -371,6 +412,27 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
             self.client.get_database, database_id=self.module.params.get("database_id"),
         )
 
+    def migrate_vault_key(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, MigrateVaultKeyDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.migrate_vault_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_id=self.module.params.get("database_id"),
+                migrate_vault_key_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def restore(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RestoreDatabaseDetails
@@ -382,6 +444,21 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
                 database_id=self.module.params.get("database_id"),
                 restore_database_details=action_details,
             ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def rotate_vault_key(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rotate_vault_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(database_id=self.module.params.get("database_id"),),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -407,10 +484,16 @@ def main():
     module_args.update(
         dict(
             database_id=dict(aliases=["id"], type="str", required=True),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
             database_scn=dict(type="str"),
             timestamp=dict(type="str"),
             latest=dict(type="bool"),
-            action=dict(type="str", required=True, choices=["restore"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["migrate_vault_key", "restore", "rotate_vault_key"],
+            ),
         )
     )
 

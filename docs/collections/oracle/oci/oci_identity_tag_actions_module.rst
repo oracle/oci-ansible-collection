@@ -20,7 +20,7 @@ oracle.oci.oci_identity_tag_actions -- Perform actions on a Tag resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a Tag resource in Oracle Cloud Infrastructure
-- For *action=bulk_delete*, deletes the specified tag key definitions. This operation triggers a process that removes the tags from all resources in your tenancy. The following actions happen immediately: * If the tag is a cost-tracking tag, the tag no longer counts against your 10 cost-tracking tags limit, even if you do not disable the tag before running this operation. * If the tag is used with dynamic groups, the rules that contain the tag are no longer evaluated against the tag. After you start this operation, the state of the tag changes to DELETING, and tag removal from resources begins. This process can take up to 48 hours depending on the number of resources that are tagged and the regions in which those resources reside. When all tags have been removed, the state changes to DELETED. You cannot restore a deleted tag. After the tag state changes to DELETED, you can use the same tag name again. After you start this operation, you cannot start either the `DeleteTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/DeleteTag>`_ or the `CascadeDeleteTagNamespace <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/TagNamespace/CascadeDeleteTagNamespace>`_ operation until this process completes. In order to delete tags, you must first retire the tags. Use `UpdateTag <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Tag/UpdateTag>`_ to retire a tag.
+- For *action=bulk_delete*, deletes the specified tag key definitions. This operation triggers a process that removes the tags from all resources in your tenancy. The tag key definitions must be within the same tag namespace. The following actions happen immediately: * If the tag is a cost-tracking tag, the tag no longer counts against your 10 cost-tracking tags limit, even if you do not disable the tag before running this operation. * If the tag is used with dynamic groups, the rules that contain the tag are no longer evaluated against the tag. After you start this operation, the state of the tag changes to DELETING, and tag removal from resources begins. This process can take up to 48 hours depending on the number of resources that are tagged and the regions in which those resources reside. When all tags have been removed, the state changes to DELETED. You cannot restore a deleted tag. After the tag state changes to DELETED, you can use the same tag name again. After you start this operation, you cannot start either the `DeleteTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/DeleteTag>`_ or the `CascadeDeleteTagNamespace <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/TagNamespace/CascadeDeleteTagNamespace>`_ operation until this process completes. In order to delete tags, you must first retire the tags. Use `UpdateTag <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Tag/UpdateTag>`_ to retire a tag.
+- For *action=bulk_edit*, edits the specified list of tag key definitions for the selected resources. This operation triggers a process that edits the tags on all selected resources. The possible actions are: * Add a defined tag when the tag does not already exist on the resource. * Update the value for a defined tag when the tag is present on the resource. * Add a defined tag when it does not already exist on the resource or update the value for a defined tag when the tag is present on the resource. * Remove a defined tag from a resource. The tag is removed from the resource regardless of the tag value. See `BulkEditOperationDetails <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/datatypes/BulkEditOperationDetails>`_ for more information. The edits can include a combination of operations and tag sets. However, multiple operations cannot apply to one key definition in the same request. For example, if one request adds `tag set-1` to a resource and sets a tag value to `tag set-2`, `tag set-1` and `tag set-2` cannot have any common tag definitions.
 
 
 .. Aliases
@@ -68,12 +69,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -84,6 +85,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>bulk_delete</li>
+                                                                                                                                                                                                <li>bulk_edit</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -91,7 +93,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -102,11 +104,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -121,7 +123,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -136,7 +138,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -151,7 +153,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -171,7 +173,79 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-bulk_edit_operations"></div>
+                    <b>bulk_edit_operations</b>
+                    <a class="ansibleOptionLink" href="#parameter-bulk_edit_operations" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The operations associated with the request to bulk edit tags.</div>
+                                            <div>Required for <em>action=bulk_edit</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-bulk_edit_operations/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-bulk_edit_operations/defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-bulk_edit_operations/operation_type"></div>
+                    <b>operation_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-bulk_edit_operations/operation_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ADD_WHERE_ABSENT</li>
+                                                                                                                                                                                                <li>SET_WHERE_PRESENT</li>
+                                                                                                                                                                                                <li>ADD_OR_SET</li>
+                                                                                                                                                                                                <li>REMOVE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>An enum-like description of the type of operation.</div>
+                                            <div>* `ADD_WHERE_ABSENT` adds a defined tag only if the tag does not already exist on the resource. * `SET_WHERE_PRESENT` updates the value for a defined tag only if the tag is present on the resource. * `ADD_OR_SET` combines the first two operations to add a defined tag if it does not already exist on the resource or update the value for a defined tag only if the tag is present on the resource. * `REMOVE` removes the defined tag from the resource. The tag is removed from the resource regardless of the tag value.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compartment where the bulk tag edit request is submitted.</div>
+                                            <div>Required for <em>action=bulk_edit</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -186,7 +260,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -201,7 +275,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -216,22 +290,88 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-resources"></div>
+                    <b>resources</b>
+                    <a class="ansibleOptionLink" href="#parameter-resources" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The resources to be updated.</div>
+                                            <div>Required for <em>action=bulk_edit</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-resources/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-resources/id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The unique OCID of the resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-resources/metadata"></div>
+                    <b>metadata</b>
+                    <a class="ansibleOptionLink" href="#parameter-resources/metadata" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Additional information that identifies the resource for bulk editing of tags. This information is provided in the resource&#x27;s API documentation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-resources/resource_type"></div>
+                    <b>resource_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-resources/resource_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The type of resource. See <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/latest/Tags/BulkEditResourceTypes'>BulkEditResourceTypes</a>.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tag_definition_ids"></div>
                     <b>tag_definition_ids</b>
                     <a class="ansibleOptionLink" href="#parameter-tag_definition_ids" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCIDs of the tag definitions to delete</div>
+                                            <div>Required for <em>action=bulk_delete</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -246,7 +386,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -265,7 +405,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -308,6 +448,17 @@ Examples
         - ocid1.tagdefinition.oc1..unique_ID_2
         - ocid1.tagdefinition.oc1..unique_ID_3
         action: bulk_delete
+
+    - name: Perform action bulk_edit on tag
+      oci_identity_tag_actions:
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        resources:
+        - id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+          resource_type: resource_type_example
+        bulk_edit_operations:
+        - operation_type: ADD_WHERE_ABSENT
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+        action: bulk_edit
 
 
 

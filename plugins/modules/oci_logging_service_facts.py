@@ -23,7 +23,7 @@ module: oci_logging_service_facts
 short_description: Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
-    - Lists all services supporting logging.
+    - Lists all services that support logging.
 version_added: "2.9"
 author: Oracle (@oracle)
 options: {}
@@ -51,13 +51,13 @@ services:
             sample: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
         namespace:
             description:
-                - Apollo project namespace if any.
+                - Apollo project namespace, if any.
             returned: on success
             type: string
             sample: namespace_example
         service_principal_name:
             description:
-                - Service id as set in Service Principal.
+                - Service ID as set in Service Principal.
             returned: on success
             type: string
             sample: service_principal_name_example
@@ -69,19 +69,19 @@ services:
             sample: endpoint_example
         name:
             description:
-                - User friendly service name.
+                - User-friendly service name.
             returned: on success
             type: string
             sample: name_example
         id:
             description:
-                - Service id.
+                - Service ID.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         resource_types:
             description:
-                - Type of Resource that a Service provides.
+                - Type of resource that a service provides.
             returned: on success
             type: complex
             contains:
@@ -93,25 +93,25 @@ services:
                     sample: name_example
                 categories:
                     description:
-                        - categories for resources.
+                        - Categories for resources.
                     returned: on success
                     type: complex
                     contains:
                         name:
                             description:
-                                - Category name
+                                - Category name.
                             returned: on success
                             type: string
                             sample: name_example
                         display_name:
                             description:
-                                - Category display name
+                                - Category display name.
                             returned: on success
                             type: string
                             sample: display_name_example
                         parameters:
                             description:
-                                - Parameters category supports.
+                                - Parameters the category supports.
                             returned: on success
                             type: complex
                             contains:
@@ -129,7 +129,7 @@ services:
                                     sample: integer
                                 pattern:
                                     description:
-                                        - Java regex pattern to validate parameter value.
+                                        - Java regex pattern to validate a parameter value.
                                     returned: on success
                                     type: string
                                     sample: pattern_example

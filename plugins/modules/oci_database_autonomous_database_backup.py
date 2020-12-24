@@ -136,6 +136,18 @@ autonomous_database_backup:
             returned: on success
             type: bool
             sample: true
+        key_store_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+            returned: on success
+            type: string
+            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+        key_store_wallet_name:
+            description:
+                - The wallet name for Oracle Key Vault.
+            returned: on success
+            type: string
+            sample: key_store_wallet_name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -148,7 +160,9 @@ autonomous_database_backup:
         "lifecycle_details": "lifecycle_details_example",
         "database_size_in_tbs": 10,
         "lifecycle_state": "CREATING",
-        "is_restorable": true
+        "is_restorable": true,
+        "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_store_wallet_name": "key_store_wallet_name_example"
     }
 """
 

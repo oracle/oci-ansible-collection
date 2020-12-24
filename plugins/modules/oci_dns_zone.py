@@ -457,9 +457,20 @@ class ZoneHelperGen(OCIResourceHelperBase):
         return self.client.get_zone
 
     def get_resource(self):
+        optional_params = [
+            "scope",
+            "view_id",
+            "compartment_id",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_zone,
             zone_name_or_id=self.module.params.get("zone_name_or_id"),
+            **optional_kwargs
         )
 
     def get_required_kwargs_for_list(self):
@@ -499,14 +510,22 @@ class ZoneHelperGen(OCIResourceHelperBase):
 
     def create_resource(self):
         create_details = self.get_create_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_zone,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 create_zone_details=create_details,
                 compartment_id=self.module.params.get("compartment_id"),
-                scope=self.module.params.get("scope"),
                 view_id=self.module.params.get("view_id"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
@@ -522,6 +541,14 @@ class ZoneHelperGen(OCIResourceHelperBase):
 
     def update_resource(self):
         update_details = self.get_update_model()
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.update_zone,
             call_fn_args=(),
@@ -529,9 +556,9 @@ class ZoneHelperGen(OCIResourceHelperBase):
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 update_zone_details=update_details,
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
                 view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -543,15 +570,23 @@ class ZoneHelperGen(OCIResourceHelperBase):
         )
 
     def delete_resource(self):
+        optional_enum_params = [
+            "scope",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_zone,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 zone_name_or_id=self.module.params.get("zone_name_or_id"),
                 if_unmodified_since=self.module.params.get("if_unmodified_since"),
-                scope=self.module.params.get("scope"),
                 view_id=self.module.params.get("view_id"),
                 compartment_id=self.module.params.get("compartment_id"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,

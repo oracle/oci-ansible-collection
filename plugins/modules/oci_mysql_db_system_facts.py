@@ -40,6 +40,12 @@ options:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to list multiple db_systems.
         type: str
+    is_analytics_cluster_attached:
+        description:
+            - If true, return only DB Systems with an Analytics Cluster attached, if false
+              return only DB Systems with no Analytics Cluster attached. If not
+              present, return all DB Systems.
+        type: bool
     display_name:
         description:
             - A filter to return only the resource matching the given display name exactly.
@@ -132,6 +138,50 @@ db_systems:
             returned: on success
             type: string
             sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        is_analytics_cluster_attached:
+            description:
+                - If the DB System has an Analytics Cluster attached.
+            returned: on success
+            type: bool
+            sample: true
+        analytics_cluster:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                shape_name:
+                    description:
+                        - "The shape determines resources to allocate to the Analytics
+                          Cluster nodes - CPU cores, memory."
+                    returned: on success
+                    type: string
+                    sample: shape_name_example
+                cluster_size:
+                    description:
+                        - The number of analytics-processing compute instances, of the
+                          specified shape, in the Analytics Cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the MySQL Analytics Cluster.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_state_example
+                time_created:
+                    description:
+                        - The date and time the Analytics Cluster was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
+                time_updated:
+                    description:
+                        - The time the Analytics Cluster was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         availability_domain:
             description:
                 - The Availability Domain where the primary DB System should be located.
@@ -318,6 +368,162 @@ db_systems:
                     returned: on success
                     type: string
                     sample: status_details_example
+        channels:
+            description:
+                - A list with a summary of all the Channels attached to the DB System.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The OCID of the Channel.
+                    returned: on success
+                    type: string
+                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                compartment_id:
+                    description:
+                        - The OCID of the compartment.
+                    returned: on success
+                    type: string
+                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                is_enabled:
+                    description:
+                        - Whether the Channel has been enabled by the user.
+                    returned: on success
+                    type: bool
+                    sample: true
+                source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        source_type:
+                            description:
+                                - The specific source identifier.
+                            returned: on success
+                            type: string
+                            sample: MYSQL
+                        hostname:
+                            description:
+                                - The network address of the MySQL instance.
+                            returned: on success
+                            type: string
+                            sample: hostname_example
+                        port:
+                            description:
+                                - The port the source MySQL instance listens on.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        username:
+                            description:
+                                - The name of the replication user on the source MySQL instance.
+                                  The username has a maximum length of 96 characters. For more information,
+                                  please see the L(MySQL documentation,https://dev.mysql.com/doc/refman/8.0/en/change-master-to.html)
+                            returned: on success
+                            type: string
+                            sample: username_example
+                        ssl_mode:
+                            description:
+                                - The SSL mode of the Channel.
+                            returned: on success
+                            type: string
+                            sample: VERIFY_IDENTITY
+                        ssl_ca_certificate:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                certificate_type:
+                                    description:
+                                        - The type of CA certificate.
+                                    returned: on success
+                                    type: string
+                                    sample: PEM
+                                contents:
+                                    description:
+                                        - The string containing the CA certificate in PEM format.
+                                    returned: on success
+                                    type: string
+                                    sample: contents_example
+                target:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        target_type:
+                            description:
+                                - The specific target identifier.
+                            returned: on success
+                            type: string
+                            sample: DBSYSTEM
+                        db_system_id:
+                            description:
+                                - The OCID of the source DB System.
+                            returned: on success
+                            type: string
+                            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                        channel_name:
+                            description:
+                                - The case-insensitive name that identifies the replication channel. Channel names
+                                  must follow the rules defined for L(MySQL identifiers,https://dev.mysql.com/doc/refman/8.0/en/identifiers.html).
+                                  The names of non-Deleted Channels must be unique for each DB System.
+                            returned: on success
+                            type: string
+                            sample: channel_name_example
+                        applier_username:
+                            description:
+                                - The username for the replication applier of the target MySQL DB System.
+                            returned: on success
+                            type: string
+                            sample: applier_username_example
+                lifecycle_state:
+                    description:
+                        - The state of the Channel.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_state_example
+                lifecycle_details:
+                    description:
+                        - A message describing the state of the Channel.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_details_example
+                display_name:
+                    description:
+                        - The user-friendly name for the Channel. It does not have to be unique.
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                time_created:
+                    description:
+                        - The date and time the Channel was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
+                time_updated:
+                    description:
+                        - The time the Channel was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
+                freeform_tags:
+                    description:
+                        - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                          Example: `{\\"bar-key\\": \\"value\\"}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Department': 'Finance'}
+                defined_tags:
+                    description:
+                        - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+                          Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Operations': {'CostCenter': 'US'}}
         lifecycle_state:
             description:
                 - The current state of the DB System.
@@ -360,14 +566,14 @@ db_systems:
             sample: 2013-10-20T19:20:30+01:00
         freeform_tags:
             description:
-                - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
                   Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
@@ -378,6 +584,14 @@ db_systems:
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_analytics_cluster_attached": true,
+        "analytics_cluster": {
+            "shape_name": "shape_name_example",
+            "cluster_size": 56,
+            "lifecycle_state": "lifecycle_state_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
+        },
         "availability_domain": "Uocm:PHX-AD-1",
         "fault_domain": "fault_domain_example",
         "shape_name": "shape_name_example",
@@ -407,6 +621,35 @@ db_systems:
             "modes": [],
             "status": "ACTIVE",
             "status_details": "status_details_example"
+        }],
+        "channels": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "is_enabled": true,
+            "source": {
+                "source_type": "MYSQL",
+                "hostname": "hostname_example",
+                "port": 56,
+                "username": "username_example",
+                "ssl_mode": "VERIFY_IDENTITY",
+                "ssl_ca_certificate": {
+                    "certificate_type": "PEM",
+                    "contents": "contents_example"
+                }
+            },
+            "target": {
+                "target_type": "DBSYSTEM",
+                "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+                "channel_name": "channel_name_example",
+                "applier_username": "applier_username_example"
+            },
+            "lifecycle_state": "lifecycle_state_example",
+            "lifecycle_details": "lifecycle_details_example",
+            "display_name": "display_name_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "freeform_tags": {'Department': 'Finance'},
+            "defined_tags": {'Operations': {'CostCenter': 'US'}}
         }],
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
@@ -456,6 +699,7 @@ class MysqlDbSystemFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "is_analytics_cluster_attached",
             "db_system_id",
             "display_name",
             "lifecycle_state",
@@ -489,6 +733,7 @@ def main():
         dict(
             db_system_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            is_analytics_cluster_attached=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",

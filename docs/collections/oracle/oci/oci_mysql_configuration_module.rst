@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_configuration -- Manage a Configuration resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -84,7 +84,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -230,7 +230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -299,7 +299,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -413,7 +413,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -449,7 +448,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;binlog_expire_logs_seconds&quot;)</div>
+                                            <div>(&quot;binlog_expire_logs_seconds&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -559,7 +558,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;generated_random_password_length&quot;)</div>
+                                            <div>(&quot;generated_random_password_length&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -875,7 +874,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Set the default compression level for the zstd algorithm. (&quot;mysqlx_zstd_default_compression_level&quot;)</div>
+                                            <div>DEPRECATED -- typo of mysqlx_zstd_default_compression_level. variable will be ignored.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -891,7 +890,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_connect_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_connect_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -939,7 +938,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_document_id_unique_prefix&quot;)</div>
+                                            <div>(&quot;mysqlx_document_id_unique_prefix&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -959,7 +958,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_enable_hello_notice&quot;)</div>
+                                            <div>(&quot;mysqlx_enable_hello_notice&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -975,7 +974,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_idle_worker_thread_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_idle_worker_thread_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -991,7 +990,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_interactive_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_interactive_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1039,7 +1038,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_max_allowed_packet&quot;)</div>
+                                            <div>(&quot;mysqlx_max_allowed_packet&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1055,7 +1054,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_min_worker_threads&quot;)</div>
+                                            <div>(&quot;mysqlx_min_worker_threads&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1071,7 +1070,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_read_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_read_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1087,7 +1086,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_wait_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_wait_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1103,7 +1102,23 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;mysqlx_write_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_write_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-variables/mysqlx_zstd_default_compression_level"></div>
+                    <b>mysqlx_zstd_default_compression_level</b>
+                    <a class="ansibleOptionLink" href="#parameter-variables/mysqlx_zstd_default_compression_level" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Set the default compression level for the zstd algorithm. (&quot;mysqlx_zstd_default_compression_level&quot;)</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1151,7 +1166,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;query_alloc_block_size&quot;)</div>
+                                            <div>(&quot;query_alloc_block_size&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1167,7 +1182,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>(&quot;query_prealloc_size&quot;)</div>
+                                            <div>(&quot;query_prealloc_size&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1240,6 +1255,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>READ-UNCOMMITTED</li>
                                                                                                                                                                                                 <li>READ-COMMITED</li>
+                                                                                                                                                                                                <li>READ-COMMITTED</li>
                                                                                                                                                                                                 <li>REPEATABLE-READ</li>
                                                                                                                                                                                                 <li>SERIALIZABLE</li>
                                                                                     </ul>
@@ -1370,7 +1386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Configuration resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;parent_configuration_id&#x27;: &#x27;ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DEFAULT&#x27;, &#x27;variables&#x27;: {&#x27;autocommit&#x27;: True, &#x27;binlog_expire_logs_seconds&#x27;: 56, &#x27;completion_type&#x27;: &#x27;NO_CHAIN&#x27;, &#x27;connect_timeout&#x27;: 56, &#x27;cte_max_recursion_depth&#x27;: 56, &#x27;default_authentication_plugin&#x27;: &#x27;mysql_native_password&#x27;, &#x27;foreign_key_checks&#x27;: True, &#x27;generated_random_password_length&#x27;: 56, &#x27;information_schema_stats_expiry&#x27;: 56, &#x27;innodb_buffer_pool_instances&#x27;: 56, &#x27;innodb_buffer_pool_size&#x27;: 56, &#x27;innodb_ft_enable_stopword&#x27;: True, &#x27;innodb_ft_max_token_size&#x27;: 56, &#x27;innodb_ft_min_token_size&#x27;: 56, &#x27;innodb_ft_num_word_optimize&#x27;: 56, &#x27;innodb_ft_result_cache_limit&#x27;: 56, &#x27;innodb_ft_server_stopword_table&#x27;: &#x27;innodb_ft_server_stopword_table_example&#x27;, &#x27;innodb_lock_wait_timeout&#x27;: 56, &#x27;innodb_max_purge_lag&#x27;: 56, &#x27;innodb_max_purge_lag_delay&#x27;: 56, &#x27;local_infile&#x27;: True, &#x27;mandatory_roles&#x27;: &#x27;mandatory_roles_example&#x27;, &#x27;max_connections&#x27;: 56, &#x27;max_execution_time&#x27;: 56, &#x27;max_prepared_stmt_count&#x27;: 56, &#x27;mysql_firewall_mode&#x27;: True, &#x27;mysql_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_connect_timeout&#x27;: 56, &#x27;mysqlx_deflate_default_compression_level&#x27;: 56, &#x27;mysqlx_deflate_max_client_compression_level&#x27;: 56, &#x27;mysqlx_document_id_unique_prefix&#x27;: 56, &#x27;mysqlx_enable_hello_notice&#x27;: True, &#x27;mysqlx_idle_worker_thread_timeout&#x27;: 56, &#x27;mysqlx_interactive_timeout&#x27;: 56, &#x27;mysqlx_lz4_default_compression_level&#x27;: 56, &#x27;mysqlx_lz4_max_client_compression_level&#x27;: 56, &#x27;mysqlx_max_allowed_packet&#x27;: 56, &#x27;mysqlx_min_worker_threads&#x27;: 56, &#x27;mysqlx_read_timeout&#x27;: 56, &#x27;mysqlx_wait_timeout&#x27;: 56, &#x27;mysqlx_write_timeout&#x27;: 56, &#x27;mysqlx_zstd_max_client_compression_level&#x27;: 56, &#x27;parser_max_mem_size&#x27;: 56, &#x27;query_alloc_block_size&#x27;: 56, &#x27;query_prealloc_size&#x27;: 56, &#x27;sql_mode&#x27;: &#x27;sql_mode_example&#x27;, &#x27;sql_require_primary_key&#x27;: True, &#x27;sql_warnings&#x27;: True, &#x27;transaction_isolation&#x27;: &#x27;READ-UNCOMMITTED&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;parent_configuration_id&#x27;: &#x27;ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DEFAULT&#x27;, &#x27;variables&#x27;: {&#x27;autocommit&#x27;: True, &#x27;binlog_expire_logs_seconds&#x27;: 56, &#x27;completion_type&#x27;: &#x27;NO_CHAIN&#x27;, &#x27;connect_timeout&#x27;: 56, &#x27;cte_max_recursion_depth&#x27;: 56, &#x27;default_authentication_plugin&#x27;: &#x27;mysql_native_password&#x27;, &#x27;foreign_key_checks&#x27;: True, &#x27;generated_random_password_length&#x27;: 56, &#x27;information_schema_stats_expiry&#x27;: 56, &#x27;innodb_buffer_pool_instances&#x27;: 56, &#x27;innodb_buffer_pool_size&#x27;: 56, &#x27;innodb_ft_enable_stopword&#x27;: True, &#x27;innodb_ft_max_token_size&#x27;: 56, &#x27;innodb_ft_min_token_size&#x27;: 56, &#x27;innodb_ft_num_word_optimize&#x27;: 56, &#x27;innodb_ft_result_cache_limit&#x27;: 56, &#x27;innodb_ft_server_stopword_table&#x27;: &#x27;innodb_ft_server_stopword_table_example&#x27;, &#x27;innodb_lock_wait_timeout&#x27;: 56, &#x27;innodb_max_purge_lag&#x27;: 56, &#x27;innodb_max_purge_lag_delay&#x27;: 56, &#x27;local_infile&#x27;: True, &#x27;mandatory_roles&#x27;: &#x27;mandatory_roles_example&#x27;, &#x27;max_connections&#x27;: 56, &#x27;max_execution_time&#x27;: 56, &#x27;max_prepared_stmt_count&#x27;: 56, &#x27;mysql_firewall_mode&#x27;: True, &#x27;mysql_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_connect_timeout&#x27;: 56, &#x27;mysqlx_deflate_default_compression_level&#x27;: 56, &#x27;mysqlx_deflate_max_client_compression_level&#x27;: 56, &#x27;mysqlx_document_id_unique_prefix&#x27;: 56, &#x27;mysqlx_enable_hello_notice&#x27;: True, &#x27;mysqlx_idle_worker_thread_timeout&#x27;: 56, &#x27;mysqlx_interactive_timeout&#x27;: 56, &#x27;mysqlx_lz4_default_compression_level&#x27;: 56, &#x27;mysqlx_lz4_max_client_compression_level&#x27;: 56, &#x27;mysqlx_max_allowed_packet&#x27;: 56, &#x27;mysqlx_min_worker_threads&#x27;: 56, &#x27;mysqlx_read_timeout&#x27;: 56, &#x27;mysqlx_wait_timeout&#x27;: 56, &#x27;mysqlx_write_timeout&#x27;: 56, &#x27;mysqlx_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_zstd_max_client_compression_level&#x27;: 56, &#x27;parser_max_mem_size&#x27;: 56, &#x27;query_alloc_block_size&#x27;: 56, &#x27;query_prealloc_size&#x27;: 56, &#x27;sql_mode&#x27;: &#x27;sql_mode_example&#x27;, &#x27;sql_require_primary_key&#x27;: True, &#x27;sql_warnings&#x27;: True, &#x27;transaction_isolation&#x27;: &#x27;READ-UNCOMMITTED&#x27;}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1403,7 +1419,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -1457,7 +1473,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -1637,7 +1653,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;binlog_expire_logs_seconds&quot;)</div>
+                                            <div>(&quot;binlog_expire_logs_seconds&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1751,7 +1767,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;generated_random_password_length&quot;)</div>
+                                            <div>(&quot;generated_random_password_length&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2112,7 +2128,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Set the default compression level for the zstd algorithm. (&quot;mysqlx_zstd_default_compression_level&quot;)</div>
+                                            <div>DEPRECATED -- typo of mysqlx_zstd_default_compression_level. variable will be ignored.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2131,7 +2147,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_connect_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_connect_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2188,7 +2204,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_document_id_unique_prefix&quot;)</div>
+                                            <div>(&quot;mysqlx_document_id_unique_prefix&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2207,7 +2223,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_enable_hello_notice&quot;)</div>
+                                            <div>(&quot;mysqlx_enable_hello_notice&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -2226,7 +2242,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_idle_worker_thread_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_idle_worker_thread_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2245,7 +2261,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_interactive_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_interactive_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2302,7 +2318,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_max_allowed_packet&quot;)</div>
+                                            <div>(&quot;mysqlx_max_allowed_packet&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2321,7 +2337,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_min_worker_threads&quot;)</div>
+                                            <div>(&quot;mysqlx_min_worker_threads&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2340,7 +2356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_read_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_read_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2359,7 +2375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_wait_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_wait_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2378,7 +2394,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_write_timeout&quot;)</div>
+                                            <div>(&quot;mysqlx_write_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configuration/variables/mysqlx_zstd_default_compression_level"></div>
+                    <b>mysqlx_zstd_default_compression_level</b>
+                    <a class="ansibleOptionLink" href="#return-configuration/variables/mysqlx_zstd_default_compression_level" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Set the default compression level for the zstd algorithm. (&quot;mysqlx_zstd_default_compression_level&quot;)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2435,7 +2470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;query_alloc_block_size&quot;)</div>
+                                            <div>(&quot;query_alloc_block_size&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2454,7 +2489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;query_prealloc_size&quot;)</div>
+                                            <div>(&quot;query_prealloc_size&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

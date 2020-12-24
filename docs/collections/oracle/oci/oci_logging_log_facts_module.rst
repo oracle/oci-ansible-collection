@@ -20,7 +20,7 @@ oracle.oci.oci_logging_log_facts -- Fetches details about one or multiple Log re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -85,7 +85,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -270,7 +270,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The logType that the log object is for, custom or service.</div>
+                                            <div>The logType that the log object is for, whether custom or service.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -323,7 +323,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;</div>
+                                            <div>The sort order to use, whether &#x27;asc&#x27; or &#x27;desc&#x27;.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -338,7 +338,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Log object resource</div>
+                                            <div>Log object resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -353,7 +353,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Service created the log object</div>
+                                            <div>Service that created the log object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -640,7 +640,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source of the log. * **OCISERVICE:** Oracle Service.</div>
+                                            <div>The log source. * **OCISERVICE:** Oracle Service.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OCISERVICE</div>
@@ -679,7 +679,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The display name of a user-friendly name. It has to be unique within enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>The user-friendly display name. This must be unique within the enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -751,7 +751,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of an pipeline.</div>
+                                            <div>The pipeline state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -787,7 +787,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The logType that the log object is for, custom or service.</div>
+                                            <div>The logType that the log object is for, whether custom or service.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOM</div>
@@ -805,7 +805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Log retention duration in days.</div>
+                                            <div>Log retention duration in 30-day increments (30, 60, 90 and so on).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system_actions -- Perform actions on a DbSystem resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -102,7 +102,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -308,7 +308,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DbSystem resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;point_in_time_data_disk_clone_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;source_db_system_id&#x27;: &#x27;ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;point_in_time_data_disk_clone_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;source_db_system_id&#x27;: &#x27;ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -806,6 +806,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/kms_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/last_maintenance_run_id"></div>
                     <b>last_maintenance_run_id</b>
                     <a class="ansibleOptionLink" href="#return-db_system/last_maintenance_run_id" title="Permalink to this return value"></a>
@@ -869,7 +887,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional information about the current lifecycleState.</div>
+                                            <div>Additional information about the current lifecycle state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>

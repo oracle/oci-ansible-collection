@@ -171,7 +171,7 @@ databases:
             sample: db_unique_name_example
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -302,6 +302,12 @@ databases:
                     returned: on success
                     type: dict
                     sample: {}
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -350,6 +356,7 @@ databases:
             "cdb_ip_default": "cdb_ip_default_example",
             "all_connection_strings": {}
         },
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     }]

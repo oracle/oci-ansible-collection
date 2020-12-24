@@ -20,7 +20,7 @@ oracle.oci.oci_database_database -- Manage a Database resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Database resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new database in the specified Database Home. If the database version is provided, it must match the version of the Database Home. Applies to Exadata and Exadata Cloud@Customer systems.
-- This resource has the following action operations in the :ref:`oci_database_actions <ansible_collections.oci_database_actions_module>` module: restore.
+- This resource has the following action operations in the :ref:`oci_database_actions <ansible_collections.oci_database_actions_module>` module: migrate_vault_key, restore, rotate_vault_key.
 
 
 .. Aliases
@@ -85,7 +85,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -634,6 +634,23 @@ Parameters
                                             <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/tde_wallet_password"></div>
+                    <b>tde_wallet_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/tde_wallet_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numeric, and two special characters. The special characters must be _, #, or -.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
                     
                                 <tr>
                                                                 <td colspan="4">
@@ -954,6 +971,84 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-kms_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-kms_key_version_id"></div>
+                    <b>kms_key_version_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-kms_key_version_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-new_admin_password"></div>
+                    <b>new_admin_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-new_admin_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A new strong password for SYS, SYSTEM, and the plugbable database ADMIN user. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numeric, and two special characters. The special characters must be _, #, or -.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-new_tde_wallet_password"></div>
+                    <b>new_tde_wallet_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-new_tde_wallet_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The new password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numeric, and two special characters. The special characters must be _, #, or -.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-old_tde_wallet_password"></div>
+                    <b>old_tde_wallet_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-old_tde_wallet_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The existing TDE wallet password. You must provide the existing password in order to set a new TDE wallet password.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-perform_final_backup"></div>
                     <b>perform_final_backup</b>
                     <a class="ansibleOptionLink" href="#parameter-perform_final_backup" title="Permalink to this option"></a>
@@ -1110,6 +1205,8 @@ Examples
           db_backup_config:
             recovery_window_in_days: 30
             auto_backup_enabled: true
+        kms_key_id: ocid1.key.oc1..unique_ID
+        kms_key_version_id: ocid1.keyversion.oc1..unique_ID
 
     - name: Update database
       oci_database_database:
@@ -1158,7 +1255,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Database resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_TWO&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;vpc_password_example&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;source_database_point_in_time_recovery_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;cdb_default&#x27;: &#x27;cdb_default_example&#x27;, &#x27;cdb_ip_default&#x27;: &#x27;cdb_ip_default_example&#x27;}, &#x27;database_software_image_id&#x27;: &#x27;ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_backup_config&#x27;: {&#x27;auto_backup_enabled&#x27;: True, &#x27;auto_backup_window&#x27;: &#x27;SLOT_TWO&#x27;, &#x27;backup_destination_details&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;internet_proxy&#x27;: &#x27;internet_proxy_example&#x27;, &#x27;type&#x27;: &#x27;NFS&#x27;, &#x27;vpc_password&#x27;: &#x27;vpc_password_example&#x27;, &#x27;vpc_user&#x27;: &#x27;vpc_user_example&#x27;}], &#x27;recovery_window_in_days&#x27;: 56}, &#x27;db_home_id&#x27;: &#x27;ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;db_workload&#x27;: &#x27;db_workload_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_backup_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;source_database_point_in_time_recovery_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1628,6 +1725,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#return-database/kms_key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database/last_backup_timestamp"></div>
                     <b>last_backup_timestamp</b>
                     <a class="ansibleOptionLink" href="#return-database/last_backup_timestamp" title="Permalink to this return value"></a>
@@ -1655,7 +1770,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional information about the current lifecycleState.</div>
+                                            <div>Additional information about the current lifecycle state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>

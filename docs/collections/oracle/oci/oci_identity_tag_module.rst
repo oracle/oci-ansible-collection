@@ -20,7 +20,7 @@ oracle.oci.oci_identity_tag -- Manage a Tag resource in Oracle Cloud Infrastruct
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -49,7 +49,7 @@ Synopsis
 - The tag must have a *description*. It does not have to be unique, and you can change it with `UpdateTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/Tag/UpdateTag>`_.
 - The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.
 - * If no `validator` is set, the user applying the tag to a resource can type in a static value or leave the tag value empty. * If a `validator` is set, the user applying the tag to a resource must select from a list of values that you supply with `EnumTagDefinitionValidator <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator>`_.
-- This resource has the following action operations in the :ref:`oci_tag_actions <ansible_collections.oci_tag_actions_module>` module: bulk_delete.
+- This resource has the following action operations in the :ref:`oci_tag_actions <ansible_collections.oci_tag_actions_module>` module: bulk_delete, bulk_edit.
 
 
 .. Aliases
@@ -90,7 +90,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>

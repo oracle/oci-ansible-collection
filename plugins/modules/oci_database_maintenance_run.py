@@ -110,7 +110,7 @@ maintenance_run:
             sample: SCHEDULED
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example

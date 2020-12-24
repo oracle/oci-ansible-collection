@@ -196,6 +196,15 @@ options:
             - This parameter is updatable.
         type: int
         aliases: ["initial_data_storage_size_in_gb"]
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+        type: str
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+        type: str
     node_count:
         description:
             - The number of nodes to launch for a 2-node RAC virtual machine DB system. Specify either 1 or 2.
@@ -285,6 +294,12 @@ options:
                               uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
                         type: str
                         required: true
+                    tde_wallet_password:
+                        description:
+                            - "The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase,
+                              two lowercase, two numeric, and two special characters. The special characters must be _, #, or -."
+                            - Applicable when source is 'NONE'
+                        type: str
                     character_set:
                         description:
                             - "The character set for the database.  The default is AL32UTF8. Allowed values are:"
@@ -855,6 +870,12 @@ db_system:
             returned: on success
             type: string
             sample: domain_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
         version:
             description:
                 - The Oracle Database version of the DB system.
@@ -915,7 +936,7 @@ db_system:
             sample: 2013-10-20T19:20:30+01:00
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -1115,6 +1136,7 @@ db_system:
         "time_zone": "time_zone_example",
         "hostname": "hostname_example",
         "domain": "domain_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "version": "version_example",
         "cpu_core_count": 56,
         "cluster_name": "cluster_name_example",
@@ -1321,6 +1343,8 @@ def main():
             data_storage_size_in_gbs=dict(
                 aliases=["initial_data_storage_size_in_gb"], type="int"
             ),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
             node_count=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
@@ -1345,6 +1369,7 @@ def main():
                             database_software_image_id=dict(type="str"),
                             pdb_name=dict(type="str"),
                             admin_password=dict(type="str", required=True, no_log=True),
+                            tde_wallet_password=dict(type="str", no_log=True),
                             character_set=dict(type="str"),
                             ncharacter_set=dict(type="str"),
                             db_workload=dict(type="str", choices=["OLTP", "DSS"]),

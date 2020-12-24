@@ -23,8 +23,8 @@ module: oci_logging_log_group
 short_description: Manage a LogGroup resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a LogGroup resource in Oracle Cloud Infrastructure
-    - For I(state=present), create new log group with unique display name. This call fails
-      if log group is already created with same displayName in the compartment.
+    - For I(state=present), create a new log group with a unique display name. This call fails
+      if the log group is already created with the same displayName in the compartment.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -37,7 +37,7 @@ options:
         type: str
     display_name:
         description:
-            - The display name of a user-friendly name. It has to be unique within enclosing resource,
+            - The user-friendly display name. This must be unique within the enclosing resource,
               and it's changeable. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -137,7 +137,7 @@ log_group:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
@@ -150,7 +150,7 @@ log_group:
             sample: description_example
         lifecycle_state:
             description:
-                - The state of the log group object.
+                - The log group object state.
             returned: on success
             type: string
             sample: CREATING

@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_db_system_actions -- Perform actions on a DbSystem resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -106,7 +106,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_OCID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
+                                            <div>The OCID of the user, on whose behalf, OCI APIs are invoked. If not set, then the value of the OCI_USER_ID environment variable, if any, is used. This option is required if the user is not specified through a configuration file (See <code>config_file_location</code>). To get the user&#x27;s OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -361,12 +361,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="5">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-db_system"></div>
                     <b>db_system</b>
                     <a class="ansibleOptionLink" href="#return-db_system" title="Permalink to this return value"></a>
@@ -379,12 +379,124 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DbSystem resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_enabled&#x27;: True, &#x27;retention_in_days&#x27;: 56, &#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_id&#x27;: &#x27;ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoints&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;modes&#x27;: [], &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;}], &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance&#x27;: {&#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;source&#x27;: {&#x27;backup_id&#x27;: &#x27;ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;NONE&#x27;}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;analytics_cluster&#x27;: {&#x27;cluster_size&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_enabled&#x27;: True, &#x27;retention_in_days&#x27;: 56, &#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;channels&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;source&#x27;: {&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;port&#x27;: 56, &#x27;source_type&#x27;: &#x27;MYSQL&#x27;, &#x27;ssl_ca_certificate&#x27;: {&#x27;certificate_type&#x27;: &#x27;PEM&#x27;, &#x27;contents&#x27;: &#x27;contents_example&#x27;}, &#x27;ssl_mode&#x27;: &#x27;VERIFY_IDENTITY&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target&#x27;: {&#x27;applier_username&#x27;: &#x27;applier_username_example&#x27;, &#x27;channel_name&#x27;: &#x27;channel_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;DBSYSTEM&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_id&#x27;: &#x27;ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoints&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;modes&#x27;: [], &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;}], &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_analytics_cluster_attached&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance&#x27;: {&#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;source&#x27;: {&#x27;backup_id&#x27;: &#x27;ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;NONE&#x27;}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/analytics_cluster"></div>
+                    <b>analytics_cluster</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/analytics_cluster" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/analytics_cluster/cluster_size"></div>
+                    <b>cluster_size</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/analytics_cluster/cluster_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of analytics-processing compute instances, of the specified shape, in the Analytics Cluster.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/analytics_cluster/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/analytics_cluster/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the MySQL Analytics Cluster.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/analytics_cluster/shape_name"></div>
+                    <b>shape_name</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/analytics_cluster/shape_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The shape determines resources to allocate to the Analytics Cluster nodes - CPU cores, memory.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/analytics_cluster/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/analytics_cluster/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the Analytics Cluster was created, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/analytics_cluster/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/analytics_cluster/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the Analytics Cluster was last updated, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-db_system/availability_domain" title="Permalink to this return value"></a>
@@ -402,7 +514,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/backup_policy"></div>
                     <b>backup_policy</b>
                     <a class="ansibleOptionLink" href="#return-db_system/backup_policy" title="Permalink to this return value"></a>
@@ -419,7 +531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/backup_policy/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-db_system/backup_policy/defined_tags" title="Permalink to this return value"></a>
@@ -440,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/backup_policy/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-db_system/backup_policy/freeform_tags" title="Permalink to this return value"></a>
@@ -461,7 +573,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/backup_policy/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-db_system/backup_policy/is_enabled" title="Permalink to this return value"></a>
@@ -480,7 +592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/backup_policy/retention_in_days"></div>
                     <b>retention_in_days</b>
                     <a class="ansibleOptionLink" href="#return-db_system/backup_policy/retention_in_days" title="Permalink to this return value"></a>
@@ -499,7 +611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/backup_policy/window_start_time"></div>
                     <b>window_start_time</b>
                     <a class="ansibleOptionLink" href="#return-db_system/backup_policy/window_start_time" title="Permalink to this return value"></a>
@@ -521,7 +633,491 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels"></div>
+                    <b>channels</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list with a summary of all the Channels attached to the DB System.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the compartment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The user-friendly name for the Channel. It does not have to be unique.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the Channel.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/is_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the Channel has been enabled by the user.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/lifecycle_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message describing the state of the Channel.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The state of the Channel.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/hostname"></div>
+                    <b>hostname</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/hostname" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The network address of the MySQL instance.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hostname_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The port the source MySQL instance listens on.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/source_type"></div>
+                    <b>source_type</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/source_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The specific source identifier.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MYSQL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/ssl_ca_certificate"></div>
+                    <b>ssl_ca_certificate</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/ssl_ca_certificate" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/ssl_ca_certificate/certificate_type"></div>
+                    <b>certificate_type</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/ssl_ca_certificate/certificate_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of CA certificate.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PEM</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/ssl_ca_certificate/contents"></div>
+                    <b>contents</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/ssl_ca_certificate/contents" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The string containing the CA certificate in PEM format.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">contents_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/ssl_mode"></div>
+                    <b>ssl_mode</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/ssl_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The SSL mode of the Channel.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VERIFY_IDENTITY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/source/username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/source/username" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the replication user on the source MySQL instance. The username has a maximum length of 96 characters. For more information, please see the <a href='https://dev.mysql.com/doc/refman/8.0/en/change-master-to.html'>MySQL documentation</a></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">username_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/target"></div>
+                    <b>target</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/target" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/target/applier_username"></div>
+                    <b>applier_username</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/target/applier_username" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The username for the replication applier of the target MySQL DB System.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">applier_username_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/target/channel_name"></div>
+                    <b>channel_name</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/target/channel_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The case-insensitive name that identifies the replication channel. Channel names must follow the rules defined for <a href='https://dev.mysql.com/doc/refman/8.0/en/identifiers.html'>MySQL identifiers</a>. The names of non-Deleted Channels must be unique for each DB System.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">channel_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/target/db_system_id"></div>
+                    <b>db_system_id</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/target/db_system_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the source DB System.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/target/target_type"></div>
+                    <b>target_type</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/target/target_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The specific target identifier.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DBSYSTEM</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the Channel was created, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/channels/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/channels/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the Channel was last updated, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-db_system/compartment_id" title="Permalink to this return value"></a>
@@ -539,7 +1135,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/configuration_id"></div>
                     <b>configuration_id</b>
                     <a class="ansibleOptionLink" href="#return-db_system/configuration_id" title="Permalink to this return value"></a>
@@ -557,7 +1153,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/data_storage_size_in_gbs"></div>
                     <b>data_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-db_system/data_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -575,7 +1171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-db_system/defined_tags" title="Permalink to this return value"></a>
@@ -585,7 +1181,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -593,7 +1189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-db_system/description" title="Permalink to this return value"></a>
@@ -611,7 +1207,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-db_system/display_name" title="Permalink to this return value"></a>
@@ -629,7 +1225,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints"></div>
                     <b>endpoints</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints" title="Permalink to this return value"></a>
@@ -646,7 +1242,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/hostname" title="Permalink to this return value"></a>
@@ -665,7 +1261,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/ip_address"></div>
                     <b>ip_address</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/ip_address" title="Permalink to this return value"></a>
@@ -684,7 +1280,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/modes"></div>
                     <b>modes</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/modes" title="Permalink to this return value"></a>
@@ -701,7 +1297,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/port" title="Permalink to this return value"></a>
@@ -720,7 +1316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/port_x"></div>
                     <b>port_x</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/port_x" title="Permalink to this return value"></a>
@@ -739,7 +1335,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/status" title="Permalink to this return value"></a>
@@ -758,7 +1354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/endpoints/status_details"></div>
                     <b>status_details</b>
                     <a class="ansibleOptionLink" href="#return-db_system/endpoints/status_details" title="Permalink to this return value"></a>
@@ -777,7 +1373,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/fault_domain"></div>
                     <b>fault_domain</b>
                     <a class="ansibleOptionLink" href="#return-db_system/fault_domain" title="Permalink to this return value"></a>
@@ -795,7 +1391,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-db_system/freeform_tags" title="Permalink to this return value"></a>
@@ -805,7 +1401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -813,7 +1409,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/hostname_label"></div>
                     <b>hostname_label</b>
                     <a class="ansibleOptionLink" href="#return-db_system/hostname_label" title="Permalink to this return value"></a>
@@ -831,7 +1427,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-db_system/id" title="Permalink to this return value"></a>
@@ -849,7 +1445,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/ip_address"></div>
                     <b>ip_address</b>
                     <a class="ansibleOptionLink" href="#return-db_system/ip_address" title="Permalink to this return value"></a>
@@ -867,7 +1463,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/is_analytics_cluster_attached"></div>
+                    <b>is_analytics_cluster_attached</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/is_analytics_cluster_attached" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If the DB System has an Analytics Cluster attached.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-db_system/lifecycle_details" title="Permalink to this return value"></a>
@@ -885,7 +1499,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-db_system/lifecycle_state" title="Permalink to this return value"></a>
@@ -903,7 +1517,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/maintenance"></div>
                     <b>maintenance</b>
                     <a class="ansibleOptionLink" href="#return-db_system/maintenance" title="Permalink to this return value"></a>
@@ -920,7 +1534,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/maintenance/window_start_time"></div>
                     <b>window_start_time</b>
                     <a class="ansibleOptionLink" href="#return-db_system/maintenance/window_start_time" title="Permalink to this return value"></a>
@@ -942,7 +1556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/mysql_version"></div>
                     <b>mysql_version</b>
                     <a class="ansibleOptionLink" href="#return-db_system/mysql_version" title="Permalink to this return value"></a>
@@ -960,7 +1574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-db_system/port" title="Permalink to this return value"></a>
@@ -978,7 +1592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/port_x"></div>
                     <b>port_x</b>
                     <a class="ansibleOptionLink" href="#return-db_system/port_x" title="Permalink to this return value"></a>
@@ -996,7 +1610,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/shape_name"></div>
                     <b>shape_name</b>
                     <a class="ansibleOptionLink" href="#return-db_system/shape_name" title="Permalink to this return value"></a>
@@ -1014,7 +1628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/source"></div>
                     <b>source</b>
                     <a class="ansibleOptionLink" href="#return-db_system/source" title="Permalink to this return value"></a>
@@ -1031,7 +1645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/source/backup_id"></div>
                     <b>backup_id</b>
                     <a class="ansibleOptionLink" href="#return-db_system/source/backup_id" title="Permalink to this return value"></a>
@@ -1050,7 +1664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_system/source/source_type"></div>
                     <b>source_type</b>
                     <a class="ansibleOptionLink" href="#return-db_system/source/source_type" title="Permalink to this return value"></a>
@@ -1069,7 +1683,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-db_system/subnet_id" title="Permalink to this return value"></a>
@@ -1087,7 +1701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-db_system/time_created" title="Permalink to this return value"></a>
@@ -1105,7 +1719,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-db_system/time_updated" title="Permalink to this return value"></a>

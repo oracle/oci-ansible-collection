@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - Compartment OCID to list resources in. Please see compartmentIdInSubtree
+            - Compartment OCID to list resources in. See compartmentIdInSubtree
                    for nested compartments traversal.
             - Required to list multiple log_groups.
         type: str
@@ -59,7 +59,7 @@ options:
             - "displayName"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'
+            - The sort order to use, whether 'asc' or 'desc'.
         type: str
         choices:
             - "ASC"
@@ -99,7 +99,7 @@ log_groups:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
@@ -112,7 +112,7 @@ log_groups:
             sample: description_example
         lifecycle_state:
             description:
-                - The state of the log group object.
+                - The log group object state.
             returned: on success
             type: string
             sample: CREATING

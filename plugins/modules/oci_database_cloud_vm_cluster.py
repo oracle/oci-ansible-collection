@@ -99,6 +99,7 @@ options:
             - A domain name used for the cloud VM cluster. If the Oracle-provided internet and VCN
               resolver is enabled for the specified subnet, the domain name for the subnet is used
               (do not provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.
+              Applies to Exadata Cloud Service instances only.
         type: str
     ssh_public_keys:
         description:

@@ -76,6 +76,10 @@ options:
                     - Maximum size of storage used by the table.
                 type: int
                 required: true
+    is_auto_reclaimable:
+        description:
+            - True if table can be reclaimed after an idle period.
+        type: bool
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined
@@ -224,6 +228,20 @@ table:
             returned: on success
             type: string
             sample: CREATING
+        is_auto_reclaimable:
+            description:
+                - True if this table can be reclaimed after an idle period.
+            returned: on success
+            type: bool
+            sample: true
+        time_of_expiration:
+            description:
+                - If lifecycleState is INACTIVE, indicates when
+                  this table will be automatically removed.
+                  An RFC3339 formatted datetime string.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
@@ -306,6 +324,16 @@ table:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Read-only system tag. These predefined keys are scoped to
+                  namespaces.  At present the only supported namespace is
+                  `\\"orcl-cloud\\"`; and the only key in that namespace is
+                  `\\"free-tier-retained\\"`.
+                  Example: `{\\"orcl-cloud\\"\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -318,6 +346,8 @@ table:
             "max_storage_in_g_bs": 56
         },
         "lifecycle_state": "CREATING",
+        "is_auto_reclaimable": true,
+        "time_of_expiration": "2013-10-20T19:20:30+01:00",
         "lifecycle_details": "lifecycle_details_example",
         "schema": {
             "columns": [{
@@ -332,7 +362,8 @@ table:
         },
         "ddl_statement": "ddl_statement_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }
 """
 
@@ -369,9 +400,18 @@ class TableHelperGen(OCIResourceHelperBase):
         return self.client.get_table
 
     def get_resource(self):
+        optional_params = [
+            "compartment_id",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_table,
             table_name_or_id=self.module.params.get("table_name_or_id"),
+            **optional_kwargs
         )
 
     def get_required_kwargs_for_list(self):
@@ -482,6 +522,7 @@ def main():
                     max_storage_in_g_bs=dict(type="int", required=True),
                 ),
             ),
+            is_auto_reclaimable=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             table_name_or_id=dict(aliases=["id"], type="str"),

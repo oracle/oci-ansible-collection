@@ -2,22 +2,27 @@
 
 .. _plugins_in_oracle.oci:
 
-Plugin Index
-============
+Oracle.Oci
+==========
 
-These are the plugins in the oracle.oci collection
+Collection version 2.12.0
 
 .. toctree::
     :maxdepth: 1
 
+Plugin Index
+------------
+
+These are the plugins in the oracle.oci collection
+
 
 Inventory Plugins
------------------
+~~~~~~~~~~~~~~~~~
 
 * :ref:`oci <ansible_collections.oracle.oci.oci_inventory>` -- Oracle Cloud Infrastructure (OCI) inventory plugin
 
 Modules
--------
+~~~~~~~
 
 * :ref:`oci_analytics_instance <ansible_collections.oracle.oci.oci_analytics_instance_module>` -- Manage an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_actions <ansible_collections.oracle.oci.oci_analytics_instance_actions_module>` -- Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
@@ -247,6 +252,8 @@ Modules
 * :ref:`oci_database_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_actions_module>` -- Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_exadata_infrastructure_facts <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_facts_module>` -- Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_gi_version_facts <ansible_collections.oracle.oci.oci_database_gi_version_facts_module>` -- Fetches details about one or multiple GiVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_key_store <ansible_collections.oracle.oci.oci_database_key_store_module>` -- Manage a KeyStore resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_key_store_facts <ansible_collections.oracle.oci.oci_database_key_store_facts_module>` -- Fetches details about one or multiple KeyStore resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run <ansible_collections.oracle.oci.oci_database_maintenance_run_module>` -- Manage a MaintenanceRun resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run_facts <ansible_collections.oracle.oci.oci_database_maintenance_run_facts_module>` -- Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image <ansible_collections.oracle.oci.oci_database_software_image_module>` -- Manage a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
@@ -314,6 +321,7 @@ Modules
 * :ref:`oci_identity_authentication_policy_facts <ansible_collections.oracle.oci.oci_identity_authentication_policy_facts_module>` -- Fetches details about a AuthenticationPolicy resource in Oracle Cloud Infrastructure
 * :ref:`oci_identity_availability_domain_facts <ansible_collections.oracle.oci.oci_identity_availability_domain_facts_module>` -- Fetches details about one or multiple AvailabilityDomain resources in Oracle Cloud Infrastructure
 * :ref:`oci_identity_bulk_action_resource_type_collection_facts <ansible_collections.oracle.oci.oci_identity_bulk_action_resource_type_collection_facts_module>` -- Fetches details about one or multiple BulkActionResourceTypeCollection resources in Oracle Cloud Infrastructure
+* :ref:`oci_identity_bulk_edit_tags_resource_type_collection_facts <ansible_collections.oracle.oci.oci_identity_bulk_edit_tags_resource_type_collection_facts_module>` -- Fetches details about one or multiple BulkEditTagsResourceTypeCollection resources in Oracle Cloud Infrastructure
 * :ref:`oci_identity_compartment <ansible_collections.oracle.oci.oci_identity_compartment_module>` -- Manage a Compartment resource in Oracle Cloud Infrastructure
 * :ref:`oci_identity_compartment_actions <ansible_collections.oracle.oci.oci_identity_compartment_actions_module>` -- Perform actions on a Compartment resource in Oracle Cloud Infrastructure
 * :ref:`oci_identity_compartment_facts <ansible_collections.oracle.oci.oci_identity_compartment_facts_module>` -- Fetches details about one or multiple Compartment resources in Oracle Cloud Infrastructure
@@ -417,11 +425,14 @@ Modules
 * :ref:`oci_logging_log_facts <ansible_collections.oracle.oci.oci_logging_log_facts_module>` -- Fetches details about one or multiple Log resources in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_group <ansible_collections.oracle.oci.oci_logging_log_group_module>` -- Manage a LogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_group_facts <ansible_collections.oracle.oci.oci_logging_log_group_facts_module>` -- Fetches details about one or multiple LogGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_logging_log_saved_search <ansible_collections.oracle.oci.oci_logging_log_saved_search_module>` -- Manage a LogSavedSearch resource in Oracle Cloud Infrastructure
+* :ref:`oci_logging_log_saved_search_facts <ansible_collections.oracle.oci.oci_logging_log_saved_search_facts_module>` -- Fetches details about one or multiple LogSavedSearch resources in Oracle Cloud Infrastructure
 * :ref:`oci_logging_service_facts <ansible_collections.oracle.oci.oci_logging_service_facts_module>` -- Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
 * :ref:`oci_logging_unified_agent_configuration <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_module>` -- Manage an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_unified_agent_configuration_facts <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_facts_module>` -- Fetches details about one or multiple UnifiedAgentConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent <ansible_collections.oracle.oci.oci_management_agent_module>` -- Manage a ManagementAgent resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_actions <ansible_collections.oracle.oci.oci_management_agent_actions_module>` -- Perform actions on a ManagementAgent resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_availability_history_facts <ansible_collections.oracle.oci.oci_management_agent_availability_history_facts_module>` -- Fetches details about one or multiple AvailabilityHistory resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_facts <ansible_collections.oracle.oci.oci_management_agent_facts_module>` -- Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_image_facts <ansible_collections.oracle.oci.oci_management_agent_image_facts_module>` -- Fetches details about one or multiple ManagementAgentImage resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_install_key <ansible_collections.oracle.oci.oci_management_agent_install_key_module>` -- Manage a ManagementAgentInstallKey resource in Oracle Cloud Infrastructure
@@ -446,6 +457,11 @@ Modules
 * :ref:`oci_monitoring_metric_data <ansible_collections.oracle.oci.oci_monitoring_metric_data_module>` -- Manage a MetricData resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_metric_data_actions <ansible_collections.oracle.oci.oci_monitoring_metric_data_actions_module>` -- Perform actions on a MetricData resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_suppression_actions <ansible_collections.oracle.oci.oci_monitoring_suppression_actions_module>` -- Perform actions on a Suppression resource in Oracle Cloud Infrastructure
+* :ref:`oci_mysql_analytics_cluster <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_module>` -- Manage an AnalyticsCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_mysql_analytics_cluster_actions <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_actions_module>` -- Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_mysql_analytics_cluster_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_facts_module>` -- Fetches details about a AnalyticsCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_mysql_analytics_cluster_memory_estimate_actions <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_actions_module>` -- Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
+* :ref:`oci_mysql_analytics_cluster_memory_estimate_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_facts_module>` -- Fetches details about a AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_backup <ansible_collections.oracle.oci.oci_mysql_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_backup_facts <ansible_collections.oracle.oci.oci_mysql_backup_facts_module>` -- Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_configuration <ansible_collections.oracle.oci.oci_mysql_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
@@ -577,6 +593,21 @@ Modules
 * :ref:`oci_ons_subscription_actions <ansible_collections.oracle.oci.oci_ons_subscription_actions_module>` -- Perform actions on a Subscription resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_confirmation_facts <ansible_collections.oracle.oci.oci_ons_subscription_confirmation_facts_module>` -- Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_facts <ansible_collections.oracle.oci.oci_ons_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` -- Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_resource_capacity_trend_facts <ansible_collections.oracle.oci.oci_opsi_resource_capacity_trend_facts_module>` -- Fetches details about a ResourceCapacityTrend resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_resource_forecast_trend_facts <ansible_collections.oracle.oci.oci_opsi_resource_forecast_trend_facts_module>` -- Fetches details about a ResourceForecastTrend resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_resource_statistics_facts <ansible_collections.oracle.oci.oci_opsi_resource_statistics_facts_module>` -- Fetches details about a ResourceStatistics resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_resource_usage_facts <ansible_collections.oracle.oci.oci_opsi_resource_usage_facts_module>` -- Fetches details about a ResourceUsage resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_resource_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_resource_usage_trend_facts_module>` -- Fetches details about a ResourceUsageTrend resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_resource_utilization_insight_facts <ansible_collections.oracle.oci.oci_opsi_resource_utilization_insight_facts_module>` -- Fetches details about a ResourceUtilizationInsight resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_insights_facts <ansible_collections.oracle.oci.oci_opsi_sql_insights_facts_module>` -- Fetches details about a SqlInsights resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_plan_facts <ansible_collections.oracle.oci.oci_opsi_sql_plan_facts_module>` -- Fetches details about one or multiple SqlPlan resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_plan_insights_facts <ansible_collections.oracle.oci.oci_opsi_sql_plan_insights_facts_module>` -- Fetches details about a SqlPlanInsights resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_response_time_distributions_facts <ansible_collections.oracle.oci.oci_opsi_sql_response_time_distributions_facts_module>` -- Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_statistics_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_facts_module>` -- Fetches details about a SqlStatistics resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_statistics_time_series_by_plan_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_time_series_by_plan_facts_module>` -- Fetches details about a SqlStatisticsTimeSeriesByPlan resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_statistics_time_series_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_time_series_facts_module>` -- Fetches details about a SqlStatisticsTimeSeries resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_texts_facts <ansible_collections.oracle.oci.oci_opsi_sql_texts_facts_module>` -- Fetches details about one or multiple SqlTexts resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_available_software_source_facts <ansible_collections.oracle.oci.oci_os_management_available_software_source_facts_module>` -- Fetches details about one or multiple AvailableSoftwareSource resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_available_update_facts <ansible_collections.oracle.oci.oci_os_management_available_update_facts_module>` -- Fetches details about one or multiple AvailableUpdate resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_available_windows_update_facts <ansible_collections.oracle.oci.oci_os_management_available_windows_update_facts_module>` -- Fetches details about one or multiple AvailableWindowsUpdate resources in Oracle Cloud Infrastructure

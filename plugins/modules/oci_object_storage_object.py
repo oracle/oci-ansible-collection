@@ -268,11 +268,23 @@ class ObjectHelperGen(OCIResourceHelperBase):
         return self.client.get_object
 
     def get_resource(self):
+        optional_params = [
+            "version_id",
+            "opc_sse_customer_algorithm",
+            "opc_sse_customer_key",
+            "opc_sse_customer_key_sha256",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_object,
             namespace_name=self.module.params.get("namespace_name"),
             bucket_name=self.module.params.get("bucket_name"),
             object_name=self.module.params.get("object_name"),
+            **optional_kwargs
         )
 
     def get_required_kwargs_for_list(self):

@@ -218,6 +218,10 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
               L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
         type: str
+    key_store_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+        type: str
     autonomous_container_database_id:
         description:
             - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -341,7 +345,7 @@ autonomous_container_database:
             sample: PROVISIONING
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -517,6 +521,18 @@ autonomous_container_database:
                     returned: on success
                     type: int
                     sample: 56
+        key_store_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+            returned: on success
+            type: string
+            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+        key_store_wallet_name:
+            description:
+                - The wallet name for Oracle Key Vault.
+            returned: on success
+            type: string
+            sample: key_store_wallet_name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -560,7 +576,9 @@ autonomous_container_database:
                 "internet_proxy": "internet_proxy_example"
             }],
             "recovery_window_in_days": 56
-        }
+        },
+        "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_store_wallet_name": "key_store_wallet_name_example"
     }
 """
 
@@ -818,6 +836,7 @@ def main():
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
             vault_id=dict(type="str"),
+            key_store_id=dict(type="str"),
             autonomous_container_database_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

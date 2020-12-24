@@ -107,7 +107,7 @@ backups:
             sample: 2013-10-20T19:20:30+01:00
         lifecycle_details:
             description:
-                - Additional information about the current lifecycleState.
+                - Additional information about the current lifecycle state.
             returned: on success
             type: string
             sample: lifecycle_details_example
@@ -147,6 +147,12 @@ backups:
             returned: on success
             type: string
             sample: version_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -161,7 +167,8 @@ backups:
         "database_edition": "STANDARD_EDITION",
         "database_size_in_gbs": 1.2,
         "shape": "shape_example",
-        "version": "version_example"
+        "version": "version_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

@@ -23,8 +23,8 @@ module: oci_logging_log
 short_description: Manage a Log resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Log resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a log within specified log group. This call fails if log group is already created
-      with same displayName or (service, resource, category) triplet.
+    - For I(state=present), creates a log within the specified log group. This call fails if a log group has already been created
+      with the same displayName or (service, resource, category) triplet.
     - "This resource has the following action operations in the M(oci_log_actions) module: change_log_log_group."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -36,7 +36,7 @@ options:
         required: true
     display_name:
         description:
-            - The display name of a user-friendly name. It has to be unique within enclosing resource,
+            - The user-friendly display name. This must be unique within the enclosing resource,
               and it's changeable. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -45,7 +45,7 @@ options:
         aliases: ["name"]
     log_type:
         description:
-            - The logType that the log object is for, custom or service.
+            - The logType that the log object is for, whether custom or service.
             - Required for create using I(state=present).
         type: str
         choices:
@@ -89,7 +89,7 @@ options:
                 suboptions:
                     source_type:
                         description:
-                            - "The source of the log.
+                            - "The log source.
                               * **OCISERVICE:** Oracle Service."
                         type: str
                         choices:
@@ -122,7 +122,7 @@ options:
                         type: bool
     retention_duration:
         description:
-            - Log retention duration in days.
+            - Log retention duration in 30-day increments (30, 60, 90 and so on).
             - This parameter is updatable.
         type: int
     log_id:
@@ -207,14 +207,14 @@ log:
             sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         log_type:
             description:
-                - The logType that the log object is for, custom or service.
+                - The logType that the log object is for, whether custom or service.
             returned: on success
             type: string
             sample: CUSTOM
@@ -261,7 +261,7 @@ log:
                     contains:
                         source_type:
                             description:
-                                - "The source of the log.
+                                - "The log source.
                                   * **OCISERVICE:** Oracle Service."
                             returned: on success
                             type: string
@@ -304,7 +304,7 @@ log:
                             sample: true
         lifecycle_state:
             description:
-                - The state of an pipeline.
+                - The pipeline state.
             returned: on success
             type: string
             sample: CREATING
@@ -322,7 +322,7 @@ log:
             sample: 2013-10-20T19:20:30+01:00
         retention_duration:
             description:
-                - Log retention duration in days.
+                - Log retention duration in 30-day increments (30, 60, 90 and so on).
             returned: on success
             type: int
             sample: 56

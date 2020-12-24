@@ -23,20 +23,20 @@ module: oci_logging_unified_agent_configuration_facts
 short_description: Fetches details about one or multiple UnifiedAgentConfiguration resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple UnifiedAgentConfiguration resources in Oracle Cloud Infrastructure
-    - Lists all unified agent configurations in the specified compartment
+    - Lists all unified agent configurations in the specified compartment.
     - If I(unified_agent_configuration_id) is specified, the details of a single UnifiedAgentConfiguration will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     unified_agent_configuration_id:
         description:
-            - The OCID of the unified agent configuration.
+            - The OCID of the Unified Agent configuration.
             - Required to get a specific unified_agent_configuration.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - Compartment OCID to list resources in. Please see compartmentIdInSubtree
+            - Compartment OCID to list resources in. See compartmentIdInSubtree
                    for nested compartments traversal.
             - Required to list multiple unified_agent_configurations.
         type: str
@@ -78,7 +78,7 @@ options:
             - "displayName"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'
+            - The sort order to use, whether 'asc' or 'desc'.
         type: str
         choices:
             - "ASC"
@@ -118,7 +118,7 @@ unified_agent_configurations:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
@@ -160,7 +160,7 @@ unified_agent_configurations:
             sample: 2013-10-20T19:20:30+01:00
         lifecycle_state:
             description:
-                - The state of an pipeline.
+                - The pipeline state.
             returned: on success
             type: string
             sample: CREATING
@@ -184,7 +184,7 @@ unified_agent_configurations:
             contains:
                 configuration_type:
                     description:
-                        - Type of unified agent service configuration.
+                        - Type of Unified Agent service configuration.
                     returned: on success
                     type: string
                     sample: LOGGING
@@ -202,7 +202,7 @@ unified_agent_configurations:
                             sample: name_example
                         source_type:
                             description:
-                                - unified schema logging source Type
+                                - Unified schema logging source type.
                             returned: on success
                             type: string
                             sample: LOG_TAIL
@@ -226,37 +226,37 @@ unified_agent_configurations:
                             contains:
                                 parser_type:
                                     description:
-                                        - type of fluent parser.
+                                        - Type of fluent parser.
                                     returned: on success
                                     type: string
                                     sample: AUDITD
                                 field_time_key:
                                     description:
-                                        - Specify time field for event time. If the event doesn't have this field, current time is used.
+                                        - Specify time field for the event time. If the event doesn't have this field, the current time is used.
                                     returned: on success
                                     type: string
                                     sample: field_time_key_example
                                 types:
                                     description:
-                                        - Specify types for converting field into other type.
+                                        - Specify types for converting a field into another type.
                                     returned: on success
                                     type: dict
                                     sample: {}
                                 null_value_pattern:
                                     description:
-                                        - Specify null value pattern
+                                        - Specify the null value pattern.
                                     returned: on success
                                     type: string
                                     sample: null_value_pattern_example
                                 is_null_empty_string:
                                     description:
-                                        - If true, empty string field is replaced with nil
+                                        - If true, an empty string field is replaced with nil.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_estimate_current_event:
                                     description:
-                                        - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified
+                                        - If true, use Fluent::EventTime.now(current time) as a timestamp when time_key is specified.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -268,7 +268,7 @@ unified_agent_configurations:
                                     sample: true
                                 timeout_in_milliseconds:
                                     description:
-                                        - Specify timeout for parse processing. This is mainly for detecting wrong regexp pattern.
+                                        - Specify the timeout for parse processing. This is mainly for detecting an incorrect regexp pattern.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -298,31 +298,31 @@ unified_agent_configurations:
                                     contains:
                                         pattern:
                                             description:
-                                                - The grok pattern
+                                                - The grok pattern.
                                             returned: on success
                                             type: string
                                             sample: pattern_example
                                         name:
                                             description:
-                                                - The name key to tag this grok pattern
+                                                - The name key to tag this grok pattern.
                                             returned: on success
                                             type: string
                                             sample: name_example
                                         field_time_key:
                                             description:
-                                                - Specify time field for event time. If the event doesn't have this field, current time is used.
+                                                - Specify the time field for the event time. If the event doesn't have this field, the current time is used.
                                             returned: on success
                                             type: string
                                             sample: field_time_key_example
                                         field_time_format:
                                             description:
-                                                - Process value using specified format. This is available only when time_type is string.
+                                                - Process value using the specified format. This is available only when time_type is a string.
                                             returned: on success
                                             type: string
                                             sample: field_time_format_example
                                         field_time_zone:
                                             description:
-                                                - Use specified timezone. One can parse/format the time value in the specified timezone.
+                                                - Use the specified time zone. The time value can be parsed or formatted in the specified time zone.
                                             returned: on success
                                             type: string
                                             sample: field_time_zone_example
@@ -448,7 +448,7 @@ unified_agent_configurations:
                     sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
                 display_name:
                     description:
-                        - The display name of a user-friendly name. It has to be unique within enclosing resource,
+                        - The user-friendly display name. This must be unique within the enclosing resource,
                           and it's changeable. Avoid entering confidential information.
                     returned: on success
                     type: string
@@ -490,7 +490,7 @@ unified_agent_configurations:
                     sample: 2013-10-20T19:20:30+01:00
                 lifecycle_state:
                     description:
-                        - The state of an pipeline.
+                        - The pipeline state.
                     returned: on success
                     type: string
                     sample: CREATING
@@ -502,7 +502,7 @@ unified_agent_configurations:
                     sample: true
                 configuration_type:
                     description:
-                        - Type of unified agent service configuration.
+                        - Type of Unified Agent service configuration.
                     returned: on success
                     type: string
                     sample: LOGGING

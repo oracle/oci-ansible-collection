@@ -144,6 +144,12 @@ node_pools:
                     returned: on success
                     type: float
                     sample: 3.4
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory available to each node, in gigabytes.
+                    returned: on success
+                    type: float
+                    sample: 3.4
         node_source:
             description:
                 - Deprecated. see `nodeSourceDetails`. Source running on the nodes in the node pool.
@@ -386,7 +392,8 @@ node_pools:
         "node_image_id": "ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa",
         "node_image_name": "Oracle-Linux-7.4",
         "node_shape_config": {
-            "ocpus": 3.4
+            "ocpus": 3.4,
+            "memory_in_gbs": 3.4
         },
         "node_source": {
             "source_type": "IMAGE",

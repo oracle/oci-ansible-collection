@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_.
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -415,6 +415,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-debug"></div>
+                    <b>debug</b>
+                    <a class="ansibleOptionLink" href="#parameter-debug" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>Parameter to enable logs while running the inventory plugin. Default value is set to False</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-enable_parallel_processing"></div>
                     <b>enable_parallel_processing</b>
                     <a class="ansibleOptionLink" href="#parameter-enable_parallel_processing" title="Permalink to this option"></a>
@@ -660,6 +681,9 @@ Examples
     hostnames:
       - "11.145.214.11"
 
+    # Example filtering using hostname_format
+    hostname_format: "private_ip"
+
     # Example group results by key
     keyed_groups:
       - key: availability_domain
@@ -678,6 +702,9 @@ Examples
          "oci:compute:instanceconfiguration": "ocid1.instanceconfiguration.oc1.phx.xxxx",
          "oci:compute:instancepool": "ocid1.instancepool.oc1.phx.xxxx"
         }
+
+    # Example flag to turn on debug mode
+    debug: true
 
     # Enable Cache
     cache: yes

@@ -59,7 +59,8 @@ description:
       with the signature. To get the image ID for the LaunchInstance operation, call
       L(GetAppCatalogListingResourceVersion,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion).
-    - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset, softstop."
+    - "This resource has the following action operations in the M(oci_instance_actions) module: stop, start, softreset, reset, softstop,
+      senddiagnosticinterrupt."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -359,6 +360,18 @@ options:
             is_consistent_volume_naming_enabled:
                 description:
                     - Whether to enable consistent volume naming feature. Defaults to false.
+                type: bool
+    instance_options:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            are_legacy_imds_endpoints_disabled:
+                description:
+                    - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                      Customers who have migrated to /v2 should set this to true for added security.
+                      Default is false.
                 type: bool
     availability_config:
         description:
@@ -786,6 +799,20 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+        instance_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                are_legacy_imds_endpoints_disabled:
+                    description:
+                        - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                          Customers who have migrated to /v2 should set this to true for added security.
+                          Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
         availability_config:
             description:
                 - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
@@ -1011,6 +1038,9 @@ instance:
             "is_pv_encryption_in_transit_enabled": true,
             "is_consistent_volume_naming_enabled": true
         },
+        "instance_options": {
+            "are_legacy_imds_endpoints_disabled": true
+        },
         "availability_config": {
             "recovery_action": "RESTORE_INSTANCE"
         },
@@ -1235,6 +1265,10 @@ def main():
                     is_pv_encryption_in_transit_enabled=dict(type="bool"),
                     is_consistent_volume_naming_enabled=dict(type="bool"),
                 ),
+            ),
+            instance_options=dict(
+                type="dict",
+                options=dict(are_legacy_imds_endpoints_disabled=dict(type="bool")),
             ),
             availability_config=dict(
                 type="dict",

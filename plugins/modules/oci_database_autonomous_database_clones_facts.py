@@ -165,6 +165,25 @@ autonomous_database_clones:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        backup_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                manual_backup_bucket_name:
+                    description:
+                        - Name of L(Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm) bucket to use for storing
+                          manual backups.
+                    returned: on success
+                    type: string
+                    sample: manual_backup_bucket_name_example
+                manual_backup_type:
+                    description:
+                        - The manual backup destination type.
+                    returned: on success
+                    type: string
+                    sample: NONE
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -282,9 +301,12 @@ autonomous_database_clones:
                     sample: machine_learning_user_management_url_example
         license_model:
             description:
-                - The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on L(dedicated
-                  Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the
-                  attribute is already set at the
+                - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
+                  premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.
+                  License Included allows you to subscribe to new Oracle Database software licenses and the Database service.
+                  Note that when provisioning an Autonomous Database on L(dedicated Exadata
+                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute
+                  is already set at the
                   Autonomous Exadata Infrastructure level. When using L(shared Exadata
                   infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will
                   supply the value of `BRING_YOUR_OWN_LICENSE`.
@@ -375,16 +397,32 @@ autonomous_database_clones:
             returned: on success
             type: string
             sample: OLTP
+        is_access_control_enabled:
+            description:
+                - Indicates if the database-level access control is enabled.
+                  If disabled, database access is defined by the network security rules.
+                  If enabled, database access is restricted to the IP addresses defined by the rules specified with the `whitelistedIps` property. While
+                  specifying `whitelistedIps` rules is optional,
+                   if database-level access control is enabled and no rules are specified, the database will become inaccessible. The rules can be added later
+                   using the `UpdateAutonomousDatabase` API operation or edit option in console.
+                  When creating a database clone, the desired access control setting should be specified. By default, database-level access control will be
+                  disabled for the clone.
+                - This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.
+            returned: on success
+            type: bool
+            sample: true
         whitelisted_ips:
             description:
-                - The client IP access control list (ACL). This feature is available for databases on L(shared Exadata
-                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
-                  Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR
-                  (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
-                - "To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
-                  For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+                - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
+                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
+                - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+                  Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
                   Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
-                  a.<unique_id2>;1.1.0.0/16\\"]`"
+                  a.<unique_id2>;1.1.0.0/16\\"]`
+                  For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
+                - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
             returned: on success
             type: list
             sample: []
@@ -402,7 +440,7 @@ autonomous_database_clones:
             sample: REGISTERING
         operations_insights_status:
             description:
-                - Status of the Operations Insights for this Autonomous Database.
+                - Status of Operations Insights for this Autonomous Database.
             returned: on success
             type: string
             sample: ENABLING
@@ -531,6 +569,18 @@ autonomous_database_clones:
             returned: on success
             type: list
             sample: []
+        key_store_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+            returned: on success
+            type: string
+            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+        key_store_wallet_name:
+            description:
+                - The wallet name for Oracle Key Vault.
+            returned: on success
+            type: string
+            sample: key_store_wallet_name_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -541,6 +591,10 @@ autonomous_database_clones:
         "system_tags": {},
         "time_reclamation_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
         "time_deletion_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
+        "backup_config": {
+            "manual_backup_bucket_name": "manual_backup_bucket_name_example",
+            "manual_backup_type": "NONE"
+        },
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
         "infrastructure_type": "CLOUD",
@@ -573,6 +627,7 @@ autonomous_database_clones:
         "db_version": "db_version_example",
         "is_preview": true,
         "db_workload": "OLTP",
+        "is_access_control_enabled": true,
         "whitelisted_ips": [],
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
@@ -597,7 +652,9 @@ autonomous_database_clones:
             "lifecycle_state": "PROVISIONING",
             "lifecycle_details": "lifecycle_details_example"
         },
-        "available_upgrade_versions": []
+        "available_upgrade_versions": [],
+        "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_store_wallet_name": "key_store_wallet_name_example"
     }]
 """
 
