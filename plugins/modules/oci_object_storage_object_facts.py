@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -76,27 +76,27 @@ options:
         type: str
     http_response_content_disposition:
         description:
-            - This value will be used in Content-Disposition header of the response.
+            - Specify this query parameter to override the value of the Content-Disposition response header in the GetObject response.
         type: str
     http_response_cache_control:
         description:
-            - This value will be used in Cache-Control header of the response.
+            - Specify this query parameter to override the Cache-Control response header in the GetObject response.
         type: str
     http_response_content_type:
         description:
-            - This value will be used in Content-Type header of the response.
+            - Specify this query parameter to override the Content-Type response header in the GetObject response.
         type: str
     http_response_content_language:
         description:
-            - This value will be used in Content-Language header of the response.
+            - Specify this query parameter to override the Content-Language response header in the GetObject response.
         type: str
     http_response_content_encoding:
         description:
-            - This value will be used in Content-Encoding header of the response
+            - Specify this query parameter to override the Content-Encoding response header in the GetObject response.
         type: str
     http_response_expires:
         description:
-            - This value will be used in Expires header of the response
+            - Specify this query parameter to override the Expires response header in the GetObject response.
         type: str
     prefix:
         description:

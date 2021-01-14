@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,32 +23,32 @@ module: oci_usage_facts
 short_description: Fetches details about one or multiple Usage resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Usage resources in Oracle Cloud Infrastructure
-    - Returns the usage for the given account
+    - Returns usage for the given account.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     tenant_id:
         description:
-            - tenant id
+            - Tenant ID
         type: str
         required: true
     time_usage_started:
         description:
-            - The start time of the usage.
+            - The usage start time.
         type: str
         required: true
     time_usage_ended:
         description:
-            - The end time of the usage.
+            - The usage end time.
         type: str
         required: true
     granularity:
         description:
-            - "The granularity of the usage.
-              HOURLY - Hourly aggregation of data
-              DAILY - Daily aggregation of data
-              MONTHLY - Monthly aggregation of data
-              TOTAL - Not Supported Yet"
+            - "The usage granularity.
+              HOURLY - Hourly data aggregation.
+              DAILY - Daily data aggregation.
+              MONTHLY - Monthly data aggregation.
+              TOTAL - Not yet supported."
         type: str
         choices:
             - "HOURLY"
@@ -58,9 +58,9 @@ options:
         required: true
     query_type:
         description:
-            - "The type of query of the usage.
+            - "The query usage type.
               Usage - Query the usage data.
-              Cost - Query the cost / billing data."
+              Cost - Query the cost/billing data."
         type: str
         choices:
             - "USAGE"
@@ -73,7 +73,7 @@ options:
         type: list
     compartment_depth:
         description:
-            - The depth level of the compartment.
+            - The compartment depth level.
         type: float
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -95,225 +95,224 @@ usages:
     returned: on success
     type: complex
     contains:
-        group_by:
+        tenant_id:
             description:
-                - Aggregate the result by.
+                - The tenancy OCID.
             returned: on success
-            type: list
-            sample: []
-        items:
+            type: string
+            sample: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+        tenant_name:
             description:
-                - A list of usage items.
+                - The tenancy name.
+            returned: on success
+            type: string
+            sample: tenant_name_example
+        compartment_id:
+            description:
+                - The compartment OCID.
+            returned: on success
+            type: string
+            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_path:
+            description:
+                - The compartment path, starting from root.
+            returned: on success
+            type: string
+            sample: compartment_path_example
+        compartment_name:
+            description:
+                - The compartment name.
+            returned: on success
+            type: string
+            sample: compartment_name_example
+        service:
+            description:
+                - The service name that is incurring the cost.
+            returned: on success
+            type: string
+            sample: service_example
+        resource_name:
+            description:
+                - The resource name that is incurring the cost.
+            returned: on success
+            type: string
+            sample: resource_name_example
+        resource_id:
+            description:
+                - The resource OCID that is incurring the cost.
+            returned: on success
+            type: string
+            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+        region:
+            description:
+                - The region of the usage.
+            returned: on success
+            type: string
+            sample: region_example
+        ad:
+            description:
+                - The availability domain of the usage.
+            returned: on success
+            type: string
+            sample: ad_example
+        weight:
+            description:
+                - The resource size being metered.
+            returned: on success
+            type: float
+            sample: 10
+        shape:
+            description:
+                - The resource shape.
+            returned: on success
+            type: string
+            sample: shape_example
+        sku_part_number:
+            description:
+                - The SKU part number.
+            returned: on success
+            type: string
+            sample: sku_part_number_example
+        sku_name:
+            description:
+                - The SKU friendly name.
+            returned: on success
+            type: string
+            sample: sku_name_example
+        unit:
+            description:
+                - The usage unit.
+            returned: on success
+            type: string
+            sample: unit_example
+        discount:
+            description:
+                - The discretionary discount applied to the SKU.
+            returned: on success
+            type: float
+            sample: 10
+        list_rate:
+            description:
+                - The SKU list rate (not discount).
+            returned: on success
+            type: float
+            sample: 10
+        platform:
+            description:
+                - Platform for the cost.
+            returned: on success
+            type: string
+            sample: platform_example
+        time_usage_started:
+            description:
+                - The usage start time.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_usage_ended:
+            description:
+                - The usage end time.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        computed_amount:
+            description:
+                - The computed cost.
+            returned: on success
+            type: float
+            sample: 10
+        computed_quantity:
+            description:
+                - The usage number.
+            returned: on success
+            type: float
+            sample: 10
+        overages_flag:
+            description:
+                - The SPM OverageFlag.
+            returned: on success
+            type: string
+            sample: overages_flag_example
+        unit_price:
+            description:
+                - The price per unit.
+            returned: on success
+            type: float
+            sample: 10
+        currency:
+            description:
+                - The price currency.
+            returned: on success
+            type: string
+            sample: currency_example
+        subscription_id:
+            description:
+                - The subscription ID.
+            returned: on success
+            type: string
+            sample: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+        overage:
+            description:
+                - The overage usage.
+            returned: on success
+            type: string
+            sample: overage_example
+        tags:
+            description:
+                - For grouping, a tag definition. For filtering, a definition and key.
             returned: on success
             type: complex
             contains:
-                compartment_id:
+                namespace:
                     description:
-                        - The OCID of the compartment.
+                        - The tag namespace.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                compartment_path:
+                    sample: namespace_example
+                key:
                     description:
-                        - The path of the compartment, starting from root.
+                        - The tag key.
                     returned: on success
                     type: string
-                    sample: compartment_path_example
-                compartment_name:
+                    sample: key_example
+                value:
                     description:
-                        - The name of the compartment.
+                        - The tag value.
                     returned: on success
                     type: string
-                    sample: compartment_name_example
-                service:
-                    description:
-                        - The name of the service that is incurring the cost.
-                    returned: on success
-                    type: string
-                    sample: service_example
-                resource_name:
-                    description:
-                        - The name of the resource that is incurring the cost.
-                    returned: on success
-                    type: string
-                    sample: resource_name_example
-                resource_id:
-                    description:
-                        - The Ocid of the resource that is incurring the cost.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                region:
-                    description:
-                        - The region of the usage.
-                    returned: on success
-                    type: string
-                    sample: region_example
-                ad:
-                    description:
-                        - The availability domain of the usage.
-                    returned: on success
-                    type: string
-                    sample: ad_example
-                weight:
-                    description:
-                        - The size of resource being metered.
-                    returned: on success
-                    type: float
-                    sample: 10
-                shape:
-                    description:
-                        - The shape of the resource.
-                    returned: on success
-                    type: string
-                    sample: shape_example
-                sku_part_number:
-                    description:
-                        - The part number of the SKU.
-                    returned: on success
-                    type: string
-                    sample: sku_part_number_example
-                sku_name:
-                    description:
-                        - The friendly name for the SKU.
-                    returned: on success
-                    type: string
-                    sample: sku_name_example
-                unit:
-                    description:
-                        - The unit of the usage.
-                    returned: on success
-                    type: string
-                    sample: unit_example
-                discount:
-                    description:
-                        - The discretionary discount applied to the SKU.
-                    returned: on success
-                    type: float
-                    sample: 10
-                list_rate:
-                    description:
-                        - The list rate for the SKU (not discount).
-                    returned: on success
-                    type: float
-                    sample: 10
-                platform:
-                    description:
-                        - Platform for the cost.
-                    returned: on success
-                    type: string
-                    sample: platform_example
-                time_usage_started:
-                    description:
-                        - The start time of the usage.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_usage_ended:
-                    description:
-                        - The end time of the usage.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                computed_amount:
-                    description:
-                        - The computed cost.
-                    returned: on success
-                    type: float
-                    sample: 10
-                computed_quantity:
-                    description:
-                        - The usage number.
-                    returned: on success
-                    type: float
-                    sample: 10
-                overages_flag:
-                    description:
-                        - The SPM OverageFlag.
-                    returned: on success
-                    type: string
-                    sample: overages_flag_example
-                unit_price:
-                    description:
-                        - The price per unit.
-                    returned: on success
-                    type: float
-                    sample: 10
-                currency:
-                    description:
-                        - The currency for the price.
-                    returned: on success
-                    type: string
-                    sample: currency_example
-                subscription_id:
-                    description:
-                        - The subscription Id.
-                    returned: on success
-                    type: string
-                    sample: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
-                overage:
-                    description:
-                        - The overage usage.
-                    returned: on success
-                    type: string
-                    sample: overage_example
-                tags:
-                    description:
-                        - For grouping, a tag definition. For filtering, a definition and key
-                    returned: on success
-                    type: complex
-                    contains:
-                        namespace:
-                            description:
-                                - The tag namespace.
-                            returned: on success
-                            type: string
-                            sample: namespace_example
-                        key:
-                            description:
-                                - The key of the tag.
-                            returned: on success
-                            type: string
-                            sample: key_example
-                        value:
-                            description:
-                                - The value of the tag.
-                            returned: on success
-                            type: string
-                            sample: value_example
+                    sample: value_example
     sample: [{
-        "group_by": [],
-        "items": [{
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "compartment_path": "compartment_path_example",
-            "compartment_name": "compartment_name_example",
-            "service": "service_example",
-            "resource_name": "resource_name_example",
-            "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "region_example",
-            "ad": "ad_example",
-            "weight": 10,
-            "shape": "shape_example",
-            "sku_part_number": "sku_part_number_example",
-            "sku_name": "sku_name_example",
-            "unit": "unit_example",
-            "discount": 10,
-            "list_rate": 10,
-            "platform": "platform_example",
-            "time_usage_started": "2013-10-20T19:20:30+01:00",
-            "time_usage_ended": "2013-10-20T19:20:30+01:00",
-            "computed_amount": 10,
-            "computed_quantity": 10,
-            "overages_flag": "overages_flag_example",
-            "unit_price": 10,
-            "currency": "currency_example",
-            "subscription_id": "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx",
-            "overage": "overage_example",
-            "tags": [{
-                "namespace": "namespace_example",
-                "key": "key_example",
-                "value": "value_example"
-            }]
+        "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
+        "tenant_name": "tenant_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_path": "compartment_path_example",
+        "compartment_name": "compartment_name_example",
+        "service": "service_example",
+        "resource_name": "resource_name_example",
+        "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "region": "region_example",
+        "ad": "ad_example",
+        "weight": 10,
+        "shape": "shape_example",
+        "sku_part_number": "sku_part_number_example",
+        "sku_name": "sku_name_example",
+        "unit": "unit_example",
+        "discount": 10,
+        "list_rate": 10,
+        "platform": "platform_example",
+        "time_usage_started": "2013-10-20T19:20:30+01:00",
+        "time_usage_ended": "2013-10-20T19:20:30+01:00",
+        "computed_amount": 10,
+        "computed_quantity": 10,
+        "overages_flag": "overages_flag_example",
+        "unit_price": 10,
+        "currency": "currency_example",
+        "subscription_id": "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx",
+        "overage": "overage_example",
+        "tags": [{
+            "namespace": "namespace_example",
+            "key": "key_example",
+            "value": "value_example"
         }]
     }]
 """

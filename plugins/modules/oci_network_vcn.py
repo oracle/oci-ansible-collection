@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -51,6 +51,7 @@ description:
     - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN
       or FastConnect. For more information, see
       L(Overview of the Networking Service,https://docs.cloud.oracle.com/Content/Network/Concepts/overview.htm).
+    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_vcn_cidr, modify_vcn_cidr, remove_vcn_cidr."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

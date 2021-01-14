@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,6 +24,7 @@ short_description: Manage an AutonomousExadataInfrastructure resource in Oracle 
 description:
     - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
+    - "This resource has the following action operations in the M(oci_autonomous_exadata_infrastructure_actions) module: rotate_ords_certs, rotate_ssl_certs."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

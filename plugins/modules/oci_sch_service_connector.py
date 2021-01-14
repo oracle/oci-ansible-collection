@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       A service connector is a logically defined flow for moving data from
       a source service to a destination service in Oracle Cloud Infrastructure.
       For general information about service connectors, see
-      L(Service Connector Hub Overview,https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
+      L(Service Connector Hub Overview,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm).
     - For purposes of access control, you must provide the
       L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where
       you want the service connector to reside. Notice that the service connector
@@ -38,7 +38,7 @@ description:
       CREATING. When the state changes to ACTIVE, data begins transferring from the
       source service to the target service. For instructions on deactivating and
       activating service connectors, see
-      L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
+      L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm).
     - "This resource has the following action operations in the M(oci_service_connector_actions) module: activate, deactivate."
 version_added: "2.9"
 author: Oracle (@oracle)

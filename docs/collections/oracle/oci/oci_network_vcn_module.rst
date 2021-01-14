@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn -- Manage a Vcn resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -52,6 +52,7 @@ Synopsis
 - You can also add a DNS label for the VCN, which is required if you want the instances to use the Interent and VCN Resolver option for DNS in the VCN. For more information, see `DNS in Your Virtual Cloud Network <https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm>`_.
 - The VCN automatically comes with a default route table, default security list, and default set of DHCP options. The OCID for each is returned in the response. You can't delete these default objects, but you can change their contents (that is, change the route rules, security list rules, and so on).
 - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN or FastConnect. For more information, see `Overview of the Networking Service <https://docs.cloud.oracle.com/Content/Network/Concepts/overview.htm>`_.
+- This resource has the following action operations in the :ref:`oci_vcn_actions <ansible_collections.oci_vcn_actions_module>` module: add_vcn_cidr, modify_vcn_cidr, remove_vcn_cidr.
 
 
 .. Aliases

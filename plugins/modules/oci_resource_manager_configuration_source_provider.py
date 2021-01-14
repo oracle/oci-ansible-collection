@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -49,12 +49,15 @@ options:
         type: str
     config_source_provider_type:
         description:
-            - The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.
+            - The type of configuration source provider.
+              The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
+              The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             - Required for create using I(state=present), update using I(state=present) with configuration_source_provider_id present.
-            - Applicable when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
+            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
         type: str
         choices:
             - "GITLAB_ACCESS_TOKEN"
+            - "GITHUB_ACCESS_TOKEN"
     freeform_tags:
         description:
             - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -71,18 +74,18 @@ options:
         type: dict
     api_endpoint:
         description:
-            - "The Git service API endpoint.
-              Example: `https://gitlab.com/api/v4/`"
+            - "The Git service endpoint.
+              Example: `https://gitlab.com`"
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
+            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
         type: str
     access_token:
         description:
-            - The personal access token to be configured on the Git repository. Avoid entering confidential information.
+            - The personal access token to be configured on the GitLab repository. Avoid entering confidential information.
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
+            - Applicable when config_source_provider_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
         type: str
     configuration_source_provider_id:
         description:
@@ -106,8 +109,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create configuration_source_provider
   oci_resource_manager_configuration_source_provider:
-    config_source_provider_type: GITLAB_ACCESS_TOKEN
-    api_endpoint: https://gitlab.com/api/v4/
+    config_source_provider_type: GITHUB_ACCESS_TOKEN
+    api_endpoint: https://gitlab.com
     access_token: access_token_example
 
 - name: Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -116,8 +119,8 @@ EXAMPLES = """
 
 - name: Update configuration_source_provider
   oci_resource_manager_configuration_source_provider:
-    config_source_provider_type: GITLAB_ACCESS_TOKEN
-    api_endpoint: https://gitlab.com/api/v4/
+    config_source_provider_type: GITHUB_ACCESS_TOKEN
+    api_endpoint: https://gitlab.com
     access_token: access_token_example
     configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
 
@@ -183,7 +186,9 @@ configuration_source_provider:
             sample: ACTIVE
         config_source_provider_type:
             description:
-                - The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.
+                - The type of configuration source provider.
+                  The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
+                  The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             returned: on success
             type: string
             sample: GITLAB_ACCESS_TOKEN
@@ -205,11 +210,11 @@ configuration_source_provider:
             sample: {'Operations': {'CostCenter': 'US'}}
         api_endpoint:
             description:
-                - "The Git service API endpoint.
-                  Example: `https://gitlab.com/api/v4/`"
+                - "The GitHub service endpoint.
+                  Example: `https://github.com/`"
             returned: on success
             type: string
-            sample: https://gitlab.com/api/v4/
+            sample: https://github.com/
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -220,7 +225,7 @@ configuration_source_provider:
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "api_endpoint": "https://gitlab.com/api/v4/"
+        "api_endpoint": "https://github.com/"
     }
 """
 
@@ -268,11 +273,16 @@ class ConfigurationSourceProviderHelperGen(OCIResourceHelperBase):
         return dict()
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = [
-            "compartment_id",
-            "configuration_source_provider_id",
-            "display_name",
-        ]
+        optional_list_method_params = (
+            ["compartment_id", "configuration_source_provider_id", "display_name"]
+            if self._use_name_as_identifier()
+            else [
+                "compartment_id",
+                "configuration_source_provider_id",
+                "display_name",
+                "config_source_provider_type",
+            ]
+        )
 
         return dict(
             (param, self.module.params[param])
@@ -379,7 +389,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             config_source_provider_type=dict(
-                type="str", choices=["GITLAB_ACCESS_TOKEN"]
+                type="str", choices=["GITLAB_ACCESS_TOKEN", "GITHUB_ACCESS_TOKEN"]
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

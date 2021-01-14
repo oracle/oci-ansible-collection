@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -98,6 +98,7 @@ options:
             - "OLTP"
             - "DW"
             - "AJD"
+            - "APEX"
     db_version:
         description:
             - A filter to return only autonomous database resources that match the specified dbVersion.
@@ -229,6 +230,12 @@ autonomous_databases:
         data_storage_size_in_tbs:
             description:
                 - The quantity of data in the database, in terabytes.
+            returned: on success
+            type: int
+            sample: 56
+        data_storage_size_in_gbs:
+            description:
+                - The quantity of data in the database, in gigabytes.
             returned: on success
             type: int
             sample: 56
@@ -429,7 +436,8 @@ autonomous_databases:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
-                  - AJD - indicates an Autonomous JSON Database"
+                  - AJD - indicates an Autonomous JSON Database
+                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
             returned: on success
             type: string
             sample: OLTP
@@ -462,6 +470,24 @@ autonomous_databases:
             returned: on success
             type: list
             sample: []
+        apex_details:
+            description:
+                - Information about Autonomous Application Express.
+            returned: on success
+            type: complex
+            contains:
+                apex_version:
+                    description:
+                        - The Oracle Application Express service version.
+                    returned: on success
+                    type: string
+                    sample: apex_version_example
+                ords_version:
+                    description:
+                        - The Oracle REST Data Services (ORDS) version.
+                    returned: on success
+                    type: string
+                    sample: ords_version_example
         is_auto_scaling_enabled:
             description:
                 - Indicates if auto scaling is enabled for the Autonomous Database CPU core count.
@@ -633,6 +659,7 @@ autonomous_databases:
         },
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
+        "data_storage_size_in_gbs": 56,
         "infrastructure_type": "CLOUD",
         "is_dedicated": true,
         "autonomous_container_database_id": "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -665,6 +692,10 @@ autonomous_databases:
         "db_workload": "OLTP",
         "is_access_control_enabled": true,
         "whitelisted_ips": [],
+        "apex_details": {
+            "apex_version": "apex_version_example",
+            "ords_version": "ords_version_example"
+        },
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
         "operations_insights_status": "ENABLING",
@@ -801,7 +832,7 @@ def main():
                     "UPGRADING",
                 ],
             ),
-            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD"]),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
             db_version=dict(type="str"),
             is_free_tier=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),

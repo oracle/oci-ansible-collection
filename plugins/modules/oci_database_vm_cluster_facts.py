@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -71,6 +71,7 @@ options:
             - "TERMINATING"
             - "TERMINATED"
             - "FAILED"
+            - "MAINTENANCE_IN_PROGRESS"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -340,6 +341,7 @@ def main():
                     "TERMINATING",
                     "TERMINATED",
                     "FAILED",
+                    "MAINTENANCE_IN_PROGRESS",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

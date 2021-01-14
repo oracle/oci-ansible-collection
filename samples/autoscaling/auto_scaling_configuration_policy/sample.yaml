@@ -1,0 +1,151 @@
+---
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Sample for creating AutoScalingConfiguration along with AutoScalingPolicy
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    # common networking definitions
+    quad_zero_route: "0.0.0.0/0"
+    TCP_protocol: "6"
+    SSH_port: "22"
+
+    vcn_name: "sampleautoscalevcn"
+    vcn_cidr_block: "10.3.0.0/16"
+    vcn_dns_label: "mytestvcn"
+
+    ig_name: "myinternetgatewayforsampleautoscalevcn"
+
+    route_table_name: "sampleautoscaleroutetable"
+    # route all internet access to our Internet Gateway
+    route_table_rules:
+      - cidr_block: "{{ quad_zero_route }}"
+        network_entity_id: "{{ ig_id }}"
+
+
+    subnet_cidr: "10.3.0.48/28"
+    subnet_name: "sampleautoscalesubnet"
+    subnet_dns_label: "mytestsubnet"
+
+    securitylist_name: "sampleautoscalesecuritylist"
+
+    instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
+    instance_display_name: "sampleautoscaleinstance"
+
+    instance_configuration_name: "sampleautoscalinginstanceconfig"
+
+    threshold_policy_instance_pool_name: "sampleautoscalingthresholdinstancepool"
+    scheduled_policy_instance_pool_name: "sampleautoscalingscheduledinstancepool"
+
+    threshold_autoscaling_config_name: "sampleautoscalingthresholdcautoscalingconfiguration"
+    autoscaling_threshold_policy_name: "sampleautoscalingthresholdicpolicy"
+
+    scheduled_autoscaling_config_name: "sampleautoscalingscheduledautoscalingconfiguration"
+    autoscaling_scheduled_policy_name: "sampleautoscalingscheduledpolicy"
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    instance_ad: "{{ lookup('env', 'SAMPLE_AD_NAME') }}"
+    instance_compartment: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    # provide an "OL" image
+    instance_image: "{{ lookup('env', 'SAMPLE_IMAGE_OCID') }}"
+
+  tasks:
+    - block:
+        - import_tasks: setup.yaml
+
+        #==========================================================================================
+
+        - name: Create auto_scaling_configuration for threshold policy instance pool
+          oci_autoscaling_auto_scaling_configuration:
+            compartment_id: "{{ instance_compartment }}"
+            cool_down_in_seconds: 300
+            display_name: "{{ threshold_autoscaling_config_name }}"
+            is_enabled: true
+            policies:
+              - capacity:
+                  initial: 1
+                  max: 2
+                  min: 1
+                display_name: "{{ autoscaling_threshold_policy_name }}"
+                policy_type: "threshold"
+                rules:
+                  - action:
+                      type: "CHANGE_COUNT_BY"
+                      value: 1
+                    display_name: "{{ autoscaling_threshold_policy_name }}_inc"
+                    metric:
+                      metric_type: "CPU_UTILIZATION"
+                      threshold:
+                        operator: GT
+                        value: 60
+
+                  - action:
+                      type: "CHANGE_COUNT_BY"
+                      value: -1
+                    display_name: "{{ autoscaling_threshold_policy_name }}}_dec"
+                    metric:
+                      metric_type: "CPU_UTILIZATION"
+                      threshold:
+                        operator: LT
+                        value: 30
+            resource:
+              id: "{{ threshold_instance_pool_id }}"
+              type: "instancePool"
+          register: result
+
+        - name: Print auto scaling configuration policy details for threshold based policy
+          debug:
+            msg: "Created new auto scaling configuration policy {{ result }} "
+
+        - set_fact:
+            threshold_auto_scaling_configuration_id: "{{ result.auto_scaling_configuration.id }}"
+
+        #==========================================================================================
+
+        - name: Create auto_scaling_configuration for scheduled policy instance pool
+          oci_autoscaling_auto_scaling_configuration:
+            compartment_id: "{{ instance_compartment }}"
+            cool_down_in_seconds: 300
+            display_name: "{{ scheduled_autoscaling_config_name }}"
+            is_enabled: true
+            policies:
+              - capacity:
+                  initial: 1
+                  max: 2
+                  min: 1
+                display_name: "{{ autoscaling_scheduled_policy_name }}"
+                policy_type: "scheduled"
+                execution_schedule:
+                  expression: "0 15 10 ? * *"
+                  timezone: "UTC"
+                  type: "cron"
+            resource:
+              id: "{{ scheduled_instance_pool_id }}"
+              type: "instancePool"
+          register: result
+
+        - name: Print auto scaling policy details for scheduled
+          debug:
+            msg: "Created new auto scaling configuration policy {{ result }} "
+
+        - set_fact:
+            scheduled_auto_scaling_configuration_id: "{{ result.auto_scaling_configuration.id }}"
+
+        #==========================================================================================
+
+        - import_tasks: teardown.yaml
+
+      rescue:
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

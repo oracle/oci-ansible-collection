@@ -20,7 +20,7 @@ oracle.oci.oci_sch_service_connector_actions -- Perform actions on a ServiceConn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a ServiceConnector resource in Oracle Cloud Infrastructure
-- For *action=activate*, activates the specified service connector. After you send your request, the service connector's state is temporarily UPDATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm>`_.
-- For *action=deactivate*, deactivates the specified service connector. After you send your request, the service connector's state is temporarily UPDATING and any data transfer stops. The state then changes to INACTIVE. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm>`_.
+- For *action=activate*, activates the specified service connector. After you send your request, the service connector's state is temporarily UPDATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on activating service connectors, see `To activate a service connector <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/managingconnectors.htm#activate>`_.
+- For *action=deactivate*, deactivates the specified service connector. After you send your request, the service connector's state is temporarily UPDATING and any data transfer stops. The state then changes to INACTIVE. For instructions on deactivating service connectors, see `To deactivate a service connector <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/managingconnectors.htm#deactivate>`_.
 
 
 .. Aliases

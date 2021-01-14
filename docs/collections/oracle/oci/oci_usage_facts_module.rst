@@ -20,7 +20,7 @@ oracle.oci.oci_usage_facts -- Fetches details about one or multiple Usage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Usage resources in Oracle Cloud Infrastructure
-- Returns the usage for the given account
+- Returns usage for the given account.
 
 
 .. Aliases
@@ -164,7 +164,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The depth level of the compartment.</div>
+                                            <div>The compartment depth level.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -215,7 +215,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The granularity of the usage. HOURLY - Hourly aggregation of data DAILY - Daily aggregation of data MONTHLY - Monthly aggregation of data TOTAL - Not Supported Yet</div>
+                                            <div>The usage granularity. HOURLY - Hourly data aggregation. DAILY - Daily data aggregation. MONTHLY - Monthly data aggregation. TOTAL - Not yet supported.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -249,7 +249,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of query of the usage. Usage - Query the usage data. Cost - Query the cost / billing data.</div>
+                                            <div>The query usage type. Usage - Query the usage data. Cost - Query the cost/billing data.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -294,7 +294,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>tenant id</div>
+                                            <div>Tenant ID</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -309,7 +309,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The end time of the usage.</div>
+                                            <div>The usage end time.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -324,7 +324,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The start time of the usage.</div>
+                                            <div>The usage start time.</div>
                                                         </td>
             </tr>
                         </table>
@@ -373,12 +373,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-usages"></div>
                     <b>usages</b>
                     <a class="ansibleOptionLink" href="#return-usages" title="Permalink to this return value"></a>
@@ -391,48 +391,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Usage resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;group_by&#x27;: [], &#x27;items&#x27;: [{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;compartment_name_example&#x27;, &#x27;compartment_path&#x27;: &#x27;compartment_path_example&#x27;, &#x27;computed_amount&#x27;: 10, &#x27;computed_quantity&#x27;: 10, &#x27;currency&#x27;: &#x27;currency_example&#x27;, &#x27;discount&#x27;: 10, &#x27;list_rate&#x27;: 10, &#x27;overage&#x27;: &#x27;overage_example&#x27;, &#x27;overages_flag&#x27;: &#x27;overages_flag_example&#x27;, &#x27;platform&#x27;: &#x27;platform_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;sku_name&#x27;: &#x27;sku_name_example&#x27;, &#x27;sku_part_number&#x27;: &#x27;sku_part_number_example&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tags&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;time_usage_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_usage_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;unit_price&#x27;: 10, &#x27;weight&#x27;: 10}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;compartment_name_example&#x27;, &#x27;compartment_path&#x27;: &#x27;compartment_path_example&#x27;, &#x27;computed_amount&#x27;: 10, &#x27;computed_quantity&#x27;: 10, &#x27;currency&#x27;: &#x27;currency_example&#x27;, &#x27;discount&#x27;: 10, &#x27;list_rate&#x27;: 10, &#x27;overage&#x27;: &#x27;overage_example&#x27;, &#x27;overages_flag&#x27;: &#x27;overages_flag_example&#x27;, &#x27;platform&#x27;: &#x27;platform_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;sku_name&#x27;: &#x27;sku_name_example&#x27;, &#x27;sku_part_number&#x27;: &#x27;sku_part_number_example&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tags&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenant_name&#x27;: &#x27;tenant_name_example&#x27;, &#x27;time_usage_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_usage_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;unit_price&#x27;: 10, &#x27;weight&#x27;: 10}]</div>
                                     </td>
             </tr>
                                         <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-usages/group_by"></div>
-                    <b>group_by</b>
-                    <a class="ansibleOptionLink" href="#return-usages/group_by" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                       / <span style="color: purple">elements=string</span>                    </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Aggregate the result by.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-usages/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A list of usage items.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/ad"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/ad"></div>
                     <b>ad</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/ad" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/ad" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -447,18 +414,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/compartment_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/compartment_id"></div>
                     <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/compartment_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/compartment_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment.</div>
+                                            <div>The compartment OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -466,18 +432,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/compartment_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/compartment_name"></div>
                     <b>compartment_name</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/compartment_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/compartment_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the compartment.</div>
+                                            <div>The compartment name.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compartment_name_example</div>
@@ -485,18 +450,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/compartment_path"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/compartment_path"></div>
                     <b>compartment_path</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/compartment_path" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/compartment_path" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The path of the compartment, starting from root.</div>
+                                            <div>The compartment path, starting from root.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compartment_path_example</div>
@@ -504,11 +468,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/computed_amount"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/computed_amount"></div>
                     <b>computed_amount</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/computed_amount" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/computed_amount" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">float</span>
                                           </div>
@@ -523,11 +486,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/computed_quantity"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/computed_quantity"></div>
                     <b>computed_quantity</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/computed_quantity" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/computed_quantity" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">float</span>
                                           </div>
@@ -542,18 +504,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/currency"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/currency"></div>
                     <b>currency</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/currency" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/currency" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The currency for the price.</div>
+                                            <div>The price currency.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">currency_example</div>
@@ -561,11 +522,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/discount"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/discount"></div>
                     <b>discount</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/discount" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/discount" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">float</span>
                                           </div>
@@ -580,18 +540,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/list_rate"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/list_rate"></div>
                     <b>list_rate</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/list_rate" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/list_rate" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">float</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list rate for the SKU (not discount).</div>
+                                            <div>The SKU list rate (not discount).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
@@ -599,11 +558,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/overage"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/overage"></div>
                     <b>overage</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/overage" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/overage" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -618,11 +576,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/overages_flag"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/overages_flag"></div>
                     <b>overages_flag</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/overages_flag" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/overages_flag" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -637,11 +594,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/platform"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/platform"></div>
                     <b>platform</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/platform" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/platform" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -656,11 +612,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/region"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/region"></div>
                     <b>region</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/region" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/region" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -675,18 +630,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/resource_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/resource_id"></div>
                     <b>resource_id</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/resource_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/resource_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Ocid of the resource that is incurring the cost.</div>
+                                            <div>The resource OCID that is incurring the cost.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -694,18 +648,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/resource_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/resource_name"></div>
                     <b>resource_name</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/resource_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/resource_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the resource that is incurring the cost.</div>
+                                            <div>The resource name that is incurring the cost.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_name_example</div>
@@ -713,18 +666,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/service"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/service"></div>
                     <b>service</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/service" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/service" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the service that is incurring the cost.</div>
+                                            <div>The service name that is incurring the cost.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_example</div>
@@ -732,18 +684,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/shape"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/shape"></div>
                     <b>shape</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/shape" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/shape" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The shape of the resource.</div>
+                                            <div>The resource shape.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>
@@ -751,18 +702,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/sku_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/sku_name"></div>
                     <b>sku_name</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/sku_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/sku_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The friendly name for the SKU.</div>
+                                            <div>The SKU friendly name.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sku_name_example</div>
@@ -770,18 +720,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/sku_part_number"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/sku_part_number"></div>
                     <b>sku_part_number</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/sku_part_number" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/sku_part_number" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The part number of the SKU.</div>
+                                            <div>The SKU part number.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sku_part_number_example</div>
@@ -789,18 +738,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/subscription_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/subscription_id"></div>
                     <b>subscription_id</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/subscription_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/subscription_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The subscription Id.</div>
+                                            <div>The subscription ID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -808,36 +756,34 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/tags"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/tags"></div>
                     <b>tags</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/tags" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/tags" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>For grouping, a tag definition. For filtering, a definition and key</div>
+                                            <div>For grouping, a tag definition. For filtering, a definition and key.</div>
                                         <br/>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/tags/key"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/tags/key"></div>
                     <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/tags/key" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/tags/key" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The key of the tag.</div>
+                                            <div>The tag key.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
@@ -846,11 +792,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/tags/namespace"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/tags/namespace"></div>
                     <b>namespace</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/tags/namespace" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/tags/namespace" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -866,18 +811,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/tags/value"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/tags/value"></div>
                     <b>value</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/tags/value" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/tags/value" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value of the tag.</div>
+                                            <div>The tag value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -886,18 +830,53 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-usages/tenant_id"></div>
+                    <b>tenant_id</b>
+                    <a class="ansibleOptionLink" href="#return-usages/tenant_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The tenancy OCID.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/time_usage_ended"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/tenant_name"></div>
+                    <b>tenant_name</b>
+                    <a class="ansibleOptionLink" href="#return-usages/tenant_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The tenancy name.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tenant_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-usages/time_usage_ended"></div>
                     <b>time_usage_ended</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/time_usage_ended" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/time_usage_ended" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The end time of the usage.</div>
+                                            <div>The usage end time.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -905,18 +884,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/time_usage_started"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/time_usage_started"></div>
                     <b>time_usage_started</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/time_usage_started" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/time_usage_started" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The start time of the usage.</div>
+                                            <div>The usage start time.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -924,18 +902,17 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/unit"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/unit"></div>
                     <b>unit</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/unit" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/unit" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unit of the usage.</div>
+                                            <div>The usage unit.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
@@ -943,11 +920,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/unit_price"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/unit_price"></div>
                     <b>unit_price</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/unit_price" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/unit_price" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">float</span>
                                           </div>
@@ -962,24 +938,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-usages/items/weight"></div>
+                    <div class="ansibleOptionAnchor" id="return-usages/weight"></div>
                     <b>weight</b>
-                    <a class="ansibleOptionLink" href="#return-usages/items/weight" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-usages/weight" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">float</span>
                                           </div>
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The size of resource being metered.</div>
+                                            <div>The resource size being metered.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
-                    
                     
                         </table>
     <br/><br/>

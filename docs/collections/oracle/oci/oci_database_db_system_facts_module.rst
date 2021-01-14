@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

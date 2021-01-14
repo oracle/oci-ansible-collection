@@ -20,7 +20,7 @@ oracle.oci.oci_waas_threat_feeds -- Manage a ThreatFeeds resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

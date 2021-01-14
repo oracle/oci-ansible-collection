@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -200,6 +200,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-config_source_provider_type"></div>
+                    <b>config_source_provider_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-config_source_provider_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only configuration source providers of the specified type (GitHub or GitLab).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-configuration_source_provider_id"></div>
                     <b>configuration_source_provider_id</b>
                     <a class="ansibleOptionLink" href="#parameter-configuration_source_provider_id" title="Permalink to this option"></a>
@@ -364,7 +379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ConfigurationSourceProvider resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;api_endpoint&#x27;: &#x27;https://gitlab.com/api/v4/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;items&#x27;: [{&#x27;api_endpoint&#x27;: &#x27;https://gitlab.com/api/v4/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;config_source_provider_type_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;api_endpoint&#x27;: &#x27;https://github.com/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;items&#x27;: [{&#x27;api_endpoint&#x27;: &#x27;https://gitlab.com&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;config_source_provider_type_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -379,10 +394,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Git service API endpoint. Example: `https://gitlab.com/api/v4/`</div>
+                                            <div>The GitHub service endpoint. Example: `https://github.com/`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://gitlab.com/api/v4/</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://github.com/</div>
                                     </td>
             </tr>
                                 <tr>
@@ -415,7 +430,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.</div>
+                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GITLAB_ACCESS_TOKEN</div>
@@ -540,10 +555,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Git service API endpoint. Example: `https://gitlab.com/api/v4/`</div>
+                                            <div>The Git service endpoint. Example: `https://gitlab.com`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://gitlab.com/api/v4/</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://gitlab.com</div>
                                     </td>
             </tr>
                                 <tr>
@@ -578,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.</div>
+                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">config_source_provider_type_example</div>

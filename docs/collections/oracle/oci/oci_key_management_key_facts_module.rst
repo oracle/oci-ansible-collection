@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -75,6 +75,24 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-algorithm"></div>
+                    <b>algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AES</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt. Currently, only AES is supported.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
@@ -231,6 +249,21 @@ Parameters
                                             <div>Required to get a specific key.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-length"></div>
+                    <b>length</b>
+                    <a class="ansibleOptionLink" href="#parameter-length" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The length of the key in bytes, expressed as an integer. Values of 16, 24, or 32 are supported.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">

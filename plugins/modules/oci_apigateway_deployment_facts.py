@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -421,7 +421,13 @@ deployments:
                             contains:
                                 is_enabled:
                                     description:
-                                        - Enables pushing of access logs to the OCI Object Storage log archival bucket.
+                                        - Enables pushing of access logs to the legacy OCI Object Storage log archival bucket.
+                                        - Oracle recommends using the OCI Logging service to enable, retrieve, and query access logs
+                                          for an API Deployment. If there is an active log object for the API Deployment and its
+                                          category is set to 'access' in OCI Logging service, the logs will not be uploaded to the
+                                          legacy OCI Object Storage log archival bucket.
+                                        - Please note that the functionality to push to the legacy OCI Object Storage log
+                                          archival bucket has been deprecated and will be removed in the future.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -433,14 +439,20 @@ deployments:
                             contains:
                                 is_enabled:
                                     description:
-                                        - Enables pushing of execution logs to the OCI Object Storage log archival bucket.
+                                        - Enables pushing of execution logs to the legacy OCI Object Storage log archival bucket.
+                                        - Oracle recommends using the OCI Logging service to enable, retrieve, and query execution logs
+                                          for an API Deployment. If there is an active log object for the API Deployment and its
+                                          category is set to 'execution' in OCI Logging service, the logs will not be uploaded to the legacy
+                                          OCI Object Storage log archival bucket.
+                                        - Please note that the functionality to push to the legacy OCI Object Storage log
+                                          archival bucket has been deprecated and will be removed in the future.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 log_level:
                                     description:
-                                        - Specifies the logging level, which affects the log entries pushed to
-                                          OCI Object Storage log archival bucket if `isEnabled` is set to True.
+                                        - Specifies the log level used to control logging output of execution logs.
+                                          Enabling logging at a given level also enables logging at all higher levels.
                                     returned: on success
                                     type: string
                                     sample: INFO
@@ -838,7 +850,13 @@ deployments:
                                     contains:
                                         is_enabled:
                                             description:
-                                                - Enables pushing of access logs to the OCI Object Storage log archival bucket.
+                                                - Enables pushing of access logs to the legacy OCI Object Storage log archival bucket.
+                                                - Oracle recommends using the OCI Logging service to enable, retrieve, and query access logs
+                                                  for an API Deployment. If there is an active log object for the API Deployment and its
+                                                  category is set to 'access' in OCI Logging service, the logs will not be uploaded to the
+                                                  legacy OCI Object Storage log archival bucket.
+                                                - Please note that the functionality to push to the legacy OCI Object Storage log
+                                                  archival bucket has been deprecated and will be removed in the future.
                                             returned: on success
                                             type: bool
                                             sample: true
@@ -850,14 +868,20 @@ deployments:
                                     contains:
                                         is_enabled:
                                             description:
-                                                - Enables pushing of execution logs to the OCI Object Storage log archival bucket.
+                                                - Enables pushing of execution logs to the legacy OCI Object Storage log archival bucket.
+                                                - Oracle recommends using the OCI Logging service to enable, retrieve, and query execution logs
+                                                  for an API Deployment. If there is an active log object for the API Deployment and its
+                                                  category is set to 'execution' in OCI Logging service, the logs will not be uploaded to the legacy
+                                                  OCI Object Storage log archival bucket.
+                                                - Please note that the functionality to push to the legacy OCI Object Storage log
+                                                  archival bucket has been deprecated and will be removed in the future.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         log_level:
                                             description:
-                                                - Specifies the logging level, which affects the log entries pushed to
-                                                  OCI Object Storage log archival bucket if `isEnabled` is set to True.
+                                                - Specifies the log level used to control logging output of execution logs.
+                                                  Enabling logging at a given level also enables logging at all higher levels.
                                             returned: on success
                                             type: string
                                             sample: INFO

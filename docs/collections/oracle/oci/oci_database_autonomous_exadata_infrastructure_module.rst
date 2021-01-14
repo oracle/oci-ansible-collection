@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure -- Manage an Autonomou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
+- This resource has the following action operations in the :ref:`oci_autonomous_exadata_infrastructure_actions <ansible_collections.oci_autonomous_exadata_infrastructure_actions_module>` module: rotate_ords_certs, rotate_ssl_certs.
 
 
 .. Aliases

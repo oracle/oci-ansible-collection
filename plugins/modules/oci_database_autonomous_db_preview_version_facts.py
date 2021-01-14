@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -87,7 +87,8 @@ autonomous_db_preview_versions:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
-                  - AJD - indicates an Autonomous JSON Database"
+                  - AJD - indicates an Autonomous JSON Database
+                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
             returned: on success
             type: string
             sample: OLTP

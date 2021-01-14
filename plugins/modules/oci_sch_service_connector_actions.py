@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,14 +26,14 @@ description:
     - For I(action=activate), activates the specified service connector.
       After you send your request, the service connector's state is temporarily
       UPDATING. When the state changes to ACTIVE, data begins transferring from the
-      source service to the target service. For instructions on deactivating and
-      activating service connectors, see
-      L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
+      source service to the target service. For instructions on activating service
+      connectors, see
+      L(To activate a service connector,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/managingconnectors.htm#activate).
     - For I(action=deactivate), deactivates the specified service connector.
       After you send your request, the service connector's state is temporarily
       UPDATING and any data transfer stops. The state then changes to INACTIVE.
-      For instructions on deactivating and activating service connectors, see
-      L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
+      For instructions on deactivating service connectors, see
+      L(To deactivate a service connector,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/managingconnectors.htm#deactivate).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

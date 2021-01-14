@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack -- Manage a Stack resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Stack resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration file. The Terraform configuration file can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
+- For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration. The Terraform configuration can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
 - This resource has the following action operations in the :ref:`oci_stack_actions <ansible_collections.oci_stack_actions_module>` module: detect_stack_drift.
 
 
