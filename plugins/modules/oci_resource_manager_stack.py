@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,8 +24,8 @@ short_description: Manage a Stack resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Stack resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a stack in the specified compartment.
-      You can create a stack from a Terraform configuration file.
-      The Terraform configuration file can be directly uploaded or referenced from a source code control system.
+      You can create a stack from a Terraform configuration.
+      The Terraform configuration can be directly uploaded or referenced from a source code control system.
       You can also create a stack from an existing compartment.
       For more information, see
       L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack).

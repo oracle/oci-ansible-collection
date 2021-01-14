@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_lifecycle_policy -- Manage an ObjectLifecyc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -225,7 +225,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. Rules using &#x27;ABORT&#x27; abort the uncommitted multipart-uploads and permanently delete their parts from buckets. &#x27;ARCHIVE&#x27;, &#x27;DELETE&#x27; and &#x27;ABORT&#x27; are the only three supported actions at this time.</div>
+                                            <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects from Standard storage tier into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier]</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. Rules using &#x27;ABORT&#x27; abort the uncommitted multipart-uploads and permanently delete their parts from buckets.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -355,7 +355,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>The target of the object lifecycle policy rule. The values of target can be either &quot;objects&quot;, &quot;multipart-uploads&quot; or &quot;previous-object-versions&quot;. This field when declared as &quot;objects&quot; is used to specify ARCHIVE or DELETE rule for objects. This field when declared as &quot;previous-object-versions&quot; is used to specify ARCHIVE or DELETE rule for previous versions of existing objects. This field when declared as &quot;multipart-uploads&quot; is used to specify the ABORT (only) rule for uncommitted multipart-uploads.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -565,7 +565,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. Rules using &#x27;ABORT&#x27; abort the uncommitted multipart-uploads and permanently delete their parts from buckets. &#x27;ARCHIVE&#x27;, &#x27;DELETE&#x27; and &#x27;ABORT&#x27; are the only three supported actions at this time.</div>
+                                            <div>The action of the object lifecycle policy rule. Rules using the action &#x27;ARCHIVE&#x27; move objects from Standard storage tier into the <a href='https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm'>Archive Storage tier]</a>. Rules using the action &#x27;DELETE&#x27; permanently delete objects from buckets. Rules using &#x27;ABORT&#x27; abort the uncommitted multipart-uploads and permanently delete their parts from buckets.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_example</div>
@@ -698,7 +698,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The target of the object lifecycle policy rule. The values of target can be either &quot;objects&quot;, &quot;multipart-uploads&quot; or &quot;previous-object-versions&quot;. This field when declared as &quot;objects&quot; is used to specify ARCHIVE or DELETE rule for objects. This field when declared as &quot;previous-object-versions&quot; is used to specify ARCHIVE or DELETE rule for previous versions of existing objects. This field when declared as &quot;multipart-uploads&quot; is used to specify the ABORT (only) rule for uncommitted multipart-uploads.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_example</div>

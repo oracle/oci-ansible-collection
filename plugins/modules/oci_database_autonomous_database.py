@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -56,17 +56,18 @@ options:
             - "The Autonomous Database workload type. The following values are valid:"
             - "- OLTP - indicates an Autonomous Transaction Processing database
               - DW - indicates an Autonomous Data Warehouse database
-              - AJD - indicates an Autonomous JSON Database"
+              - AJD - indicates an Autonomous JSON Database
+              - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
             - This parameter is updatable.
         type: str
         choices:
             - "OLTP"
             - "DW"
             - "AJD"
+            - "APEX"
     data_storage_size_in_tbs:
         description:
             - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
     is_free_tier:
@@ -425,6 +426,12 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        data_storage_size_in_gbs:
+            description:
+                - The quantity of data in the database, in gigabytes.
+            returned: on success
+            type: int
+            sample: 56
         infrastructure_type:
             description:
                 - The infrastructure type this resource belongs to.
@@ -622,7 +629,8 @@ autonomous_database:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
-                  - AJD - indicates an Autonomous JSON Database"
+                  - AJD - indicates an Autonomous JSON Database
+                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
             returned: on success
             type: string
             sample: OLTP
@@ -655,6 +663,24 @@ autonomous_database:
             returned: on success
             type: list
             sample: []
+        apex_details:
+            description:
+                - Information about Autonomous Application Express.
+            returned: on success
+            type: complex
+            contains:
+                apex_version:
+                    description:
+                        - The Oracle Application Express service version.
+                    returned: on success
+                    type: string
+                    sample: apex_version_example
+                ords_version:
+                    description:
+                        - The Oracle REST Data Services (ORDS) version.
+                    returned: on success
+                    type: string
+                    sample: ords_version_example
         is_auto_scaling_enabled:
             description:
                 - Indicates if auto scaling is enabled for the Autonomous Database CPU core count.
@@ -826,6 +852,7 @@ autonomous_database:
         },
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
+        "data_storage_size_in_gbs": 56,
         "infrastructure_type": "CLOUD",
         "is_dedicated": true,
         "autonomous_container_database_id": "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -858,6 +885,10 @@ autonomous_database:
         "db_workload": "OLTP",
         "is_access_control_enabled": true,
         "whitelisted_ips": [],
+        "apex_details": {
+            "apex_version": "apex_version_example",
+            "ords_version": "ords_version_example"
+        },
         "is_auto_scaling_enabled": true,
         "data_safe_status": "REGISTERING",
         "operations_insights_status": "ENABLING",
@@ -1044,7 +1075,7 @@ def main():
             compartment_id=dict(type="str"),
             db_name=dict(type="str"),
             cpu_core_count=dict(type="int"),
-            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD"]),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
             data_storage_size_in_tbs=dict(type="int"),
             is_free_tier=dict(type="bool"),
             admin_password=dict(type="str", no_log=True),

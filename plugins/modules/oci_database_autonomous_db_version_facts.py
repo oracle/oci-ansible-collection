@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -40,6 +40,7 @@ options:
             - "OLTP"
             - "DW"
             - "AJD"
+            - "APEX"
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -75,7 +76,8 @@ autonomous_db_versions:
                 - "The Autonomous Database workload type. The following values are valid:"
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
-                  - AJD - indicates an Autonomous JSON Database"
+                  - AJD - indicates an Autonomous JSON Database
+                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
             returned: on success
             type: string
             sample: OLTP
@@ -162,7 +164,7 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD"]),
+            db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )
     )

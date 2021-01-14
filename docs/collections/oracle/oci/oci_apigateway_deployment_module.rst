@@ -20,7 +20,7 @@ oracle.oci.oci_apigateway_deployment -- Manage a Deployment resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -421,7 +421,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Enables pushing of access logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of access logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query access logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;access&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                                         </td>
             </tr>
                     
@@ -461,7 +463,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Enables pushing of execution logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of execution logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query execution logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;execution&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -484,7 +488,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the logging level, which affects the log entries pushed to OCI Object Storage log archival bucket if `isEnabled` is set to True.</div>
+                                            <div>Specifies the log level used to control logging output of execution logs. Enabling logging at a given level also enables logging at all higher levels.</div>
                                                         </td>
             </tr>
                     
@@ -1627,7 +1631,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Enables pushing of access logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of access logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query access logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;access&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                                         </td>
             </tr>
                     
@@ -1669,7 +1675,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Enables pushing of execution logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of execution logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query execution logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;execution&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1693,7 +1701,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the logging level, which affects the log entries pushed to OCI Object Storage log archival bucket if `isEnabled` is set to True.</div>
+                                            <div>Specifies the log level used to control logging output of execution logs. Enabling logging at a given level also enables logging at all higher levels.</div>
                                                         </td>
             </tr>
                     
@@ -3279,7 +3287,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Enables pushing of access logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of access logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query access logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;access&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -3319,7 +3329,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Enables pushing of execution logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of execution logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query execution logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;execution&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -3340,7 +3352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies the logging level, which affects the log entries pushed to OCI Object Storage log archival bucket if `isEnabled` is set to True.</div>
+                                            <div>Specifies the log level used to control logging output of execution logs. Enabling logging at a given level also enables logging at all higher levels.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INFO</div>
@@ -4526,7 +4538,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Enables pushing of access logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of access logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query access logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;access&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -4568,7 +4582,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Enables pushing of execution logs to the OCI Object Storage log archival bucket.</div>
+                                            <div>Enables pushing of execution logs to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Oracle recommends using the OCI Logging service to enable, retrieve, and query execution logs for an API Deployment. If there is an active log object for the API Deployment and its category is set to &#x27;execution&#x27; in OCI Logging service, the logs will not be uploaded to the legacy OCI Object Storage log archival bucket.</div>
+                                            <div>Please note that the functionality to push to the legacy OCI Object Storage log archival bucket has been deprecated and will be removed in the future.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -4590,7 +4606,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies the logging level, which affects the log entries pushed to OCI Object Storage log archival bucket if `isEnabled` is set to True.</div>
+                                            <div>Specifies the log level used to control logging output of execution logs. Enabling logging at a given level also enables logging at all higher levels.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INFO</div>

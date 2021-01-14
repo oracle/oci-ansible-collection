@@ -20,7 +20,7 @@ oracle.oci.oci_sch_service_connector -- Manage a ServiceConnector resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,9 +43,9 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ServiceConnector resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new service connector in the specified compartment. A service connector is a logically defined flow for moving data from a source service to a destination service in Oracle Cloud Infrastructure. For general information about service connectors, see `Service Connector Hub Overview <https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm>`_.
+- For *state=present*, creates a new service connector in the specified compartment. A service connector is a logically defined flow for moving data from a source service to a destination service in Oracle Cloud Infrastructure. For general information about service connectors, see `Service Connector Hub Overview <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
 - For purposes of access control, you must provide the `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_ of the compartment where you want the service connector to reside. Notice that the service connector doesn't have to be in the same compartment as the source or target services. For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_.
-- After you send your request, the new service connector's state is temporarily CREATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm>`_.
+- After you send your request, the new service connector's state is temporarily CREATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
 - This resource has the following action operations in the :ref:`oci_service_connector_actions <ansible_collections.oci_service_connector_actions_module>` module: activate, deactivate.
 
 

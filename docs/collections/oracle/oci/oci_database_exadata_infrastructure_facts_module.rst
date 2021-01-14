@@ -20,7 +20,7 @@ oracle.oci.oci_database_exadata_infrastructure_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -253,6 +253,7 @@ Parameters
                                                                                                                                                                                                 <li>DELETING</li>
                                                                                                                                                                                                 <li>DELETED</li>
                                                                                                                                                                                                 <li>DISCONNECTED</li>
+                                                                                                                                                                                                <li>MAINTENANCE_IN_PROGRESS</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -374,12 +375,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures"></div>
                     <b>exadata_infrastructures</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures" title="Permalink to this return value"></a>
@@ -392,12 +393,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ExadataInfrastructure resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;ntp_server&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;ntp_server&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/admin_network_cidr"></div>
                     <b>admin_network_cidr</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/admin_network_cidr" title="Permalink to this return value"></a>
@@ -415,7 +416,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/cloud_control_plane_server1"></div>
                     <b>cloud_control_plane_server1</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/cloud_control_plane_server1" title="Permalink to this return value"></a>
@@ -433,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/cloud_control_plane_server2"></div>
                     <b>cloud_control_plane_server2</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/cloud_control_plane_server2" title="Permalink to this return value"></a>
@@ -451,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/compartment_id" title="Permalink to this return value"></a>
@@ -469,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/contacts"></div>
                     <b>contacts</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/contacts" title="Permalink to this return value"></a>
@@ -486,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/contacts/email"></div>
                     <b>email</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/contacts/email" title="Permalink to this return value"></a>
@@ -505,7 +506,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/contacts/is_primary"></div>
                     <b>is_primary</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/contacts/is_primary" title="Permalink to this return value"></a>
@@ -524,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/contacts/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/contacts/name" title="Permalink to this return value"></a>
@@ -543,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/contacts/phone_number"></div>
                     <b>phone_number</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/contacts/phone_number" title="Permalink to this return value"></a>
@@ -562,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/corporate_proxy"></div>
                     <b>corporate_proxy</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/corporate_proxy" title="Permalink to this return value"></a>
@@ -580,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/cpus_enabled"></div>
                     <b>cpus_enabled</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/cpus_enabled" title="Permalink to this return value"></a>
@@ -598,7 +599,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/csi_number"></div>
                     <b>csi_number</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/csi_number" title="Permalink to this return value"></a>
@@ -616,7 +617,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/data_storage_size_in_tbs"></div>
                     <b>data_storage_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/data_storage_size_in_tbs" title="Permalink to this return value"></a>
@@ -634,7 +635,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/db_node_storage_size_in_gbs"></div>
                     <b>db_node_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/db_node_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -652,7 +653,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/defined_tags" title="Permalink to this return value"></a>
@@ -670,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/display_name" title="Permalink to this return value"></a>
@@ -688,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/dns_server"></div>
                     <b>dns_server</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/dns_server" title="Permalink to this return value"></a>
@@ -704,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/freeform_tags" title="Permalink to this return value"></a>
@@ -723,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/gateway"></div>
                     <b>gateway</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/gateway" title="Permalink to this return value"></a>
@@ -741,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/id" title="Permalink to this return value"></a>
@@ -759,7 +760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/infini_band_network_cidr"></div>
                     <b>infini_band_network_cidr</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/infini_band_network_cidr" title="Permalink to this return value"></a>
@@ -777,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/lifecycle_details" title="Permalink to this return value"></a>
@@ -795,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/lifecycle_state" title="Permalink to this return value"></a>
@@ -813,7 +814,172 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window"></div>
+                    <b>maintenance_window</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/days_of_week"></div>
+                    <b>days_of_week</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/days_of_week" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Days during the week when maintenance should be performed.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/days_of_week/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/days_of_week/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the day of the week.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MONDAY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/hours_of_day"></div>
+                    <b>hours_of_day</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/hours_of_day" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/lead_time_in_weeks"></div>
+                    <b>lead_time_in_weeks</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/lead_time_in_weeks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/months"></div>
+                    <b>months</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/months" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Months during the year when maintenance should be performed.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/months/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/months/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the month of the year.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JANUARY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/preference"></div>
+                    <b>preference</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/preference" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maintenance window scheduling preference.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NO_PREFERENCE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/maintenance_window/weeks_of_month"></div>
+                    <b>weeks_of_month</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructures/maintenance_window/weeks_of_month" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a duration of 7 days. Weeks start and end based on calendar dates, not days of the week. For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2. Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days. Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the week and hours that maintenance will be performed.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/max_cpu_count"></div>
                     <b>max_cpu_count</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/max_cpu_count" title="Permalink to this return value"></a>
@@ -831,7 +997,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/max_data_storage_in_t_bs"></div>
                     <b>max_data_storage_in_t_bs</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/max_data_storage_in_t_bs" title="Permalink to this return value"></a>
@@ -849,7 +1015,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/max_db_node_storage_in_g_bs"></div>
                     <b>max_db_node_storage_in_g_bs</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/max_db_node_storage_in_g_bs" title="Permalink to this return value"></a>
@@ -867,7 +1033,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/max_memory_in_gbs"></div>
                     <b>max_memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/max_memory_in_gbs" title="Permalink to this return value"></a>
@@ -885,7 +1051,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/memory_size_in_gbs"></div>
                     <b>memory_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/memory_size_in_gbs" title="Permalink to this return value"></a>
@@ -903,7 +1069,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/netmask"></div>
                     <b>netmask</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/netmask" title="Permalink to this return value"></a>
@@ -921,7 +1087,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/ntp_server"></div>
                     <b>ntp_server</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/ntp_server" title="Permalink to this return value"></a>
@@ -937,7 +1103,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/shape" title="Permalink to this return value"></a>
@@ -955,7 +1121,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/time_created" title="Permalink to this return value"></a>
@@ -973,7 +1139,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructures/time_zone"></div>
                     <b>time_zone</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructures/time_zone" title="Permalink to this return value"></a>

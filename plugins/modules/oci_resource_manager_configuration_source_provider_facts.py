@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -62,6 +62,10 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    config_source_provider_type:
+        description:
+            - A filter to return only configuration source providers of the specified type (GitHub or GitLab).
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -126,7 +130,9 @@ configuration_source_providers:
             sample: ACTIVE
         config_source_provider_type:
             description:
-                - The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.
+                - The type of configuration source provider.
+                  The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
+                  The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             returned: on success
             type: string
             sample: GITLAB_ACCESS_TOKEN
@@ -148,11 +154,11 @@ configuration_source_providers:
             sample: {'Operations': {'CostCenter': 'US'}}
         api_endpoint:
             description:
-                - "The Git service API endpoint.
-                  Example: `https://gitlab.com/api/v4/`"
+                - "The GitHub service endpoint.
+                  Example: `https://github.com/`"
             returned: on success
             type: string
-            sample: https://gitlab.com/api/v4/
+            sample: https://github.com/
         items:
             description:
                 - Collection of configuration source providers.
@@ -204,7 +210,8 @@ configuration_source_providers:
                     sample: lifecycle_state_example
                 config_source_provider_type:
                     description:
-                        - The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.
+                        - The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
+                          The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
                     returned: on success
                     type: string
                     sample: config_source_provider_type_example
@@ -226,11 +233,11 @@ configuration_source_providers:
                     sample: {'Operations': {'CostCenter': 'US'}}
                 api_endpoint:
                     description:
-                        - "The Git service API endpoint.
-                          Example: `https://gitlab.com/api/v4/`"
+                        - "The Git service endpoint.
+                          Example: `https://gitlab.com`"
                     returned: on success
                     type: string
-                    sample: https://gitlab.com/api/v4/
+                    sample: https://gitlab.com
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -241,7 +248,7 @@ configuration_source_providers:
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "api_endpoint": "https://gitlab.com/api/v4/",
+        "api_endpoint": "https://github.com/",
         "items": [{
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -252,7 +259,7 @@ configuration_source_providers:
             "config_source_provider_type": "config_source_provider_type_example",
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "api_endpoint": "https://gitlab.com/api/v4/"
+            "api_endpoint": "https://gitlab.com"
         }]
     }]
 """
@@ -298,6 +305,7 @@ class ConfigurationSourceProviderFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "sort_by",
             "sort_order",
+            "config_source_provider_type",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -330,6 +338,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            config_source_provider_type=dict(type="str"),
         )
     )
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -197,6 +197,12 @@ identity_providers:
             returned: on success
             type: string
             sample: metadata_url_example
+        metadata:
+            description:
+                - The XML that contains the information required for federating Identity with SAML2 Identity Provider.
+            returned: on success
+            type: string
+            sample: metadata_example
         signing_certificate:
             description:
                 - The identity provider's signing certificate used by the IAM Service
@@ -231,6 +237,7 @@ identity_providers:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "metadata_url": "metadata_url_example",
+        "metadata": "metadata_example",
         "signing_certificate": "signing_certificate_example",
         "redirect_url": "redirect_url_example",
         "freeform_attributes": {}

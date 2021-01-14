@@ -20,7 +20,7 @@ oracle.oci.oci_usage_configuration_facts -- Fetches details about a Configuratio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
-- Returns the list of config for UI dropdown list
+- Returns the configurations list for the UI drop-down list.
 
 
 .. Aliases
@@ -303,7 +303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of available configurations</div>
+                                            <div>The list of available configurations.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -320,7 +320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The key of the config</div>
+                                            <div>The configuration key.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
@@ -339,7 +339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value of the config</div>
+                                            <div>The configuration value.</div>
                                         <br/>
                                     </td>
             </tr>

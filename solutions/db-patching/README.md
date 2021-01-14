@@ -9,9 +9,13 @@ It can be used for two use cases of database system patching.
 
 ## **Architecture**
 
-![Architecture for Oracle Cloud Infrastructure Database Patching using Ansible Modules](./_docs/dbpatching.png)
+![Architecture for Oracle Cloud Infrastructure Database Patching using Ansible Modules](./_docs/architecture.png)
 
-The architecture contains an Ansible Management node for centralized patching of Oracle Cloud Infrastructure databases. The Ansible Management node runs under an OCI tenancy where database systems are required to be patched. It has Ansible, Oracle Cloud Infrastructure Ansible collection and Python SDK.  The management node uses instance principal based authentication and authorization to patch database systems using API calls. The tenancy administrator creates a dynamic group and a policy to authorize ansible management node to make API calls to database systems for patching. Using instance principal and API calls, the automation patches Grid Infrastructure as well as database without logging on database nodes.
+### ***Using Ansible Management Node on OCI***
+This is a deployment architecture where DBA can run the Ansible code manually to patch database system.The architecture contains an Ansible Management node for centralized patching of Oracle Cloud Infrastructure databases. The Ansible Management node runs under an OCI tenancy where database systems are required to be patched. It has Ansible, Oracle Cloud Infrastructure Ansible collection and Python SDK.  The management node uses instance principal based authentication and authorization to patch database systems using API calls. The tenancy administrator creates a dynamic group and a policy to authorize ansible management node to make API calls to database systems for patching. Using instance principal and API calls, the automation patches Grid Infrastructure as well as database without logging on database nodes.
+
+### ***Using Ansible Tower or AWX***
+An alternate architecture for deployment is using Ansible Tower or AWX. This architecture is more suitable for scenarios where there is a need to patch lot of databases with scheduling and workflow capabilities. With AWX, it is possible to write workflows and schedule patching for multiple databases as per planned downtime.The patching code can be pulled from SCM (Source Code Management) system like Github and API based authentication can be used to patch database systems.A separate management node is not required in the case.
 
 For more information on Oracle Cloud Infrastructure database service, see [Oracle Cloud Infrastructure Database Service](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databaseoverview.htm)
 
@@ -19,10 +23,13 @@ For more information on Oracle Cloud Infrastructure Ansible Collection, see [Ora
 
 
 ## **Prerequisites**
+1. Ansible Management node on OCI for manual patching.
+2. A running AWX/Ansible Tower instance for patching using AWX/Ansible Tower.
+3. Github access to host code repository for patching using AWX/Ansible Tower.
 
-The only pre-requisite for automation is to create an Ansible Management Node.
-
-#### **Ansible Management Node creation using OCI Resource Manager**
+#### **Manual Patching using Ansible Management Node**
+For manual patching, the first step is to create an Ansible Management Node. A resource manager template can be used to create Ansible Management Node. The resource manager templates installs the required software and pulls patching code from Github.
+To create an Ansible Management Node, follow these steps.
 1. Click [![Deploy to Oracle Cloud][magic_button]][magic_dbpatching_stack]
 
    If you aren't already signed in, when prompted, enter the tenancy and user credentials.
@@ -41,7 +48,102 @@ The only pre-requisite for automation is to create an Ansible Management Node.
 
 7. If no further changes are necessary, return to the Stack Details page, click Terraform Actions, and select Apply. 
 
-## **Inputs required for database system patching**
+Once the management node is created, follow these steps to patch the database systems.
+1) SSH to Ansible Management Node.
+
+    ```
+    $ cd oci-ansible-collection/solutions/db-patching
+    ```
+
+2) Update **dbpatching/host_vars/localhost.yml** with required parameters.
+
+3) Run patchdb.sh to apply the patch as per defined variables
+
+    ```
+    $ ./patchdb.sh
+    ```
+#### **Patching using AWX/Ansible Tower**
+It is assumed that AWX/Ansible Tower instance is already up and running. For creating an AWX instance, check [AWX on OCI](https://github.com/oracle-quickstart/oci-ansible-awx)
+
+1.Login to AWX instance.
+![](./_docs/awx-login.png)
+
+2.Create credential type for OCI
+
+   OCI credential is not available out of the box in AWX , so we need to create a custom credential type for OCI.
+    
+   Under **Administration -> Credential Types -> New Credential Type**, copy these fields for Input Configuration
+  
+   ````yaml    
+    fields:
+      - id: user_ocid
+        type: string
+        label: User OCID
+      - id: fingerprint
+        type: string
+        label: Fingerprint
+      - id: tenant_ocid
+        type: string
+        label: Tenant OCID
+      - id: region
+        type: string
+        label: Region
+      - id: private_user_key
+        type: string
+        label: Private User Key
+        secret: true
+        multiline: true
+    required:
+      - user_ocid
+      - tenant_ocid
+      - region
+      - fingerprint
+      - private_user_key
+   ````
+   Add the following code in the Injector Configuration box:
+   ````yaml
+    env:
+      OCI_CONFIG_FILE: '{{ tower.filename.config }}'
+      OCI_USER_KEY_FILE: '{{ tower.filename.keyfile }}'
+    file:
+      template.config: |-
+        [DEFAULT]
+        user={{ user_ocid }}
+        fingerprint={{ fingerprint }}
+        tenancy={{ tenant_ocid }}
+        region={{ region }}
+      template.keyfile: '{{ private_user_key }}' 
+   ````
+![](./_docs/awx-credential_type.png)  
+
+3.Create OCI credential   
+   Under **RESOURCES -> Credentials -> Create a new Credential**
+![](./_docs/awx-credential.png)  
+
+4.Create Project
+    
+   Under **RESOURCES -> Projects -> New Project**
+![](./_docs/awx-project.png)
+   SCM URL is the github repo for patching code.
+
+5.Create and Launch Job Template
+
+   Under **RESOURCES -> Template -> New Job Template**
+![](./_docs/awx-template.png)
+
+   Click **Add Survey**
+![](./_docs/awx-template-survey.png)
+
+   Click **Launch** and enter OCID of DB System to be patched
+![](./_docs/awx-input-ocid.png)
+
+6.Check status of Job
+![](./_docs/awx-job-running.png)
+
+7.Check status of patching from OCI Console   
+![](./_docs/awx-patch-apply.png)
+
+## **Inputs parameters for database system patching**
 
 The following inputs are required in **dbpatching/host_vars/localhost.yml** file to run database patching operation
 
@@ -57,7 +159,7 @@ The following inputs are required in **dbpatching/host_vars/localhost.yml** file
 ```yaml
 ---
 
-#Copyright © 2020, Oracle and/or its affiliates.
+#Copyright © 2021, Oracle and/or its affiliates.
 #The Universal Permissive License (UPL), Version 1.0
 
 #file: host_vars/localhost.yml
@@ -111,20 +213,5 @@ patch_operation:
     patch_db: True
 ```
 
-## **How to use automation for patching**
-
-1) SSH to Ansible Management Node.
-
-    ```
-    $ cd oci-db-patching
-    ```
-
-2) Update **dbpatching/host_vars/localhost.yml** with required parameters.
-
-3) Run patchdb.sh to apply the patch as per defined variables
-
-    ```
-    $ ./patchdb.sh
-    ```
 [magic_button]: https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg
-[magic_dbpatching_stack]: https://cloud.oracle.com/resourcemanager/stacks/create?&zipUrl=https://github.com/oracle/oci-ansible-collection/solutions/db-patching/dbpatching-mgmtnode.zip
+[magic_dbpatching_stack]: https://cloud.oracle.com/resourcemanager/stacks/create?&zipUrl=https://github.com/oracle/oci-ansible-collection/raw/master/solutions/db-patching/dbpatching-mgmtnode.zip

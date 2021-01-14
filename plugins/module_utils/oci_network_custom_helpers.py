@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -651,3 +651,30 @@ class ByoipRangeActionsHelperCustom:
                 return False
             return False
         super(ByoipRangeActionsHelperCustom, self).is_action_necessary(action, resource)
+
+
+class VcnActionsHelperCustom:
+    ADD_VCN_CIDR_ACTION = "add_vcn_cidr"
+    MODIFY_VCN_CIDR_ACTION = "modify_vcn_cidr"
+    REMOVE_VCN_CIDR_ACTION = "remove_vcn_cidr"
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == self.ADD_VCN_CIDR_ACTION:
+            if self.module.params.get("cidr_block") in resource.cidr_blocks:
+                return False
+            return True
+        elif action == self.MODIFY_VCN_CIDR_ACTION:
+            if (
+                self.module.params.get("original_cidr_block")
+                not in resource.cidr_blocks
+                and self.module.params.get("new_cidr_block") in resource.cidr_blocks
+            ):
+                return False
+            return True
+        elif action == self.REMOVE_VCN_CIDR_ACTION:
+            if self.module.params.get("cidr_block") not in resource.cidr_blocks:
+                return False
+            return True
+
+        return super(VcnActionsHelperCustom, self).is_action_necessary(action, resource)

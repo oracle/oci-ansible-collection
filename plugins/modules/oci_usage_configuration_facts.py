@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_usage_configuration_facts
 short_description: Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
-    - Returns the list of config for UI dropdown list
+    - Returns the configurations list for the UI drop-down list.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -51,19 +51,19 @@ configuration:
     contains:
         items:
             description:
-                - The list of available configurations
+                - The list of available configurations.
             returned: on success
             type: complex
             contains:
                 key:
                     description:
-                        - The key of the config
+                        - The configuration key.
                     returned: on success
                     type: string
                     sample: key_example
                 values:
                     description:
-                        - The value of the config
+                        - The configuration value.
                     returned: on success
                     type: list
                     sample: []

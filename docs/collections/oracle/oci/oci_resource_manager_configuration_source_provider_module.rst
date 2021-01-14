@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider -- Manage a Config
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -84,10 +84,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The personal access token to be configured on the Git repository. Avoid entering confidential information.</div>
+                                            <div>The personal access token to be configured on the GitLab repository. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when config_source_provider_type is &#x27;GITLAB_ACCESS_TOKEN&#x27;</div>
+                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -102,10 +102,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Git service API endpoint. Example: `https://gitlab.com/api/v4/`</div>
+                                            <div>The Git service endpoint. Example: `https://gitlab.com`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when config_source_provider_type is &#x27;GITLAB_ACCESS_TOKEN&#x27;</div>
+                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,12 +245,13 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GITLAB_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>GITHUB_ACCESS_TOKEN</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.</div>
+                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with configuration_source_provider_id present.</div>
-                                            <div>Applicable when config_source_provider_type is &#x27;GITLAB_ACCESS_TOKEN&#x27;</div>
+                                            <div>Applicable when config_source_provider_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -480,8 +481,8 @@ Examples
     
     - name: Create configuration_source_provider
       oci_resource_manager_configuration_source_provider:
-        config_source_provider_type: GITLAB_ACCESS_TOKEN
-        api_endpoint: https://gitlab.com/api/v4/
+        config_source_provider_type: GITHUB_ACCESS_TOKEN
+        api_endpoint: https://gitlab.com
         access_token: access_token_example
 
     - name: Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -490,8 +491,8 @@ Examples
 
     - name: Update configuration_source_provider
       oci_resource_manager_configuration_source_provider:
-        config_source_provider_type: GITLAB_ACCESS_TOKEN
-        api_endpoint: https://gitlab.com/api/v4/
+        config_source_provider_type: GITHUB_ACCESS_TOKEN
+        api_endpoint: https://gitlab.com
         access_token: access_token_example
         configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
 
@@ -540,7 +541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ConfigurationSourceProvider resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;api_endpoint&#x27;: &#x27;https://gitlab.com/api/v4/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;api_endpoint&#x27;: &#x27;https://github.com/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -555,10 +556,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Git service API endpoint. Example: `https://gitlab.com/api/v4/`</div>
+                                            <div>The GitHub service endpoint. Example: `https://github.com/`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://gitlab.com/api/v4/</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://github.com/</div>
                                     </td>
             </tr>
                                 <tr>
@@ -591,7 +592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to Git.</div>
+                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GITLAB_ACCESS_TOKEN</div>

@@ -20,7 +20,7 @@ oracle.oci.oci_identity_provider_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -407,7 +407,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of IdentityProvider resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_attributes&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metadata_url&#x27;: &#x27;metadata_url_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;product_type&#x27;: &#x27;IDCS&#x27;, &#x27;protocol&#x27;: &#x27;SAML2&#x27;, &#x27;redirect_url&#x27;: &#x27;redirect_url_example&#x27;, &#x27;signing_certificate&#x27;: &#x27;signing_certificate_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_attributes&#x27;: {}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inactive_status&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;metadata&#x27;: &#x27;metadata_example&#x27;, &#x27;metadata_url&#x27;: &#x27;metadata_url_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;product_type&#x27;: &#x27;IDCS&#x27;, &#x27;protocol&#x27;: &#x27;SAML2&#x27;, &#x27;redirect_url&#x27;: &#x27;redirect_url_example&#x27;, &#x27;signing_certificate&#x27;: &#x27;signing_certificate_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -550,6 +550,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-identity_providers/metadata"></div>
+                    <b>metadata</b>
+                    <a class="ansibleOptionLink" href="#return-identity_providers/metadata" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The XML that contains the information required for federating Identity with SAML2 Identity Provider.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">metadata_example</div>
                                     </td>
             </tr>
                                 <tr>

@@ -194,6 +194,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_autonomous_db_preview_version_facts <ansible_collections.oracle.oci.oci_database_autonomous_db_preview_version_facts_module>` -- Fetches details about one or multiple AutonomousDbPreviewVersion resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_autonomous_db_version_facts <ansible_collections.oracle.oci.oci_database_autonomous_db_version_facts_module>` -- Fetches details about one or multiple AutonomousDbVersion resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_autonomous_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_module>` -- Manage an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_autonomous_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_actions_module>` -- Perform actions on an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_autonomous_exadata_infrastructure_facts <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_facts_module>` -- Fetches details about one or multiple AutonomousExadataInfrastructure resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_autonomous_exadata_infrastructure_ocpus_facts <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_ocpus_facts_module>` -- Fetches details about a AutonomousExadataInfrastructureOcpus resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_autonomous_exadata_infrastructure_shape_facts <ansible_collections.oracle.oci.oci_database_autonomous_exadata_infrastructure_shape_facts_module>` -- Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
@@ -235,6 +236,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_module>` -- Manage an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_actions_module>` -- Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_exadata_infrastructure_facts <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_facts_module>` -- Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_flex_component_facts <ansible_collections.oracle.oci.oci_database_flex_component_facts_module>` -- Fetches details about one or multiple FlexComponentCollection resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_gi_version_facts <ansible_collections.oracle.oci.oci_database_gi_version_facts_module>` -- Fetches details about one or multiple GiVersion resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_key_store <ansible_collections.oracle.oci.oci_database_key_store_module>` -- Manage a KeyStore resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_key_store_facts <ansible_collections.oracle.oci.oci_database_key_store_facts_module>` -- Fetches details about one or multiple KeyStore resources in Oracle Cloud Infrastructure
@@ -247,6 +249,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_vm_cluster_network <ansible_collections.oracle.oci.oci_database_vm_cluster_network_module>` -- Manage a VmClusterNetwork resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_vm_cluster_network_actions <ansible_collections.oracle.oci.oci_database_vm_cluster_network_actions_module>` -- Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_vm_cluster_network_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_network_facts_module>` -- Fetches details about one or multiple VmClusterNetwork resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_vm_cluster_patch_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_patch_facts_module>` -- Fetches details about one or multiple VmClusterPatch resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_vm_cluster_patch_history_entry_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_patch_history_entry_facts_module>` -- Fetches details about one or multiple VmClusterPatchHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_domain_records <ansible_collections.oracle.oci.oci_dns_domain_records_module>` -- Manage a DomainRecords resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_domain_records_facts <ansible_collections.oracle.oci.oci_dns_domain_records_facts_module>` -- Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_resolver <ansible_collections.oracle.oci.oci_dns_resolver_module>` -- Manage a Resolver resource in Oracle Cloud Infrastructure
@@ -448,6 +452,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_mysql_analytics_cluster_memory_estimate_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_facts_module>` -- Fetches details about a AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_backup <ansible_collections.oracle.oci.oci_mysql_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_backup_facts <ansible_collections.oracle.oci.oci_mysql_backup_facts_module>` -- Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_mysql_channel <ansible_collections.oracle.oci.oci_mysql_channel_module>` -- Manage a Channel resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_mysql_channel_facts <ansible_collections.oracle.oci.oci_mysql_channel_facts_module>` -- Fetches details about one or multiple Channel resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_configuration <ansible_collections.oracle.oci.oci_mysql_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_configuration_facts <ansible_collections.oracle.oci.oci_mysql_configuration_facts_module>` -- Fetches details about one or multiple Configuration resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_db_system <ansible_collections.oracle.oci.oci_mysql_db_system_module>` -- Manage a DbSystem resource in Oracle Cloud Infrastructure
@@ -527,6 +533,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_network_subnet <ansible_collections.oracle.oci.oci_network_subnet_module>` -- Manage a Subnet resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_network_subnet_facts <ansible_collections.oracle.oci.oci_network_subnet_facts_module>` -- Fetches details about one or multiple Subnet resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_network_vcn <ansible_collections.oracle.oci.oci_network_vcn_module>` -- Manage a Vcn resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_network_vcn_actions <ansible_collections.oracle.oci.oci_network_vcn_actions_module>` -- Perform actions on a Vcn resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_network_vcn_dns_resolver_association_facts <ansible_collections.oracle.oci.oci_network_vcn_dns_resolver_association_facts_module>` -- Fetches details about a VcnDnsResolverAssociation resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_network_vcn_facts <ansible_collections.oracle.oci.oci_network_vcn_facts_module>` -- Fetches details about one or multiple Vcn resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_network_virtual_circuit <ansible_collections.oracle.oci.oci_network_virtual_circuit_module>` -- Manage a VirtualCircuit resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_network_virtual_circuit_actions <ansible_collections.oracle.oci.oci_network_virtual_circuit_actions_module>` -- Perform actions on a VirtualCircuit resource in Oracle Cloud Infrastructure

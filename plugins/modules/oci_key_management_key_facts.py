@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -70,6 +70,16 @@ options:
         choices:
             - "HSM"
             - "SOFTWARE"
+    algorithm:
+        description:
+            - The algorithm used by a key's key versions to encrypt or decrypt. Currently, only AES is supported.
+        type: str
+        choices:
+            - "AES"
+    length:
+        description:
+            - The length of the key in bytes, expressed as an integer. Values of 16, 24, or 32 are supported.
+        type: int
     service_endpoint:
         description:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
@@ -254,6 +264,8 @@ class KeyFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "sort_order",
             "protection_mode",
+            "algorithm",
+            "length",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -284,6 +296,8 @@ def main():
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             protection_mode=dict(type="str", choices=["HSM", "SOFTWARE"]),
+            algorithm=dict(type="str", choices=["AES"]),
+            length=dict(type="int"),
             display_name=dict(type="str"),
             service_endpoint=dict(type="str", required=True),
         )

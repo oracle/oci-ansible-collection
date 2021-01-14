@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -245,6 +245,12 @@ blockchain_platform:
             returned: on success
             type: string
             sample: STANDARD
+        platform_shape_type:
+            description:
+                - "Type of Platform shape - DEFAULT or CUSTOM"
+            returned: on success
+            type: string
+            sample: DEFAULT
         service_endpoint:
             description:
                 - Service endpoint URL, valid post-provisioning
@@ -457,6 +463,7 @@ blockchain_platform:
         "service_version": "service_version_example",
         "platform_role": "FOUNDER",
         "compute_shape": "STANDARD",
+        "platform_shape_type": "DEFAULT",
         "service_endpoint": "service_endpoint_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

@@ -20,7 +20,7 @@ oracle.oci.oci_database_maintenance_run_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -375,6 +375,7 @@ Parameters
                                                                                                                                                                                                 <li>AUTONOMOUS_CONTAINER_DATABASE</li>
                                                                                                                                                                                                 <li>EXADATA_DB_SYSTEM</li>
                                                                                                                                                                                                 <li>CLOUD_EXADATA_INFRASTRUCTURE</li>
+                                                                                                                                                                                                <li>EXACC_INFRASTRUCTURE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

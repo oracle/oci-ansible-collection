@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -84,7 +84,6 @@ options:
                       Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                     - "Example: `example_certificate_bundle`"
                 type: str
-                required: true
             protocols:
                 description:
                     - A list of SSL protocols the load balancer must support for HTTPS or SSL connections.
@@ -525,7 +524,7 @@ def main():
                 options=dict(
                     verify_depth=dict(type="int"),
                     verify_peer_certificate=dict(type="bool"),
-                    certificate_name=dict(type="str", required=True),
+                    certificate_name=dict(type="str"),
                     protocols=dict(type="list"),
                     cipher_suite_name=dict(type="str"),
                     server_order_preference=dict(

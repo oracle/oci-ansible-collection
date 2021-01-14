@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.12.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -256,7 +256,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value will be used in Cache-Control header of the response.</div>
+                                            <div>Specify this query parameter to override the Cache-Control response header in the GetObject response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -271,7 +271,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value will be used in Content-Disposition header of the response.</div>
+                                            <div>Specify this query parameter to override the value of the Content-Disposition response header in the GetObject response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -286,7 +286,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value will be used in Content-Encoding header of the response</div>
+                                            <div>Specify this query parameter to override the Content-Encoding response header in the GetObject response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -301,7 +301,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value will be used in Content-Language header of the response.</div>
+                                            <div>Specify this query parameter to override the Content-Language response header in the GetObject response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -316,7 +316,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value will be used in Content-Type header of the response.</div>
+                                            <div>Specify this query parameter to override the Content-Type response header in the GetObject response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -331,7 +331,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value will be used in Expires header of the response</div>
+                                            <div>Specify this query parameter to override the Expires response header in the GetObject response.</div>
                                                         </td>
             </tr>
                                 <tr>

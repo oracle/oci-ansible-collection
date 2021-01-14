@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -52,6 +52,7 @@ options:
             - "AUTONOMOUS_CONTAINER_DATABASE"
             - "EXADATA_DB_SYSTEM"
             - "CLOUD_EXADATA_INFRASTRUCTURE"
+            - "EXACC_INFRASTRUCTURE"
     maintenance_type:
         description:
             - The maintenance type.
@@ -296,6 +297,7 @@ def main():
                     "AUTONOMOUS_CONTAINER_DATABASE",
                     "EXADATA_DB_SYSTEM",
                     "CLOUD_EXADATA_INFRASTRUCTURE",
+                    "EXACC_INFRASTRUCTURE",
                 ],
             ),
             maintenance_type=dict(type="str", choices=["PLANNED", "UNPLANNED"]),

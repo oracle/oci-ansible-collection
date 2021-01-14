@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -293,3 +293,41 @@ class MysqlAnalyticsClusterMemoryEstimateActionsHelperCustom:
                 resource_type=self.resource_type,
                 resource=to_dict(actioned_resource),
             )
+
+
+class MysqlChannelHelperCustom:
+    # the password attribute is not returned in the list or get_model(),
+    # that causes a discrepancy while checking for macthed_resource()
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        model_dict = super(
+            MysqlChannelHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+
+        if model_dict["source"]["password"]:
+            del model_dict["source"]["password"]
+
+        return model_dict
+
+    def update_resource(self):
+        wait_states = oci_common_utils.DEFAULT_READY_STATES
+
+        # the resource can be turned to inactive state by setting the option
+        # is_enabled to False. That is a proper case and we should return back as
+        # a successful operation when the resource enters Inactive state
+        if self.module.params.get("is_enabled") is False:
+            wait_states = ["INACTIVE"]
+
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_channel,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                channel_id=self.module.params.get("channel_id"),
+                update_channel_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=wait_states,
+        )

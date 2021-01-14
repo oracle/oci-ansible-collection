@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -51,16 +51,22 @@ options:
                 required: true
             target:
                 description:
-                    - ""
+                    - "The target of the object lifecycle policy rule. The values of target can be either \\"objects\\",
+                      \\"multipart-uploads\\" or \\"previous-object-versions\\".
+                      This field when declared as \\"objects\\" is used to specify ARCHIVE or DELETE rule for objects.
+                      This field when declared as \\"previous-object-versions\\" is used to specify ARCHIVE or DELETE
+                      rule for previous versions of existing objects.
+                      This field when declared as \\"multipart-uploads\\" is used to specify the ABORT (only) rule for
+                      uncommitted multipart-uploads."
                     - This parameter is updatable.
                 type: str
             action:
                 description:
-                    - The action of the object lifecycle policy rule. Rules using the action 'ARCHIVE' move objects into the
-                      L(Archive Storage tier,https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm). Rules using the action
-                      'DELETE' permanently delete objects from buckets. Rules using 'ABORT' abort the uncommitted multipart-uploads
-                      and permanently delete their parts from buckets. 'ARCHIVE', 'DELETE' and 'ABORT' are the only three supported
-                      actions at this time.
+                    - The action of the object lifecycle policy rule.
+                      Rules using the action 'ARCHIVE' move objects from Standard storage tier into the
+                      L(Archive Storage tier],https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm).
+                      Rules using the action 'DELETE' permanently delete objects from buckets.
+                      Rules using 'ABORT' abort the uncommitted multipart-uploads and permanently delete their parts from buckets.
                     - This parameter is updatable.
                 type: str
                 required: true
@@ -198,17 +204,23 @@ object_lifecycle_policy:
                     sample: name_example
                 target:
                     description:
-                        - ""
+                        - "The target of the object lifecycle policy rule. The values of target can be either \\"objects\\",
+                          \\"multipart-uploads\\" or \\"previous-object-versions\\".
+                          This field when declared as \\"objects\\" is used to specify ARCHIVE or DELETE rule for objects.
+                          This field when declared as \\"previous-object-versions\\" is used to specify ARCHIVE or DELETE
+                          rule for previous versions of existing objects.
+                          This field when declared as \\"multipart-uploads\\" is used to specify the ABORT (only) rule for
+                          uncommitted multipart-uploads."
                     returned: on success
                     type: string
                     sample: target_example
                 action:
                     description:
-                        - The action of the object lifecycle policy rule. Rules using the action 'ARCHIVE' move objects into the
-                          L(Archive Storage tier,https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm). Rules using the action
-                          'DELETE' permanently delete objects from buckets. Rules using 'ABORT' abort the uncommitted multipart-uploads
-                          and permanently delete their parts from buckets. 'ARCHIVE', 'DELETE' and 'ABORT' are the only three supported
-                          actions at this time.
+                        - The action of the object lifecycle policy rule.
+                          Rules using the action 'ARCHIVE' move objects from Standard storage tier into the
+                          L(Archive Storage tier],https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm).
+                          Rules using the action 'DELETE' permanently delete objects from buckets.
+                          Rules using 'ABORT' abort the uncommitted multipart-uploads and permanently delete their parts from buckets.
                     returned: on success
                     type: string
                     sample: action_example

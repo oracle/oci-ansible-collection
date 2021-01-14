@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -195,6 +195,32 @@ user:
             returned: on success
             type: bool
             sample: true
+        last_successful_login_time:
+            description:
+                - The date and time of when the user most recently logged in the
+                  format defined by RFC3339 (ex. `2016-08-25T21:10:29.600Z`).
+                  If there is no login history, this field is null.
+                - For illustrative purposes, suppose we have a user who has logged in
+                  at July 1st, 2020 at 1200 PST and logged out 30 minutes later.
+                  They then login again on July 2nd, 2020 at 1500 PST.
+                - Their previousSuccessfulLoginTime would be `2020-07-01:19:00.000Z`.
+                - Their lastSuccessfulLoginTime would be `2020-07-02:22:00.000Z`.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        previous_successful_login_time:
+            description:
+                - The date and time of when the user most recently logged in the
+                  format defined by RFC3339 (ex. `2016-08-25T21:10:29.600Z`).
+                  If there is no login history, this field is null.
+                - For illustrative purposes, suppose we have a user who has logged in
+                  at July 1st, 2020 at 1200 PST and logged out 30 minutes later.
+                  They then login again on July 2nd, 2020 at 1500 PST.
+                - Their previousSuccessfulLoginTime would be `2020-07-01:19:00.000Z`.
+                - Their lastSuccessfulLoginTime would be `2020-07-02:22:00.000Z`.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -216,7 +242,9 @@ user:
             "can_use_smtp_credentials": true,
             "can_use_customer_secret_keys": true
         },
-        "is_mfa_activated": true
+        "is_mfa_activated": true,
+        "last_successful_login_time": "2013-10-20T19:20:30+01:00",
+        "previous_successful_login_time": "2013-10-20T19:20:30+01:00"
     }
 """
 

@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.13.0] - 2021-1-13
+
+### Added
+- Added new modules and features in core service
+- Added new modules and features in database service
+- Added new modules and features in load balancer service
+- Added new features in identity service
+- Added new features in resource manager service
+- Added new features in key management service
+- Added new features in usage service
+- Added new features and modules in mysql
+- Added new features in object_storage service
+
+### Solutions and Samples
+- Updated Database Patching solution
+- Added sample for creating autoscaling configuration
+- Refactored the name of the muShop solution
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.27.0)
+
+
 ## [2.12.0] - 2020-12-23
 
 ### Added

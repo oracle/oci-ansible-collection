@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2020 Oracle and/or its affiliates.
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -75,6 +75,27 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    shape_details:
+        description:
+            - The configuration details to create load balancer using Flexible shape. This is required only if shapeName is `Flexible`.
+        type: dict
+        suboptions:
+            minimum_bandwidth_in_mbps:
+                description:
+                    - Bandwidth in Mbps that determines the total pre-provisioned bandwidth (ingress plus egress).
+                      The values must be between 10 and the maximumBandwidthInMbps.
+                    - "Example: `150`"
+                type: int
+                required: true
+            maximum_bandwidth_in_mbps:
+                description:
+                    - Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can
+                      achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps
+                      parameter.
+                    - The values must be between minimumBandwidthInMbps and 8192 (8Gbps).
+                    - "Example: `1500`"
+                type: int
+                required: true
     is_private:
         description:
             - Whether the load balancer has a VCN-local (private) IP address.
@@ -262,6 +283,30 @@ load_balancer:
             returned: on success
             type: string
             sample: 100Mbps
+        shape_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                minimum_bandwidth_in_mbps:
+                    description:
+                        - Bandwidth in Mbps that determines the total pre-provisioned bandwidth (ingress plus egress).
+                          The values must be between 10 and the maximumBandwidthInMbps.
+                        - "Example: `150`"
+                    returned: on success
+                    type: int
+                    sample: 150
+                maximum_bandwidth_in_mbps:
+                    description:
+                        - Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can
+                          achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps
+                          parameter.
+                        - The values must be between minimumBandwidthInMbps and 8192 (8Gbps).
+                        - "Example: `1500`"
+                    returned: on success
+                    type: int
+                    sample: 1500
         is_private:
             description:
                 - Whether the load balancer has a VCN-local (private) IP address.
@@ -1355,6 +1400,10 @@ load_balancer:
             }
         }],
         "shape_name": "100Mbps",
+        "shape_details": {
+            "minimum_bandwidth_in_mbps": 150,
+            "maximum_bandwidth_in_mbps": 1500
+        },
         "is_private": true,
         "subnet_ids": [],
         "network_security_group_ids": [],
@@ -1618,6 +1667,13 @@ def main():
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             shape_name=dict(type="str"),
+            shape_details=dict(
+                type="dict",
+                options=dict(
+                    minimum_bandwidth_in_mbps=dict(type="int", required=True),
+                    maximum_bandwidth_in_mbps=dict(type="int", required=True),
+                ),
+            ),
             is_private=dict(type="bool"),
             ip_mode=dict(type="str", choices=["IPV4", "IPV6"]),
             reserved_ips=dict(
