@@ -331,3 +331,24 @@ class MysqlChannelHelperCustom:
             resource_helper=self,
             wait_for_states=wait_states,
         )
+
+
+class MysqlChannelActionsHelperCustom:
+    # this action is being overridden as the channel goes from INACTIVE state to
+    # INACTIVE state with the reset action. This change is not being picked up by
+    # the waiter clent of mysql as it expects a SUCCESS in the return parameters
+    def reset(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.reset_channel,
+            call_fn_args=(),
+            call_fn_kwargs=dict(channel_id=self.module.params.get("channel_id"),),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            # waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=["INACTIVE"],
+        )

@@ -422,3 +422,12 @@ class CompartmentActionsHelperCustom:
         return super(CompartmentActionsHelperCustom, self).is_action_necessary(
             action, resource_data
         )
+
+
+class TagDefaultHelperCustom:
+    def get_optional_kwargs_for_list(self):
+        if self.module.params.get("tag_definition_id"):
+            return dict(tag_definition_id=self.module.params.get("tag_definition_id"))
+        elif self.module.params.get("compartment_id"):
+            return dict(tag_definition_id=self.module.params.get("compartment_id"))
+        return dict()

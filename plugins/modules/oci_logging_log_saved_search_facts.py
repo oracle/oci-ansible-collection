@@ -146,78 +146,6 @@ log_saved_searches:
             returned: on success
             type: string
             sample: CREATING
-        items:
-            description:
-                - The Saved Seach Summaries
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The OCID of the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                compartment_id:
-                    description:
-                        - The OCID of the compartment that the resource belongs to.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                name:
-                    description:
-                        - The user-friendly display name. This must be unique within the enclosing resource,
-                          and it's changeable. Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: name_example
-                time_created:
-                    description:
-                        - Time the resource was created.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_last_modified:
-                    description:
-                        - Time the resource was last modified.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                description:
-                    description:
-                        - Description for this resource.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                query:
-                    description:
-                        - The search query that is saved.
-                    returned: on success
-                    type: string
-                    sample: query_example
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                freeform_tags:
-                    description:
-                        - "Free-form tags for this resource. Each tag is a simple key-value pair with no
-                          predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                          Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                lifecycle_state:
-                    description:
-                        - The state of the LogSavedSearch
-                    returned: on success
-                    type: string
-                    sample: CREATING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -228,19 +156,7 @@ log_saved_searches:
         "query": "query_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
-        "lifecycle_state": "CREATING",
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "name": "name_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_last_modified": "2013-10-20T19:20:30+01:00",
-            "description": "description_example",
-            "query": "query_example",
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "freeform_tags": {'Department': 'Finance'},
-            "lifecycle_state": "CREATING"
-        }]
+        "lifecycle_state": "CREATING"
     }]
 """
 

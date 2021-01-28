@@ -67,8 +67,11 @@ DOCUMENTATION = """
              env:
                - name: OCI_HOSTNAME_FORMAT
         filters:
-             description: A dictionary of filter value pairs. Available filters  are
-                 display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.
+             description:
+               - A dictionary of filter value pairs.
+               - Available filters are display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.
+               - "Note: defined_tags and freeform_tags filters are not supported for db hosts. The db hosts will not
+                 be returned when you use either of these filters."
         fetch_db_hosts:
              description: When set, the db nodes are also fetched.
         debug:
@@ -979,9 +982,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 if all(
                     (
                         hasattr(resource, "defined_tags")
-                        and resource.defined_tags.get(namespace, {})
-                    ).get(key)
-                    == value
+                        and resource.defined_tags.get(namespace, {}).get(key) == value
+                    )
                     for namespace in self.filters["defined_tags"]
                     for key, value in six.iteritems(
                         self.filters["defined_tags"][namespace]
@@ -1168,6 +1170,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                                     host_inventory["vars"]["display_name"],
                                     host_inventory["vars"],
                                 )
+                                for host_variable in host_inventory["vars"]:
+                                    self.inventory.set_variable(
+                                        host_name,
+                                        host_variable,
+                                        host_inventory["vars"][host_variable],
+                                    )
                             self.inventory.add_child("all", host_name)
                             self._set_composite_vars(
                                 self.get_option("compose"),

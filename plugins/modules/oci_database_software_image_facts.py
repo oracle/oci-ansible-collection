@@ -86,6 +86,10 @@ options:
         choices:
             - "VM_BM_SHAPE"
             - "EXADATA_SHAPE"
+    is_upgrade_supported:
+        description:
+            - If provided, filters the results to the set of database versions which are supported for Upgrade.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -207,6 +211,12 @@ database_software_images:
             returned: on success
             type: string
             sample: ls_inventory_example
+        is_upgrade_supported:
+            description:
+                - True if this Database software image is supported for Upgrade.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -223,7 +233,8 @@ database_software_images:
         "database_software_image_included_patches": [],
         "included_patches_summary": "included_patches_summary_example",
         "database_software_image_one_off_patches": [],
-        "ls_inventory": "ls_inventory_example"
+        "ls_inventory": "ls_inventory_example",
+        "is_upgrade_supported": true
     }]
 """
 
@@ -271,6 +282,7 @@ class DatabaseSoftwareImageFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "image_type",
             "image_shape_family",
+            "is_upgrade_supported",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -321,6 +333,7 @@ def main():
             image_shape_family=dict(
                 type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE"]
             ),
+            is_upgrade_supported=dict(type="bool"),
         )
     )
 

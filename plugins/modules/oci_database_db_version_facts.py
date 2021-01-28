@@ -50,6 +50,10 @@ options:
         choices:
             - "ASM"
             - "LVM"
+    is_upgrade_supported:
+        description:
+            - If provided, filters the results to the set of database versions which are supported for Upgrade.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -91,11 +95,18 @@ db_versions:
             returned: on success
             type: bool
             sample: true
+        is_upgrade_supported:
+            description:
+                - True if this version of the Oracle Database software is supported for Upgrade.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "version": "version_example",
         "is_latest_for_major_version": true,
         "supports_pdb": true,
-        "is_preview_db_version": true
+        "is_preview_db_version": true,
+        "is_upgrade_supported": true
     }]
 """
 
@@ -127,6 +138,7 @@ class DbVersionFactsHelperGen(OCIResourceFactsHelperBase):
             "db_system_shape",
             "db_system_id",
             "storage_management",
+            "is_upgrade_supported",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -155,6 +167,7 @@ def main():
             db_system_shape=dict(type="str"),
             db_system_id=dict(type="str"),
             storage_management=dict(type="str", choices=["ASM", "LVM"]),
+            is_upgrade_supported=dict(type="bool"),
         )
     )
 

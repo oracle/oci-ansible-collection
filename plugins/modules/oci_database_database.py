@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Database resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new database in the specified Database Home. If the database version is provided, it must match the version of the
       Database Home. Applies to Exadata and Exadata Cloud@Customer systems.
-    - "This resource has the following action operations in the M(oci_database_actions) module: migrate_vault_key, restore, rotate_vault_key."
+    - "This resource has the following action operations in the M(oci_database_actions) module: precheck, upgrade, rollback."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

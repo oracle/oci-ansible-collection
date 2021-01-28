@@ -67,13 +67,13 @@ configuration:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         time_enabled:
             description:
-                - The specific time when Data Safe configuration was enabled.
+                - The date and time Data Safe was enabled, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         lifecycle_state:
             description:
-                - The current state of Data Safe configuration.
+                - The current state of Data Safe.
             returned: on success
             type: string
             sample: CREATING
@@ -89,7 +89,7 @@ configuration:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}

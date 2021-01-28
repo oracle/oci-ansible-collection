@@ -37,6 +37,7 @@ options:
     compartment_id:
         description:
             - A filter to return only resources that match the specified compartment OCID.
+            - Required to list multiple data_safe_private_endpoints.
         type: str
     display_name:
         description:
@@ -45,7 +46,7 @@ options:
         aliases: ["name"]
     vcn_id:
         description:
-            - A filter to return only the private endpoints that match the specified VCN OCID.
+            - A filter to return only resources that match the specified VCN OCID.
         type: str
     lifecycle_state:
         description:
@@ -151,7 +152,7 @@ data_safe_private_endpoints:
             sample: description_example
         time_created:
             description:
-                - The date and time the private endpoint was created, in the format defined by RFC3339.
+                - The date and time the private endpoint was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -179,7 +180,7 @@ data_safe_private_endpoints:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -225,7 +226,9 @@ class DataSafePrivateEndpointFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_required_params_for_list(self):
-        return []
+        return [
+            "compartment_id",
+        ]
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
@@ -237,7 +240,6 @@ class DataSafePrivateEndpointFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
-            "compartment_id",
             "display_name",
             "vcn_id",
             "lifecycle_state",
@@ -250,7 +252,9 @@ class DataSafePrivateEndpointFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_data_safe_private_endpoints, **optional_kwargs
+            self.client.list_data_safe_private_endpoints,
+            compartment_id=self.module.params.get("compartment_id"),
+            **optional_kwargs
         )
 
 

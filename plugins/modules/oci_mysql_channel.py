@@ -24,6 +24,7 @@ short_description: Manage a Channel resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Channel resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Channel to establish replication from a source to a target.
+    - "This resource has the following action operations in the M(oci_channel_actions) module: reset, resume."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

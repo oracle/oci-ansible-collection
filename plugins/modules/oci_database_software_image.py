@@ -243,6 +243,12 @@ database_software_image:
             returned: on success
             type: string
             sample: ls_inventory_example
+        is_upgrade_supported:
+            description:
+                - True if this Database software image is supported for Upgrade.
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -259,7 +265,8 @@ database_software_image:
         "database_software_image_included_patches": [],
         "included_patches_summary": "included_patches_summary_example",
         "database_software_image_one_off_patches": [],
-        "ls_inventory": "ls_inventory_example"
+        "ls_inventory": "ls_inventory_example",
+        "is_upgrade_supported": true
     }
 """
 

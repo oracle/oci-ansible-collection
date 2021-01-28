@@ -38,6 +38,8 @@ options:
         description:
             - The OCID of the compartment.
             - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     vcn_id:
         description:
@@ -56,22 +58,26 @@ options:
     description:
         description:
             - The description of the private endpoint.
+            - This parameter is updatable.
         type: str
     nsg_ids:
         description:
             - The OCIDs of the network security groups that the private endpoint belongs to.
+            - This parameter is updatable.
         type: list
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
               L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
               Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-            - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
         type: dict
     data_safe_private_endpoint_id:
         description:
@@ -103,6 +109,7 @@ EXAMPLES = """
 - name: Update data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_private_endpoint:
     display_name: display_name_example
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -121,6 +128,7 @@ EXAMPLES = """
 - name: Delete data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_private_endpoint:
     display_name: display_name_example
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     state: absent
 
 """
@@ -188,7 +196,7 @@ data_safe_private_endpoint:
             sample: description_example
         time_created:
             description:
-                - The date and time the private endpoint was created, in the format defined by RFC3339.
+                - The date and time the private endpoint was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -216,7 +224,7 @@ data_safe_private_endpoint:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -279,10 +287,16 @@ class DataSafePrivateEndpointHelperGen(OCIResourceHelperBase):
         )
 
     def get_required_kwargs_for_list(self):
-        return dict()
+        required_list_method_params = [
+            "compartment_id",
+        ]
+
+        return dict(
+            (param, self.module.params[param]) for param in required_list_method_params
+        )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["compartment_id", "display_name", "vcn_id"]
+        optional_list_method_params = ["display_name", "vcn_id"]
 
         return dict(
             (param, self.module.params[param])

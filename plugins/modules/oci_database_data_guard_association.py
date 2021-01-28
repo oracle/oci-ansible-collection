@@ -40,6 +40,10 @@ options:
             - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
         type: str
         required: true
+    database_software_image_id:
+        description:
+            - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        type: str
     database_admin_password:
         description:
             - A strong password for the `SYS`, `SYSTEM`, and `PDB Admin` users to apply during standby creation.
@@ -395,6 +399,7 @@ def main():
     module_args.update(
         dict(
             database_id=dict(type="str", required=True),
+            database_software_image_id=dict(type="str"),
             database_admin_password=dict(type="str", required=True, no_log=True),
             protection_mode=dict(
                 type="str",

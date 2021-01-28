@@ -1,0 +1,77 @@
+---
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Create Private DNS zone and Steering policy
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    zone_name: 'dns_zone.com'
+    zone_type: 'PRIMARY'
+    zone_scope: 'PRIVATE'
+    steering_policy_display_name: 'steering_policy'
+    steering_policy_template: 'CUSTOM'
+    steering_policy_attachment_display_name: 'steering_policy_attachment'
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    compartment_id: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+  tasks:
+    - block:
+      - name: Create dependency view
+        oci_dns_view:
+          compartment_id: "{{ compartment_id }}"
+          display_name: "dep-view-sample"
+          scope: "PRIVATE"
+        register: result
+      - set_fact:
+          my_view_ocid: "{{ result.view.id }}"
+
+      - name: Create new private zone
+        oci_dns_zone:
+          name: "{{ zone_name }}"
+          compartment_id: "{{ compartment_id }}"
+          zone_type: "{{ zone_type }}"
+          view_id: "{{ my_view_ocid }}"
+          scope: "{{ zone_scope }}"
+        register: result
+
+      - set_fact:
+          zone_ocid: "{{result.zone.id}}"
+
+      - name: Get all zone record of zone using zone's name
+        oci_dns_zone_records_facts:
+          name: "{{zone_name}}"
+          scope: "PRIVATE"
+          view_id: "{{ my_view_ocid }}"
+        register: result
+
+      - debug:
+          msg: "{{result}}"
+
+      - name: Get SOA RRset of zone using zone's name
+        oci_dns_rrset_facts:
+          zone_name: "{{zone_name}}"
+          domain: "{{zone_name}}"
+          rtype: "SOA"
+          scope: "PRIVATE"
+          view_id: "{{ my_view_ocid }}"
+        register: result
+
+      - debug:
+          msg: "{{result}}"
+
+      - import_tasks: teardown.yaml
+
+      rescue:
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

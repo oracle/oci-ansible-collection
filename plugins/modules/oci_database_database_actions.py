@@ -23,11 +23,11 @@ module: oci_database_database_actions
 short_description: Perform actions on a Database resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Database resource in Oracle Cloud Infrastructure
-    - For I(action=migrate_vault_key), changes encryption key management from customer-managed, using the L(Vault
+    - Changes encryption key management from customer-managed, using the L(Vault
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
-    - For I(action=restore), restore a Database based on the request parameters you provide.
-    - For I(action=rotate_vault_key), creates a new version of an existing L(Vault
-      service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+    - Restore a Database based on the request parameters you provide.
+    - Creates a new version of an existing L(Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+    - Upgrade the specified database.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -72,6 +72,43 @@ options:
             - "migrate_vault_key"
             - "restore"
             - "rotate_vault_key"
+            - "precheck"
+            - "upgrade"
+            - "rollback"
+    database_upgrade_source_details:
+        description:
+            - ""
+            - Applicable only for I(action=upgrade).
+        type: dict
+        suboptions:
+            source:
+                description:
+                    - The source of the database upgrade
+                      Use 'DB_HOME' for using existing db home to upgrade the database
+                      Use 'DB_VERSION' for using database version to upgrade the database
+                      Use 'DB_SOFTWARE_IMAGE' for using database software image to upgrade the database
+                type: str
+                choices:
+                    - "DB_HOME"
+                    - "DB_SOFTWARE_IMAGE"
+                    - "DB_VERSION"
+                required: true
+            db_home_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
+                    - Required when source is 'DB_HOME'
+                type: str
+            database_software_image_id:
+                description:
+                    - the database software id used for upgrading the database.
+                    - Required when source is 'DB_SOFTWARE_IMAGE'
+                type: str
+            db_version:
+                description:
+                    - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
+                      us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                    - Required when source is 'DB_VERSION'
+                type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -91,6 +128,14 @@ EXAMPLES = """
   oci_database_database_actions:
     database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
     action: rotate_vault_key
+
+- name: Perform action precheck on database
+  oci_database_database_actions:
+    database_upgrade_source_details:
+      db_version: 19.7.0.0
+      source: DB_VERSION
+    action: PRECHECK
+    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
 
 """
 
@@ -377,6 +422,7 @@ try:
     from oci.database import DatabaseClient
     from oci.database.models import MigrateVaultKeyDetails
     from oci.database.models import RestoreDatabaseDetails
+    from oci.database.models import UpgradeDatabaseDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -389,6 +435,7 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
         migrate_vault_key
         restore
         rotate_vault_key
+        upgrade
     """
 
     def __init__(self, *args, **kwargs):
@@ -469,6 +516,27 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def upgrade(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, UpgradeDatabaseDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.upgrade_database,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_id=self.module.params.get("database_id"),
+                upgrade_database_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 DatabaseActionsHelperCustom = get_custom_class("DatabaseActionsHelperCustom")
 
@@ -492,7 +560,27 @@ def main():
             action=dict(
                 type="str",
                 required=True,
-                choices=["migrate_vault_key", "restore", "rotate_vault_key"],
+                choices=[
+                    "migrate_vault_key",
+                    "restore",
+                    "rotate_vault_key",
+                    "precheck",
+                    "upgrade",
+                    "rollback",
+                ],
+            ),
+            database_upgrade_source_details=dict(
+                type="dict",
+                options=dict(
+                    source=dict(
+                        type="str",
+                        required=True,
+                        choices=["DB_HOME", "DB_SOFTWARE_IMAGE", "DB_VERSION"],
+                    ),
+                    db_home_id=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
+                    db_version=dict(type="str"),
+                ),
             ),
         )
     )

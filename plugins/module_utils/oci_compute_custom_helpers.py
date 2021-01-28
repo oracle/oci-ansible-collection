@@ -296,7 +296,37 @@ class VnicAttachmentHelperCustom:
         return existing_resource_dict
 
 
-def get_iscsi_attach_commands(volume_attachment):
+# currently using string comparison method
+def is_windows_instance(instance_os):
+    if instance_os is None:
+        return False
+    return "windows" in instance_os.lower()
+
+
+def get_windows_iscsi_attach_commands(iqn, ipv4, chap_username, chap_secret):
+    connection_command = "Connect-IscsiTarget -NodeAddress {0} -TargetPortalAddress {1}".format(
+        iqn, ipv4
+    )
+    if chap_username:
+        connection_command = (
+            connection_command
+            + "  -AuthenticationType ONEWAYCHAP -ChapUsername {0} -ChapSecret {1}".format(
+                chap_username, chap_secret
+            )
+        )
+    connection_command = connection_command + "  -IsPersistent $True"
+
+    iscsi_attach_commands = [
+        "Set-Service -Name msiscsi -StartupType Automatic",
+        "Start-Service msiscsi",
+        "New-IscsiTargetPortal –TargetPortalAddress {0}".format(ipv4),
+        connection_command,
+    ]
+
+    return iscsi_attach_commands
+
+
+def get_iscsi_attach_commands(volume_attachment, instance_os):
     if not volume_attachment.get("attachment_type") == "iscsi":
         return []
     iqn = volume_attachment.get("iqn")
@@ -304,35 +334,48 @@ def get_iscsi_attach_commands(volume_attachment):
     port = volume_attachment.get("port")
     chap_username = volume_attachment.get("chap_username")
     chap_secret = volume_attachment.get("chap_secret")
-    iscsi_attach_commands = [
-        "sudo iscsiadm -m node -o new -T {0} -p {1}:{2}".format(iqn, ipv4, port),
-        "sudo iscsiadm -m node -o update -T {0} -n node.startup -v automatic".format(
-            iqn
-        ),
-    ]
-    if chap_username:
-        iscsi_attach_commands.extend(
-            [
-                "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.authmethod -v CHAP".format(
-                    iqn, ipv4, port
-                ),
-                "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.username -v {3}".format(
-                    iqn, ipv4, port, chap_username
-                ),
-                "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.password -v {3}".format(
-                    iqn, ipv4, port, chap_secret
-                ),
-            ]
+
+    # os specific commands
+    if is_windows_instance(instance_os):
+        iscsi_attach_commands = get_windows_iscsi_attach_commands(
+            iqn, ipv4, chap_username, chap_secret
         )
-    iscsi_attach_commands.append(
-        "sudo iscsiadm -m node -T {0} -p {1}:{2} -l".format(iqn, ipv4, port)
-    )
+    else:
+        iscsi_attach_commands = [
+            "sudo iscsiadm -m node -o new -T {0} -p {1}:{2}".format(iqn, ipv4, port),
+            "sudo iscsiadm -m node -o update -T {0} -n node.startup -v automatic".format(
+                iqn
+            ),
+        ]
+
+        if chap_username:
+            iscsi_attach_commands.extend(
+                [
+                    "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.authmethod -v CHAP".format(
+                        iqn, ipv4, port
+                    ),
+                    "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.username -v {3}".format(
+                        iqn, ipv4, port, chap_username
+                    ),
+                    "sudo iscsiadm -m node -T {0} -p {1}:{2} -o update -n node.session.auth.password -v {3}".format(
+                        iqn, ipv4, port, chap_secret
+                    ),
+                ]
+            )
+        iscsi_attach_commands.append(
+            "sudo iscsiadm -m node -T {0} -p {1}:{2} -l".format(iqn, ipv4, port)
+        )
+
     return iscsi_attach_commands
 
 
-def get_iscsi_detach_commands(volume_attachment):
+def get_iscsi_detach_commands(volume_attachment, instance_os):
     if not volume_attachment.get("attachment_type") == "iscsi":
         return []
+
+    if is_windows_instance(instance_os):
+        return []
+
     return [
         "sudo iscsiadm -m node -T {0} -p {1}:{2} -u".format(
             volume_attachment.get("iqn"),
@@ -343,16 +386,40 @@ def get_iscsi_detach_commands(volume_attachment):
     ]
 
 
-def with_iscsi_commands(volume_attachment):
+def with_iscsi_commands(volume_attachment, instance_os):
     if not volume_attachment:
         return volume_attachment
-    volume_attachment["iscsi_attach_commands"] = get_iscsi_attach_commands(
-        volume_attachment
-    )
-    volume_attachment["iscsi_detach_commands"] = get_iscsi_detach_commands(
-        volume_attachment
-    )
+
+    attach_commands = get_iscsi_attach_commands(volume_attachment, instance_os)
+    detach_commands = get_iscsi_detach_commands(volume_attachment, instance_os)
+
+    volume_attachment["iscsi_attach_commands"] = attach_commands
+    volume_attachment["iscsi_detach_commands"] = detach_commands
     return volume_attachment
+
+
+def get_instance(compute_client, instance_id):
+    return oci_common_utils.call_with_backoff(
+        compute_client.get_instance, instance_id=instance_id,
+    )
+
+
+def get_image(compute_client, image_id):
+    return oci_common_utils.call_with_backoff(
+        compute_client.get_image, image_id=image_id,
+    )
+
+
+def get_instance_os(compute_client, instance_id):
+    instance = get_instance(compute_client, instance_id)
+    image = get_image(compute_client, getattr(instance.data, "image_id", None))
+    operating_system = getattr(image.data, "operating_system", None)
+    return operating_system
+
+
+def with_os_iscsi_commands(compute_client, volume_attachment):
+    instance_os = get_instance_os(compute_client, volume_attachment.get("instance_id"))
+    return with_iscsi_commands(volume_attachment, instance_os)
 
 
 class VolumeAttachmentHelperCustom:
@@ -362,7 +429,9 @@ class VolumeAttachmentHelperCustom:
         )
         if not result.get("volume_attachment"):
             return result
-        result["volume_attachment"] = with_iscsi_commands(result["volume_attachment"])
+        result["volume_attachment"] = with_os_iscsi_commands(
+            self.client, result["volume_attachment"]
+        )
         return result
 
     def get_create_model_dict_for_idempotence_check(self, create_model):
@@ -382,11 +451,11 @@ class VolumeAttachmentFactsHelperCustom:
         volume_attachment = super(VolumeAttachmentFactsHelperCustom, self).get(
             *args, **kwargs
         )
-        return with_iscsi_commands(volume_attachment)
+        return with_os_iscsi_commands(self.client, volume_attachment)
 
     def list(self, *args, **kwargs):
         return [
-            with_iscsi_commands(volume_attachment)
+            with_iscsi_commands(volume_attachment, "Linux")
             for volume_attachment in super(
                 VolumeAttachmentFactsHelperCustom, self
             ).list(*args, **kwargs)
