@@ -20,7 +20,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,9 +43,10 @@ Synopsis
 .. Description
 
 - Perform actions on a Database resource in Oracle Cloud Infrastructure
-- For *action=migrate_vault_key*, changes encryption key management from customer-managed, using the `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_, to Oracle-managed.
-- For *action=restore*, restore a Database based on the request parameters you provide.
-- For *action=rotate_vault_key*, creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
+- Changes encryption key management from customer-managed, using the `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_, to Oracle-managed.
+- Restore a Database based on the request parameters you provide.
+- Creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
+- Upgrade the specified database.
 
 
 .. Aliases
@@ -70,12 +71,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -88,6 +89,9 @@ Parameters
                                                                                                                                                                 <li>migrate_vault_key</li>
                                                                                                                                                                                                 <li>restore</li>
                                                                                                                                                                                                 <li>rotate_vault_key</li>
+                                                                                                                                                                                                <li>precheck</li>
+                                                                                                                                                                                                <li>upgrade</li>
+                                                                                                                                                                                                <li>rollback</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -95,7 +99,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -110,7 +114,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -125,7 +129,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -140,7 +144,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -155,7 +159,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -175,7 +179,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -190,7 +194,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -205,7 +209,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-database_id" title="Permalink to this option"></a>
@@ -221,7 +225,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-database_scn"></div>
                     <b>database_scn</b>
                     <a class="ansibleOptionLink" href="#parameter-database_scn" title="Permalink to this option"></a>
@@ -237,7 +241,96 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-database_upgrade_source_details"></div>
+                    <b>database_upgrade_source_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_upgrade_source_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=upgrade</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_upgrade_source_details/database_software_image_id"></div>
+                    <b>database_software_image_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_upgrade_source_details/database_software_image_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>the database software id used for upgrading the database.</div>
+                                            <div>Required when source is &#x27;DB_SOFTWARE_IMAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_upgrade_source_details/db_home_id"></div>
+                    <b>db_home_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_upgrade_source_details/db_home_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Home.</div>
+                                            <div>Required when source is &#x27;DB_HOME&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_upgrade_source_details/db_version"></div>
+                    <b>db_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_upgrade_source_details/db_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>Required when source is &#x27;DB_VERSION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_upgrade_source_details/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_upgrade_source_details/source" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>DB_HOME</li>
+                                                                                                                                                                                                <li>DB_SOFTWARE_IMAGE</li>
+                                                                                                                                                                                                <li>DB_VERSION</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The source of the database upgrade Use &#x27;DB_HOME&#x27; for using existing db home to upgrade the database Use &#x27;DB_VERSION&#x27; for using database version to upgrade the database Use &#x27;DB_SOFTWARE_IMAGE&#x27; for using database software image to upgrade the database</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-kms_key_id"></div>
                     <b>kms_key_id</b>
                     <a class="ansibleOptionLink" href="#parameter-kms_key_id" title="Permalink to this option"></a>
@@ -253,7 +346,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-kms_key_version_id"></div>
                     <b>kms_key_version_id</b>
                     <a class="ansibleOptionLink" href="#parameter-kms_key_version_id" title="Permalink to this option"></a>
@@ -269,7 +362,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-latest"></div>
                     <b>latest</b>
                     <a class="ansibleOptionLink" href="#parameter-latest" title="Permalink to this option"></a>
@@ -289,7 +382,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -304,7 +397,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -319,7 +412,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-timestamp"></div>
                     <b>timestamp</b>
                     <a class="ansibleOptionLink" href="#parameter-timestamp" title="Permalink to this option"></a>
@@ -335,7 +428,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -354,7 +447,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -405,6 +498,14 @@ Examples
       oci_database_database_actions:
         database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
         action: rotate_vault_key
+
+    - name: Perform action precheck on database
+      oci_database_database_actions:
+        database_upgrade_source_details:
+          db_version: 19.7.0.0
+          source: DB_VERSION
+        action: PRECHECK
+        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
 
 
 

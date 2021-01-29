@@ -72,9 +72,15 @@ oracle.oci
 * :ref:`oracle.oci.oci_cloud_guard_configuration <ansible_collections.oracle.oci.oci_cloud_guard_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_cloud_guard_configuration_facts <ansible_collections.oracle.oci.oci_cloud_guard_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_cloud_guard_detector_facts <ansible_collections.oracle.oci.oci_cloud_guard_detector_facts_module>` -- Fetches details about one or multiple Detector resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_cloud_guard_detector_recipe <ansible_collections.oracle.oci.oci_cloud_guard_detector_recipe_module>` -- Manage a DetectorRecipe resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_cloud_guard_detector_recipe_facts <ansible_collections.oracle.oci.oci_cloud_guard_detector_recipe_facts_module>` -- Fetches details about one or multiple DetectorRecipe resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_cloud_guard_managed_list <ansible_collections.oracle.oci.oci_cloud_guard_managed_list_module>` -- Manage a ManagedList resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_cloud_guard_managed_list_facts <ansible_collections.oracle.oci.oci_cloud_guard_managed_list_facts_module>` -- Fetches details about one or multiple ManagedList resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_cloud_guard_managed_list_type_facts <ansible_collections.oracle.oci.oci_cloud_guard_managed_list_type_facts_module>` -- Fetches details about one or multiple ManagedListType resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_cloud_guard_responder_recipe <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_module>` -- Manage a ResponderRecipe resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_cloud_guard_responder_recipe_facts <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_facts_module>` -- Fetches details about one or multiple ResponderRecipe resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_cloud_guard_target <ansible_collections.oracle.oci.oci_cloud_guard_target_module>` -- Manage a Target resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_cloud_guard_target_facts <ansible_collections.oracle.oci.oci_cloud_guard_target_facts_module>` -- Fetches details about one or multiple Target resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_compute_app_catalog_listing_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_facts_module>` -- Fetches details about one or multiple AppCatalogListing resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_compute_app_catalog_listing_resource_version_agreement_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_resource_version_agreement_facts_module>` -- Fetches details about a AppCatalogListingResourceVersionAgreement resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_compute_app_catalog_listing_resource_version_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_resource_version_facts_module>` -- Fetches details about one or multiple AppCatalogListingResourceVersion resources in Oracle Cloud Infrastructure
@@ -163,6 +169,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_data_integration_workspace_facts <ansible_collections.oracle.oci.oci_data_integration_workspace_facts_module>` -- Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_configuration <ansible_collections.oracle.oci.oci_data_safe_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_configuration_facts <ansible_collections.oracle.oci.oci_data_safe_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_safe_on_prem_connector <ansible_collections.oracle.oci.oci_data_safe_on_prem_connector_module>` -- Manage an OnPremConnector resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_safe_on_prem_connector_actions <ansible_collections.oracle.oci.oci_data_safe_on_prem_connector_actions_module>` -- Perform actions on an OnPremConnector resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_safe_on_prem_connector_facts <ansible_collections.oracle.oci.oci_data_safe_on_prem_connector_facts_module>` -- Fetches details about one or multiple OnPremConnector resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_private_endpoint <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_module>` -- Manage a DataSafePrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_private_endpoint_facts <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_facts_module>` -- Fetches details about one or multiple DataSafePrivateEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model <ansible_collections.oracle.oci.oci_data_science_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
@@ -436,6 +445,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_marketplace_publisher_facts <ansible_collections.oracle.oci.oci_marketplace_publisher_facts_module>` -- Fetches details about one or multiple Publisher resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_marketplace_report_collection_facts <ansible_collections.oracle.oci.oci_marketplace_report_collection_facts_module>` -- Fetches details about one or multiple ReportCollection resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_marketplace_report_type_collection_facts <ansible_collections.oracle.oci.oci_marketplace_report_type_collection_facts_module>` -- Fetches details about one or multiple ReportTypeCollection resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_marketplace_tax_facts <ansible_collections.oracle.oci.oci_marketplace_tax_facts_module>` -- Fetches details about one or multiple Tax resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_monitoring_alarm <ansible_collections.oracle.oci.oci_monitoring_alarm_module>` -- Manage an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_monitoring_alarm_actions <ansible_collections.oracle.oci.oci_monitoring_alarm_actions_module>` -- Perform actions on an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_monitoring_alarm_facts <ansible_collections.oracle.oci.oci_monitoring_alarm_facts_module>` -- Fetches details about one or multiple Alarm resources in Oracle Cloud Infrastructure
@@ -453,6 +463,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_mysql_backup <ansible_collections.oracle.oci.oci_mysql_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_backup_facts <ansible_collections.oracle.oci.oci_mysql_backup_facts_module>` -- Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_channel <ansible_collections.oracle.oci.oci_mysql_channel_module>` -- Manage a Channel resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_mysql_channel_actions <ansible_collections.oracle.oci.oci_mysql_channel_actions_module>` -- Perform actions on a Channel resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_channel_facts <ansible_collections.oracle.oci.oci_mysql_channel_facts_module>` -- Fetches details about one or multiple Channel resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_configuration <ansible_collections.oracle.oci.oci_mysql_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_configuration_facts <ansible_collections.oracle.oci.oci_mysql_configuration_facts_module>` -- Fetches details about one or multiple Configuration resources in Oracle Cloud Infrastructure

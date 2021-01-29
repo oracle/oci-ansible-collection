@@ -761,3 +761,82 @@ class DbSystemActionsHelperCustom:
 class DatabaseSoftwareImageHelperCustom:
     def get_default_module_wait_timeout(self):
         return int(1 * 2400)
+
+
+class DatabaseActionsHelperCustom:
+    # mapping actions - precheck, upgrade, rollback to upgrade method.
+    def get_action_fn(self, action):
+        if action == "precheck" or action == "upgrade" or action == "rollback":
+            self.module.params["action"] = action.upper()
+            return getattr(self, "upgrade", None)
+        return super(DatabaseActionsHelperCustom, self).get_action_fn(action)
+
+    # to decide if database upgrade is necessary or not we need to compare database version from DB home or Database
+    # software image.
+    def is_action_necessary(self, action, resource=None):
+        database_resource = resource or self.get_resource().data
+        if action == "upgrade":
+            database = to_dict(database_resource)
+            db_home_id = database["db_home_id"]
+            db_home_resource = oci_common_utils.call_with_backoff(
+                self.client.get_db_home, db_home_id=db_home_id,
+            )
+            db_home = to_dict(db_home_resource.data)
+
+            if self.module.params.get(
+                "database_upgrade_source_details"
+            ) and self.module.params.get("database_upgrade_source_details").get(
+                "source"
+            ):
+                if self.module.params.get("database_upgrade_source_details").get(
+                    "source"
+                ) == "DB_VERSION" and self.module.params.get(
+                    "database_upgrade_source_details"
+                ).get(
+                    "db_version"
+                ):
+
+                    db_version = self.module.params.get(
+                        "database_upgrade_source_details"
+                    ).get("db_version")
+                    if db_version == db_home["db_version"]:
+                        return False
+                    return True
+
+                if self.module.params.get("database_upgrade_source_details").get(
+                    "source"
+                ) == "DB_SOFTWARE_IMAGE" and self.module.params.get(
+                    "database_upgrade_source_details"
+                ).get(
+                    "database_software_image_id"
+                ):
+                    database_software_image_id = self.module.params.get(
+                        "database_upgrade_source_details"
+                    ).get("database_software_image_id")
+
+                    if (
+                        database["database_software_image_id"]
+                        and database["database_software_image_id"]
+                        == database_software_image_id
+                    ):
+                        return False
+                    return True
+
+                if self.module.params.get("database_upgrade_source_details").get(
+                    "source"
+                ) == "DB_HOME" and self.module.params.get(
+                    "database_upgrade_source_details"
+                ).get(
+                    "db_home_id"
+                ):
+                    if (
+                        self.module.params.get("database_upgrade_source_details").get(
+                            "db_home_id"
+                        )
+                        == db_home["id"]
+                    ):
+                        return False
+                    return True
+        return super(DatabaseActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

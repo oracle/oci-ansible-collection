@@ -20,7 +20,7 @@ oracle.oci.oci_data_safe_private_endpoint -- Manage a DataSafePrivateEndpoint re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -166,6 +166,8 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the compartment.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -229,7 +231,8 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a></div>
-                                            <div>Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +248,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description of the private endpoint.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -298,6 +302,7 @@ Parameters
                                                                 <td>
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a></div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -328,6 +333,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCIDs of the network security groups that the private endpoint belongs to.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -494,6 +500,7 @@ Examples
     - name: Update data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_safe_private_endpoint:
         display_name: display_name_example
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -512,6 +519,7 @@ Examples
     - name: Delete data_safe_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_safe_private_endpoint:
         display_name: display_name_example
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         state: absent
 
 
@@ -583,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a></div>
-                                            <div>Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -780,7 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the private endpoint was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the private endpoint was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

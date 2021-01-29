@@ -99,12 +99,33 @@ autonomous_db_versions:
             returned: on success
             type: bool
             sample: true
+        is_paid_enabled:
+            description:
+                - True if this version of the Oracle Database software has payments enabled.
+            returned: on success
+            type: bool
+            sample: true
+        is_default_for_free:
+            description:
+                - True if this version of the Oracle Database software's default is free.
+            returned: on success
+            type: bool
+            sample: true
+        is_default_for_paid:
+            description:
+                - True if this version of the Oracle Database software's default is paid.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "version": "version_example",
         "db_workload": "OLTP",
         "is_dedicated": true,
         "details": "details_example",
-        "is_free_tier_enabled": true
+        "is_free_tier_enabled": true,
+        "is_paid_enabled": true,
+        "is_default_for_free": true,
+        "is_default_for_paid": true
     }]
 """
 

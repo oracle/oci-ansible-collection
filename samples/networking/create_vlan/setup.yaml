@@ -1,0 +1,63 @@
+---
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Check pre-requisites
+  fail:
+    msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+  when: item not in ansible_env
+  with_items:
+    - "SAMPLE_COMPARTMENT_OCID"
+#==========================================================================================
+- name: Create a VCN
+  oci_network_vcn:
+    compartment_id: "{{ compartment_id }}"
+    display_name: "{{ vcn_name }}"
+    cidr_block: "{{ vcn_cidr_block }}"
+    dns_label: "{{ vcn_dns_label }}"
+  register: result
+- set_fact:
+    vcn_id: "{{ result.vcn.id }}"
+    vcn: "{{ result.vcn }}"
+# ===========================================================================================
+- name: Get availability domains for vlans
+  oci_identity_availability_domain_facts:
+    compartment_id: "{{compartment_id}}"
+  register: oci_ads
+- set_fact:
+    availability_domain: "{{oci_ads.availability_domains[0].name}}"
+# ===========================================================================================
+- name: Create a new Internet Gateway
+  oci_network_internet_gateway:
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ ig_name }}"
+    is_enabled: 'yes'
+    state: 'present'
+  register: result
+- set_fact:
+    ig_id: "{{ result.internet_gateway.id }}"
+
+- name: Create route table to connect internet gateway to the VCN
+  oci_network_route_table:
+    compartment_id: "{{ compartment_id }}"
+    vcn_id: "{{ vcn_id }}"
+    name: "{{ route_table_name }}"
+    route_rules: "{{ route_table_rules }}"
+    state: 'present'
+  register: result
+- set_fact:
+    rt_id: "{{ result.route_table.id }}"
+# ===========================================================================================
+- name: Create network_security_group
+  oci_network_security_group:
+    compartment_id: "{{ compartment_id }}"
+    display_name: "{{ network_security_group_name }}"
+    vcn_id: "{{ vcn_id }}"
+  register: result
+
+- set_fact:
+    network_security_group_id: "{{result.network_security_group.id}}"

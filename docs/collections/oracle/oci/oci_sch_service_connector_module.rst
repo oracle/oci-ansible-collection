@@ -20,7 +20,7 @@ oracle.oci.oci_sch_service_connector -- Manage a ServiceConnector resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -483,6 +483,40 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target/batch_rollover_size_in_mbs"></div>
+                    <b>batch_rollover_size_in_mbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/batch_rollover_size_in_mbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The batch rollover size in megabytes.</div>
+                                            <div>Applicable when kind is &#x27;objectStorage&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target/batch_rollover_time_in_ms"></div>
+                    <b>batch_rollover_time_in_ms</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/batch_rollover_time_in_ms" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The batch rollover time in milliseconds.</div>
+                                            <div>Applicable when kind is &#x27;objectStorage&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-target/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#parameter-target/bucket_name" title="Permalink to this option"></a>
@@ -547,11 +581,29 @@ Parameters
                                                                                                                                                                                                 <li>objectStorage</li>
                                                                                                                                                                                                 <li>monitoring</li>
                                                                                                                                                                                                 <li>functions</li>
+                                                                                                                                                                                                <li>loggingAnalytics</li>
                                                                                                                                                                                                 <li>streaming</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The type descriminator.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target/log_group_id"></div>
+                    <b>log_group_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/log_group_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Logging Analytics log group.</div>
+                                            <div>Required when kind is &#x27;loggingAnalytics&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -862,7 +914,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ServiceConnector resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;source&#x27;: {&#x27;kind&#x27;: &#x27;logging&#x27;, &#x27;log_sources&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;target&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;notifications&#x27;, &#x27;metric&#x27;: &#x27;CpuUtilization&#x27;, &#x27;metric_namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name_prefix&#x27;: &#x27;object_name_prefix_example&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;tasks&#x27;: [{&#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;kind&#x27;: &#x27;logRule&#x27;}], &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;source&#x27;: {&#x27;kind&#x27;: &#x27;logging&#x27;, &#x27;log_sources&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;target&#x27;: {&#x27;batch_rollover_size_in_mbs&#x27;: 56, &#x27;batch_rollover_time_in_ms&#x27;: 56, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;notifications&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: &#x27;CpuUtilization&#x27;, &#x27;metric_namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name_prefix&#x27;: &#x27;object_name_prefix_example&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;tasks&#x27;: [{&#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;kind&#x27;: &#x27;logRule&#x27;}], &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1159,6 +1211,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/batch_rollover_size_in_mbs"></div>
+                    <b>batch_rollover_size_in_mbs</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/batch_rollover_size_in_mbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The batch rollover size in megabytes.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/batch_rollover_time_in_ms"></div>
+                    <b>batch_rollover_time_in_ms</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/batch_rollover_time_in_ms" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The batch rollover time in milliseconds.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/target/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/target/bucket_name" title="Permalink to this return value"></a>
@@ -1229,6 +1319,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">notifications</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/log_group_id"></div>
+                    <b>log_group_id</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/log_group_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Logging Analytics log group.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

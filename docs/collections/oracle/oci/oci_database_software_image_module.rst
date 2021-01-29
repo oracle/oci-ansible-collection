@@ -20,7 +20,7 @@ oracle.oci.oci_database_software_image -- Manage a DatabaseSoftwareImage resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -572,7 +572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DatabaseSoftwareImage resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_software_image_included_patches&#x27;: [], &#x27;database_software_image_one_off_patches&#x27;: [], &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_shape_family&#x27;: &#x27;VM_BM_SHAPE&#x27;, &#x27;image_type&#x27;: &#x27;GRID_IMAGE&#x27;, &#x27;included_patches_summary&#x27;: &#x27;included_patches_summary_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ls_inventory&#x27;: &#x27;ls_inventory_example&#x27;, &#x27;patch_set&#x27;: &#x27;patch_set_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_software_image_included_patches&#x27;: [], &#x27;database_software_image_one_off_patches&#x27;: [], &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_shape_family&#x27;: &#x27;VM_BM_SHAPE&#x27;, &#x27;image_type&#x27;: &#x27;GRID_IMAGE&#x27;, &#x27;included_patches_summary&#x27;: &#x27;included_patches_summary_example&#x27;, &#x27;is_upgrade_supported&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ls_inventory&#x27;: &#x27;ls_inventory_example&#x27;, &#x27;patch_set&#x27;: &#x27;patch_set_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -768,6 +768,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">included_patches_summary_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_software_image/is_upgrade_supported"></div>
+                    <b>is_upgrade_supported</b>
+                    <a class="ansibleOptionLink" href="#return-database_software_image/is_upgrade_supported" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if this Database software image is supported for Upgrade.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

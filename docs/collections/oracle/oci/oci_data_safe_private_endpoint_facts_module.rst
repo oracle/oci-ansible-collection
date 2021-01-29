@@ -20,7 +20,7 @@ oracle.oci.oci_data_safe_private_endpoint_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A filter to return only resources that match the specified compartment OCID.</div>
+                                            <div>Required to list multiple data_safe_private_endpoints.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,7 +336,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only the private endpoints that match the specified VCN OCID.</div>
+                                            <div>A filter to return only resources that match the specified VCN OCID.</div>
                                                         </td>
             </tr>
                         </table>
@@ -437,7 +438,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a></div>
-                                            <div>Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -634,7 +635,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the private endpoint was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the private endpoint was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

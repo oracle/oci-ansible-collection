@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -482,7 +482,9 @@ Parameters
                                                     <td>
                                                                                             </td>
                                                 <td>
-                                            <div>A dictionary of filter value pairs. Available filters  are display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.</div>
+                                            <div>A dictionary of filter value pairs.</div>
+                                            <div>Available filters are display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.</div>
+                                            <div>Note: defined_tags and freeform_tags filters are not supported for db hosts. The db hosts will not be returned when you use either of these filters.</div>
                                                         </td>
             </tr>
                                 <tr>

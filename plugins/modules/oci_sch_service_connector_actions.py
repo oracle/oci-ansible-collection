@@ -220,6 +220,18 @@ service_connector:
                     returned: on success
                     type: string
                     sample: object_name_prefix_example
+                batch_rollover_size_in_mbs:
+                    description:
+                        - The batch rollover size in megabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
+                batch_rollover_time_in_ms:
+                    description:
+                        - The batch rollover time in milliseconds.
+                    returned: on success
+                    type: int
+                    sample: 56
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
@@ -246,6 +258,12 @@ service_connector:
                     returned: on success
                     type: string
                     sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                log_group_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
+                    returned: on success
+                    type: string
+                    sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
@@ -302,10 +320,13 @@ service_connector:
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
             "object_name_prefix": "object_name_prefix_example",
+            "batch_rollover_size_in_mbs": 56,
+            "batch_rollover_time_in_ms": 56,
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "metric_namespace": "oci_computeagent",
             "metric": "CpuUtilization",
             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "freeform_tags": {'Department': 'Finance'},

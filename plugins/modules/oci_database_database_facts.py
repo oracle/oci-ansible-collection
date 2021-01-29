@@ -72,6 +72,7 @@ options:
             - "AVAILABLE"
             - "UPDATING"
             - "BACKUP_IN_PROGRESS"
+            - "UPGRADING"
             - "TERMINATING"
             - "TERMINATED"
             - "RESTORE_FAILED"
@@ -440,6 +441,7 @@ def main():
                     "AVAILABLE",
                     "UPDATING",
                     "BACKUP_IN_PROGRESS",
+                    "UPGRADING",
                     "TERMINATING",
                     "TERMINATED",
                     "RESTORE_FAILED",

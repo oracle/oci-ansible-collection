@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_db_version_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -328,7 +328,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AutonomousDbVersion resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;details&#x27;: &#x27;details_example&#x27;, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier_enabled&#x27;: True, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;details&#x27;: &#x27;details_example&#x27;, &#x27;is_dedicated&#x27;: True, &#x27;is_default_for_free&#x27;: True, &#x27;is_default_for_paid&#x27;: True, &#x27;is_free_tier_enabled&#x27;: True, &#x27;is_paid_enabled&#x27;: True, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -389,6 +389,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_db_versions/is_default_for_free"></div>
+                    <b>is_default_for_free</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_db_versions/is_default_for_free" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if this version of the Oracle Database software&#x27;s default is free.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_db_versions/is_default_for_paid"></div>
+                    <b>is_default_for_paid</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_db_versions/is_default_for_paid" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if this version of the Oracle Database software&#x27;s default is paid.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-autonomous_db_versions/is_free_tier_enabled"></div>
                     <b>is_free_tier_enabled</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_db_versions/is_free_tier_enabled" title="Permalink to this return value"></a>
@@ -399,6 +435,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>True if this version of the Oracle Database software can be used for Always-Free Autonomous Databases.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_db_versions/is_paid_enabled"></div>
+                    <b>is_paid_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_db_versions/is_paid_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if this version of the Oracle Database software has payments enabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

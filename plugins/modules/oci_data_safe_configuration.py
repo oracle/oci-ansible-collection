@@ -30,21 +30,11 @@ options:
         description:
             - Indicates if Data Safe is enabled.
         type: bool
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
-              L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-            - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-        type: dict
+        required: true
     compartment_id:
         description:
             - A filter to return only resources that match the specified compartment OCID.
+            - This parameter is updatable.
         type: str
     state:
         description:
@@ -61,7 +51,7 @@ EXAMPLES = """
 - name: Update configuration
   oci_data_safe_configuration:
     is_enabled: true
-    freeform_tags: {'Department': 'Finance'}
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
 
 """
 
@@ -92,13 +82,13 @@ configuration:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         time_enabled:
             description:
-                - The specific time when Data Safe configuration was enabled.
+                - The date and time Data Safe was enabled, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         lifecycle_state:
             description:
-                - The current state of Data Safe configuration.
+                - The current state of Data Safe.
             returned: on success
             type: string
             sample: CREATING
@@ -114,7 +104,7 @@ configuration:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
                   Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
-                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -155,9 +145,16 @@ class DataSafeConfigurationHelperGen(OCIResourceHelperBase):
         return self.client.get_data_safe_configuration
 
     def get_resource(self):
+        optional_params = [
+            "compartment_id",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
-            self.client.get_data_safe_configuration,
-            compartment_id=self.module.params.get("compartment_id"),
+            self.client.get_data_safe_configuration, **optional_kwargs
         )
 
     def get_update_model_class(self):
@@ -195,9 +192,7 @@ def main():
     )
     module_args.update(
         dict(
-            is_enabled=dict(type="bool"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
+            is_enabled=dict(type="bool", required=True),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

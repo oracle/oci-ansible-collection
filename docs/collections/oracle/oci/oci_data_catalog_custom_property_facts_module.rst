@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_custom_property_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.13.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -483,6 +483,8 @@ Parameters
                                                                                                                                                                                                 <li>CATEGORY</li>
                                                                                                                                                                                                 <li>FILE</li>
                                                                                                                                                                                                 <li>BUCKET</li>
+                                                                                                                                                                                                <li>MESSAGE</li>
+                                                                                                                                                                                                <li>UNRECOGNIZED_FILE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

@@ -1,0 +1,42 @@
+---
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Terminate the instance
+  oci_compute_instance:
+    id: "{{ instance_id }}"
+    state: absent
+
+- name: Delete image
+  oci_compute_image:
+    image_id: "{{ image_id }}"
+    state: absent
+  register: result
+
+- name: Delete the subnet
+  oci_network_subnet:
+    id: "{{ instance_subnet_id }}"
+    state: absent
+
+- name: Delete the security list
+  oci_network_security_list:
+    id: "{{ instance_security_list_ocid }}"
+    state: absent
+
+- name: Delete the route table
+  oci_network_route_table:
+    id: "{{ rt_id }}"
+    state: absent
+
+- name: Delete the Internet Gateway
+  oci_network_internet_gateway:
+    id: "{{ ig_id }}"
+    state: absent
+
+- name: Delete the VCN
+  oci_network_vcn:
+    vcn_id: "{{ vcn_id }}"
+    state: absent

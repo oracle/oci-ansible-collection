@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.14.0] - 2021-1-28
+
+### Added
+- Added modules to manage [Data Safe On-Premises Connector](https://docs.oracle.com/en-us/iaas/data-safe/doc/register-onpremises-oracle-databases-using-oracle-data-safe-onpremises-connector.html)
+- Support for resetting and resuming mysql channel (`oci_mysql_channel_actions` module)
+- Create dataguard association with standby database from given database software image.
+- Support for precheck, upgrade and rollback in `oci_database_database_actions`
+- `oci_marketplace_tax_facts` module
+- `oci_data_catalog_custom_property_facts` module
+- Added parameters `batch_rollover_size_in_mbs`, `batch_rollover_time_in_ms` and `log_group_id` in `oci_sch_service_connector`
+- Sample to create a custom image from an instance
+- Sample to create a vlan
+- Sample to create a Private Load Balancer
+- Sample to create public and private DNS
+- Added modules to manage Cloud Guard [Targets](https://docs.oracle.com/en-us/iaas/cloud-guard/using/targets.htm), [Detector Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/detect-recipes.htm) and [Responder Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes.htm)
+
+### Fixed
+- Issue https://github.com/oracle/oci-ansible-collection/issues/15
+- Issue https://github.com/oracle/oci-ansible-collection/issues/35
+
+### Breaking changes
+- Parameters `freeform_tags` and `defined_tags` are **removed** from `oci_data_safe_configuration` module
+- Parameter compartment_id is **required** to list multiple `data_safe_private_endpoint`s in `oci_data_safe_private_endpoint_facts` module
+
+### Changed:
+- Please update to the latest version of OCI Python SDK (2.28.0)
+
+
 ## [2.13.0] - 2021-1-13
 
 ### Added
