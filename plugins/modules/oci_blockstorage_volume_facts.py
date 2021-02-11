@@ -76,7 +76,8 @@ options:
         type: str
     lifecycle_state:
         description:
-            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+            - A filter to only return resources that match the given lifecycle state. The state
+              value is case-insensitive.
         type: str
         choices:
             - "PROVISIONING"
@@ -195,14 +196,14 @@ volumes:
             sample: 56
         size_in_mbs:
             description:
-                - The size of the volume in MBs. This field is deprecated. Use sizeInGBs instead.
+                - The size of the volume in MBs. This field is deprecated. Use
+                  sizeInGBs instead.
             returned: on success
             type: int
             sample: 56
         source_details:
             description:
-                - The volume source, either an existing volume in the same availability domain or a volume backup.
-                  If null, an empty volume is created.
+                - ""
             returned: on success
             type: complex
             contains:

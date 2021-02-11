@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_bucket_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Fetches details about one or multiple Bucket resources in Oracle Cloud Infrastructure
 - Gets a list of all BucketSummary items in a compartment. A BucketSummary contains only summary fields for the bucket and does not contain fields like the user-defined metadata.
+- ListBuckets returns a BucketSummary containing at most 1000 buckets. To paginate through more buckets, use the returned `opc-next-page` value with the `page` request parameter.
 - To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized, talk to an administrator. If you are an administrator who needs to write policies to give users access, see `Getting Started with Policies <https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm>`_.
 - If *bucket_name* is specified, the details of a single Bucket will be returned.
 
@@ -577,7 +578,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage namespace in which the bucket lives.</div>
+                                            <div>The Object Storage namespace in which the bucket resides.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
@@ -667,7 +668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The storage tier type assigned to the bucket. A bucket is set to &#x27;Standard&#x27; tier by default, which means objects uploaded or copied to the bucket will be in the standard storage tier. When the &#x27;Archive&#x27; tier type is set explicitly for a bucket, objects uploaded or copied to the bucket will be stored in archive storage. The &#x27;storageTier&#x27; property is immutable after bucket is created.</div>
+                                            <div>The storage tier type assigned to the bucket. A bucket is set to `Standard` tier by default, which means objects uploaded or copied to the bucket will be in the standard storage tier. When the `Archive` tier type is set explicitly for a bucket, objects uploaded or copied to the bucket will be stored in archive storage. The `storageTier` property is immutable after bucket is created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Standard</div>

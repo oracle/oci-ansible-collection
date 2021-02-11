@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_home_facts -- Fetches details about one or multiple D
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -244,6 +244,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The DB system <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>. If provided, filters the results to the set of database versions which are supported for the DB system.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-db_version"></div>
+                    <b>db_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only DB Homes that match the specified dbVersion.</div>
                                                         </td>
             </tr>
                                 <tr>

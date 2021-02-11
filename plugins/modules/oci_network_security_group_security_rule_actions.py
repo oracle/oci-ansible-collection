@@ -76,8 +76,8 @@ options:
                     - "NETWORK_SECURITY_GROUP"
             direction:
                 description:
-                    - Direction of the security rule. Set to `EGRESS` for rules to allow outbound IP packets, or `INGRESS` for rules to allow inbound IP
-                      packets.
+                    - Direction of the security rule. Set to `EGRESS` for rules to allow outbound IP packets,
+                      or `INGRESS` for rules to allow inbound IP packets.
                 type: str
                 choices:
                     - "EGRESS"
@@ -85,15 +85,7 @@ options:
                 required: true
             icmp_options:
                 description:
-                    - "Optional and valid only for ICMP and ICMPv6. Use to specify a particular ICMP type and code
-                      as defined in:
-                      - L(ICMP Parameters,http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml)
-                      - L(ICMPv6 Parameters,https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml)"
-                    - "If you specify ICMP or ICMPv6 as the protocol but omit this object, then all ICMP types and
-                      codes are allowed. If you do provide this object, the type is required and the code is optional.
-                      To enable MTU negotiation for ingress internet traffic via IPv4, make sure to allow type 3 (\\"Destination
-                      Unreachable\\") code 4 (\\"Fragmentation Needed and Don't Fragment was Set\\"). If you need to specify
-                      multiple codes for a single type, create a separate security list rule for each."
+                    - ""
                 type: dict
                 suboptions:
                     code:
@@ -151,14 +143,12 @@ options:
                     - "NETWORK_SECURITY_GROUP"
             tcp_options:
                 description:
-                    - Optional and valid only for TCP. Use to specify particular destination ports for TCP rules.
-                      If you specify TCP as the protocol but omit this object, then all destination ports are allowed.
+                    - ""
                 type: dict
                 suboptions:
                     destination_port_range:
                         description:
-                            - An inclusive range of allowed destination ports. Use the same number for the min and max
-                              to indicate a single port. Defaults to all ports if not specified.
+                            - ""
                         type: dict
                         suboptions:
                             max:
@@ -174,8 +164,7 @@ options:
                                 required: true
                     source_port_range:
                         description:
-                            - An inclusive range of allowed source ports. Use the same number for the min and max to
-                              indicate a single port. Defaults to all ports if not specified.
+                            - ""
                         type: dict
                         suboptions:
                             max:
@@ -191,14 +180,12 @@ options:
                                 required: true
             udp_options:
                 description:
-                    - Optional and valid only for UDP. Use to specify particular destination ports for UDP rules.
-                      If you specify UDP as the protocol but omit this object, then all destination ports are allowed.
+                    - ""
                 type: dict
                 suboptions:
                     destination_port_range:
                         description:
-                            - An inclusive range of allowed destination ports. Use the same number for the min and max
-                              to indicate a single port. Defaults to all ports if not specified.
+                            - ""
                         type: dict
                         suboptions:
                             max:
@@ -214,8 +201,7 @@ options:
                                 required: true
                     source_port_range:
                         description:
-                            - An inclusive range of allowed source ports. Use the same number for the min and max to
-                              indicate a single port. Defaults to all ports if not specified.
+                            - ""
                         type: dict
                         suboptions:
                             max:
@@ -346,22 +332,14 @@ network_security_group_security_rule:
                     sample: CIDR_BLOCK
                 direction:
                     description:
-                        - Direction of the security rule. Set to `EGRESS` for rules to allow outbound IP packets, or `INGRESS` for rules to allow inbound IP
-                          packets.
+                        - Direction of the security rule. Set to `EGRESS` for rules to allow outbound IP packets,
+                          or `INGRESS` for rules to allow inbound IP packets.
                     returned: on success
                     type: string
                     sample: EGRESS
                 icmp_options:
                     description:
-                        - "Optional and valid only for ICMP and ICMPv6. Use to specify a particular ICMP type and code
-                          as defined in:
-                          - L(ICMP Parameters,http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml)
-                          - L(ICMPv6 Parameters,https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml)"
-                        - "If you specify ICMP or ICMPv6 as the protocol but omit this object, then all ICMP types and
-                          codes are allowed. If you do provide this object, the type is required and the code is optional.
-                          To enable MTU negotiation for ingress internet traffic via IPv4, make sure to allow type 3 (\\"Destination
-                          Unreachable\\") code 4 (\\"Fragmentation Needed and Don't Fragment was Set\\"). If you need to specify
-                          multiple codes for a single type, create a separate security rule for each."
+                        - ""
                     returned: on success
                     type: complex
                     contains:
@@ -442,15 +420,13 @@ network_security_group_security_rule:
                     sample: CIDR_BLOCK
                 tcp_options:
                     description:
-                        - Optional and valid only for TCP. Use to specify particular destination ports for TCP rules.
-                          If you specify TCP as the protocol but omit this object, then all destination ports are allowed.
+                        - ""
                     returned: on success
                     type: complex
                     contains:
                         destination_port_range:
                             description:
-                                - An inclusive range of allowed destination ports. Use the same number for the min and max
-                                  to indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -469,8 +445,7 @@ network_security_group_security_rule:
                                     sample: 56
                         source_port_range:
                             description:
-                                - An inclusive range of allowed source ports. Use the same number for the min and max to
-                                  indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -495,15 +470,13 @@ network_security_group_security_rule:
                     sample: 2013-10-20T19:20:30+01:00
                 udp_options:
                     description:
-                        - Optional and valid only for UDP. Use to specify particular destination ports for UDP rules.
-                          If you specify UDP as the protocol but omit this object, then all destination ports are allowed.
+                        - ""
                     returned: on success
                     type: complex
                     contains:
                         destination_port_range:
                             description:
-                                - An inclusive range of allowed destination ports. Use the same number for the min and max
-                                  to indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -522,8 +495,7 @@ network_security_group_security_rule:
                                     sample: 56
                         source_port_range:
                             description:
-                                - An inclusive range of allowed source ports. Use the same number for the min and max to
-                                  indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:

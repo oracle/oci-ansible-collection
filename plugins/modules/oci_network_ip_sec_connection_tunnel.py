@@ -63,7 +63,7 @@ options:
             - "V2"
     bgp_session_config:
         description:
-            - Information for establishing a BGP session for the IPSec tunnel.
+            - ""
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -192,7 +192,7 @@ ip_sec_connection_tunnel:
             sample: display_name_example
         bgp_session_info:
             description:
-                - Information for establishing the tunnel's BGP session.
+                - ""
             returned: on success
             type: complex
             contains:

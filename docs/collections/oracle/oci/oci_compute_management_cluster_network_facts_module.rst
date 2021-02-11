@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_cluster_network_facts -- Fetches details about
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1007,7 +1007,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The placement configuration for the instance pools in the cluster network.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

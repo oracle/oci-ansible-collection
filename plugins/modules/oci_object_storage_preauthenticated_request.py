@@ -41,6 +41,7 @@ options:
     name:
         description:
             - A user-specified name for the pre-authenticated request. Names can be helpful in managing pre-authenticated requests.
+              Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str

@@ -87,3 +87,131 @@ class ConfigurationSourceProviderHelperCustom:
         return super(
             ConfigurationSourceProviderHelperCustom, self
         ).get_exclude_attributes() + ["access_token"]
+
+
+class TemplateHelperCustom:
+    """
+    Custom helper for Resource Manager Template resource.
+    """
+
+    def list_resources(self):
+        """
+        Overrides the generated list_resources to include
+        the template_category_id param.
+
+        Category '3' implies 'Private Templates'.
+        """
+
+        try:
+            orig_category_id = self.module.params.get("template_category_id")
+            self.module.params["template_category_id"] = "3"
+            return super(TemplateHelperCustom, self).list_resources()
+        finally:
+            self.module.params["template_category_id"] = orig_category_id
+
+    def get_required_kwargs_for_list(self):
+        """
+        Populates the required keyword agruments
+        from the module's params.
+        """
+
+        required_list_method_params = ["template_category_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in required_list_method_params
+            if self.module.params.get(param) is not None
+        )
+
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        """
+        Overrides the generated method to include logo file and template zip
+        file in the existing_resource.
+        """
+
+        existing_resource_dict = super(
+            TemplateHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+
+        existing_resource_dict = self.enrich_resource_dict_with_logo_file(
+            existing_resource_dict
+        )
+
+        existing_resource_dict = self.enrich_resource_dict_with_config_zip_file(
+            existing_resource_dict
+        )
+
+        return existing_resource_dict
+
+    def get_existing_resource_dict_for_update(self):
+        """
+        Overrides the generated method to include logo file and template zip
+        file in the existing_resource for the update scenario
+        """
+
+        existing_resource_dict = super(
+            TemplateHelperCustom, self
+        ).get_existing_resource_dict_for_update()
+
+        existing_resource_dict = self.enrich_resource_dict_with_logo_file(
+            existing_resource_dict
+        )
+
+        existing_resource_dict = self.enrich_resource_dict_with_config_zip_file(
+            existing_resource_dict
+        )
+
+        return existing_resource_dict
+
+    def enrich_resource_dict_with_logo_file(self, existing_resource_dict):
+        """
+        Enriches the existing_resource_dict with the logo file.
+        """
+
+        if existing_resource_dict.get("id") and not existing_resource_dict.get(
+            "logo_file_base64_encoded"
+        ):
+            existing_resource_dict[
+                "logo_file_base64_encoded"
+            ] = self.get_base64_encoded_template_logo(existing_resource_dict["id"])
+        return existing_resource_dict
+
+    def enrich_resource_dict_with_config_zip_file(self, existing_resource_dict):
+        """
+        Enriches the existing_resource_dict with the template zip file.
+        """
+
+        config_source = existing_resource_dict.get("template_config_source")
+        if (
+            existing_resource_dict.get("id")
+            and config_source
+            and config_source.get("template_config_source_type") == "ZIP_UPLOAD"
+            and not config_source.get("zip_file_base64_encoded")
+        ):
+            existing_resource_dict["template_config_source"][
+                "zip_file_base64_encoded"
+            ] = self.get_base64_encoded_template_tf_config(existing_resource_dict["id"])
+
+        return existing_resource_dict
+
+    def get_base64_encoded_template_tf_config(self, template_id):
+        """
+        Fetch the template tf config zip file for the
+        specified template id.
+        """
+
+        response = oci_common_utils.call_with_backoff(
+            self.client.get_template_tf_config, template_id
+        ).data
+        return b64encode(response.content).decode("ascii")
+
+    def get_base64_encoded_template_logo(self, template_id):
+        """
+        Fetch the template logo file for the
+        specified template id.
+        """
+
+        response = oci_common_utils.call_with_backoff(
+            self.client.get_template_logo, template_id
+        ).data
+        return b64encode(response.content).decode("ascii")

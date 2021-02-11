@@ -23,28 +23,26 @@ module: oci_network_public_ip_pool_actions
 short_description: Perform actions on a PublicIpPool resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a PublicIpPool resource in Oracle Cloud Infrastructure
-    - For I(action=add_public_ip_pool_capacity), adds a Cidr from the named Byoip Range prefix to the referenced Public IP Pool.
-      The cidr must be a subset of the Byoip Range in question.
-      The cidr must not overlap with any other cidr already added to this
-      or any other Public Ip Pool.
-    - For I(action=remove_public_ip_pool_capacity), removes a Cidr from the referenced Public IP Pool.
+    - For I(action=add_public_ip_pool_capacity), adds some or all of a CIDR block to a public IP pool.
+      The CIDR block (or subrange) must not overlap with any other CIDR block already added to this or any other public IP pool.
+    - For I(action=remove_public_ip_pool_capacity), removes a CIDR block from the referenced public IP pool.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     public_ip_pool_id:
         description:
-            - The OCID of the Public Ip Pool object.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
         type: str
         aliases: ["id"]
         required: true
     byoip_range_id:
         description:
-            - The OCID of the Byoip Range Id object to whch the cidr block belongs.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource to which the CIDR block belongs.
             - Required for I(action=add_public_ip_pool_capacity).
         type: str
     cidr_block:
         description:
-            - "The CIDR IP address range to be added to the Public Ip Pool
+            - "The CIDR block to add to the public IP pool. It could be all of the CIDR block identified in `byoipRangeId`, or a subrange.
               Example: `10.0.1.0/24`"
         type: str
         required: true
@@ -84,13 +82,13 @@ public_ip_pool:
     contains:
         cidr_blocks:
             description:
-                - The CIDRs that make up this pool
+                - The CIDR blocks added to this pool. This could be all or a portion of a BYOIP CIDR block.
             returned: on success
             type: list
             sample: []
         compartment_id:
             description:
-                - The OCID of the compartment containing the Public IP Pool
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing this pool.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -120,19 +118,19 @@ public_ip_pool:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The Oracle ID (OCID) of the Public Ip Pool.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
-                - The Public IP Pool's current state.
+                - The public IP pool's current state.
             returned: on success
             type: string
             sample: INACTIVE
         time_created:
             description:
-                - The date and time the public IP Pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the public IP pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_actions -- Perform actions on an Instance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,9 +47,10 @@ Synopsis
 - - **START** - Powers on the instance.
 - - **STOP** - Powers off the instance.
 - - **RESET** - Powers off the instance and then powers it back on.
-- - **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system. If the applications that run on the instance take a long time to shut down, they could be improperly stopped, resulting in data corruption. To avoid this, shut down the instance using the commands available in the OS before you softstop the instance.
-- - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system, and then powers the instance back on.
-- For more information, see `Stopping and Starting an Instance <https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm>`_.
+- - **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off. If the applications that run on the instance take more than 15 minutes to shut down, they could be improperly stopped, resulting in data corruption. To avoid this, manually shut down the instance using the commands available in the OS before you softstop the instance.
+- - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off and then powered back on.
+- - **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Warning: Sending a diagnostic interrupt to a live system can cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see `Sending a Diagnostic Interrupt <https://docs.cloud.oracle.com/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm>`_.
+- For more information about managing instance lifecycle states, see `Stopping and Starting an Instance <https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm>`_.
 
 
 .. Aliases
@@ -385,7 +386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the agent running on the instance can run all the available management plugins.</div>
+                                            <div>Whether Oracle Cloud Agent can run all the available management plugins.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -404,7 +405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the agent running on the instance can gather performance metrics and monitor the instance.</div>
+                                            <div>Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the monitoring plugins.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -423,7 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -721,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -738,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
+                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ISCSI</div>
@@ -757,7 +758,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Firmware used to boot VM.  Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the default for Oracle-provided images.</div>
+                                            <div>Firmware used to boot VM. Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BIOS</div>
@@ -814,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
+                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">E1000</div>
@@ -833,7 +834,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
+                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ISCSI</div>
@@ -1134,7 +1135,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Details for creating an instance</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

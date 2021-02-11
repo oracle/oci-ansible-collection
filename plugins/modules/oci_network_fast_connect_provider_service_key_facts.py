@@ -71,7 +71,7 @@ fast_connect_provider_service_key:
             sample: name_example
         bandwidth_shape_name:
             description:
-                - The provisioned data rate of the connection.  To get a list of the
+                - The provisioned data rate of the connection. To get a list of the
                   available bandwidth levels (that is, shapes), see
                   L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).

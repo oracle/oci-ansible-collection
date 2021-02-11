@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn -- Manage a Vcn resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,9 +44,9 @@ Synopsis
 
 - This module allows the user to create, update and delete a Vcn resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new virtual cloud network (VCN). For more information, see `VCNs and Subnets <https://docs.cloud.oracle.com/Content/Network/Tasks/managingVCNs.htm>`_.
-- To create the VCN, you may specify a list of IPv4 CIDR blocks. The CIDRs must maintain the following rules -
-- a. The list of CIDRs provided are valid b. There is no overlap between different CIDRs c. The list of CIDRs does not exceed the max limit of CIDRs per VCN
-- Oracle recommends using one of the private IP address ranges specified in `RFC 1918] <https://tools.ietf.org/html/rfc1918>`_ (10.0.0.0/8, 172.16/12, and 192.168/16). Example: 172.16.0.0/16. The CIDR blocks can range from /16 to /30, and they must not overlap with your on-premises network.
+- For the VCN, you specify a list of one or more IPv4 CIDR blocks that meet the following criteria:
+- - The CIDR blocks must be valid. - They must not overlap with each other or with the on-premises network CIDR block. - The number of CIDR blocks does not exceed the limit of CIDR blocks allowed per VCN.
+- For a CIDR block, Oracle recommends that you use one of the private IP address ranges specified in `RFC 1918 <https://tools.ietf.org/html/rfc1918>`_ (10.0.0.0/8, 172.16/12, and 192.168/16). Example: 172.16.0.0/16. The CIDR blocks can range from /16 to /30.
 - For the purposes of access control, you must provide the OCID of the compartment where you want the VCN to reside. Consult an Oracle Cloud Infrastructure administrator in your organization if you're not sure which compartment to use. Notice that the VCN doesn't have to be in the same compartment as the subnets or other Networking Service components. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the VCN, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - You can also add a DNS label for the VCN, which is required if you want the instances to use the Interent and VCN Resolver option for DNS in the VCN. For more information, see `DNS in Your Virtual Cloud Network <https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm>`_.
@@ -173,7 +173,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Deprecated. Instead use &#x27;cidrBlocks&#x27;. It is an error to set both cidrBlock and cidrBlocks. Example: `10.0.0.0/16`</div>
+                                            <div>**Deprecated.** Do *not* set this value. Use `cidrBlocks` instead. Example: `10.0.0.0/16`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -188,8 +188,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of IPv4 CIDR blocks associated with the VCN. The CIDRs must maintain the following rules -</div>
-                                            <div>a. The list of CIDRs provided are valid b. There is no overlap between different CIDRs c. The number of CIDRs should not exceed the max limit of CIDRs per VCN d. It is an error to set both cidrBlock and cidrBlocks.</div>
+                                            <div>The list of one or more IPv4 CIDR blocks for the VCN that meet the following criteria: - The CIDR blocks must be valid. - They must not overlap with each other or with the on-premises network CIDR block. - The number of CIDR blocks must not exceed the limit of CIDR blocks allowed per VCN.</div>
+                                            <div>**Important:** Do *not* specify a value for `cidrBlock`. Use this parameter instead.</div>
                                                         </td>
             </tr>
                                 <tr>

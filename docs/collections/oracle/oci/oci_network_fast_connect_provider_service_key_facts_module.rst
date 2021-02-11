@@ -20,7 +20,7 @@ oracle.oci.oci_network_fast_connect_provider_service_key_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -334,7 +334,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The provisioned data rate of the connection.  To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
+                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

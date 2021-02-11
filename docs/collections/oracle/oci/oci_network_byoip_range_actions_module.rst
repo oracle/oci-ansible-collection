@@ -20,7 +20,7 @@ oracle.oci.oci_network_byoip_range_actions -- Perform actions on a ByoipRange re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,9 +43,9 @@ Synopsis
 .. Description
 
 - Perform actions on a ByoipRange resource in Oracle Cloud Infrastructure
-- For *action=advertise*, initiate route advertisements for the Byoip Range prefix. the prefix must be in PROVISIONED state
-- For *action=validate*, submit the Byoip Range for validation. This presumes the user has updated their IP registry record in accordance to validation requirements
-- For *action=withdraw*, stop route advertisements for the Byoip Range prefix.
+- For *action=advertise*, begins BGP route advertisements for the BYOIP CIDR block you imported to the Oracle Cloud. The `ByoipRange` resource must be in the PROVISIONED state before the BYOIP CIDR block routes can be advertised with BGP.
+- For *action=validate*, submits the BYOIP CIDR block you are importing for validation. Do not submit to Oracle for validation if you have not already modified the information for the BYOIP CIDR block with your Regional Internet Registry. See `To import a CIDR block <https://docs.cloud.oracle.com/Content/Network/Concepts/BYOIP.htm#import_cidr>`_ for details.
+- For *action=withdraw*, withdraws BGP route advertisement for the BYOIP CIDR block.
 
 
 .. Aliases
@@ -186,7 +186,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Byoip Range object.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource containing the BYOIP CIDR block.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -371,7 +371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The address range the user is on-boarding.</div>
+                                            <div>The public IPv4 CIDR block being imported from on-premises to the Oracle cloud.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cidr_block_example</div>
@@ -389,7 +389,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the Byoip Range.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the BYOIP CIDR block.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -463,7 +463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Oracle ID (OCID) of the Byoip Range.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -481,7 +481,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Byoip Range&#x27;s current substate.</div>
+                                            <div>The `ByoipRange` resource&#x27;s current status.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -499,7 +499,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Byoip Range&#x27;s current state.</div>
+                                            <div>The `ByoipRange` resource&#x27;s current state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INACTIVE</div>
@@ -517,7 +517,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Byoip Range was advertised, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -536,7 +536,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Byoip Range was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>The date and time the `ByoipRange` resource was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -555,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Byoip Range was validated, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>The date and time the `ByoipRange` resource was validated, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -574,7 +574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the Byoip Range was withdrawn, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -593,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>This is an internally generated ASCII string that the user will then use as part of the validation process. Specifically, they will need to add the token string generated by the service to their Internet Registry record.</div>
+                                            <div>The validation token is an internally-generated ASCII string used in the validation process. See <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/BYOIP.htm#import_cidr'>Importing a CIDR block</a> for details.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">validation_token_example</div>

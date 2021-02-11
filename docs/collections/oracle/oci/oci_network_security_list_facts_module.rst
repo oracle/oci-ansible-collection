@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_list_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -233,7 +233,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.</div>
+                                            <div>A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -552,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for ICMP. Use to specify a particular ICMP type and code as defined in <a href='http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml'>ICMP Parameters</a>. If you specify ICMP as the protocol but omit this object, then all ICMP types and codes are allowed. If you do provide this object, the type is required and the code is optional. To enable MTU negotiation for ingress internet traffic, make sure to allow type 3 (&quot;Destination Unreachable&quot;) code 4 (&quot;Fragmentation Needed and Don&#x27;t Fragment was Set&quot;). If you need to specify multiple codes for a single type, create a separate security list rule for each.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -648,7 +648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for TCP. Use to specify particular destination ports for TCP rules. If you specify TCP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -666,7 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -727,7 +727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -788,7 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for UDP. Use to specify particular destination ports for UDP rules. If you specify UDP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -806,7 +806,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -867,7 +867,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1001,7 +1001,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for ICMP. Use to specify a particular ICMP type and code as defined in <a href='http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml'>ICMP Parameters</a>. If you specify ICMP as the protocol but omit this object, then all ICMP types and codes are allowed. If you do provide this object, the type is required and the code is optional. To enable MTU negotiation for ingress internet traffic, make sure to allow type 3 (&quot;Destination Unreachable&quot;) code 4 (&quot;Fragmentation Needed and Don&#x27;t Fragment was Set&quot;). If you need to specify multiple codes for a single type, create a separate security list rule for each.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1140,7 +1140,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for TCP. Use to specify particular destination ports for TCP rules. If you specify TCP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1158,7 +1158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1219,7 +1219,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1280,7 +1280,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for UDP. Use to specify particular destination ports for UDP rules. If you specify UDP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1298,7 +1298,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1359,7 +1359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

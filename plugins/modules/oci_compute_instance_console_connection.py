@@ -26,7 +26,8 @@ description:
     - For I(state=present), creates a new console connection to the specified instance.
       After the console connection has been created and is available,
       you connect to the console using SSH.
-    - For more information about console access, see L(Accessing the Console,https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
+    - For more information about instance console connections, see L(Troubleshooting Instances Using Instance Console
+      Connections,https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

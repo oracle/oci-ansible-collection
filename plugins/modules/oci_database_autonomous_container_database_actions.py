@@ -232,6 +232,13 @@ autonomous_container_database:
                     returned: on success
                     type: int
                     sample: 56
+        standby_maintenance_buffer_in_days:
+            description:
+                - The scheduling detail for the quarterly maintenance window of the standby Autonomous Container Database.
+                  This value represents the number of days before scheduled maintenance of the primary database.
+            returned: on success
+            type: int
+            sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -247,6 +254,12 @@ autonomous_container_database:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        role:
+            description:
+                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+            returned: on success
+            type: string
+            sample: PRIMARY
         availability_domain:
             description:
                 - The availability domain of the Autonomous Container Database.
@@ -353,8 +366,10 @@ autonomous_container_database:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "standby_maintenance_buffer_in_days": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "role": "PRIMARY",
         "availability_domain": "Uocm:PHX-AD-1",
         "db_version": "db_version_example",
         "backup_config": {

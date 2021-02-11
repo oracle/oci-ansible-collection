@@ -48,7 +48,7 @@ author: Oracle (@oracle)
 options:
     bandwidth_shape_name:
         description:
-            - The provisioned data rate of the connection.  To get a list of the
+            - The provisioned data rate of the connection. To get a list of the
               available bandwidth levels (that is, shapes), see
               L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
@@ -217,7 +217,7 @@ options:
     provider_state:
         description:
             - The provider's state in relation to this virtual circuit. Relevant only
-              if the customer is using FastConnect via a provider.  ACTIVE
+              if the customer is using FastConnect via a provider. ACTIVE
               means the provider has provisioned the virtual circuit from their
               end. INACTIVE means the provider has not yet provisioned the virtual
               circuit, or has de-provisioned it.
@@ -293,7 +293,7 @@ virtual_circuit:
     contains:
         bandwidth_shape_name:
             description:
-                - The provisioned data rate of the connection.  To get a list of the
+                - The provisioned data rate of the connection. To get a list of the
                   available bandwidth levels (that is, shapes), see
                   L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).

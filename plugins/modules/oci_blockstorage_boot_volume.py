@@ -96,9 +96,7 @@ options:
         type: int
     source_details:
         description:
-            - Specifies the boot volume source details for a new boot volume. The volume source is either another boot volume in the same availability domain or
-              a boot volume backup.
-              This is a mandatory field for a boot volume.
+            - ""
             - Required for create using I(state=present).
         type: dict
         suboptions:
@@ -244,7 +242,8 @@ boot_volume:
             sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
         is_hydrated:
             description:
-                - Specifies whether the boot volume's data has finished copying from the source boot volume or boot volume backup.
+                - Specifies whether the boot volume's data has finished copying
+                  from the source boot volume or boot volume backup.
             returned: on success
             type: bool
             sample: true
@@ -281,8 +280,7 @@ boot_volume:
             sample: 56
         source_details:
             description:
-                - The boot volume source, either an existing boot volume in the same availability domain or a boot volume backup.
-                  If null, this means that the boot volume was created from an image.
+                - ""
             returned: on success
             type: complex
             contains:

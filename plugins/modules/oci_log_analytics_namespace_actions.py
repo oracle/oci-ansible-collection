@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     namespace_name:
         description:
-            - The Log Analytics namespace used for the request.
+            - The Logging Analytics namespace used for the request.
         type: str
         required: true
     action:
@@ -66,19 +66,19 @@ namespace:
     contains:
         namespace_name:
             description:
-                - namespace name
+                - This is the namespace name of a tenancy
             returned: on success
             type: string
             sample: namespace_name_example
         compartment_id:
             description:
-                - Tenancy ID
+                - The is the tenancy ID
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         is_onboarded:
             description:
-                - if tenancy is onboarded to logging analytics
+                - This indicates if the tenancy is onboarded to Logging Analytics
             returned: on success
             type: bool
             sample: true

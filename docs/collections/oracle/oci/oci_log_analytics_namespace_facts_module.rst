@@ -20,7 +20,7 @@ oracle.oci.oci_log_analytics_namespace_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
-- List Namespaces.
+- Given a tenancy OCID, this API returns the namespace of the tenancy if it is valid and subscribed to the region.  The result also indicates if the tenancy is onboarded with Logging Analytics.
 - If *namespace_name* is specified, the details of a single Namespace will be returned.
 
 
@@ -211,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Log Analytics namespace used for the request.</div>
+                                            <div>The Logging Analytics namespace used for the request.</div>
                                             <div>Required to get a specific namespace.</div>
                                                         </td>
             </tr>
@@ -325,7 +325,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Tenancy ID</div>
+                                            <div>The is the tenancy ID</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -343,7 +343,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>if tenancy is onboarded to logging analytics</div>
+                                            <div>This indicates if the tenancy is onboarded to Logging Analytics</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -361,7 +361,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>namespace name</div>
+                                            <div>This is the namespace name of a tenancy</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_name_example</div>

@@ -23,15 +23,15 @@ module: oci_network_public_ip_pool_facts
 short_description: Fetches details about one or multiple PublicIpPool resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PublicIpPool resources in Oracle Cloud Infrastructure
-    - Lists the PublicIpPool objects in the specified compartment.
-      You can filter the list by using query parameters.
+    - Lists the public IP pools in the specified compartment.
+      You can filter the list using query parameters.
     - If I(public_ip_pool_id) is specified, the details of a single PublicIpPool will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     public_ip_pool_id:
         description:
-            - The OCID of the Public Ip Pool object.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
             - Required to get a specific public_ip_pool.
         type: str
         aliases: ["id"]
@@ -47,7 +47,7 @@ options:
         aliases: ["name"]
     byoip_range_id:
         description:
-            - A filter to return only resources that match the given Byoip Range
+            - A filter to return only resources that match the given BYOIP CIDR block.
         type: str
     sort_by:
         description:
@@ -93,13 +93,13 @@ public_ip_pools:
     contains:
         cidr_blocks:
             description:
-                - The CIDRs that make up this pool
+                - The CIDR blocks added to this pool. This could be all or a portion of a BYOIP CIDR block.
             returned: on success
             type: list
             sample: []
         compartment_id:
             description:
-                - The OCID of the compartment containing the Public IP Pool
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing this pool.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -129,32 +129,32 @@ public_ip_pools:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The Oracle ID (OCID) of the Public Ip Pool.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_state:
             description:
-                - The Public IP Pool's current state.
+                - The public IP pool's current state.
             returned: on success
             type: string
             sample: INACTIVE
         time_created:
             description:
-                - The date and time the public IP Pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the public IP pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         items:
             description:
-                - list of Public Ip pool object summaries
+                - A list of public IP pool summaries.
             returned: on success
             type: complex
             contains:
                 compartment_id:
                     description:
-                        - The OCID of the compartment containing the Public IP Pool
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the public IP pool.
                     returned: on success
                     type: string
                     sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -184,19 +184,19 @@ public_ip_pools:
                     sample: {'Department': 'Finance'}
                 id:
                     description:
-                        - The Oracle ID (OCID) of the Public Ip Pool.
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
                     returned: on success
                     type: string
                     sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
                 lifecycle_state:
                     description:
-                        - The Public IP Pool's current state.
+                        - The public IP pool's current state.
                     returned: on success
                     type: string
                     sample: lifecycle_state_example
                 time_created:
                     description:
-                        - The date and time the public IP Pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                        - The date and time the public IP pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: string

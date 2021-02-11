@@ -107,6 +107,12 @@ key_versions:
             returned: on success
             type: string
             sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        public_key:
+            description:
+                - The public key in PEM format which will be populated only in case of RSA and ECDSA keys.
+            returned: on success
+            type: string
+            sample: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
         lifecycle_state:
             description:
                 - The key version's current lifecycle state.
@@ -147,6 +153,7 @@ key_versions:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
+        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...",
         "lifecycle_state": "ENABLED",
         "origin": "INTERNAL",
         "time_created": "2013-10-20T19:20:30+01:00",

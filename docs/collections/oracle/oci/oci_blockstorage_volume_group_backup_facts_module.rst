@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_group_backup_facts -- Fetches details about o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -381,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of VolumeGroupBackup resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;size_in_mbs&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_request_received&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;FULL&#x27;, &#x27;unique_size_in_gbs&#x27;: 56, &#x27;unique_size_in_mbs&#x27;: 56, &#x27;volume_backup_ids&#x27;: [], &#x27;volume_group_id&#x27;: &#x27;ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;expiration_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;size_in_mbs&#x27;: 56, &#x27;source_type&#x27;: &#x27;MANUAL&#x27;, &#x27;source_volume_group_backup_id&#x27;: &#x27;ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_request_received&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;FULL&#x27;, &#x27;unique_size_in_gbs&#x27;: 56, &#x27;unique_size_in_mbs&#x27;: 56, &#x27;volume_backup_ids&#x27;: [], &#x27;volume_group_id&#x27;: &#x27;ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -437,6 +437,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-volume_group_backups/expiration_time"></div>
+                    <b>expiration_time</b>
+                    <a class="ansibleOptionLink" href="#return-volume_group_backups/expiration_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the volume group backup will expire and be automatically deleted. Format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. This parameter will always be present for volume group backups that were created automatically by a scheduled-backup policy. For manually created volume group backups, it will be absent, signifying that there is no expiration time and the backup will last forever until manually deleted.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>
@@ -533,6 +551,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-volume_group_backups/source_type"></div>
+                    <b>source_type</b>
+                    <a class="ansibleOptionLink" href="#return-volume_group_backups/source_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether the volume group backup was created manually, or via scheduled backup policy.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MANUAL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-volume_group_backups/source_volume_group_backup_id"></div>
+                    <b>source_volume_group_backup_id</b>
+                    <a class="ansibleOptionLink" href="#return-volume_group_backups/source_volume_group_backup_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the source volume group backup.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-volume_group_backups/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-volume_group_backups/time_created" title="Permalink to this return value"></a>
@@ -596,7 +650,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The aggregate size used by the volume group backup, in GBs. It is typically smaller than sizeInGBs, depending on the space consumed on the volume group and whether the volume backup is full or incremental.</div>
+                                            <div>The aggregate size used by the volume group backup, in GBs.</div>
+                                            <div>It is typically smaller than sizeInGBs, depending on the spaceconsumed on the volume group and whether the volume backup is full or incremental.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -614,7 +669,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The aggregate size used by the volume group backup, in MBs. It is typically smaller than sizeInMBs, depending on the space consumed on the volume group and whether the volume backup is full or incremental.</div>
+                                            <div>The aggregate size used by the volume group backup, in MBs.</div>
+                                            <div>It is typically smaller than sizeInMBs, depending on the spaceconsumed on the volume group and whether the volume backup is full or incremental.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

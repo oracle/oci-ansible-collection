@@ -25,15 +25,13 @@ description:
     - This module allows the user to create, update and delete a Vcn resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new virtual cloud network (VCN). For more information, see
       L(VCNs and Subnets,https://docs.cloud.oracle.com/Content/Network/Tasks/managingVCNs.htm).
-    - To create the VCN, you may specify a list of IPv4 CIDR blocks. The CIDRs must maintain
-      the following rules -
-    - a. The list of CIDRs provided are valid
-      b. There is no overlap between different CIDRs
-      c. The list of CIDRs does not exceed the max limit of CIDRs per VCN
-    - "Oracle recommends using one of the private IP address ranges specified in L(RFC 1918],https://tools.ietf.org/html/rfc1918) (10.0.0.0/8, 172.16/12, and
-      192.168/16). Example:
-      172.16.0.0/16. The CIDR blocks can range from /16 to /30, and they must not overlap with
-      your on-premises network."
+    - "For the VCN, you specify a list of one or more IPv4 CIDR blocks that meet the following criteria:"
+    - "- The CIDR blocks must be valid.
+      - They must not overlap with each other or with the on-premises network CIDR block.
+      - The number of CIDR blocks does not exceed the limit of CIDR blocks allowed per VCN."
+    - "For a CIDR block, Oracle recommends that you use one of the private IP address ranges specified in L(RFC 1918,https://tools.ietf.org/html/rfc1918)
+      (10.0.0.0/8, 172.16/12, and 192.168/16). Example:
+      172.16.0.0/16. The CIDR blocks can range from /16 to /30."
     - For the purposes of access control, you must provide the OCID of the compartment where you want the VCN to
       reside. Consult an Oracle Cloud Infrastructure administrator in your organization if you're not sure which
       compartment to use. Notice that the VCN doesn't have to be in the same compartment as the subnets or other
@@ -57,18 +55,16 @@ author: Oracle (@oracle)
 options:
     cidr_block:
         description:
-            - "Deprecated. Instead use 'cidrBlocks'. It is an error to set both cidrBlock and
-              cidrBlocks.
+            - "**Deprecated.** Do *not* set this value. Use `cidrBlocks` instead.
               Example: `10.0.0.0/16`"
         type: str
     cidr_blocks:
         description:
-            - List of IPv4 CIDR blocks associated with the VCN. The CIDRs must maintain the following
-              rules -
-            - a. The list of CIDRs provided are valid
-              b. There is no overlap between different CIDRs
-              c. The number of CIDRs should not exceed the max limit of CIDRs per VCN
-              d. It is an error to set both cidrBlock and cidrBlocks.
+            - "The list of one or more IPv4 CIDR blocks for the VCN that meet the following criteria:
+              - The CIDR blocks must be valid.
+              - They must not overlap with each other or with the on-premises network CIDR block.
+              - The number of CIDR blocks must not exceed the limit of CIDR blocks allowed per VCN."
+            - "**Important:** Do *not* specify a value for `cidrBlock`. Use this parameter instead."
         type: list
     compartment_id:
         description:
@@ -86,7 +82,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack_actions -- Perform actions on a Stack reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -213,6 +213,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-resource_addresses"></div>
+                    <b>resource_addresses</b>
+                    <a class="ansibleOptionLink" href="#parameter-resource_addresses" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address, which is a case-insensitive string derived from the resource type and name specified in the stack&#x27;s Terraform configuration plus an optional index. For example, the resource address for the fourth Compute instance with the name &quot;test_instance&quot; is oci_core_instance.test_instanceL(3]. For more details and examples of resource addresses, see the Terraform documentation at [Resource spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples).</div>
                                                         </td>
             </tr>
                                 <tr>

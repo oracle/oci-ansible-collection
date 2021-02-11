@@ -26,6 +26,8 @@ description:
     - Lists drift status details for each resource defined in the specified stack.
       The drift status details for a given resource indicate differences, if any, between the actual state
       and the expected (defined) state for that resource.
+      The drift status details correspond to the specified work request (`workRequestId`).
+      If no work request is specified, then the drift status details correspond to the latest completed work request for the stack.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -34,6 +36,10 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
         type: str
         required: true
+    work_request_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the work request.
+        type: str
     resource_drift_status:
         description:
             - "A filter that returns only resources that match the given drift status. The value is case-insensitive.
@@ -163,6 +169,7 @@ class StackResourceDriftFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "work_request_id",
             "resource_drift_status",
         ]
         optional_kwargs = dict(
@@ -193,6 +200,7 @@ def main():
     module_args.update(
         dict(
             stack_id=dict(type="str", required=True),
+            work_request_id=dict(type="str"),
             resource_drift_status=dict(type="list"),
         )
     )

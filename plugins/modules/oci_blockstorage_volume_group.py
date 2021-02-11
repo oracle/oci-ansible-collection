@@ -37,6 +37,11 @@ options:
             - The availability domain of the volume group.
             - Required for create using I(state=present).
         type: str
+    backup_policy_id:
+        description:
+            - If provided, specifies the ID of the volume backup policy to assign to the newly
+              created volume group. If omitted, no policy will be assigned.
+        type: str
     compartment_id:
         description:
             - The OCID of the compartment that contains the volume group.
@@ -53,7 +58,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name for the volume group. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - A user-friendly name for the volume group. Does not have to be
+              unique, and it's changeable. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -68,8 +74,7 @@ options:
         type: dict
     source_details:
         description:
-            - Specifies the volume group source details for a new volume group. The volume source is either another a list of
-              volume ids in the same availability domain, another volume group or a volume group backup.
+            - ""
             - Required for create using I(state=present).
         type: dict
         suboptions:
@@ -186,7 +191,8 @@ volume_group:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the volume group. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                - A user-friendly name for the volume group. Does not have to be
+                  unique, and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
@@ -225,8 +231,7 @@ volume_group:
             sample: 56
         source_details:
             description:
-                - The volume group source. The source is either another a list of
-                  volume IDs in the same availability domain, another volume group, or a volume group backup.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -268,7 +273,8 @@ volume_group:
             sample: []
         is_hydrated:
             description:
-                - Specifies whether the newly created cloned volume group's data has finished copying from the source volume group or backup.
+                - Specifies whether the newly created cloned volume group's data has finished copying
+                  from the source volume group or backup.
             returned: on success
             type: bool
             sample: true
@@ -436,6 +442,7 @@ def main():
     module_args.update(
         dict(
             availability_domain=dict(type="str"),
+            backup_policy_id=dict(type="str"),
             compartment_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),

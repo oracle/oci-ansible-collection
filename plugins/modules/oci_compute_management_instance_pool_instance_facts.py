@@ -102,7 +102,7 @@ instance_pool_instances:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The user-friendly name.  Does not have to be unique.
+                - The user-friendly name. Does not have to be unique.
             returned: on success
             type: string
             sample: display_name_example

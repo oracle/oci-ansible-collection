@@ -818,6 +818,12 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: lifecycle_details_example
+        role:
+            description:
+                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+            returned: on success
+            type: string
+            sample: PRIMARY
         available_upgrade_versions:
             description:
                 - List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
@@ -912,6 +918,7 @@ autonomous_database:
             "lifecycle_state": "PROVISIONING",
             "lifecycle_details": "lifecycle_details_example"
         },
+        "role": "PRIMARY",
         "available_upgrade_versions": [],
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
         "key_store_wallet_name": "key_store_wallet_name_example"

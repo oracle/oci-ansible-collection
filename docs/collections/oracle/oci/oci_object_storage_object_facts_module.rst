@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,8 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Object resources in Oracle Cloud Infrastructure
-- Lists the objects in a bucket.
+- Lists the objects in a bucket. By default, ListObjects returns object names only. See the `fields` parameter for other fields that you can optionally include in ListObjects response.
+- ListObjects returns at most 1000 objects. To paginate through more objects, use the returned 'nextStartWith' value with the 'start' parameter. To filter which objects ListObjects returns, use the 'start' and 'end' parameters.
 - To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized, talk to an administrator. If you are an administrator who needs to write policies to give users access, see `Getting Started with Policies <https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm>`_.
 - If *object_name* is specified, the details of a single Object will be returned.
 
@@ -241,7 +242,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object summary in list of objects includes the &#x27;name&#x27; field. This parameter can also include &#x27;size&#x27; (object size in bytes), &#x27;etag&#x27;, &#x27;md5&#x27;, &#x27;timeCreated&#x27; (object creation date and time) and &#x27;timeModified&#x27; (object modification date and time). Value of this parameter should be a comma-separated, case-insensitive list of those field names. For example &#x27;name,etag,timeCreated,md5,timeModified&#x27;</div>
+                                            <div>Object summary by default includes only the &#x27;name&#x27; field. Use this parameter to also include &#x27;size&#x27; (object size in bytes), &#x27;etag&#x27;, &#x27;md5&#x27;, &#x27;timeCreated&#x27; (object creation date and time), &#x27;timeModified&#x27; (object modification date and time), &#x27;storageTier&#x27; and &#x27;archivalState&#x27; fields. Specify the value of this parameter as a comma-separated, case-insensitive list of those field names. For example &#x27;name,etag,timeCreated,md5,timeModified,storageTier,archivalState&#x27;.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -568,10 +569,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Object resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-objects/archival_state"></div>
+                    <b>archival_state</b>
+                    <a class="ansibleOptionLink" href="#return-objects/archival_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Archival state of an object. This field is set only for objects in Archive tier.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Archived</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-objects/etag"></div>
@@ -641,6 +660,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-objects/storage_tier"></div>
+                    <b>storage_tier</b>
+                    <a class="ansibleOptionLink" href="#return-objects/storage_tier" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The storage tier that the object is stored in.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Standard</div>
                                     </td>
             </tr>
                                 <tr>

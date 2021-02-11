@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_group_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -250,7 +250,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.</div>
+                                            <div>A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -601,7 +601,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The volume group source. The source is either another a list of volume IDs in the same availability domain, another volume group, or a volume group backup.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

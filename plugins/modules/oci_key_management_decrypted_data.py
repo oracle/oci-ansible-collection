@@ -48,6 +48,20 @@ options:
             - Information that provides context for audit logging. You can provide this additional
               data as key-value pairs to include in audit logs when audit logging is enabled.
         type: dict
+    key_version_id:
+        description:
+            - The OCID of the keyVersion used to encrypt the ciphertext.
+        type: str
+    encryption_algorithm:
+        description:
+            - Encryption algorithm to be used while encrypting/decrypting data using a customer key
+              AES_256_GCM is the supported value AES keys and uses GCM mode of operation
+              RSA_OAEP_SHA_1 and RSA_OAEP_SHA_256 are supported for RSA keys and use OAEP padding.
+        type: str
+        choices:
+            - "AES_256_GCM"
+            - "RSA_OAEP_SHA_1"
+            - "RSA_OAEP_SHA_256"
     service_endpoint:
         description:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
@@ -91,9 +105,32 @@ decrypted_data:
             returned: on success
             type: string
             sample: plaintext_checksum_example
+        key_id:
+            description:
+                - The OCID of the key used to encrypt the ciphertext.
+            returned: on success
+            type: string
+            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_version_id:
+            description:
+                - The OCID of the keyVersion used to encrypt the ciphertext.
+            returned: on success
+            type: string
+            sample: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
+        encryption_algorithm:
+            description:
+                - Encryption algorithm to be used while encrypting/decrypting data using a customer key
+                  AES_256_GCM is the supported value AES keys and uses GCM mode of operation
+                  RSA_OAEP_SHA_1 and RSA_OAEP_SHA_256 are supported for RSA keys and use OAEP padding.
+            returned: on success
+            type: string
+            sample: AES_256_GCM
     sample: {
         "plaintext": "plaintext_example",
-        "plaintext_checksum": "plaintext_checksum_example"
+        "plaintext_checksum": "plaintext_checksum_example",
+        "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
+        "key_version_id": "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx",
+        "encryption_algorithm": "AES_256_GCM"
     }
 """
 
@@ -162,6 +199,11 @@ def main():
             ciphertext=dict(type="str", required=True),
             key_id=dict(type="str", required=True),
             logging_context=dict(type="dict"),
+            key_version_id=dict(type="str"),
+            encryption_algorithm=dict(
+                type="str",
+                choices=["AES_256_GCM", "RSA_OAEP_SHA_1", "RSA_OAEP_SHA_256"],
+            ),
             service_endpoint=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )

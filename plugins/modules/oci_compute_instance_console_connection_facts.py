@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple InstanceConsoleConnecti
 description:
     - Fetches details about one or multiple InstanceConsoleConnection resources in Oracle Cloud Infrastructure
     - Lists the console connections for the specified compartment or instance.
-    - For more information about console access, see L(Accessing the Console,https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
+    - For more information about instance console connections, see L(Troubleshooting Instances Using Instance Console
+      Connections,https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
     - If I(instance_console_connection_id) is specified, the details of a single InstanceConsoleConnection will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

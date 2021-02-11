@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_replication_policy -- Manage a ReplicationPolicy r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -275,7 +275,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the policy.</div>
+                                            <div>The name of the policy. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>

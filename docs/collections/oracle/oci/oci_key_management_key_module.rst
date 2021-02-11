@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key -- Manage a Key resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -333,10 +333,32 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>AES</li>
                                                                                                                                                                                                 <li>RSA</li>
+                                                                                                                                                                                                <li>ECDSA</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-key_shape/curve_id"></div>
+                    <b>curve_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-key_shape/curve_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NIST_P256</li>
+                                                                                                                                                                                                <li>NIST_P384</li>
+                                                                                                                                                                                                <li>NIST_P521</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Supported curve Ids for ECDSA keys</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -352,7 +374,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Values supported: - AES: 16, 24 or 32 - RSA: 256, 384 or 512 - ECDSA: 32, 48, 66</div>
                                                         </td>
             </tr>
                     
@@ -549,7 +571,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Key resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_key_version&#x27;: &#x27;current_key_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_shape&#x27;: {&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;length&#x27;: 56}, &#x27;lifecycle_state&#x27;: &#x27;ENABLED&#x27;, &#x27;protection_mode&#x27;: &#x27;HSM&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_key_version&#x27;: &#x27;current_key_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_shape&#x27;: {&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;curve_id&#x27;: &#x27;ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;length&#x27;: 56}, &#x27;lifecycle_state&#x27;: &#x27;ENABLED&#x27;, &#x27;protection_mode&#x27;: &#x27;HSM&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -699,6 +721,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-key/key_shape/curve_id"></div>
+                    <b>curve_id</b>
+                    <a class="ansibleOptionLink" href="#return-key/key_shape/curve_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Supported curve Ids for ECDSA keys</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-key/key_shape/length"></div>
                     <b>length</b>
                     <a class="ansibleOptionLink" href="#return-key/key_shape/length" title="Permalink to this return value"></a>
@@ -708,7 +749,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Values supported: - AES: 16, 24 or 32 - RSA: 256, 384 or 512 - ECDSA: 32, 48, 66</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

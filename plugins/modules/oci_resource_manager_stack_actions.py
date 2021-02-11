@@ -33,6 +33,15 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    resource_addresses:
+        description:
+            - "The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address,
+              which is a case-insensitive string derived from the resource type and name specified in the stack's Terraform configuration plus an optional
+              index.
+              For example, the resource address for the fourth Compute instance with the name \\"test_instance\\" is oci_core_instance.test_instanceL(3].
+              For more details and examples of resource addresses, see the Terraform documentation at [Resource
+              spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples)."
+        type: list
     action:
         description:
             - The action to perform on the Stack.
@@ -247,6 +256,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.resource_manager import ResourceManagerClient
+    from oci.resource_manager.models import DetectStackDriftDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -275,10 +285,16 @@ class StackActionsHelperGen(OCIActionsHelperBase):
         )
 
     def detect_stack_drift(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DetectStackDriftDetails
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.detect_stack_drift,
             call_fn_args=(),
-            call_fn_kwargs=dict(stack_id=self.module.params.get("stack_id"),),
+            call_fn_kwargs=dict(
+                stack_id=self.module.params.get("stack_id"),
+                detect_stack_drift_details=action_details,
+            ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -304,6 +320,7 @@ def main():
     module_args.update(
         dict(
             stack_id=dict(aliases=["id"], type="str", required=True),
+            resource_addresses=dict(type="list"),
             action=dict(type="str", required=True, choices=["detect_stack_drift"]),
         )
     )

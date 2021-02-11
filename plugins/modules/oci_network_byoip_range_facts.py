@@ -23,15 +23,15 @@ module: oci_network_byoip_range_facts
 short_description: Fetches details about one or multiple ByoipRange resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ByoipRange resources in Oracle Cloud Infrastructure
-    - Lists the ByoipRange objects in the specified compartment.
-      You can filter the list by using query parameters.
+    - Lists the `ByoipRange` resources in the specified compartment.
+      You can filter the list using query parameters.
     - If I(byoip_range_id) is specified, the details of a single ByoipRange will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     byoip_range_id:
         description:
-            - The OCID of the Byoip Range object.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR block.
             - Required to get a specific byoip_range.
         type: str
         aliases: ["id"]
@@ -93,13 +93,13 @@ byoip_ranges:
     contains:
         cidr_block:
             description:
-                - The address range the user is on-boarding.
+                - The public IPv4 CIDR block being imported from on-premises to the Oracle cloud.
             returned: on success
             type: string
             sample: cidr_block_example
         compartment_id:
             description:
-                - The OCID of the compartment containing the Byoip Range.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -129,72 +129,75 @@ byoip_ranges:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The Oracle ID (OCID) of the Byoip Range.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_details:
             description:
-                - The Byoip Range's current substate.
+                - The `ByoipRange` resource's current status.
             returned: on success
             type: string
             sample: CREATING
         lifecycle_state:
             description:
-                - The Byoip Range's current state.
+                - The `ByoipRange` resource's current state.
             returned: on success
             type: string
             sample: INACTIVE
         time_created:
             description:
-                - The date and time the Byoip Range was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_validated:
             description:
-                - The date and time the Byoip Range was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_advertised:
             description:
-                - The date and time the Byoip Range was advertised, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_withdrawn:
             description:
-                - The date and time the Byoip Range was withdrawn, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         validation_token:
             description:
-                - This is an internally generated ASCII string that the user will then use as part of the validation process. Specifically, they will need to
-                  add the token string generated by the service to their Internet Registry record.
+                - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
+                  block,https://docs.cloud.oracle.com/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
             returned: on success
             type: string
             sample: validation_token_example
         items:
             description:
-                - list of Byoip Range object summaries
+                - A list of `ByoipRange` resource summaries.
             returned: on success
             type: complex
             contains:
                 cidr_block:
                     description:
-                        - The address range the user is on-boarding.
+                        - The public IPv4 address range you are importing to the Oracle cloud.
                     returned: on success
                     type: string
                     sample: cidr_block_example
                 compartment_id:
                     description:
-                        - The OCID of the compartment containing the Byoip Range.
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the `ByoipRange`
+                          resource.
                     returned: on success
                     type: string
                     sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -224,13 +227,13 @@ byoip_ranges:
                     sample: {'Department': 'Finance'}
                 id:
                     description:
-                        - The Oracle ID (OCID) of the Byoip Range.
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
                     returned: on success
                     type: string
                     sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
                 lifecycle_state:
                     description:
-                        - The Byoip Range's current state.
+                        - The `ByoipRange` resource's current state.
                     returned: on success
                     type: string
                     sample: lifecycle_state_example
@@ -242,7 +245,7 @@ byoip_ranges:
                     sample: lifecycle_details_example
                 time_created:
                     description:
-                        - The date and time the Byoip Range was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                        - The date and time the `ByoipRange` resource was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
                     type: string

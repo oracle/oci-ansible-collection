@@ -56,12 +56,24 @@ options:
                 choices:
                     - "AES"
                     - "RSA"
+                    - "ECDSA"
                 required: true
             length:
                 description:
-                    - The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.
+                    - "The length of the key in bytes, expressed as an integer. Values supported:
+                        - AES: 16, 24 or 32
+                        - RSA: 256, 384 or 512
+                        - ECDSA: 32, 48, 66"
                 type: int
                 required: true
+            curve_id:
+                description:
+                    - Supported curve Ids for ECDSA keys
+                type: str
+                choices:
+                    - "NIST_P256"
+                    - "NIST_P384"
+                    - "NIST_P521"
     logging_context:
         description:
             - Information that provides context for audit logging. You can provide this additional
@@ -199,8 +211,13 @@ def main():
                 type="dict",
                 required=True,
                 options=dict(
-                    algorithm=dict(type="str", required=True, choices=["AES", "RSA"]),
+                    algorithm=dict(
+                        type="str", required=True, choices=["AES", "RSA", "ECDSA"]
+                    ),
                     length=dict(type="int", required=True),
+                    curve_id=dict(
+                        type="str", choices=["NIST_P256", "NIST_P384", "NIST_P521"]
+                    ),
                 ),
             ),
             logging_context=dict(type="dict"),

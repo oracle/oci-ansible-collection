@@ -67,7 +67,8 @@ options:
             - "DESC"
     lifecycle_state:
         description:
-            - A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
+            - A filter to return only resources that match the specified lifecycle
+              state. The value is case insensitive.
         type: str
         choices:
             - "PENDING_PROVIDER"
@@ -101,7 +102,7 @@ virtual_circuits:
     contains:
         bandwidth_shape_name:
             description:
-                - The provisioned data rate of the connection.  To get a list of the
+                - The provisioned data rate of the connection. To get a list of the
                   available bandwidth levels (that is, shapes), see
                   L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).

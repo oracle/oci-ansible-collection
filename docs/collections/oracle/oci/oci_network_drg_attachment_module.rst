@@ -20,7 +20,7 @@ oracle.oci.oci_network_drg_attachment -- Manage a DrgAttachment resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -316,8 +316,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the route table the DRG attachment will use.</div>
-                                            <div>If you don&#x27;t specify a route table here, the DRG attachment is created without an associated route table. The Networking service does NOT automatically associate the attached VCN&#x27;s default route table with the DRG attachment.</div>
-                                            <div>For information about why you would associate a route table with a DRG attachment, see:</div>
+                                            <div>If you don&#x27;t specify a route table here, the DRG attachment is created without an associated route table. The Networking service does NOT automatically associate the attached VCN&#x27;s default route table with the DRG attachment. For information about why you would associate a route table with a DRG attachment, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm'>Transit Routing: Access to Multiple VCNs in Same Region</a> * <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a></div>
                                             <div>This parameter is updatable.</div>
                                                         </td>

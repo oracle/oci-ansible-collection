@@ -23,7 +23,7 @@ module: oci_object_storage_object
 short_description: Manage an Object resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an Object resource in Oracle Cloud Infrastructure
-    - "This resource has the following action operations in the M(oci_object_actions) module: copy, reencrypt, rename, restore."
+    - "This resource has the following action operations in the M(oci_object_actions) module: copy, reencrypt, rename, restore, update_object_storage_tier."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -124,6 +124,16 @@ options:
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - This parameter is updatable.
         type: str
+    storage_tier:
+        description:
+            - The storage tier that the object should be stored in. If not specified, the object will be stored in
+              the same storage tier as the bucket.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "Standard"
+            - "InfrequentAccess"
+            - "Archive"
     opc_meta:
         description:
             - Optional user-defined metadata key and value.
@@ -221,6 +231,18 @@ object:
             returned: on success
             type: string
             sample: etag_example
+        storage_tier:
+            description:
+                - The storage tier that the object is stored in.
+            returned: on success
+            type: string
+            sample: Standard
+        archival_state:
+            description:
+                - Archival state of an object. This field is set only for objects in Archive tier.
+            returned: on success
+            type: string
+            sample: Archived
         time_modified:
             description:
                 - The date and time the object was modified, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
@@ -233,6 +255,8 @@ object:
         "md5": "md5_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "etag": "etag_example",
+        "storage_tier": "Standard",
+        "archival_state": "Archived",
         "time_modified": "2013-10-20T19:20:30+01:00"
     }
 """
@@ -320,6 +344,14 @@ class ObjectHelperGen(OCIResourceHelperBase):
         return not self.does_resource_exist()
 
     def update_resource(self):
+        optional_enum_params = [
+            "storage_tier",
+        ]
+        optional_enum_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_enum_params
+            if self.module.params.get(param) is not None
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.put_object,
             call_fn_args=(),
@@ -344,6 +376,7 @@ class ObjectHelperGen(OCIResourceHelperBase):
                     "opc_sse_customer_key_sha256"
                 ),
                 opc_meta=self.module.params.get("opc_meta"),
+                **optional_enum_kwargs
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -401,6 +434,9 @@ def main():
             opc_sse_customer_algorithm=dict(type="str"),
             opc_sse_customer_key=dict(type="str"),
             opc_sse_customer_key_sha256=dict(type="str"),
+            storage_tier=dict(
+                type="str", choices=["Standard", "InfrequentAccess", "Archive"]
+            ),
             opc_meta=dict(type="dict"),
             version_id=dict(type="str"),
             src=dict(type="str"),

@@ -72,14 +72,24 @@ options:
             - "SOFTWARE"
     algorithm:
         description:
-            - The algorithm used by a key's key versions to encrypt or decrypt. Currently, only AES is supported.
+            - The algorithm used by a key's key versions to encrypt or decrypt. Currently, only AES, RSA and ECDSA are supported.
         type: str
         choices:
             - "AES"
+            - "RSA"
+            - "ECDSA"
     length:
         description:
-            - The length of the key in bytes, expressed as an integer. Values of 16, 24, or 32 are supported.
+            - The length of the key in bytes, expressed as an integer. Values of 16, 24, 32 are supported.
         type: int
+    curve_id:
+        description:
+            - The curve Id of the keys in case of ECDSA keys
+        type: str
+        choices:
+            - "NIST_P256"
+            - "NIST_P384"
+            - "NIST_P521"
     service_endpoint:
         description:
             - The endpoint of the service to call using this client. For example 'https://kms.{region}.{secondLevelDomain}'.
@@ -165,10 +175,19 @@ keys:
                     sample: AES
                 length:
                     description:
-                        - The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.
+                        - "The length of the key in bytes, expressed as an integer. Values supported:
+                            - AES: 16, 24 or 32
+                            - RSA: 256, 384 or 512
+                            - ECDSA: 32, 48, 66"
                     returned: on success
                     type: int
                     sample: 56
+                curve_id:
+                    description:
+                        - Supported curve Ids for ECDSA keys
+                    returned: on success
+                    type: string
+                    sample: ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx
         protection_mode:
             description:
                 - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
@@ -207,6 +226,12 @@ keys:
             returned: on success
             type: string
             sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+        algorithm:
+            description:
+                - The algorithm used by a key's key versions to encrypt or decrypt.
+            returned: on success
+            type: string
+            sample: AES
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_key_version": "current_key_version_example",
@@ -216,13 +241,15 @@ keys:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "key_shape": {
             "algorithm": "AES",
-            "length": 56
+            "length": 56,
+            "curve_id": "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "protection_mode": "HSM",
         "lifecycle_state": "ENABLED",
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "algorithm": "AES"
     }]
 """
 
@@ -266,6 +293,7 @@ class KeyFactsHelperGen(OCIResourceFactsHelperBase):
             "protection_mode",
             "algorithm",
             "length",
+            "curve_id",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -296,8 +324,9 @@ def main():
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             protection_mode=dict(type="str", choices=["HSM", "SOFTWARE"]),
-            algorithm=dict(type="str", choices=["AES"]),
+            algorithm=dict(type="str", choices=["AES", "RSA", "ECDSA"]),
             length=dict(type="int"),
+            curve_id=dict(type="str", choices=["NIST_P256", "NIST_P384", "NIST_P521"]),
             display_name=dict(type="str"),
             service_endpoint=dict(type="str", required=True),
         )

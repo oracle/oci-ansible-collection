@@ -73,7 +73,7 @@ cpe_device_shapes:
             sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
         cpe_device_info:
             description:
-                - Basic information about this particular CPE device type.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -110,6 +110,7 @@ cpe_device_shapes:
                 display_name:
                     description:
                         - A descriptive label for the question (for example, to display in a form in a graphical interface).
+                          Avoid entering confidential information.
                     returned: on success
                     type: string
                     sample: display_name_example

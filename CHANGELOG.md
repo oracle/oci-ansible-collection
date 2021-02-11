@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.15.0] - 2021-2-11
+
+### Added
+- Support for [Cloud Advisor](https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Tasks/cloudadvisor-getting_started.htm).
+- Support for [Resource Manager Private Templates](https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/managingprivatetemplates.htm)
+- Support for update_object_storage_tier action in Object Module of Object Storage service.
+- Support for assigning volume backup policies to volume groups.
+- Added [verified](https://docs.oracle.com/en-us/iaas/api/#/en/key/release/VerifiedData/Verify) and [signed](https://docs.oracle.com/en-us/iaas/api/#/en/key/release/SignedData/Sign) data modules for key management service
+- Added new param `fetch_compute_hosts` in inventory plugin, to fix [this issue](https://github.com/oracle/oci-ansible-collection/issues/40)
+- Support for creating dataguard association on existing standby existing database home. Added new parameter `peer_db_home_id` to module `oci_database_data_guard_association`.
+- Support for listing database homes by version.
+- Support for Autonomous Data Guard for Autonomous Infrastructure.
+- Sample to create boot-volume from an existing instance.
+- Sample to create and connect local peering gateways.
+
+### Changed:
+- Please update to the latest version of OCI Python SDK
+
+
 ## [2.14.0] - 2021-1-28
 
 ### Added
@@ -18,7 +37,6 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Sample to create a vlan
 - Sample to create a Private Load Balancer
 - Sample to create public and private DNS
-- Added modules to manage Cloud Guard [Targets](https://docs.oracle.com/en-us/iaas/cloud-guard/using/targets.htm), [Detector Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/detect-recipes.htm) and [Responder Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes.htm)
 
 ### Fixed
 - Issue https://github.com/oracle/oci-ansible-collection/issues/15

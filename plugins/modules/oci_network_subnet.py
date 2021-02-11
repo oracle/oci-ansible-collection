@@ -95,7 +95,8 @@ options:
         type: str
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

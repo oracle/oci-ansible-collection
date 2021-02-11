@@ -73,7 +73,8 @@ options:
             - "DESC"
     lifecycle_state:
         description:
-            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+            - A filter to only return resources that match the given lifecycle
+              state. The state value is case-insensitive.
         type: str
         choices:
             - "PROVISIONING"
@@ -124,7 +125,8 @@ volume_groups:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the volume group. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                - A user-friendly name for the volume group. Does not have to be
+                  unique, and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
@@ -163,8 +165,7 @@ volume_groups:
             sample: 56
         source_details:
             description:
-                - The volume group source. The source is either another a list of
-                  volume IDs in the same availability domain, another volume group, or a volume group backup.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -206,7 +207,8 @@ volume_groups:
             sample: []
         is_hydrated:
             description:
-                - Specifies whether the newly created cloned volume group's data has finished copying from the source volume group or backup.
+                - Specifies whether the newly created cloned volume group's data has finished copying
+                  from the source volume group or backup.
             returned: on success
             type: bool
             sample: true

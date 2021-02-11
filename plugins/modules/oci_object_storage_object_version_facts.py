@@ -24,6 +24,8 @@ short_description: Fetches details about one or multiple ObjectVersion resources
 description:
     - Fetches details about one or multiple ObjectVersion resources in Oracle Cloud Infrastructure
     - Lists the object versions in a bucket.
+    - ListObjectVersions returns an ObjectVersionCollection containing at most 1000 object versions. To paginate through
+      more object versions, use the returned `opc-next-page` value with the `page` request parameter.
     - To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
       talk to an administrator. If you are an administrator who needs to write policies to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -63,11 +65,11 @@ options:
         type: str
     fields:
         description:
-            - Object summary in list of objects includes the 'name' field. This parameter can also include 'size'
-              (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time) and 'timeModified'
-              (object modification date and time).
-              Value of this parameter should be a comma-separated, case-insensitive list of those field names.
-              For example 'name,etag,timeCreated,md5,timeModified'
+            - Object summary by default includes only the 'name' field. Use this parameter to also
+              include 'size' (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time),
+              'timeModified' (object modification date and time), 'storageTier' and 'archivalState' fields.
+              Specify the value of this parameter as a comma-separated, case-insensitive list of those field names.
+              For example 'name,etag,timeCreated,md5,timeModified,storageTier,archivalState'.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
@@ -124,6 +126,18 @@ object_versions:
             returned: on success
             type: string
             sample: etag_example
+        storage_tier:
+            description:
+                - The storage tier that the object is stored in.
+            returned: on success
+            type: string
+            sample: Standard
+        archival_state:
+            description:
+                - Archival state of an object. This field is set only for objects in Archive tier.
+            returned: on success
+            type: string
+            sample: Archived
         version_id:
             description:
                 - VersionId of the object.
@@ -143,6 +157,8 @@ object_versions:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_modified": "2013-10-20T19:20:30+01:00",
         "etag": "etag_example",
+        "storage_tier": "Standard",
+        "archival_state": "Archived",
         "version_id": "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx",
         "is_delete_marker": true
     }]

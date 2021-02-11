@@ -20,7 +20,7 @@ oracle.oci.oci_network_public_ip_pool_actions -- Perform actions on a PublicIpPo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a PublicIpPool resource in Oracle Cloud Infrastructure
-- For *action=add_public_ip_pool_capacity*, adds a Cidr from the named Byoip Range prefix to the referenced Public IP Pool. The cidr must be a subset of the Byoip Range in question. The cidr must not overlap with any other cidr already added to this or any other Public Ip Pool.
-- For *action=remove_public_ip_pool_capacity*, removes a Cidr from the referenced Public IP Pool.
+- For *action=add_public_ip_pool_capacity*, adds some or all of a CIDR block to a public IP pool. The CIDR block (or subrange) must not overlap with any other CIDR block already added to this or any other public IP pool.
+- For *action=remove_public_ip_pool_capacity*, removes a CIDR block from the referenced public IP pool.
 
 
 .. Aliases
@@ -184,7 +184,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Byoip Range Id object to whch the cidr block belongs.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource to which the CIDR block belongs.</div>
                                             <div>Required for <em>action=add_public_ip_pool_capacity</em>.</div>
                                                         </td>
             </tr>
@@ -200,7 +200,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The CIDR IP address range to be added to the Public Ip Pool Example: `10.0.1.0/24`</div>
+                                            <div>The CIDR block to add to the public IP pool. It could be all of the CIDR block identified in `byoipRangeId`, or a subrange. Example: `10.0.1.0/24`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,7 +245,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Public Ip Pool object.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the public IP pool.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -398,7 +398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The CIDRs that make up this pool</div>
+                                            <div>The CIDR blocks added to this pool. This could be all or a portion of a BYOIP CIDR block.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -414,7 +414,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the Public IP Pool</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing this pool.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -488,7 +488,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Oracle ID (OCID) of the Public Ip Pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the public IP pool.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -506,7 +506,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Public IP Pool&#x27;s current state.</div>
+                                            <div>The public IP pool&#x27;s current state.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INACTIVE</div>
@@ -524,7 +524,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the public IP Pool was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>The date and time the public IP pool was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

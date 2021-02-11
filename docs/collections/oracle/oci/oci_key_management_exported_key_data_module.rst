@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_exported_key_data -- Manage an ExportedKeyData res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -439,7 +439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The encryption algorithm to use to encrypt exportable key material from a key that persists on the server (as opposed to a key that persists on a hardware security module and, therefore, cannot be exported). Specifying `RSA_OAEP_AES_SHA256` invokes the RSA AES key wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped by the RSA public wrapping key provided along with the request, creating a wrapped temporary AES key. The temporary AES key is also used to wrap the exportable key material. The wrapped temporary AES key and the wrapped exportable key material are concatenated, producing concatenated blob output that jointly represents them. Specifying `RSA_OAEP_SHA256` means that the exportable key material is wrapped by the RSA public wrapping key provided along with the request.</div>
+                                            <div>The encryption algorithm to use to encrypt exportable key material from a key that persists on the server (as opposed to a key that persists on a hardware security module and, therefore, cannot be exported). Specifying RSA_OAEP_AES_SHA256 invokes the RSA AES key wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped by the RSA public wrapping key provided along with the request, creating a wrapped temporary AES key. The temporary AES key is also used to wrap the exportable key material. The wrapped temporary AES key and the wrapped exportable key material are concatenated, producing concatenated blob output that jointly represents them. Specifying RSA_OAEP_SHA256 means that the exportable key material is wrapped by the RSA public wrapping key provided along with the request.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RSA_OAEP_AES_SHA256</div>

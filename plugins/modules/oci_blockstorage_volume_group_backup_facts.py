@@ -107,10 +107,21 @@ volume_group_backups:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - A user-friendly name for the volume group backup. Does not have to be unique and it's changeable. Avoid entering confidential information.
+                - A user-friendly name for the volume group backup. Does not have
+                  to be unique and it's changeable. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
+        expiration_time:
+            description:
+                - The date and time the volume group backup will expire and be automatically deleted.
+                  Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339). This parameter will always be present for volume group
+                  backups that were created automatically by a scheduled-backup policy. For manually
+                  created volume group backups, it will be absent, signifying that there is no expiration
+                  time and the backup will last forever until manually deleted.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -144,6 +155,13 @@ volume_group_backups:
             returned: on success
             type: int
             sample: 56
+        source_type:
+            description:
+                - Specifies whether the volume group backup was created manually, or via scheduled
+                  backup policy.
+            returned: on success
+            type: string
+            sample: MANUAL
         time_created:
             description:
                 - The date and time the volume group backup was created. This is the time the actual point-in-time image
@@ -167,16 +185,16 @@ volume_group_backups:
         unique_size_in_mbs:
             description:
                 - The aggregate size used by the volume group backup, in MBs.
-                  It is typically smaller than sizeInMBs, depending on the space
-                  consumed on the volume group and whether the volume backup is full or incremental.
+                - It is typically smaller than sizeInMBs, depending on the spaceconsumed
+                  on the volume group and whether the volume backup is full or incremental.
             returned: on success
             type: int
             sample: 56
         unique_size_in_gbs:
             description:
                 - The aggregate size used by the volume group backup, in GBs.
-                  It is typically smaller than sizeInGBs, depending on the space
-                  consumed on the volume group and whether the volume backup is full or incremental.
+                - It is typically smaller than sizeInGBs, depending on the spaceconsumed
+                  on the volume group and whether the volume backup is full or incremental.
             returned: on success
             type: int
             sample: 56
@@ -192,22 +210,31 @@ volume_group_backups:
             returned: on success
             type: string
             sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+        source_volume_group_backup_id:
+            description:
+                - The OCID of the source volume group backup.
+            returned: on success
+            type: string
+            sample: ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
+        "expiration_time": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "CREATING",
         "size_in_mbs": 56,
         "size_in_gbs": 56,
+        "source_type": "MANUAL",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_request_received": "2013-10-20T19:20:30+01:00",
         "type": "FULL",
         "unique_size_in_mbs": 56,
         "unique_size_in_gbs": 56,
         "volume_backup_ids": [],
-        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
+        "source_volume_group_backup_id": "ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

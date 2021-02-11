@@ -70,7 +70,8 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -161,11 +162,7 @@ options:
                 type: str
             bgp_session_config:
                 description:
-                    - Information for establishing a BGP session for the IPSec tunnel. Required if the tunnel uses
-                      BGP dynamic routing.
-                    - If the tunnel instead uses static routing, you may optionally provide
-                      this object and set an IP address for one or both ends of the IPSec tunnel for the purposes
-                      of troubleshooting or monitoring the tunnel.
+                    - ""
                 type: dict
                 suboptions:
                     oracle_interface_ip:

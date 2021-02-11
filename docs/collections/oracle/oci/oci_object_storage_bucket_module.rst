@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_bucket -- Manage a Bucket resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -763,7 +763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage namespace in which the bucket lives.</div>
+                                            <div>The Object Storage namespace in which the bucket resides.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
@@ -853,7 +853,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The storage tier type assigned to the bucket. A bucket is set to &#x27;Standard&#x27; tier by default, which means objects uploaded or copied to the bucket will be in the standard storage tier. When the &#x27;Archive&#x27; tier type is set explicitly for a bucket, objects uploaded or copied to the bucket will be stored in archive storage. The &#x27;storageTier&#x27; property is immutable after bucket is created.</div>
+                                            <div>The storage tier type assigned to the bucket. A bucket is set to `Standard` tier by default, which means objects uploaded or copied to the bucket will be in the standard storage tier. When the `Archive` tier type is set explicitly for a bucket, objects uploaded or copied to the bucket will be stored in archive storage. The `storageTier` property is immutable after bucket is created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Standard</div>

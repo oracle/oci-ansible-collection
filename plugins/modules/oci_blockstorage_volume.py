@@ -108,10 +108,7 @@ options:
         type: int
     source_details:
         description:
-            - Specifies the volume source details for a new Block volume. The volume source is either another Block volume in the same availability domain or a
-              Block volume backup.
-              This is an optional field. If not specified or set to null, the new Block volume will be empty.
-              When specified, the new Block volume will contain data from the source volume or backup.
+            - ""
         type: dict
         suboptions:
             type:
@@ -288,14 +285,14 @@ volume:
             sample: 56
         size_in_mbs:
             description:
-                - The size of the volume in MBs. This field is deprecated. Use sizeInGBs instead.
+                - The size of the volume in MBs. This field is deprecated. Use
+                  sizeInGBs instead.
             returned: on success
             type: int
             sample: 56
         source_details:
             description:
-                - The volume source, either an existing volume in the same availability domain or a volume backup.
-                  If null, an empty volume is created.
+                - ""
             returned: on success
             type: complex
             contains:

@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack_resource_drift_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple StackResourceDrift resources in Oracle Cloud Infrastructure
-- Lists drift status details for each resource defined in the specified stack. The drift status details for a given resource indicate differences, if any, between the actual state and the expected (defined) state for that resource.
+- Lists drift status details for each resource defined in the specified stack. The drift status details for a given resource indicate differences, if any, between the actual state and the expected (defined) state for that resource. The drift status details correspond to the specified work request (`workRequestId`). If no work request is specified, then the drift status details correspond to the latest completed work request for the stack.
 
 
 .. Aliases
@@ -240,6 +240,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-work_request_id"></div>
+                    <b>work_request_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-work_request_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the work request.</div>
                                                         </td>
             </tr>
                         </table>

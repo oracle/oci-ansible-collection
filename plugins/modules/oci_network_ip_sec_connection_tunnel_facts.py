@@ -114,7 +114,7 @@ ip_sec_connection_tunnels:
             sample: display_name_example
         bgp_session_info:
             description:
-                - Information for establishing the tunnel's BGP session.
+                - ""
             returned: on success
             type: complex
             contains:

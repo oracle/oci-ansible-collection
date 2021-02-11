@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_configuration_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -514,7 +514,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the volume source details for a new Block volume. The volume source is either another Block volume in the same availability domain or a Block volume backup. This is an optional field. If not specified or set to null, the new Block volume will be empty. When specified, the new Block volume will contain data from the source volume or backup.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -710,7 +710,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether the agent running on the instance can run all the available management plugins. Default value is false.</div>
+                                            <div>Whether Oracle Cloud Agent can run all the available management plugins. Default value is false (management plugins are enabled).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -731,7 +731,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether the agent running on the instance can gather performance metrics and monitor the instance. Default value is false.</div>
+                                            <div>Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the monitoring plugins. Default value is false (monitoring plugins are enabled).</div>
                                                         </td>
             </tr>
                     
@@ -748,7 +748,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Options for defining the availabiity of a VM instance after a maintenance event that impacts the underlying hardware.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -819,7 +819,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Details for the primary VNIC, which is automatically created and attached when the instance is launched.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1207,7 +1207,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1231,7 +1231,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
+                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1252,7 +1252,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Firmware used to boot VM.  Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the default for Oracle-provided images.</div>
+                                            <div>Firmware used to boot VM. Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1316,7 +1316,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
+                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1340,7 +1340,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
+                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                                         </td>
             </tr>
                     
@@ -1474,7 +1474,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Details for creating an instance. Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1597,7 +1597,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Details for creating a new VNIC.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1909,7 +1909,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the agent running on the instance can run all the available management plugins.</div>
+                                            <div>Whether Oracle Cloud Agent can run all the available management plugins.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1928,7 +1928,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the agent running on the instance can gather performance metrics and monitor the instance.</div>
+                                            <div>Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the monitoring plugins.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1947,7 +1947,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -2245,7 +2245,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -2262,7 +2262,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
+                                            <div>Emulation type for the boot volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ISCSI</div>
@@ -2281,7 +2281,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Firmware used to boot VM.  Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the default for Oracle-provided images.</div>
+                                            <div>Firmware used to boot VM. Select the option that matches your operating system. * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating systems that boot using MBR style bootloaders. * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BIOS</div>
@@ -2338,7 +2338,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
+                                            <div>Emulation type for the physical network interface card (NIC). * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver. * `VFIO` - Direct attached Virtual Function network controller. This is the networking type when you launch an instance using hardware-assisted (SR-IOV) networking. * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">E1000</div>
@@ -2357,7 +2357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
+                                            <div>Emulation type for volume. * `ISCSI` - ISCSI attached block storage device. * `SCSI` - Emulated SCSI disk. * `IDE` - Emulated IDE disk. * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images. * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ISCSI</div>
@@ -2658,7 +2658,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Details for creating an instance</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

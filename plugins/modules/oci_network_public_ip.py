@@ -96,7 +96,7 @@ options:
         type: str
     public_ip_pool_id:
         description:
-            - OCID of the pool object created by the current tenancy
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
         type: str
     public_ip_id:
         description:
@@ -300,7 +300,7 @@ public_ip:
             sample: 2016-08-25T21:10:29.600Z
         public_ip_pool_id:
             description:
-                - OCID of the pool object created by the current tenancy
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
             returned: on success
             type: string
             sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
