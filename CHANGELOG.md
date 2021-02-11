@@ -37,6 +37,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Sample to create a vlan
 - Sample to create a Private Load Balancer
 - Sample to create public and private DNS
+- Added modules to manage Cloud Guard [Targets](https://docs.oracle.com/en-us/iaas/cloud-guard/using/targets.htm), [Detector Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/detect-recipes.htm) and [Responder Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes.htm)
 
 ### Fixed
 - Issue https://github.com/oracle/oci-ansible-collection/issues/15
