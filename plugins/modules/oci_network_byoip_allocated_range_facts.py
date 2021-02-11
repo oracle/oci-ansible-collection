@@ -23,14 +23,14 @@ module: oci_network_byoip_allocated_range_facts
 short_description: Fetches details about one or multiple ByoipAllocatedRange resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ByoipAllocatedRange resources in Oracle Cloud Infrastructure
-    - Lists the ByoipAllocatedRange objects for the ByoipRange.
-      Each ByoipAllocatedRange object has a CIDR block part of the ByoipRange and the PublicIpPool it is assigned to.
+    - Lists the subranges of a BYOIP CIDR block currently allocated to an IP pool.
+      Each `ByoipAllocatedRange` object also lists the IP pool where it is allocated.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     byoip_range_id:
         description:
-            - The OCID of the Byoip Range object.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR block.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
@@ -52,13 +52,13 @@ byoip_allocated_ranges:
     contains:
         cidr_block:
             description:
-                - The address range part of the ByoipRange which is used for a publicIpPool.
+                - The BYOIP CIDR block range or subrange allocated to an IP pool. This could be all or part of a BYOIP CIDR block.
             returned: on success
             type: string
             sample: cidr_block_example
         public_ip_pool_id:
             description:
-                - The OCID of the PublicIpPool containing the part of the Byoip range.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IP pool containing the CIDR block.
             returned: on success
             type: string
             sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx

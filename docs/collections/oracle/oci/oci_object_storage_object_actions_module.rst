@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,6 +47,7 @@ Synopsis
 - For *action=reencrypt*, re-encrypts the data encryption keys that encrypt the object and its chunks. By default, when you create a bucket, the Object Storage service manages the master encryption key used to encrypt each object's data encryption keys. The encryption mechanism that you specify for the bucket applies to the objects it contains. You can alternatively employ one of these encryption strategies for an object: - You can assign a key that you created and control through the Oracle Cloud Infrastructure Vault service. - You can encrypt an object using your own encryption key. The key you supply is known as a customer-provided encryption key (SSE-C).
 - For *action=rename*, rename an object in the given Object Storage namespace. See `Object Names <https://docs.cloud.oracle.com/Content/Object/Tasks/managingobjects.htm#namerequirements>`_ for object naming requirements.
 - For *action=restore*, restores one or more objects specified by the objectName parameter. By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
+- For *action=update_object_storage_tier*, changes the storage tier of the object specified by the objectName parameter.
 
 
 .. Aliases
@@ -90,6 +91,7 @@ Parameters
                                                                                                                                                                                                 <li>reencrypt</li>
                                                                                                                                                                                                 <li>rename</li>
                                                                                                                                                                                                 <li>restore</li>
+                                                                                                                                                                                                <li>update_object_storage_tier</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -313,8 +315,29 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the destination object resulting from the copy operation.</div>
+                                            <div>The name of the destination object resulting from the copy operation. Avoid entering confidential information.</div>
                                             <div>Required for <em>action=copy</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-destination_object_storage_tier"></div>
+                    <b>destination_object_storage_tier</b>
+                    <a class="ansibleOptionLink" href="#parameter-destination_object_storage_tier" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>Standard</li>
+                                                                                                                                                                                                <li>InfrequentAccess</li>
+                                                                                                                                                                                                <li>Archive</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The storage tier that the object should be stored in. If not specified, the object will be stored in the same storage tier as the bucket.</div>
+                                            <div>Applicable only for <em>action=copy</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -392,7 +415,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The new name of the source object.</div>
+                                            <div>The new name of the source object. Avoid entering confidential information.</div>
                                             <div>Required for <em>action=rename</em>.</div>
                                                         </td>
             </tr>
@@ -441,7 +464,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the object. Avoid entering confidential information. Example: `test/object1.log`</div>
-                                            <div>Required for <em>action=reencrypt</em>, <em>action=restore</em>.</div>
+                                            <div>Required for <em>action=reencrypt</em>, <em>action=restore</em>, <em>action=update_object_storage_tier</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -773,6 +796,27 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-storage_tier"></div>
+                    <b>storage_tier</b>
+                    <a class="ansibleOptionLink" href="#parameter-storage_tier" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>Standard</li>
+                                                                                                                                                                                                <li>InfrequentAccess</li>
+                                                                                                                                                                                                <li>Archive</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The storage tier that the object should be moved to.</div>
+                                            <div>Required for <em>action=update_object_storage_tier</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -799,7 +843,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>VersionId used to identify a particular version of the object</div>
-                                            <div>Applicable only for <em>action=reencrypt</em><em>action=restore</em>.</div>
+                                            <div>Applicable only for <em>action=reencrypt</em><em>action=restore</em><em>action=update_object_storage_tier</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -900,6 +944,14 @@ Examples
         object_name: test/object1.log
         action: restore
 
+    - name: Perform action update_object_storage_tier on object
+      oci_object_storage_object_actions:
+        namespace_name: namespace_name_example
+        bucket_name: my-new-bucket1
+        object_name: test/object1.log
+        storage_tier: Standard
+        action: update_object_storage_tier
+
 
 
 
@@ -930,15 +982,33 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
-                <td>on success for actions [ &quot;copy&quot;, &quot;rename&quot;, &quot;restore&quot; ]</td>
+                <td>on success for actions [ &quot;copy&quot;, &quot;rename&quot;, &quot;restore&quot;, &quot;update_object_storage_tier&quot; ]</td>
                 <td>
                                             <div>Details of the Object resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-object/archival_state"></div>
+                    <b>archival_state</b>
+                    <a class="ansibleOptionLink" href="#return-object/archival_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Archival state of an object. This field is set only for objects in Archive tier.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Archived</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-object/etag"></div>
@@ -1008,6 +1078,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-object/storage_tier"></div>
+                    <b>storage_tier</b>
+                    <a class="ansibleOptionLink" href="#return-object/storage_tier" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The storage tier that the object is stored in.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Standard</div>
                                     </td>
             </tr>
                                 <tr>

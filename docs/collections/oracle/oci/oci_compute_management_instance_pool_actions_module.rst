@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool_actions -- Perform actions on an
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,10 +45,10 @@ Synopsis
 - Perform actions on an InstancePool resource in Oracle Cloud Infrastructure
 - For *action=attach_load_balancer*, attach a load balancer to the instance pool.
 - For *action=detach_load_balancer*, detach a load balancer from the instance pool.
-- For *action=reset*, performs the reset (power off and power on) action on the specified instance pool, which performs the action on all the instances in the pool.
-- For *action=softreset*, performs the softreset (ACPI shutdown and power on) action on the specified instance pool, which performs the action on all the instances in the pool.
+- For *action=reset*, performs the reset (immediate power off and power on) action on the specified instance pool, which performs the action on all the instances in the pool.
+- For *action=softreset*, performs the softreset (ACPI shutdown and power on) action on the specified instance pool, which performs the action on all the instances in the pool. Softreset gracefully reboots the instances by sending a shutdown command to the operating systems. After waiting 15 minutes for the OS to shut down, the instances are powered off and then powered back on.
 - For *action=start*, performs the start (power on) action on the specified instance pool, which performs the action on all the instances in the pool.
-- For *action=stop*, performs the stop (power off) action on the specified instance pool, which performs the action on all the instances in the pool.
+- For *action=stop*, performs the stop (immediate power off) action on the specified instance pool, which performs the action on all the instances in the pool.
 
 
 .. Aliases

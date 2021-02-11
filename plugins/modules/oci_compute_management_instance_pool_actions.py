@@ -25,13 +25,15 @@ description:
     - Perform actions on an InstancePool resource in Oracle Cloud Infrastructure
     - For I(action=attach_load_balancer), attach a load balancer to the instance pool.
     - For I(action=detach_load_balancer), detach a load balancer from the instance pool.
-    - For I(action=reset), performs the reset (power off and power on) action on the specified instance pool,
+    - For I(action=reset), performs the reset (immediate power off and power on) action on the specified instance pool,
       which performs the action on all the instances in the pool.
     - For I(action=softreset), performs the softreset (ACPI shutdown and power on) action on the specified instance pool,
       which performs the action on all the instances in the pool.
+      Softreset gracefully reboots the instances by sending a shutdown command to the operating systems.
+      After waiting 15 minutes for the OS to shut down, the instances are powered off and then powered back on.
     - For I(action=start), performs the start (power on) action on the specified instance pool,
       which performs the action on all the instances in the pool.
-    - For I(action=stop), performs the stop (power off) action on the specified instance pool,
+    - For I(action=stop), performs the stop (immediate power off) action on the specified instance pool,
       which performs the action on all the instances in the pool.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -59,8 +61,9 @@ options:
         type: int
     vnic_selection:
         description:
-            - "Indicates which VNIC on each instance in the pool should be used to associate with the load balancer. Possible values are \\"PrimaryVnic\\" or
-              the displayName of one of the secondary VNICs on the instance configuration that is associated with the instance pool."
+            - "Indicates which VNIC on each instance in the pool should be used to associate with the load balancer.
+              Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
+              that is associated with the instance pool."
             - Required for I(action=attach_load_balancer).
         type: str
     action:
@@ -278,9 +281,9 @@ instance_pool:
                     sample: 56
                 vnic_selection:
                     description:
-                        - "Indicates which VNIC on each instance in the instance pool should be used to associate with the load balancer. Possible values are
-                          \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration that is associated with the instance
-                          pool."
+                        - "Indicates which VNIC on each instance in the instance pool should be used to associate with the load balancer.
+                          Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
+                          that is associated with the instance pool."
                     returned: on success
                     type: string
                     sample: vnic_selection_example

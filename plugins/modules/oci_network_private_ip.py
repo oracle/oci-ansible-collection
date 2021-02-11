@@ -244,7 +244,7 @@ private_ip:
             description:
                 - The OCID of the VNIC the private IP is assigned to. The VNIC and private IP
                   must be in the same subnet.
-                - However, if the `PrivateIp` object is being used with a VLAN as part of
+                  However, if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution, the `vnicId` is null.
             returned: on success
             type: string

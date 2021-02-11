@@ -23,20 +23,20 @@ module: oci_network_byoip_range
 short_description: Manage a ByoipRange resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ByoipRange resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a Byoip Range prefix.
+    - For I(state=present), creates a subrange of the BYOIP CIDR block.
     - "This resource has the following action operations in the M(oci_byoip_range_actions) module: advertise, validate, withdraw."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     cidr_block:
         description:
-            - "The CIDR IP address range of the prefix.
+            - "The BYOIP CIDR block. You can assign some or all of it to a public IP pool after it is validated.
               Example: `10.0.1.0/24`"
             - Required for create using I(state=present).
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment to contain the Byoip Range.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -66,7 +66,7 @@ options:
         type: dict
     byoip_range_id:
         description:
-            - The OCID of the Byoip Range object.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR block.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -124,13 +124,13 @@ byoip_range:
     contains:
         cidr_block:
             description:
-                - The address range the user is on-boarding.
+                - The public IPv4 CIDR block being imported from on-premises to the Oracle cloud.
             returned: on success
             type: string
             sample: cidr_block_example
         compartment_id:
             description:
-                - The OCID of the compartment containing the Byoip Range.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -160,54 +160,56 @@ byoip_range:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The Oracle ID (OCID) of the Byoip Range.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         lifecycle_details:
             description:
-                - The Byoip Range's current substate.
+                - The `ByoipRange` resource's current status.
             returned: on success
             type: string
             sample: CREATING
         lifecycle_state:
             description:
-                - The Byoip Range's current state.
+                - The `ByoipRange` resource's current state.
             returned: on success
             type: string
             sample: INACTIVE
         time_created:
             description:
-                - The date and time the Byoip Range was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_validated:
             description:
-                - The date and time the Byoip Range was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_advertised:
             description:
-                - The date and time the Byoip Range was advertised, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         time_withdrawn:
             description:
-                - The date and time the Byoip Range was withdrawn, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
         validation_token:
             description:
-                - This is an internally generated ASCII string that the user will then use as part of the validation process. Specifically, they will need to
-                  add the token string generated by the service to their Internet Registry record.
+                - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
+                  block,https://docs.cloud.oracle.com/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
             returned: on success
             type: string
             sample: validation_token_example

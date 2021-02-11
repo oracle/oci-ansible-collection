@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_cluster_network -- Manage a ClusterNetwork res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -387,7 +387,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The number of instances that should be in the instance pool.</div>
-                                            <div>For cluster networks with 10 or more instances, the cluster network is created if the required number of instances is available and at least 95% of the instances in the pool launch successfully. For cluster networks with less than 10 instances, all instances in the pool must launch successfully. If the cluster network fails to launch, wait a few minutes, and then try creating it again.</div>
                                                         </td>
             </tr>
                     
@@ -418,7 +417,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The placement configuration for the instance pools in the cluster network.</div>
+                                            <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1295,7 +1294,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The placement configuration for the instance pools in the cluster network.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

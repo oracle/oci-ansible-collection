@@ -20,7 +20,7 @@ oracle.oci.oci_network_virtual_circuit -- Manage a VirtualCircuit resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -168,7 +168,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The provisioned data rate of the connection.  To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
+                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -535,7 +535,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The provider&#x27;s state in relation to this virtual circuit. Relevant only if the customer is using FastConnect via a provider.  ACTIVE means the provider has provisioned the virtual circuit from their end. INACTIVE means the provider has not yet provisioned the virtual circuit, or has de-provisioned it.</div>
+                                            <div>The provider&#x27;s state in relation to this virtual circuit. Relevant only if the customer is using FastConnect via a provider. ACTIVE means the provider has provisioned the virtual circuit from their end. INACTIVE means the provider has not yet provisioned the virtual circuit, or has de-provisioned it.</div>
                                             <div>To be updated only by the provider.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -819,7 +819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The provisioned data rate of the connection.  To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
+                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

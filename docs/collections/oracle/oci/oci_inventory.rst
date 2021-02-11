@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -453,6 +453,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-fetch_compute_hosts"></div>
+                    <b>fetch_compute_hosts</b>
+                    <a class="ansibleOptionLink" href="#parameter-fetch_compute_hosts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>When set, the compute nodes are fetched. Default value set to True.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-fetch_db_hosts"></div>
                     <b>fetch_db_hosts</b>
                     <a class="ansibleOptionLink" href="#parameter-fetch_db_hosts" title="Permalink to this option"></a>
@@ -465,7 +486,7 @@ Parameters
                                                     <td>
                                                                                             </td>
                                                 <td>
-                                            <div>When set, the db nodes are also fetched.</div>
+                                            <div>When set, the db nodes are also fetched. Default value set to False.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -717,6 +738,9 @@ Examples
 
     # DB Hosts
     fetch_db_hosts: True
+
+    # Compute Hosts (bool type)
+    fetch_compute_hosts: True
 
 
 

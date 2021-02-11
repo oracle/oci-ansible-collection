@@ -183,9 +183,10 @@ volume_attachment:
             sample: true
         is_shareable:
             description:
-                - Whether the attachment should be created in shareable mode. If an attachment is created in shareable mode, then other instances can attach the
-                  same volume, provided that they also create their attachments in shareable mode. Only certain volume types can be attached in shareable mode.
-                  Defaults to false if not specified.
+                - Whether the attachment should be created in shareable mode. If an attachment
+                  is created in shareable mode, then other instances can attach the same volume, provided
+                  that they also create their attachments in shareable mode. Only certain volume types can
+                  be attached in shareable mode. Defaults to false if not specified.
             returned: on success
             type: bool
             sample: true
@@ -216,15 +217,16 @@ volume_attachment:
             sample: true
         chap_secret:
             description:
-                - "The Challenge-Handshake-Authentication-Protocol (CHAP) secret valid for the associated CHAP user name.
+                - "The Challenge-Handshake-Authentication-Protocol (CHAP) secret
+                  valid for the associated CHAP user name.
                   (Also called the \\"CHAP password\\".)"
             returned: on success
             type: string
             sample: chap_secret_example
         chap_username:
             description:
-                - The volume's system-generated Challenge-Handshake-Authentication-Protocol (CHAP) user name. See L(RFC
-                  1994,https://tools.ietf.org/html/rfc1994) for more on CHAP.
+                - The volume's system-generated Challenge-Handshake-Authentication-Protocol
+                  (CHAP) user name. See L(RFC 1994,https://tools.ietf.org/html/rfc1994) for more on CHAP.
                 - "Example: `ocid1.volume.oc1.phx.<unique_ID>`"
             returned: on success
             type: string
@@ -238,7 +240,8 @@ volume_attachment:
             sample: 169.254.0.2
         iqn:
             description:
-                - The target volume's iSCSI Qualified Name in the format defined by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
+                - The target volume's iSCSI Qualified Name in the format defined
+                  by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
                 - "Example: `iqn.2015-12.us.oracle.com:<CHAP_username>`"
             returned: on success
             type: string

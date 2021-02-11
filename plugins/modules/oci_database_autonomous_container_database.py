@@ -48,10 +48,28 @@ options:
         type: str
         choices:
             - "STANDARD"
+            - "AUTONOMOUS_DATAGUARD"
     autonomous_exadata_infrastructure_id:
         description:
             - The OCID of the Autonomous Exadata Infrastructure.
         type: str
+    peer_autonomous_exadata_infrastructure_id:
+        description:
+            - The OCID of the peer Autonomous Exadata Infrastructure for Autonomous Data Guard.
+        type: str
+    peer_autonomous_container_database_display_name:
+        description:
+            - The display name for the peer Autonomous Container Database.
+        type: str
+    protection_mode:
+        description:
+            - The protection mode of this Autonomous Data Guard association. For more information, see
+              L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
+              in the Oracle Data Guard documentation.
+        type: str
+        choices:
+            - "MAXIMUM_AVAILABILITY"
+            - "MAXIMUM_PERFORMANCE"
     autonomous_vm_cluster_id:
         description:
             - The OCID of the Autonomous VM Cluster.
@@ -147,6 +165,12 @@ options:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                 type: int
+    standby_maintenance_buffer_in_days:
+        description:
+            - The scheduling detail for the quarterly maintenance window of the standby Autonomous Container Database.
+              This value represents the number of days before scheduled maintenance of the primary database.
+            - This parameter is updatable.
+        type: int
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -442,6 +466,13 @@ autonomous_container_database:
                     returned: on success
                     type: int
                     sample: 56
+        standby_maintenance_buffer_in_days:
+            description:
+                - The scheduling detail for the quarterly maintenance window of the standby Autonomous Container Database.
+                  This value represents the number of days before scheduled maintenance of the primary database.
+            returned: on success
+            type: int
+            sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -457,6 +488,12 @@ autonomous_container_database:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        role:
+            description:
+                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+            returned: on success
+            type: string
+            sample: PRIMARY
         availability_domain:
             description:
                 - The availability domain of the Autonomous Container Database.
@@ -563,8 +600,10 @@ autonomous_container_database:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "standby_maintenance_buffer_in_days": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "role": "PRIMARY",
         "availability_domain": "Uocm:PHX-AD-1",
         "db_version": "db_version_example",
         "backup_config": {
@@ -643,6 +682,7 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
             "autonomous_exadata_infrastructure_id",
             "autonomous_vm_cluster_id",
             "display_name",
+            "service_level_agreement_type",
         ]
 
         return dict(
@@ -742,8 +782,15 @@ def main():
         dict(
             display_name=dict(aliases=["name"], type="str"),
             db_unique_name=dict(type="str"),
-            service_level_agreement_type=dict(type="str", choices=["STANDARD"]),
+            service_level_agreement_type=dict(
+                type="str", choices=["STANDARD", "AUTONOMOUS_DATAGUARD"]
+            ),
             autonomous_exadata_infrastructure_id=dict(type="str"),
+            peer_autonomous_exadata_infrastructure_id=dict(type="str"),
+            peer_autonomous_container_database_display_name=dict(type="str"),
+            protection_mode=dict(
+                type="str", choices=["MAXIMUM_AVAILABILITY", "MAXIMUM_PERFORMANCE"]
+            ),
             autonomous_vm_cluster_id=dict(type="str"),
             compartment_id=dict(type="str"),
             patch_model=dict(
@@ -805,6 +852,7 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
+            standby_maintenance_buffer_in_days=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             backup_config=dict(

@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_group -- Manage a VolumeGroup resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -167,6 +167,21 @@ Parameters
                                                                 <td>
                                             <div>The availability domain of the volume group.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-backup_policy_id"></div>
+                    <b>backup_policy_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-backup_policy_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>If provided, specifies the ID of the volume backup policy to assign to the newly created volume group. If omitted, no policy will be assigned.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -330,7 +345,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the volume group source details for a new volume group. The volume source is either another a list of volume ids in the same availability domain, another volume group or a volume group backup.</div>
+                                            <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -798,7 +813,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The volume group source. The source is either another a list of volume IDs in the same availability domain, another volume group, or a volume group backup.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

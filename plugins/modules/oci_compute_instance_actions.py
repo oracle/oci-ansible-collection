@@ -28,12 +28,21 @@ description:
     - "- **STOP** - Powers off the instance."
     - "- **RESET** - Powers off the instance and then powers it back on."
     - "- **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system.
-      If the applications that run on the instance take a long time to shut down, they could be improperly stopped, resulting
-      in data corruption. To avoid this, shut down the instance using the commands available in the OS before you softstop the
+      After waiting 15 minutes for the OS to shut down, the instance is powered off.
+      If the applications that run on the instance take more than 15 minutes to shut down, they could be improperly stopped, resulting
+      in data corruption. To avoid this, manually shut down the instance using the commands available in the OS before you softstop the
       instance."
-    - "- **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system, and
-      then powers the instance back on."
-    - For more information, see L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
+    - "- **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system.
+      After waiting 15 minutes for the OS to shut down, the instance is powered off and
+      then powered back on."
+    - "- **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Warning: Sending a diagnostic interrupt to a live system can
+      cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's
+      OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a
+      crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of
+      the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see
+      L(Sending a Diagnostic Interrupt,https://docs.cloud.oracle.com/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm)."
+    - For more information about managing instance lifecycle states, see
+      L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -186,7 +195,7 @@ instance:
             sample: NATIVE
         launch_options:
             description:
-                - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -196,7 +205,7 @@ instance:
                           * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                           volumes on Oracle-provided images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on Oracle-provided images."
@@ -205,10 +214,10 @@ instance:
                     sample: ISCSI
                 firmware:
                     description:
-                        - "Firmware used to boot VM.  Select the option that matches your operating system.
-                          * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
+                        - "Firmware used to boot VM. Select the option that matches your operating system.
+                          * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
-                          * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
+                          * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
                           default for Oracle-provided images."
                     returned: on success
                     type: string
@@ -216,7 +225,7 @@ instance:
                 network_type:
                     description:
                         - "Emulation type for the physical network interface card (NIC).
-                          * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
+                          * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver.
                           * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
                           * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
@@ -229,7 +238,7 @@ instance:
                           * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                           volumes on Oracle-provided images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on Oracle-provided images."
@@ -265,7 +274,7 @@ instance:
                     sample: true
         availability_config:
             description:
-                - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -378,7 +387,7 @@ instance:
                     sample: local_disk_description_example
         source_details:
             description:
-                - Details for creating an instance
+                - ""
             returned: on success
             type: complex
             contains:
@@ -436,13 +445,14 @@ instance:
             contains:
                 is_monitoring_disabled:
                     description:
-                        - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                        - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
+                          monitoring plugins.
                     returned: on success
                     type: bool
                     sample: true
                 is_management_disabled:
                     description:
-                        - Whether the agent running on the instance can run all the available management plugins.
+                        - Whether Oracle Cloud Agent can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true

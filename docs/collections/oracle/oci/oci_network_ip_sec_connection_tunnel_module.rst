@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_tunnel -- Manage an IpSecConnectionTunn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -163,7 +163,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Information for establishing a BGP session for the IPSec tunnel.</div>
+                                            <div></div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -518,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Information for establishing the tunnel&#x27;s BGP session.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

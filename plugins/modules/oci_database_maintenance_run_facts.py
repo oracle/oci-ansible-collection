@@ -199,6 +199,13 @@ maintenance_runs:
             returned: on success
             type: string
             sample: QUARTERLY
+        peer_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance run for the Autonomous Data Guard
+                  association's peer container database.
+            returned: on success
+            type: string
+            sample: ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -213,7 +220,8 @@ maintenance_runs:
         "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_type": "PLANNED",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
-        "maintenance_subtype": "QUARTERLY"
+        "maintenance_subtype": "QUARTERLY",
+        "peer_maintenance_run_id": "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

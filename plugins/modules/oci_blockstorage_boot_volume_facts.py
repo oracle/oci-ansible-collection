@@ -129,7 +129,8 @@ boot_volumes:
             sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
         is_hydrated:
             description:
-                - Specifies whether the boot volume's data has finished copying from the source boot volume or boot volume backup.
+                - Specifies whether the boot volume's data has finished copying
+                  from the source boot volume or boot volume backup.
             returned: on success
             type: bool
             sample: true
@@ -166,8 +167,7 @@ boot_volumes:
             sample: 56
         source_details:
             description:
-                - The boot volume source, either an existing boot volume in the same availability domain or a boot volume backup.
-                  If null, this means that the boot volume was created from an image.
+                - ""
             returned: on success
             type: complex
             contains:

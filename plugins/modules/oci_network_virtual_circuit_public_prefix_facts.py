@@ -36,8 +36,9 @@ options:
         required: true
     verification_state:
         description:
-            - A filter to only return resources that match the given verification state.
-              The state value is case-insensitive.
+            - A filter to only return resources that match the given verification
+              state.
+            - The state value is case-insensitive.
         type: str
         choices:
             - "IN_PROGRESS"

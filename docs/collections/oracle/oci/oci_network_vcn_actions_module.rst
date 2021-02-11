@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn_actions -- Perform actions on a Vcn resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,9 +43,9 @@ Synopsis
 .. Description
 
 - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
-- For *action=add_vcn_cidr*, add a CIDR to a VCN. The new CIDR must maintain the following rules - a. The CIDR provided is valid b. The new CIDR range should not overlap with any existing CIDRs c. The new CIDR should not exceed the max limit of CIDRs per VCNs d. The new CIDR range does not overlap with any peered VCNs
-- For *action=modify_vcn_cidr*, update a CIDR from a VCN. The new CIDR must maintain the following rules - a. The CIDR provided is valid b. The new CIDR range should not overlap with any existing CIDRs c. The new CIDR should not exceed the max limit of CIDRs per VCNs d. The new CIDR range does not overlap with any peered VCNs e. The new CIDR should overlap with any existing route rule within a VCN f. All existing subnet CIDRs are subsets of the updated CIDR ranges
-- For *action=remove_vcn_cidr*, remove a CIDR from a VCN. The CIDR being removed should not have any resources allocated from it.
+- For *action=add_vcn_cidr*, adds a CIDR block to a VCN. The CIDR block you add: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
+- For *action=modify_vcn_cidr*, updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. - Must include IP addresses from the original CIDR block that are used in the VCN's existing route rules. - No IP address in an existing subnet should be outside of the new CIDR block range. **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update.
+- For *action=remove_vcn_cidr*, removes a specified CIDR block from a VCN. **Notes:** - You cannot remove a CIDR block if an IP address in its range is in use. - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 
 
 .. Aliases
@@ -186,7 +186,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The CIDR IP address that needs to be added.</div>
+                                            <div>The CIDR block to add.</div>
                                             <div>Required for <em>action=add_vcn_cidr</em>, <em>action=remove_vcn_cidr</em>.</div>
                                                         </td>
             </tr>
@@ -232,7 +232,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The new CIDR IP address which will replace the orginal one.</div>
+                                            <div>The new CIDR IP address.</div>
                                             <div>Required for <em>action=modify_vcn_cidr</em>.</div>
                                                         </td>
             </tr>
@@ -248,7 +248,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The CIDR IP address that needs to be updated.</div>
+                                            <div>The CIDR IP address to update.</div>
                                             <div>Required for <em>action=modify_vcn_cidr</em>.</div>
                                                         </td>
             </tr>

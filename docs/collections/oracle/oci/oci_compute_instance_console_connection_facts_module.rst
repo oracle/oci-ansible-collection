@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_console_connection_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - Fetches details about one or multiple InstanceConsoleConnection resources in Oracle Cloud Infrastructure
 - Lists the console connections for the specified compartment or instance.
-- For more information about console access, see `Accessing the Console <https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm>`_.
+- For more information about instance console connections, see `Troubleshooting Instances Using Instance Console Connections <https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm>`_.
 - If *instance_console_connection_id* is specified, the details of a single InstanceConsoleConnection will be returned.
 
 

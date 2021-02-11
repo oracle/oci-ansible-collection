@@ -309,3 +309,11 @@ class VolumeHelperCustom:
             self.client, resource.id
         )
         return resource_dict
+
+
+class VolumeGroupHelperCustom:
+    # we are not being able to check it for idempotency as this is not returned in volume_group model
+    def get_exclude_attributes(self):
+        return super(VolumeGroupHelperCustom, self).get_exclude_attributes() + [
+            "backup_policy_id"
+        ]

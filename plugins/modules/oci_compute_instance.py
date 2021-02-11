@@ -79,8 +79,7 @@ options:
         type: str
     create_vnic_details:
         description:
-            - Details for the primary VNIC, which is automatically created and attached when
-              the instance is launched.
+            - ""
         type: dict
         suboptions:
             assign_public_ip:
@@ -287,8 +286,7 @@ options:
         type: str
     launch_options:
         description:
-            - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any
-              default values.
+            - ""
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -298,7 +296,7 @@ options:
                       * `ISCSI` - ISCSI attached block storage device.
                       * `SCSI` - Emulated SCSI disk.
                       * `IDE` - Emulated IDE disk.
-                      * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                      * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                       volumes on Oracle-provided images.
                       * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                       storage volumes on Oracle-provided images."
@@ -312,10 +310,10 @@ options:
                     - "PARAVIRTUALIZED"
             firmware:
                 description:
-                    - "Firmware used to boot VM.  Select the option that matches your operating system.
-                      * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
+                    - "Firmware used to boot VM. Select the option that matches your operating system.
+                      * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                       systems that boot using MBR style bootloaders.
-                      * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
+                      * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
                       default for Oracle-provided images."
                 type: str
                 choices:
@@ -324,7 +322,7 @@ options:
             network_type:
                 description:
                     - "Emulation type for the physical network interface card (NIC).
-                      * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
+                      * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver.
                       * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                       when you launch an instance using hardware-assisted (SR-IOV) networking.
                       * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
@@ -340,7 +338,7 @@ options:
                       * `ISCSI` - ISCSI attached block storage device.
                       * `SCSI` - Emulated SCSI disk.
                       * `IDE` - Emulated IDE disk.
-                      * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                      * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                       volumes on Oracle-provided images.
                       * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                       storage volumes on Oracle-provided images."
@@ -375,7 +373,7 @@ options:
                 type: bool
     availability_config:
         description:
-            - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
+            - ""
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -437,14 +435,14 @@ options:
         suboptions:
             is_monitoring_disabled:
                 description:
-                    - Whether the agent running on the instance can gather performance metrics and monitor the instance.
-                      Default value is false.
+                    - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
+                      monitoring plugins. Default value is false (monitoring plugins are enabled).
                     - This parameter is updatable.
                 type: bool
             is_management_disabled:
                 description:
-                    - Whether the agent running on the instance can run all the available management plugins.
-                      Default value is false.
+                    - Whether Oracle Cloud Agent can run all the available management plugins.
+                      Default value is false (management plugins are enabled).
                     - This parameter is updatable.
                 type: bool
     shape:
@@ -473,8 +471,7 @@ options:
                 type: float
     source_details:
         description:
-            - Details for creating an instance.
-              Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
+            - ""
         type: dict
         suboptions:
             source_type:
@@ -515,7 +512,8 @@ options:
         type: str
     is_pv_encryption_in_transit_enabled:
         description:
-            - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
+            - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot
+              volumes. The default value is false.
         type: bool
     instance_id:
         description:
@@ -736,7 +734,7 @@ instance:
             sample: NATIVE
         launch_options:
             description:
-                - Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -746,7 +744,7 @@ instance:
                           * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                           volumes on Oracle-provided images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on Oracle-provided images."
@@ -755,10 +753,10 @@ instance:
                     sample: ISCSI
                 firmware:
                     description:
-                        - "Firmware used to boot VM.  Select the option that matches your operating system.
-                          * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
+                        - "Firmware used to boot VM. Select the option that matches your operating system.
+                          * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
-                          * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
+                          * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
                           default for Oracle-provided images."
                     returned: on success
                     type: string
@@ -766,7 +764,7 @@ instance:
                 network_type:
                     description:
                         - "Emulation type for the physical network interface card (NIC).
-                          * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
+                          * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver.
                           * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
                           * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
@@ -779,7 +777,7 @@ instance:
                           * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                           volumes on Oracle-provided images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on Oracle-provided images."
@@ -815,7 +813,7 @@ instance:
                     sample: true
         availability_config:
             description:
-                - Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -928,7 +926,7 @@ instance:
                     sample: local_disk_description_example
         source_details:
             description:
-                - Details for creating an instance
+                - ""
             returned: on success
             type: complex
             contains:
@@ -986,13 +984,14 @@ instance:
             contains:
                 is_monitoring_disabled:
                     description:
-                        - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                        - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
+                          monitoring plugins.
                     returned: on success
                     type: bool
                     sample: true
                 is_management_disabled:
                     description:
-                        - Whether the agent running on the instance can run all the available management plugins.
+                        - Whether Oracle Cloud Agent can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true

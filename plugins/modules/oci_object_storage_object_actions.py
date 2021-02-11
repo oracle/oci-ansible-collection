@@ -36,6 +36,7 @@ description:
       for object naming requirements.
     - For I(action=restore), restores one or more objects specified by the objectName parameter.
       By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
+    - For I(action=update_object_storage_tier), changes the storage tier of the object specified by the objectName parameter.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -83,7 +84,7 @@ options:
         type: str
     destination_object_name:
         description:
-            - The name of the destination object resulting from the copy operation.
+            - The name of the destination object resulting from the copy operation. Avoid entering confidential information.
             - Required for I(action=copy).
         type: str
     destination_object_if_match_e_tag:
@@ -107,6 +108,16 @@ options:
               object will inherit any existing metadata values associated with the source object."
             - Applicable only for I(action=copy).
         type: dict
+    destination_object_storage_tier:
+        description:
+            - The storage tier that the object should be stored in. If not specified, the object will be stored in
+              the same storage tier as the bucket.
+            - Applicable only for I(action=copy).
+        type: str
+        choices:
+            - "Standard"
+            - "InfrequentAccess"
+            - "Archive"
     opc_sse_customer_algorithm:
         description:
             - "The optional header that specifies \\"AES256\\" as the encryption algorithm. For more information, see
@@ -153,7 +164,7 @@ options:
         description:
             - "The name of the object. Avoid entering confidential information.
               Example: `test/object1.log`"
-            - Required for I(action=reencrypt), I(action=restore).
+            - Required for I(action=reencrypt), I(action=restore), I(action=update_object_storage_tier).
         type: str
     kms_key_id:
         description:
@@ -214,7 +225,7 @@ options:
     version_id:
         description:
             - VersionId used to identify a particular version of the object
-            - Applicable only for I(action=reencrypt)I(action=restore).
+            - Applicable only for I(action=reencrypt)I(action=restore)I(action=update_object_storage_tier).
         type: str
     source_name:
         description:
@@ -223,7 +234,7 @@ options:
         type: str
     new_name:
         description:
-            - The new name of the source object.
+            - The new name of the source object. Avoid entering confidential information.
             - Required for I(action=rename).
         type: str
     src_obj_if_match_e_tag:
@@ -247,6 +258,15 @@ options:
               By default objects will be restored for 24 hours. You can instead configure the duration using the hours parameter.
             - Applicable only for I(action=restore).
         type: int
+    storage_tier:
+        description:
+            - The storage tier that the object should be moved to.
+            - Required for I(action=update_object_storage_tier).
+        type: str
+        choices:
+            - "Standard"
+            - "InfrequentAccess"
+            - "Archive"
     action:
         description:
             - The action to perform on the Object.
@@ -257,6 +277,7 @@ options:
             - "reencrypt"
             - "rename"
             - "restore"
+            - "update_object_storage_tier"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -303,13 +324,21 @@ EXAMPLES = """
     object_name: test/object1.log
     action: restore
 
+- name: Perform action update_object_storage_tier on object
+  oci_object_storage_object_actions:
+    namespace_name: namespace_name_example
+    bucket_name: my-new-bucket1
+    object_name: test/object1.log
+    storage_tier: Standard
+    action: update_object_storage_tier
+
 """
 
 RETURN = """
 object:
     description:
         - Details of the Object resource acted upon by the current operation
-    returned: on success for actions [ "copy", "rename", "restore" ]
+    returned: on success for actions [ "copy", "rename", "restore", "update_object_storage_tier" ]
     type: complex
     contains:
         name:
@@ -343,6 +372,18 @@ object:
             returned: on success
             type: string
             sample: etag_example
+        storage_tier:
+            description:
+                - The storage tier that the object is stored in.
+            returned: on success
+            type: string
+            sample: Standard
+        archival_state:
+            description:
+                - Archival state of an object. This field is set only for objects in Archive tier.
+            returned: on success
+            type: string
+            sample: Archived
         time_modified:
             description:
                 - The date and time the object was modified, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
@@ -355,6 +396,8 @@ object:
         "md5": "md5_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "etag": "etag_example",
+        "storage_tier": "Standard",
+        "archival_state": "Archived",
         "time_modified": "2013-10-20T19:20:30+01:00"
     }
 """
@@ -375,6 +418,7 @@ try:
     from oci.object_storage.models import ReencryptObjectDetails
     from oci.object_storage.models import RenameObjectDetails
     from oci.object_storage.models import RestoreObjectsDetails
+    from oci.object_storage.models import UpdateObjectStorageTierDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -388,6 +432,7 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
         reencrypt
         rename
         restore
+        update_object_storage_tier
     """
 
     @staticmethod
@@ -520,6 +565,30 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def update_object_storage_tier(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, UpdateObjectStorageTierDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_object_storage_tier,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                namespace_name=self.module.params.get("namespace_name"),
+                bucket_name=self.module.params.get("bucket_name"),
+                update_object_storage_tier_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 ObjectActionsHelperCustom = get_custom_class("ObjectActionsHelperCustom")
 
@@ -546,6 +615,9 @@ def main():
             destination_object_if_match_e_tag=dict(type="str"),
             destination_object_if_none_match_e_tag=dict(type="str"),
             destination_object_metadata=dict(type="dict"),
+            destination_object_storage_tier=dict(
+                type="str", choices=["Standard", "InfrequentAccess", "Archive"]
+            ),
             opc_sse_customer_algorithm=dict(type="str"),
             opc_sse_customer_key=dict(type="str"),
             opc_sse_customer_key_sha256=dict(type="str"),
@@ -577,10 +649,19 @@ def main():
             new_obj_if_match_e_tag=dict(type="str"),
             new_obj_if_none_match_e_tag=dict(type="str"),
             hours=dict(type="int"),
+            storage_tier=dict(
+                type="str", choices=["Standard", "InfrequentAccess", "Archive"]
+            ),
             action=dict(
                 type="str",
                 required=True,
-                choices=["copy", "reencrypt", "rename", "restore"],
+                choices=[
+                    "copy",
+                    "reencrypt",
+                    "rename",
+                    "restore",
+                    "update_object_storage_tier",
+                ],
             ),
         )
     )

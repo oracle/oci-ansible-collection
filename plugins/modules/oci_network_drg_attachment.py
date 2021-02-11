@@ -37,7 +37,8 @@ author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+            - A user-friendly name. Does not have to be unique. Avoid entering
+              confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -50,10 +51,10 @@ options:
     route_table_id:
         description:
             - The OCID of the route table the DRG attachment will use.
-            - If you don't specify a route table here, the DRG attachment is created without an associated route
+            - "If you don't specify a route table here, the DRG attachment is created without an associated route
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the DRG attachment.
-            - "For information about why you would associate a route table with a DRG attachment, see:"
+              For information about why you would associate a route table with a DRG attachment, see:"
             - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
                 * L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
             - This parameter is updatable.
@@ -159,6 +160,13 @@ drg_attachment:
             returned: on success
             type: string
             sample: ATTACHING
+        time_created:
+            description:
+                - The date and time the DRG attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         route_table_id:
             description:
                 - The OCID of the route table the DRG attachment is using.
@@ -169,13 +177,6 @@ drg_attachment:
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-        time_created:
-            description:
-                - The date and time the DRG attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
                 - The OCID of the VCN.
@@ -188,8 +189,8 @@ drg_attachment:
         "drg_id": "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",
-        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

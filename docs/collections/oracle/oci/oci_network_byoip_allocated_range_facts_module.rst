@@ -20,7 +20,7 @@ oracle.oci.oci_network_byoip_allocated_range_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ByoipAllocatedRange resources in Oracle Cloud Infrastructure
-- Lists the ByoipAllocatedRange objects for the ByoipRange. Each ByoipAllocatedRange object has a CIDR block part of the ByoipRange and the PublicIpPool it is assigned to.
+- Lists the subranges of a BYOIP CIDR block currently allocated to an IP pool. Each `ByoipAllocatedRange` object also lists the IP pool where it is allocated.
 
 
 .. Aliases
@@ -164,7 +164,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Byoip Range object.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource containing the BYOIP CIDR block.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -303,7 +303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The address range part of the ByoipRange which is used for a publicIpPool.</div>
+                                            <div>The BYOIP CIDR block range or subrange allocated to an IP pool. This could be all or part of a BYOIP CIDR block.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cidr_block_example</div>
@@ -321,7 +321,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the PublicIpPool containing the part of the Byoip range.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the IP pool containing the CIDR block.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx</div>

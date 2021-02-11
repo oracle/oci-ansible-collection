@@ -40,7 +40,7 @@ options:
         required: true
     name:
         description:
-            - The name of the policy.
+            - The name of the policy. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str

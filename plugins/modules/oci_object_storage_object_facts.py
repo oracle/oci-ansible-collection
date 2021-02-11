@@ -23,7 +23,11 @@ module: oci_object_storage_object_facts
 short_description: Fetches details about one or multiple Object resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Object resources in Oracle Cloud Infrastructure
-    - Lists the objects in a bucket.
+    - Lists the objects in a bucket. By default, ListObjects returns object names only. See the `fields`
+      parameter for other fields that you can optionally include in ListObjects response.
+    - ListObjects returns at most 1000 objects. To paginate through more objects, use the returned 'nextStartWith'
+      value with the 'start' parameter. To filter which objects ListObjects returns, use the 'start' and 'end'
+      parameters.
     - To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
       talk to an administrator. If you are an administrator who needs to write policies to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -120,11 +124,11 @@ options:
         type: str
     fields:
         description:
-            - Object summary in list of objects includes the 'name' field. This parameter can also include 'size'
-              (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time) and 'timeModified'
-              (object modification date and time).
-              Value of this parameter should be a comma-separated, case-insensitive list of those field names.
-              For example 'name,etag,timeCreated,md5,timeModified'
+            - Object summary by default includes only the 'name' field. Use this parameter to also
+              include 'size' (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time),
+              'timeModified' (object modification date and time), 'storageTier' and 'archivalState' fields.
+              Specify the value of this parameter as a comma-separated, case-insensitive list of those field names.
+              For example 'name,etag,timeCreated,md5,timeModified,storageTier,archivalState'.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -181,6 +185,18 @@ objects:
             returned: on success
             type: string
             sample: etag_example
+        storage_tier:
+            description:
+                - The storage tier that the object is stored in.
+            returned: on success
+            type: string
+            sample: Standard
+        archival_state:
+            description:
+                - Archival state of an object. This field is set only for objects in Archive tier.
+            returned: on success
+            type: string
+            sample: Archived
         time_modified:
             description:
                 - The date and time the object was modified, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
@@ -193,6 +209,8 @@ objects:
         "md5": "md5_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "etag": "etag_example",
+        "storage_tier": "Standard",
+        "archival_state": "Archived",
         "time_modified": "2013-10-20T19:20:30+01:00"
     }]
 """

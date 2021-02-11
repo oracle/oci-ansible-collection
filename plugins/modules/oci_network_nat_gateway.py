@@ -72,7 +72,7 @@ options:
         type: str
     public_ip_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Public IP associated with the NAT gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
         type: str
     nat_gateway_id:
         description:
@@ -166,7 +166,8 @@ nat_gateway:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the NAT gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                  NAT gateway.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
@@ -205,7 +206,7 @@ nat_gateway:
             sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
         public_ip_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Public IP associated with the NAT gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
             returned: on success
             type: string
             sample: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx

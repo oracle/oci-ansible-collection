@@ -67,6 +67,7 @@ options:
                     - "ZIP_UPLOAD"
                     - "GIT_CONFIG_SOURCE"
                     - "COMPARTMENT_CONFIG_SOURCE"
+                    - "TEMPLATE_CONFIG_SOURCE"
                 required: true
             working_directory:
                 description:
@@ -123,6 +124,11 @@ options:
                       If not specified, then all services at the scope of the given compartment OCID are used."
                     - Applicable when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
                 type: list
+            template_id:
+                description:
+                    - ""
+                    - Required when config_source_type is 'TEMPLATE_CONFIG_SOURCE'
+                type: str
     variables:
         description:
             - "Terraform variables associated with this resource.
@@ -529,6 +535,7 @@ def main():
                             "ZIP_UPLOAD",
                             "GIT_CONFIG_SOURCE",
                             "COMPARTMENT_CONFIG_SOURCE",
+                            "TEMPLATE_CONFIG_SOURCE",
                         ],
                     ),
                     working_directory=dict(type="str"),
@@ -539,6 +546,7 @@ def main():
                     compartment_id=dict(type="str"),
                     region=dict(type="str"),
                     services_to_discover=dict(type="list"),
+                    template_id=dict(type="str"),
                 ),
             ),
             variables=dict(type="dict"),

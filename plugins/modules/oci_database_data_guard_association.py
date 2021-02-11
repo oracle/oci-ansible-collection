@@ -150,6 +150,12 @@ options:
               You must supply this value if creationType is `ExistingVmCluster`.
             - Applicable when creation_type is 'ExistingVmCluster'
         type: str
+    peer_db_home_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB home in which to create the standby database.
+              You must supply this value to create standby database with an existing DB home
+            - Applicable when creation_type is one of ['ExistingDbSystem', 'ExistingVmCluster']
+        type: str
     peer_db_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system in which to create the standby database.
@@ -426,6 +432,7 @@ def main():
             backup_network_nsg_ids=dict(type="list"),
             hostname=dict(type="str"),
             peer_vm_cluster_id=dict(type="str"),
+            peer_db_home_id=dict(type="str"),
             peer_db_system_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

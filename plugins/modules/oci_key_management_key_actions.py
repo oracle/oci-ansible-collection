@@ -176,10 +176,19 @@ key:
                     sample: AES
                 length:
                     description:
-                        - The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.
+                        - "The length of the key in bytes, expressed as an integer. Values supported:
+                            - AES: 16, 24 or 32
+                            - RSA: 256, 384 or 512
+                            - ECDSA: 32, 48, 66"
                     returned: on success
                     type: int
                     sample: 56
+                curve_id:
+                    description:
+                        - Supported curve Ids for ECDSA keys
+                    returned: on success
+                    type: string
+                    sample: ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx
         protection_mode:
             description:
                 - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
@@ -227,7 +236,8 @@ key:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "key_shape": {
             "algorithm": "AES",
-            "length": 56
+            "length": 56,
+            "curve_id": "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "protection_mode": "HSM",
         "lifecycle_state": "ENABLED",

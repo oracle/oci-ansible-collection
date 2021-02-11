@@ -100,6 +100,13 @@ drg_attachments:
             returned: on success
             type: string
             sample: ATTACHING
+        time_created:
+            description:
+                - The date and time the DRG attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         route_table_id:
             description:
                 - The OCID of the route table the DRG attachment is using.
@@ -110,13 +117,6 @@ drg_attachments:
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-        time_created:
-            description:
-                - The date and time the DRG attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                - "Example: `2016-08-25T21:10:29.600Z`"
-            returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
                 - The OCID of the VCN.
@@ -129,8 +129,8 @@ drg_attachments:
         "drg_id": "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",
-        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """

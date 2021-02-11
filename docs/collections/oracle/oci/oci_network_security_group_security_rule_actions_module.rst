@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_group_security_rule_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -361,8 +361,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional and valid only for ICMP and ICMPv6. Use to specify a particular ICMP type and code as defined in: - <a href='http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml'>ICMP Parameters</a> - <a href='https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml'>ICMPv6 Parameters</a></div>
-                                            <div>If you specify ICMP or ICMPv6 as the protocol but omit this object, then all ICMP types and codes are allowed. If you do provide this object, the type is required and the code is optional. To enable MTU negotiation for ingress internet traffic via IPv4, make sure to allow type 3 (&quot;Destination Unreachable&quot;) code 4 (&quot;Fragmentation Needed and Don&#x27;t Fragment was Set&quot;). If you need to specify multiple codes for a single type, create a separate security list rule for each.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -510,7 +509,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional and valid only for TCP. Use to specify particular destination ports for TCP rules. If you specify TCP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -527,7 +526,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -581,7 +580,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -635,7 +634,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional and valid only for UDP. Use to specify particular destination ports for UDP rules. If you specify UDP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -652,7 +651,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -706,7 +705,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -978,8 +977,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for ICMP and ICMPv6. Use to specify a particular ICMP type and code as defined in: - <a href='http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml'>ICMP Parameters</a> - <a href='https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml'>ICMPv6 Parameters</a></div>
-                                            <div>If you specify ICMP or ICMPv6 as the protocol but omit this object, then all ICMP types and codes are allowed. If you do provide this object, the type is required and the code is optional. To enable MTU negotiation for ingress internet traffic via IPv4, make sure to allow type 3 (&quot;Destination Unreachable&quot;) code 4 (&quot;Fragmentation Needed and Don&#x27;t Fragment was Set&quot;). If you need to specify multiple codes for a single type, create a separate security rule for each.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1159,7 +1157,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for TCP. Use to specify particular destination ports for TCP rules. If you specify TCP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1177,7 +1175,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1238,7 +1236,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1318,7 +1316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional and valid only for UDP. Use to specify particular destination ports for UDP rules. If you specify UDP as the protocol but omit this object, then all destination ports are allowed.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1336,7 +1334,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed destination ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1397,7 +1395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An inclusive range of allowed source ports. Use the same number for the min and max to indicate a single port. Defaults to all ports if not specified.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

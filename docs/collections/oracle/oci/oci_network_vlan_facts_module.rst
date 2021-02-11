@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan_facts -- Fetches details about one or multiple Vlan 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -234,7 +234,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.</div>
+                                            <div>A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.</div>
                                                         </td>
             </tr>
                                 <tr>

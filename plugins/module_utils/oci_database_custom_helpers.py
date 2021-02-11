@@ -475,6 +475,9 @@ class AutonomousContainerDatabaseHelperCustom:
         ).get_exclude_attributes()
         return exclude_attributes + [
             "kms_key_version_id",
+            "peer_autonomous_exadata_infrastructure_id",
+            "peer_autonomous_container_database_display_name",
+            "protection_mode",
         ]
 
 

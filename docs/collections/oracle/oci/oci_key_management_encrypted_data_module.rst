@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_encrypted_data -- Manage an EncryptedData resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -199,6 +199,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-encryption_algorithm"></div>
+                    <b>encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#parameter-encryption_algorithm" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AES_256_GCM</li>
+                                                                                                                                                                                                <li>RSA_OAEP_SHA_1</li>
+                                                                                                                                                                                                <li>RSA_OAEP_SHA_256</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Encryption algorithm to be used while encrypting/decrypting data using a customer key AES_256_GCM is the supported value AES keys and uses GCM mode of operation RSA_OAEP_SHA_1 and RSA_OAEP_SHA_256 are supported for RSA keys and use OAEP padding.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -244,6 +264,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the key to encrypt with.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-key_version_id"></div>
+                    <b>key_version_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-key_version_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the keyVersion used to encrypt the ciphertext.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -403,7 +438,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the EncryptedData resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;ciphertext&#x27;: &#x27;ciphertext_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;ciphertext&#x27;: &#x27;ciphertext_example&#x27;, &#x27;encryption_algorithm&#x27;: &#x27;AES_256_GCM&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_version_id&#x27;: &#x27;ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -422,6 +457,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ciphertext_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-encrypted_data/encryption_algorithm"></div>
+                    <b>encryption_algorithm</b>
+                    <a class="ansibleOptionLink" href="#return-encrypted_data/encryption_algorithm" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Encryption algorithm to be used while encrypting/decrypting data using a customer key AES_256_GCM is the supported value AES keys and uses GCM mode of operation RSA_OAEP_SHA_1 and RSA_OAEP_SHA_256 are supported for RSA keys and use OAEP padding.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AES_256_GCM</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-encrypted_data/key_id"></div>
+                    <b>key_id</b>
+                    <a class="ansibleOptionLink" href="#return-encrypted_data/key_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the key used to sign the message</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-encrypted_data/key_version_id"></div>
+                    <b>key_version_id</b>
+                    <a class="ansibleOptionLink" href="#return-encrypted_data/key_version_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the keyVersion used to encrypt the ciphertext.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     

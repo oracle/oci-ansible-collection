@@ -51,10 +51,10 @@ options:
         required: true
     destination_uri:
         description:
-            - The Object Storage URL to export the image to. See L(Object Storage
-              URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs)
-              and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm) for constructing URLs
-              for image import/export.
+            - The Object Storage URL to export the image to. See L(Object
+              Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs)
+              and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+              for constructing URLs for image import/export.
             - Required when destination_type is 'objectStorageUri'
         type: str
     bucket_name:
@@ -85,18 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action export on image
   oci_compute_image_actions:
-    object_name: exported-image.oci
-    bucket_name: MyBucket
-    namespace_name: MyNamespace
+    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
     destination_type: objectStorageTuple
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
-    action: export
-
-- name: Perform action export on image
-  oci_compute_image_actions:
-    destination_uri: https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/exported-image.oci
-    destination_type: objectStorageUri
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    bucket_name: bucket_name_example
+    namespace_name: namespace_name_example
+    object_name: object_name_example
     action: export
 
 """
@@ -182,7 +175,7 @@ image:
                           * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                           volumes on Oracle-provided images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on Oracle-provided images."
@@ -191,10 +184,10 @@ image:
                     sample: ISCSI
                 firmware:
                     description:
-                        - "Firmware used to boot VM.  Select the option that matches your operating system.
-                          * `BIOS` - Boot VM using BIOS style firmware.  This is compatible with both 32 bit and 64 bit operating
+                        - "Firmware used to boot VM. Select the option that matches your operating system.
+                          * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
-                          * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems.  This is the
+                          * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
                           default for Oracle-provided images."
                     returned: on success
                     type: string
@@ -202,7 +195,7 @@ image:
                 network_type:
                     description:
                         - "Emulation type for the physical network interface card (NIC).
-                          * `E1000` - Emulated Gigabit ethernet controller.  Compatible with Linux e1000 network driver.
+                          * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver.
                           * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
                           * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
@@ -215,7 +208,7 @@ image:
                           * `ISCSI` - ISCSI attached block storage device.
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
-                          * `VFIO` - Direct attached Virtual Function storage.  This is the default option for local data
+                          * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
                           volumes on Oracle-provided images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on Oracle-provided images."
@@ -263,13 +256,13 @@ image:
             contains:
                 is_monitoring_supported:
                     description:
-                        - Whether the agent running on the instance can gather performance metrics and monitor the instance.
+                        - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance.
                     returned: on success
                     type: bool
                     sample: true
                 is_management_supported:
                     description:
-                        - Whether the agent running on the instance can run all the available management plugins
+                        - Whether Oracle Cloud Agent can run all the available management plugins.
                     returned: on success
                     type: bool
                     sample: true

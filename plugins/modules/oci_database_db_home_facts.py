@@ -53,6 +53,10 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup. Specify a backupId to list only the DB systems
               or DB homes that support creating a database using this backup in this compartment.
         type: str
+    db_version:
+        description:
+            - A filter to return only DB Homes that match the specified dbVersion.
+        type: str
     sort_by:
         description:
             - The field to sort by.  You can provide one sort order (`sortOrder`).  Default order for TIMECREATED is descending.  Default order for DISPLAYNAME
@@ -246,6 +250,7 @@ class DbHomeFactsHelperGen(OCIResourceFactsHelperBase):
             "db_system_id",
             "vm_cluster_id",
             "backup_id",
+            "db_version",
             "sort_by",
             "sort_order",
             "lifecycle_state",
@@ -279,6 +284,7 @@ def main():
             db_system_id=dict(type="str"),
             vm_cluster_id=dict(type="str"),
             backup_id=dict(type="str"),
+            db_version=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             lifecycle_state=dict(

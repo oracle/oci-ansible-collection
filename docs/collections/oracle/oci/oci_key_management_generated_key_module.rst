@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_generated_key -- Manage a GeneratedKey resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -294,10 +294,32 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>AES</li>
                                                                                                                                                                                                 <li>RSA</li>
+                                                                                                                                                                                                <li>ECDSA</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-key_shape/curve_id"></div>
+                    <b>curve_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-key_shape/curve_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NIST_P256</li>
+                                                                                                                                                                                                <li>NIST_P384</li>
+                                                                                                                                                                                                <li>NIST_P521</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Supported curve Ids for ECDSA keys</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -313,7 +335,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Values supported: - AES: 16, 24 or 32 - RSA: 256, 384 or 512 - ECDSA: 32, 48, 66</div>
                                                         </td>
             </tr>
                     

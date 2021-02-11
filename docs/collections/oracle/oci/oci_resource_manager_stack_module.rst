@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack -- Manage a Stack resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -266,6 +266,7 @@ Parameters
                                                                                                                                                                 <li>ZIP_UPLOAD</li>
                                                                                                                                                                                                 <li>GIT_CONFIG_SOURCE</li>
                                                                                                                                                                                                 <li>COMPARTMENT_CONFIG_SOURCE</li>
+                                                                                                                                                                                                <li>TEMPLATE_CONFIG_SOURCE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -341,6 +342,23 @@ Parameters
                                                                 <td>
                                             <div>Filter for <a href='https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services'>services to use with Resource Discovery</a>. For example, &quot;database&quot; limits resource discovery to resource types within the Database service. The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level otherwise). If not specified, then all services at the scope of the given compartment OCID are used.</div>
                                             <div>Applicable when config_source_type is &#x27;COMPARTMENT_CONFIG_SOURCE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-config_source/template_id"></div>
+                    <b>template_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-config_source/template_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when config_source_type is &#x27;TEMPLATE_CONFIG_SOURCE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>

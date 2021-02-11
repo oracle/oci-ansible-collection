@@ -20,7 +20,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -368,6 +368,22 @@ Parameters
                                                                 <td>
                                             <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. **NsgIds restrictions:** - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.</div>
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_db_home_id"></div>
+                    <b>peer_db_home_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_db_home_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB home in which to create the standby database. You must supply this value to create standby database with an existing DB home</div>
+                                            <div>Applicable when creation_type is one of [&#x27;ExistingDbSystem&#x27;, &#x27;ExistingVmCluster&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>

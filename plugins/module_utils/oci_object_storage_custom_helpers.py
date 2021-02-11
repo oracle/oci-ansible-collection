@@ -352,6 +352,7 @@ class ObjectActionsHelperCustom:
     COPY_ACTION = "copy"
     RENAME_ACTION = "rename"
     RESTORE_ACTION = "restore"
+    UPDATE_OBJECT_STORAGE_TIER_ACTION = "update_object_storage_tier"
 
     def perform_copy(self):
         obj = get_object(
@@ -502,10 +503,77 @@ class ObjectActionsHelperCustom:
                 resource=to_dict(restored_obj),
             )
 
+    def perform_update_object_storage_tier(self):
+        obj = get_object(
+            self.client,
+            self.module.params.get("namespace_name"),
+            self.module.params.get("bucket_name"),
+            self.module.params.get("object_name"),
+        )
+        if not obj:
+            self.module.fail_json(
+                msg="Could not find the object {0} in bucket {1}".format(
+                    self.module.params.get("object_name"),
+                    self.module.params.get("bucket_name"),
+                )
+            )
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+            )
+        try:
+            self.update_object_storage_tier()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            updated_object_storage_tier_obj = get_object(
+                self.client,
+                self.module.params.get("namespace_name"),
+                self.module.params.get("bucket_name"),
+                self.module.params.get("object_name"),
+            )
+            if not updated_object_storage_tier_obj:
+                self.module.fail_json(
+                    msg="Could not find the updated object {0} in bucket {1} and namespace {2}".format(
+                        self.module.params.get("object_name"),
+                        self.module.params.get("bucket_name"),
+                        self.module.params.get("namespace_name"),
+                    )
+                )
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(updated_object_storage_tier_obj),
+            )
+
+    def is_action_necessary(self, action, resource=None):
+        if action == "update_object_storage_tier":
+            if resource.storage_tier == self.module.params.get("storage_tier"):
+                return False
+            return True
+        return True
+
     def perform_action(self, action):
         action_fn = self.get_action_fn(action)
         if not action_fn:
             self.module.fail_json(msg="{0} not supported by the module.".format(action))
+
+        obj = get_object(
+            self.client,
+            self.module.params.get("namespace_name"),
+            self.module.params.get("bucket_name"),
+            self.module.params.get("object_name"),
+        )
+        is_action_necessary = self.is_action_necessary(action, obj)
+        if not is_action_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+            )
+
         perform_action_fn = getattr(
             self,
             "perform_{0}".format(action),

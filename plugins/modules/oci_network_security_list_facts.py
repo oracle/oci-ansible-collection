@@ -72,7 +72,8 @@ options:
             - "DESC"
     lifecycle_state:
         description:
-            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+            - A filter to only return resources that match the given lifecycle
+              state. The state value is case-insensitive.
         type: str
         choices:
             - "PROVISIONING"
@@ -152,14 +153,7 @@ security_lists:
                     sample: CIDR_BLOCK
                 icmp_options:
                     description:
-                        - "Optional and valid only for ICMP. Use to specify a particular ICMP type and code
-                          as defined in
-                          L(ICMP Parameters,http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml).
-                          If you specify ICMP as the protocol but omit this object, then all ICMP types and
-                          codes are allowed. If you do provide this object, the type is required and the code is optional.
-                          To enable MTU negotiation for ingress internet traffic, make sure to allow type 3 (\\"Destination
-                          Unreachable\\") code 4 (\\"Fragmentation Needed and Don't Fragment was Set\\"). If you need to specify
-                          multiple codes for a single type, create a separate security list rule for each."
+                        - ""
                     returned: on success
                     type: complex
                     contains:
@@ -196,15 +190,13 @@ security_lists:
                     sample: protocol_example
                 tcp_options:
                     description:
-                        - Optional and valid only for TCP. Use to specify particular destination ports for TCP rules.
-                          If you specify TCP as the protocol but omit this object, then all destination ports are allowed.
+                        - ""
                     returned: on success
                     type: complex
                     contains:
                         destination_port_range:
                             description:
-                                - An inclusive range of allowed destination ports. Use the same number for the min and max
-                                  to indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -223,8 +215,7 @@ security_lists:
                                     sample: 56
                         source_port_range:
                             description:
-                                - An inclusive range of allowed source ports. Use the same number for the min and max to
-                                  indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -243,15 +234,13 @@ security_lists:
                                     sample: 56
                 udp_options:
                     description:
-                        - Optional and valid only for UDP. Use to specify particular destination ports for UDP rules.
-                          If you specify UDP as the protocol but omit this object, then all destination ports are allowed.
+                        - ""
                     returned: on success
                     type: complex
                     contains:
                         destination_port_range:
                             description:
-                                - An inclusive range of allowed destination ports. Use the same number for the min and max
-                                  to indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -270,8 +259,7 @@ security_lists:
                                     sample: 56
                         source_port_range:
                             description:
-                                - An inclusive range of allowed source ports. Use the same number for the min and max to
-                                  indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -317,14 +305,7 @@ security_lists:
             contains:
                 icmp_options:
                     description:
-                        - "Optional and valid only for ICMP. Use to specify a particular ICMP type and code
-                          as defined in
-                          L(ICMP Parameters,http://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml).
-                          If you specify ICMP as the protocol but omit this object, then all ICMP types and
-                          codes are allowed. If you do provide this object, the type is required and the code is optional.
-                          To enable MTU negotiation for ingress internet traffic, make sure to allow type 3 (\\"Destination
-                          Unreachable\\") code 4 (\\"Fragmentation Needed and Don't Fragment was Set\\"). If you need to specify
-                          multiple codes for a single type, create a separate security list rule for each."
+                        - ""
                     returned: on success
                     type: complex
                     contains:
@@ -383,15 +364,13 @@ security_lists:
                     sample: CIDR_BLOCK
                 tcp_options:
                     description:
-                        - Optional and valid only for TCP. Use to specify particular destination ports for TCP rules.
-                          If you specify TCP as the protocol but omit this object, then all destination ports are allowed.
+                        - ""
                     returned: on success
                     type: complex
                     contains:
                         destination_port_range:
                             description:
-                                - An inclusive range of allowed destination ports. Use the same number for the min and max
-                                  to indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -410,8 +389,7 @@ security_lists:
                                     sample: 56
                         source_port_range:
                             description:
-                                - An inclusive range of allowed source ports. Use the same number for the min and max to
-                                  indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -430,15 +408,13 @@ security_lists:
                                     sample: 56
                 udp_options:
                     description:
-                        - Optional and valid only for UDP. Use to specify particular destination ports for UDP rules.
-                          If you specify UDP as the protocol but omit this object, then all destination ports are allowed.
+                        - ""
                     returned: on success
                     type: complex
                     contains:
                         destination_port_range:
                             description:
-                                - An inclusive range of allowed destination ports. Use the same number for the min and max
-                                  to indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:
@@ -457,8 +433,7 @@ security_lists:
                                     sample: 56
                         source_port_range:
                             description:
-                                - An inclusive range of allowed source ports. Use the same number for the min and max to
-                                  indicate a single port. Defaults to all ports if not specified.
+                                - ""
                             returned: on success
                             type: complex
                             contains:

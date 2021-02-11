@@ -72,7 +72,8 @@ options:
             - "DESC"
     lifecycle_state:
         description:
-            - A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
+            - A filter to return only resources that match the specified lifecycle
+              state. The value is case insensitive.
         type: str
         choices:
             - "PROVISIONING"
@@ -133,7 +134,8 @@ nat_gateways:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the NAT gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                  NAT gateway.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
@@ -172,7 +174,7 @@ nat_gateways:
             sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
         public_ip_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Public IP associated with the NAT gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
             returned: on success
             type: string
             sample: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx

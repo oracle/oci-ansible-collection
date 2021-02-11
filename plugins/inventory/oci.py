@@ -73,7 +73,10 @@ DOCUMENTATION = """
                - "Note: defined_tags and freeform_tags filters are not supported for db hosts. The db hosts will not
                  be returned when you use either of these filters."
         fetch_db_hosts:
-             description: When set, the db nodes are also fetched.
+             description: When set, the db nodes are also fetched. Default value set to False.
+        fetch_compute_hosts:
+             description: When set, the compute nodes are fetched. Default value set to True.
+             type: bool
         debug:
             description: Parameter to enable logs while running the inventory plugin. Default value is set to False
             type: boolean
@@ -162,6 +165,9 @@ cache_prefix: oci_
 
 # DB Hosts
 fetch_db_hosts: True
+
+# Compute Hosts (bool type)
+fetch_compute_hosts: True
 """
 import os
 import re
@@ -391,7 +397,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def _fetch_db_hosts(self):
         # check if we should fetch db hosts
+        if self.get_option("fetch_db_hosts") is None:
+            return False
         return self.get_option("fetch_db_hosts")
+
+    def _fetch_compute_hosts(self):
+        # check if we should fetch compute hosts
+        if self.get_option("fetch_compute_hosts") is None:
+            return True
+        return self.get_option("fetch_compute_hosts")
 
     @staticmethod
     def create_instance_principal_signer():
@@ -469,16 +483,22 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.warn("No compartments matching the criteria.")
             return
 
-        all_instances = self.get_instances(self.compartments)
-        instance_inventories = [
-            self.build_inventory_for_instance(instance, region)
-            for region in all_instances
-            for instance in all_instances[region]
-        ]
+        instance_inventories = []
+        self.debug(
+            "Fetch compute hosts:{0}".format(self.get_option("fetch_compute_hosts"))
+        )
+        self.debug("Fetch db hosts:{0}".format(self.get_option("fetch_db_hosts")))
+
+        if self._fetch_compute_hosts():
+            all_instances = self.get_instances(self.compartments)
+            instance_inventories = [
+                self.build_inventory_for_instance(instance, region)
+                for region in all_instances
+                for instance in all_instances[region]
+            ]
 
         if self._fetch_db_hosts():
             all_db_hosts = self.get_db_hosts(self.compartments)
-
             instance_inventories += [
                 self.build_inventory_for_db_host(db_host, region)
                 for region in all_db_hosts

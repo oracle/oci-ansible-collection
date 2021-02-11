@@ -23,14 +23,15 @@ module: oci_log_analytics_namespace_facts
 short_description: Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
-    - List Namespaces.
+    - Given a tenancy OCID, this API returns the namespace of the tenancy if it is valid and subscribed to the region.  The
+      result also indicates if the tenancy is onboarded with Logging Analytics.
     - If I(namespace_name) is specified, the details of a single Namespace will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     namespace_name:
         description:
-            - The Log Analytics namespace used for the request.
+            - The Logging Analytics namespace used for the request.
             - Required to get a specific namespace.
         type: str
     compartment_id:
@@ -61,19 +62,19 @@ namespaces:
     contains:
         namespace_name:
             description:
-                - namespace name
+                - This is the namespace name of a tenancy
             returned: on success
             type: string
             sample: namespace_name_example
         compartment_id:
             description:
-                - Tenancy ID
+                - The is the tenancy ID
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         is_onboarded:
             description:
-                - if tenancy is onboarded to logging analytics
+                - This indicates if the tenancy is onboarded to Logging Analytics
             returned: on success
             type: bool
             sample: true

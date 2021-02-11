@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_console_connection -- Manage an InstanceConsoleC
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new console connection to the specified instance. After the console connection has been created and is available, you connect to the console using SSH.
-- For more information about console access, see `Accessing the Console <https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm>`_.
+- For more information about instance console connections, see `Troubleshooting Instances Using Instance Console Connections <https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm>`_.
 
 
 .. Aliases

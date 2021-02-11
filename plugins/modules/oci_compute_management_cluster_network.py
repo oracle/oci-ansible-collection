@@ -93,16 +93,11 @@ options:
             size:
                 description:
                     - The number of instances that should be in the instance pool.
-                    - For cluster networks with 10 or more instances, the cluster network is created if the required
-                      number of instances is available and at least 95% of the instances in the pool launch
-                      successfully. For cluster networks with less than 10 instances, all instances in the pool must
-                      launch successfully. If the cluster network fails to launch, wait a few minutes, and then try
-                      creating it again.
                 type: int
                 required: true
     placement_configuration:
         description:
-            - The placement configuration for the instance pools in the cluster network.
+            - ""
             - Required for create using I(state=present).
         type: dict
         suboptions:
@@ -389,9 +384,9 @@ cluster_network:
                             sample: 56
                         vnic_selection:
                             description:
-                                - "Indicates which VNIC on each instance in the instance pool should be used to associate with the load balancer. Possible
-                                  values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration that is associated
-                                  with the instance pool."
+                                - "Indicates which VNIC on each instance in the instance pool should be used to associate with the load balancer.
+                                  Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
+                                  that is associated with the instance pool."
                             returned: on success
                             type: string
                             sample: vnic_selection_example
@@ -403,7 +398,7 @@ cluster_network:
                             sample: ATTACHING
         placement_configuration:
             description:
-                - The placement configuration for the instance pools in the cluster network.
+                - ""
             returned: on success
             type: complex
             contains:

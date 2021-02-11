@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume -- Manage a Volume resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.14.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -413,7 +413,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the volume source details for a new Block volume. The volume source is either another Block volume in the same availability domain or a Block volume backup. This is an optional field. If not specified or set to null, the new Block volume will be empty. When specified, the new Block volume will contain data from the source volume or backup.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -917,7 +917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The volume source, either an existing volume in the same availability domain or a volume backup. If null, an empty volume is created.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     create_vnic_details:
         description:
-            - Details for creating a new VNIC.
+            - ""
             - Required for create using I(state=present).
         type: dict
         suboptions:
