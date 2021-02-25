@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.16.0] - 2021-2-25
+
+### Added
+- Support for [external databases](https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/externaloverview.htm)
+- Support for importing and exporting Management Dashboards.
+- Support for exporting an existing running VM, or a copy of VM, into a VMDK, QCOW2, VDI, VHD, or OCI formatted image in the Compute service
+- Support for platform configurations on instances in the Compute service
+- Support for enabling and disabling Oracle Cloud Agent plugins in the Compute service
+- Support for NG-VPN Multiple Encryption Domain and Public Logging
+- Support for listing available plugins and for getting the status of plugins in the Oracle Cloud Agent service
+- Support for listing errata in the OS Management service
+- Support for returning object metadata and other header information in object modules. Resolves [Github Issue](https://github.com/oracle/oci-ansible-collection/issues/37)
+- Support for load balancer shape update for a BlockchainPlatform
+
+### Fixed
+- Issue with re-encrypt object action return value.
+- Issue with inventory plugin generating inventory for instances with multiple vnics having valid hostname_format for secondary vnics but not the primary vnic.
+
+### Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk).
+- Disabled the logs for inventory plugin by default to reduce the noise. Can be enabled using the `debug` flag.
+
+### Breaking Changes
+- Parameter idcs_access_token is now required to create a blockchain platform in `oci_blockchain_platform` module
+
+
 ## [2.15.0] - 2021-2-11
 
 ### Added
@@ -37,7 +63,6 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Sample to create a vlan
 - Sample to create a Private Load Balancer
 - Sample to create public and private DNS
-- Added modules to manage Cloud Guard [Targets](https://docs.oracle.com/en-us/iaas/cloud-guard/using/targets.htm), [Detector Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/detect-recipes.htm) and [Responder Recipes](https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes.htm)
 
 ### Fixed
 - Issue https://github.com/oracle/oci-ansible-collection/issues/15

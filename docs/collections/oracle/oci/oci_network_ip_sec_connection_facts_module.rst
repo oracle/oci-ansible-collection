@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -389,7 +389,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/'>Cpe</a> object.</div>
+                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -408,8 +408,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the fully qualified domain name (FQDN)). The type of identifier here must correspond to the value for `cpeLocalIdentifierType`.</div>
-                                            <div>If you don&#x27;t provide a value when creating the IPSec connection, the `ipAddress` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/'>Cpe</a> object specified by `cpeId` is used as the `cpeLocalIdentifier`.</div>
-                                            <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
+                                            <div>If you don&#x27;t provide a value when creating the IPSec connection, the `ipAddress` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object specified by `cpeId` is used as the `cpeLocalIdentifier`.</div>
+                                            <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
                                             <div>Example IP address: `10.0.3.3`</div>
                                             <div>Example hostname: `cpe.example.com`</div>
                                         <br/>

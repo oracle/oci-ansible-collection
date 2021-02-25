@@ -20,7 +20,7 @@ oracle.oci.oci_blockchain_platform -- Manage a BlockchainPlatform resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -363,6 +363,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>IDCS access token with Identity Domain Administrator role</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -397,6 +398,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of comma-separated attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-load_balancer_shape"></div>
+                    <b>load_balancer_shape</b>
+                    <a class="ansibleOptionLink" href="#parameter-load_balancer_shape" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -628,6 +645,7 @@ Examples
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         platform_role: platform_role_example
         compute_shape: compute_shape_example
+        idcs_access_token: idcs_access_token_example
 
     - name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockchain_platform:
@@ -638,6 +656,7 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         storage_size_in_tbs: 1.2
         total_ocpu_capacity: 56
+        load_balancer_shape: load_balancer_shape_example
 
     - name: Update blockchain_platform
       oci_blockchain_platform:
@@ -691,7 +710,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BlockchainPlatform resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;component_details&#x27;: {&#x27;osns&#x27;: [{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;ocpu_allocation_param&#x27;: {&#x27;ocpu_allocation_number&#x27;: 3.4}, &#x27;osn_key&#x27;: &#x27;osn_key_example&#x27;}], &#x27;peers&#x27;: [{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;ocpu_allocation_param&#x27;: {&#x27;ocpu_allocation_number&#x27;: 3.4}, &#x27;peer_key&#x27;: &#x27;peer_key_example&#x27;, &#x27;role&#x27;: &#x27;role_example&#x27;}]}, &#x27;compute_shape&#x27;: &#x27;STANDARD&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host_ocpu_utilization_info&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;ocpu_capacity_number&#x27;: 3.4, &#x27;ocpu_utilization_number&#x27;: 3.4}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_byol&#x27;: True, &#x27;is_multi_ad&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_role&#x27;: &#x27;FOUNDER&#x27;, &#x27;platform_shape_type&#x27;: &#x27;DEFAULT&#x27;, &#x27;replicas&#x27;: {&#x27;ca_count&#x27;: 56, &#x27;console_count&#x27;: 56, &#x27;proxy_count&#x27;: 56}, &#x27;service_endpoint&#x27;: &#x27;service_endpoint_example&#x27;, &#x27;service_version&#x27;: &#x27;service_version_example&#x27;, &#x27;storage_size_in_tbs&#x27;: 1.2, &#x27;storage_used_in_t_bs&#x27;: 1.2, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_ocpu_capacity&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;component_details&#x27;: {&#x27;osns&#x27;: [{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;ocpu_allocation_param&#x27;: {&#x27;ocpu_allocation_number&#x27;: 3.4}, &#x27;osn_key&#x27;: &#x27;osn_key_example&#x27;}], &#x27;peers&#x27;: [{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;ocpu_allocation_param&#x27;: {&#x27;ocpu_allocation_number&#x27;: 3.4}, &#x27;peer_key&#x27;: &#x27;peer_key_example&#x27;, &#x27;role&#x27;: &#x27;role_example&#x27;}]}, &#x27;compute_shape&#x27;: &#x27;STANDARD&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host_ocpu_utilization_info&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;ocpu_capacity_number&#x27;: 3.4, &#x27;ocpu_utilization_number&#x27;: 3.4}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_byol&#x27;: True, &#x27;is_multi_ad&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_shape&#x27;: &#x27;LB_100_MBPS&#x27;, &#x27;platform_role&#x27;: &#x27;FOUNDER&#x27;, &#x27;platform_shape_type&#x27;: &#x27;DEFAULT&#x27;, &#x27;replicas&#x27;: {&#x27;ca_count&#x27;: 56, &#x27;console_count&#x27;: 56, &#x27;proxy_count&#x27;: 56}, &#x27;service_endpoint&#x27;: &#x27;service_endpoint_example&#x27;, &#x27;service_version&#x27;: &#x27;service_version_example&#x27;, &#x27;storage_size_in_tbs&#x27;: 1.2, &#x27;storage_used_in_t_bs&#x27;: 1.2, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_ocpu_capacity&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1277,6 +1296,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-blockchain_platform/load_balancer_shape"></div>
+                    <b>load_balancer_shape</b>
+                    <a class="ansibleOptionLink" href="#return-blockchain_platform/load_balancer_shape" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LB_100_MBPS</div>
                                     </td>
             </tr>
                                 <tr>

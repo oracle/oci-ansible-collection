@@ -20,7 +20,7 @@ oracle.oci.oci_network_cross_connect_group -- Manage a CrossConnectGroup resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a CrossConnectGroup resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new cross-connect group to use with Oracle Cloud Infrastructure FastConnect. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the cross-connect group to reside. If you're not sure which compartment to use, put the cross-connect group in the same compartment with your VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *state=present*, creates a new cross-connect group to use with Oracle Cloud Infrastructure FastConnect. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
+- For the purposes of access control, you must provide the OCID of the compartment where you want the cross-connect group to reside. If you're not sure which compartment to use, put the cross-connect group in the same compartment with your VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the cross-connect group. It does not have to be unique, and you can change it. Avoid entering confidential information.
 
 

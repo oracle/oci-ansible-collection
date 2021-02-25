@@ -87,22 +87,22 @@ options:
                     - Whether the VNIC should be assigned a public IP address. Defaults to whether
                       the subnet is public or private. If not set and the VNIC is being created
                       in a private subnet (that is, where `prohibitPublicIpOnVnic` = true in the
-                      L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Subnet/)), then no public IP address is assigned.
+                      L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Subnet/)), then no public IP address is assigned.
                       If not set and the subnet is public (`prohibitPublicIpOnVnic` = false), then
                       a public IP address is assigned. If set to true and
                       `prohibitPublicIpOnVnic` = true, an error is returned.
                     - "**Note:** This public IP address is associated with the primary private IP
                       on the VNIC. For more information, see
-                      L(IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPaddresses.htm)."
-                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/)
+                      L(IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPaddresses.htm)."
+                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/)
                       a VNIC or instance can have. If you try to create a secondary VNIC
                       with an assigned public IP for an instance that has already
                       reached its public IP limit, an error is returned. For information
                       about the public IP limits, see
-                      L(Public IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm)."
+                      L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
                     - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
-                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: bool
             defined_tags:
                 description:
@@ -131,29 +131,29 @@ options:
                       Must be unique across all VNICs in the subnet and comply with
                       L(RFC 952,https://tools.ietf.org/html/rfc952) and
                       L(RFC 1123,https://tools.ietf.org/html/rfc1123).
-                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp).
                     - For more information, see
-                      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                     - When launching an instance, use this `hostnameLabel` instead
                       of the deprecated `hostnameLabel` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
                     - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
-                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str
             nsg_ids:
                 description:
                     - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                       information about NSGs, see
-                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                     - If a `vlanId` is specified, the `nsgIds` cannot be specified. The `vlanId`
                       indicates that the VNIC will belong to a VLAN instead of a subnet. With VLANs,
                       all VNICs in the VLAN belong to the NSGs that are associated with the VLAN.
-                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: list
             private_ip:
                 description:
@@ -161,12 +161,12 @@ options:
                       available IP address within the subnet's CIDR. If you don't specify a
                       value, Oracle automatically assigns a private IP address from the subnet.
                       This is the VNIC's *primary* private IP address. The value appears in
-                      the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
+                      the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp)."
                     - If you specify a `vlanId`, the `privateIp` cannot be specified.
-                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - "Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
@@ -174,17 +174,17 @@ options:
                     - Whether the source/destination check is disabled on the VNIC.
                       Defaults to `false`, which means the check is performed. For information
                       about why you would skip the source/destination check, see
-                      L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+                      L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm#privateip).
                     - If you specify a `vlanId`, the `skipSourceDestCheck` cannot be specified because the
                       source/destination check is always disabled for VNICs in a VLAN. See
-                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - "Example: `true`"
                 type: bool
             subnet_id:
                 description:
                     - The OCID of the subnet to create the VNIC in. When launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
                     - If you are an Oracle Cloud VMware Solution customer and creating a secondary
                       VNIC in a VLAN instead of a subnet, provide a `vlanId` instead of a `subnetId`.
@@ -194,7 +194,7 @@ options:
                 description:
                     - Provide this attribute only if you are an Oracle Cloud VMware Solution
                       customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN.
-                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - Provide a `vlanId` instead of a `subnetId`. If you provide both a
                       `vlanId` and `subnetId`, the request fails.
                 type: str
@@ -437,14 +437,67 @@ options:
                 description:
                     - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
                       monitoring plugins. Default value is false (monitoring plugins are enabled).
+                    - "These are the monitoring plugins: Compute Instance Monitoring
+                      and Custom Logs Monitoring."
+                    - The monitoring plugins are controlled by this parameter and by the per-plugin
+                      configuration in the `pluginsConfig` object.
+                    - "- If `isMonitoringDisabled` is true, all of the monitoring plugins are disabled, regardless of
+                      the per-plugin configuration.
+                      - If `isMonitoringDisabled` is false, all of the monitoring plugins are enabled. You
+                      can optionally disable individual monitoring plugins by providing a value in the `pluginsConfig`
+                      object."
                     - This parameter is updatable.
                 type: bool
             is_management_disabled:
                 description:
                     - Whether Oracle Cloud Agent can run all the available management plugins.
                       Default value is false (management plugins are enabled).
+                    - "These are the management plugins: OS Management Service Agent and Compute Instance
+                      Run Command."
+                    - The management plugins are controlled by this parameter and by the per-plugin
+                      configuration in the `pluginsConfig` object.
+                    - "- If `isManagementDisabled` is true, all of the management plugins are disabled, regardless of
+                      the per-plugin configuration.
+                      - If `isManagementDisabled` is false, all of the management plugins are enabled. You
+                      can optionally disable individual management plugins by providing a value in the `pluginsConfig`
+                      object."
                     - This parameter is updatable.
                 type: bool
+            are_all_plugins_disabled:
+                description:
+                    - Whether Oracle Cloud Agent can run all the available plugins.
+                      This includes the management and monitoring plugins.
+                    - To get a list of available plugins, use the
+                      L(ListInstanceagentAvailablePlugins,https://docs.cloud.oracle.com/en-
+                      us/iaas/api/#/en/instanceagent/20180530/Plugin/ListInstanceagentAvailablePlugins)
+                      operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+                      L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
+                    - This parameter is updatable.
+                type: bool
+            plugins_config:
+                description:
+                    - The configuration of plugins associated with this instance.
+                type: list
+                suboptions:
+                    name:
+                        description:
+                            - The plugin name. To get a list of available plugins, use the
+                              L(ListInstanceagentAvailablePlugins,https://docs.cloud.oracle.com/en-
+                              us/iaas/api/#/en/instanceagent/20180530/Plugin/ListInstanceagentAvailablePlugins)
+                              operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+                              L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
+                        type: str
+                        required: true
+                    desired_state:
+                        description:
+                            - Whether the plugin should be enabled or disabled.
+                            - To enable the monitoring and management plugins, the `isMonitoringDisabled` and
+                              `isManagementDisabled` attributes must also be set to false.
+                        type: str
+                        choices:
+                            - "ENABLED"
+                            - "DISABLED"
+                        required: true
     shape:
         description:
             - The shape of an instance. The shape determines the number of CPUs, amount of memory,
@@ -515,6 +568,28 @@ options:
             - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot
               volumes. The default value is false.
         type: bool
+    platform_config:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            type:
+                description:
+                    - The type of platform being configured. The only supported
+                      `type` is `AMD_MILAN_BM`
+                type: str
+                choices:
+                    - "AMD_MILAN_BM"
+                required: true
+            numa_nodes_per_socket:
+                description:
+                    - The number of NUMA nodes per socket.
+                type: str
+                choices:
+                    - "NPS0"
+                    - "NPS1"
+                    - "NPS2"
+                    - "NPS4"
     instance_id:
         description:
             - The OCID of the instance.
@@ -986,15 +1061,66 @@ instance:
                     description:
                         - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
                           monitoring plugins.
+                        - "These are the monitoring plugins: Compute Instance Monitoring
+                          and Custom Logs Monitoring."
+                        - The monitoring plugins are controlled by this parameter and by the per-plugin
+                          configuration in the `pluginsConfig` object.
+                        - "- If `isMonitoringDisabled` is true, all of the monitoring plugins are disabled, regardless of
+                          the per-plugin configuration.
+                          - If `isMonitoringDisabled` is false, all of the monitoring plugins are enabled. You
+                          can optionally disable individual monitoring plugins by providing a value in the `pluginsConfig`
+                          object."
                     returned: on success
                     type: bool
                     sample: true
                 is_management_disabled:
                     description:
                         - Whether Oracle Cloud Agent can run all the available management plugins.
+                        - "These are the management plugins: OS Management Service Agent and Compute Instance
+                          Run Command."
+                        - The management plugins are controlled by this parameter and by the per-plugin
+                          configuration in the `pluginsConfig` object.
+                        - "- If `isManagementDisabled` is true, all of the management plugins are disabled, regardless of
+                          the per-plugin configuration.
+                          - If `isManagementDisabled` is false, all of the management plugins are enabled. You
+                          can optionally disable individual management plugins by providing a value in the `pluginsConfig`
+                          object."
                     returned: on success
                     type: bool
                     sample: true
+                are_all_plugins_disabled:
+                    description:
+                        - Whether Oracle Cloud Agent can run all of the available plugins.
+                          This includes the management and monitoring plugins.
+                        - For more information about the available plugins, see
+                          L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
+                    returned: on success
+                    type: bool
+                    sample: true
+                plugins_config:
+                    description:
+                        - The configuration of plugins associated with this instance.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The plugin name. To get a list of available plugins, use the
+                                  L(ListInstanceagentAvailablePlugins,https://docs.cloud.oracle.com/en-
+                                  us/iaas/api/#/en/instanceagent/20180530/Plugin/ListInstanceagentAvailablePlugins)
+                                  operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+                                  L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        desired_state:
+                            description:
+                                - Whether the plugin should be enabled or disabled.
+                                - To enable the monitoring and management plugins, the `isMonitoringDisabled` and
+                                  `isManagementDisabled` attributes must also be set to false.
+                            returned: on success
+                            type: string
+                            sample: ENABLED
         time_maintenance_reboot_due:
             description:
                 - "The date and time the instance is expected to be stopped / started,  in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -1004,6 +1130,25 @@ instance:
             returned: on success
             type: string
             sample: 2018-05-25T21:10:29.600Z
+        platform_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of platform being configured. The only supported
+                          `type` is `AMD_MILAN_BM`
+                    returned: on success
+                    type: string
+                    sample: AMD_MILAN_BM
+                numa_nodes_per_socket:
+                    description:
+                        - The number of NUMA nodes per socket.
+                    returned: on success
+                    type: string
+                    sample: NPS0
         primary_private_ip:
             description:
                 - The private IP of the primary VNIC attached to this instance
@@ -1070,9 +1215,18 @@ instance:
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
             "is_monitoring_disabled": true,
-            "is_management_disabled": true
+            "is_management_disabled": true,
+            "are_all_plugins_disabled": true,
+            "plugins_config": [{
+                "name": "name_example",
+                "desired_state": "ENABLED"
+            }]
         },
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
+        "platform_config": {
+            "type": "AMD_MILAN_BM",
+            "numa_nodes_per_socket": "NPS0"
+        },
         "primary_private_ip": 10.0.0.10,
         "primary_public_ip": 140.34.93.209
     }
@@ -1283,6 +1437,19 @@ def main():
                 options=dict(
                     is_monitoring_disabled=dict(type="bool"),
                     is_management_disabled=dict(type="bool"),
+                    are_all_plugins_disabled=dict(type="bool"),
+                    plugins_config=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(type="str", required=True),
+                            desired_state=dict(
+                                type="str",
+                                required=True,
+                                choices=["ENABLED", "DISABLED"],
+                            ),
+                        ),
+                    ),
                 ),
             ),
             shape=dict(type="str"),
@@ -1306,6 +1473,15 @@ def main():
             ),
             subnet_id=dict(type="str"),
             is_pv_encryption_in_transit_enabled=dict(type="bool"),
+            platform_config=dict(
+                type="dict",
+                options=dict(
+                    type=dict(type="str", required=True, choices=["AMD_MILAN_BM"]),
+                    numa_nodes_per_socket=dict(
+                        type="str", choices=["NPS0", "NPS1", "NPS2", "NPS4"]
+                    ),
+                ),
+            ),
             instance_id=dict(aliases=["id"], type="str"),
             preserve_boot_volume=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

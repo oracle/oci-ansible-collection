@@ -24,15 +24,15 @@ short_description: Manage a Cpe resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Cpe resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new virtual customer-premises equipment (CPE) object in the specified compartment. For
-      more information, see L(IPSec VPNs,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPsec.htm).
+      more information, see L(IPSec VPNs,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm).
     - For the purposes of access control, you must provide the OCID of the compartment where you want
       the CPE to reside. Notice that the CPE doesn't have to be in the same compartment as the IPSec
       connection or other Networking Service components. If you're not sure which compartment to
       use, put the CPE in the same compartment as the DRG. For more information about
-      compartments and access control, see L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
-      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      compartments and access control, see L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
+      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - You must provide the public IP address of your on-premises router. See
-      L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/Content/Network/Tasks/configuringCPE.htm).
+      L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
     - "You may optionally specify a *display name* for the CPE, otherwise a default is provided. It does not have to
       be unique, and you can change it. Avoid entering confidential information."
 version_added: "2.9"
@@ -76,18 +76,17 @@ options:
         type: str
     cpe_device_shape_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
               a value if you want to later generate CPE device configuration content for IPSec connections
-              that use this CPE. You can also call L(UpdateCpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/UpdateCpe) later to
+              that use this CPE. You can also call L(UpdateCpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/UpdateCpe) later to
               provide a value. For a list of possible values, see
-              L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+              L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CpeDeviceShapeSummary/ListCpeDeviceShapes).
             - "For more information about generating CPE device configuration content, see:"
-            - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
-                * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
-                us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+            - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent)
+                * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent)
                 * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
-                us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
-                * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+                us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             - This parameter is updatable.
         type: str
     cpe_id:
@@ -194,21 +193,20 @@ cpe:
             sample: ip_address_example
         cpe_device_shape_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE's device type.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE's device type.
                   The Networking service maintains a general list of CPE device types (for example,
                   Cisco ASA). For each type, Oracle provides CPE configuration content that can help
                   a network engineer configure the CPE. The OCID uniquely identifies the type of
                   device. To get the OCIDs for the device types on the list, see
-                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes).
+                  L(ListCpeDeviceShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CpeDeviceShapeSummary/ListCpeDeviceShapes).
                 - "For information about how to generate CPE configuration content for a
                   CPE device type, see:"
-                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+                - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent)
                     * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
-                    us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent)
+                    us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent)
                     * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
-                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
-                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-
-                    us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
+                    us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+                    * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             returned: on success
             type: string
             sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx

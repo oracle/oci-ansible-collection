@@ -24,11 +24,11 @@ short_description: Perform actions on a VirtualCircuit resource in Oracle Cloud 
 description:
     - Perform actions on a VirtualCircuit resource in Oracle Cloud Infrastructure
     - For I(action=bulk_add_virtual_circuit_public_prefixes), adds one or more customer public IP prefixes to the specified public virtual circuit.
-      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
+      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VirtualCircuit/UpdateVirtualCircuit))
       to add prefixes to the virtual circuit. Oracle must verify the customer's ownership
       of each prefix before traffic for that prefix will flow across the virtual circuit.
     - For I(action=bulk_delete_virtual_circuit_public_prefixes), removes one or more customer public IP prefixes from the specified public virtual circuit.
-      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit))
+      Use this operation (and not L(UpdateVirtualCircuit,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VirtualCircuit/UpdateVirtualCircuit))
       to remove prefixes from the virtual circuit. When the virtual circuit's state switches
       back to PROVISIONED, Oracle stops advertising the specified prefixes across the connection.
 version_added: "2.9"

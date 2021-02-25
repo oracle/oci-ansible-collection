@@ -23,15 +23,14 @@ module: oci_compute_instance_agent_instance_agent_command_facts
 short_description: Fetches details about one or multiple InstanceAgentCommand resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple InstanceAgentCommand resources in Oracle Cloud Infrastructure
-    - List Instance agent commands issued with the specified filter.
-      Additonally you can filter commands sent to a particular InstanceId
+    - Lists the Oracle Cloud Agent commands issued in a compartment.
     - If I(instance_agent_command_id) is specified, the details of a single InstanceAgentCommand will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     instance_agent_command_id:
         description:
-            - The OCID of the command.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
             - Required to get a specific instance_agent_command.
         type: str
         aliases: ["id"]
@@ -43,7 +42,7 @@ options:
     sort_by:
         description:
             - The field to sort by. You can provide one sort order (`sortOrder`). Default order for
-              TIMECREATED is descending.
+              `TIMECREATED` is descending.
             - "**Note:** In general, some \\"List\\" operations (for example, `ListInstances`) let you
               optionally filter by availability domain if the scope of the resource type is within a
               single availability domain. If you call one of these \\"List\\" operations without specifying
@@ -54,7 +53,7 @@ options:
             - "DISPLAYNAME"
     sort_order:
         description:
-            - The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+            - The sort order to use, either ascending (`ASC`) or descending (`DESC`). The `DISPLAYNAME` sort order
               is case sensitive.
         type: str
         choices:
@@ -83,75 +82,81 @@ instance_agent_commands:
     contains:
         id:
             description:
-                - The command OCID
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
         compartment_id:
             description:
-                - The OCID of the compartment the command is created in.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the command.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         display_name:
             description:
-                - The user friendly display name of the command.
+                - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         time_created:
             description:
-                - the time command was created at.
+                - The date and time the command was created, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         time_updated:
             description:
-                - the time command was updated at.
+                - The date and time the command was last updated, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         is_canceled:
             description:
-                - Whether the command has been requested to be canceled.
+                - Whether a request was made to cancel the command. Canceling a command is a best-effort attempt.
             returned: on success
             type: bool
             sample: true
         execution_time_out_in_seconds:
             description:
-                - Command execution time limit that the instance agent will honor when executing the command inside the instance. This timer starts when the
-                  instance agent starts the commond. Zero means no timeout.
+                - The amount of time that Oracle Cloud Agent is given to run the command on the instance before timing
+                  out. The timer starts when Oracle Cloud Agent starts the command. Zero means no timeout.
             returned: on success
             type: int
             sample: 56
         target:
             description:
-                - ""
+                - The target instance that the command runs on.
             returned: on success
             type: complex
             contains:
                 instance_id:
                     description:
-                        - The target instance OCID
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target instance.
                     returned: on success
                     type: string
                     sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
         content:
             description:
-                - ""
+                - The contents of the command.
             returned: on success
             type: complex
             contains:
                 source:
                     description:
-                        - ""
+                        - The source of the command.
                     returned: on success
                     type: complex
                     contains:
                         source_type:
                             description:
-                                - The source type of the command. Use `TEXT` for inlining the command. Use `OBJECT_STORAGE_TUPLE` when specifying
-                                  the namespace, bucket name, and object name. Use `OBJECT_STORAGE_URI` when specifying the Object Storage URL.
+                                - "The source type for the command. The following values are supported:"
+                                - "- `TEXT` - uses a plain text command that is specified inline with the request.
+                                  - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL.
+                                  - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket."
+                                - For background information about Object Storage buckets and URLs, see
+                                  L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
                             returned: on success
                             type: string
                             sample: TEXT
@@ -169,13 +174,13 @@ instance_agent_commands:
                             sample: namespace_name_example
                         object_name:
                             description:
-                                - The Object Storage name for the command.
+                                - The Object Storage object name for the command.
                             returned: on success
                             type: string
                             sample: object_name_example
                         source_uri:
                             description:
-                                - The Object Storage URL or PAR for the command.
+                                - The Object Storage URL or pre-authenticated request (PAR) for the command.
                             returned: on success
                             type: string
                             sample: source_uri_example
@@ -187,26 +192,30 @@ instance_agent_commands:
                             sample: text_example
                         text_sha256:
                             description:
-                                - Sha256 checksum value of the text content
+                                - SHA-256 checksum value of the text content.
                             returned: on success
                             type: string
                             sample: text_sha256_example
                 output:
                     description:
-                        - ""
+                        - The output destination for the command.
                     returned: on success
                     type: complex
                     contains:
                         output_type:
                             description:
-                                - The output type of the command. Use `OBJECT_STORAGE_URI` when specifying the Object Storage URL.
-                                  Use `OBJECT_STORAGE_TUPLE` when specifying the namespace, bucket name, and object name.
+                                - "The output type for the command. The following values are supported:"
+                                - "- `TEXT` - the command output is returned as plain text.
+                                  - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL.
+                                  - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket."
+                                - For background information about Object Storage buckets and URLs, see
+                                  L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
                             returned: on success
                             type: string
                             sample: TEXT
                         output_uri:
                             description:
-                                - The Object Storage URL or PAR for the command output.
+                                - The Object Storage URL or pre-authenticated request (PAR) for the command output.
                             returned: on success
                             type: string
                             sample: output_uri_example
@@ -224,13 +233,13 @@ instance_agent_commands:
                             sample: namespace_name_example
                         object_name:
                             description:
-                                - The Object Storage name for the command output.
+                                - The Object Storage object name for the command output.
                             returned: on success
                             type: string
                             sample: object_name_example
         instance_agent_command_id:
             description:
-                - The command OCID
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
             returned: on success
             type: string
             sample: ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx

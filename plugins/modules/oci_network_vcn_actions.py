@@ -50,7 +50,7 @@ author: Oracle (@oracle)
 options:
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
         type: str
         aliases: ["id"]
         required: true
@@ -172,7 +172,7 @@ vcn:
                 - The absence of this parameter means the Internet and VCN Resolver will
                   not work for this VCN.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `vcn1`"
             returned: on success
             type: string
@@ -210,7 +210,7 @@ vcn:
                 - The VCN's domain name, which consists of the VCN's DNS label, and the
                   `oraclevcn.com` domain.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `vcn1.oraclevcn.com`"
             returned: on success
             type: string

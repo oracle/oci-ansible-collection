@@ -203,6 +203,12 @@ objects:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        headers:
+            description:
+                - response headers for the object
+            returned: on success
+            type: dict
+            sample: {'Content-Length':'37','opc-meta-key1':'value1'}
     sample: [{
         "name": "name_example",
         "size": 56,
@@ -211,7 +217,8 @@ objects:
         "etag": "etag_example",
         "storage_tier": "Standard",
         "archival_state": "Archived",
-        "time_modified": "2013-10-20T19:20:30+01:00"
+        "time_modified": "2013-10-20T19:20:30+01:00",
+        "headers": {'Content-Length':'37','opc-meta-key1':'value1'}
     }]
 """
 

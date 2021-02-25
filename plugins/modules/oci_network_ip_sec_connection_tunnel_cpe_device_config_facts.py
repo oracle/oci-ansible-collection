@@ -24,10 +24,10 @@ short_description: Fetches details about a IpSecConnectionTunnelCpeDeviceConfig 
 description:
     - Fetches details about a IpSecConnectionTunnelCpeDeviceConfig resource in Oracle Cloud Infrastructure
     - Gets the set of CPE configuration answers for the tunnel, which the customer provided in
-      L(UpdateTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig).
+      L(UpdateTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig).
       To get the full set of content for the tunnel (any answers merged with the template of other
       information specific to the CPE device type), use
-      L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent).
+      L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -38,7 +38,7 @@ options:
         required: true
     tunnel_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
         type: str
         aliases: ["id"]
         required: true
@@ -69,7 +69,7 @@ ip_sec_connection_tunnel_cpe_device_config:
                 key:
                     description:
                         - A string that identifies the question to be answered. See the `key` attribute in
-                          L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
+                          L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/CpeDeviceConfigQuestion).
                     returned: on success
                     type: string
                     sample: key_example

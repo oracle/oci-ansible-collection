@@ -20,7 +20,7 @@ oracle.oci.oci_network_fast_connect_provider_service_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - Fetches details about one or multiple FastConnectProviderService resources in Oracle Cloud Infrastructure
 - Lists the service offerings from supported providers. You need this information so you can specify your desired provider and service offering when you create a virtual circuit.
 - For the compartment ID, provide the OCID of your tenancy (the root compartment).
-- For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm>`_.
+- For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
 - If *provider_service_id* is specified, the details of a single FastConnectProviderService will be returned.
 
 

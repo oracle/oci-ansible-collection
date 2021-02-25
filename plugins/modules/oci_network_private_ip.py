@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a PrivateIp resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a secondary private IP for the specified VNIC.
       For more information about secondary private IPs, see
-      L(IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPaddresses.htm).
+      L(IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPaddresses.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -61,7 +61,7 @@ options:
               L(RFC 952,https://tools.ietf.org/html/rfc952) and
               L(RFC 1123,https://tools.ietf.org/html/rfc1123).
             - For more information, see
-              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
             - "Example: `bminstance-1`"
             - This parameter is updatable.
         type: str
@@ -82,7 +82,7 @@ options:
         description:
             - Use this attribute only with the Oracle Cloud VMware Solution.
             - "The OCID of the VLAN from which the private IP is to be drawn. The IP address,
-              *if supplied*, must be valid for the given VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan)."
+              *if supplied*, must be valid for the given VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan)."
         type: str
     private_ip_id:
         description:
@@ -187,7 +187,7 @@ private_ip:
                   L(RFC 952,https://tools.ietf.org/html/rfc952) and
                   L(RFC 1123,https://tools.ietf.org/html/rfc1123).
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `bminstance-1`"
             returned: on success
             type: string
@@ -204,7 +204,7 @@ private_ip:
                   of the VNIC's subnet.
                 - However, if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution, the address is from the range specified by the
-                  `cidrBlock` attribute for the VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  `cidrBlock` attribute for the VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - "Example: `10.0.3.3`"
             returned: on success
             type: string
@@ -221,7 +221,7 @@ private_ip:
             description:
                 - Applicable only if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See
-                  L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
             returned: on success
             type: string
             sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx

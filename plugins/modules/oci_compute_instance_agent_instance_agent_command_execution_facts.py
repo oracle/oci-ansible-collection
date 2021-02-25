@@ -23,21 +23,21 @@ module: oci_compute_instance_agent_instance_agent_command_execution_facts
 short_description: Fetches details about one or multiple InstanceAgentCommandExecution resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple InstanceAgentCommandExecution resources in Oracle Cloud Infrastructure
-    - List all executions of a command, i.e return command execution results from all targeted instances batch by
-      batch.
+    - Lists the execution details for Oracle Cloud Agent commands that run on the specified compute
+      instance.
     - If I(instance_agent_command_id) is specified, the details of a single InstanceAgentCommandExecution will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     instance_agent_command_id:
         description:
-            - The OCID of the command.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
             - Required to get a specific instance_agent_command_execution.
         type: str
         aliases: ["id"]
     instance_id:
         description:
-            - The OCID of the instance.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance.
         type: str
         required: true
     compartment_id:
@@ -48,7 +48,7 @@ options:
     sort_by:
         description:
             - The field to sort by. You can provide one sort order (`sortOrder`). Default order for
-              TIMECREATED is descending.
+              `TIMECREATED` is descending.
             - "**Note:** In general, some \\"List\\" operations (for example, `ListInstances`) let you
               optionally filter by availability domain if the scope of the resource type is within a
               single availability domain. If you call one of these \\"List\\" operations without specifying
@@ -59,7 +59,7 @@ options:
             - "DISPLAYNAME"
     sort_order:
         description:
-            - The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+            - The sort order to use, either ascending (`ASC`) or descending (`DESC`). The `DISPLAYNAME` sort order
               is case sensitive.
         type: str
         choices:
@@ -166,37 +166,42 @@ instance_agent_command_executions:
             contains:
                 output_type:
                     description:
-                        - The response type where the command reponse is made available
+                        - "The output destination type for the command. The following values are supported:"
+                        - "- TEXT - the command output is returned as plain text.
+                          - OBJECT_STORAGE_URI - the command output is saved to an Object Storage URL.
+                          - OBJECT_STORAGE_TUPLE - the command output is saved to an Object Storage bucket."
+                        - For background information about Object Storage buckets and URLs, see
+                          L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
                     returned: on success
                     type: string
                     sample: TEXT
                 exit_code:
                     description:
-                        - command exit code.
+                        - The exit code for the command. Exit code `0` indicates success.
                     returned: on success
                     type: int
                     sample: 56
                 message:
                     description:
-                        - optional status message that agent's can populate for additional troubleshooting.
+                        - An optional status message that Oracle Cloud Agent can populate for additional troubleshooting.
                     returned: on success
                     type: string
                     sample: message_example
                 text:
                     description:
-                        - The command response output.
+                        - The command output.
                     returned: on success
                     type: string
                     sample: text_example
                 text_sha256:
                     description:
-                        - Sha256 checksum value of the text content
+                        - SHA-256 checksum value of the text content.
                     returned: on success
                     type: string
                     sample: text_sha256_example
                 output_uri:
                     description:
-                        - The Object Storage URL or PAR for the command output.
+                        - The Object Storage URL or pre-authenticated request (PAR) for the command output.
                     returned: on success
                     type: string
                     sample: output_uri_example
@@ -214,7 +219,7 @@ instance_agent_command_executions:
                     sample: namespace_name_example
                 object_name:
                     description:
-                        - The Object Storage name for the command output.
+                        - The Object Storage object name for the command output.
                     returned: on success
                     type: string
                     sample: object_name_example

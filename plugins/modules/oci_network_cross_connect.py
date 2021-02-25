@@ -24,19 +24,19 @@ short_description: Manage a CrossConnect resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a CrossConnect resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new cross-connect. Oracle recommends you create each cross-connect in a
-      L(CrossConnectGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CrossConnectGroup) so you can use link aggregation
+      L(CrossConnectGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CrossConnectGroup) so you can use link aggregation
       with the connection.
     - After creating the `CrossConnect` object, you need to go the FastConnect location
       and request to have the physical cable installed. For more information, see
-      L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+      L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - For the purposes of access control, you must provide the OCID of the
       compartment where you want the cross-connect to reside. If you're
       not sure which compartment to use, put the cross-connect in the
       same compartment with your VCN. For more information about
       compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
       For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the cross-connect.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
 version_added: "2.9"
@@ -87,7 +87,7 @@ options:
         description:
             - The name of the FastConnect location where this cross-connect will be installed.
               To get a list of the available locations, see
-              L(ListCrossConnectLocations,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CrossConnectLocation/ListCrossConnectLocations).
+              L(ListCrossConnectLocations,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CrossConnectLocation/ListCrossConnectLocations).
             - "Example: `CyrusOne, Chandler, AZ`"
             - Required for create using I(state=present).
         type: str
@@ -101,7 +101,7 @@ options:
         description:
             - The port speed for this cross-connect. To get a list of the available port speeds, see
               L(ListCrossConnectPortSpeedShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/CrossConnectPortSpeedShape/ListCrossconnectPortSpeedShapes).
+              us/iaas/api/#/en/iaas/latest/CrossConnectPortSpeedShape/ListCrossconnectPortSpeedShapes).
             - "Example: `10 Gbps`"
             - Required for create using I(state=present).
         type: str

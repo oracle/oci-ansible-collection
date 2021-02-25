@@ -24,28 +24,28 @@ short_description: Manage an IpSecConnection resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete an IpSecConnection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new IPSec connection between the specified DRG and CPE. For more information, see
-      L(IPSec VPNs,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPsec.htm).
+      L(IPSec VPNs,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm).
     - "If you configure at least one tunnel to use static routing, then in the request you must provide
       at least one valid static route (you're allowed a maximum of 10). For example: 10.0.0.0/16.
       If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for
       the static routes. For more information, see the important note in
-      L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/)."
+      L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/)."
     - For the purposes of access control, you must provide the OCID of the compartment where you want the
       IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment
       as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to
       use, put the IPSec connection in the same compartment as the DRG. For more information about
       compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
-      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
+      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the IPSec connection, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "After creating the IPSec connection, you need to configure your on-premises router
       with tunnel-specific information. For tunnel status and the required configuration information, see:"
-    - " * L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)
-        * L(IPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/)"
+    - " * L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)
+        * L(IPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/)"
     - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret
       (that is, the pre-shared key). For more information, see
-      L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/Content/Network/Tasks/configuringCPE.htm).
+      L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -58,7 +58,7 @@ options:
         type: str
     cpe_id:
         description:
-            - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/) object.
+            - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             - Required for create using I(state=present).
         type: str
     defined_tags:
@@ -94,10 +94,10 @@ options:
             - Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the
               fully qualified domain name (FQDN)). The type of identifier you provide here must correspond
               to the value for `cpeLocalIdentifierType`.
-            - If you don't provide a value, the `ipAddress` attribute for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/)
+            - If you don't provide a value, the `ipAddress` attribute for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/)
               object specified by `cpeId` is used as the `cpeLocalIdentifier`.
             - For information about why you'd provide this value, see
-              L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
+              L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat).
             - "Example IP address: `10.0.3.3`"
             - "Example hostname: `cpe.example.com`"
             - This parameter is updatable.
@@ -119,8 +119,7 @@ options:
               is using static routing. If you configure at least one tunnel to use static routing, then
               you must provide at least one valid static route. If you configure both
               tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
-              For more information, see the important note in L(IPSecConnection,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/IPSecConnection/).
+              For more information, see the important note in L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/).
             - "Example: `10.0.1.0/24`"
             - Required for create using I(state=present).
             - This parameter is updatable.
@@ -145,6 +144,7 @@ options:
                 choices:
                     - "BGP"
                     - "STATIC"
+                    - "POLICY"
             ike_version:
                 description:
                     - Internet Key Exchange protocol version.
@@ -158,7 +158,7 @@ options:
                       spaces are allowed. If you don't provide a value,
                       Oracle generates a value for you. You can specify your own shared secret later if
                       you like with L(UpdateIPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/UpdateIPSecConnectionTunnelSharedSecret).
+                      us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/UpdateIPSecConnectionTunnelSharedSecret).
                 type: str
             bgp_session_config:
                 description:
@@ -169,7 +169,7 @@ options:
                         description:
                             - The IP address for the Oracle end of the inside tunnel interface.
                             - If the tunnel's `routing` attribute is set to `BGP`
-                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP
                               address
                               is required and used for the tunnel's BGP session.
                             - If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
@@ -181,7 +181,7 @@ options:
                         description:
                             - The IP address for the CPE end of the inside tunnel interface.
                             - If the tunnel's `routing` attribute is set to `BGP`
-                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP
                               address
                               is required and used for the tunnel's BGP session.
                             - If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
@@ -192,12 +192,25 @@ options:
                     customer_bgp_asn:
                         description:
                             - "If the tunnel's `routing` attribute is set to `BGP`
-                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this ASN
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this ASN
                               is required and used for the tunnel's BGP session. This is the ASN of the network on the
                               CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
                             - If the tunnel's `routing` attribute is set to `STATIC`, the `customerBgpAsn` must be null.
                             - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
                         type: str
+            encryption_domain_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    oracle_traffic_selector:
+                        description:
+                            - Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.
+                        type: list
+                    cpe_traffic_selector:
+                        description:
+                            - Lists IPv4 or IPv6-enabled subnets in your on-premises network.
+                        type: list
     ipsc_id:
         description:
             - The OCID of the IPSec connection.
@@ -271,7 +284,7 @@ ip_sec_connection:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         cpe_id:
             description:
-                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/) object.
+                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: string
             sample: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
@@ -323,10 +336,10 @@ ip_sec_connection:
                   the fully qualified domain name (FQDN)). The type of identifier here must correspond
                   to the value for `cpeLocalIdentifierType`.
                 - If you don't provide a value when creating the IPSec connection, the `ipAddress` attribute
-                  for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/) object specified by `cpeId` is used as the
+                  for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object specified by `cpeId` is used as the
                   `cpeLocalIdentifier`.
                 - For information about why you'd provide this value, see
-                  L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
+                  L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat).
                 - "Example IP address: `10.0.3.3`"
                 - "Example hostname: `cpe.example.com`"
             returned: on success
@@ -529,7 +542,7 @@ def main():
                 elements="dict",
                 options=dict(
                     display_name=dict(aliases=["name"], type="str"),
-                    routing=dict(type="str", choices=["BGP", "STATIC"]),
+                    routing=dict(type="str", choices=["BGP", "STATIC", "POLICY"]),
                     ike_version=dict(type="str", choices=["V1", "V2"]),
                     shared_secret=dict(type="str"),
                     bgp_session_config=dict(
@@ -538,6 +551,13 @@ def main():
                             oracle_interface_ip=dict(type="str"),
                             customer_interface_ip=dict(type="str"),
                             customer_bgp_asn=dict(type="str"),
+                        ),
+                    ),
+                    encryption_domain_config=dict(
+                        type="dict",
+                        options=dict(
+                            oracle_traffic_selector=dict(type="list"),
+                            cpe_traffic_selector=dict(type="list"),
                         ),
                     ),
                 ),

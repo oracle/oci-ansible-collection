@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,13 +43,13 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an IpSecConnection resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new IPSec connection between the specified DRG and CPE. For more information, see `IPSec VPNs <https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPsec.htm>`_.
-- If you configure at least one tunnel to use static routing, then in the request you must provide at least one valid static route (you're allowed a maximum of 10). For example: 10.0.0.0/16. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in `IPSecConnection <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to use, put the IPSec connection in the same compartment as the DRG. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *state=present*, creates a new IPSec connection between the specified DRG and CPE. For more information, see `IPSec VPNs <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm>`_.
+- If you configure at least one tunnel to use static routing, then in the request you must provide at least one valid static route (you're allowed a maximum of 10). For example: 10.0.0.0/16. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in `IPSecConnection <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/>`_.
+- For the purposes of access control, you must provide the OCID of the compartment where you want the IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to use, put the IPSec connection in the same compartment as the DRG. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the IPSec connection, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - After creating the IPSec connection, you need to configure your on-premises router with tunnel-specific information. For tunnel status and the required configuration information, see:
--  * `IPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/>`_ * `IPSecConnectionTunnelSharedSecret <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/>`_
-- For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/Content/Network/Tasks/configuringCPE.htm>`_.
+-  * `IPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/>`_ * `IPSecConnectionTunnelSharedSecret <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/>`_
+- For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm>`_.
 
 
 .. Aliases
@@ -218,7 +218,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/'>Cpe</a> object.</div>
+                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -235,8 +235,8 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the fully qualified domain name (FQDN)). The type of identifier you provide here must correspond to the value for `cpeLocalIdentifierType`.</div>
-                                            <div>If you don&#x27;t provide a value, the `ipAddress` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/'>Cpe</a> object specified by `cpeId` is used as the `cpeLocalIdentifier`.</div>
-                                            <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
+                                            <div>If you don&#x27;t provide a value, the `ipAddress` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object specified by `cpeId` is used as the `cpeLocalIdentifier`.</div>
+                                            <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
                                             <div>Example IP address: `10.0.3.3`</div>
                                             <div>Example hostname: `cpe.example.com`</div>
                                             <div>This parameter is updatable.</div>
@@ -431,7 +431,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Static routes to the CPE. A static route&#x27;s CIDR must not be a multicast address or class E address.</div>
-                                            <div>Used for routing a given IPSec tunnel&#x27;s traffic only if the tunnel is using static routing. If you configure at least one tunnel to use static routing, then you must provide at least one valid static route. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnection/'>IPSecConnection</a>.</div>
+                                            <div>Used for routing a given IPSec tunnel&#x27;s traffic only if the tunnel is using static routing. If you configure at least one tunnel to use static routing, then you must provide at least one valid static route. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/'>IPSecConnection</a>.</div>
                                             <div>Example: `10.0.1.0/24`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
@@ -497,7 +497,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this ASN is required and used for the tunnel&#x27;s BGP session. This is the ASN of the network on the CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses &quot;asplain&quot; format.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this ASN is required and used for the tunnel&#x27;s BGP session. This is the ASN of the network on the CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses &quot;asplain&quot; format.</div>
                                             <div>If the tunnel&#x27;s `routing` attribute is set to `STATIC`, the `customerBgpAsn` must be null.</div>
                                             <div>Example: `12345` (2-byte) or `1587232876` (4-byte)</div>
                                                         </td>
@@ -517,7 +517,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The IP address for the CPE end of the inside tunnel interface.</div>
-                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
                                             <div>If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP address to troubleshoot or monitor the tunnel.</div>
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.5/31`</div>
@@ -538,7 +538,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The IP address for the Oracle end of the inside tunnel interface.</div>
-                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
                                             <div>If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP address to troubleshoot or monitor the tunnel.</div>
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.4/31`</div>
@@ -562,6 +562,57 @@ Parameters
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/encryption_domain_config"></div>
+                    <b>encryption_domain_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/encryption_domain_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/encryption_domain_config/cpe_traffic_selector"></div>
+                    <b>cpe_traffic_selector</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/encryption_domain_config/cpe_traffic_selector" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Lists IPv4 or IPv6-enabled subnets in your on-premises network.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/encryption_domain_config/oracle_traffic_selector"></div>
+                    <b>oracle_traffic_selector</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/encryption_domain_config/oracle_traffic_selector" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
@@ -596,6 +647,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>BGP</li>
                                                                                                                                                                                                 <li>STATIC</li>
+                                                                                                                                                                                                <li>POLICY</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -615,7 +667,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The shared secret (pre-shared key) to use for the IPSec tunnel. Only numbers, letters, and spaces are allowed. If you don&#x27;t provide a value, Oracle generates a value for you. You can specify your own shared secret later if you like with <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/UpdateIPSecConnectionTunnelSharedSecret'>UpdateIPSecConnectionTunnelSharedSecret</a>.</div>
+                                            <div>The shared secret (pre-shared key) to use for the IPSec tunnel. Only numbers, letters, and spaces are allowed. If you don&#x27;t provide a value, Oracle generates a value for you. You can specify your own shared secret later if you like with <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/UpdateIPSecConnectionTunnelSharedSecret'>UpdateIPSecConnectionTunnelSharedSecret</a>.</div>
                                                         </td>
             </tr>
                     
@@ -779,7 +831,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/'>Cpe</a> object.</div>
+                                            <div>The OCID of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -798,8 +850,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Your identifier for your CPE device. Can be either an IP address or a hostname (specifically, the fully qualified domain name (FQDN)). The type of identifier here must correspond to the value for `cpeLocalIdentifierType`.</div>
-                                            <div>If you don&#x27;t provide a value when creating the IPSec connection, the `ipAddress` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/'>Cpe</a> object specified by `cpeId` is used as the `cpeLocalIdentifier`.</div>
-                                            <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
+                                            <div>If you don&#x27;t provide a value when creating the IPSec connection, the `ipAddress` attribute for the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/'>Cpe</a> object specified by `cpeId` is used as the `cpeLocalIdentifier`.</div>
+                                            <div>For information about why you&#x27;d provide this value, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat'>If Your CPE Is Behind a NAT Device</a>.</div>
                                             <div>Example IP address: `10.0.3.3`</div>
                                             <div>Example hostname: `cpe.example.com`</div>
                                         <br/>

@@ -20,7 +20,7 @@ oracle.oci.oci_network_peer_region_for_remote_peering_facts -- Fetches details a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple PeerRegionForRemotePeering resources in Oracle Cloud Infrastructure
-- Lists the regions that support remote VCN peering (which is peering across regions). For more information, see `VCN Peering <https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm>`_.
+- Lists the regions that support remote VCN peering (which is peering across regions). For more information, see `VCN Peering <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm>`_.
 
 
 .. Aliases

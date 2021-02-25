@@ -24,7 +24,7 @@ short_description: Manage a Vcn resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Vcn resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new virtual cloud network (VCN). For more information, see
-      L(VCNs and Subnets,https://docs.cloud.oracle.com/Content/Network/Tasks/managingVCNs.htm).
+      L(VCNs and Subnets,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVCNs.htm).
     - "For the VCN, you specify a list of one or more IPv4 CIDR blocks that meet the following criteria:"
     - "- The CIDR blocks must be valid.
       - They must not overlap with each other or with the on-premises network CIDR block.
@@ -36,19 +36,19 @@ description:
       reside. Consult an Oracle Cloud Infrastructure administrator in your organization if you're not sure which
       compartment to use. Notice that the VCN doesn't have to be in the same compartment as the subnets or other
       Networking Service components. For more information about compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm). For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm). For information about OCIDs, see
+      L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the VCN, otherwise a default is provided. It does not have to
       be unique, and you can change it. Avoid entering confidential information."
     - You can also add a DNS label for the VCN, which is required if you want the instances to use the
       Interent and VCN Resolver option for DNS in the VCN. For more information, see
-      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
     - The VCN automatically comes with a default route table, default security list, and default set of DHCP options.
       The OCID for each is returned in the response. You can't delete these default objects, but you can change their
       contents (that is, change the route rules, security list rules, and so on).
     - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN
       or FastConnect. For more information, see
-      L(Overview of the Networking Service,https://docs.cloud.oracle.com/Content/Network/Concepts/overview.htm).
+      L(Overview of the Networking Service,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm).
     - "This resource has the following action operations in the M(oci_vcn_actions) module: add_vcn_cidr, modify_vcn_cidr, remove_vcn_cidr."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -100,7 +100,7 @@ options:
               resolve other instances in the VCN. Otherwise the Internet and VCN Resolver
               will not work.
             - For more information, see
-              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
             - "Example: `vcn1`"
         type: str
     freeform_tags:
@@ -113,7 +113,7 @@ options:
         type: dict
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -232,7 +232,7 @@ vcn:
                 - The absence of this parameter means the Internet and VCN Resolver will
                   not work for this VCN.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `vcn1`"
             returned: on success
             type: string
@@ -270,7 +270,7 @@ vcn:
                 - The VCN's domain name, which consists of the VCN's DNS label, and the
                   `oraclevcn.com` domain.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `vcn1.oraclevcn.com`"
             returned: on success
             type: string

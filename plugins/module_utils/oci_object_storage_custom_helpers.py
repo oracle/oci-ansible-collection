@@ -89,6 +89,19 @@ def get_object(client, namespace_name, bucket_name, object_name):
     ).objects:
         if o.name == object_name:
             obj = o
+
+    head_object_response_headers = to_dict(
+        oci_common_utils.call_with_backoff(
+            client.head_object,
+            namespace_name=namespace_name,
+            bucket_name=bucket_name,
+            object_name=object_name,
+        ).headers
+    )
+    setattr(obj, "headers", head_object_response_headers)
+    # also add attr to the swagger_types so that it is returned when converted to dict using to_dict
+    if hasattr(obj, "swagger_types"):
+        obj.swagger_types["headers"] = "dict(str, str)"
     return obj
 
 
@@ -352,6 +365,7 @@ class ObjectActionsHelperCustom:
     COPY_ACTION = "copy"
     RENAME_ACTION = "rename"
     RESTORE_ACTION = "restore"
+    REENCRYPT_ACTION = "reencrypt"
     UPDATE_OBJECT_STORAGE_TIER_ACTION = "update_object_storage_tier"
 
     def perform_copy(self):
@@ -364,9 +378,14 @@ class ObjectActionsHelperCustom:
         if not obj:
             self.module.fail_json(
                 msg="Could not find the object {0} in bucket {1}".format(
-                    self.module.params.get("object_name"),
+                    self.module.params.get("source_object_name"),
                     self.module.params.get("bucket_name"),
                 )
+            )
+        is_action_necessary = self.is_action_necessary(self.COPY_ACTION, obj)
+        if not is_action_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
             )
         if self.check_mode:
             return self.prepare_result(
@@ -423,6 +442,11 @@ class ObjectActionsHelperCustom:
                     self.module.params.get("bucket_name"),
                 )
             )
+        is_action_necessary = self.is_action_necessary(self.RENAME_ACTION, obj)
+        if not is_action_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+            )
         if self.check_mode:
             return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=to_dict(obj)
@@ -470,6 +494,11 @@ class ObjectActionsHelperCustom:
                     self.module.params.get("bucket_name"),
                 )
             )
+        is_action_necessary = self.is_action_necessary(self.RESTORE_ACTION, obj)
+        if not is_action_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+            )
         if self.check_mode:
             return self.prepare_result(
                 changed=True, resource_type=self.resource_type, resource=to_dict(obj)
@@ -503,6 +532,58 @@ class ObjectActionsHelperCustom:
                 resource=to_dict(restored_obj),
             )
 
+    def perform_reencrypt(self):
+        obj = get_object(
+            self.client,
+            self.module.params.get("namespace_name"),
+            self.module.params.get("bucket_name"),
+            self.module.params.get("object_name"),
+        )
+        if not obj:
+            self.module.fail_json(
+                msg="Could not find the object {0} in bucket {1}".format(
+                    self.module.params.get("object_name"),
+                    self.module.params.get("bucket_name"),
+                )
+            )
+        is_action_necessary = self.is_action_necessary(self.REENCRYPT_ACTION, obj)
+        if not is_action_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+            )
+        if self.check_mode:
+            return self.prepare_result(
+                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+            )
+        try:
+            self.reencrypt()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            reencrypted_obj = get_object(
+                self.client,
+                self.module.params.get("namespace_name"),
+                self.module.params.get("bucket_name"),
+                self.module.params.get("object_name"),
+            )
+            if not reencrypted_obj:
+                self.module.fail_json(
+                    msg="Could not find the reencrypted object {0} in bucket {1} and namespace {2}".format(
+                        self.module.params.get("object_name"),
+                        self.module.params.get("bucket_name"),
+                        self.module.params.get("namespace_name"),
+                    )
+                )
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(reencrypted_obj),
+            )
+
     def perform_update_object_storage_tier(self):
         obj = get_object(
             self.client,
@@ -516,6 +597,13 @@ class ObjectActionsHelperCustom:
                     self.module.params.get("object_name"),
                     self.module.params.get("bucket_name"),
                 )
+            )
+        is_action_necessary = self.is_action_necessary(
+            self.UPDATE_OBJECT_STORAGE_TIER_ACTION, obj
+        )
+        if not is_action_necessary:
+            return self.prepare_result(
+                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
             )
         if self.check_mode:
             return self.prepare_result(
@@ -561,19 +649,6 @@ class ObjectActionsHelperCustom:
         action_fn = self.get_action_fn(action)
         if not action_fn:
             self.module.fail_json(msg="{0} not supported by the module.".format(action))
-
-        obj = get_object(
-            self.client,
-            self.module.params.get("namespace_name"),
-            self.module.params.get("bucket_name"),
-            self.module.params.get("object_name"),
-        )
-        is_action_necessary = self.is_action_necessary(action, obj)
-        if not is_action_necessary:
-            return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
-            )
-
         perform_action_fn = getattr(
             self,
             "perform_{0}".format(action),

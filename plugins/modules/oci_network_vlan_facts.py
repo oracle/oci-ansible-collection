@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     vlan_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN.
             - Required to get a specific vlan.
         type: str
         aliases: ["id"]
@@ -41,7 +41,7 @@ options:
         type: str
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
             - Required to list multiple vlans.
         type: str
     display_name:
@@ -165,7 +165,7 @@ vlans:
                 - A list of the OCIDs of the network security groups (NSGs) to use with this VLAN.
                   All VNICs in the VLAN belong to these NSGs. For more
                   information about NSGs, see
-                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
             returned: on success
             type: list
             sample: []

@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     nat_gateway_id:
         description:
-            - The NAT gateway's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The NAT gateway's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             - Required to get a specific nat_gateway.
         type: str
         aliases: ["id"]
@@ -42,7 +42,7 @@ options:
         type: str
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
         type: str
     display_name:
         description:
@@ -103,7 +103,7 @@ nat_gateways:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains
                   the NAT gateway.
             returned: on success
             type: string
@@ -134,7 +134,7 @@ nat_gateways:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
                   NAT gateway.
             returned: on success
             type: string
@@ -167,14 +167,15 @@ nat_gateways:
             sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway
                   belongs to.
             returned: on success
             type: string
             sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
         public_ip_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT
+                  gateway.
             returned: on success
             type: string
             sample: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx

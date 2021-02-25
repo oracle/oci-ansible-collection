@@ -64,6 +64,12 @@ options:
         type: str
         choices:
             - "MONTHLY"
+    budget_processing_period_start_offset:
+        description:
+            - The number of days offset from the first day of the month, at which the budget processing period starts. In months that have fewer days than this
+              value, processing will begin on the last day of that month. For example, for a value of 12, processing starts every month on the 12th at midnight.
+            - This parameter is updatable.
+        type: int
     target_type:
         description:
             - The type of target on which the budget is applied.
@@ -128,6 +134,7 @@ EXAMPLES = """
     description: description_example
     amount: 100.00
     reset_period: Monthly
+    budget_processing_period_start_offset: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -201,6 +208,14 @@ budget:
             returned: on success
             type: string
             sample: MONTHLY
+        budget_processing_period_start_offset:
+            description:
+                - The number of days offset from the first day of the month, at which the budget processing period starts. In months that have fewer days than
+                  this value, processing will begin on the last day of that month. For example, for a value of 12, processing starts every month on the 12th at
+                  midnight.
+            returned: on success
+            type: int
+            sample: 56
         target_type:
             description:
                 - The type of target on which the budget is applied.
@@ -287,6 +302,7 @@ budget:
         "description": "description_example",
         "amount": 10,
         "reset_period": "MONTHLY",
+        "budget_processing_period_start_offset": 56,
         "target_type": "COMPARTMENT",
         "targets": [],
         "lifecycle_state": "ACTIVE",
@@ -444,6 +460,7 @@ def main():
             description=dict(type="str"),
             amount=dict(type="float"),
             reset_period=dict(type="str", choices=["MONTHLY"]),
+            budget_processing_period_start_offset=dict(type="int"),
             target_type=dict(type="str", choices=["COMPARTMENT", "TAG"]),
             targets=dict(type="list"),
             freeform_tags=dict(type="dict"),

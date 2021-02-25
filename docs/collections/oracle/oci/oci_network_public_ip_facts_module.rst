@@ -20,7 +20,7 @@ oracle.oci.oci_network_public_ip_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple PublicIp resources in Oracle Cloud Infrastructure
-- Lists the `PublicIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/>`_ objects in the specified compartment. You can filter the list by using query parameters.
+- Lists the `PublicIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/>`_ objects in the specified compartment. You can filter the list by using query parameters.
 - To list your reserved public IPs: * Set `scope` = `REGION`  (required) * Leave the `availabilityDomain` parameter empty * Set `lifetime` = `RESERVED`
 - To list the ephemeral public IPs assigned to a regional entity such as a NAT gateway: * Set `scope` = `REGION`  (required) * Leave the `availabilityDomain` parameter empty * Set `lifetime` = `EPHEMERAL`
 - To list the ephemeral public IPs assigned to private IPs: * Set `scope` = `AVAILABILITY_DOMAIN` (required) * Set the `availabilityDomain` parameter to the desired availability domain (required) * Set `lifetime` = `EPHEMERAL`
@@ -347,7 +347,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the public IP is regional or specific to a particular availability domain.</div>
-                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do ephemeral public IPs assigned to a regional entity.</div>
+                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do ephemeral public IPs assigned to a regional entity.</div>
                                             <div>* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity it&#x27;s assigned to, which is specified by the `availabilityDomain` property of the public IP object. Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.</div>
                                             <div>Required to list multiple public_ips.</div>
                                                         </td>
@@ -641,9 +641,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Defines when the public IP is deleted and released back to Oracle&#x27;s public IP pool.</div>
-                                            <div>* `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned entity. An ephemeral public IP must always be assigned to an entity. If the assigned entity is a private IP, the ephemeral public IP is automatically deleted when the private IP is deleted, when the VNIC is terminated, or when the instance is terminated. If the assigned entity is a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/'>NatGateway</a>, the ephemeral public IP is automatically deleted when the NAT gateway is terminated.</div>
+                                            <div>* `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned entity. An ephemeral public IP must always be assigned to an entity. If the assigned entity is a private IP, the ephemeral public IP is automatically deleted when the private IP is deleted, when the VNIC is terminated, or when the instance is terminated. If the assigned entity is a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/'>NatGateway</a>, the ephemeral public IP is automatically deleted when the NAT gateway is terminated.</div>
                                             <div>* `RESERVED`: You control the public IP&#x27;s lifetime. You can delete a reserved public IP whenever you like. It does not need to be assigned to a private IP at all times.</div>
-                                            <div>For more information and comparison of the two types, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
+                                            <div>For more information and comparison of the two types, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EPHEMERAL</div>
@@ -681,7 +681,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the pool object created in the current tenancy.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the pool object created in the current tenancy.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -700,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Whether the public IP is regional or specific to a particular availability domain.</div>
-                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs assigned to a regional entity have `scope` = `REGION`.</div>
+                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs assigned to a regional entity have `scope` = `REGION`.</div>
                                             <div>* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity it&#x27;s assigned to, which is specified by the `availabilityDomain` property of the public IP object. Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

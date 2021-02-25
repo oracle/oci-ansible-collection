@@ -20,7 +20,7 @@ oracle.oci.oci_network_dhcp_options -- Manage a DhcpOptions resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a DhcpOptions resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new set of DHCP options for the specified VCN. For more information, see `DhcpOptions <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpOptions/>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the set of DHCP options to reside. Notice that the set of options doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the set of DHCP options in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *state=present*, creates a new set of DHCP options for the specified VCN. For more information, see `DhcpOptions <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpOptions/>`_.
+- For the purposes of access control, you must provide the OCID of the compartment where you want the set of DHCP options to reside. Notice that the set of options doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the set of DHCP options in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the set of DHCP options, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 
 
@@ -354,7 +354,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A single search domain name according to <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>. During a DNS query, the OS will append this search domain name to the value being queried.</div>
-                                            <div>If you set <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/'>DhcpDnsOption</a> to `VcnLocalPlusInternet`, and you assign a DNS label to the VCN during creation, the search domain name in the VCN&#x27;s default set of DHCP options is automatically set to the VCN domain (for example, `vcn1.oraclevcn.com`).</div>
+                                            <div>If you set <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/'>DhcpDnsOption</a> to `VcnLocalPlusInternet`, and you assign a DNS label to the VCN during creation, the search domain name in the VCN&#x27;s default set of DHCP options is automatically set to the VCN domain (for example, `vcn1.oraclevcn.com`).</div>
                                             <div>If you don&#x27;t want to use a search domain name, omit this option from the set of DHCP options. Do not include this option with an empty list of search domain names, or with an empty string as the value for any search domain name.</div>
                                             <div>Required when type is &#x27;SearchDomain&#x27;</div>
                                                         </td>
@@ -378,7 +378,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>* **VcnLocal:** Reserved for future use.</div>
-                                            <div>* **VcnLocalPlusInternet:** Also referred to as &quot;Internet and VCN Resolver&quot;. Instances can resolve internet hostnames (no internet gateway is required), and can resolve hostnames of instances in the VCN. This is the default value in the default set of DHCP options in the VCN. For the Internet and VCN Resolver to work across the VCN, there must also be a DNS label set for the VCN, a DNS label set for each subnet, and a hostname for each instance. The Internet and VCN Resolver also enables reverse DNS lookup, which lets you determine the hostname corresponding to the private IP address. For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
+                                            <div>* **VcnLocalPlusInternet:** Also referred to as &quot;Internet and VCN Resolver&quot;. Instances can resolve internet hostnames (no internet gateway is required), and can resolve hostnames of instances in the VCN. This is the default value in the default set of DHCP options in the VCN. For the Internet and VCN Resolver to work across the VCN, there must also be a DNS label set for the VCN, a DNS label set for each subnet, and a hostname for each instance. The Internet and VCN Resolver also enables reverse DNS lookup, which lets you determine the hostname corresponding to the private IP address. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>* **CustomDnsServer:** Instances use a DNS server of your choice (three maximum).</div>
                                             <div>Required when type is &#x27;DomainNameServer&#x27;</div>
                                                         </td>
@@ -400,7 +400,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The specific DHCP option. Either `DomainNameServer` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/'>DhcpDnsOption</a>) or `SearchDomain` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpSearchDomainOption/'>DhcpSearchDomainOption</a>).</div>
+                                            <div>The specific DHCP option. Either `DomainNameServer` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/'>DhcpDnsOption</a>) or `SearchDomain` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/'>DhcpSearchDomainOption</a>).</div>
                                                         </td>
             </tr>
                     
@@ -759,7 +759,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>A single search domain name according to <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>. During a DNS query, the OS will append this search domain name to the value being queried.</div>
-                                            <div>If you set <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/'>DhcpDnsOption</a> to `VcnLocalPlusInternet`, and you assign a DNS label to the VCN during creation, the search domain name in the VCN&#x27;s default set of DHCP options is automatically set to the VCN domain (for example, `vcn1.oraclevcn.com`).</div>
+                                            <div>If you set <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/'>DhcpDnsOption</a> to `VcnLocalPlusInternet`, and you assign a DNS label to the VCN during creation, the search domain name in the VCN&#x27;s default set of DHCP options is automatically set to the VCN domain (for example, `vcn1.oraclevcn.com`).</div>
                                             <div>If you don&#x27;t want to use a search domain name, omit this option from the set of DHCP options. Do not include this option with an empty list of search domain names, or with an empty string as the value for any search domain name.</div>
                                         <br/>
                                     </td>
@@ -778,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>* **VcnLocal:** Reserved for future use.</div>
-                                            <div>* **VcnLocalPlusInternet:** Also referred to as &quot;Internet and VCN Resolver&quot;. Instances can resolve internet hostnames (no internet gateway is required), and can resolve hostnames of instances in the VCN. This is the default value in the default set of DHCP options in the VCN. For the Internet and VCN Resolver to work across the VCN, there must also be a DNS label set for the VCN, a DNS label set for each subnet, and a hostname for each instance. The Internet and VCN Resolver also enables reverse DNS lookup, which lets you determine the hostname corresponding to the private IP address. For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
+                                            <div>* **VcnLocalPlusInternet:** Also referred to as &quot;Internet and VCN Resolver&quot;. Instances can resolve internet hostnames (no internet gateway is required), and can resolve hostnames of instances in the VCN. This is the default value in the default set of DHCP options in the VCN. For the Internet and VCN Resolver to work across the VCN, there must also be a DNS label set for the VCN, a DNS label set for each subnet, and a hostname for each instance. The Internet and VCN Resolver also enables reverse DNS lookup, which lets you determine the hostname corresponding to the private IP address. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>* **CustomDnsServer:** Instances use a DNS server of your choice (three maximum).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -798,7 +798,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The specific DHCP option. Either `DomainNameServer` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/'>DhcpDnsOption</a>) or `SearchDomain` (for <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/DhcpSearchDomainOption/'>DhcpSearchDomainOption</a>).</div>
+                                            <div>The specific DHCP option. Either `DomainNameServer` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/'>DhcpDnsOption</a>) or `SearchDomain` (for <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/'>DhcpSearchDomainOption</a>).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DomainNameServer</div>

@@ -44,7 +44,7 @@ options:
         type: str
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
         type: str
     display_name:
         description:
@@ -154,9 +154,8 @@ dhcp_options:
                 type:
                     description:
                         - The specific DHCP option. Either `DomainNameServer`
-                          (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/)) or
-                          `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-
-                          us/iaas/api/#/en/iaas/20160918/DhcpSearchDomainOption/)).
+                          (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/)) or
+                          `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/)).
                     returned: on success
                     type: string
                     sample: DomainNameServer
@@ -179,7 +178,7 @@ dhcp_options:
                           The Internet and VCN Resolver also enables reverse DNS lookup, which lets
                           you determine the hostname corresponding to the private IP address. For more
                           information, see
-                          L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm)."
+                          L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm)."
                         - "* **CustomDnsServer:** Instances use a DNS server of your choice (three
                           maximum)."
                     returned: on success
@@ -190,7 +189,7 @@ dhcp_options:
                         - A single search domain name according to L(RFC 952,https://tools.ietf.org/html/rfc952)
                           and L(RFC 1123,https://tools.ietf.org/html/rfc1123). During a DNS query,
                           the OS will append this search domain name to the value being queried.
-                        - If you set L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/DhcpDnsOption/) to `VcnLocalPlusInternet`,
+                        - If you set L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/) to `VcnLocalPlusInternet`,
                           and you assign a DNS label to the VCN during creation, the search domain name in the
                           VCN's default set of DHCP options is automatically set to the VCN domain
                           (for example, `vcn1.oraclevcn.com`).

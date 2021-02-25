@@ -287,6 +287,42 @@ managed_instance:
             returned: on success
             type: bool
             sample: true
+        security_updates_available:
+            description:
+                - Number of security type updates available to be installed
+            returned: on success
+            type: int
+            sample: 56
+        bug_updates_available:
+            description:
+                - Number of bug fix type updates available to be installed
+            returned: on success
+            type: int
+            sample: 56
+        enhancement_updates_available:
+            description:
+                - Number of enhancement type updates available to be installed
+            returned: on success
+            type: int
+            sample: 56
+        other_updates_available:
+            description:
+                - Number of non-classified updates available to be installed
+            returned: on success
+            type: int
+            sample: 56
+        scheduled_job_count:
+            description:
+                - Number of scheduled jobs associated with this instance
+            returned: on success
+            type: int
+            sample: 56
+        work_request_count:
+            description:
+                - Number of work requests associated with this instance
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "display_name": "display_name_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -312,7 +348,13 @@ managed_instance:
             "display_name": "display_name_example"
         }],
         "os_family": "LINUX",
-        "is_reboot_required": true
+        "is_reboot_required": true,
+        "security_updates_available": 56,
+        "bug_updates_available": 56,
+        "enhancement_updates_available": 56,
+        "other_updates_available": 56,
+        "scheduled_job_count": 56,
+        "work_request_count": 56
     }
 """
 

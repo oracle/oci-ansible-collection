@@ -5,7 +5,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.15.0
+Collection version 2.16.0
 
 .. toctree::
     :maxdepth: 1
@@ -121,9 +121,11 @@ Modules
 * :ref:`oci_compute_image_shape_compatibility_entry_facts <ansible_collections.oracle.oci.oci_compute_image_shape_compatibility_entry_facts_module>` -- Fetches details about one or multiple ImageShapeCompatibilityEntry resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance <ansible_collections.oracle.oci.oci_compute_instance_module>` -- Manage an Instance resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_actions <ansible_collections.oracle.oci.oci_compute_instance_actions_module>` -- Perform actions on an Instance resource in Oracle Cloud Infrastructure
+* :ref:`oci_compute_instance_agent_instance_agent_available_plugins_facts <ansible_collections.oracle.oci.oci_compute_instance_agent_instance_agent_available_plugins_facts_module>` -- Fetches details about one or multiple InstanceAgentAvailablePlugins resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_agent_instance_agent_command <ansible_collections.oracle.oci.oci_compute_instance_agent_instance_agent_command_module>` -- Manage an InstanceAgentCommand resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_agent_instance_agent_command_execution_facts <ansible_collections.oracle.oci.oci_compute_instance_agent_instance_agent_command_execution_facts_module>` -- Fetches details about one or multiple InstanceAgentCommandExecution resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_agent_instance_agent_command_facts <ansible_collections.oracle.oci.oci_compute_instance_agent_instance_agent_command_facts_module>` -- Fetches details about one or multiple InstanceAgentCommand resources in Oracle Cloud Infrastructure
+* :ref:`oci_compute_instance_agent_plugin_facts <ansible_collections.oracle.oci.oci_compute_instance_agent_plugin_facts_module>` -- Fetches details about one or multiple Plugin resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_console_connection <ansible_collections.oracle.oci.oci_compute_instance_console_connection_module>` -- Manage an InstanceConsoleConnection resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_console_connection_facts <ansible_collections.oracle.oci.oci_compute_instance_console_connection_facts_module>` -- Fetches details about one or multiple InstanceConsoleConnection resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_console_history <ansible_collections.oracle.oci.oci_compute_instance_console_history_module>` -- Manage an InstanceConsoleHistory resource in Oracle Cloud Infrastructure
@@ -261,6 +263,14 @@ Modules
 * :ref:`oci_database_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_module>` -- Manage an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_actions_module>` -- Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_exadata_infrastructure_facts <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_facts_module>` -- Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_container_database <ansible_collections.oracle.oci.oci_database_external_container_database_module>` -- Manage an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_container_database_facts <ansible_collections.oracle.oci.oci_database_external_container_database_facts_module>` -- Fetches details about one or multiple ExternalContainerDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_database_connector <ansible_collections.oracle.oci.oci_database_external_database_connector_module>` -- Manage an ExternalDatabaseConnector resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_database_connector_facts <ansible_collections.oracle.oci.oci_database_external_database_connector_facts_module>` -- Fetches details about one or multiple ExternalDatabaseConnector resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_non_container_database <ansible_collections.oracle.oci.oci_database_external_non_container_database_module>` -- Manage an ExternalNonContainerDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_non_container_database_facts <ansible_collections.oracle.oci.oci_database_external_non_container_database_facts_module>` -- Fetches details about one or multiple ExternalNonContainerDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_pluggable_database <ansible_collections.oracle.oci.oci_database_external_pluggable_database_module>` -- Manage an ExternalPluggableDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_external_pluggable_database_facts <ansible_collections.oracle.oci.oci_database_external_pluggable_database_facts_module>` -- Fetches details about one or multiple ExternalPluggableDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_flex_component_facts <ansible_collections.oracle.oci.oci_database_flex_component_facts_module>` -- Fetches details about one or multiple FlexComponentCollection resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_gi_version_facts <ansible_collections.oracle.oci.oci_database_gi_version_facts_module>` -- Fetches details about one or multiple GiVersion resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_key_store <ansible_collections.oracle.oci.oci_database_key_store_module>` -- Manage a KeyStore resource in Oracle Cloud Infrastructure
@@ -454,6 +464,7 @@ Modules
 * :ref:`oci_management_agent_install_key_content_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_content_facts_module>` -- Fetches details about a ManagementAgentInstallKeyContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_install_key_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_facts_module>` -- Fetches details about one or multiple ManagementAgentInstallKey resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_plugin_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_facts_module>` -- Fetches details about one or multiple ManagementAgentPlugin resources in Oracle Cloud Infrastructure
+* :ref:`oci_management_dashboard_actions <ansible_collections.oracle.oci.oci_management_dashboard_actions_module>` -- Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_accepted_agreement <ansible_collections.oracle.oci.oci_marketplace_accepted_agreement_module>` -- Manage an AcceptedAgreement resource in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_accepted_agreement_facts <ansible_collections.oracle.oci.oci_marketplace_accepted_agreement_facts_module>` -- Fetches details about one or multiple AcceptedAgreement resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_agreement_facts <ansible_collections.oracle.oci.oci_marketplace_agreement_facts_module>` -- Fetches details about one or multiple Agreement resources in Oracle Cloud Infrastructure
@@ -643,11 +654,13 @@ Modules
 * :ref:`oci_os_management_available_software_source_facts <ansible_collections.oracle.oci.oci_os_management_available_software_source_facts_module>` -- Fetches details about one or multiple AvailableSoftwareSource resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_available_update_facts <ansible_collections.oracle.oci.oci_os_management_available_update_facts_module>` -- Fetches details about one or multiple AvailableUpdate resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_available_windows_update_facts <ansible_collections.oracle.oci.oci_os_management_available_windows_update_facts_module>` -- Fetches details about one or multiple AvailableWindowsUpdate resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_errata_facts <ansible_collections.oracle.oci.oci_os_management_errata_facts_module>` -- Fetches details about one or multiple Errata resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_erratum_facts <ansible_collections.oracle.oci.oci_os_management_erratum_facts_module>` -- Fetches details about a Erratum resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_installable_package_facts <ansible_collections.oracle.oci.oci_os_management_installable_package_facts_module>` -- Fetches details about one or multiple InstallablePackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_installed_package_facts <ansible_collections.oracle.oci.oci_os_management_installed_package_facts_module>` -- Fetches details about one or multiple InstalledPackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_installed_windows_update_facts <ansible_collections.oracle.oci.oci_os_management_installed_windows_update_facts_module>` -- Fetches details about one or multiple InstalledWindowsUpdate resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_actions_module>` -- Perform actions on a ManagedInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_managed_instance_erratum_facts <ansible_collections.oracle.oci.oci_os_management_managed_instance_erratum_facts_module>` -- Fetches details about one or multiple ManagedInstanceErratum resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_facts <ansible_collections.oracle.oci.oci_os_management_managed_instance_facts_module>` -- Fetches details about one or multiple ManagedInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_module>` -- Manage a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_actions_module>` -- Perform actions on a ManagedInstanceGroup resource in Oracle Cloud Infrastructure

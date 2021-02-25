@@ -447,15 +447,66 @@ instance:
                     description:
                         - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
                           monitoring plugins.
+                        - "These are the monitoring plugins: Compute Instance Monitoring
+                          and Custom Logs Monitoring."
+                        - The monitoring plugins are controlled by this parameter and by the per-plugin
+                          configuration in the `pluginsConfig` object.
+                        - "- If `isMonitoringDisabled` is true, all of the monitoring plugins are disabled, regardless of
+                          the per-plugin configuration.
+                          - If `isMonitoringDisabled` is false, all of the monitoring plugins are enabled. You
+                          can optionally disable individual monitoring plugins by providing a value in the `pluginsConfig`
+                          object."
                     returned: on success
                     type: bool
                     sample: true
                 is_management_disabled:
                     description:
                         - Whether Oracle Cloud Agent can run all the available management plugins.
+                        - "These are the management plugins: OS Management Service Agent and Compute Instance
+                          Run Command."
+                        - The management plugins are controlled by this parameter and by the per-plugin
+                          configuration in the `pluginsConfig` object.
+                        - "- If `isManagementDisabled` is true, all of the management plugins are disabled, regardless of
+                          the per-plugin configuration.
+                          - If `isManagementDisabled` is false, all of the management plugins are enabled. You
+                          can optionally disable individual management plugins by providing a value in the `pluginsConfig`
+                          object."
                     returned: on success
                     type: bool
                     sample: true
+                are_all_plugins_disabled:
+                    description:
+                        - Whether Oracle Cloud Agent can run all of the available plugins.
+                          This includes the management and monitoring plugins.
+                        - For more information about the available plugins, see
+                          L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
+                    returned: on success
+                    type: bool
+                    sample: true
+                plugins_config:
+                    description:
+                        - The configuration of plugins associated with this instance.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The plugin name. To get a list of available plugins, use the
+                                  L(ListInstanceagentAvailablePlugins,https://docs.cloud.oracle.com/en-
+                                  us/iaas/api/#/en/instanceagent/20180530/Plugin/ListInstanceagentAvailablePlugins)
+                                  operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+                                  L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        desired_state:
+                            description:
+                                - Whether the plugin should be enabled or disabled.
+                                - To enable the monitoring and management plugins, the `isMonitoringDisabled` and
+                                  `isManagementDisabled` attributes must also be set to false.
+                            returned: on success
+                            type: string
+                            sample: ENABLED
         time_maintenance_reboot_due:
             description:
                 - "The date and time the instance is expected to be stopped / started,  in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -465,6 +516,25 @@ instance:
             returned: on success
             type: string
             sample: 2018-05-25T21:10:29.600Z
+        platform_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of platform being configured. The only supported
+                          `type` is `AMD_MILAN_BM`
+                    returned: on success
+                    type: string
+                    sample: AMD_MILAN_BM
+                numa_nodes_per_socket:
+                    description:
+                        - The number of NUMA nodes per socket.
+                    returned: on success
+                    type: string
+                    sample: NPS0
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -519,9 +589,18 @@ instance:
         "time_created": "2016-08-25T21:10:29.600Z",
         "agent_config": {
             "is_monitoring_disabled": true,
-            "is_management_disabled": true
+            "is_management_disabled": true,
+            "are_all_plugins_disabled": true,
+            "plugins_config": [{
+                "name": "name_example",
+                "desired_state": "ENABLED"
+            }]
         },
-        "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z"
+        "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
+        "platform_config": {
+            "type": "AMD_MILAN_BM",
+            "numa_nodes_per_socket": "NPS0"
+        }
     }
 """
 

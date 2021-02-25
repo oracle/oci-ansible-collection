@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_device_status_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a IpSecConnectionDeviceStatus resource in Oracle Cloud Infrastructure
-- Deprecated. To get the tunnel status, instead use `GetIPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/GetIPSecConnectionTunnel>`_.
+- Deprecated. To get the tunnel status, instead use `GetIPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/GetIPSecConnectionTunnel>`_.
 
 
 .. Aliases
@@ -359,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Two <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelStatus/'>TunnelStatus</a> objects.</div>
+                                            <div>Two <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelStatus/'>TunnelStatus</a> objects.</div>
                                         <br/>
                                     </td>
             </tr>

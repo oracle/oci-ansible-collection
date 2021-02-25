@@ -26,8 +26,8 @@ description:
     - For I(state=present), creates a new service gateway in the specified compartment.
     - For the purposes of access control, you must provide the OCID of the compartment where you want
       the service gateway to reside. For more information about compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
-      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
+      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the service gateway, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_service_gateway_actions) module: attach_service_id, detach_service_id."
@@ -71,37 +71,37 @@ options:
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the service gateway.
             - "For information about why you would associate a route table with a service gateway, see
-              L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)."
+              L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."
             - This parameter is updatable.
         type: str
     services:
         description:
-            - List of the OCIDs of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects to
+            - List of the OCIDs of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) objects to
               enable for the service gateway. This list can be empty if you don't want to enable any
               `Service` objects when you create the gateway. You can enable a `Service`
-              object later by using either L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId)
-              or L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
+              object later by using either L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/AttachServiceId)
+              or L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/UpdateServiceGateway).
             - For each enabled `Service`, make sure there's a route rule with the `Service` object's `cidrBlock`
               as the rule's destination and the service gateway as the rule's target. See
-              L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/).
+              L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/).
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
         suboptions:
             service_id:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the L(Service,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/iaas/20160918/Service/).
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Service,https://docs.cloud.oracle.com/en-
+                      us/iaas/api/#/en/iaas/latest/Service/).
                 type: str
                 required: true
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
             - Required for create using I(state=present).
         type: str
     service_gateway_id:
         description:
-            - The service gateway's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The service gateway's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -180,7 +180,7 @@ service_gateway:
             sample: true
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the
                   service gateway.
             returned: on success
             type: string
@@ -211,7 +211,7 @@ service_gateway:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service gateway.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
@@ -225,22 +225,23 @@ service_gateway:
             description:
                 - "The OCID of the route table the service gateway is using.
                   For information about why you would associate a route table with a service gateway, see
-                  L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)."
+                  L(Transit Routing: Private Access to Oracle
+                  Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
         services:
             description:
-                - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) objects enabled for this service gateway.
+                - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) objects enabled for this service gateway.
                   The list can be empty. You can enable a particular `Service` by using
-                  L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/AttachServiceId) or
-                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ServiceGateway/UpdateServiceGateway).
+                  L(AttachServiceId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/AttachServiceId) or
+                  L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/UpdateServiceGateway).
             returned: on success
             type: complex
             contains:
                 service_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service.
                     returned: on success
                     type: string
                     sample: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
@@ -259,7 +260,7 @@ service_gateway:
             sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the service gateway
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the service gateway
                   belongs to.
             returned: on success
             type: string

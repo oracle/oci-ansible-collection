@@ -24,15 +24,14 @@ short_description: Manage a SignedData resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a SignedData resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a digital signature for a message or message digest by using the private key in an asymmetric key.
-      To verify the generated signature, you can use the Verify operation or use the public key in the same asymmetric
-      key outside of KMS
+      To verify the generated signature, you can use the Verify operation or use the public key in the same asymmetric key outside of KMS
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     message:
         description:
-            - The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be
-              upto 4096 size in bytes. To sign a larger message, provide the message digest.
+            - The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be upto 4096 size in bytes. To sign a
+              larger message, provide the message digest.
         type: str
         required: true
     key_id:

@@ -29,7 +29,7 @@ description:
       an Identity and Access Management (IAM) policy that gives the requestor permission
       to connect to RPCs in the acceptor's compartment. Without that permission, this
       operation will fail. For more information, see
-      L(VCN Peering,https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm)."
+      L(VCN Peering,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm)."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

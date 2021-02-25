@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     network_security_group_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security group.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.
         type: str
         required: true
     sort_by:
@@ -65,7 +65,7 @@ network_security_group_vnics:
     contains:
         resource_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent resource that the VNIC
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the parent resource that the VNIC
                   is attached to (for example, a Compute instance).
             returned: on success
             type: string
@@ -80,7 +80,7 @@ network_security_group_vnics:
             sample: 2016-08-25T21:10:29.600Z
         vnic_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.
             returned: on success
             type: string
             sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx

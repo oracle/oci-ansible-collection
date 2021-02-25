@@ -35,7 +35,7 @@ options:
         required: true
     tunnel_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             - Required to get a specific ip_sec_connection_tunnel.
         type: str
         aliases: ["id"]
@@ -63,13 +63,13 @@ ip_sec_connection_tunnels:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the tunnel.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the tunnel.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
@@ -122,7 +122,7 @@ ip_sec_connection_tunnels:
                     description:
                         - The IP address for the Oracle end of the inside tunnel interface.
                         - If the tunnel's `routing` attribute is set to `BGP`
-                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP address
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
                           is required and used for the tunnel's BGP session.
                         - If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
                           address so you can troubleshoot or monitor the tunnel.
@@ -135,7 +135,7 @@ ip_sec_connection_tunnels:
                     description:
                         - The IP address for the CPE end of the inside tunnel interface.
                         - If the tunnel's `routing` attribute is set to `BGP`
-                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this IP address
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
                           is required and used for the tunnel's BGP session.
                         - If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
                           address so you can troubleshoot or monitor the tunnel.
@@ -153,7 +153,7 @@ ip_sec_connection_tunnels:
                 customer_bgp_asn:
                     description:
                         - "If the tunnel's `routing` attribute is set to `BGP`
-                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/)), this ASN
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this ASN
                           is required and used for the tunnel's BGP session. This is the ASN of the network on the
                           CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses \\"asplain\\" format."
                         - If the tunnel uses static routing, the `customerBgpAsn` must be null.
@@ -167,6 +167,24 @@ ip_sec_connection_tunnels:
                     returned: on success
                     type: string
                     sample: UP
+        encryption_domain_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                oracle_traffic_selector:
+                    description:
+                        - Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.
+                    returned: on success
+                    type: list
+                    sample: []
+                cpe_traffic_selector:
+                    description:
+                        - Lists IPv4 or IPv6-enabled subnets in your on-premises network.
+                    returned: on success
+                    type: list
+                    sample: []
         routing:
             description:
                 - The type of routing used for this tunnel (either BGP dynamic routing or static routing).
@@ -202,6 +220,10 @@ ip_sec_connection_tunnels:
             "oracle_bgp_asn": "oracle_bgp_asn_example",
             "customer_bgp_asn": "12345",
             "bgp_state": "UP"
+        },
+        "encryption_domain_config": {
+            "oracle_traffic_selector": [],
+            "cpe_traffic_selector": []
         },
         "routing": "BGP",
         "time_created": "2016-08-25T21:10:29.600Z",

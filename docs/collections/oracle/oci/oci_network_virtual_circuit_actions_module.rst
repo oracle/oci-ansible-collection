@@ -20,7 +20,7 @@ oracle.oci.oci_network_virtual_circuit_actions -- Perform actions on a VirtualCi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a VirtualCircuit resource in Oracle Cloud Infrastructure
-- For *action=bulk_add_virtual_circuit_public_prefixes*, adds one or more customer public IP prefixes to the specified public virtual circuit. Use this operation (and not `UpdateVirtualCircuit <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit>`_) to add prefixes to the virtual circuit. Oracle must verify the customer's ownership of each prefix before traffic for that prefix will flow across the virtual circuit.
-- For *action=bulk_delete_virtual_circuit_public_prefixes*, removes one or more customer public IP prefixes from the specified public virtual circuit. Use this operation (and not `UpdateVirtualCircuit <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VirtualCircuit/UpdateVirtualCircuit>`_) to remove prefixes from the virtual circuit. When the virtual circuit's state switches back to PROVISIONED, Oracle stops advertising the specified prefixes across the connection.
+- For *action=bulk_add_virtual_circuit_public_prefixes*, adds one or more customer public IP prefixes to the specified public virtual circuit. Use this operation (and not `UpdateVirtualCircuit <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VirtualCircuit/UpdateVirtualCircuit>`_) to add prefixes to the virtual circuit. Oracle must verify the customer's ownership of each prefix before traffic for that prefix will flow across the virtual circuit.
+- For *action=bulk_delete_virtual_circuit_public_prefixes*, removes one or more customer public IP prefixes from the specified public virtual circuit. Use this operation (and not `UpdateVirtualCircuit <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VirtualCircuit/UpdateVirtualCircuit>`_) to remove prefixes from the virtual circuit. When the virtual circuit's state switches back to PROVISIONED, Oracle stops advertising the specified prefixes across the connection.
 
 
 .. Aliases

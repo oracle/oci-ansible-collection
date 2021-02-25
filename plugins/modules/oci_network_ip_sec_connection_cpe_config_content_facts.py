@@ -27,19 +27,18 @@ description:
       tunnels in the connection). The content helps a network engineer configure the actual CPE
       device (for example, a hardware router) that the specified IPSec connection terminates on.
     - The rendered content is specific to the type of CPE device (for example, Cisco ASA). Therefore the
-      L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/) used by the specified L(IPSecConnection,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/IPSecConnection/)
+      L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) used by the specified L(IPSecConnection,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/iaas/latest/IPSecConnection/)
       must have the CPE's device type specified by the `cpeDeviceShapeId` attribute. The content
       optionally includes answers that the customer provides (see
-      L(UpdateTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig)),
+      L(UpdateTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/UpdateTunnelCpeDeviceConfig)),
       merged with a template of other information specific to the CPE device type.
     - "The operation returns configuration information for all tunnels in the single specified
-      L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnection/) object. Here are other similar
+      L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/) object. Here are other similar
       operations:"
-    - " * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
+    - " * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
         returns CPE configuration content for a specific tunnel within an IPSec connection.
-        * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent)
+        * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent)
         returns CPE configuration content for *all* IPSec connections that use a specific CPE."
 version_added: "2.9"
 author: Oracle (@oracle)

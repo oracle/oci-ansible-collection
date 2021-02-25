@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_list -- Manage a SecurityList resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a SecurityList resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new security list for the specified VCN. For more information about security lists, see `Security Lists <https://docs.cloud.oracle.com/Content/Network/Concepts/securitylists.htm>`_. For information on the number of rules you can have in a security list, see `Service Limits <https://docs.cloud.oracle.com/Content/General/Concepts/servicelimits.htm>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the security list to reside. Notice that the security list doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the security list in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *state=present*, creates a new security list for the specified VCN. For more information about security lists, see `Security Lists <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securitylists.htm>`_. For information on the number of rules you can have in a security list, see `Service Limits <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm>`_.
+- For the purposes of access control, you must provide the OCID of the compartment where you want the security list to reside. Notice that the security list doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the security list in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the security list, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 
 
@@ -307,7 +307,7 @@ Parameters
                                             <div>Conceptually, this is the range of IP addresses that a packet originating from the instance can go to.</div>
                                             <div>Allowed values:</div>
                                             <div>* IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
-                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
+                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -330,7 +330,7 @@ Parameters
                                             <div>Type of destination for the rule. The default is `CIDR_BLOCK`.</div>
                                             <div>Allowed values:</div>
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation.</div>
-                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
+                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -843,7 +843,7 @@ Parameters
                                             <div>Conceptually, this is the range of IP addresses that a packet coming into the instance can come from.</div>
                                             <div>Allowed values:</div>
                                             <div>* IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
-                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic coming from a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
+                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic coming from a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -865,7 +865,7 @@ Parameters
                                                                 <td>
                                             <div>Type of source for the rule. The default is `CIDR_BLOCK`.</div>
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `source` is an IP address range in CIDR notation.</div>
-                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `source` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a> (the rule is for traffic coming from a particular `Service` through a service gateway).</div>
+                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `source` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic coming from a particular `Service` through a service gateway).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1498,7 +1498,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Conceptually, this is the range of IP addresses that a packet originating from the instance can go to.</div>
                                             <div>Allowed values:</div>
                                             <div>* IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
-                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
+                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">destination_example</div>
@@ -1520,7 +1520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Type of destination for the rule. The default is `CIDR_BLOCK`.</div>
                                             <div>Allowed values:</div>
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `destination` is an IP address range in CIDR notation.</div>
-                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
+                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `destination` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic destined for a particular `Service` through a service gateway).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CIDR_BLOCK</div>
@@ -2087,7 +2087,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Conceptually, this is the range of IP addresses that a packet coming into the instance can come from.</div>
                                             <div>Allowed values:</div>
                                             <div>* IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
-                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic coming from a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
+                                            <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a security list rule for traffic coming from a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_example</div>
@@ -2108,7 +2108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Type of source for the rule. The default is `CIDR_BLOCK`.</div>
                                             <div>* `CIDR_BLOCK`: If the rule&#x27;s `source` is an IP address range in CIDR notation.</div>
-                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `source` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/'>Service</a> (the rule is for traffic coming from a particular `Service` through a service gateway).</div>
+                                            <div>* `SERVICE_CIDR_BLOCK`: If the rule&#x27;s `source` is the `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a> (the rule is for traffic coming from a particular `Service` through a service gateway).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CIDR_BLOCK</div>

@@ -77,7 +77,7 @@ ip_sec_connections:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         cpe_id:
             description:
-                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/) object.
+                - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: string
             sample: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
@@ -129,10 +129,10 @@ ip_sec_connections:
                   the fully qualified domain name (FQDN)). The type of identifier here must correspond
                   to the value for `cpeLocalIdentifierType`.
                 - If you don't provide a value when creating the IPSec connection, the `ipAddress` attribute
-                  for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/) object specified by `cpeId` is used as the
+                  for the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object specified by `cpeId` is used as the
                   `cpeLocalIdentifier`.
                 - For information about why you'd provide this value, see
-                  L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/Content/Network/Tasks/overviewIPsec.htm#nat).
+                  L(If Your CPE Is Behind a NAT Device,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/overviewIPsec.htm#nat).
                 - "Example IP address: `10.0.3.3`"
                 - "Example hostname: `cpe.example.com`"
             returned: on success

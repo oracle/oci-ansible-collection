@@ -49,6 +49,16 @@ options:
             - "objectStorageUri"
             - "objectStorageTuple"
         required: true
+    export_format:
+        description:
+            - "The format of the image to be exported. The default value is \\"OCI\\"."
+        type: str
+        choices:
+            - "QCOW2"
+            - "VMDK"
+            - "OCI"
+            - "VHD"
+            - "VDI"
     destination_uri:
         description:
             - The Object Storage URL to export the image to. See L(Object
@@ -85,11 +95,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action export on image
   oci_compute_image_actions:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    object_name: exported-image.oci
+    bucket_name: MyBucket
+    namespace_name: MyNamespace
     destination_type: objectStorageTuple
-    bucket_name: bucket_name_example
-    namespace_name: namespace_name_example
-    object_name: object_name_example
+    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    action: export
+
+- name: Perform action export on image
+  oci_compute_image_actions:
+    object_name: exported-image.oci
+    bucket_name: MyBucket
+    namespace_name: MyNamespace
+    destination_type: objectStorageTuple
+    export_format: VMDK
+    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
     action: export
 
 """
@@ -397,6 +417,9 @@ def main():
                 type="str",
                 required=True,
                 choices=["objectStorageUri", "objectStorageTuple"],
+            ),
+            export_format=dict(
+                type="str", choices=["QCOW2", "VMDK", "OCI", "VHD", "VDI"]
             ),
             destination_uri=dict(type="str"),
             bucket_name=dict(type="str"),

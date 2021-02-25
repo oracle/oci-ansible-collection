@@ -40,22 +40,22 @@ options:
                     - Whether the VNIC should be assigned a public IP address. Defaults to whether
                       the subnet is public or private. If not set and the VNIC is being created
                       in a private subnet (that is, where `prohibitPublicIpOnVnic` = true in the
-                      L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Subnet/)), then no public IP address is assigned.
+                      L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Subnet/)), then no public IP address is assigned.
                       If not set and the subnet is public (`prohibitPublicIpOnVnic` = false), then
                       a public IP address is assigned. If set to true and
                       `prohibitPublicIpOnVnic` = true, an error is returned.
                     - "**Note:** This public IP address is associated with the primary private IP
                       on the VNIC. For more information, see
-                      L(IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingIPaddresses.htm)."
-                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/)
+                      L(IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPaddresses.htm)."
+                    - "**Note:** There's a limit to the number of L(public IPs,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/)
                       a VNIC or instance can have. If you try to create a secondary VNIC
                       with an assigned public IP for an instance that has already
                       reached its public IP limit, an error is returned. For information
                       about the public IP limits, see
-                      L(Public IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm)."
+                      L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
                     - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
-                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: bool
             defined_tags:
                 description:
@@ -84,29 +84,29 @@ options:
                       Must be unique across all VNICs in the subnet and comply with
                       L(RFC 952,https://tools.ietf.org/html/rfc952) and
                       L(RFC 1123,https://tools.ietf.org/html/rfc1123).
-                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+                      The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp).
                     - For more information, see
-                      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                     - When launching an instance, use this `hostnameLabel` instead
                       of the deprecated `hostnameLabel` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
                     - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
-                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str
             nsg_ids:
                 description:
                     - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                       information about NSGs, see
-                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                     - If a `vlanId` is specified, the `nsgIds` cannot be specified. The `vlanId`
                       indicates that the VNIC will belong to a VLAN instead of a subnet. With VLANs,
                       all VNICs in the VLAN belong to the NSGs that are associated with the VLAN.
-                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: list
             private_ip:
                 description:
@@ -114,12 +114,12 @@ options:
                       available IP address within the subnet's CIDR. If you don't specify a
                       value, Oracle automatically assigns a private IP address from the subnet.
                       This is the VNIC's *primary* private IP address. The value appears in
-                      the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
-                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
-                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp)."
+                      the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/) object and also the
+                      L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/) object returned by
+                      L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps) and
+                      L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp)."
                     - If you specify a `vlanId`, the `privateIp` cannot be specified.
-                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - "Example: `10.0.3.3`"
                 type: str
             skip_source_dest_check:
@@ -127,17 +127,17 @@ options:
                     - Whether the source/destination check is disabled on the VNIC.
                       Defaults to `false`, which means the check is performed. For information
                       about why you would skip the source/destination check, see
-                      L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+                      L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm#privateip).
                     - If you specify a `vlanId`, the `skipSourceDestCheck` cannot be specified because the
                       source/destination check is always disabled for VNICs in a VLAN. See
-                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - "Example: `true`"
                 type: bool
             subnet_id:
                 description:
                     - The OCID of the subnet to create the VNIC in. When launching an instance,
                       use this `subnetId` instead of the deprecated `subnetId` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       At least one of them is required; if you provide both, the values must match.
                     - If you are an Oracle Cloud VMware Solution customer and creating a secondary
                       VNIC in a VLAN instead of a subnet, provide a `vlanId` instead of a `subnetId`.
@@ -147,7 +147,7 @@ options:
                 description:
                     - Provide this attribute only if you are an Oracle Cloud VMware Solution
                       customer and creating a secondary VNIC in a VLAN. The value is the OCID of the VLAN.
-                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                      See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                     - Provide a `vlanId` instead of a `subnetId`. If you provide both a
                       `vlanId` and `subnetId`, the request fails.
                 type: str

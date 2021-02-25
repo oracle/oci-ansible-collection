@@ -20,7 +20,7 @@ oracle.oci.oci_network_cross_connect -- Manage a CrossConnect resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,9 +43,9 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a CrossConnect resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new cross-connect. Oracle recommends you create each cross-connect in a `CrossConnectGroup <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CrossConnectGroup>`_ so you can use link aggregation with the connection.
-- After creating the `CrossConnect` object, you need to go the FastConnect location and request to have the physical cable installed. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the cross-connect to reside. If you're not sure which compartment to use, put the cross-connect in the same compartment with your VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *state=present*, creates a new cross-connect. Oracle recommends you create each cross-connect in a `CrossConnectGroup <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CrossConnectGroup>`_ so you can use link aggregation with the connection.
+- After creating the `CrossConnect` object, you need to go the FastConnect location and request to have the physical cable installed. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
+- For the purposes of access control, you must provide the OCID of the compartment where you want the cross-connect to reside. If you're not sure which compartment to use, put the cross-connect in the same compartment with your VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the cross-connect. It does not have to be unique, and you can change it. Avoid entering confidential information.
 
 
@@ -386,7 +386,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the FastConnect location where this cross-connect will be installed. To get a list of the available locations, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CrossConnectLocation/ListCrossConnectLocations'>ListCrossConnectLocations</a>.</div>
+                                            <div>The name of the FastConnect location where this cross-connect will be installed. To get a list of the available locations, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CrossConnectLocation/ListCrossConnectLocations'>ListCrossConnectLocations</a>.</div>
                                             <div>Example: `CyrusOne, Chandler, AZ`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
@@ -418,7 +418,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The port speed for this cross-connect. To get a list of the available port speeds, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/CrossConnectPortSpeedShape/ListCrossconnectPortSpeedShapes'>ListCrossConnectPortSpeedShapes</a>.</div>
+                                            <div>The port speed for this cross-connect. To get a list of the available port speeds, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/CrossConnectPortSpeedShape/ListCrossconnectPortSpeedShapes'>ListCrossConnectPortSpeedShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>

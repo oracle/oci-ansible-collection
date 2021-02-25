@@ -23,7 +23,7 @@ module: oci_network_public_ip_facts
 short_description: Fetches details about one or multiple PublicIp resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PublicIp resources in Oracle Cloud Infrastructure
-    - Lists the L(PublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/) objects
+    - Lists the L(PublicIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/) objects
       in the specified compartment. You can filter the list by using query parameters.
     - "To list your reserved public IPs:
         * Set `scope` = `REGION`  (required)
@@ -53,7 +53,7 @@ options:
         description:
             - Whether the public IP is regional or specific to a particular availability domain.
             - "* `REGION`: The public IP exists within a region and is assigned to a regional entity
-              (such as a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/)), or can be assigned to a private IP
+              (such as a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/)), or can be assigned to a private IP
               in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do
               ephemeral public IPs assigned to a regional entity."
             - "* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity
@@ -205,12 +205,12 @@ public_ips:
                   public IP must always be assigned to an entity. If the assigned entity is a private IP,
                   the ephemeral public IP is automatically deleted when the private IP is deleted, when
                   the VNIC is terminated, or when the instance is terminated. If the assigned entity is a
-                  L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/), the ephemeral public IP is automatically
+                  L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/), the ephemeral public IP is automatically
                   deleted when the NAT gateway is terminated."
                 - "* `RESERVED`: You control the public IP's lifetime. You can delete a reserved public IP
                   whenever you like. It does not need to be assigned to a private IP at all times."
                 - For more information and comparison of the two types,
-                  see L(Public IP Addresses,https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm).
+                  see L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm).
             returned: on success
             type: string
             sample: EPHEMERAL
@@ -228,7 +228,7 @@ public_ips:
             description:
                 - Whether the public IP is regional or specific to a particular availability domain.
                 - "* `REGION`: The public IP exists within a region and is assigned to a regional entity
-                  (such as a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/)), or can be assigned to a private
+                  (such as a L(NatGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/)), or can be assigned to a private
                   IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs
                   assigned to a regional entity have `scope` = `REGION`."
                 - "* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity
@@ -246,7 +246,7 @@ public_ips:
             sample: 2016-08-25T21:10:29.600Z
         public_ip_pool_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
             returned: on success
             type: string
             sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx

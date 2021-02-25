@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_agent_instance_agent_command -- Manage an Instan
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,9 @@ Synopsis
 .. Description
 
 - This module allows the user to create and delete an InstanceAgentCommand resource in Oracle Cloud Infrastructure
-- For *state=present*, create command for one or more managed instances
+- For *state=present*, creates a command or script to run on a compute instance that is managed by Oracle Cloud Agent.
+- On Linux instances, the script runs in a bash shell. On Windows instances, the script runs in a batch shell.
+- Commands that require administrator privileges will run only if Oracle Cloud Agent is running with administrator privileges.
 
 
 .. Aliases
@@ -164,7 +166,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment you want to create the command.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to create the command in.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
@@ -211,7 +213,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>The contents of the command.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -228,7 +230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>The output destination for the command.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -281,7 +283,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Object Storage name for the command output.</div>
+                                            <div>The Object Storage object name for the command output.</div>
                                             <div>Required when output_type is &#x27;OBJECT_STORAGE_TUPLE&#x27;</div>
                                                         </td>
             </tr>
@@ -304,7 +306,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The output type of the command. Use `OBJECT_STORAGE_URI` when specifying the Object Storage URL. Use `OBJECT_STORAGE_TUPLE` when specifying the namespace, bucket name, and object name.</div>
+                                            <div>The output type for the command. The following values are supported:</div>
+                                            <div>- `TEXT` - the command output is returned as plain text. - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL. - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket.</div>
+                                            <div>For background information about Object Storage buckets and URLs, see <a href='https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm'>Overview of Object Storage</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -321,7 +325,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Object Storage URL or PAR for the command output.</div>
+                                            <div>The Object Storage URL or pre-authenticated request (PAR) for the command output.</div>
                                             <div>Required when output_type is &#x27;OBJECT_STORAGE_URI&#x27;</div>
                                                         </td>
             </tr>
@@ -339,7 +343,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>The source of the command.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -392,7 +396,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Object Storage name for the command.</div>
+                                            <div>The Object Storage object name for the command.</div>
                                             <div>Required when source_type is &#x27;OBJECT_STORAGE_TUPLE&#x27;</div>
                                                         </td>
             </tr>
@@ -415,7 +419,9 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The source type of the command. Use `TEXT` for inlining the command. Use `OBJECT_STORAGE_TUPLE` when specifying the namespace, bucket name, and object name. Use `OBJECT_STORAGE_URI` when specifying the Object Storage URL.</div>
+                                            <div>The source type for the command. The following values are supported:</div>
+                                            <div>- `TEXT` - uses a plain text command that is specified inline with the request. - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL. - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket.</div>
+                                            <div>For background information about Object Storage buckets and URLs, see <a href='https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm'>Overview of Object Storage</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -432,7 +438,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Object Storage URL or PAR for the command.</div>
+                                            <div>The Object Storage URL or pre-authenticated request (PAR) for the command.</div>
                                             <div>Required when source_type is &#x27;OBJECT_STORAGE_URI&#x27;</div>
                                                         </td>
             </tr>
@@ -468,7 +474,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Sha256 checksum value of the text content</div>
+                                            <div>SHA-256 checksum value of the text content.</div>
                                             <div>Applicable when source_type is &#x27;TEXT&#x27;</div>
                                                         </td>
             </tr>
@@ -486,7 +492,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user-friendly name for the command. It does not have to be unique. Avoid entering confidential information. Example: `Database Backup Command`</div>
+                                            <div>A user-friendly name for the command. It does not have to be unique. Avoid entering confidential information.</div>
+                                            <div>Example: `Database Backup Script`</div>
                                             <div>Required for create, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
@@ -503,7 +510,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Command execution time limit. Zero means no timeout.</div>
+                                            <div>The amount of time that Oracle Cloud Agent is given to run the command on the instance before timing out. The timer starts when Oracle Cloud Agent starts the command. Zero means no timeout.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -538,7 +545,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the command.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the command.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -606,7 +613,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div></div>
+                                            <div>The target instance to run the command on.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -623,7 +630,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The target instance OCID</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the target instance.</div>
                                                         </td>
             </tr>
                     
@@ -677,7 +684,7 @@ Examples
     - name: Delete instance_agent_command using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance_agent_instance_agent_command:
         compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        display_name: Database Backup Command
+        display_name: Database Backup Script
         state: absent
 
 
@@ -730,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment the command is created in.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the command.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -748,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The contents of the command.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -765,7 +772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The output destination for the command.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -823,7 +830,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage name for the command output.</div>
+                                            <div>The Object Storage object name for the command output.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
@@ -843,7 +850,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The output type of the command. Use `OBJECT_STORAGE_URI` when specifying the Object Storage URL. Use `OBJECT_STORAGE_TUPLE` when specifying the namespace, bucket name, and object name.</div>
+                                            <div>The output type for the command. The following values are supported:</div>
+                                            <div>- `TEXT` - the command output is returned as plain text. - `OBJECT_STORAGE_URI` - the command output is saved to an Object Storage URL. - `OBJECT_STORAGE_TUPLE` - the command output is saved to an Object Storage bucket.</div>
+                                            <div>For background information about Object Storage buckets and URLs, see <a href='https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm'>Overview of Object Storage</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TEXT</div>
@@ -863,7 +872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage URL or PAR for the command output.</div>
+                                            <div>The Object Storage URL or pre-authenticated request (PAR) for the command output.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">output_uri_example</div>
@@ -883,7 +892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The source of the command.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -941,7 +950,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage name for the command.</div>
+                                            <div>The Object Storage object name for the command.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
@@ -961,7 +970,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source type of the command. Use `TEXT` for inlining the command. Use `OBJECT_STORAGE_TUPLE` when specifying the namespace, bucket name, and object name. Use `OBJECT_STORAGE_URI` when specifying the Object Storage URL.</div>
+                                            <div>The source type for the command. The following values are supported:</div>
+                                            <div>- `TEXT` - uses a plain text command that is specified inline with the request. - `OBJECT_STORAGE_URI` - imports a command from an Object Storage URL. - `OBJECT_STORAGE_TUPLE` - imports a command from an Object Storage bucket.</div>
+                                            <div>For background information about Object Storage buckets and URLs, see <a href='https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm'>Overview of Object Storage</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TEXT</div>
@@ -981,7 +992,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage URL or PAR for the command.</div>
+                                            <div>The Object Storage URL or pre-authenticated request (PAR) for the command.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">source_uri_example</div>
@@ -1021,7 +1032,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Sha256 checksum value of the text content</div>
+                                            <div>SHA-256 checksum value of the text content.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_sha256_example</div>
@@ -1041,7 +1052,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user friendly display name of the command.</div>
+                                            <div>A user-friendly name. Does not have to be unique. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -1059,7 +1070,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Command execution time limit that the instance agent will honor when executing the command inside the instance. This timer starts when the instance agent starts the commond. Zero means no timeout.</div>
+                                            <div>The amount of time that Oracle Cloud Agent is given to run the command on the instance before timing out. The timer starts when Oracle Cloud Agent starts the command. Zero means no timeout.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1077,7 +1088,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The command OCID</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the command.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1095,7 +1106,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the command has been requested to be canceled.</div>
+                                            <div>Whether a request was made to cancel the command. Canceling a command is a best-effort attempt.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1113,7 +1124,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The target instance that the command runs on.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1130,7 +1141,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The target instance OCID</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the target instance.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1149,7 +1160,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the time command was created at.</div>
+                                            <div>The date and time the command was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1167,7 +1178,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the time command was updated at.</div>
+                                            <div>The date and time the command was last updated, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

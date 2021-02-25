@@ -20,7 +20,7 @@ oracle.oci.oci_network_virtual_circuit -- Manage a VirtualCircuit resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,10 +43,10 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a VirtualCircuit resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new virtual circuit to use with Oracle Cloud Infrastructure FastConnect. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the virtual circuit to reside. If you're not sure which compartment to use, put the virtual circuit in the same compartment with the DRG it's using. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
+- For *state=present*, creates a new virtual circuit to use with Oracle Cloud Infrastructure FastConnect. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
+- For the purposes of access control, you must provide the OCID of the compartment where you want the virtual circuit to reside. If you're not sure which compartment to use, put the virtual circuit in the same compartment with the DRG it's using. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the virtual circuit. It does not have to be unique, and you can change it. Avoid entering confidential information.
-- **Important:** When creating a virtual circuit, you specify a DRG for the traffic to flow through. Make sure you attach the DRG to your VCN and confirm the VCN's routing sends traffic to the DRG. Otherwise traffic will not flow. For more information, see `Route Tables <https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm>`_.
+- **Important:** When creating a virtual circuit, you specify a DRG for the traffic to flow through. Make sure you attach the DRG to your VCN and confirm the VCN's routing sends traffic to the DRG. Otherwise traffic will not flow. For more information, see `Route Tables <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm>`_.
 - This resource has the following action operations in the :ref:`oci_virtual_circuit_actions <ansible_collections.oci_virtual_circuit_actions_module>` module: bulk_add_virtual_circuit_public_prefixes, bulk_delete_virtual_circuit_public_prefixes.
 
 
@@ -168,7 +168,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
+                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -439,7 +439,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/Drg) that this virtual circuit uses.</div>
+                                            <div>For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Drg) that this virtual circuit uses.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -470,7 +470,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Deprecated. Instead use `providerServiceId`. To get a list of the provider names, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices'>ListFastConnectProviderServices</a>.</div>
+                                            <div>Deprecated. Instead use `providerServiceId`. To get a list of the provider names, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices'>ListFastConnectProviderServices</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -485,7 +485,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the service offered by the provider (if you&#x27;re connecting via a provider). To get a list of the available service offerings, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices'>ListFastConnectProviderServices</a>.</div>
+                                            <div>The OCID of the service offered by the provider (if you&#x27;re connecting via a provider). To get a list of the available service offerings, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices'>ListFastConnectProviderServices</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -516,7 +516,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Deprecated. Instead use `providerServiceId`. To get a list of the provider names, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices'>ListFastConnectProviderServices</a>.</div>
+                                            <div>Deprecated. Instead use `providerServiceId`. To get a list of the provider names, see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices'>ListFastConnectProviderServices</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -819,7 +819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
+                                            <div>The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes'>ListFastConnectProviderServiceVirtualCircuitBandwidthShapes</a>.</div>
                                             <div>Example: `10 Gbps`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -838,7 +838,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Deprecated. Instead use the information in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/'>FastConnectProviderService</a>.</div>
+                                            <div>Deprecated. Instead use the information in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/FastConnectProviderService/'>FastConnectProviderService</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
@@ -1101,7 +1101,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the customer&#x27;s L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Drg) that this virtual circuit uses. Applicable only to private virtual circuits.</div>
+                                            <div>The OCID of the customer&#x27;s L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg) that this virtual circuit uses. Applicable only to private virtual circuits.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1137,7 +1137,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The virtual circuit&#x27;s current state. For information about the different states, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm'>FastConnect Overview</a>.</div>
+                                            <div>The virtual circuit&#x27;s current state. For information about the different states, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm'>FastConnect Overview</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PENDING_PROVIDER</div>
@@ -1352,7 +1352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the virtual circuit supports private or public peering. For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm'>FastConnect Overview</a>.</div>
+                                            <div>Whether the virtual circuit supports private or public peering. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm'>FastConnect Overview</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PUBLIC</div>

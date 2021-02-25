@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_agent_instance_agent_command_execution_facts -- 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple InstanceAgentCommandExecution resources in Oracle Cloud Infrastructure
-- List all executions of a command, i.e return command execution results from all targeted instances batch by batch.
+- Lists the execution details for Oracle Cloud Agent commands that run on the specified compute instance.
 - If *instance_agent_command_id* is specified, the details of a single InstanceAgentCommandExecution will be returned.
 
 
@@ -226,7 +226,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the command.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the command.</div>
                                             <div>Required to get a specific instance_agent_command_execution.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -243,7 +243,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the instance.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -300,7 +300,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. You can provide one sort order (`sortOrder`). Default order for TIMECREATED is descending.</div>
+                                            <div>The field to sort by. You can provide one sort order (`sortOrder`). Default order for `TIMECREATED` is descending.</div>
                                             <div>**Note:** In general, some &quot;List&quot; operations (for example, `ListInstances`) let you optionally filter by availability domain if the scope of the resource type is within a single availability domain. If you call one of these &quot;List&quot; operations without specifying an availability domain, the resources are grouped by availability domain, then sorted.</div>
                                                         </td>
             </tr>
@@ -320,7 +320,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order is case sensitive.</div>
+                                            <div>The sort order to use, either ascending (`ASC`) or descending (`DESC`). The `DISPLAYNAME` sort order is case sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -456,7 +456,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>command exit code.</div>
+                                            <div>The exit code for the command. Exit code `0` indicates success.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -475,7 +475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>optional status message that agent&#x27;s can populate for additional troubleshooting.</div>
+                                            <div>An optional status message that Oracle Cloud Agent can populate for additional troubleshooting.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
@@ -513,7 +513,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage name for the command output.</div>
+                                            <div>The Object Storage object name for the command output.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
@@ -532,7 +532,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The response type where the command reponse is made available</div>
+                                            <div>The output destination type for the command. The following values are supported:</div>
+                                            <div>- TEXT - the command output is returned as plain text. - OBJECT_STORAGE_URI - the command output is saved to an Object Storage URL. - OBJECT_STORAGE_TUPLE - the command output is saved to an Object Storage bucket.</div>
+                                            <div>For background information about Object Storage buckets and URLs, see <a href='https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm'>Overview of Object Storage</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TEXT</div>
@@ -551,7 +553,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Object Storage URL or PAR for the command output.</div>
+                                            <div>The Object Storage URL or pre-authenticated request (PAR) for the command output.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">output_uri_example</div>
@@ -570,7 +572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The command response output.</div>
+                                            <div>The command output.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
@@ -589,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Sha256 checksum value of the text content</div>
+                                            <div>SHA-256 checksum value of the text content.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_sha256_example</div>
