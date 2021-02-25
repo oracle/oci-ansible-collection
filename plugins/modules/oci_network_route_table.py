@@ -25,15 +25,15 @@ description:
     - This module allows the user to create, update and delete a RouteTable resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new route table for the specified VCN. In the request you must also include at least one route
       rule for the new route table. For information on the number of rules you can have in a route table, see
-      L(Service Limits,https://docs.cloud.oracle.com/Content/General/Concepts/servicelimits.htm). For general information about route
+      L(Service Limits,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm). For general information about route
       tables in your VCN and the types of targets you can use in route rules,
-      see L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm).
+      see L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
     - For the purposes of access control, you must provide the OCID of the compartment where you want the route
       table to reside. Notice that the route table doesn't have to be in the same compartment as the VCN, subnets,
       or other Networking Service components. If you're not sure which compartment to use, put the route
       table in the same compartment as the VCN. For more information about compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm). For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm). For information about OCIDs, see
+      L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the route table, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
 version_added: "2.9"
@@ -90,7 +90,7 @@ options:
                       traffic. Required if you provide a `destinationType`.
                     - "Allowed values:"
                     - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
-                    - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/), if you're
+                    - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                           setting up a route rule for traffic destined for a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
                 type: str
@@ -99,7 +99,7 @@ options:
                     - Type of destination for the rule. Required if you provide a `destination`.
                     - " * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
                     - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
-                          L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
+                          L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                           particular `Service` through a service gateway)."
                 type: str
                 choices:
@@ -109,7 +109,7 @@ options:
                 description:
                     - The OCID for the route rule's target. For information about the type of
                       targets you can specify, see
-                      L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm).
+                      L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                 type: str
                 required: true
             description:
@@ -249,7 +249,7 @@ route_table:
                           traffic. Required if you provide a `destinationType`.
                         - "Allowed values:"
                         - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
-                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/), if you're
+                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a route rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
@@ -260,7 +260,7 @@ route_table:
                         - Type of destination for the rule. Required if you provide a `destination`.
                         - " * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
                         - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
-                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
+                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                               particular `Service` through a service gateway)."
                     returned: on success
                     type: string
@@ -269,7 +269,7 @@ route_table:
                     description:
                         - The OCID for the route rule's target. For information about the type of
                           targets you can specify, see
-                          L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm).
+                          L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success
                     type: string
                     sample: ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx

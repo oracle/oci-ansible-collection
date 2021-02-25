@@ -20,7 +20,7 @@ oracle.oci.oci_network_service_facts -- Fetches details about one or multiple Se
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
-- Lists the available `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/>`_ objects that you can enable for a service gateway in this region.
+- Lists the available `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/>`_ objects that you can enable for a service gateway in this region.
 - If *service_id* is specified, the details of a single Service will be returned.
 
 
@@ -225,7 +225,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The service&#x27;s <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>The service&#x27;s <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Required to get a specific service.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -325,7 +325,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>A string that represents the regional public IP address ranges for the Oracle service or services covered by this `Service` object. Also known as the `Service` object&#x27;s *service CIDR label*.</div>
-                                            <div>When you set up a route rule to route traffic to the service gateway, use this value as the rule&#x27;s destination. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/'>Route Table</a>. Also, when you set up a security list rule to cover traffic with the service gateway, use the `cidrBlock` value as the rule&#x27;s destination (for an egress rule) or the source (for an ingress rule). See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/SecurityList/'>Security List</a>.</div>
+                                            <div>When you set up a route rule to route traffic to the service gateway, use this value as the rule&#x27;s destination. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/'>Route Table</a>. Also, when you set up a security list rule to cover traffic with the service gateway, use the `cidrBlock` value as the rule&#x27;s destination (for an egress rule) or the source (for an ingress rule). See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/SecurityList/'>Security List</a>.</div>
                                             <div>Example: `oci-phx-objectstorage`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -363,7 +363,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The `Service` object&#x27;s <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>The `Service` object&#x27;s <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>

@@ -27,7 +27,7 @@ description:
       information so you can specify your desired provider and service
       offering when you create a virtual circuit.
     - For the compartment ID, provide the OCID of your tenancy (the root compartment).
-    - For more information, see L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+    - For more information, see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - If I(provider_service_id) is specified, the details of a single FastConnectProviderService will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

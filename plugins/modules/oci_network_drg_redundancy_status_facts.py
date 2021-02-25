@@ -24,7 +24,7 @@ short_description: Fetches details about a DrgRedundancyStatus resource in Oracl
 description:
     - Fetches details about a DrgRedundancyStatus resource in Oracle Cloud Infrastructure
     - Gets the redundancy status for the specified DRG. For more information, see
-      L(Redundancy Remedies,https://docs.cloud.oracle.com/Content/Network/Troubleshoot/drgredundancy.htm).
+      L(Redundancy Remedies,https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/drgredundancy.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

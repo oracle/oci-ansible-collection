@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple PeerRegionForRemotePeer
 description:
     - Fetches details about one or multiple PeerRegionForRemotePeering resources in Oracle Cloud Infrastructure
     - Lists the regions that support remote VCN peering (which is peering across regions).
-      For more information, see L(VCN Peering,https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm).
+      For more information, see L(VCN Peering,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options: {}

@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_verified_data -- Manage a VerifiedData resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -258,7 +258,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be; upto 4096 size in bytes. To sign a larger message, provide the message digest.</div>
+                                            <div>The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be upto 4096 size in bytes. To sign a larger message, provide the message digest.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -277,7 +277,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Denotes whether the value of the message parameter is a raw message or a message digest. The default value, RAW,indicates a message. To indicate a message digest, enter DIGEST.</div>
+                                            <div>Denotes whether the value of the message parameter is a raw message or a message digest. The default value, RAW, indicates a message. To indicate a message digest, enter DIGEST.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -350,7 +350,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The algorithm to be used for signing the message or message digest. For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with different Hashing algorithms. For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms. In case of passing digest for signing, make sure the same hashing algorithm is specified as used for created for digest.</div>
+                                            <div>The algorithm to be used for signing the message or message digest For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with different Hashing algorithms. For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms. In case of passing digest for signing, make sure the same hashing algorithm is specified as used for created for digest.</div>
                                                         </td>
             </tr>
                                 <tr>

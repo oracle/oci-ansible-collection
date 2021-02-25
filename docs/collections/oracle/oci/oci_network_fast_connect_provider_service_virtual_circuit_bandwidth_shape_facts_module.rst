@@ -20,7 +20,7 @@ oracle.oci.oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_s
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - Fetches details about one or multiple FastConnectProviderServiceVirtualCircuitBandwidthShape resources in Oracle Cloud Infrastructure
 - Gets the list of available virtual circuit bandwidth levels for a provider. You need this information so you can specify your desired bandwidth level (shape) when you create a virtual circuit.
-- For more information about virtual circuits, see `FastConnect Overview <https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm>`_.
+- For more information about virtual circuits, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
 
 
 .. Aliases

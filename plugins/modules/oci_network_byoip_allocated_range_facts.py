@@ -30,7 +30,8 @@ author: Oracle (@oracle)
 options:
     byoip_range_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR block.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR
+              block.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
@@ -58,7 +59,7 @@ byoip_allocated_ranges:
             sample: cidr_block_example
         public_ip_pool_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IP pool containing the CIDR block.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the IP pool containing the CIDR block.
             returned: on success
             type: string
             sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx

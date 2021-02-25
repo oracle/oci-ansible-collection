@@ -109,6 +109,12 @@ installed_packages:
             returned: on success
             type: string
             sample: install_time_example
+        issued:
+            description:
+                - date the package was issued by a providing erratum (if available)
+            returned: on success
+            type: string
+            sample: issued_example
         software_sources:
             description:
                 - list of software sources that provide the software package
@@ -134,6 +140,7 @@ installed_packages:
         "version": "version_example",
         "architecture": "architecture_example",
         "install_time": "install_time_example",
+        "issued": "issued_example",
         "software_sources": [{
             "name": "name_example",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

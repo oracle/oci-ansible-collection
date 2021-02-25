@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_installed_package_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -372,7 +372,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of InstalledPackage resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;architecture&#x27;: &#x27;architecture_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;install_time&#x27;: &#x27;install_time_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;software_sources&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;architecture&#x27;: &#x27;architecture_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;install_time&#x27;: &#x27;install_time_example&#x27;, &#x27;issued&#x27;: &#x27;issued_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;software_sources&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -427,6 +427,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">install_time_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-installed_packages/issued"></div>
+                    <b>issued</b>
+                    <a class="ansibleOptionLink" href="#return-installed_packages/issued" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>date the package was issued by a providing erratum (if available)</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">issued_example</div>
                                     </td>
             </tr>
                                 <tr>

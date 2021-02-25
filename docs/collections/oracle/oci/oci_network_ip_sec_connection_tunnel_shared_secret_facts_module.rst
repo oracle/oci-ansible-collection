@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_tunnel_shared_secret_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
-- Gets the specified tunnel's shared secret (pre-shared key). To get other information about the tunnel, use `GetIPSecConnectionTunnel <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/GetIPSecConnectionTunnel>`_.
+- Gets the specified tunnel's shared secret (pre-shared key). To get other information about the tunnel, use `GetIPSecConnectionTunnel <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/GetIPSecConnectionTunnel>`_.
 
 
 .. Aliases
@@ -239,7 +239,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>

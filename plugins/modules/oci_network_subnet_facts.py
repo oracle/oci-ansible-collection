@@ -42,7 +42,7 @@ options:
         type: str
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
         type: str
     display_name:
         description:
@@ -154,7 +154,7 @@ subnets:
                 - The absence of this parameter means the Internet and VCN Resolver
                   will not resolve hostnames of instances in this subnet.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `subnet123`"
             returned: on success
             type: string
@@ -187,7 +187,7 @@ subnets:
                   automatically be assigned public IP addresses unless specified
                   otherwise during instance launch or VNIC creation (with the
                   `assignPublicIp` flag in
-                  L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)).
+                  L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)).
                   If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
                   subnet cannot have public IP addresses (that is, it's a private
                   subnet).
@@ -214,7 +214,7 @@ subnets:
                 - The subnet's domain name, which consists of the subnet's DNS label,
                   the VCN's DNS label, and the `oraclevcn.com` domain.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `subnet123.vcn1.oraclevcn.com`"
             returned: on success
             type: string

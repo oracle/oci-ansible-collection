@@ -20,7 +20,7 @@ oracle.oci.oci_network_remote_peering_connection_actions -- Perform actions on a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a RemotePeeringConnection resource in Oracle Cloud Infrastructure
-- For *action=connect*, connects this RPC to another one in a different region. This operation must be called by the VCN administrator who is designated as the *requestor* in the peering relationship. The *acceptor* must implement an Identity and Access Management (IAM) policy that gives the requestor permission to connect to RPCs in the acceptor's compartment. Without that permission, this operation will fail. For more information, see `VCN Peering <https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm>`_.
+- For *action=connect*, connects this RPC to another one in a different region. This operation must be called by the VCN administrator who is designated as the *requestor* in the peering relationship. The *acceptor* must implement an Identity and Access Management (IAM) policy that gives the requestor permission to connect to RPCs in the acceptor's compartment. Without that permission, this operation will fail. For more information, see `VCN Peering <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm>`_.
 
 
 .. Aliases

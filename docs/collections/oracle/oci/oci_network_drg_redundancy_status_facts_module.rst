@@ -20,7 +20,7 @@ oracle.oci.oci_network_drg_redundancy_status_facts -- Fetches details about a Dr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a DrgRedundancyStatus resource in Oracle Cloud Infrastructure
-- Gets the redundancy status for the specified DRG. For more information, see `Redundancy Remedies <https://docs.cloud.oracle.com/Content/Network/Troubleshoot/drgredundancy.htm>`_.
+- Gets the redundancy status for the specified DRG. For more information, see `Redundancy Remedies <https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/drgredundancy.htm>`_.
 
 
 .. Aliases

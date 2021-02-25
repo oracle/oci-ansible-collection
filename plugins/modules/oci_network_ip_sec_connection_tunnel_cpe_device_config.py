@@ -33,7 +33,7 @@ options:
         required: true
     tunnel_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
         type: str
         aliases: ["id"]
         required: true
@@ -46,7 +46,7 @@ options:
             key:
                 description:
                     - A string that identifies the question to be answered. See the `key` attribute in
-                      L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
+                      L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/CpeDeviceConfigQuestion).
                     - This parameter is updatable.
                 type: str
             value:
@@ -89,7 +89,7 @@ ip_sec_connection_tunnel_cpe_device_config:
                 key:
                     description:
                         - A string that identifies the question to be answered. See the `key` attribute in
-                          L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/CpeDeviceConfigQuestion).
+                          L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/CpeDeviceConfigQuestion).
                     returned: on success
                     type: string
                     sample: key_example

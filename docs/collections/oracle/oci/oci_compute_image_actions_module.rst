@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_actions -- Perform actions on an Image resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -253,6 +253,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-export_format"></div>
+                    <b>export_format</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_format" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>QCOW2</li>
+                                                                                                                                                                                                <li>VMDK</li>
+                                                                                                                                                                                                <li>OCI</li>
+                                                                                                                                                                                                <li>VHD</li>
+                                                                                                                                                                                                <li>VDI</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The format of the image to be exported. The default value is &quot;OCI&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-image_id"></div>
                     <b>image_id</b>
                     <a class="ansibleOptionLink" href="#parameter-image_id" title="Permalink to this option"></a>
@@ -387,11 +409,21 @@ Examples
     
     - name: Perform action export on image
       oci_compute_image_actions:
-        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+        object_name: exported-image.oci
+        bucket_name: MyBucket
+        namespace_name: MyNamespace
         destination_type: objectStorageTuple
-        bucket_name: bucket_name_example
-        namespace_name: namespace_name_example
-        object_name: object_name_example
+        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+        action: export
+
+    - name: Perform action export on image
+      oci_compute_image_actions:
+        object_name: exported-image.oci
+        bucket_name: MyBucket
+        namespace_name: MyNamespace
+        destination_type: objectStorageTuple
+        export_format: VMDK
+        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
         action: export
 
 

@@ -77,7 +77,7 @@ options:
         description:
             - A list of the OCIDs of the network security groups (NSGs) to add all VNICs in the VLAN to. For more
               information about NSGs, see
-              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
             - This parameter is updatable.
         type: list
     route_table_id:
@@ -101,7 +101,7 @@ options:
         type: int
     vlan_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -225,7 +225,7 @@ vlan:
                 - A list of the OCIDs of the network security groups (NSGs) to use with this VLAN.
                   All VNICs in the VLAN belong to these NSGs. For more
                   information about NSGs, see
-                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
             returned: on success
             type: list
             sample: []

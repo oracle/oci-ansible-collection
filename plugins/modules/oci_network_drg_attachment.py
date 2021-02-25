@@ -26,12 +26,12 @@ description:
     - For I(state=present), attaches the specified DRG to the specified VCN. A VCN can be attached to only one DRG at a time,
       and vice versa. The response includes a `DrgAttachment` object with its own OCID. For more
       information about DRGs, see
-      L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingDRGs.htm).
+      L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDRGs.htm).
     - "You may optionally specify a *display name* for the attachment, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - For the purposes of access control, the DRG attachment is automatically placed into the same compartment
       as the VCN. For more information about compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -55,8 +55,9 @@ options:
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the DRG attachment.
               For information about why you would associate a route table with a DRG attachment, see:"
-            - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
-                * L(Transit Routing: Private Access to Oracle Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
+            - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
+                * L(Transit Routing: Private Access to Oracle
+                Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
             - This parameter is updatable.
         type: str
     vcn_id:
@@ -171,9 +172,9 @@ drg_attachment:
             description:
                 - The OCID of the route table the DRG attachment is using.
                 - "For information about why you would associate a route table with a DRG attachment, see:"
-                - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
+                - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
                     * L(Transit Routing: Private Access to Oracle
-                    Services,https://docs.cloud.oracle.com/Content/Network/Tasks/transitroutingoracleservices.htm)"
+                    Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
             returned: on success
             type: string
             sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx

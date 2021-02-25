@@ -20,7 +20,7 @@ oracle.oci.oci_network_private_ip_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,10 +43,10 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple PrivateIp resources in Oracle Cloud Infrastructure
-- Lists the `PrivateIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/>`_ objects based on one of these filters:
--  - Subnet OCID. - VNIC OCID. - Both private IP address and subnet OCID: This lets you get a `privateIP` object based on its private IP address (for example, 10.0.3.3) and not its OCID. For comparison, `GetPrivateIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp>`_ requires the OCID.
+- Lists the `PrivateIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/>`_ objects based on one of these filters:
+-  - Subnet OCID. - VNIC OCID. - Both private IP address and subnet OCID: This lets you get a `privateIP` object based on its private IP address (for example, 10.0.3.3) and not its OCID. For comparison, `GetPrivateIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp>`_ requires the OCID.
 - If you're listing all the private IPs associated with a given subnet or VNIC, the response includes both primary and secondary private IPs.
-- If you are an Oracle Cloud VMware Solution customer and have VLANs in your VCN, you can filter the list by VLAN OCID. See `Vlan <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan>`_.
+- If you are an Oracle Cloud VMware Solution customer and have VLANs in your VCN, you can filter the list by VLAN OCID. See `Vlan <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan>`_.
 - If *private_ip_id* is specified, the details of a single PrivateIp will be returned.
 
 
@@ -290,7 +290,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -481,7 +481,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The hostname for the private IP. Used for DNS. The value is the hostname portion of the private IP&#x27;s fully qualified domain name (FQDN) (for example, `bminstance-1` in FQDN `bminstance-1.subnet123.vcn1.oraclevcn.com`). Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>.</div>
-                                            <div>For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
+                                            <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>Example: `bminstance-1`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -519,7 +519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The private IP address of the `privateIp` object. The address is within the CIDR of the VNIC&#x27;s subnet.</div>
-                                            <div>However, if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution, the address is from the range specified by the `cidrBlock` attribute for the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>However, if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution, the address is from the range specified by the `cidrBlock` attribute for the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                             <div>Example: `10.0.3.3`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -595,7 +595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Applicable only if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>Applicable only if the `PrivateIp` object is being used with a VLAN as part of the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx</div>

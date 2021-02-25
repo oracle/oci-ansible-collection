@@ -42,7 +42,7 @@ options:
         type: str
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
         type: str
     display_name:
         description:
@@ -134,7 +134,7 @@ security_lists:
                           can go to.
                         - "Allowed values:"
                         - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
-                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/), if you're
+                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security list rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
@@ -146,7 +146,7 @@ security_lists:
                         - "Allowed values:"
                         - " * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
                         - " * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
-                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) (the rule is for traffic destined for a
+                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                               particular `Service` through a service gateway)."
                     returned: on success
                     type: string
@@ -346,7 +346,7 @@ security_lists:
                           can come from.
                         - "Allowed values:"
                         - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
-                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/), if you're
+                        - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security list rule for traffic coming from a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
@@ -357,7 +357,7 @@ security_lists:
                         - Type of source for the rule. The default is `CIDR_BLOCK`.
                         - " * `CIDR_BLOCK`: If the rule's `source` is an IP address range in CIDR notation."
                         - " * `SERVICE_CIDR_BLOCK`: If the rule's `source` is the `cidrBlock` value for a
-                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Service/) (the rule is for traffic coming from a
+                              L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic coming from a
                               particular `Service` through a service gateway)."
                     returned: on success
                     type: string

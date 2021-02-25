@@ -350,12 +350,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.display.display(*args, **kwargs)
         pass
 
-    def info(self, *args, **kwargs):
-        self.display.display(*args, **kwargs)
-
-    def warn(self, *args, **kwargs):
-        self.display.warning(*args, **kwargs)
-
     def setup_clients(self, regions):
         """
             :param regions: A list of regions to create  clients
@@ -439,7 +433,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         """
         self.setup_clients(regions)
 
-        self.info("Building inventory.")
+        self.debug("Building inventory.")
 
         self.compartments = dict()
 
@@ -457,7 +451,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
                 for compartment in compartments:
                     if compartment.id in self.compartments:
-                        self.info(
+                        self.debug(
                             "Obtained the the compartment {0} twice, picking up the later entry in the list".format(
                                 compartment.id
                             )
@@ -466,7 +460,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         "tenancy" in compartment.id
                     ):
                         fetching_hosts_from_all_compartments = True
-                        self.info(
+                        self.debug(
                             "Config given to fetch hosts from all compartments, skipping reading the "
                             "compartments list further if there are any present"
                         )
@@ -480,7 +474,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 self.compartments[compartment.id] = compartment
 
         if not self.compartments:
-            self.warn("No compartments matching the criteria.")
+            self.debug("No compartments matching the criteria.")
             return
 
         instance_inventories = []
@@ -520,7 +514,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 num_threads = min(
                     len(compartment_ocids), self.params["max_thread_count"]
                 )
-                self.info(
+                self.debug(
                     "Parallel processing enabled. Getting instances from {0} in {1} threads.".format(
                         region, num_threads
                     )
@@ -558,7 +552,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 num_threads = min(
                     len(compartment_ocids), self.params["max_thread_count"]
                 )
-                self.info(
+                self.debug(
                     "Parallel processing enabled. Getting db hosts from {0} in {1} threads.".format(
                         region, num_threads
                     )
@@ -804,7 +798,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
                 host_name = self.get_host_name(vnic, region=region)
 
-                # Skip host which is not addressable using hostname_format
+                # Skip vnic which is not addressable using given hostname_format
                 if not host_name:
                     if self.params["strict_hostname_checking"] == "yes":
                         raise Exception(
@@ -812,18 +806,18 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                                 vnic_attachment.instance_id
                             )
                         )
-                    self.warn(
+                    self.debug(
                         "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
                             vnic_attachment.instance_id, self.params["hostname_format"]
                         )
                     )
-                    return None
+                    continue
 
                 host_name = self.sanitize(host_name)
 
                 groups = set(common_groups)
 
-                self.info("Creating inventory for host {0}.".format(host_name))
+                self.debug("Creating inventory for host {0}.".format(host_name))
                 self.create_instance_inventory_for_host(
                     instance_inventory, host_name, vars=instance_vars, groups=groups
                 )
@@ -836,9 +830,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.warn(ex)
+                self.debug(ex)
                 raise
-            self.warn(ex)
+            self.debug(ex)
 
     def build_inventory_for_db_host(self, db_host, region):
         """Build and return inventory for a database host"""
@@ -914,7 +908,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             db_host.id
                         )
                     )
-                self.warn(
+                self.debug(
                     "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
                         db_host.id, self.params["hostname_format"]
                     )
@@ -925,7 +919,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
             groups = set(common_groups)
 
-            self.info("Creating inventory for host {0}.".format(host_name))
+            self.debug("Creating inventory for host {0}.".format(host_name))
             self.create_instance_inventory_for_host(
                 db_host_inventory, host_name, vars=db_host_vars, groups=groups
             )
@@ -934,9 +928,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.warn(ex)
+                self.debug(ex)
                 raise
-            self.warn(ex)
+            self.debug(ex)
 
     def create_instance_inventory_for_host(
         self, instance_inventory, host_name, vars, groups
@@ -990,7 +984,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     for key, value in six.iteritems(self.filters["freeform_tags"])
                 )
             ]
-            self.info(
+            self.debug(
                 "Resources in compartment {0} which match all the freeform tags: {1}".format(
                     compartment_ocid, self.get_resources_for_logging(resources)
                 )
@@ -1010,7 +1004,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     )
                 )
             ]
-            self.info(
+            self.debug(
                 "Resources in compartment {0} which match all the freeform & defined tags: {1}".format(
                     compartment_ocid, self.get_resources_for_logging(resources)
                 )
@@ -1090,9 +1084,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.warn(ex)
+                self.debug(ex)
                 raise
-            self.warn(ex)
+            self.debug(ex)
             return []
 
     def get_filtered_instances(self, compartment_ocid, region):
@@ -1110,9 +1104,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return instances
         except ServiceError as ex:
             if ex.status == 401:
-                self.warn(ex)
+                self.debug(ex)
                 raise
-            self.warn(ex)
+            self.debug(ex)
             return []
 
     def get_compute_client_for_region(self, region):
@@ -1159,11 +1153,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 + vcn.dns_label
                 + oraclevcn_domain_name
             )
-            self.info("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
+            self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
             return fqdn
 
         elif self.params["hostname_format"] == "private_ip":
-            self.info(
+            self.debug(
                 "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
             )
             return vnic.private_ip
@@ -1328,7 +1322,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         # hostname format
         self.params["hostname_format"] = self._get_hostname_format()
-        self.warn(
+        self.debug(
             "Using hostname format: {0} and can be changed via the option 'hostname_format'".format(
                 self.params["hostname_format"]
             )
@@ -1337,7 +1331,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         # debug flag
         if self.get_option("debug") is not None:
             self.params["debug"] = self.get_option("debug")
-        self.warn("The debug flag is set to {0}".format(self.params["debug"]))
+        self.debug("The debug flag is set to {0}".format(self.params["debug"]))
 
         cache_key = self.get_cache_key(path)
 
@@ -1357,7 +1351,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 # cache expired or cache file doesn't exist
                 cache_needs_update = True
             else:
-                self.warn("Using cached results")
+                self.debug("Using cached results")
                 self._populate(cached_results, hostnames)
 
         results = None

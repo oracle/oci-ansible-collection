@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_tunnel_facts -- Fetches details about o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -255,7 +255,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
                                             <div>Required to get a specific ip_sec_connection_tunnel.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -326,7 +326,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of IpSecConnectionTunnel resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_session_info&#x27;: {&#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;12345&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;10.0.0.5/31&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;10.0.0.4/31&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;203.0.113.22&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vpn_ip&#x27;: &#x27;203.0.113.21&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_session_info&#x27;: {&#x27;bgp_state&#x27;: &#x27;UP&#x27;, &#x27;customer_bgp_asn&#x27;: &#x27;12345&#x27;, &#x27;customer_interface_ip&#x27;: &#x27;10.0.0.5/31&#x27;, &#x27;oracle_bgp_asn&#x27;: &#x27;oracle_bgp_asn_example&#x27;, &#x27;oracle_interface_ip&#x27;: &#x27;10.0.0.4/31&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpe_ip&#x27;: &#x27;203.0.113.22&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_domain_config&#x27;: {&#x27;cpe_traffic_selector&#x27;: [], &#x27;oracle_traffic_selector&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ike_version&#x27;: &#x27;V1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;routing&#x27;: &#x27;BGP&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vpn_ip&#x27;: &#x27;203.0.113.21&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -377,7 +377,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this ASN is required and used for the tunnel&#x27;s BGP session. This is the ASN of the network on the CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses &quot;asplain&quot; format.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this ASN is required and used for the tunnel&#x27;s BGP session. This is the ASN of the network on the CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses &quot;asplain&quot; format.</div>
                                             <div>If the tunnel uses static routing, the `customerBgpAsn` must be null.</div>
                                             <div>Example: `12345` (2-byte) or `1587232876` (4-byte)</div>
                                         <br/>
@@ -399,7 +399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The IP address for the CPE end of the inside tunnel interface.</div>
-                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
                                             <div>If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP address so you can troubleshoot or monitor the tunnel.</div>
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.5/31`</div>
@@ -441,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The IP address for the Oracle end of the inside tunnel interface.</div>
-                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is required and used for the tunnel&#x27;s BGP session.</div>
                                             <div>If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP address so you can troubleshoot or monitor the tunnel.</div>
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.4/31`</div>
@@ -463,7 +463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the tunnel.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the tunnel.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -509,6 +509,57 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnels/encryption_domain_config"></div>
+                    <b>encryption_domain_config</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnels/encryption_domain_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnels/encryption_domain_config/cpe_traffic_selector"></div>
+                    <b>cpe_traffic_selector</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnels/encryption_domain_config/cpe_traffic_selector" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Lists IPv4 or IPv6-enabled subnets in your on-premises network.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnels/encryption_domain_config/oracle_traffic_selector"></div>
+                    <b>oracle_traffic_selector</b>
+                    <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnels/encryption_domain_config/oracle_traffic_selector" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-ip_sec_connection_tunnels/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-ip_sec_connection_tunnels/id" title="Permalink to this return value"></a>
@@ -518,7 +569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the tunnel.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>

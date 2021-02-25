@@ -62,12 +62,12 @@ options:
               Must be unique across all VNICs in the subnet and comply with
               L(RFC 952,https://tools.ietf.org/html/rfc952) and
               L(RFC 1123,https://tools.ietf.org/html/rfc1123).
-              The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/) object and also the
-              L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) object returned by
-              L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/ListPrivateIps) and
-              L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp).
+              The value appears in the L(Vnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/) object and also the
+              L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/) object returned by
+              L(ListPrivateIps,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/ListPrivateIps) and
+              L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PrivateIp/GetPrivateIp).
             - For more information, see
-              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
             - This parameter is updatable.
         type: str
     nsg_ids:
@@ -76,10 +76,9 @@ options:
               an empty array removes the VNIC from all network security groups.
             - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
               belonging to a subnet), the value of the `nsgIds` attribute is ignored. Instead, the
-              VNIC belongs to the NSGs that are associated with the VLAN itself. See L(Vlan,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/Vlan).
+              VNIC belongs to the NSGs that are associated with the VLAN itself. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
             - For more information about NSGs, see
-              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
             - This parameter is updatable.
         type: list
     skip_source_dest_check:
@@ -87,7 +86,7 @@ options:
             - Whether the source/destination check is disabled on the VNIC.
               Defaults to `false`, which means the check is performed. For information about why you would
               skip the source/destination check, see
-              L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+              L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm#privateip).
             - "If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
               belonging to a subnet), the value of the `skipSourceDestCheck` attribute is ignored.
               This is because the source/destination check is always disabled for VNICs in a VLAN.
@@ -166,7 +165,7 @@ vnic:
                   L(RFC 952,https://tools.ietf.org/html/rfc952) and
                   L(RFC 1123,https://tools.ietf.org/html/rfc1123).
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `bminstance-1`"
             returned: on success
             type: string
@@ -206,9 +205,9 @@ vnic:
                 - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
                   belonging to a subnet), the value of the `nsgIds` attribute is ignored. Instead, the
                   VNIC belongs to the NSGs that are associated with the VLAN itself. See L(Vlan,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/Vlan).
+                  us/iaas/api/#/en/iaas/latest/Vlan).
                 - For more information about NSGs, see
-                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
             returned: on success
             type: list
             sample: []
@@ -216,7 +215,7 @@ vnic:
             description:
                 - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
                   belonging to a subnet), the `vlanId` is the OCID of the VLAN the VNIC is in. See
-                  L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan). If the VNIC is instead in a subnet, `subnetId` has a value.
+                  L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan). If the VNIC is instead in a subnet, `subnetId` has a value.
             returned: on success
             type: string
             sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
@@ -239,7 +238,7 @@ vnic:
                 - Whether the source/destination check is disabled on the VNIC.
                   Defaults to `false`, which means the check is performed. For information
                   about why you would skip the source/destination check, see
-                  L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
+                  L(Using a Private IP as a Route Target,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm#privateip).
                 - If the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution (instead of
                   belonging to a subnet), the `skipSourceDestCheck` attribute is `true`.
                   This is because the source/destination check is always disabled for VNICs in a VLAN.

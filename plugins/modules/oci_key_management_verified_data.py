@@ -45,24 +45,26 @@ options:
         required: true
     message_type:
         description:
-            - Denotes whether the value of the message parameter is a raw message or a message digest. The default value,
-              RAW,indicates a message. To indicate a message digest, enter DIGEST.
+            - Denotes whether the value of the message parameter is a raw message or a message digest. The default value, RAW, indicates a message. To indicate
+              a message digest, enter DIGEST.
         type: str
         choices:
             - "RAW"
             - "DIGEST"
     message:
         description:
-            - The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be;
-              upto 4096 size in bytes. To sign a larger message, provide the message digest.
+            - The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be upto 4096 size in bytes. To sign a
+              larger message, provide the message digest.
         type: str
         required: true
     signing_algorithm:
         description:
-            - "The algorithm to be used for signing the message or message digest.
-              For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with different Hashing algorithms.
+            - "The algorithm to be used for signing the message or message digest
+              For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with
+              different Hashing algorithms.
               For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms.
-              In case of passing digest for signing, make sure the same hashing algorithm is specified as used for created for digest."
+              In case of passing digest for signing, make sure the same hashing algorithm is
+              specified as used for created for digest."
         type: str
         choices:
             - "SHA_224_RSA_PKCS_PSS"

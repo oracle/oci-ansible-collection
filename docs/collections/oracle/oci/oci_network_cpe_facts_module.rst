@@ -20,7 +20,7 @@ oracle.oci.oci_network_cpe_facts -- Fetches details about one or multiple Cpe re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -359,9 +359,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE&#x27;s device type. The Networking service maintains a general list of CPE device types (for example, Cisco ASA). For each type, Oracle provides CPE configuration content that can help a network engineer configure the CPE. The OCID uniquely identifies the type of device. To get the OCIDs for the device types on the list, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes'>ListCpeDeviceShapes</a>.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the CPE&#x27;s device type. The Networking service maintains a general list of CPE device types (for example, Cisco ASA). For each type, Oracle provides CPE configuration content that can help a network engineer configure the CPE. The OCID uniquely identifies the type of device. To get the OCIDs for the device types on the list, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CpeDeviceShapeSummary/ListCpeDeviceShapes'>ListCpeDeviceShapes</a>.</div>
                                             <div>For information about how to generate CPE configuration content for a CPE device type, see:</div>
-                                            <div>* <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Cpe/GetCpeDeviceConfigContent'>GetCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/IPSecConnection/GetIpsecCpeDeviceConfigContent'>GetIpsecCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent'>GetTunnelCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig'>GetTunnelCpeDeviceConfig</a></div>
+                                            <div>* <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent'>GetCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent'>GetIpsecCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent'>GetTunnelCpeDeviceConfigContent</a> * <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig'>GetTunnelCpeDeviceConfig</a></div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx</div>

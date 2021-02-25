@@ -513,6 +513,25 @@ instance_configurations:
                                     returned: on success
                                     type: float
                                     sample: 3.4
+                        platform_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                type:
+                                    description:
+                                        - The type of platform being configured. The only supported
+                                          `type` is `AMD_MILAN_BM`
+                                    returned: on success
+                                    type: string
+                                    sample: AMD_MILAN_BM
+                                numa_nodes_per_socket:
+                                    description:
+                                        - The number of NUMA nodes per socket.
+                                    returned: on success
+                                    type: string
+                                    sample: NPS0
                         source_details:
                             description:
                                 - ""
@@ -656,6 +675,15 @@ instance_configurations:
                                     description:
                                         - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance using the
                                           monitoring plugins. Default value is false (monitoring plugins are enabled).
+                                        - "These are the monitoring plugins: Compute Instance Monitoring
+                                          and Custom Logs Monitoring."
+                                        - The monitoring plugins are controlled by this parameter and by the per-plugin
+                                          configuration in the `pluginsConfig` object.
+                                        - "- If `isMonitoringDisabled` is true, all of the monitoring plugins are disabled, regardless of
+                                          the per-plugin configuration.
+                                          - If `isMonitoringDisabled` is false, all of the monitoring plugins are enabled. You
+                                          can optionally disable individual monitoring plugins by providing a value in the `pluginsConfig`
+                                          object."
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -663,9 +691,56 @@ instance_configurations:
                                     description:
                                         - Whether Oracle Cloud Agent can run all the available management plugins.
                                           Default value is false (management plugins are enabled).
+                                        - "These are the management plugins: OS Management Service Agent and Compute Instance
+                                          Run Command."
+                                        - The management plugins are controlled by this parameter and by the per-plugin
+                                          configuration in the `pluginsConfig` object.
+                                        - "- If `isManagementDisabled` is true, all of the management plugins are disabled, regardless of
+                                          the per-plugin configuration.
+                                          - If `isManagementDisabled` is false, all of the management plugins are enabled. You
+                                          can optionally disable individual management plugins by providing a value in the `pluginsConfig`
+                                          object."
                                     returned: on success
                                     type: bool
                                     sample: true
+                                are_all_plugins_disabled:
+                                    description:
+                                        - Whether Oracle Cloud Agent can run all the available plugins.
+                                          This includes the management and monitoring plugins.
+                                        - To get a list of available plugins, use the
+                                          L(ListInstanceagentAvailablePlugins,https://docs.cloud.oracle.com/en-
+                                          us/iaas/api/#/en/instanceagent/20180530/Plugin/ListInstanceagentAvailablePlugins)
+                                          operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+                                          L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-
+                                          plugins.htm).
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                plugins_config:
+                                    description:
+                                        - The configuration of plugins associated with this instance.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        name:
+                                            description:
+                                                - The plugin name. To get a list of available plugins, use the
+                                                  L(ListInstanceagentAvailablePlugins,https://docs.cloud.oracle.com/en-
+                                                  us/iaas/api/#/en/instanceagent/20180530/Plugin/ListInstanceagentAvailablePlugins)
+                                                  operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+                                                  L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-
+                                                  plugins.htm).
+                                            returned: on success
+                                            type: string
+                                            sample: name_example
+                                        desired_state:
+                                            description:
+                                                - Whether the plugin should be enabled or disabled.
+                                                - To enable the monitoring and management plugins, the `isMonitoringDisabled` and
+                                                  `isManagementDisabled` attributes must also be set to false.
+                                            returned: on success
+                                            type: string
+                                            sample: ENABLED
                         is_pv_encryption_in_transit_enabled:
                             description:
                                 - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
@@ -885,6 +960,10 @@ instance_configurations:
                     "ocpus": 3.4,
                     "memory_in_gbs": 3.4
                 },
+                "platform_config": {
+                    "type": "AMD_MILAN_BM",
+                    "numa_nodes_per_socket": "NPS0"
+                },
                 "source_details": {
                     "source_type": "source_type_example",
                     "boot_volume_size_in_gbs": 56,
@@ -904,7 +983,12 @@ instance_configurations:
                 },
                 "agent_config": {
                     "is_monitoring_disabled": true,
-                    "is_management_disabled": true
+                    "is_management_disabled": true,
+                    "are_all_plugins_disabled": true,
+                    "plugins_config": [{
+                        "name": "name_example",
+                        "desired_state": "ENABLED"
+                    }]
                 },
                 "is_pv_encryption_in_transit_enabled": true,
                 "preferred_maintenance_action": "LIVE_MIGRATE",

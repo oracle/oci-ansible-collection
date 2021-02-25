@@ -105,7 +105,7 @@ virtual_circuits:
                 - The provisioned data rate of the connection. To get a list of the
                   available bandwidth levels (that is, shapes), see
                   L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
+                  us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
             type: string
@@ -113,7 +113,7 @@ virtual_circuits:
         bgp_management:
             description:
                 - Deprecated. Instead use the information in
-                  L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/).
+                  L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/FastConnectProviderService/).
             returned: on success
             type: string
             sample: CUSTOMER_MANAGED
@@ -231,7 +231,7 @@ virtual_circuits:
             sample: {'Department': 'Finance'}
         gateway_id:
             description:
-                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Drg)
+                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg)
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string
@@ -246,7 +246,7 @@ virtual_circuits:
             description:
                 - The virtual circuit's current state. For information about
                   the different states, see
-                  L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+                  L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
             returned: on success
             type: string
             sample: PENDING_PROVIDER
@@ -328,7 +328,7 @@ virtual_circuits:
         type:
             description:
                 - Whether the virtual circuit supports private or public peering. For more information,
-                  see L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+                  see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
             returned: on success
             type: string
             sample: PUBLIC

@@ -25,15 +25,15 @@ description:
     - This module allows the user to create, update and delete a CrossConnectGroup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new cross-connect group to use with Oracle Cloud Infrastructure
       FastConnect. For more information, see
-      L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+      L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - For the purposes of access control, you must provide the OCID of the
       compartment where you want the cross-connect group to reside. If you're
       not sure which compartment to use, put the cross-connect group in the
       same compartment with your VCN. For more information about
       compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
       For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the cross-connect group.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
 version_added: "2.9"

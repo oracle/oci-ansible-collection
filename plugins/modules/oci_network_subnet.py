@@ -25,29 +25,29 @@ description:
     - This module allows the user to create, update and delete a Subnet resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new subnet in the specified VCN. You can't change the size of the subnet after creation,
       so it's important to think about the size of subnets you need before creating them.
-      For more information, see L(VCNs and Subnets,https://docs.cloud.oracle.com/Content/Network/Tasks/managingVCNs.htm).
+      For more information, see L(VCNs and Subnets,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVCNs.htm).
       For information on the number of subnets you can have in a VCN, see
-      L(Service Limits,https://docs.cloud.oracle.com/Content/General/Concepts/servicelimits.htm).
+      L(Service Limits,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
     - For the purposes of access control, you must provide the OCID of the compartment where you want the subnet
       to reside. Notice that the subnet doesn't have to be in the same compartment as the VCN, route tables, or
       other Networking Service components. If you're not sure which compartment to use, put the subnet in
       the same compartment as the VCN. For more information about compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm). For information about OCIDs,
-      see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm). For information about OCIDs,
+      see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - You may optionally associate a route table with the subnet. If you don't, the subnet will use the
       VCN's default route table. For more information about route tables, see
-      L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm).
+      L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
     - You may optionally associate a security list with the subnet. If you don't, the subnet will use the
       VCN's default security list. For more information about security lists, see
-      L(Security Lists,https://docs.cloud.oracle.com/Content/Network/Concepts/securitylists.htm).
+      L(Security Lists,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securitylists.htm).
     - You may optionally associate a set of DHCP options with the subnet. If you don't, the subnet will use the
       VCN's default set. For more information about DHCP options, see
-      L(DHCP Options,https://docs.cloud.oracle.com/Content/Network/Tasks/managingDHCP.htm).
+      L(DHCP Options,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDHCP.htm).
     - "You may optionally specify a *display name* for the subnet, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - You can also add a DNS label for the subnet, which is required if you want the Internet and
       VCN Resolver to resolve hostnames for instances in the subnet. For more information, see
-      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+      L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -112,7 +112,7 @@ options:
               hostnames of instances in the subnet. It can only be set if the VCN itself
               was created with a DNS label.
             - For more information, see
-              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+              L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
             - "Example: `subnet123`"
         type: str
     freeform_tags:
@@ -129,7 +129,7 @@ options:
               Defaults to false, which means VNICs created in this subnet will
               automatically be assigned public IP addresses unless specified
               otherwise during instance launch or VNIC creation (with the
-              `assignPublicIp` flag in L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)).
+              `assignPublicIp` flag in L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)).
               If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
               subnet cannot have public IP addresses (that is, it's a private
               subnet).
@@ -275,7 +275,7 @@ subnet:
                 - The absence of this parameter means the Internet and VCN Resolver
                   will not resolve hostnames of instances in this subnet.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `subnet123`"
             returned: on success
             type: string
@@ -308,7 +308,7 @@ subnet:
                   automatically be assigned public IP addresses unless specified
                   otherwise during instance launch or VNIC creation (with the
                   `assignPublicIp` flag in
-                  L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)).
+                  L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)).
                   If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
                   subnet cannot have public IP addresses (that is, it's a private
                   subnet).
@@ -335,7 +335,7 @@ subnet:
                 - The subnet's domain name, which consists of the subnet's DNS label,
                   the VCN's DNS label, and the `oraclevcn.com` domain.
                 - For more information, see
-                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
+                  L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `subnet123.vcn1.oraclevcn.com`"
             returned: on success
             type: string

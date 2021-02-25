@@ -131,6 +131,12 @@ blockchain_platform:
             returned: on success
             type: string
             sample: DEFAULT
+        load_balancer_shape:
+            description:
+                - "Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS."
+            returned: on success
+            type: string
+            sample: LB_100_MBPS
         service_endpoint:
             description:
                 - Service endpoint URL, valid post-provisioning
@@ -344,6 +350,7 @@ blockchain_platform:
         "platform_role": "FOUNDER",
         "compute_shape": "STANDARD",
         "platform_shape_type": "DEFAULT",
+        "load_balancer_shape": "LB_100_MBPS",
         "service_endpoint": "service_endpoint_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

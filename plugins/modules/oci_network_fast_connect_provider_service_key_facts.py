@@ -38,7 +38,7 @@ options:
             - The provider service key that the provider gives you when you set up a virtual circuit connection
               from the provider to Oracle Cloud Infrastructure. You can set up that connection and get your
               provider service key at the provider's website or portal. For the portal location, see the `description`
-              attribute of the L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/).
+              attribute of the L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/FastConnectProviderService/).
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
@@ -65,7 +65,7 @@ fast_connect_provider_service_key:
                   from the provider to Oracle Cloud Infrastructure. Use this value as the `providerServiceKeyName`
                   query parameter for
                   L(GetFastConnectProviderServiceKey,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/FastConnectProviderServiceKey/GetFastConnectProviderServiceKey).
+                  us/iaas/api/#/en/iaas/latest/FastConnectProviderServiceKey/GetFastConnectProviderServiceKey).
             returned: on success
             type: string
             sample: name_example
@@ -74,7 +74,7 @@ fast_connect_provider_service_key:
                 - The provisioned data rate of the connection. To get a list of the
                   available bandwidth levels (that is, shapes), see
                   L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
+                  us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
             type: string

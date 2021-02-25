@@ -24,13 +24,13 @@ short_description: Manage a NatGateway resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a NatGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new NAT gateway for the specified VCN. You must also set up a route rule with the
-      NAT gateway as the rule's target. See L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/RouteTable/).
+      NAT gateway as the rule's target. See L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the
               NAT gateway.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -67,16 +67,16 @@ options:
         type: bool
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the gateway belongs to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the gateway belongs to.
             - Required for create using I(state=present).
         type: str
     public_ip_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
         type: str
     nat_gateway_id:
         description:
-            - The NAT gateway's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The NAT gateway's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -135,7 +135,7 @@ nat_gateway:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains
                   the NAT gateway.
             returned: on success
             type: string
@@ -166,7 +166,7 @@ nat_gateway:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
                   NAT gateway.
             returned: on success
             type: string
@@ -199,14 +199,15 @@ nat_gateway:
             sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway
                   belongs to.
             returned: on success
             type: string
             sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
         public_ip_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT gateway.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT
+                  gateway.
             returned: on success
             type: string
             sample: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx

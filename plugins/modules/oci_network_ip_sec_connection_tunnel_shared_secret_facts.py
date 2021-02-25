@@ -25,7 +25,7 @@ description:
     - Fetches details about a IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
     - Gets the specified tunnel's shared secret (pre-shared key). To get other information
       about the tunnel, use L(GetIPSecConnectionTunnel,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/GetIPSecConnectionTunnel).
+      us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/GetIPSecConnectionTunnel).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -36,7 +36,7 @@ options:
         required: true
     tunnel_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
         type: str
         aliases: ["id"]
         required: true

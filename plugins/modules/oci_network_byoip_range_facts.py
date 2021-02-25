@@ -31,7 +31,8 @@ author: Oracle (@oracle)
 options:
     byoip_range_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR block.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR
+              block.
             - Required to get a specific byoip_range.
         type: str
         aliases: ["id"]
@@ -99,7 +100,7 @@ byoip_ranges:
             sample: cidr_block_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
             type: string
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
@@ -129,7 +130,7 @@ byoip_ranges:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
             type: string
             sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
@@ -178,7 +179,7 @@ byoip_ranges:
         validation_token:
             description:
                 - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
-                  block,https://docs.cloud.oracle.com/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
+                  block,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
             returned: on success
             type: string
             sample: validation_token_example
@@ -196,7 +197,7 @@ byoip_ranges:
                     sample: cidr_block_example
                 compartment_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the `ByoipRange`
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the `ByoipRange`
                           resource.
                     returned: on success
                     type: string
@@ -227,7 +228,7 @@ byoip_ranges:
                     sample: {'Department': 'Finance'}
                 id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
                     returned: on success
                     type: string
                     sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx

@@ -64,6 +64,7 @@ options:
     idcs_access_token:
         description:
             - IDCS access token with Identity Domain Administrator role
+            - Required for create using I(state=present).
         type: str
     federated_user_id:
         description:
@@ -122,6 +123,11 @@ options:
             - Number of total OCPUs to allocate
             - This parameter is updatable.
         type: int
+    load_balancer_shape:
+        description:
+            - "Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS."
+            - This parameter is updatable.
+        type: str
     blockchain_platform_id:
         description:
             - Unique service identifier.
@@ -148,6 +154,7 @@ EXAMPLES = """
     compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
     platform_role: platform_role_example
     compute_shape: compute_shape_example
+    idcs_access_token: idcs_access_token_example
 
 - name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockchain_platform:
@@ -158,6 +165,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     storage_size_in_tbs: 1.2
     total_ocpu_capacity: 56
+    load_balancer_shape: load_balancer_shape_example
 
 - name: Update blockchain_platform
   oci_blockchain_platform:
@@ -251,6 +259,12 @@ blockchain_platform:
             returned: on success
             type: string
             sample: DEFAULT
+        load_balancer_shape:
+            description:
+                - "Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS."
+            returned: on success
+            type: string
+            sample: LB_100_MBPS
         service_endpoint:
             description:
                 - Service endpoint URL, valid post-provisioning
@@ -464,6 +478,7 @@ blockchain_platform:
         "platform_role": "FOUNDER",
         "compute_shape": "STANDARD",
         "platform_shape_type": "DEFAULT",
+        "load_balancer_shape": "LB_100_MBPS",
         "service_endpoint": "service_endpoint_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
@@ -663,6 +678,7 @@ def main():
                 ),
             ),
             total_ocpu_capacity=dict(type="int"),
+            load_balancer_shape=dict(type="str"),
             blockchain_platform_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

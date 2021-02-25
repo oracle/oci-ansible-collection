@@ -24,9 +24,9 @@ short_description: Fetches details about a IpSecConnectionDeviceConfig resource 
 description:
     - Fetches details about a IpSecConnectionDeviceConfig resource in Oracle Cloud Infrastructure
     - "Deprecated. To get tunnel information, instead use:"
-    - "* L(GetIPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnel/GetIPSecConnectionTunnel)
+    - "* L(GetIPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/GetIPSecConnectionTunnel)
       * L(GetIPSecConnectionTunnelSharedSecret,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/IPSecConnectionTunnelSharedSecret/GetIPSecConnectionTunnelSharedSecret)"
+      us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/GetIPSecConnectionTunnelSharedSecret)"
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -73,7 +73,7 @@ ip_sec_connection_device_config:
             sample: 2013-10-20T19:20:30+01:00
         tunnels:
             description:
-                - Two L(TunnelConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/TunnelConfig/) objects.
+                - Two L(TunnelConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelConfig/) objects.
             returned: on success
             type: complex
             contains:

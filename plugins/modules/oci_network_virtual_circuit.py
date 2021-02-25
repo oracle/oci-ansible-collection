@@ -25,22 +25,22 @@ description:
     - This module allows the user to create, update and delete a VirtualCircuit resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new virtual circuit to use with Oracle Cloud
       Infrastructure FastConnect. For more information, see
-      L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+      L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - For the purposes of access control, you must provide the OCID of the
       compartment where you want the virtual circuit to reside. If you're
       not sure which compartment to use, put the virtual circuit in the
       same compartment with the DRG it's using. For more information about
       compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
       For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+      L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the virtual circuit.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "**Important:** When creating a virtual circuit, you specify a DRG for
       the traffic to flow through. Make sure you attach the DRG to your
       VCN and confirm the VCN's routing sends traffic to the DRG. Otherwise
       traffic will not flow. For more information, see
-      L(Route Tables,https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm)."
+      L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm)."
     - "This resource has the following action operations in the M(oci_virtual_circuit_actions) module: bulk_add_virtual_circuit_public_prefixes,
       bulk_delete_virtual_circuit_public_prefixes."
 version_added: "2.9"
@@ -51,7 +51,7 @@ options:
             - The provisioned data rate of the connection. To get a list of the
               available bandwidth levels (that is, shapes), see
               L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
             - "Example: `10 Gbps`"
             - This parameter is updatable.
         type: str
@@ -149,7 +149,7 @@ options:
     gateway_id:
         description:
             - For private virtual circuits only. The OCID of the L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/Drg)
+              us/iaas/api/#/en/iaas/latest/Drg)
               that this virtual circuit uses.
             - This parameter is updatable.
         type: str
@@ -158,14 +158,14 @@ options:
             - Deprecated. Instead use `providerServiceId`.
               To get a list of the provider names, see
               L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
         type: str
     provider_service_id:
         description:
             - The OCID of the service offered by the provider (if you're connecting
               via a provider). To get a list of the available service offerings, see
               L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
         type: str
     provider_service_key_name:
         description:
@@ -177,7 +177,7 @@ options:
             - Deprecated. Instead use `providerServiceId`.
               To get a list of the provider names, see
               L(ListFastConnectProviderServices,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderServices).
+              us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderServices).
         type: str
     public_prefixes:
         description:
@@ -296,7 +296,7 @@ virtual_circuit:
                 - The provisioned data rate of the connection. To get a list of the
                   available bandwidth levels (that is, shapes), see
                   L(ListFastConnectProviderServiceVirtualCircuitBandwidthShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
+                  us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
             type: string
@@ -304,7 +304,7 @@ virtual_circuit:
         bgp_management:
             description:
                 - Deprecated. Instead use the information in
-                  L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/FastConnectProviderService/).
+                  L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/FastConnectProviderService/).
             returned: on success
             type: string
             sample: CUSTOMER_MANAGED
@@ -422,7 +422,7 @@ virtual_circuit:
             sample: {'Department': 'Finance'}
         gateway_id:
             description:
-                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Drg)
+                - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg)
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string
@@ -437,7 +437,7 @@ virtual_circuit:
             description:
                 - The virtual circuit's current state. For information about
                   the different states, see
-                  L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+                  L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
             returned: on success
             type: string
             sample: PENDING_PROVIDER
@@ -519,7 +519,7 @@ virtual_circuit:
         type:
             description:
                 - Whether the virtual circuit supports private or public peering. For more information,
-                  see L(FastConnect Overview,https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
+                  see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
             returned: on success
             type: string
             sample: PUBLIC

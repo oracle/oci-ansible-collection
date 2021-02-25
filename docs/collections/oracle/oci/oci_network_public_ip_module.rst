@@ -20,7 +20,7 @@ oracle.oci.oci_network_public_ip -- Manage a PublicIp resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.15.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,9 +43,9 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a PublicIp resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a public IP. Use the `lifetime` property to specify whether it's an ephemeral or reserved public IP. For information about limits on how many you can create, see `Public IP Addresses <https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm>`_.
-- * **For an ephemeral public IP assigned to a private IP:** You must also specify a `privateIpId` with the OCID of the primary private IP you want to assign the public IP to. The public IP is created in the same availability domain as the private IP. An ephemeral public IP must always be assigned to a private IP, and only to the *primary* private IP on a VNIC, not a secondary private IP. Exception: If you create a `NatGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/>`_, Oracle automatically assigns the NAT gateway a regional ephemeral public IP that you cannot remove.
-- * **For a reserved public IP:** You may also optionally assign the public IP to a private IP by specifying `privateIpId`. Or you can later assign the public IP with `UpdatePublicIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/UpdatePublicIp>`_.
+- For *state=present*, creates a public IP. Use the `lifetime` property to specify whether it's an ephemeral or reserved public IP. For information about limits on how many you can create, see `Public IP Addresses <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm>`_.
+- * **For an ephemeral public IP assigned to a private IP:** You must also specify a `privateIpId` with the OCID of the primary private IP you want to assign the public IP to. The public IP is created in the same availability domain as the private IP. An ephemeral public IP must always be assigned to a private IP, and only to the *primary* private IP on a VNIC, not a secondary private IP. Exception: If you create a `NatGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/>`_, Oracle automatically assigns the NAT gateway a regional ephemeral public IP that you cannot remove.
+- * **For a reserved public IP:** You may also optionally assign the public IP to a private IP by specifying `privateIpId`. Or you can later assign the public IP with `UpdatePublicIp <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/UpdatePublicIp>`_.
 - **Note:** When assigning a public IP to a private IP, the private IP must not already have a public IP with `lifecycleState` = ASSIGNING or ASSIGNED. If it does, an error is returned.
 - Also, for reserved public IPs, the optional assignment part of this operation is asynchronous. Poll the public IP's `lifecycleState` to determine if the assignment succeeded.
 
@@ -306,7 +306,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Defines when the public IP is deleted and released back to the Oracle Cloud Infrastructure public IP pool. For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
+                                            <div>Defines when the public IP is deleted and released back to the Oracle Cloud Infrastructure public IP pool. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -324,7 +324,7 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the private IP to assign the public IP to.</div>
                                             <div>Required for an ephemeral public IP because it must always be assigned to a private IP (specifically a *primary* private IP).</div>
-                                            <div>Optional for a reserved public IP. If you don&#x27;t provide it, the public IP is created but not assigned to a private IP. You can later assign the public IP with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/UpdatePublicIp'>UpdatePublicIp</a>.</div>
+                                            <div>Optional for a reserved public IP. If you don&#x27;t provide it, the public IP is created but not assigned to a private IP. You can later assign the public IP with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/UpdatePublicIp'>UpdatePublicIp</a>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -358,7 +358,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the public IP pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the public IP pool.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -393,7 +393,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether the public IP is regional or specific to a particular availability domain.</div>
-                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do ephemeral public IPs assigned to a regional entity.</div>
+                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do ephemeral public IPs assigned to a regional entity.</div>
                                             <div>* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity it&#x27;s assigned to, which is specified by the `availabilityDomain` property of the public IP object. Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -760,9 +760,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Defines when the public IP is deleted and released back to Oracle&#x27;s public IP pool.</div>
-                                            <div>* `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned entity. An ephemeral public IP must always be assigned to an entity. If the assigned entity is a private IP, the ephemeral public IP is automatically deleted when the private IP is deleted, when the VNIC is terminated, or when the instance is terminated. If the assigned entity is a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/'>NatGateway</a>, the ephemeral public IP is automatically deleted when the NAT gateway is terminated.</div>
+                                            <div>* `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned entity. An ephemeral public IP must always be assigned to an entity. If the assigned entity is a private IP, the ephemeral public IP is automatically deleted when the private IP is deleted, when the VNIC is terminated, or when the instance is terminated. If the assigned entity is a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/'>NatGateway</a>, the ephemeral public IP is automatically deleted when the NAT gateway is terminated.</div>
                                             <div>* `RESERVED`: You control the public IP&#x27;s lifetime. You can delete a reserved public IP whenever you like. It does not need to be assigned to a private IP at all times.</div>
-                                            <div>For more information and comparison of the two types, see <a href='https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
+                                            <div>For more information and comparison of the two types, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EPHEMERAL</div>
@@ -800,7 +800,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the pool object created in the current tenancy.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the pool object created in the current tenancy.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -819,7 +819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Whether the public IP is regional or specific to a particular availability domain.</div>
-                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs assigned to a regional entity have `scope` = `REGION`.</div>
+                                            <div>* `REGION`: The public IP exists within a region and is assigned to a regional entity (such as a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NatGateway/'>NatGateway</a>), or can be assigned to a private IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs assigned to a regional entity have `scope` = `REGION`.</div>
                                             <div>* `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity it&#x27;s assigned to, which is specified by the `availabilityDomain` property of the public IP object. Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

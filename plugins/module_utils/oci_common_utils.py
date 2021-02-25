@@ -29,7 +29,13 @@ except ImportError:
 MAX_WAIT_TIMEOUT_IN_SECONDS = 1200
 # some services like waas have longer wait times. This map allows to specify wait times at a service level so that
 # we need not override for each module in a service.
-SERVICE_WAIT_TIMEOUT_MAP = {"waas": 2400, "analytics": 2000, "mysql": 2400, "bds": 4000}
+SERVICE_WAIT_TIMEOUT_MAP = {
+    "waas": 2400,
+    "analytics": 2000,
+    "mysql": 2400,
+    "bds": 4000,
+    "database": 3600,
+}
 DEAD_STATES = [
     "TERMINATING",
     "TERMINATED",
@@ -629,12 +635,16 @@ def setup_logging(
 
     log_level_str = os.getenv(env_log_level, default_level)
 
+    log_format = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
+
     if log_level_str.lower() == "debug":
         _httpclient_debug_logging_patch()
 
     log_level = logging.getLevelName(log_level_str)
     log_file_path = os.path.join(log_path, "oci_ansible_module.log")
-    logging.basicConfig(filename=log_file_path, filemode="a", level=log_level)
+    logging.basicConfig(
+        filename=log_file_path, filemode="a", level=log_level, format=log_format
+    )
     return logging
 
 
