@@ -20,7 +20,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,7 +46,7 @@ Synopsis
 - Changes encryption key management from customer-managed, using the `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_, to Oracle-managed.
 - Restore a Database based on the request parameters you provide.
 - Creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
-- Upgrade the specified database.
+- Upgrades the specified Oracle Database instance.
 
 
 .. Aliases
@@ -269,7 +269,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>the database software id used for upgrading the database.</div>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the image to be used to upgrade a database.</div>
                                             <div>Required when source is &#x27;DB_SOFTWARE_IMAGE&#x27;</div>
                                                         </td>
             </tr>
@@ -303,7 +303,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                             <div>Required when source is &#x27;DB_VERSION&#x27;</div>
                                                         </td>
             </tr>
@@ -325,7 +325,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The source of the database upgrade Use &#x27;DB_HOME&#x27; for using existing db home to upgrade the database Use &#x27;DB_VERSION&#x27; for using database version to upgrade the database Use &#x27;DB_SOFTWARE_IMAGE&#x27; for using database software image to upgrade the database</div>
+                                            <div>The source of the Oracle Database software to be used for the upgrade. - Use `DB_HOME` to specify an existing Database Home to upgrade the database. The database is moved to the target Database Home and makes use of the Oracle Database software version of the target Database Home. - Use `DB_VERSION` to specify a generally-available Oracle Database software version to upgrade the database. - Use `DB_SOFTWARE_IMAGE` to specify a <a href='https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databasesoftwareimage.htm'>database software image</a> to upgrade the database.</div>
                                                         </td>
             </tr>
                     

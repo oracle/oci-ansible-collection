@@ -115,13 +115,13 @@ categories:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         name:
             description:
-                - The name assigned to the category.
+                - The name assigned to the category. Avoid entering confidential information.
             returned: on success
             type: string
             sample: name_example
         description:
             description:
-                - Text describing the category.
+                - Text describing the category. Avoid entering confidential information.
             returned: on success
             type: string
             sample: description_example

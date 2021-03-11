@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple VmCluster resources in Oracle Cloud Infrastructure
     - Lists the VM clusters in the specified compartment. Applies to Exadata Cloud@Customer instances only.
       To list the cloud VM clusters in an Exadata Cloud Service instance, use the L(ListCloudVmClusters ,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/database/20160918/CloudVmCluster/ListCloudVmClusters) operation.
+      us/iaas/api/#/en/database/latest/CloudVmCluster/ListCloudVmClusters) operation.
     - If I(vm_cluster_id) is specified, the details of a single VmCluster will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

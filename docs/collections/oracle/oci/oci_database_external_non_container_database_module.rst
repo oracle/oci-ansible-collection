@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_non_container_database -- Manage an ExternalNon
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an ExternalNonContainerDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new ExternalNonContainerDatabase resource
+- This resource has the following action operations in the :ref:`oci_external_non_container_database_actions <ansible_collections.oci_external_non_container_database_actions_module>` module: disable_external_non_container_database_database_management, enable_external_non_container_database_database_management.
 
 
 .. Aliases

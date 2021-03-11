@@ -20,7 +20,7 @@ oracle.oci.oci_network_route_table -- Manage a RouteTable resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

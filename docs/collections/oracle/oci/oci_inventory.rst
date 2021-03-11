@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -275,7 +275,7 @@ Parameters
                                                     <td>
                                                                                             </td>
                                                 <td>
-                                            <div>A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional. If compartment is not specified, the plugin fetches all compartments from the tenancy</div>
+                                            <div>A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional. If compartment is not specified, the plugin fetches all compartments from the tenancy.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -623,6 +623,30 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-primary_vnic_only"></div>
+                    <b>primary_vnic_only</b>
+                    <a class="ansibleOptionLink" href="#parameter-primary_vnic_only" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_PRIMARY_VNIC_ONLY
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>The default behavior of the plugin is to process all VNIC&#x27;s attached to a compute instance. This might result in instance having multiple entries. When this parameter is set to True, the plugin will only process the primary VNIC and thus having only a single entry for each compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-regions"></div>
                     <b>regions</b>
                     <a class="ansibleOptionLink" href="#parameter-regions" title="Permalink to this option"></a>
@@ -722,8 +746,7 @@ Examples
           }
         }
       - freeform_tags: {
-         "oci:compute:instanceconfiguration": "ocid1.instanceconfiguration.oc1.phx.xxxx",
-         "oci:compute:instancepool": "ocid1.instancepool.oc1.phx.xxxx"
+         "Environment": "Production"
         }
 
     # Example flag to turn on debug mode
@@ -741,6 +764,9 @@ Examples
 
     # Compute Hosts (bool type)
     fetch_compute_hosts: True
+
+    # Process only the primary vnic of a compute instance
+    primary_vnic_only: True
 
 
 

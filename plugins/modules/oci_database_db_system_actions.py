@@ -23,8 +23,9 @@ module: oci_database_db_system_actions
 short_description: Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
-    - For I(action=migrate_exadata_db_system_resource_model), migrates the Exadata DB system to the cloud Exadata infrastructure model. All related resources
-      will be migrated.
+    - For I(action=migrate_exadata_db_system_resource_model), migrates the Exadata DB system to the new L(Exadata resource
+      model,https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model).
+      All related resources will be migrated.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

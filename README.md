@@ -91,7 +91,8 @@ Oracle Cloud Infrastructure Ansible Collection supports Ansible Tower and AWX. F
 To install the Ansible Tower free version (AWX) on an OCI instance, use this [solution](https://github.com/oracle-quickstart/oci-ansible-awx).
 
 ## Help
-- For FAQs and common errors, check the [Frequently Asked Questions](https://github.com/oracle/oci-ansible-collections/blob/master/FAQ.md) page.
+- For FAQs, check the [Frequently Asked Questions](https://github.com/oracle/oci-ansible-collections/blob/master/FAQ.md) page.
+- For commmon issues, check the [Common Issues](https://github.com/oracle/oci-ansible-collections/blob/master/COMMON_ISSUES.md) page.
 - To file bugs or feature requests, use [GitHub issues](https://github.com/oracle/oci-ansible-collections/issues).
 - For other channels, check the ["Questions or Feedback"](https://docs.cloud.oracle.com/en-us/iaas/Content/API/SDKDocs/ansible.htm#questions) section.
 
@@ -107,7 +108,7 @@ Oracle gratefully acknowledges the contributions to `oci-ansible-collections` th
 
 ## Known Issues
 
-You can find information on any known issues on [GitHub issues](https://github.com/oracle/oci-ansible-collections/issues) page.
+You can find information on any known issues on [Known Issues](https://github.com/oracle/oci-ansible-collections/blob/master/KNOWN_ISSUES.md) or [GitHub issues](https://github.com/oracle/oci-ansible-collections/issues) page.
 
 ## License
 

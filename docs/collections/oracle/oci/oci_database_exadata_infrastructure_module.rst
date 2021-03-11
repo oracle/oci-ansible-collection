@@ -20,7 +20,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an ExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *state=present*, creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only. To create an Exadata Cloud Service infrastructure resource, use the  `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/CloudExadataInfrastructure/CreateCloudExadataInfrastructure>`_ operation.
+- For *state=present*, creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only. To create an Exadata Cloud Service infrastructure resource, use the  `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure>`_ operation.
 - This resource has the following action operations in the :ref:`oci_exadata_infrastructure_actions <ansible_collections.oci_exadata_infrastructure_actions_module>` module: activate, download_exadata_infrastructure_config_file.
 
 
@@ -301,7 +301,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.</div>
+                                            <div>If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1054,7 +1054,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.</div>
+                                            <div>If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

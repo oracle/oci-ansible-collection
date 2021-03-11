@@ -24,6 +24,8 @@ short_description: Manage an ExternalNonContainerDatabase resource in Oracle Clo
 description:
     - This module allows the user to create, update and delete an ExternalNonContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new ExternalNonContainerDatabase resource
+    - "This resource has the following action operations in the M(oci_external_non_container_database_actions) module:
+      disable_external_non_container_database_database_management, enable_external_non_container_database_database_management."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

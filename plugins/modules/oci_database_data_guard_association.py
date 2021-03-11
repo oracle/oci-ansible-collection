@@ -109,7 +109,7 @@ options:
               and the amount of memory available for the DB system.
               Only virtual machine shapes are valid options. If you do not supply this parameter, the default shape is the shape of the primary DB system.
             - To get a list of all shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.
+              us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes) operation.
             - Applicable when creation_type is 'NewDbSystem'
         type: str
     subnet_id:

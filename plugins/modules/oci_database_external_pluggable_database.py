@@ -26,6 +26,8 @@ description:
     - For I(state=present), registers a new L(ExternalPluggableDatabase,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/datatypes/CreateExternalPluggableDatabaseDetails)
       resource.
+    - "This resource has the following action operations in the M(oci_external_pluggable_database_actions) module:
+      disable_external_pluggable_database_database_management, enable_external_pluggable_database_database_management."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

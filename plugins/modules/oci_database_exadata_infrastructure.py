@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an ExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
       To create an Exadata Cloud Service infrastructure resource, use the  L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/database/20160918/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
     - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate,
       download_exadata_infrastructure_config_file."
 version_added: "2.9"
@@ -122,7 +122,7 @@ options:
                 required: true
             is_primary:
                 description:
-                    - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                    - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                 type: bool
                 required: true
     maintenance_window:
@@ -474,7 +474,7 @@ exadata_infrastructure:
                     sample: email_example
                 is_primary:
                     description:
-                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                        - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                     returned: on success
                     type: bool
                     sample: true

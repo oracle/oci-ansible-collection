@@ -20,7 +20,7 @@ oracle.oci.oci_database_exadata_infrastructure_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
-- Lists the Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud@Customer instances only. To list the Exadata Cloud Service infrastructure resources in a compartment, use the  `ListCloudExadataInfrastructures <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/CloudExadataInfrastructure/ListCloudExadataInfrastructures>`_ operation.
+- Lists the Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud@Customer instances only. To list the Exadata Cloud Service infrastructure resources in a compartment, use the  `ListCloudExadataInfrastructures <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ListCloudExadataInfrastructures>`_ operation.
 - If *exadata_infrastructure_id* is specified, the details of a single ExadataInfrastructure will be returned.
 
 
@@ -516,7 +516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.</div>
+                                            <div>If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

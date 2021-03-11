@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -748,7 +748,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                             <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>

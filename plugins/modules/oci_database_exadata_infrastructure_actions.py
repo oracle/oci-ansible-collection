@@ -260,7 +260,7 @@ exadata_infrastructure:
                     sample: email_example
                 is_primary:
                     description:
-                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                        - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                     returned: on success
                     type: bool
                     sample: true

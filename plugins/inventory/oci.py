@@ -77,13 +77,20 @@ DOCUMENTATION = """
         fetch_compute_hosts:
              description: When set, the compute nodes are fetched. Default value set to True.
              type: bool
+        primary_vnic_only:
+            description: The default behavior of the plugin is to process all VNIC's attached to a compute instance.
+                         This might result in instance having multiple entries. When this parameter is set to True,
+                         the plugin will only process the primary VNIC and thus having only a single entry for
+                         each compute instance.
+            type: bool
+            env:
+                - name: OCI_PRIMARY_VNIC_ONLY
         debug:
             description: Parameter to enable logs while running the inventory plugin. Default value is set to False
             type: boolean
         compartments:
-            description: A dictionary of compartment identifier to obtain list of hosts. This config parameter is
-                         optional. If compartment is not specified, the plugin fetches all compartments from
-                         the tenancy
+            description: A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional.
+                         If compartment is not specified, the plugin fetches all compartments from the tenancy.
             type: list
             suboptions:
                 compartment_ocid:
@@ -149,8 +156,7 @@ filters:
       }
     }
   - freeform_tags: {
-     "oci:compute:instanceconfiguration": "ocid1.instanceconfiguration.oc1.phx.xxxx",
-     "oci:compute:instancepool": "ocid1.instancepool.oc1.phx.xxxx"
+     "Environment": "Production"
     }
 
 # Example flag to turn on debug mode
@@ -168,6 +174,9 @@ fetch_db_hosts: True
 
 # Compute Hosts (bool type)
 fetch_compute_hosts: True
+
+# Process only the primary vnic of a compute instance
+primary_vnic_only: True
 """
 import os
 import re
@@ -244,6 +253,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "regions": None,
             "strict_hostname_checking": "no",
             "filters": None,
+            "primary_vnic_only": False,
         }
 
         self.group_prefix = "oci_"
@@ -295,6 +305,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if os.environ.get("OCI_HOSTNAME_FORMAT"):
             return os.environ.get("OCI_HOSTNAME_FORMAT")
         return "public_ip"
+
+    def _get_primary_vnic_only(self):
+        # Preference order: .oci.yml > environment variable
+        if self.get_option("primary_vnic_only"):
+            return self.get_option("primary_vnic_only")
+        if os.environ.get("OCI_PRIMARY_VNIC_ONLY"):
+            return os.environ.get("OCI_PRIMARY_VNIC_ONLY")
+        return False
 
     def read_config(self):
 
@@ -785,42 +803,47 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     )
                 )
 
-                subnet = oci_common_utils.call_with_backoff(
-                    virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
-                ).data
+                # create inventory for instance for all vnics if primary_vnic_only option set to false
+                # else create inventory only if the vnic is primary vnic for the instance
+                if not self._get_primary_vnic_only() or vnic.is_primary:
 
-                if instance_vars.get("id") == vnic_attachment.instance_id:
-                    instance_vars.update({"vcn_id": subnet.vcn_id})
-                    instance_vars.update({"vnic_id": vnic.id})
-                    instance_vars.update({"subnet_id": vnic.subnet_id})
-                    instance_vars.update({"public_ip": vnic.public_ip})
-                    instance_vars.update({"private_ip": vnic.private_ip})
+                    subnet = oci_common_utils.call_with_backoff(
+                        virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
+                    ).data
 
-                host_name = self.get_host_name(vnic, region=region)
+                    if instance_vars.get("id") == vnic_attachment.instance_id:
+                        instance_vars.update({"vcn_id": subnet.vcn_id})
+                        instance_vars.update({"vnic_id": vnic.id})
+                        instance_vars.update({"subnet_id": vnic.subnet_id})
+                        instance_vars.update({"public_ip": vnic.public_ip})
+                        instance_vars.update({"private_ip": vnic.private_ip})
 
-                # Skip vnic which is not addressable using given hostname_format
-                if not host_name:
-                    if self.params["strict_hostname_checking"] == "yes":
-                        raise Exception(
-                            "Instance with OCID: {0} does not have a valid hostname.".format(
-                                vnic_attachment.instance_id
+                    host_name = self.get_host_name(vnic, region=region)
+
+                    # Skip vnic which is not addressable using given hostname_format
+                    if not host_name:
+                        if self.params["strict_hostname_checking"] == "yes":
+                            raise Exception(
+                                "Instance with OCID: {0} does not have a valid hostname.".format(
+                                    vnic_attachment.instance_id
+                                )
+                            )
+                        self.debug(
+                            "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
+                                vnic_attachment.instance_id,
+                                self.params["hostname_format"],
                             )
                         )
-                    self.debug(
-                        "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
-                            vnic_attachment.instance_id, self.params["hostname_format"]
-                        )
+                        continue
+
+                    host_name = self.sanitize(host_name)
+
+                    groups = set(common_groups)
+
+                    self.debug("Creating inventory for host {0}.".format(host_name))
+                    self.create_instance_inventory_for_host(
+                        instance_inventory, host_name, vars=instance_vars, groups=groups
                     )
-                    continue
-
-                host_name = self.sanitize(host_name)
-
-                groups = set(common_groups)
-
-                self.debug("Creating inventory for host {0}.".format(host_name))
-                self.create_instance_inventory_for_host(
-                    instance_inventory, host_name, vars=instance_vars, groups=groups
-                )
             self.debug(
                 "Final inventory for {0}.".format(
                     str(self.get_resource_for_logging(instance_inventory))

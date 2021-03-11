@@ -20,7 +20,7 @@ oracle.oci.oci_optimizer_category_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -445,7 +445,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Text describing the category.</div>
+                                            <div>Text describing the category. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -517,7 +517,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name assigned to the category.</div>
+                                            <div>The name assigned to the category. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>

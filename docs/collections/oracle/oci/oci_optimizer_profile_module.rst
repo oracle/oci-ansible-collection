@@ -20,7 +20,7 @@ oracle.oci.oci_optimizer_profile -- Manage a Profile resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -229,7 +229,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Text describing the profile.</div>
+                                            <div>Text describing the profile. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -366,9 +366,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name assigned to the profile.</div>
+                                            <div>The name assigned to the profile. Avoid entering confidential information.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -425,6 +426,145 @@ Parameters
                                             <div>Use <em>state=absent</em> to delete a Profile.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-target_compartments"></div>
+                    <b>target_compartments</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_compartments" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target_compartments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_compartments/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of target compartment OCIDs attached to the current profile override.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-target_tags"></div>
+                    <b>target_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target_tags/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_tags/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of target tags attached to the current profile override.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_tags/items/tag_definition_name"></div>
+                    <b>tag_definition_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_tags/items/tag_definition_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the tag definition.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_tags/items/tag_namespace_name"></div>
+                    <b>tag_namespace_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_tags/items/tag_namespace_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the tag namespace.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_tags/items/tag_value_type"></div>
+                    <b>tag_value_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_tags/items/tag_value_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>VALUE</li>
+                                                                                                                                                                                                <li>ANY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The tag value type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_tags/items/tag_values"></div>
+                    <b>tag_values</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_tags/items/tag_values" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of tag values.</div>
+                                                        </td>
+            </tr>
+                    
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
@@ -509,11 +649,16 @@ Examples
         description: description_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
+        target_tags:
+          items:
+          - tag_namespace_name: tag_namespace_name_example
+            tag_definition_name: tag_definition_name_example
+            tag_value_type: VALUE
 
     - name: Update profile
       oci_optimizer_profile:
+        name: name_example
         description: description_example
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         profile_id: ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx
 
     - name: Delete profile
@@ -544,12 +689,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-profile"></div>
                     <b>profile</b>
                     <a class="ansibleOptionLink" href="#return-profile" title="Permalink to this return value"></a>
@@ -562,12 +707,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Profile resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;levels_configuration&#x27;: {&#x27;level&#x27;: &#x27;level_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;levels_configuration&#x27;: {&#x27;level&#x27;: &#x27;level_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;target_compartments&#x27;: {&#x27;items&#x27;: []}, &#x27;target_tags&#x27;: {&#x27;items&#x27;: [{&#x27;tag_definition_name&#x27;: &#x27;tag_definition_name_example&#x27;, &#x27;tag_namespace_name&#x27;: &#x27;tag_namespace_name_example&#x27;, &#x27;tag_value_type&#x27;: &#x27;VALUE&#x27;, &#x27;tag_values&#x27;: []}]}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-profile/compartment_id" title="Permalink to this return value"></a>
@@ -585,7 +730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-profile/defined_tags" title="Permalink to this return value"></a>
@@ -604,7 +749,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-profile/description" title="Permalink to this return value"></a>
@@ -614,7 +759,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Text describing the profile.</div>
+                                            <div>Text describing the profile. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -622,7 +767,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-profile/freeform_tags" title="Permalink to this return value"></a>
@@ -641,7 +786,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-profile/id" title="Permalink to this return value"></a>
@@ -659,7 +804,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/levels_configuration"></div>
                     <b>levels_configuration</b>
                     <a class="ansibleOptionLink" href="#return-profile/levels_configuration" title="Permalink to this return value"></a>
@@ -676,7 +821,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/level"></div>
                     <b>level</b>
                     <a class="ansibleOptionLink" href="#return-profile/levels_configuration/level" title="Permalink to this return value"></a>
@@ -695,7 +840,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/recommendation_id"></div>
                     <b>recommendation_id</b>
                     <a class="ansibleOptionLink" href="#return-profile/levels_configuration/recommendation_id" title="Permalink to this return value"></a>
@@ -714,7 +859,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-profile/lifecycle_state" title="Permalink to this return value"></a>
@@ -732,7 +877,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-profile/name" title="Permalink to this return value"></a>
@@ -742,7 +887,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name assigned to the profile.</div>
+                                            <div>The name assigned to the profile. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -750,7 +895,154 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_compartments"></div>
+                    <b>target_compartments</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_compartments" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_compartments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_compartments/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of target compartment OCIDs attached to the current profile override.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_tags"></div>
+                    <b>target_tags</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_tags/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_tags/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of target tags attached to the current profile override.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_tags/items/tag_definition_name"></div>
+                    <b>tag_definition_name</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_tags/items/tag_definition_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the tag definition.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tag_definition_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_tags/items/tag_namespace_name"></div>
+                    <b>tag_namespace_name</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_tags/items/tag_namespace_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the tag namespace.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tag_namespace_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_tags/items/tag_value_type"></div>
+                    <b>tag_value_type</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_tags/items/tag_value_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The tag value type.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VALUE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-profile/target_tags/items/tag_values"></div>
+                    <b>tag_values</b>
+                    <a class="ansibleOptionLink" href="#return-profile/target_tags/items/tag_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of tag values.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-profile/time_created" title="Permalink to this return value"></a>
@@ -768,7 +1060,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-profile/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-profile/time_updated" title="Permalink to this return value"></a>

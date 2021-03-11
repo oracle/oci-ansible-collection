@@ -24,7 +24,8 @@ short_description: Manage an IntegrationInstance resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete an IntegrationInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Integration Instance.
-    - "This resource has the following action operations in the M(oci_integration_instance_actions) module: start, stop."
+    - "This resource has the following action operations in the M(oci_integration_instance_actions) module: change_integration_instance_network_endpoint, start,
+      stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -74,7 +75,7 @@ options:
         type: bool
     idcs_at:
         description:
-            - IDCS Authentication token. This is is required for pre-UCPIS cloud accounts, but not UCPIS, hence not a required parameter
+            - IDCS Authentication token. This is required for all realms with IDCS. Its optional as its not required for non IDCS realms.
         type: str
     message_packs:
         description:
@@ -82,6 +83,50 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
+    is_visual_builder_enabled:
+        description:
+            - Visual Builder is enabled or not.
+            - This parameter is updatable.
+        type: bool
+    custom_endpoint:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            hostname:
+                description:
+                    - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    - This parameter is updatable.
+                type: str
+                required: true
+            certificate_secret_id:
+                description:
+                    - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                      All certificates should be stored in a single base64 encoded secret
+                      Note the update will fail if this is not a valid certificate.
+                    - This parameter is updatable.
+                type: str
+    alternate_custom_endpoints:
+        description:
+            - A list of alternate custom endpoints to be used for the integration instance URL
+              (contact Oracle for alternateCustomEndpoints availability for a specific instance).
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            hostname:
+                description:
+                    - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    - This parameter is updatable.
+                type: str
+                required: true
+            certificate_secret_id:
+                description:
+                    - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                      All certificates should be stored in a single base64 encoded secret
+                      Note the update will fail if this is not a valid certificate.
+                    - This parameter is updatable.
+                type: str
     consumption_model:
         description:
             - Optional parameter specifying which entitlement to use for billing purposes. Only required if the account possesses more than one entitlement.
@@ -95,6 +140,40 @@ options:
             - The file server is enabled or not.
             - This parameter is updatable.
         type: bool
+    network_endpoint_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            network_endpoint_type:
+                description:
+                    - The type of network endpoint.
+                type: str
+                choices:
+                    - "PUBLIC"
+                required: true
+            allowlisted_http_ips:
+                description:
+                    - Source IP addresses or IP address ranges ingress rules.
+                type: list
+            allowlisted_http_vcns:
+                description:
+                    - Virtual Cloud Networks allowed to access this network endpoint.
+                type: list
+                suboptions:
+                    id:
+                        description:
+                            - The Virtual Cloud Network OCID.
+                        type: str
+                        required: true
+                    allowlisted_ips:
+                        description:
+                            - Source IP addresses or IP address ranges ingress rules.
+                        type: list
+            is_integration_vcn_allowlisted:
+                description:
+                    - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
+                type: bool
     integration_instance_id:
         description:
             - Unique Integration Instance identifier.
@@ -132,6 +211,11 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_byol: true
     message_packs: 56
+    is_visual_builder_enabled: true
+    custom_endpoint:
+      hostname: hostname_example
+    alternate_custom_endpoints:
+    - hostname: hostname_example
     is_file_server_enabled: true
 
 - name: Update integration_instance
@@ -249,12 +333,108 @@ integration_instance:
             returned: on success
             type: bool
             sample: true
+        is_visual_builder_enabled:
+            description:
+                - VisualBuilder is enabled or not.
+            returned: on success
+            type: bool
+            sample: true
+        custom_endpoint:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    returned: on success
+                    type: string
+                    sample: hostname_example
+                certificate_secret_id:
+                    description:
+                        - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                    returned: on success
+                    type: string
+                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                certificate_secret_version:
+                    description:
+                        - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
+                    returned: on success
+                    type: int
+                    sample: 56
+        alternate_custom_endpoints:
+            description:
+                - A list of alternate custom endpoints used for the integration instance URL.
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    returned: on success
+                    type: string
+                    sample: hostname_example
+                certificate_secret_id:
+                    description:
+                        - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                    returned: on success
+                    type: string
+                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                certificate_secret_version:
+                    description:
+                        - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
+                    returned: on success
+                    type: int
+                    sample: 56
         consumption_model:
             description:
                 - The entitlement used for billing purposes.
             returned: on success
             type: string
             sample: UCM
+        network_endpoint_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_endpoint_type:
+                    description:
+                        - The type of network endpoint.
+                    returned: on success
+                    type: string
+                    sample: PUBLIC
+                allowlisted_http_ips:
+                    description:
+                        - Source IP addresses or IP address ranges ingress rules.
+                    returned: on success
+                    type: list
+                    sample: []
+                allowlisted_http_vcns:
+                    description:
+                        - Virtual Cloud Networks allowed to access this network endpoint.
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The Virtual Cloud Network OCID.
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                        allowlisted_ips:
+                            description:
+                                - Source IP addresses or IP address ranges ingress rules.
+                            returned: on success
+                            type: list
+                            sample: []
+                is_integration_vcn_allowlisted:
+                    description:
+                        - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -270,7 +450,27 @@ integration_instance:
         "instance_url": "instance_url_example",
         "message_packs": 56,
         "is_file_server_enabled": true,
-        "consumption_model": "UCM"
+        "is_visual_builder_enabled": true,
+        "custom_endpoint": {
+            "hostname": "hostname_example",
+            "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_secret_version": 56
+        },
+        "alternate_custom_endpoints": [{
+            "hostname": "hostname_example",
+            "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_secret_version": 56
+        }],
+        "consumption_model": "UCM",
+        "network_endpoint_details": {
+            "network_endpoint_type": "PUBLIC",
+            "allowlisted_http_ips": [],
+            "allowlisted_http_vcns": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "allowlisted_ips": []
+            }],
+            "is_integration_vcn_allowlisted": true
+        }
     }
 """
 
@@ -423,8 +623,42 @@ def main():
             is_byol=dict(type="bool"),
             idcs_at=dict(type="str"),
             message_packs=dict(type="int"),
+            is_visual_builder_enabled=dict(type="bool"),
+            custom_endpoint=dict(
+                type="dict",
+                options=dict(
+                    hostname=dict(type="str", required=True),
+                    certificate_secret_id=dict(type="str"),
+                ),
+            ),
+            alternate_custom_endpoints=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    hostname=dict(type="str", required=True),
+                    certificate_secret_id=dict(type="str"),
+                ),
+            ),
             consumption_model=dict(type="str", choices=["UCM", "GOV", "OIC4SAAS"]),
             is_file_server_enabled=dict(type="bool"),
+            network_endpoint_details=dict(
+                type="dict",
+                options=dict(
+                    network_endpoint_type=dict(
+                        type="str", required=True, choices=["PUBLIC"]
+                    ),
+                    allowlisted_http_ips=dict(type="list"),
+                    allowlisted_http_vcns=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            id=dict(type="str", required=True),
+                            allowlisted_ips=dict(type="list"),
+                        ),
+                    ),
+                    is_integration_vcn_allowlisted=dict(type="bool"),
+                ),
+            ),
             integration_instance_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -36,13 +36,14 @@ options:
         type: str
     name:
         description:
-            - The name assigned to the profile.
+            - The name assigned to the profile. Avoid entering confidential information.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     description:
         description:
-            - Text describing the profile.
+            - Text describing the profile. Avoid entering confidential information.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -81,6 +82,51 @@ options:
                         description:
                             - The pre-defined profile level.
                         type: str
+    target_compartments:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - The list of target compartment OCIDs attached to the current profile override.
+                type: list
+                required: true
+    target_tags:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - The list of target tags attached to the current profile override.
+                type: list
+                required: true
+                suboptions:
+                    tag_namespace_name:
+                        description:
+                            - The name of the tag namespace.
+                        type: str
+                        required: true
+                    tag_definition_name:
+                        description:
+                            - The name of the tag definition.
+                        type: str
+                        required: true
+                    tag_value_type:
+                        description:
+                            - The tag value type.
+                        type: str
+                        choices:
+                            - "VALUE"
+                            - "ANY"
+                        required: true
+                    tag_values:
+                        description:
+                            - The list of tag values.
+                        type: list
     profile_id:
         description:
             - The unique OCID of the profile.
@@ -114,11 +160,16 @@ EXAMPLES = """
     description: description_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    target_tags:
+      items:
+      - tag_namespace_name: tag_namespace_name_example
+        tag_definition_name: tag_definition_name_example
+        tag_value_type: VALUE
 
 - name: Update profile
   oci_optimizer_profile:
+    name: name_example
     description: description_example
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     profile_id: ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx
 
 - name: Delete profile
@@ -155,13 +206,13 @@ profile:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         name:
             description:
-                - The name assigned to the profile.
+                - The name assigned to the profile. Avoid entering confidential information.
             returned: on success
             type: string
             sample: name_example
         description:
             description:
-                - Text describing the profile.
+                - Text describing the profile. Avoid entering confidential information.
             returned: on success
             type: string
             sample: description_example
@@ -200,6 +251,54 @@ profile:
                     returned: on success
                     type: string
                     sample: level_example
+        target_compartments:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - The list of target compartment OCIDs attached to the current profile override.
+                    returned: on success
+                    type: list
+                    sample: []
+        target_tags:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - The list of target tags attached to the current profile override.
+                    returned: on success
+                    type: complex
+                    contains:
+                        tag_namespace_name:
+                            description:
+                                - The name of the tag namespace.
+                            returned: on success
+                            type: string
+                            sample: tag_namespace_name_example
+                        tag_definition_name:
+                            description:
+                                - The name of the tag definition.
+                            returned: on success
+                            type: string
+                            sample: tag_definition_name_example
+                        tag_value_type:
+                            description:
+                                - The tag value type.
+                            returned: on success
+                            type: string
+                            sample: VALUE
+                        tag_values:
+                            description:
+                                - The list of tag values.
+                            returned: on success
+                            type: list
+                            sample: []
         lifecycle_state:
             description:
                 - The profile's current state.
@@ -228,6 +327,17 @@ profile:
         "levels_configuration": {
             "recommendation_id": "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx",
             "level": "level_example"
+        },
+        "target_compartments": {
+            "items": []
+        },
+        "target_tags": {
+            "items": [{
+                "tag_namespace_name": "tag_namespace_name_example",
+                "tag_definition_name": "tag_definition_name_example",
+                "tag_value_type": "VALUE",
+                "tag_values": []
+            }]
         },
         "lifecycle_state": "ACTIVE",
         "time_created": "2020-08-25T21:10:29.600Z",
@@ -384,6 +494,27 @@ def main():
                         elements="dict",
                         options=dict(
                             recommendation_id=dict(type="str"), level=dict(type="str")
+                        ),
+                    )
+                ),
+            ),
+            target_compartments=dict(
+                type="dict", options=dict(items=dict(type="list", required=True))
+            ),
+            target_tags=dict(
+                type="dict",
+                options=dict(
+                    items=dict(
+                        type="list",
+                        elements="dict",
+                        required=True,
+                        options=dict(
+                            tag_namespace_name=dict(type="str", required=True),
+                            tag_definition_name=dict(type="str", required=True),
+                            tag_value_type=dict(
+                                type="str", required=True, choices=["VALUE", "ANY"]
+                            ),
+                            tag_values=dict(type="list"),
                         ),
                     )
                 ),

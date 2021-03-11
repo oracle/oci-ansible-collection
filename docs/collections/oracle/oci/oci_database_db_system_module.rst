@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,8 +44,10 @@ Synopsis
 
 - This module allows the user to create, update and delete a DbSystem resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new DB system in the specified compartment and availability domain. The Oracle Database edition that you specify applies to all the databases on that DB system. The selected edition cannot be changed.
-- An initial database is created on the DB system based on the request parameters you provide and some default options. For detailed information about default options, see the following:
-- - `Bare metal and virtual machine DB system default options <https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase>`_ - `Exadata DB system default options <https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase>`_
+- An initial database is created on the DB system based on the request parameters you provide and some default options. For detailed information about default options, see `Bare metal and virtual machine DB system default options. <https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#Default>`_
+- **Note:** Deprecated for Exadata Cloud Service systems. Use the `new resource model APIs <https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_ instead.
+- For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See `Switching an Exadata DB System to the New Resource Model and APIs <https://docs.cloud.oracle.com/Concepts/exaflexsystem_topic-resource_model_conversion.htm>`_ for details on converting existing Exadata DB systems to the new resource model.
+- Use the `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/>`_ and `CreateCloudVmCluster <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/>`_ APIs to provision a new Exadata Cloud Service instance.
 - This resource has the following action operations in the :ref:`oci_db_system_actions <ansible_collections.oci_db_system_actions_module>` module: migrate_exadata_db_system_resource_model.
 
 
@@ -898,7 +900,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a></div>
+                                            <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                             <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
@@ -915,7 +917,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                             <div>Required when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
@@ -1110,7 +1112,7 @@ Parameters
                                             <div>A Fault Domain is a grouping of hardware and infrastructure within an availability domain. Fault Domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or maintenance that affects one Fault Domain does not affect DB systems in other Fault Domains.</div>
                                             <div>If you do not specify the Fault Domain, the system selects one for you. To change the Fault Domain for a DB system, terminate it and launch a new DB system in the preferred Fault Domain.</div>
                                             <div>If the node count is greater than 1, you can specify which Fault Domains these nodes will be distributed into. The system assigns your nodes automatically to the Fault Domains you specify so that no Fault Domain contains more than one node.</div>
-                                            <div>To get a list of Fault Domains, use the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains'>ListFaultDomains</a> operation in the Identity and Access Management Service API.</div>
+                                            <div>To get a list of Fault Domains, use the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/FaultDomain/ListFaultDomains'>ListFaultDomains</a> operation in the Identity and Access Management Service API.</div>
                                             <div>Example: `FAULT-DOMAIN-1`</div>
                                                         </td>
             </tr>
@@ -1492,7 +1494,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The shape of the DB system. The shape determines resources allocated to the DB system. - For virtual machine shapes, the number of CPU cores and memory - For bare metal and Exadata shapes, the number of CPU cores, memory, and storage</div>
-                                            <div>To get a list of shapes, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes'>ListDbSystemShapes</a> operation.</div>
+                                            <div>To get a list of shapes, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes'>ListDbSystemShapes</a> operation.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
