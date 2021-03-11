@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster_network -- Manage a VmClusterNetwork resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a VmClusterNetwork resource in Oracle Cloud Infrastructure
-- For *state=present*, creates the VM cluster network. Applies to Exadata Cloud@Customer instances only. To create a cloud VM cluster in an Exadata Cloud Service instance, use the `CreateCloudVmCluster  <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/CloudVmCluster/CreateCloudVmCluster>`_ operation.
+- For *state=present*, creates the VM cluster network. Applies to Exadata Cloud@Customer instances only. To create a cloud VM cluster in an Exadata Cloud Service instance, use the `CreateCloudVmCluster  <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster>`_ operation.
 - This resource has the following action operations in the :ref:`oci_vm_cluster_network_actions <ansible_collections.oci_vm_cluster_network_actions_module>` module: download_vm_cluster_network_config_file, validate.
 
 

@@ -23,6 +23,8 @@ module: oci_integration_instance_actions
 short_description: Perform actions on an IntegrationInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an IntegrationInstance resource in Oracle Cloud Infrastructure
+    - For I(action=change_integration_instance_network_endpoint), change an Integration instance network endpoint. The operation is long-running
+      and creates a new WorkRequest.
     - For I(action=start), start an integration instance that was previously in an INACTIVE state
     - For I(action=stop), stop an integration instance that was previously in an ACTIVE state
 version_added: "2.9"
@@ -34,18 +36,59 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    network_endpoint_details:
+        description:
+            - ""
+            - Applicable only for I(action=change_integration_instance_network_endpoint).
+        type: dict
+        suboptions:
+            network_endpoint_type:
+                description:
+                    - The type of network endpoint.
+                type: str
+                choices:
+                    - "PUBLIC"
+                required: true
+            allowlisted_http_ips:
+                description:
+                    - Source IP addresses or IP address ranges ingress rules.
+                type: list
+            allowlisted_http_vcns:
+                description:
+                    - Virtual Cloud Networks allowed to access this network endpoint.
+                type: list
+                suboptions:
+                    id:
+                        description:
+                            - The Virtual Cloud Network OCID.
+                        type: str
+                        required: true
+                    allowlisted_ips:
+                        description:
+                            - Source IP addresses or IP address ranges ingress rules.
+                        type: list
+            is_integration_vcn_allowlisted:
+                description:
+                    - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
+                type: bool
     action:
         description:
             - The action to perform on the IntegrationInstance.
         type: str
         required: true
         choices:
+            - "change_integration_instance_network_endpoint"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_integration_instance_network_endpoint on integration_instance
+  oci_integration_instance_actions:
+    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_integration_instance_network_endpoint
+
 - name: Perform action start on integration_instance
   oci_integration_instance_actions:
     integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
@@ -154,12 +197,108 @@ integration_instance:
             returned: on success
             type: bool
             sample: true
+        is_visual_builder_enabled:
+            description:
+                - VisualBuilder is enabled or not.
+            returned: on success
+            type: bool
+            sample: true
+        custom_endpoint:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    returned: on success
+                    type: string
+                    sample: hostname_example
+                certificate_secret_id:
+                    description:
+                        - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                    returned: on success
+                    type: string
+                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                certificate_secret_version:
+                    description:
+                        - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
+                    returned: on success
+                    type: int
+                    sample: 56
+        alternate_custom_endpoints:
+            description:
+                - A list of alternate custom endpoints used for the integration instance URL.
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    returned: on success
+                    type: string
+                    sample: hostname_example
+                certificate_secret_id:
+                    description:
+                        - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                    returned: on success
+                    type: string
+                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                certificate_secret_version:
+                    description:
+                        - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
+                    returned: on success
+                    type: int
+                    sample: 56
         consumption_model:
             description:
                 - The entitlement used for billing purposes.
             returned: on success
             type: string
             sample: UCM
+        network_endpoint_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_endpoint_type:
+                    description:
+                        - The type of network endpoint.
+                    returned: on success
+                    type: string
+                    sample: PUBLIC
+                allowlisted_http_ips:
+                    description:
+                        - Source IP addresses or IP address ranges ingress rules.
+                    returned: on success
+                    type: list
+                    sample: []
+                allowlisted_http_vcns:
+                    description:
+                        - Virtual Cloud Networks allowed to access this network endpoint.
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The Virtual Cloud Network OCID.
+                            returned: on success
+                            type: string
+                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                        allowlisted_ips:
+                            description:
+                                - Source IP addresses or IP address ranges ingress rules.
+                            returned: on success
+                            type: list
+                            sample: []
+                is_integration_vcn_allowlisted:
+                    description:
+                        - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -175,7 +314,27 @@ integration_instance:
         "instance_url": "instance_url_example",
         "message_packs": 56,
         "is_file_server_enabled": true,
-        "consumption_model": "UCM"
+        "is_visual_builder_enabled": true,
+        "custom_endpoint": {
+            "hostname": "hostname_example",
+            "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_secret_version": 56
+        },
+        "alternate_custom_endpoints": [{
+            "hostname": "hostname_example",
+            "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_secret_version": 56
+        }],
+        "consumption_model": "UCM",
+        "network_endpoint_details": {
+            "network_endpoint_type": "PUBLIC",
+            "allowlisted_http_ips": [],
+            "allowlisted_http_vcns": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "allowlisted_ips": []
+            }],
+            "is_integration_vcn_allowlisted": true
+        }
     }
 """
 
@@ -191,6 +350,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.integration import IntegrationInstanceClient
+    from oci.integration.models import ChangeIntegrationInstanceNetworkEndpointDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -200,6 +360,7 @@ except ImportError:
 class IntegrationInstanceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_integration_instance_network_endpoint
         start
         stop
     """
@@ -218,6 +379,29 @@ class IntegrationInstanceActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_integration_instance,
             integration_instance_id=self.module.params.get("integration_instance_id"),
+        )
+
+    def change_integration_instance_network_endpoint(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeIntegrationInstanceNetworkEndpointDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_integration_instance_network_endpoint,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                integration_instance_id=self.module.params.get(
+                    "integration_instance_id"
+                ),
+                change_integration_instance_network_endpoint_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def start(self):
@@ -277,7 +461,33 @@ def main():
     module_args.update(
         dict(
             integration_instance_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["start", "stop"]),
+            network_endpoint_details=dict(
+                type="dict",
+                options=dict(
+                    network_endpoint_type=dict(
+                        type="str", required=True, choices=["PUBLIC"]
+                    ),
+                    allowlisted_http_ips=dict(type="list"),
+                    allowlisted_http_vcns=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            id=dict(type="str", required=True),
+                            allowlisted_ips=dict(type="list"),
+                        ),
+                    ),
+                    is_integration_vcn_allowlisted=dict(type="bool"),
+                ),
+            ),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "change_integration_instance_network_endpoint",
+                    "start",
+                    "stop",
+                ],
+            ),
         )
     )
 

@@ -38,7 +38,7 @@ options:
     db_version:
         description:
             - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
         type: str
     source:
         description:

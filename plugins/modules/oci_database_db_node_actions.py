@@ -32,7 +32,7 @@ description:
       *Bare metal and Exadata systems* - The _stop_ state has no effect on the resources you consume.
       Billing continues for DB nodes that you stop, and related resources continue
       to apply against any relevant quotas. You must terminate the DB system
-      (L(TerminateDbSystem,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystem/TerminateDbSystem))
+      (L(TerminateDbSystem,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/DbSystem/TerminateDbSystem))
       to remove its resources from billing and quotas.
       *Virtual machine DB systems* - Stopping a node stops billing for all OCPUs associated with that node, and billing resumes when you restart the node."
 version_added: "2.9"

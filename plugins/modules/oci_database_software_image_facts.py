@@ -168,7 +168,7 @@ database_software_images:
         patch_set:
             description:
                 - The PSU or PBP or Release Updates. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                  us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             returned: on success
             type: string
             sample: patch_set_example

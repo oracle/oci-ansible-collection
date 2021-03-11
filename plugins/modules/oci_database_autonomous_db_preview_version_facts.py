@@ -88,7 +88,7 @@ autonomous_db_preview_versions:
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
                   - AJD - indicates an Autonomous JSON Database
-                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
+                  - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
             type: string
             sample: OLTP

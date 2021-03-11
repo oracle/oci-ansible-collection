@@ -25,11 +25,18 @@ description:
     - This module allows the user to create, update and delete a DbSystem resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DB system in the specified compartment and availability domain. The Oracle
       Database edition that you specify applies to all the databases on that DB system. The selected edition cannot be changed.
-    - "An initial database is created on the DB system based on the request parameters you provide and some default
-      options. For detailed information about default options, see the following:"
-    - "- L(Bare metal and virtual machine DB system default
-      options,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)
-      - L(Exadata DB system default options,https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)"
+    - An initial database is created on the DB system based on the request parameters you provide and some default
+      options. For detailed information about default options, see L(Bare metal and virtual machine DB system default
+      options.,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#Default)
+    - "**Note:** Deprecated for Exadata Cloud Service systems. Use the L(new resource model
+      APIs,https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model) instead."
+    - For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See L(Switching an Exadata DB System to the New Resource Model and
+      APIs,https://docs.cloud.oracle.com/Concepts/exaflexsystem_topic-resource_model_conversion.htm) for details on converting existing Exadata DB systems to
+      the new resource model.
+    - Use the L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/) and
+      L(CreateCloudVmCluster,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/) APIs to provision a new
+      Exadata Cloud Service instance.
     - "This resource has the following action operations in the M(oci_db_system_actions) module: migrate_exadata_db_system_resource_model."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -53,7 +60,7 @@ options:
               The system assigns your nodes automatically to the Fault Domains you specify so that
               no Fault Domain contains more than one node.
             - To get a list of Fault Domains, use the
-              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
+              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/FaultDomain/ListFaultDomains) operation in the
               Identity and Access Management Service API.
             - "Example: `FAULT-DOMAIN-1`"
         type: list
@@ -108,7 +115,7 @@ options:
               - For virtual machine shapes, the number of CPU cores and memory
               - For bare metal and Exadata shapes, the number of CPU cores, memory, and storage"
             - To get a list of shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.
+              us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes) operation.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -253,12 +260,12 @@ options:
             db_version:
                 description:
                     - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                      us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'NONE'
                 type: str
             database_software_image_id:
                 description:
-                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     - Applicable when source is 'NONE'
                 type: str
             database:

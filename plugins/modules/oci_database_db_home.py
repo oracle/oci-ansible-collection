@@ -254,7 +254,7 @@ options:
     db_version:
         description:
             - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
         type: str
     db_home_id:

@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,8 @@ Synopsis
 
 - Fetches details about one or multiple DbSystem resources in Oracle Cloud Infrastructure
 - Lists the DB systems in the specified compartment. You can specify a `backupId` to list only the DB systems that support creating a database using this backup in this compartment.
+- **Note:** Deprecated for Exadata Cloud Service systems. Use the `new resource model APIs <https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_ instead.
+- For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See `Switching an Exadata DB System to the New Resource Model and APIs <https://docs.cloud.oracle.com/Concepts/exaflexsystem_topic-resource_model_conversion.htm>`_ for details on converting existing Exadata DB systems to the new resource model.
 - If *db_system_id* is specified, the details of a single DbSystem will be returned.
 
 

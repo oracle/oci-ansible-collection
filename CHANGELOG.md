@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.17.0] - 2021-03-11
+
+### Added
+- Support for the OCI Registry Service
+- Support for enabling and disabling database management for external database
+- Support for listing recommendation strategies in the optimizer service
+- Support for providing target tags and target compartments on profiles in the optimizer service
+- Support for custom endpoint feature in the Integration Service
+- Support for change network endpoint for integration instance in Integration Service
+- `primary_vnic_only` option in inventory plugin to process only the primary vnic of a compute instance
+
+### Fixed
+- Return documentation for `oci_object_storage_object_actions` module
+
+### Changed
+- Python 2 reached end of life on 1st January, 2020 and [OCI Python SDK](https://github.com/oracle/oci-python-sdk) stopped support for Python 2 long back. We cannot support Python 2 since we have a hard dependency on [OCI Python SDK](https://github.com/oracle/oci-python-sdk). We strongly recommend you to move to Python 3 if you are still using Python 2
+- `resource_action_ids` parameter is made optional in `oci_optimizer_recommendation_actions` module
+- Parameter `name` is now updatable in `oci_optimizer_profile`
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
 ## [2.16.0] - 2021-2-25
 
 ### Added

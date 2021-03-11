@@ -37,6 +37,16 @@ def get_logger():
     return logger
 
 
+def get_db_management_status(resource):
+    if not resource:
+        return None
+    if not hasattr(resource, "database_management_config"):
+        return None
+    if not hasattr(resource.database_management_config, "database_management_status"):
+        return None
+    return resource.database_management_config.database_management_status
+
+
 class AutonomousDatabaseHelperCustom:
     # get model doesn't return admin_password of existing database resources. Thus, excluding
     # admin_password for idempotency.
@@ -129,6 +139,84 @@ class AutonomousDatabaseActionsHelperCustom:
 class AutonomousDatabaseBackupHelperCustom:
     def is_create(self):
         return True
+
+
+# Handling idempotency logic
+class ExternalContainerDatabaseActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        db_mgt_status = get_db_management_status(resource)
+        _debug("EC Resource details {0} {1}".format(db_mgt_status, action))
+        if action == "enable_external_container_database_database_management":
+            if db_mgt_status == "ENABLED":
+                return False
+            elif db_mgt_status == "NOT_ENABLED":
+                return True
+            else:
+                return True
+        elif action == "disable_external_container_database_database_management":
+            if db_mgt_status == "NOT_ENABLED":
+                return False
+            elif db_mgt_status == "ENABLED":
+                return True
+            else:
+                return False
+        else:
+            return super(
+                ExternalContainerDatabaseActionsHelperCustom, self
+            ).is_action_necessary(action, resource)
+
+
+# Handling idempotency logic
+class ExternalPluggableDatabaseActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        db_mgt_status = get_db_management_status(resource)
+        _debug("EPC Resource details {0} {1}".format(db_mgt_status, action))
+        if action == "enable_external_pluggable_database_database_management":
+            if db_mgt_status == "ENABLED":
+                return False
+            elif db_mgt_status == "NOT_ENABLED":
+                return True
+            else:
+                return True
+        elif action == "disable_external_pluggable_database_database_management":
+            if db_mgt_status == "NOT_ENABLED":
+                return False
+            elif db_mgt_status == "ENABLED":
+                return True
+            else:
+                return False
+        else:
+            return super(
+                ExternalPluggableDatabaseActionsHelperCustom, self
+            ).is_action_necessary(action, resource)
+
+
+# Handling idempotency logic
+class ExternalNonContainerDatabaseActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        db_mgt_status = get_db_management_status(resource)
+        _debug("ENC Resource details {0} {1}".format(db_mgt_status, action))
+        if action == "enable_external_non_container_database_database_management":
+            if db_mgt_status == "ENABLED":
+                return False
+            elif db_mgt_status == "NOT_ENABLED":
+                return True
+            else:
+                return True
+        elif action == "disable_external_non_container_database_database_management":
+            if db_mgt_status == "NOT_ENABLED":
+                return False
+            elif db_mgt_status == "ENABLED":
+                return True
+            else:
+                return False
+        else:
+            return super(
+                ExternalNonContainerDatabaseActionsHelperCustom, self
+            ).is_action_necessary(action, resource)
 
 
 class DbSystemHelperCustom:

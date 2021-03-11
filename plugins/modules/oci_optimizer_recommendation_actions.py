@@ -38,7 +38,41 @@ options:
             - The unique OCIDs of the resource actions that recommendations are applied to. The recommendation will be applied to the given OCIDs irrespective
               of the existing status.
         type: list
-        required: true
+    actions:
+        description:
+            - The unique resource actions that recommendations are applied to.
+        type: list
+        suboptions:
+            resource_action_id:
+                description:
+                    - The unique OCIDs of the resource actions that recommendations are applied to.
+                type: str
+                required: true
+            status:
+                description:
+                    - The current status of the recommendation.
+                type: str
+                choices:
+                    - "PENDING"
+                    - "DISMISSED"
+                    - "POSTPONED"
+                    - "IMPLEMENTED"
+            time_status_end:
+                description:
+                    - The date and time the current status will change. The format is defined by RFC3339.
+                    - "For example, \\"The current `postponed` status of the resource action will end and change to `pending` on this
+                      date and time.\\""
+                type: str
+            parameters:
+                description:
+                    - "Additional parameter key-value pairs defining the resource action.
+                      For example:"
+                    - "`{\\"timeAmount\\": 15, \\"timeUnit\\": \\"seconds\\"}`"
+                type: dict
+            strategy_name:
+                description:
+                    - The name of the strategy.
+                type: str
     status:
         description:
             - The current status of the recommendation.
@@ -295,7 +329,21 @@ def main():
     module_args.update(
         dict(
             recommendation_id=dict(aliases=["id"], type="str", required=True),
-            resource_action_ids=dict(type="list", required=True),
+            resource_action_ids=dict(type="list"),
+            actions=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    resource_action_id=dict(type="str", required=True),
+                    status=dict(
+                        type="str",
+                        choices=["PENDING", "DISMISSED", "POSTPONED", "IMPLEMENTED"],
+                    ),
+                    time_status_end=dict(type="str"),
+                    parameters=dict(type="dict"),
+                    strategy_name=dict(type="str"),
+                ),
+            ),
             status=dict(
                 type="str",
                 required=True,

@@ -27,7 +27,7 @@ description:
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
     - Restore a Database based on the request parameters you provide.
     - Creates a new version of an existing L(Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
-    - Upgrade the specified database.
+    - Upgrades the specified Oracle Database instance.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -83,10 +83,12 @@ options:
         suboptions:
             source:
                 description:
-                    - The source of the database upgrade
-                      Use 'DB_HOME' for using existing db home to upgrade the database
-                      Use 'DB_VERSION' for using database version to upgrade the database
-                      Use 'DB_SOFTWARE_IMAGE' for using database software image to upgrade the database
+                    - "The source of the Oracle Database software to be used for the upgrade.
+                       - Use `DB_HOME` to specify an existing Database Home to upgrade the database. The database is moved to the target Database Home and makes
+                         use of the Oracle Database software version of the target Database Home.
+                       - Use `DB_VERSION` to specify a generally-available Oracle Database software version to upgrade the database.
+                       - Use `DB_SOFTWARE_IMAGE` to specify a L(database software
+                         image,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databasesoftwareimage.htm) to upgrade the database."
                 type: str
                 choices:
                     - "DB_HOME"
@@ -100,13 +102,14 @@ options:
                 type: str
             database_software_image_id:
                 description:
-                    - the database software id used for upgrading the database.
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the image to be used to
+                      upgrade a database.
                     - Required when source is 'DB_SOFTWARE_IMAGE'
                 type: str
             db_version:
                 description:
                     - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                      us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'DB_VERSION'
                 type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]

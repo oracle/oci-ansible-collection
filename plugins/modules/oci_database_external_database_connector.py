@@ -24,6 +24,8 @@ short_description: Manage an ExternalDatabaseConnector resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an ExternalDatabaseConnector resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new external database connector.
+    - "This resource has the following action operations in the M(oci_external_database_connector_actions) module:
+      check_external_database_connector_connection_status."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

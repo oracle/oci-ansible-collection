@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_pluggable_database -- Manage an ExternalPluggab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an ExternalPluggableDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, registers a new `ExternalPluggableDatabase <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalPluggableDatabaseDetails>`_ resource.
+- This resource has the following action operations in the :ref:`oci_external_pluggable_database_actions <ansible_collections.oci_external_pluggable_database_actions_module>` module: disable_external_pluggable_database_database_management, enable_external_pluggable_database_database_management.
 
 
 .. Aliases

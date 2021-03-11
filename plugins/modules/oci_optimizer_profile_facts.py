@@ -107,13 +107,13 @@ profiles:
             sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         name:
             description:
-                - The name assigned to the profile.
+                - The name assigned to the profile. Avoid entering confidential information.
             returned: on success
             type: string
             sample: name_example
         description:
             description:
-                - Text describing the profile.
+                - Text describing the profile. Avoid entering confidential information.
             returned: on success
             type: string
             sample: description_example
@@ -152,6 +152,54 @@ profiles:
                     returned: on success
                     type: string
                     sample: level_example
+        target_compartments:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - The list of target compartment OCIDs attached to the current profile override.
+                    returned: on success
+                    type: list
+                    sample: []
+        target_tags:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - The list of target tags attached to the current profile override.
+                    returned: on success
+                    type: complex
+                    contains:
+                        tag_namespace_name:
+                            description:
+                                - The name of the tag namespace.
+                            returned: on success
+                            type: string
+                            sample: tag_namespace_name_example
+                        tag_definition_name:
+                            description:
+                                - The name of the tag definition.
+                            returned: on success
+                            type: string
+                            sample: tag_definition_name_example
+                        tag_value_type:
+                            description:
+                                - The tag value type.
+                            returned: on success
+                            type: string
+                            sample: VALUE
+                        tag_values:
+                            description:
+                                - The list of tag values.
+                            returned: on success
+                            type: list
+                            sample: []
         lifecycle_state:
             description:
                 - The profile's current state.
@@ -180,6 +228,17 @@ profiles:
         "levels_configuration": {
             "recommendation_id": "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx",
             "level": "level_example"
+        },
+        "target_compartments": {
+            "items": []
+        },
+        "target_tags": {
+            "items": [{
+                "tag_namespace_name": "tag_namespace_name_example",
+                "tag_definition_name": "tag_definition_name_example",
+                "tag_value_type": "VALUE",
+                "tag_values": []
+            }]
         },
         "lifecycle_state": "ACTIVE",
         "time_created": "2020-08-25T21:10:29.600Z",

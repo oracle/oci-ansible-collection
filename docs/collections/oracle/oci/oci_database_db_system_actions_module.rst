@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system_actions -- Perform actions on a DbSystem resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
-- For *action=migrate_exadata_db_system_resource_model*, migrates the Exadata DB system to the cloud Exadata infrastructure model. All related resources will be migrated.
+- For *action=migrate_exadata_db_system_resource_model*, migrates the Exadata DB system to the new `Exadata resource model <https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_. All related resources will be migrated.
 
 
 .. Aliases

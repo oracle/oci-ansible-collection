@@ -24,6 +24,9 @@ short_description: Manage an ExternalContainerDatabase resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new external container database resource.
+    - "This resource has the following action operations in the M(oci_external_container_database_actions) module:
+      disable_external_container_database_database_management, enable_external_container_database_database_management,
+      scan_external_container_database_pluggable_databases."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
