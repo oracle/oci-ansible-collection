@@ -20,7 +20,7 @@ oracle.oci.oci_healthchecks_ping_probe_result_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -316,7 +316,7 @@ Examples
     
     - name: List ping_probe_results
       oci_healthchecks_ping_probe_result_facts:
-        probe_configuration_id: ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        probe_configuration_id: "ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

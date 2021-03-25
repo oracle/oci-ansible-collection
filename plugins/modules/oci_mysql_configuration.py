@@ -309,12 +309,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create configuration
   oci_mysql_configuration:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
 
 - name: Update configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_configuration:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -324,16 +324,16 @@ EXAMPLES = """
   oci_mysql_configuration:
     description: description_example
     display_name: display_name_example
-    configuration_id: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete configuration
   oci_mysql_configuration:
-    configuration_id: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_configuration:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -351,13 +351,13 @@ configuration:
                 - The OCID of the Configuration.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID of the Compartment the Configuration exists in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - User-provided data about the Configuration.
@@ -713,7 +713,7 @@ configuration:
                   relation between the values in this Configuration and its parent."
             returned: on success
             type: string
-            sample: ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

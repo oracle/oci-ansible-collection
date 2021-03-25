@@ -20,7 +20,7 @@ oracle.oci.oci_marketplace_agreement_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -299,14 +299,14 @@ Examples
     
     - name: List agreements
       oci_marketplace_agreement_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version: package_version_example
 
     - name: Get a specific agreement
       oci_marketplace_agreement_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version: package_version_example
-        agreement_id: ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx
+        agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

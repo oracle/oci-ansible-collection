@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -413,12 +413,12 @@ Examples
     
     - name: List keys
       oci_key_management_key_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Get a specific key
       oci_key_management_key_facts:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 

@@ -635,34 +635,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_system
   oci_database_db_system:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.tenancy.oc1..unique_ID
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
     cpu_core_count: 8
-    database_edition: ENTERPRISE_EDITION
+    database_edition: "ENTERPRISE_EDITION"
     db_home:
       database:
-        admin_password: password
-        db_name: myTestDb
+        admin_password: "password"
+        db_name: "myTestDb"
         db_backup_config:
           backup_destination_details:
-          - type: RECOVERY_APPLIANCE
-            id: ocid1.bkupdest.oc1.phx.unique_ID
-            vpc_user: vpcUser1
-            vpc_password: password
+          - type: "RECOVERY_APPLIANCE"
+            id: "ocid1.bkupdest.oc1.phx.unique_ID"
+            vpc_user: "vpcUser1"
+            vpc_password: "password"
           recovery_window_in_days: 30
           auto_backup_enabled: true
-      db_version: 12.1.0.2
+      db_version: "12.1.0.2"
       display_name: null
     db_system_options:
-      storage_management: LVM
+      storage_management: "LVM"
     disk_redundancy: null
-    display_name: tst3dbsys
-    domain: example.com
-    hostname: athena
-    shape: BM.DenseIO1.36
-    source: NONE
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-    subnet_id: ocid1.subnet.oc1.phx.unique_ID
+    display_name: "tst3dbsys"
+    domain: "example.com"
+    hostname: "athena"
+    shape: "BM.DenseIO1.36"
+    source: "NONE"
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    subnet_id: "ocid1.subnet.oc1.phx.unique_ID"
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
@@ -671,33 +671,33 @@ EXAMPLES = """
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     version:
-      patch_id: ocid1.patch.oc1.phx.unique_ID
-      action: APPLY
+      patch_id: "ocid1.patch.oc1.phx.unique_ID"
+      action: "APPLY"
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     cpu_core_count: 10
     version:
-      patch_id: ocid1.patch.oc1.phx.unique_ID
-      action: APPLY
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+      patch_id: "ocid1.patch.oc1.phx.unique_ID"
+      action: "APPLY"
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
 - name: Update db_system
   oci_database_db_system:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete db_system
   oci_database_db_system:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
-    compartment_id: ocid1.tenancy.oc1..unique_ID
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
     display_name: tst3dbsys
     state: absent
 
@@ -766,13 +766,13 @@ db_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB system. The name does not have to be unique.
@@ -802,7 +802,7 @@ db_system:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet the DB system is associated
@@ -810,7 +810,7 @@ db_system:
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
             type: string
-            sample: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -882,7 +882,7 @@ db_system:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The Oracle Database version of the DB system.
@@ -922,7 +922,7 @@ db_system:
                   a patch operation starts.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         listener_port:
             description:
                 - The port number configured for the listener on the DB system.
@@ -987,7 +987,7 @@ db_system:
                   associated with the DB system.
             returned: on success
             type: string
-            sample: ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.
@@ -1080,13 +1080,13 @@ db_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -1107,7 +1107,7 @@ db_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         point_in_time_data_disk_clone_timestamp:
             description:
                 - The point in time for a cloned database system when the data disks were cloned from the source database system, as described in L(RFC

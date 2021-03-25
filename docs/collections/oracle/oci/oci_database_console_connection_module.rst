@@ -20,7 +20,7 @@ oracle.oci.oci_database_console_connection -- Manage a ConsoleConnection resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -373,13 +373,13 @@ Examples
     
     - name: Create console_connection
       oci_database_console_connection:
-        public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-        db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete console_connection
       oci_database_console_connection:
-        db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
-        console_connection_id: ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
+        console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

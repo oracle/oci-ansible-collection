@@ -40,7 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List byoip_allocated_ranges
   oci_network_byoip_allocated_range_facts:
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -62,7 +62,7 @@ byoip_allocated_ranges:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the IP pool containing the CIDR block.
             returned: on success
             type: string
-            sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "cidr_block": "cidr_block_example",
         "public_ip_pool_id": "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"

@@ -20,7 +20,7 @@ oracle.oci.oci_network_byoip_range -- Manage a ByoipRange resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ByoipRange resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a subrange of the BYOIP CIDR block.
-- This resource has the following action operations in the :ref:`oci_byoip_range_actions <ansible_collections.oci_byoip_range_actions_module>` module: advertise, validate, withdraw.
+- This resource has the following action operations in the :ref:`oci_byoip_range_actions <ansible_collections.oci_byoip_range_actions_module>` module: advertise, change_compartment, validate, withdraw.
 
 
 .. Aliases
@@ -431,11 +431,11 @@ Examples
     - name: Create byoip_range
       oci_network_byoip_range:
         cidr_block: 10.0.1.0/24
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_byoip_range:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -444,16 +444,16 @@ Examples
       oci_network_byoip_range:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete byoip_range
       oci_network_byoip_range:
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_byoip_range:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

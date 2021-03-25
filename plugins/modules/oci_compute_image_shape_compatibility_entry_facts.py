@@ -44,11 +44,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List image_shape_compatibility_entries
   oci_compute_image_shape_compatibility_entry_facts:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry_facts:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
 
 """
@@ -65,7 +65,7 @@ image_shape_compatibility_entries:
                 - The image OCID.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The shape name.

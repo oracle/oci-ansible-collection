@@ -75,11 +75,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List connect_harness
   oci_streaming_connect_harness_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific connect_harness
   oci_streaming_connect_harness_facts:
-    connect_harness_id: ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx
+    connect_harness_id: "ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

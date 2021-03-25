@@ -64,7 +64,7 @@ configuration:
                 - The OCID of the tenancy used to enable Data Safe.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_enabled:
             description:
                 - The date and time Data Safe was enabled, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

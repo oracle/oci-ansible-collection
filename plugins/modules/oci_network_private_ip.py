@@ -113,17 +113,17 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     hostname_label: bminstance-1
-    vnic_id: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+    vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update private_ip
   oci_network_private_ip:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete private_ip
   oci_network_private_ip:
-    private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete private_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -153,7 +153,7 @@ private_ip:
                 - The OCID of the compartment containing the private IP.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -197,7 +197,7 @@ private_ip:
                 - The private IP's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The private IP address of the `privateIp` object. The address is within the CIDR
@@ -224,7 +224,7 @@ private_ip:
                   L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
             returned: on success
             type: string
-            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the VNIC is in.
@@ -232,7 +232,7 @@ private_ip:
                   the Oracle Cloud VMware Solution, the `subnetId` is null.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the private IP was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -248,7 +248,7 @@ private_ip:
                   the Oracle Cloud VMware Solution, the `vnicId` is null.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

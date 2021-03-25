@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_boot_volume_backup_actions -- Perform actions on a B
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a BootVolumeBackup resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves a boot volume backup into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=copy*, creates a boot volume backup copy in specified region. For general information about volume backups, see `Overview of Boot Volume Backups <https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumebackups.htm>`_
 
 
@@ -83,7 +84,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>copy</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>copy</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -188,6 +190,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the boot volume backup to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -223,13 +241,14 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-destination_region" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the destination region.</div>
                                             <div>Example: `us-ashburn-1`</div>
+                                            <div>Required for <em>action=copy</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +264,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A user-friendly name for the boot volume backup. Does not have to be unique and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>Applicable only for <em>action=copy</em>.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -262,6 +282,7 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the Key Management key in the destination region which will be the master encryption key for the copied boot volume backup. If you do not specify this attribute the boot volume backup will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.</div>
                                             <div>For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
+                                            <div>Applicable only for <em>action=copy</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -350,9 +371,15 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on boot_volume_backup
+      oci_blockstorage_boot_volume_backup_actions:
+        boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action copy on boot_volume_backup
       oci_blockstorage_boot_volume_backup_actions:
-        boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         destination_region: us-ashburn-1
         action: copy
 

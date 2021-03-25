@@ -73,11 +73,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List notification_topics
   oci_ons_notification_topic_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific notification_topic
   oci_ons_notification_topic_facts:
-    topic_id: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+    topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -99,13 +99,19 @@ notification_topics:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
             returned: on success
             type: string
-            sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+        short_topic_id:
+            description:
+                - A unique short topic Id. This is used only for SMS subscriptions.
+            returned: on success
+            type: string
+            sample: "ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The lifecycle state of the topic.
@@ -155,6 +161,7 @@ notification_topics:
     sample: [{
         "name": "name_example",
         "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
+        "short_topic_id": "ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
         "description": "description_example",

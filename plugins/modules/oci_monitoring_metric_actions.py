@@ -111,27 +111,27 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action list on metric
   oci_monitoring_metric_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     group_by:
-    - namespace
-    action: list
+    - "namespace"
+    action: "list"
 
 - name: Perform action list on metric
   oci_monitoring_metric_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     group_by:
-    - resourceGroup
-    namespace: my_namespace
-    action: list
+    - "resourceGroup"
+    namespace: "my_namespace"
+    action: "list"
 
 - name: Perform action list on metric
   oci_monitoring_metric_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     group_by:
-    - name
-    namespace: my_namespace
-    resource_group: my_resourcegroup
-    action: list
+    - "name"
+    namespace: "my_namespace"
+    resource_group: "my_resourcegroup"
+    action: "list"
 
 """
 
@@ -173,7 +173,7 @@ metric:
                   the resources monitored by the metric.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..exampleuniqueID
+            sample: "ocid1.compartment.oc1..exampleuniqueID"
         dimensions:
             description:
                 - Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.

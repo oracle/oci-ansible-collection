@@ -20,7 +20,7 @@ oracle.oci.oci_healthchecks_http_probe -- Manage a HttpProbe resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -434,10 +434,10 @@ Examples
     
     - name: Create http_probe
       oci_healthchecks_http_probe:
-        compartment_id: ocid1.tenancy.oc1...
+        compartment_id: "ocid1.tenancy.oc1..."
         targets:
-        - 192.0.2.0
-        protocol: HTTP
+        - "192.0.2.0"
+        protocol: "HTTP"
 
 
 

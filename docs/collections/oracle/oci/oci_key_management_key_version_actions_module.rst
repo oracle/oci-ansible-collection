@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key_version_actions -- Perform actions on a KeyVer
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -352,17 +352,17 @@ Examples
     
     - name: Perform action cancel_key_version_deletion on key_version
       oci_key_management_key_version_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
-        key_version_id: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         action: cancel_key_version_deletion
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action schedule_key_version_deletion on key_version
       oci_key_management_key_version_actions:
-        time_of_deletion: 2018-04-03T21:10:29.600Z
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
-        key_version_id: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
-        action: schedule_key_version_deletion
+        time_of_deletion: "2018-04-03T21:10:29.600Z"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "schedule_key_version_deletion"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 

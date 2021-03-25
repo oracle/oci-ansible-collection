@@ -20,7 +20,7 @@ oracle.oci.oci_apigateway_deployment -- Manage a Deployment resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new deployment.
+- This resource has the following action operations in the :ref:`oci_deployment_actions <ansible_collections.oci_deployment_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -2973,31 +2974,31 @@ Examples
     
     - name: Create deployment
       oci_apigateway_deployment:
-        gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         path_prefix: path_prefix_example
 
     - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_deployment:
         display_name: My new resource
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update deployment
       oci_apigateway_deployment:
         display_name: My new resource
-        deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete deployment
       oci_apigateway_deployment:
-        deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_deployment:
         display_name: My new resource
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

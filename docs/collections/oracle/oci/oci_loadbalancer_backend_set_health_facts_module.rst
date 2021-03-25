@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_backend_set_health_facts -- Fetches details about a 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -268,7 +268,7 @@ Examples
     
     - name: Get a specific backend_set_health
       oci_loadbalancer_backend_set_health_facts:
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: example_backend_set
 
 

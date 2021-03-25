@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_erratum_facts -- Fetches details about a Erratum re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -267,7 +267,7 @@ Examples
     
     - name: Get a specific erratum
       oci_os_management_erratum_facts:
-        erratum_id: ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx
+        erratum_id: "ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

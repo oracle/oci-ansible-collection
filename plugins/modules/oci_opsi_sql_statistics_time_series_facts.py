@@ -71,7 +71,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific sql_statistics_time_series
   oci_opsi_sql_statistics_time_series_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
 
 """
@@ -130,7 +130,7 @@ sql_statistics_time_series:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
                             returned: on success
                             type: string
-                            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
                         database_name:
                             description:
                                 - The database name. The database name is unique within the tenancy.

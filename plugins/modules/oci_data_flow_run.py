@@ -24,7 +24,7 @@ short_description: Manage a Run resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and update a Run resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a run for an application.
-    - "This resource has the following action operations in the M(oci_run_actions) module: cancel."
+    - "This resource has the following action operations in the M(oci_run_actions) module: change_compartment, cancel."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -144,24 +144,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create run
   oci_data_flow_run:
-    display_name: test_wordcount_run
-    application_id: applicationId
-    compartment_id: compartmentId
-    driver_shape: VM.Standard2.1
-    executor_shape: VM.Standard2.1
+    display_name: "test_wordcount_run"
+    application_id: "applicationId"
+    compartment_id: "compartmentId"
+    driver_shape: "VM.Standard2.1"
+    executor_shape: "VM.Standard2.1"
     num_executors: 1
     arguments:
-    - oci://.../WordCount.txt
+    - "oci://.../WordCount.txt"
     parameters: []
     configuration: {}
 
 - name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_run:
-    freeform_tags: '{''Department'': ''Finance''}'
+    freeform_tags: "{'Department': 'Finance'}"
 
 - name: Update run
   oci_data_flow_run:
-    run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -198,7 +198,7 @@ run:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         class_name:
             description:
                 - The class for the application.
@@ -210,7 +210,7 @@ run:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         configuration:
             description:
                 - "The Spark configuration passed to the running process.
@@ -279,7 +279,7 @@ run:
                 - The ID of a run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -317,13 +317,13 @@ run:
                   If you need to contact Oracle about a particular request, please provide the request ID.
             returned: on success
             type: string
-            sample: ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
         owner_principal_id:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -383,13 +383,13 @@ run:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
             type: string
-            sample: ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         run_duration_in_milliseconds:
             description:
                 - The duration of the run in milliseconds.

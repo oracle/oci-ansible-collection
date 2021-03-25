@@ -129,11 +129,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_databases
   oci_database_autonomous_database_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific autonomous_database
   oci_database_autonomous_database_facts:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -149,13 +149,13 @@ autonomous_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Database.
@@ -256,7 +256,7 @@ autonomous_databases:
                 - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: string
-            sample: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Autonomous Database was created.
@@ -389,7 +389,7 @@ autonomous_databases:
                   This restriction applies to both the client subnet and the backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -569,7 +569,7 @@ autonomous_databases:
                   the current Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
                 - The Autonomous Database permission level. Restricted mode allows access only to admin users.
@@ -642,7 +642,7 @@ autonomous_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.

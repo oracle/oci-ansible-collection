@@ -106,11 +106,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_container_databases
   oci_database_autonomous_container_database_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific autonomous_container_database
   oci_database_autonomous_container_database_facts:
-    autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -126,13 +126,13 @@ autonomous_container_databases:
                 - The OCID of the Autonomous Container Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name for the Autonomous Container Database.
@@ -156,13 +156,13 @@ autonomous_container_databases:
                 - The OCID of the Autonomous Exadata Infrastructure.
             returned: on success
             type: string
-            sample: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_vm_cluster_id:
             description:
                 - The OCID of the Autonomous VM Cluster.
             returned: on success
             type: string
-            sample: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         infrastructure_type:
             description:
                 - The infrastructure type this resource belongs to.
@@ -174,14 +174,14 @@ autonomous_container_databases:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                   L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -211,19 +211,19 @@ autonomous_container_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch applied on the system.
             returned: on success
             type: string
-            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_window:
             description:
                 - ""
@@ -350,7 +350,7 @@ autonomous_container_databases:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         vpc_user:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
@@ -384,7 +384,7 @@ autonomous_container_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.

@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_database_connector_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -304,7 +304,7 @@ Examples
     
     - name: Perform action check_external_database_connector_connection_status on external_database_connector
       oci_database_external_database_connector_actions:
-        external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
         action: check_external_database_connector_connection_status
 
 

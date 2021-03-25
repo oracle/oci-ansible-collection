@@ -40,7 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific ui_password_information
   oci_identity_ui_password_information_facts:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -56,7 +56,7 @@ ui_password_information:
                 - The OCID of the user.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the password was created, in the format defined by RFC3339.

@@ -46,6 +46,7 @@ description:
     - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret
       (that is, the pre-shared key). For more information, see
       L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
+    - "This resource has the following action operations in the M(oci_ip_sec_connection_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -233,16 +234,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ip_sec_connection
   oci_network_ip_sec_connection:
-    display_name: MyIPSecConnection
-    cpe_id: ocid1.cpe.oc1.phx.unique_ID
+    display_name: "MyIPSecConnection"
+    cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
     static_routes:
-    - 192.0.2.0/24
-    drg_id: ocid1.drg.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    - "192.0.2.0/24"
+    drg_id: "ocid1.drg.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
     freeform_tags: {'Department': 'Finance'}
@@ -254,16 +255,16 @@ EXAMPLES = """
   oci_network_ip_sec_connection:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete ip_sec_connection
   oci_network_ip_sec_connection:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyIPSecConnection
     state: absent
 
@@ -281,13 +282,13 @@ ip_sec_connection:
                 - The OCID of the compartment containing the IPSec connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
                 - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: string
-            sample: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -308,7 +309,7 @@ ip_sec_connection:
                 - The OCID of the DRG.
             returned: on success
             type: string
-            sample: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -323,7 +324,7 @@ ip_sec_connection:
                 - The IPSec connection's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The IPSec connection's current state.

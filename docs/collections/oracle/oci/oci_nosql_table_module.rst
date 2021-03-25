@@ -20,7 +20,7 @@ oracle.oci.oci_nosql_table -- Manage a Table resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -536,7 +536,7 @@ Examples
     - name: Create table
       oci_nosql_table:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
         table_limits:
           max_read_units: 56
@@ -546,7 +546,7 @@ Examples
     - name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_nosql_table:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
         table_limits:
           max_read_units: 56
@@ -557,19 +557,19 @@ Examples
 
     - name: Update table
       oci_nosql_table:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
-        table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+        table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete table
       oci_nosql_table:
-        table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+        table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_nosql_table:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

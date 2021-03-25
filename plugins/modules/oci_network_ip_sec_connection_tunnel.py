@@ -137,15 +137,15 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection_tunnel:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     routing: BGP
     ike_version: V1
 
 - name: Update ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-    tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -161,13 +161,13 @@ ip_sec_connection_tunnel:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the tunnel.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         vpn_ip:
             description:
                 - The IP address of Oracle's VPN headend.

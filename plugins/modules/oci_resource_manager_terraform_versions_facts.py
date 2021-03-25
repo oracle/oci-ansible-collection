@@ -32,13 +32,13 @@ options:
             - A filter to return only resources that exist in the compartment, identified by
               L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: str
-extends_documentation_fragment: [ oracle.oci.oracle ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
 EXAMPLES = """
 - name: List terraform_versions
   oci_resource_manager_terraform_versions_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -49,22 +49,14 @@ terraform_versions:
     returned: on success
     type: complex
     contains:
-        items:
+        name:
             description:
-                - Collection of supported Terraform versions.
+                - "A supported Terraform version. Example: `0.12.x`"
             returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - "A supported Terraform version. Example: `0.12.x`"
-                    returned: on success
-                    type: string
-                    sample: 0.12.x
+            type: string
+            sample: 0.12.x
     sample: [{
-        "items": [{
-            "name": "0.12.x"
-        }]
+        "name": "0.12.x"
     }]
 """
 
@@ -92,6 +84,7 @@ class TerraformVersionsFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "compartment_id",
+            "name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -116,7 +109,7 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(compartment_id=dict(type="str"),))
+    module_args.update(dict(compartment_id=dict(type="str"), name=dict(type="str"),))
 
     module = AnsibleModule(argument_spec=module_args)
 

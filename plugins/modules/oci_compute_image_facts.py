@@ -102,11 +102,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List images
   oci_compute_image_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific image
   oci_compute_image_facts:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -122,13 +122,13 @@ images:
                 - The OCID of the image originally used to launch the instance.
             returned: on success
             type: string
-            sample: ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the instance you want to use as the basis for the image.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         create_image_allowed:
             description:
                 - Whether instances launched with this image can be used to create new images.
@@ -168,7 +168,7 @@ images:
                 - The OCID of the image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:

@@ -20,7 +20,7 @@ oracle.oci.oci_network_fast_connect_provider_service_key_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -281,7 +281,7 @@ Examples
     
     - name: Get a specific fast_connect_provider_service_key
       oci_network_fast_connect_provider_service_key_facts:
-        provider_service_id: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+        provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name: provider_service_key_name_example
 
 

@@ -77,7 +77,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List instance_agent_available_plugins
   oci_compute_instance_agent_instance_agent_available_plugins_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     os_name: os_name_example
     os_version: os_version_example
 

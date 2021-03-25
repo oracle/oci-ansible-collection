@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_vault_actions -- Perform actions on a Vault resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a Vault resource in Oracle Cloud Infrastructure
 - For *action=cancel_vault_deletion*, cancels the scheduled deletion of the specified vault. Canceling a scheduled deletion restores the vault and all keys in it to their respective states from before their scheduled deletion. All keys that were scheduled for deletion prior to vault deletion retain their lifecycle state and time of deletion. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
+- For *action=change_compartment*, moves a vault into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When provided, if-match is checked against the ETag values of the resource. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 - For *action=schedule_vault_deletion*, schedules the deletion of the specified vault. This sets the lifecycle state of the vault and all keys in it that are not already scheduled for deletion to `PENDING_DELETION` and then deletes them after the retention period ends. The lifecycle state and time of deletion for keys already scheduled for deletion won't change. If any keys in the vault are scheduled to be deleted after the specified time of deletion for the vault, the call is rejected with the error code 409. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 
 
@@ -85,6 +86,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>cancel_vault_deletion</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>schedule_vault_deletion</li>
                                                                                     </ul>
                                                                             </td>
@@ -170,6 +172,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the vault to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -322,14 +340,20 @@ Examples
     
     - name: Perform action cancel_vault_deletion on vault
       oci_key_management_vault_actions:
-        vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         action: cancel_vault_deletion
+
+    - name: Perform action change_compartment on vault
+      oci_key_management_vault_actions:
+        vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
 
     - name: Perform action schedule_vault_deletion on vault
       oci_key_management_vault_actions:
-        time_of_deletion: 2018-04-03T21:10:29.600Z
-        vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
-        action: schedule_vault_deletion
+        time_of_deletion: "2018-04-03T21:10:29.600Z"
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "schedule_vault_deletion"
 
 
 

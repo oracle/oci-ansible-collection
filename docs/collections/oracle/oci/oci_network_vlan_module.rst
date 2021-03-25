@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan -- Manage a Vlan resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Vlan resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a VLAN in the specified VCN and the specified compartment.
+- This resource has the following action operations in the :ref:`oci_vlan_actions <ansible_collections.oci_vlan_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -516,35 +517,35 @@ Examples
       oci_network_vlan:
         availability_domain: Uocm:PHX-AD-1
         cidr_block: 192.0.2.0/24
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_vlan:
         cidr_block: 192.0.2.0/24
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update vlan
       oci_network_vlan:
         cidr_block: 192.0.2.0/24
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+        vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete vlan
       oci_network_vlan:
-        vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+        vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_vlan:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

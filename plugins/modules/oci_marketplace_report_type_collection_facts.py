@@ -32,13 +32,13 @@ options:
             - The unique identifier for the compartment.
         type: str
         required: true
-extends_documentation_fragment: [ oracle.oci.oracle ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
 EXAMPLES = """
 - name: List report_type_collections
   oci_marketplace_report_type_collection_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -49,43 +49,35 @@ report_type_collections:
     returned: on success
     type: complex
     contains:
-        items:
+        report_type:
             description:
-                - An array of report types.
+                - The type of report.
             returned: on success
-            type: complex
-            contains:
-                report_type:
-                    description:
-                        - The type of report.
-                    returned: on success
-                    type: string
-                    sample: report_type_example
-                name:
-                    description:
-                        - The name of the report.
-                    returned: on success
-                    type: string
-                    sample: name_example
-                description:
-                    description:
-                        - A description of the report.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                columns:
-                    description:
-                        - The columns in the report.
-                    returned: on success
-                    type: list
-                    sample: []
+            type: string
+            sample: report_type_example
+        name:
+            description:
+                - The name of the report.
+            returned: on success
+            type: string
+            sample: name_example
+        description:
+            description:
+                - A description of the report.
+            returned: on success
+            type: string
+            sample: description_example
+        columns:
+            description:
+                - The columns in the report.
+            returned: on success
+            type: list
+            sample: []
     sample: [{
-        "items": [{
-            "report_type": "report_type_example",
-            "name": "name_example",
-            "description": "description_example",
-            "columns": []
-        }]
+        "report_type": "report_type_example",
+        "name": "name_example",
+        "description": "description_example",
+        "columns": []
     }]
 """
 
@@ -113,7 +105,9 @@ class ReportTypeCollectionFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def list_resources(self):
-        optional_list_method_params = []
+        optional_list_method_params = [
+            "name",
+        ]
         optional_kwargs = dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
@@ -139,7 +133,9 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(compartment_id=dict(type="str", required=True),))
+    module_args.update(
+        dict(compartment_id=dict(type="str", required=True), name=dict(type="str"),)
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 

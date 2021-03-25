@@ -45,11 +45,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List drgs
   oci_network_drg_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific drg
   oci_network_drg_facts:
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -65,7 +65,7 @@ drgs:
                 - The OCID of the compartment containing the DRG.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -95,7 +95,7 @@ drgs:
                 - The DRG's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The DRG's current state.

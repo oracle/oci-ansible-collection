@@ -20,7 +20,7 @@ oracle.oci.oci_network_service_gateway_actions -- Perform actions on a ServiceGa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a ServiceGateway resource in Oracle Cloud Infrastructure
 - For *action=attach_service_id*, adds the specified `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/>`_ to the list of enabled `Service` objects for the specified gateway. You must also set up a route rule with the `cidrBlock` of the `Service` as the rule's destination and the service gateway as the rule's target. See `Route Table <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/>`_. **Note:** The `AttachServiceId` operation is an easy way to add an individual `Service` to the service gateway. Compare it with `UpdateServiceGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/UpdateServiceGateway>`_, which replaces the entire existing list of enabled `Service` objects with the list that you provide in the `Update` call.
+- For *action=change_compartment*, moves a service gateway into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=detach_service_id*, removes the specified `Service <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/>`_ from the list of enabled `Service` objects for the specified gateway. You do not need to remove any route rules that specify this `Service` object's `cidrBlock` as the destination CIDR. However, consider removing the rules if your intent is to permanently disable use of the `Service` through this service gateway. **Note:** The `DetachServiceId` operation is an easy way to remove an individual `Service` from the service gateway. Compare it with `UpdateServiceGateway <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/UpdateServiceGateway>`_, which replaces the entire existing list of enabled `Service` objects with the list that you provide in the `Update` call. `UpdateServiceGateway` also lets you block all traffic through the service gateway without having to remove each of the individual `Service` objects.
 
 
@@ -85,6 +86,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>attach_service_id</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>detach_service_id</li>
                                                                                     </ul>
                                                                             </td>
@@ -174,6 +176,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the service gateway to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -240,12 +258,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-service_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Service/'>Service</a>.</div>
+                                            <div>Required for <em>action=attach_service_id</em>, <em>action=detach_service_id</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -321,14 +340,20 @@ Examples
     
     - name: Perform action attach_service_id on service_gateway
       oci_network_service_gateway_actions:
-        service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
-        service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+        service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+        service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_service_id
+
+    - name: Perform action change_compartment on service_gateway
+      oci_network_service_gateway_actions:
+        service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
 
     - name: Perform action detach_service_id on service_gateway
       oci_network_service_gateway_actions:
-        service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
-        service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+        service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+        service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_service_id
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_network_cross_connect_status_facts -- Fetches details about a Cro
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific cross_connect_status
       oci_network_cross_connect_status_facts:
-        cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+        cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

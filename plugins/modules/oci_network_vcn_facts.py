@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vcns
   oci_network_vcn_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vcn
   oci_network_vcn_facts:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -115,25 +115,25 @@ vcns:
                 - The OCID of the compartment containing the VCN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
                 - The OCID for the VCN's default set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
                 - The OCID for the VCN's default route table.
             returned: on success
             type: string
-            sample: ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
                 - The OCID for the VCN's default security list.
             returned: on success
             type: string
-            sample: ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -178,7 +178,7 @@ vcns:
                 - The VCN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The VCN's current state.

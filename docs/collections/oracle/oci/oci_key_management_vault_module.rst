@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_vault -- Manage a Vault resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create and update a Vault resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new vault. The type of vault you create determines key placement, pricing, and available options. Options include storage isolation, a dedicated service endpoint instead of a shared service endpoint for API calls, and either a dedicated hardware security module (HSM) or a multitenant HSM.
 - As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
-- This resource has the following action operations in the :ref:`oci_vault_actions <ansible_collections.oci_vault_actions_module>` module: cancel_vault_deletion, schedule_vault_deletion.
+- This resource has the following action operations in the :ref:`oci_vault_actions <ansible_collections.oci_vault_actions_module>` module: cancel_vault_deletion, change_compartment, schedule_vault_deletion.
 
 
 .. Aliases
@@ -430,17 +430,17 @@ Examples
     
     - name: Create vault
       oci_key_management_vault:
-        compartment_id: ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea
-        display_name: Vault 1
-        vault_type: VIRTUAL_PRIVATE
+        compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea"
+        display_name: "Vault 1"
+        vault_type: "VIRTUAL_PRIVATE"
 
     - name: Update vault using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_key_management_vault:
-        display_name: Vault 1
+        display_name: "Vault 1"
 
     - name: Update vault
       oci_key_management_vault:
-        vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

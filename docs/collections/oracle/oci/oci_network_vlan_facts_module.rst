@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan_facts -- Fetches details about one or multiple Vlan 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -363,12 +363,12 @@ Examples
     
     - name: List vlans
       oci_network_vlan_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific vlan
       oci_network_vlan_facts:
-        vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+        vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

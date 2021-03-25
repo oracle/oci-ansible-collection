@@ -24,24 +24,25 @@ short_description: Manage a Project resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Project resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new project.
+    - "This resource has the following action operations in the M(oci_project_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+            - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
-            - A short blurb describing the project.
+            - A short description of the project.
             - This parameter is updatable.
         type: str
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment to create the project in.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the project in.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -62,7 +63,7 @@ options:
         type: dict
     project_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -82,13 +83,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create project
   oci_data_science_project:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_project:
     display_name: display_name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -96,17 +97,17 @@ EXAMPLES = """
   oci_data_science_project:
     display_name: display_name_example
     description: description_example
-    project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete project
   oci_data_science_project:
-    project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete project using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_project:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -120,38 +121,38 @@ project:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         display_name:
             description:
-                - A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         description:
             description:
-                - A short blurb describing the project.
+                - A short description of the project.
             returned: on success
             type: string
             sample: description_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created this project.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created this project.
             returned: on success
             type: string
             sample: created_by_example

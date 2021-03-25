@@ -45,7 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific app_catalog_listing_resource_version_agreement
   oci_compute_app_catalog_listing_resource_version_agreement_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     resource_version: resource_version_example
 
 """
@@ -62,7 +62,7 @@ app_catalog_listing_resource_version_agreement:
                 - The OCID of the listing associated with these agreements.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Listing resource version associated with these agreements.

@@ -40,3 +40,18 @@ class MountTargetHelperCustom:
             "hostname_label",
             "ip_address",
         ]
+
+
+class FileSystemHelperCustom:
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        create_model_dict = super(
+            FileSystemHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+        # source_snapshot_id is a top level param on CreateFileSystem but it gets returned
+        # inside file_system.source_details so we need to propagate the value so that the existing resource matching
+        # logic works properly
+        if create_model_dict.get("source_snapshot_id") is not None:
+            create_model_dict["source_details"] = dict(
+                source_snapshot_id=create_model_dict.pop("source_snapshot_id", None)
+            )
+        return create_model_dict

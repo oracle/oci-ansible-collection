@@ -20,7 +20,7 @@ oracle.oci.oci_waas_caching_rules -- Manage a CachingRules resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -494,7 +494,7 @@ Examples
     
     - name: Update caching_rules
       oci_waas_caching_rules:
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         caching_rules_details:
         - name: name_example
           action: CACHE

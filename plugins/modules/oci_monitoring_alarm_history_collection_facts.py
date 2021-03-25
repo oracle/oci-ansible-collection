@@ -63,7 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific alarm_history_collection
   oci_monitoring_alarm_history_collection_facts:
-    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+    alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -79,7 +79,7 @@ alarm_history_collection:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm for which to retrieve history.
             returned: on success
             type: string
-            sample: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
         is_enabled:
             description:
                 - Whether the alarm is enabled.

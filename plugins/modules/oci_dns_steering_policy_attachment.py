@@ -101,28 +101,28 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create steering_policy_attachment
   oci_dns_steering_policy_attachment:
-    steering_policy_id: ocid1.dnspolicy.oc1..
-    zone_id: ocid1.dns-zone.oc1..
-    domain_name: example.com
-    display_name: attached to example
+    steering_policy_id: "ocid1.dnspolicy.oc1.."
+    zone_id: "ocid1.dns-zone.oc1.."
+    domain_name: "example.com"
+    display_name: "attached to example"
 
 - name: Update steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy_attachment:
-    display_name: IP prefix steering
+    display_name: "IP prefix steering"
 
 - name: Update steering_policy_attachment
   oci_dns_steering_policy_attachment:
-    steering_policy_attachment_id: ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx
+    steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete steering_policy_attachment
   oci_dns_steering_policy_attachment:
-    steering_policy_attachment_id: ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx
+    steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy_attachment:
     display_name: attached to example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -139,13 +139,13 @@ steering_policy_attachment:
                 - The OCID of the attached steering policy.
             returned: on success
             type: string
-            sample: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         zone_id:
             description:
                 - The OCID of the attached zone.
             returned: on success
             type: string
-            sample: ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         domain_name:
             description:
                 - The attached domain within the attached zone.
@@ -173,7 +173,7 @@ steering_policy_attachment:
                 - The OCID of the compartment containing the steering policy attachment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         _self:
             description:
                 - The canonical absolute URL of the resource.
@@ -185,7 +185,7 @@ steering_policy_attachment:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.

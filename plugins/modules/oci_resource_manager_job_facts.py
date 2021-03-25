@@ -92,11 +92,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List jobs
   oci_resource_manager_job_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific job
   oci_resource_manager_job_facts:
-    job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -112,20 +112,20 @@ jobs:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         stack_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack that is associated with the job.
             returned: on success
             type: string
-            sample: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment in which the job's associated stack
                   resides.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The job's display name.
@@ -164,7 +164,7 @@ jobs:
                           or `null` if no execution plan was used.
                     returned: on success
                     type: string
-                    sample: ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         apply_job_plan_resolution:
             description:
                 - ""
@@ -177,7 +177,7 @@ jobs:
                           job.
                     returned: on success
                     type: string
-                    sample: ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
                 is_use_latest_job_id:
                     description:
                         - Specifies whether to use the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the most recently
@@ -202,7 +202,7 @@ jobs:
                   was not auto-approved).
             returned: on success
             type: string
-            sample: ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time when the job was created.
@@ -280,7 +280,7 @@ jobs:
                           for the Git configuration source.
                     returned: on success
                     type: string
-                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
                         - The URL of the Git repository.
@@ -298,7 +298,7 @@ jobs:
                         - The unique identifier (SHA-1 hash) of the individual change to the Git repository.
                     returned: on success
                     type: string
-                    sample: ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.

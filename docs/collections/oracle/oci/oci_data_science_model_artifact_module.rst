@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -273,7 +273,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the model.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the model.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -349,7 +349,7 @@ Examples
     
     - name: Create model_artifact
       oci_data_science_model_artifact:
-        model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
         model_artifact: B
 
 

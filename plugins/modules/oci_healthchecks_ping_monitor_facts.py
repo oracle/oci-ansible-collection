@@ -71,11 +71,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List ping_monitors
   oci_healthchecks_ping_monitor_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific ping_monitor
   oci_healthchecks_ping_monitor_facts:
-    monitor_id: ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx
+    monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -91,7 +91,7 @@ ping_monitors:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         results_url:
             description:
                 - A URL for fetching the probe results.
@@ -115,7 +115,7 @@ ping_monitors:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         targets:
             description:
                 - A list of targets (hostnames or IP addresses) of the probe.

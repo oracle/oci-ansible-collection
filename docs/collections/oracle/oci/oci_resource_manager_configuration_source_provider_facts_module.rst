@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -338,11 +338,11 @@ Examples
     
     - name: List configuration_source_providers
       oci_resource_manager_configuration_source_provider_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific configuration_source_provider
       oci_resource_manager_configuration_source_provider_facts:
-        configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+        configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -361,12 +361,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="2">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers"></div>
                     <b>configuration_source_providers</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers" title="Permalink to this return value"></a>
@@ -379,12 +379,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ConfigurationSourceProvider resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;api_endpoint&#x27;: &#x27;https://github.com/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;items&#x27;: [{&#x27;api_endpoint&#x27;: &#x27;https://gitlab.com&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;config_source_provider_type_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;api_endpoint&#x27;: &#x27;https://github.com/&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_provider_type&#x27;: &#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/api_endpoint"></div>
                     <b>api_endpoint</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/api_endpoint" title="Permalink to this return value"></a>
@@ -402,7 +402,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/compartment_id" title="Permalink to this return value"></a>
@@ -420,7 +420,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/config_source_provider_type"></div>
                     <b>config_source_provider_type</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/config_source_provider_type" title="Permalink to this return value"></a>
@@ -438,7 +438,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/defined_tags" title="Permalink to this return value"></a>
@@ -456,7 +456,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/description" title="Permalink to this return value"></a>
@@ -474,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/display_name" title="Permalink to this return value"></a>
@@ -492,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/freeform_tags" title="Permalink to this return value"></a>
@@ -510,7 +510,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/id" title="Permalink to this return value"></a>
@@ -528,215 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Collection of configuration source providers.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/api_endpoint"></div>
-                    <b>api_endpoint</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/api_endpoint" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The Git service endpoint. Example: `https://gitlab.com`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://gitlab.com</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where the configuration source provider is located.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/config_source_provider_type"></div>
-                    <b>config_source_provider_type</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/config_source_provider_type" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The type of configuration source provider. The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab. The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">config_source_provider_type_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/description" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>General description of the configuration source provider.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Human-readable display name for the configuration source provider.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the configuration source provider.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Current state of the specified configuration source provider. For more information about configuration source provider lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#CSPStates'>Key Concepts</a>.</div>
-                                            <div>Allowable values: - ACTIVE</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-configuration_source_providers/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-configuration_source_providers/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time when the configuration source provider was created. Format is defined by RFC3339. Example: `2020-01-25T21:10:29.600Z`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/lifecycle_state" title="Permalink to this return value"></a>
@@ -754,7 +546,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configuration_source_providers/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-configuration_source_providers/time_created" title="Permalink to this return value"></a>

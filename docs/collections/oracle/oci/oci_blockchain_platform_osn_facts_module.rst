@@ -20,7 +20,7 @@ oracle.oci.oci_blockchain_platform_osn_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -323,12 +323,12 @@ Examples
     
     - name: List blockchain_platform_osns
       oci_blockchain_platform_osn_facts:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific blockchain_platform_osn
       oci_blockchain_platform_osn_facts:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
-        osn_id: ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+        osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -365,7 +365,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of BlockchainPlatformOsn resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;items&#x27;: [{&#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;osn_key&#x27;: &#x27;osn_key_example&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;ocpu_allocation_param&#x27;: {&#x27;ocpu_allocation_number&#x27;: 3.4}, &#x27;osn_key&#x27;: &#x27;osn_key_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;ocpu_allocation_param&#x27;: {&#x27;ocpu_allocation_number&#x27;: 3.4}, &#x27;osn_key&#x27;: &#x27;osn_key_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -386,61 +386,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ad_example</div>
                                     </td>
             </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-blockchain_platform_osns/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-blockchain_platform_osns/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Collection of OsnSummary</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-blockchain_platform_osns/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-blockchain_platform_osns/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The current state of the OSN.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-blockchain_platform_osns/items/osn_key"></div>
-                    <b>osn_key</b>
-                    <a class="ansibleOptionLink" href="#return-blockchain_platform_osns/items/osn_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>OSN identifier</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">osn_key_example</div>
-                                    </td>
-            </tr>
-                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

@@ -24,7 +24,7 @@ short_description: Manage a LocalPeeringGateway resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete a LocalPeeringGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new local peering gateway (LPG) for the specified VCN.
-    - "This resource has the following action operations in the M(oci_local_peering_gateway_actions) module: connect."
+    - "This resource has the following action operations in the M(oci_local_peering_gateway_actions) module: change_compartment, connect."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -95,31 +95,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create local_peering_gateway
   oci_network_local_peering_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_local_peering_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update local_peering_gateway
   oci_network_local_peering_gateway:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
+    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete local_peering_gateway
   oci_network_local_peering_gateway:
-    local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
+    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_local_peering_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -137,7 +137,7 @@ local_peering_gateway:
                 - The OCID of the compartment containing the LPG.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -167,7 +167,7 @@ local_peering_gateway:
                 - The LPG's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy_peering:
             description:
                 - Whether the VCN at the other end of the peering is in a different tenancy.
@@ -221,7 +221,7 @@ local_peering_gateway:
                   L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)."
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the LPG was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -234,7 +234,7 @@ local_peering_gateway:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN that uses the LPG.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

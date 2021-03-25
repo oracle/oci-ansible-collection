@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_list_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -361,11 +361,11 @@ Examples
     
     - name: List security_lists
       oci_network_security_list_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific security_list
       oci_network_security_list_facts:
-        security_list_id: ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx
+        security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

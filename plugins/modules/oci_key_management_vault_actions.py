@@ -31,6 +31,14 @@ description:
       the total number of requests across all provisioning write operations. Key Management might
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       write operations exceeds 10 requests per second for a given tenancy.
+    - For I(action=change_compartment), moves a vault into a different compartment within the same tenancy. For information about
+      moving resources between compartments, see L(Moving Resources to a Different
+      Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      When provided, if-match is checked against the ETag values of the resource.
+      As a provisioning operation, this call is subject to a Key Management limit that applies to
+      the total number of requests across all provisioning write operations. Key Management might
+      throttle this call to reject an otherwise valid request when the total rate of provisioning
+      write operations exceeds 10 requests per second for a given tenancy.
     - For I(action=schedule_vault_deletion), schedules the deletion of the specified vault. This sets the lifecycle state of the vault and all keys in it
       that are not already scheduled for deletion to `PENDING_DELETION` and then deletes them after the
       retention period ends. The lifecycle state and time of deletion for keys already scheduled for deletion won't
@@ -49,6 +57,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the vault to.
+            - Required for I(action=change_compartment).
+        type: str
     time_of_deletion:
         description:
             - An optional property indicating when to delete the vault, expressed in
@@ -65,6 +78,7 @@ options:
         required: true
         choices:
             - "cancel_vault_deletion"
+            - "change_compartment"
             - "schedule_vault_deletion"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -72,14 +86,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action cancel_vault_deletion on vault
   oci_key_management_vault_actions:
-    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_vault_deletion
+
+- name: Perform action change_compartment on vault
+  oci_key_management_vault_actions:
+    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_compartment
 
 - name: Perform action schedule_vault_deletion on vault
   oci_key_management_vault_actions:
-    time_of_deletion: 2018-04-03T21:10:29.600Z
-    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
-    action: schedule_vault_deletion
+    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "schedule_vault_deletion"
 
 """
 
@@ -95,7 +115,7 @@ vault:
                 - The OCID of the compartment that contains this vault.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         crypto_endpoint:
             description:
                 - The service endpoint to perform cryptographic operations against. Cryptographic operations include
@@ -133,7 +153,7 @@ vault:
                 - The OCID of the vault.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The vault's current lifecycle state.
@@ -174,7 +194,7 @@ vault:
                 - The OCID of the vault's wrapping key.
             returned: on success
             type: string
-            sample: ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "crypto_endpoint": "crypto_endpoint_example",
@@ -203,6 +223,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.key_management import KmsVaultClient
+    from oci.key_management.models import ChangeVaultCompartmentDetails
     from oci.key_management.models import ScheduleVaultDeletionDetails
 
     HAS_OCI_PY_SDK = True
@@ -214,6 +235,7 @@ class VaultActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         cancel_vault_deletion
+        change_compartment
         schedule_vault_deletion
     """
 
@@ -238,6 +260,29 @@ class VaultActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(vault_id=self.module.params.get("vault_id"),),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeVaultCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_vault_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                vault_id=self.module.params.get("vault_id"),
+                change_vault_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
@@ -287,11 +332,16 @@ def main():
     module_args.update(
         dict(
             vault_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["cancel_vault_deletion", "schedule_vault_deletion"],
+                choices=[
+                    "cancel_vault_deletion",
+                    "change_compartment",
+                    "schedule_vault_deletion",
+                ],
             ),
         )
     )

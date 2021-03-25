@@ -39,7 +39,7 @@ description:
       source service to the target service. For instructions on deactivating and
       activating service connectors, see
       L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm).
-    - "This resource has the following action operations in the M(oci_service_connector_actions) module: activate, deactivate."
+    - "This resource has the following action operations in the M(oci_service_connector_actions) module: activate, change_compartment, deactivate."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -141,6 +141,13 @@ options:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
                     - Required when kind is 'notifications'
                 type: str
+            enable_formatted_messaging:
+                description:
+                    - Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service
+                      connector source and the subscription protocol.
+                    - "Example: `true`"
+                    - Applicable when kind is 'notifications'
+                type: bool
             namespace:
                 description:
                     - The namespace.
@@ -233,23 +240,23 @@ EXAMPLES = """
 - name: Create service_connector
   oci_sch_service_connector:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source:
       kind: logging
       log_sources:
-      - compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+      - compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target:
       kind: notifications
 
 - name: Update service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_sch_service_connector:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     source:
       kind: logging
       log_sources:
-      - compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+      - compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     tasks:
     - kind: logRule
       condition: condition_example
@@ -262,17 +269,17 @@ EXAMPLES = """
   oci_sch_service_connector:
     display_name: display_name_example
     description: description_example
-    service_connector_id: ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx
+    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete service_connector
   oci_sch_service_connector:
-    service_connector_id: ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx
+    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_sch_service_connector:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -289,7 +296,7 @@ service_connector:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -308,7 +315,7 @@ service_connector:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the service connector.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time when the service connector was created.
@@ -363,19 +370,19 @@ service_connector:
                                   source.
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         log_group_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log group.
                             returned: on success
                             type: string
-                            sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                         log_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log.
                             returned: on success
                             type: string
-                            sample: ocid1.log.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         tasks:
             description:
                 - The list of tasks.
@@ -412,6 +419,14 @@ service_connector:
                     returned: on success
                     type: string
                     sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+                enable_formatted_messaging:
+                    description:
+                        - Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service
+                          connector source and the subscription protocol.
+                        - "Example: `true`"
+                    returned: on success
+                    type: bool
+                    sample: true
                 namespace:
                     description:
                         - The namespace.
@@ -447,7 +462,7 @@ service_connector:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 metric_namespace:
                     description:
                         - The namespace of the metric.
@@ -467,19 +482,19 @@ service_connector:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
                     returned: on success
                     type: string
-                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                 log_group_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
                     returned: on success
                     type: string
-                    sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
                     returned: on success
                     type: string
-                    sample: ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -527,6 +542,7 @@ service_connector:
         "target": {
             "kind": "notifications",
             "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
+            "enable_formatted_messaging": true,
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
             "object_name_prefix": "object_name_prefix_example",
@@ -723,6 +739,7 @@ def main():
                         ],
                     ),
                     topic_id=dict(type="str"),
+                    enable_formatted_messaging=dict(type="bool"),
                     namespace=dict(type="str"),
                     bucket_name=dict(type="str"),
                     object_name_prefix=dict(type="str"),

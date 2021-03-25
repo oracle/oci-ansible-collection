@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_job_log_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -338,7 +338,7 @@ Examples
     
     - name: List job_logs
       oci_resource_manager_job_log_facts:
-        job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

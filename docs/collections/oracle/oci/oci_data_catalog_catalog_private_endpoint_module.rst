@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_catalog_private_endpoint -- Manage a CatalogPrivateE
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -444,12 +444,12 @@ Examples
     
     - name: Create catalog_private_endpoint
       oci_data_catalog_catalog_private_endpoint:
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update catalog_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_catalog_private_endpoint:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
@@ -458,16 +458,16 @@ Examples
       oci_data_catalog_catalog_private_endpoint:
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete catalog_private_endpoint
       oci_data_catalog_catalog_private_endpoint:
-        catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete catalog_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_catalog_private_endpoint:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

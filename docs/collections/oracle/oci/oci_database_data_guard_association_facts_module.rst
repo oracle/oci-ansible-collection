@@ -20,7 +20,7 @@ oracle.oci.oci_database_data_guard_association_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -269,12 +269,12 @@ Examples
     
     - name: List data_guard_associations
       oci_database_data_guard_association_facts:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific data_guard_association
       oci_database_data_guard_association_facts:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-        data_guard_association_id: ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

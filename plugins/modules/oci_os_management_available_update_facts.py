@@ -62,7 +62,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List available_updates
   oci_os_management_available_update_facts:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -126,7 +126,7 @@ available_updates:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -156,7 +156,7 @@ available_updates:
                         - software source identifier
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "display_name": "display_name_example",
         "name": "name_example",

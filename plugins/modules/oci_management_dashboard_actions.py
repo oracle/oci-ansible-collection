@@ -331,19 +331,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action export_dashboard on management_dashboard
   oci_management_dashboard_actions:
-    export_dashboard_id: ocid1.exportdashboard.oc1..xxxxxxEXAMPLExxxxxx
+    export_dashboard_id: "ocid1.exportdashboard.oc1..xxxxxxEXAMPLExxxxxx"
     action: export_dashboard
 
 - name: Perform action import_dashboard on management_dashboard
   oci_management_dashboard_actions:
     dashboards:
-    - dashboard_id: ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx
-      provider_id: ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx
+    - dashboard_id: "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx"
+      provider_id: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
       provider_name: provider_name_example
       provider_version: provider_version_example
       tiles:
       - display_name: display_name_example
-        saved_search_id: ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx
+        saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
         row: 56
         column: 56
         height: 56
@@ -351,7 +351,7 @@ EXAMPLES = """
         state: DELETED
       display_name: display_name_example
       description: description_example
-      compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+      compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
       is_oob_dashboard: true
       is_show_in_home: true
       metadata_version: metadata_version_example
@@ -360,12 +360,12 @@ EXAMPLES = """
       type: type_example
       is_favorite: true
       saved_searches:
-      - id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+      - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        provider_id: ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx
+        provider_id: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
         provider_version: provider_version_example
         provider_name: provider_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_oob_saved_search: true
         description: description_example
         type: SEARCH_SHOW_IN_DASHBOARD
@@ -395,13 +395,13 @@ management_dashboard:
                         - ID of the dashboard.
                     returned: on success
                     type: string
-                    sample: ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx"
                 provider_id:
                     description:
                         - ID of the service (for example log-analytics) that owns the dashboard. Each service has a unique ID.
                     returned: on success
                     type: string
-                    sample: ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
                 provider_name:
                     description:
                         - Name of the service (for example, Logging Analytics) that owns the dashboard.
@@ -431,7 +431,7 @@ management_dashboard:
                                 - ID of the saved search.
                             returned: on success
                             type: string
-                            sample: ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
                         row:
                             description:
                                 - Tile's row number.
@@ -503,7 +503,7 @@ management_dashboard:
                         - OCID of the compartment in which the dashboard resides.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 is_oob_dashboard:
                     description:
                         - Determines whether the dashboard is an Out-of-the-Box (OOB) dashboard. Note that OOB dashboards are only provided by Oracle and cannot
@@ -576,7 +576,7 @@ management_dashboard:
                                 - ID of the saved search.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - Display name of the saved search.
@@ -588,7 +588,7 @@ management_dashboard:
                                 - ID of the service (for example log-analytics) that owns the saved search. Each service has a unique ID.
                             returned: on success
                             type: string
-                            sample: ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
                         provider_version:
                             description:
                                 - Version of the service that owns this saved search.
@@ -606,7 +606,7 @@ management_dashboard:
                                 - OCID of the compartment in which the saved search resides.
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         is_oob_saved_search:
                             description:
                                 - Determines whether the saved search is an Out-of-the-Box (OOB) saved search. Note that OOB saved searches are only provided by

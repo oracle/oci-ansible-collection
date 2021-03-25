@@ -20,7 +20,7 @@ oracle.oci.oci_data_safe_on_prem_connector_actions -- Perform actions on an OnPr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an OnPremConnector resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves the specified on-premises connector into a different compartment.
 - For *action=generate_on_prem_connector_configuration*, creates and downloads the configuration of the specified on-premises connector.
 
 
@@ -83,7 +84,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>generate_on_prem_connector_configuration</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>generate_on_prem_connector_configuration</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -172,6 +174,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the new compartment where you want to move the on-premises connector.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -207,12 +225,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The destination file path to write the configuration file to when <em>action=generate_on_prem_connector_configuration</em>. The file will be created if it does not exist. If the file already exists, the content will be overwritten. <em>dest</em> is required if <em>action=generate_on_prem_connector_configuration</em>.</div>
+                                            <div>Required for <em>action=generate_on_prem_connector_configuration</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -238,12 +257,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The password to encrypt the keys inside the wallet included as part of the configuration. The password must be between 12 and 30 characters long and must contain atleast 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.</div>
+                                            <div>Required for <em>action=generate_on_prem_connector_configuration</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -298,10 +318,16 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on on_prem_connector
+      oci_data_safe_on_prem_connector_actions:
+        on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action generate_on_prem_connector_configuration on on_prem_connector
       oci_data_safe_on_prem_connector_actions:
+        on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
         password: password_example
-        on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
         dest: /tmp/on_prem_connector_config_file.zip
         action: generate_on_prem_connector_configuration
 
@@ -328,4 +354,14 @@ Authors
 
 
 .. Parsing errors
+
+There were some errors parsing the documentation for this plugin.  Please file a bug with the collection.
+
+The errors were:
+
+* ::
+
+        Unable to normalize oci_data_safe_on_prem_connector_actions: return due to: 1 validation error for PluginReturnSchema
+        return -> on_prem_connector -> contains
+          value is not a valid dict (type=type_error.dict)
 

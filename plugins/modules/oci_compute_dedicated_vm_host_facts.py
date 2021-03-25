@@ -93,11 +93,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List dedicated_vm_hosts
   oci_compute_dedicated_vm_host_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific dedicated_vm_host
   oci_compute_dedicated_vm_host_facts:
-    dedicated_vm_host_id: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+    dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -120,7 +120,7 @@ dedicated_vm_hosts:
                 - The OCID of the compartment that contains the dedicated virtual machine host.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_shape:
             description:
                 - The dedicated virtual machine host shape. The shape determines the number of CPUs and
@@ -170,7 +170,7 @@ dedicated_vm_hosts:
                 - The OCID of the dedicated VM host.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the dedicated VM host.

@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_verified_data -- Manage a VerifiedData resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -411,10 +411,10 @@ Examples
     
     - name: Create verified_data
       oci_key_management_verified_data:
-        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-        key_version_id: ocid1.keyversion.oc1.iad.exampledaaeug.xd5q23tteidhj4q2c6qfauxm32i577yuamplestkvmbjdnbickxasfaf
-        signature: dsdfsljfnsjnfsnfdsnf
-        signing_algorithm: SHA256_RSA_PKCS_PSS
+        key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
+        key_version_id: "ocid1.keyversion.oc1.iad.exampledaaeug.xd5q23tteidhj4q2c6qfauxm32i577yuamplestkvmbjdnbickxasfaf"
+        signature: "dsdfsljfnsjnfsnfdsnf"
+        signing_algorithm: "SHA256_RSA_PKCS_PSS"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 

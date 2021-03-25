@@ -36,6 +36,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the cross-connect group.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_cross_connect_group_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -97,11 +98,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cross_connect_group
   oci_network_cross_connect_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update cross_connect_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     customer_reference_name: customer_reference_name_example
@@ -111,16 +112,16 @@ EXAMPLES = """
   oci_network_cross_connect_group:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    cross_connect_group_id: ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cross_connect_group
   oci_network_cross_connect_group:
-    cross_connect_group_id: ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cross_connect_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -138,7 +139,7 @@ cross_connect_group:
                 - The OCID of the compartment containing the cross-connect group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -168,7 +169,7 @@ cross_connect_group:
                 - The cross-connect group's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The cross-connect group's current state.

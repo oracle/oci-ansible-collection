@@ -23,49 +23,71 @@ module: oci_data_safe_on_prem_connector_actions
 short_description: Perform actions on an OnPremConnector resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an OnPremConnector resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves the specified on-premises connector into a different compartment.
     - For I(action=generate_on_prem_connector_configuration), creates and downloads the configuration of the specified on-premises connector.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
-    password:
-        description:
-            - The password to encrypt the keys inside the wallet included as part of the configuration. The password must be between 12 and 30 characters long
-              and must contain atleast 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.
-        type: str
-        required: true
     on_prem_connector_id:
         description:
             - The OCID of the on-premises connector.
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The OCID of the new compartment where you want to move the on-premises connector.
+            - Required for I(action=change_compartment).
+        type: str
+    password:
+        description:
+            - The password to encrypt the keys inside the wallet included as part of the configuration. The password must be between 12 and 30 characters long
+              and must contain atleast 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.
+            - Required for I(action=generate_on_prem_connector_configuration).
+        type: str
     dest:
         description:
             - The destination file path to write the configuration file to when I(action=generate_on_prem_connector_configuration). The file will be created if
               it does not exist. If the file already exists, the content will be overwritten. I(dest) is required if
               I(action=generate_on_prem_connector_configuration).
+            - Required for I(action=generate_on_prem_connector_configuration).
         type: str
-        required: true
     action:
         description:
             - The action to perform on the OnPremConnector.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "generate_on_prem_connector_configuration"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on on_prem_connector
+  oci_data_safe_on_prem_connector_actions:
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action generate_on_prem_connector_configuration on on_prem_connector
   oci_data_safe_on_prem_connector_actions:
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     password: password_example
-    on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
     dest: /tmp/on_prem_connector_config_file.zip
     action: generate_on_prem_connector_configuration
 
 """
 
+RETURN = """
+on_prem_connector:
+    description:
+        - Details of the OnPremConnector resource acted upon by the current operation
+    returned: on success
+    type: complex
+    contains: TODO - No response model found or could be returning binary data.
+    sample: TODO - No response model found or could be returning binary data.
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
@@ -79,6 +101,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_safe import DataSafeClient
+    from oci.data_safe.models import ChangeOnPremConnectorCompartmentDetails
     from oci.data_safe.models import GenerateOnPremConnectorConfigurationDetails
 
     HAS_OCI_PY_SDK = True
@@ -89,6 +112,7 @@ except ImportError:
 class DataSafeOnPremConnectorActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         generate_on_prem_connector_configuration
     """
 
@@ -106,6 +130,29 @@ class DataSafeOnPremConnectorActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_on_prem_connector,
             on_prem_connector_id=self.module.params.get("on_prem_connector_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeOnPremConnectorCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_on_prem_connector_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                on_prem_connector_id=self.module.params.get("on_prem_connector_id"),
+                change_on_prem_connector_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def generate_on_prem_connector_configuration(self):
@@ -149,13 +196,17 @@ def main():
     )
     module_args.update(
         dict(
-            password=dict(type="str", required=True, no_log=True),
             on_prem_connector_id=dict(aliases=["id"], type="str", required=True),
-            dest=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
+            password=dict(type="str", no_log=True),
+            dest=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["generate_on_prem_connector_configuration"],
+                choices=[
+                    "change_compartment",
+                    "generate_on_prem_connector_configuration",
+                ],
             ),
         )
     )

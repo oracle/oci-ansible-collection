@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster_patch_history_entry_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -269,12 +269,12 @@ Examples
     
     - name: List vm_cluster_patch_history_entries
       oci_database_vm_cluster_patch_history_entry_facts:
-        vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific vm_cluster_patch_history_entry
       oci_database_vm_cluster_patch_history_entry_facts:
-        vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
-        patch_history_entry_id: ocid1.patchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        patch_history_entry_id: "ocid1.patchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

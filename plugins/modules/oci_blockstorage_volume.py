@@ -35,6 +35,7 @@ description:
       in the Identity and Access Management Service API.
     - "You may optionally specify a *display name* for the volume, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_volume_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -158,11 +159,11 @@ EXAMPLES = """
 - name: Create volume
   oci_blockstorage_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -174,16 +175,16 @@ EXAMPLES = """
   oci_blockstorage_volume:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume
   oci_blockstorage_volume:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -208,7 +209,7 @@ volume:
                 - The OCID of the compartment that contains the volume.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -245,7 +246,7 @@ volume:
                 - The OCID of the volume.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
                 - Specifies whether the cloned volume's data has finished copying from the source volume or backup.
@@ -257,7 +258,7 @@ volume:
                 - The OCID of the Key Management key which is the master encryption key for the volume.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume.
@@ -307,7 +308,7 @@ volume:
                         - The OCID of the volume.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -319,7 +320,7 @@ volume:
                 - The OCID of the source volume group.
             returned: on success
             type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
                 - Specifies whether the auto-tune performance is enabled for this volume.

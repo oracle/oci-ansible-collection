@@ -48,6 +48,7 @@ description:
     - You can also add a DNS label for the subnet, which is required if you want the Internet and
       VCN Resolver to resolve hostnames for instances in the subnet. For more information, see
       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
+    - "This resource has the following action operations in the M(oci_subnet_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -176,20 +177,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create subnet
   oci_network_subnet:
-    display_name: MySubnet
-    cidr_block: 10.0.2.0/24
-    availability_domain: Uocm:PHX-AD-1
-    route_table_id: ocid1.routetable.oc1.phx.unique_ID
+    display_name: "MySubnet"
+    cidr_block: "10.0.2.0/24"
+    availability_domain: "Uocm:PHX-AD-1"
+    route_table_id: "ocid1.routetable.oc1.phx.unique_ID"
     security_list_ids:
-    - ocid1.securitylist.oc1.phx.unique_ID
-    dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    - "ocid1.securitylist.oc1.phx.unique_ID"
+    dhcp_options_id: "ocid1.dhcpoptions.oc1.phx.unique_ID"
+    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
     cidr_block: 10.0.2.0/24
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
     display_name: MySubnet
@@ -201,16 +202,16 @@ EXAMPLES = """
   oci_network_subnet:
     cidr_block: 10.0.2.0/24
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete subnet
   oci_network_subnet:
-    subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MySubnet
     state: absent
 
@@ -243,7 +244,7 @@ subnet:
                 - The OCID of the compartment containing the subnet.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -257,7 +258,7 @@ subnet:
                 - The OCID of the set of DHCP options that the subnet uses.
             returned: on success
             type: string
-            sample: ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -294,7 +295,7 @@ subnet:
                 - The subnet's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The subnet's current state.
@@ -321,7 +322,7 @@ subnet:
                 - The OCID of the route table that the subnet uses.
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids:
             description:
                 - "The OCIDs of the security list or lists that the subnet uses. Remember
@@ -352,7 +353,7 @@ subnet:
                 - The OCID of the VCN the subnet is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         virtual_router_ip:
             description:
                 - The IP address of the virtual router.

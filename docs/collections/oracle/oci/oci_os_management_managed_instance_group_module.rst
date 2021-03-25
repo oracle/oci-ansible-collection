@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_managed_instance_group -- Manage a ManagedInstanceG
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Managed Instance Group on the management system. This will not contain any managed instances after it is first created, and they must be added later.
-- This resource has the following action operations in the :ref:`oci_managed_instance_group_actions <ansible_collections.oci_managed_instance_group_actions_module>` module: attach_managed_instance, detach_managed_instance.
+- This resource has the following action operations in the :ref:`oci_managed_instance_group_actions <ansible_collections.oci_managed_instance_group_actions_module>` module: attach_managed_instance, change_compartment, detach_managed_instance.
 
 
 .. Aliases
@@ -450,13 +450,13 @@ Examples
     - name: Create managed_instance_group
       oci_os_management_managed_instance_group:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_managed_instance_group:
         display_name: display_name_example
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -464,17 +464,17 @@ Examples
       oci_os_management_managed_instance_group:
         display_name: display_name_example
         description: description_example
-        managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete managed_instance_group
       oci_os_management_managed_instance_group:
-        managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_managed_instance_group:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

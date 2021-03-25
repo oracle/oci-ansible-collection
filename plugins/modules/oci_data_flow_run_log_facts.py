@@ -38,7 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List run_logs
   oci_data_flow_run_log_facts:
-    run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -61,7 +61,7 @@ run_logs:
                 - The runId associated with the log.
             returned: on success
             type: string
-            sample: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
         size_in_bytes:
             description:
                 - The size of the object in bytes.

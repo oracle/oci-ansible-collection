@@ -65,13 +65,13 @@ namespace_metadata:
                 - If the field is set, specifies the default compartment assignment for the Amazon S3 Compatibility API.
             returned: on success
             type: string
-            sample: ocid1.defaults3compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaults3compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_swift_compartment_id:
             description:
                 - If the field is set, specifies the default compartment assignment for the Swift API.
             returned: on success
             type: string
-            sample: ocid1.defaultswiftcompartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultswiftcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "namespace": "namespace_example",
         "default_s3_compartment_id": "ocid1.defaults3compartment.oc1..xxxxxxEXAMPLExxxxxx",

@@ -20,7 +20,7 @@ oracle.oci.oci_ocvp_sddc_facts -- Fetches details about one or multiple Sddc res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -364,11 +364,11 @@ Examples
     
     - name: List sddcs
       oci_ocvp_sddc_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific sddc
       oci_ocvp_sddc_facts:
-        sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -387,12 +387,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="2">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddcs"></div>
                     <b>sddcs</b>
                     <a class="ansibleOptionLink" href="#return-sddcs" title="Permalink to this return value"></a>
@@ -405,12 +405,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Sddc resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx_fqdn_example&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;hcx_initial_password_example&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;items&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;compute_availability_domain_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx_fqdn_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;nsx_manager_initial_password_example&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;vcenter_initial_password_example&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx_fqdn_example&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;hcx_initial_password_example&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;nsx_manager_initial_password_example&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;vcenter_initial_password_example&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/compartment_id" title="Permalink to this return value"></a>
@@ -428,7 +428,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/compute_availability_domain"></div>
                     <b>compute_availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/compute_availability_domain" title="Permalink to this return value"></a>
@@ -447,7 +447,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/defined_tags" title="Permalink to this return value"></a>
@@ -466,7 +466,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/display_name" title="Permalink to this return value"></a>
@@ -484,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/esxi_hosts_count"></div>
                     <b>esxi_hosts_count</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/esxi_hosts_count" title="Permalink to this return value"></a>
@@ -502,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/freeform_tags" title="Permalink to this return value"></a>
@@ -521,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/hcx_fqdn"></div>
                     <b>hcx_fqdn</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/hcx_fqdn" title="Permalink to this return value"></a>
@@ -539,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/hcx_initial_password"></div>
                     <b>hcx_initial_password</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/hcx_initial_password" title="Permalink to this return value"></a>
@@ -557,7 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/hcx_on_prem_key"></div>
                     <b>hcx_on_prem_key</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/hcx_on_prem_key" title="Permalink to this return value"></a>
@@ -575,7 +575,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/hcx_private_ip_id"></div>
                     <b>hcx_private_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/hcx_private_ip_id" title="Permalink to this return value"></a>
@@ -593,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/hcx_vlan_id"></div>
                     <b>hcx_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/hcx_vlan_id" title="Permalink to this return value"></a>
@@ -611,7 +611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/id" title="Permalink to this return value"></a>
@@ -629,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/instance_display_name_prefix"></div>
                     <b>instance_display_name_prefix</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/instance_display_name_prefix" title="Permalink to this return value"></a>
@@ -648,7 +648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/is_hcx_enabled"></div>
                     <b>is_hcx_enabled</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/is_hcx_enabled" title="Permalink to this return value"></a>
@@ -666,316 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A list of SDDCs.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains the SDDC.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/compute_availability_domain"></div>
-                    <b>compute_availability_domain</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/compute_availability_domain" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The availability domain that the SDDC&#x27;s ESXi hosts are running in.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compute_availability_domain_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits, whitespaces, dashes and underscores. Avoid entering confidential information.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/esxi_hosts_count"></div>
-                    <b>esxi_hosts_count</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/esxi_hosts_count" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The number of ESXi hosts in the SDDC.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/hcx_fqdn"></div>
-                    <b>hcx_fqdn</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/hcx_fqdn" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>HCX Fully Qualified Domain Name</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hcx_fqdn_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains the SDDC.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/is_hcx_enabled"></div>
-                    <b>is_hcx_enabled</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/is_hcx_enabled" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">boolean</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>HCX enabled or not</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The current state of the SDDC.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/nsx_manager_fqdn"></div>
-                    <b>nsx_manager_fqdn</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/nsx_manager_fqdn" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>FQDN for NSX Manager</div>
-                                            <div>Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time the SDDC was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
-                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/time_updated"></div>
-                    <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/time_updated" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time the SDDC was updated, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/vcenter_fqdn"></div>
-                    <b>vcenter_fqdn</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/vcenter_fqdn" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>FQDN for vCenter</div>
-                                            <div>Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-sddcs/items/vmware_software_version"></div>
-                    <b>vmware_software_version</b>
-                    <a class="ansibleOptionLink" href="#return-sddcs/items/vmware_software_version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>In general, this is a specific version of bundled VMware software supported by Oracle Cloud VMware Solution (see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/ocvs/20200501/SupportedVmwareSoftwareVersionSummary/ ListSupportedVmwareSoftwareVersions'>ListSupportedVmwareSoftwareVersions</a>).</div>
-                                            <div>This attribute is not guaranteed to reflect the version of software currently installed on the ESXi hosts in the SDDC. The purpose of this attribute is to show the version of software that the Oracle Cloud VMware Solution will install on any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer version of bundled VMware software supported by the Oracle Cloud VMware Solution, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vmwareSoftwareVersion` with that new version.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vmware_software_version_example</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddcs/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/lifecycle_state" title="Permalink to this return value"></a>
@@ -993,7 +684,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_edge_uplink1_vlan_id"></div>
                     <b>nsx_edge_uplink1_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_edge_uplink1_vlan_id" title="Permalink to this return value"></a>
@@ -1013,7 +704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_edge_uplink2_vlan_id"></div>
                     <b>nsx_edge_uplink2_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_edge_uplink2_vlan_id" title="Permalink to this return value"></a>
@@ -1033,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_edge_uplink_ip_id"></div>
                     <b>nsx_edge_uplink_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_edge_uplink_ip_id" title="Permalink to this return value"></a>
@@ -1051,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_edge_v_tep_vlan_id"></div>
                     <b>nsx_edge_v_tep_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_edge_v_tep_vlan_id" title="Permalink to this return value"></a>
@@ -1071,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_manager_fqdn"></div>
                     <b>nsx_manager_fqdn</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_manager_fqdn" title="Permalink to this return value"></a>
@@ -1090,7 +781,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_manager_initial_password"></div>
                     <b>nsx_manager_initial_password</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_manager_initial_password" title="Permalink to this return value"></a>
@@ -1108,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_manager_private_ip_id"></div>
                     <b>nsx_manager_private_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_manager_private_ip_id" title="Permalink to this return value"></a>
@@ -1126,7 +817,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_manager_username"></div>
                     <b>nsx_manager_username</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_manager_username" title="Permalink to this return value"></a>
@@ -1144,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_overlay_segment_name"></div>
                     <b>nsx_overlay_segment_name</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_overlay_segment_name" title="Permalink to this return value"></a>
@@ -1162,7 +853,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/nsx_v_tep_vlan_id"></div>
                     <b>nsx_v_tep_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/nsx_v_tep_vlan_id" title="Permalink to this return value"></a>
@@ -1182,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/provisioning_subnet_id"></div>
                     <b>provisioning_subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/provisioning_subnet_id" title="Permalink to this return value"></a>
@@ -1200,7 +891,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/ssh_authorized_keys"></div>
                     <b>ssh_authorized_keys</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/ssh_authorized_keys" title="Permalink to this return value"></a>
@@ -1220,7 +911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/time_created" title="Permalink to this return value"></a>
@@ -1239,7 +930,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/time_updated" title="Permalink to this return value"></a>
@@ -1257,7 +948,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vcenter_fqdn"></div>
                     <b>vcenter_fqdn</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vcenter_fqdn" title="Permalink to this return value"></a>
@@ -1276,7 +967,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vcenter_initial_password"></div>
                     <b>vcenter_initial_password</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vcenter_initial_password" title="Permalink to this return value"></a>
@@ -1294,7 +985,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vcenter_private_ip_id"></div>
                     <b>vcenter_private_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vcenter_private_ip_id" title="Permalink to this return value"></a>
@@ -1312,7 +1003,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vcenter_username"></div>
                     <b>vcenter_username</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vcenter_username" title="Permalink to this return value"></a>
@@ -1330,7 +1021,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vmotion_vlan_id"></div>
                     <b>vmotion_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vmotion_vlan_id" title="Permalink to this return value"></a>
@@ -1350,7 +1041,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vmware_software_version"></div>
                     <b>vmware_software_version</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vmware_software_version" title="Permalink to this return value"></a>
@@ -1370,7 +1061,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vsan_vlan_id"></div>
                     <b>vsan_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vsan_vlan_id" title="Permalink to this return value"></a>
@@ -1390,7 +1081,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/vsphere_vlan_id"></div>
                     <b>vsphere_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/vsphere_vlan_id" title="Permalink to this return value"></a>
@@ -1410,7 +1101,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddcs/workload_network_cidr"></div>
                     <b>workload_network_cidr</b>
                     <a class="ansibleOptionLink" href="#return-sddcs/workload_network_cidr" title="Permalink to this return value"></a>

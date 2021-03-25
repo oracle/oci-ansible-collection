@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_notebook_session_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple NotebookSession resources in Oracle Cloud Infrastructure
-- Lists notebook sessions in the specified compartment.
+- Lists the notebook sessions in the specified compartment.
 - If *notebook_session_id* is specified, the details of a single NotebookSession will be returned.
 
 
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required to list multiple notebook_sessions.</div>
                                                         </td>
             </tr>
@@ -211,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the user who created the resource.</div>
+                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the user who created the resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -266,7 +266,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
                                             <div>Required to get a specific notebook_session.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -283,7 +283,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project.</div>
+                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -317,7 +317,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by `timeCreated`, results are shown in descending order. When you sort by `displayName`, results are shown in ascending order. Sort order for `displayName` field is case sensitive.</div>
+                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by `timeCreated`, the results are shown in descending order. When you sort by `displayName`, results are shown in ascending order. Sort order for the `displayName` field is case sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -378,11 +378,11 @@ Examples
     
     - name: List notebook_sessions
       oci_data_science_notebook_session_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific notebook_session
       oci_data_science_notebook_session_facts:
-        notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+        notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -434,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the notebook session&#x27;s compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the notebook session&#x27;s compartment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -452,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the user who created the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the user who created the notebook session.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -488,7 +488,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: `My NotebookSession`</div>
+                                            <div>A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information. Example: `My NotebookSession`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">My NotebookSession</div>
@@ -524,7 +524,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -614,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved from the `ListNotebookSessionShapes` endpoint.</div>
+                                            <div>The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved using the `ListNotebookSessionShapes` endpoint.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VM.Standard2.1</div>
@@ -633,7 +633,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A notebook session instance is provided with a VNIC for network access.  This specifies the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the subnet to create a VNIC in.  The subnet should be in a VCN with a NAT gateway for egress to the internet.</div>
+                                            <div>A notebook session instance is provided with a VNIC for network access.  This specifies the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet to create a VNIC in.  The subnet should be in a VCN with a NAT gateway for egress to the internet.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -670,7 +670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project associated with the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project associated with the notebook session.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.project.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -688,7 +688,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the resource was created, in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
+                                            <div>The date and time the resource was created in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

@@ -20,7 +20,7 @@ oracle.oci.oci_identity_tag -- Manage a Tag resource in Oracle Cloud Infrastruct
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -506,18 +506,18 @@ Examples
     
     - name: Create tag
       oci_identity_tag:
-        tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         name: CostCenter
         description: This tag will show the cost center that will be used for billing of associated resources.
 
     - name: Update tag
       oci_identity_tag:
-        tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         name: CostCenter
 
     - name: Delete tag
       oci_identity_tag:
-        tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         name: CostCenter
         state: absent
 

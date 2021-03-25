@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_texts_facts -- Fetches details about one or multiple Sql
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -281,7 +281,7 @@ Examples
     
     - name: List sql_texts
       oci_opsi_sql_texts_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         sql_identifier: [ "6rgjh9bjmy2s7" ]
 
 

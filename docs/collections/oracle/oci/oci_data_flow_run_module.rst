@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_run -- Manage a Run resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create and update a Run resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a run for an application.
-- This resource has the following action operations in the :ref:`oci_run_actions <ansible_collections.oci_run_actions_module>` module: cancel.
+- This resource has the following action operations in the :ref:`oci_run_actions <ansible_collections.oci_run_actions_module>` module: change_compartment, cancel.
 
 
 .. Aliases
@@ -577,24 +577,24 @@ Examples
     
     - name: Create run
       oci_data_flow_run:
-        display_name: test_wordcount_run
-        application_id: applicationId
-        compartment_id: compartmentId
-        driver_shape: VM.Standard2.1
-        executor_shape: VM.Standard2.1
+        display_name: "test_wordcount_run"
+        application_id: "applicationId"
+        compartment_id: "compartmentId"
+        driver_shape: "VM.Standard2.1"
+        executor_shape: "VM.Standard2.1"
         num_executors: 1
         arguments:
-        - oci://.../WordCount.txt
+        - "oci://.../WordCount.txt"
         parameters: []
         configuration: {}
 
     - name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_flow_run:
-        freeform_tags: '{''Department'': ''Finance''}'
+        freeform_tags: "{'Department': 'Finance'}"
 
     - name: Update run
       oci_data_flow_run:
-        run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+        run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

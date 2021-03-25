@@ -29,7 +29,7 @@ description:
       You can also create a stack from an existing compartment.
       For more information, see
       L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack).
-    - "This resource has the following action operations in the M(oci_stack_actions) module: detect_stack_drift."
+    - "This resource has the following action operations in the M(oci_stack_actions) module: change_compartment, detect_stack_drift."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -178,7 +178,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create stack
   oci_resource_manager_stack:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     config_source:
       config_source_type: ZIP_UPLOAD
 
@@ -196,11 +196,11 @@ EXAMPLES = """
   oci_resource_manager_stack:
     display_name: display_name_example
     description: description_example
-    stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete stack
   oci_resource_manager_stack:
-    stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete stack using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -222,14 +222,14 @@ stack:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the stack.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the compartment where the stack is
                   located.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the stack.
@@ -283,7 +283,7 @@ stack:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
                     returned: on success
                     type: string
-                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
                         - The URL of the Git repository for the configuration source.
@@ -303,7 +303,7 @@ stack:
                           resource types in this compartment.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 region:
                     description:
                         - The region to use for creating the stack. The new stack will include definitions for

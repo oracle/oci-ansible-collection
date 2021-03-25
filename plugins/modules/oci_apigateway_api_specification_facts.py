@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific api_specification
   oci_apigateway_api_specification_facts:
-    api_id: ocid1.api.oc1..xxxxxxEXAMPLExxxxxx
+    api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -241,7 +241,7 @@ api_specification:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function resource.
                             returned: on success
                             type: string
-                            sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                 rate_limiting:
                     description:
                         - ""
@@ -826,7 +826,7 @@ api_specification:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function resource.
                             returned: on success
                             type: string
-                            sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                         body:
                             description:
                                 - The body of the stock response from the mock backend.

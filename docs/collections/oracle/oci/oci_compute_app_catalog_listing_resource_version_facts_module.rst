@@ -20,7 +20,7 @@ oracle.oci.oci_compute_app_catalog_listing_resource_version_facts -- Fetches det
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -288,11 +288,11 @@ Examples
     
     - name: List app_catalog_listing_resource_versions
       oci_compute_app_catalog_listing_resource_version_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific app_catalog_listing_resource_version
       oci_compute_app_catalog_listing_resource_version_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         resource_version: resource_version_example
 
 

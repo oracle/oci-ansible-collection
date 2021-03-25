@@ -20,7 +20,7 @@ oracle.oci.oci_dns_zone_records -- Manage a ZoneRecords resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -637,7 +637,7 @@ Examples
     
     - name: Update zone_records
       oci_dns_zone_records:
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         update_items:
         - domain: domain_example
           rdata: rdata_example

@@ -20,7 +20,7 @@ oracle.oci.oci_secrets_secret_bundle_version_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -288,7 +288,7 @@ Examples
     
     - name: List secret_bundle_versions
       oci_secrets_secret_bundle_version_facts:
-        secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -85,11 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List waas_policies
   oci_waas_policy_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific waas_policy
   oci_waas_policy_facts:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -105,13 +105,13 @@ waas_policies:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the WAAS policy. The name can be changed and does not need to be unique.
@@ -228,7 +228,7 @@ waas_policies:
                         - The OCID of the SSL certificate to use if HTTPS is supported.
                     returned: on success
                     type: string
-                    sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
                 is_https_enabled:
                     description:
                         - Enable or disable HTTPS support. If true, a `certificateId` is required. If unspecified, defaults to `false`.
@@ -1399,7 +1399,7 @@ waas_policies:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         action:
                             description:
                                 - "The action to take when the custom protection rule is triggered.

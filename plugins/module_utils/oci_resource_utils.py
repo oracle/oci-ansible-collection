@@ -220,11 +220,20 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             return None
         return action_fn
 
+    def is_change_compartment_necessary(self, resource):
+        if not hasattr(resource, "compartment_id"):
+            return False
+        if self.module.params.get("compartment_id") == resource.compartment_id:
+            return False
+        return True
+
     def is_action_necessary(self, action, resource=None):
         if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
             return True
 
         resource = resource or self.get_resource().data
+        if action.upper() == "CHANGE_COMPARTMENT":
+            return self.is_change_compartment_necessary(resource)
         if hasattr(
             resource, "lifecycle_state"
         ) and resource.lifecycle_state in self.get_action_idempotent_states(action):

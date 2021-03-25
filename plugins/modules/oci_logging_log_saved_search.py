@@ -24,6 +24,7 @@ short_description: Manage a LogSavedSearch resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a LogSavedSearch resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new LogSavedSearch.
+    - "This resource has the following action operations in the M(oci_log_saved_search_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -90,13 +91,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log_saved_search
   oci_logging_log_saved_search:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     query: query_example
 
 - name: Update log_saved_search using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log_saved_search:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     query: query_example
@@ -107,16 +108,16 @@ EXAMPLES = """
   oci_logging_log_saved_search:
     name: name_example
     description: description_example
-    log_saved_search_id: ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx
+    log_saved_search_id: "ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete log_saved_search
   oci_logging_log_saved_search:
-    log_saved_search_id: ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx
+    log_saved_search_id: "ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete log_saved_search using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log_saved_search:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -134,13 +135,13 @@ log_saved_search:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,

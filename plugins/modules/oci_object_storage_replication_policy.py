@@ -76,17 +76,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create replication_policy
   oci_object_storage_replication_policy:
-    name: mypolicy
-    destination_region_name: us-phoenix-1
-    destination_bucket_name: backup
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
+    name: "mypolicy"
+    destination_region_name: "us-phoenix-1"
+    destination_bucket_name: "backup"
+    namespace_name: "namespace_name_example"
+    bucket_name: "my-new-bucket1"
 
 - name: Delete replication_policy
   oci_object_storage_replication_policy:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    replication_id: ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx
+    replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete replication_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -110,7 +110,7 @@ replication_policy:
                 - The id of the replication policy.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the policy.

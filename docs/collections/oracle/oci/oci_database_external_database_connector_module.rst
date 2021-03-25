@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_database_connector -- Manage an ExternalDatabas
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -665,41 +665,41 @@ Examples
     
     - name: Create external_database_connector
       oci_database_external_database_connector:
-        display_name: myTestConn
+        display_name: "myTestConn"
         connection_string:
-          hostname: myHost.test
+          hostname: "myHost.test"
           port: 1521
-          service: testService
-          protocol: TCP
+          service: "testService"
+          protocol: "TCP"
         connection_credentials:
-          username: testUser
-          password: greatPassword
-          role: SYSDBA
-        connector_type: MACS
-        connector_agent_id: ocid
-        external_database_id: ocid
+          username: "testUser"
+          password: "greatPassword"
+          role: "SYSDBA"
+        connector_type: "MACS"
+        connector_agent_id: "ocid"
+        external_database_id: "ocid"
 
     - name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_external_database_connector:
         connection_credentials:
-          username: testUser
-          password: greatPassword2
-          role: SYSDBA
+          username: "testUser"
+          password: "greatPassword2"
+          role: "SYSDBA"
 
     - name: Update external_database_connector
       oci_database_external_database_connector:
-        external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete external_database_connector
       oci_database_external_database_connector:
-        external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_external_database_connector:
         display_name: myTestConn
         external_database_id: ocid
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

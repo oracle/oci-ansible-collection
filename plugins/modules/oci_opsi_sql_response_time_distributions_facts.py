@@ -72,8 +72,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific sql_response_time_distributions
   oci_opsi_sql_response_time_distributions_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
 
 """
@@ -90,7 +90,7 @@ sql_response_time_distributions:
                 - Response time bucket id
             returned: on success
             type: string
-            sample: ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx"
         executions_count:
             description:
                 - Total number of SQL executions

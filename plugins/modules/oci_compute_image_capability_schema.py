@@ -24,6 +24,7 @@ short_description: Manage a ComputeImageCapabilitySchema resource in Oracle Clou
 description:
     - This module allows the user to create, update and delete a ComputeImageCapabilitySchema resource in Oracle Cloud Infrastructure
     - For I(state=present), creates compute image capability schema.
+    - "This resource has the following action operations in the M(oci_compute_image_capability_schema_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -135,34 +136,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create compute_image_capability_schema
   oci_compute_image_capability_schema:
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-    compute_global_image_capability_schema_version_name: 2c0xx226-xxx-xxxx-xxxx-193cc17xx90b
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    compute_global_image_capability_schema_version_name: "2c0xx226-xxx-xxxx-xxxx-193cc17xx90b"
     schema_data:
       Compute.LaunchMode:
-        descriptor_type: enumstring
-        source: IMAGE
+        descriptor_type: "enumstring"
+        source: "IMAGE"
         enum_string_values:
-        - EMULATED
-        - PARAVIRTUALIZED
-        - CUSTOM
-        enum_string_default_value: PARAVIRTUALIZED
+        - "EMULATED"
+        - "PARAVIRTUALIZED"
+        - "CUSTOM"
+        enum_string_default_value: "PARAVIRTUALIZED"
 
 - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image_capability_schema:
-    compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     schema_data:
       Storage.ConsistentVolumeNaming:
-        descriptor_type: boolean
-        source: IMAGE
+        descriptor_type: "boolean"
+        source: "IMAGE"
         enum_string_default_value: true
 
 - name: Update compute_image_capability_schema
   oci_compute_image_capability_schema:
-    compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete compute_image_capability_schema
   oci_compute_image_capability_schema:
-    compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -184,19 +185,19 @@ compute_image_capability_schema:
                 - The id of the compute global image capability schema version
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the resource.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compute_global_image_capability_schema_id:
             description:
                 - The ocid of the compute global image capability schema
             returned: on success
             type: string
-            sample: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         compute_global_image_capability_schema_version_name:
             description:
                 - The name of the compute global image capability schema version
@@ -208,7 +209,7 @@ compute_image_capability_schema:
                 - The OCID of the image associated with this compute image capability schema
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a

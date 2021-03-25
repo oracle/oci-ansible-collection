@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_pluggable_database -- Manage an ExternalPluggab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an ExternalPluggableDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, registers a new `ExternalPluggableDatabase <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalPluggableDatabaseDetails>`_ resource.
-- This resource has the following action operations in the :ref:`oci_external_pluggable_database_actions <ansible_collections.oci_external_pluggable_database_actions_module>` module: disable_external_pluggable_database_database_management, enable_external_pluggable_database_database_management.
+- This resource has the following action operations in the :ref:`oci_external_pluggable_database_actions <ansible_collections.oci_external_pluggable_database_actions_module>` module: change_compartment, disable_external_pluggable_database_database_management, enable_external_pluggable_database_database_management.
 
 
 .. Aliases
@@ -444,22 +444,22 @@ Examples
     
     - name: Create external_pluggable_database
       oci_database_external_pluggable_database:
-        compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-        display_name: myTestExternalCdb
-        external_container_database_id: ocid1.externalcontainerdatabase.oc1.<example_unique_ID>
+        compartment_id: "ocid1.[tenancy|compartment].oc1.unique_ID"
+        display_name: "myTestExternalCdb"
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1.<example_unique_ID>"
 
     - name: Update external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_external_pluggable_database:
-        display_name: myExternalPdb
+        display_name: "myExternalPdb"
 
     - name: Update external_pluggable_database
       oci_database_external_pluggable_database:
         display_name: myTestExternalCdb
-        external_pluggable_database_id: ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx
+        external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete external_pluggable_database
       oci_database_external_pluggable_database:
-        external_pluggable_database_id: ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx
+        external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete external_pluggable_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

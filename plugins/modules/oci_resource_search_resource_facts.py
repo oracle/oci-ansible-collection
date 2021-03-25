@@ -55,15 +55,20 @@ options:
             - The text to search for.
             - Required when type is 'FreeText'
         type: str
+    tenant_id:
+        description:
+            - The tenancy ID, which can be used to specify a different tenancy (for cross-tenancy authorization) when searching for resources in a different
+              tenancy.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
 EXAMPLES = """
 - name: List resources
   oci_resource_search_resource_facts:
-    type: FreeText
-    text: jane
-    matching_context_type: HIGHLIGHTS
+    type: "FreeText"
+    text: "jane"
+    matching_context_type: "HIGHLIGHTS"
 
 """
 
@@ -91,7 +96,7 @@ resources:
                 - The OCID of the compartment that contains this resource.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time that this resource was created.
@@ -149,10 +154,10 @@ resources:
             contains:
                 highlights:
                     description:
-                        - Describes what in each field matched the search criteria by showing highlighted values, but only for free text searches or for
+                        - "Describes what in each field matched the search criteria by showing highlighted values, but only for free text searches or for
                           structured
                           queries that use a MATCHING clause. The list of strings represents fragments of values that matched the query conditions. Highlighted
-                          values are wrapped with &lt;h1&gt;..&lt;/h1&gt; tags. All values are HTML-encoded (except &lt;h1&gt; tags).
+                          values are wrapped with &lt;h1&gt;..&lt;/h1&gt; tags. All values are HTML-encoded (except &lt;h1&gt; tags)."
                     returned: on success
                     type: dict
                     sample: {}
@@ -206,6 +211,7 @@ class ResourceFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "tenant_id",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -235,6 +241,7 @@ def main():
             matching_context_type=dict(type="str", choices=["NONE", "HIGHLIGHTS"]),
             query=dict(type="str"),
             text=dict(type="str"),
+            tenant_id=dict(type="str"),
             display_name=dict(type="str"),
         )
     )

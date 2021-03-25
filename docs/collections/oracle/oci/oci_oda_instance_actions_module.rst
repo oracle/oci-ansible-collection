@@ -20,7 +20,7 @@ oracle.oci.oci_oda_instance_actions -- Perform actions on an OdaInstance resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an OdaInstance resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves an Digital Assistant instance into a different compartment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=start*, starts an inactive Digital Assistant instance. Once active, the instance will be accessible and metering of requests will be started again.
 - For *action=stop*, stops an active Digital Assistant instance. Once inactive, the instance will not be accessible and metering of requests will be stopped until the instance is started again. Data associated with the instance is not affected.
 
@@ -84,7 +85,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>start</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                     </ul>
                                                                             </td>
@@ -170,6 +172,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Identifier of the compartment into which the Digital Assistant instance should be moved.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -304,14 +322,20 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action start on oda_instance
+    - name: Perform action change_compartment on oda_instance
       oci_oda_instance_actions:
         oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
+
+    - name: Perform action start on oda_instance
+      oci_oda_instance_actions:
+        oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on oda_instance
       oci_oda_instance_actions:
-        oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+        oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

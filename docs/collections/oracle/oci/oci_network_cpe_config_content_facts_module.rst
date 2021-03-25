@@ -20,7 +20,7 @@ oracle.oci.oci_network_cpe_config_content_facts -- Fetches details about a CpeCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -255,7 +255,7 @@ Examples
     
     - name: Get a specific cpe_config_content
       oci_network_cpe_config_content_facts:
-        cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+        cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

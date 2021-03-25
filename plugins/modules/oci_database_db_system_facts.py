@@ -95,11 +95,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List db_systems
   oci_database_db_system_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific db_system
   oci_database_db_system_facts:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -166,13 +166,13 @@ db_systems:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB system. The name does not have to be unique.
@@ -202,7 +202,7 @@ db_systems:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet the DB system is associated
@@ -210,7 +210,7 @@ db_systems:
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
             type: string
-            sample: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -282,7 +282,7 @@ db_systems:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The Oracle Database version of the DB system.
@@ -322,7 +322,7 @@ db_systems:
                   a patch operation starts.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         listener_port:
             description:
                 - The port number configured for the listener on the DB system.
@@ -387,7 +387,7 @@ db_systems:
                   associated with the DB system.
             returned: on success
             type: string
-            sample: ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.
@@ -480,13 +480,13 @@ db_systems:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -507,7 +507,7 @@ db_systems:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         point_in_time_data_disk_clone_timestamp:
             description:
                 - The point in time for a cloned database system when the data disks were cloned from the source database system, as described in L(RFC

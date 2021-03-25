@@ -67,12 +67,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List mfa_totp_devices
   oci_identity_mfa_totp_device_facts:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific mfa_totp_device
   oci_identity_mfa_totp_device_facts:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    mfa_totp_device_id: ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -88,13 +88,13 @@ mfa_totp_devices:
                 - The OCID of the MFA TOTP Device.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the MFA TOTP device belongs to.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the `MfaTotpDevice` object was created, in the format defined by RFC3339.

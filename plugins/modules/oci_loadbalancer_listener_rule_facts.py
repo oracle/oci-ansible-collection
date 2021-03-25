@@ -48,7 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List listener_rules
   oci_loadbalancer_listener_rule_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     listener_name: listener_name_example
 
 """
@@ -81,7 +81,9 @@ listener_rules:
                     sample: example_header_name
                 value:
                     description:
-                        - A header value that conforms to RFC 7230.
+                        - "A header value that conforms to RFC 7230. With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_value`"
                     returned: on success
                     type: string
@@ -237,14 +239,20 @@ listener_rules:
                             sample: query_example
                 prefix:
                     description:
-                        - A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                        - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                          With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_prefix_value`"
                     returned: on success
                     type: string
                     sample: example_prefix_value
                 suffix:
                     description:
-                        - A string to append to the header value. The resulting header value must conform to RFC 7230.
+                        - "A string to append to the header value. The resulting header value must conform to RFC 7230.
+                          With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_suffix_value`"
                     returned: on success
                     type: string

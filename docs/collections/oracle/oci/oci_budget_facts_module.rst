@@ -20,7 +20,7 @@ oracle.oci.oci_budget_facts -- Fetches details about one or multiple Budget reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -367,11 +367,11 @@ Examples
     
     - name: List budgets
       oci_budget_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific budget
       oci_budget_facts:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

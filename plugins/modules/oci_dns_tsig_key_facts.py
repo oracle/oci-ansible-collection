@@ -84,11 +84,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List tsig_keys
   oci_dns_tsig_key_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific tsig_key
   oci_dns_tsig_key_facts:
-    tsig_key_id: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+    tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -119,7 +119,7 @@ tsig_keys:
                 - The OCID of the compartment containing the TSIG key.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret:
             description:
                 - A base64 string encoding the binary shared secret.
@@ -147,7 +147,7 @@ tsig_keys:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         _self:
             description:
                 - The canonical absolute URL of the resource.

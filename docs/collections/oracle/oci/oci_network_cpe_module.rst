@@ -20,7 +20,7 @@ oracle.oci.oci_network_cpe -- Manage a Cpe resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,6 +47,7 @@ Synopsis
 - For the purposes of access control, you must provide the OCID of the compartment where you want the CPE to reside. Notice that the CPE doesn't have to be in the same compartment as the IPSec connection or other Networking Service components. If you're not sure which compartment to use, put the CPE in the same compartment as the DRG. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You must provide the public IP address of your on-premises router. See `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm>`_.
 - You may optionally specify a *display name* for the CPE, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_cpe_actions <ansible_collections.oci_cpe_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -417,32 +418,32 @@ Examples
     
     - name: Create cpe
       oci_network_cpe:
-        ip_address: 203.0.113.6
-        display_name: MyCpe
-        compartment_id: ocid1.compartment.oc1..compartment_OCID
+        ip_address: "203.0.113.6"
+        display_name: "MyCpe"
+        compartment_id: "ocid1.compartment.oc1..compartment_OCID"
 
     - name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cpe:
-        compartment_id: ocid1.compartment.oc1..compartment_OCID
+        compartment_id: "ocid1.compartment.oc1..compartment_OCID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyCpe
         freeform_tags: {'Department': 'Finance'}
-        cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+        cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update cpe
       oci_network_cpe:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyCpe
-        cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+        cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete cpe
       oci_network_cpe:
-        cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+        cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cpe:
-        compartment_id: ocid1.compartment.oc1..compartment_OCID
+        compartment_id: "ocid1.compartment.oc1..compartment_OCID"
         display_name: MyCpe
         state: absent
 

@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_group_backup -- Manage a VolumeGroupBackup re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a VolumeGroupBackup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new backup volume group of the specified volume group. For more information, see `Volume Groups <https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm>`_.
+- This resource has the following action operations in the :ref:`oci_volume_group_backup_actions <ansible_collections.oci_volume_group_backup_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -448,12 +449,12 @@ Examples
     
     - name: Create volume_group_backup
       oci_blockstorage_volume_group_backup:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        volume_group_id: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update volume_group_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume_group_backup:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -462,16 +463,16 @@ Examples
       oci_blockstorage_volume_group_backup:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        volume_group_backup_id: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
+        volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete volume_group_backup
       oci_blockstorage_volume_group_backup:
-        volume_group_backup_id: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
+        volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete volume_group_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume_group_backup:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

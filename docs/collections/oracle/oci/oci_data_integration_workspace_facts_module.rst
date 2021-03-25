@@ -20,7 +20,7 @@ oracle.oci.oci_data_integration_workspace_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -365,11 +365,11 @@ Examples
     
     - name: List workspaces
       oci_data_integration_workspace_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific workspace
       oci_data_integration_workspace_facts:
-        workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+        workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

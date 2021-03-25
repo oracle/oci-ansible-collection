@@ -20,7 +20,7 @@ oracle.oci.oci_optimizer_profile -- Manage a Profile resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -638,13 +638,13 @@ Examples
     
     - name: Create profile
       oci_optimizer_profile:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
 
     - name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_optimizer_profile:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -659,16 +659,16 @@ Examples
       oci_optimizer_profile:
         name: name_example
         description: description_example
-        profile_id: ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx
+        profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete profile
       oci_optimizer_profile:
-        profile_id: ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx
+        profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_optimizer_profile:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 
@@ -707,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Profile resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;levels_configuration&#x27;: {&#x27;level&#x27;: &#x27;level_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;target_compartments&#x27;: {&#x27;items&#x27;: []}, &#x27;target_tags&#x27;: {&#x27;items&#x27;: [{&#x27;tag_definition_name&#x27;: &#x27;tag_definition_name_example&#x27;, &#x27;tag_namespace_name&#x27;: &#x27;tag_namespace_name_example&#x27;, &#x27;tag_value_type&#x27;: &#x27;VALUE&#x27;, &#x27;tag_values&#x27;: []}]}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;levels_configuration&#x27;: {&#x27;items&#x27;: [{&#x27;level&#x27;: &#x27;level_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;target_compartments&#x27;: {&#x27;items&#x27;: []}, &#x27;target_tags&#x27;: {&#x27;items&#x27;: [{&#x27;tag_definition_name&#x27;: &#x27;tag_definition_name_example&#x27;, &#x27;tag_namespace_name&#x27;: &#x27;tag_namespace_name_example&#x27;, &#x27;tag_value_type&#x27;: &#x27;VALUE&#x27;, &#x27;tag_values&#x27;: []}]}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -822,9 +822,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/level"></div>
+                    <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-profile/levels_configuration/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The array of configuration levels.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/items/level"></div>
                     <b>level</b>
-                    <a class="ansibleOptionLink" href="#return-profile/levels_configuration/level" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-profile/levels_configuration/items/level" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -840,10 +858,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/recommendation_id"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-profile/levels_configuration/items/recommendation_id"></div>
                     <b>recommendation_id</b>
-                    <a class="ansibleOptionLink" href="#return-profile/levels_configuration/recommendation_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-profile/levels_configuration/items/recommendation_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -856,6 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

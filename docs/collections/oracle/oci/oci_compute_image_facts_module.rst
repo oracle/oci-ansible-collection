@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_facts -- Fetches details about one or multiple Imag
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -396,11 +396,11 @@ Examples
     
     - name: List images
       oci_compute_image_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific image
       oci_compute_image_facts:
-        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

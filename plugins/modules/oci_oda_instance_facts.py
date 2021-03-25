@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List oda_instances
   oci_oda_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific oda_instance
   oci_oda_instance_facts:
-    oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,7 +102,7 @@ oda_instances:
                 - Unique immutable identifier that was assigned when the instance was created.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User-defined name for the Digital Assistant instance. Avoid entering confidential information.
@@ -121,7 +121,7 @@ oda_instances:
                 - Identifier of the compartment that the instance belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - Shape or size of the instance.

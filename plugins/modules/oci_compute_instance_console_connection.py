@@ -83,19 +83,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_console_connection
   oci_compute_instance_console_connection:
-    instance_id: ocid1.instance.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1.phx.unique_ID
-    public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+    instance_id: "ocid1.instance.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1.phx.unique_ID"
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
 - name: Update instance_console_connection
   oci_compute_instance_console_connection:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+    instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete instance_console_connection
   oci_compute_instance_console_connection:
-    instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+    instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -112,7 +112,7 @@ instance_console_connection:
                 - The OCID of the compartment to contain the console connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - The SSH connection string for the console connection.
@@ -147,13 +147,13 @@ instance_console_connection:
                 - The OCID of the console connection.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the console connection connects to.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the console connection.

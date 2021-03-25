@@ -20,7 +20,7 @@ oracle.oci.oci_network_cross_connect -- Manage a CrossConnect resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,6 +47,7 @@ Synopsis
 - After creating the `CrossConnect` object, you need to go the FastConnect location and request to have the physical cable installed. For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
 - For the purposes of access control, you must provide the OCID of the compartment where you want the cross-connect to reside. If you're not sure which compartment to use, put the cross-connect in the same compartment with your VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the cross-connect. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_cross_connect_actions <ansible_collections.oci_cross_connect_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -532,13 +533,13 @@ Examples
     
     - name: Create cross_connect
       oci_network_cross_connect:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         location_name: CyrusOne, Chandler, AZ
         port_speed_shape_name: 10 Gbps
 
     - name: Update cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cross_connect:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -549,16 +550,16 @@ Examples
       oci_network_cross_connect:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+        cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete cross_connect
       oci_network_cross_connect:
-        cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+        cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_cross_connect:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

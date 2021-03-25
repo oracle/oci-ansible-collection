@@ -24,6 +24,7 @@ short_description: Manage an Application resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an application.
+    - "This resource has the following action operations in the M(oci_application_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -227,17 +228,17 @@ EXAMPLES = """
     parameters:
     - name: name_example
       value: value_example
-    private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     spark_version: 2.4
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update application
   oci_data_flow_application:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete application
   oci_data_flow_application:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -297,7 +298,7 @@ application:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -350,7 +351,7 @@ application:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -381,7 +382,7 @@ application:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -419,7 +420,7 @@ application:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version:
             description:
                 - The Spark version utilized to run the application.

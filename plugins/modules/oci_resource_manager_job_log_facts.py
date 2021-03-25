@@ -72,7 +72,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List job_logs
   oci_resource_manager_job_log_facts:
-    job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

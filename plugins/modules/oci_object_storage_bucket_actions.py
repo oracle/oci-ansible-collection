@@ -106,7 +106,7 @@ bucket:
                 - The compartment ID in which the bucket is authorized.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metadata:
             description:
                 - Arbitrary string keys and values for user-defined metadata.
@@ -180,7 +180,7 @@ bucket:
                   service to generate a data encryption key or to encrypt or decrypt a data encryption key.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         object_lifecycle_policy_etag:
             description:
                 - The entity tag (ETag) for the live object lifecycle policy on the bucket.
@@ -220,7 +220,7 @@ bucket:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the bucket.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         versioning:
             description:
                 - The versioning status on the bucket. A bucket is created with versioning `Disabled` by default.

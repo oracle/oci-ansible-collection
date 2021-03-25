@@ -72,8 +72,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific sql_statistics_time_series_by_plan
   oci_opsi_sql_statistics_time_series_by_plan_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
 
 """
@@ -96,7 +96,7 @@ sql_statistics_time_series_by_plan:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         time_interval_start:
             description:
                 - The start timestamp that was passed into the request.

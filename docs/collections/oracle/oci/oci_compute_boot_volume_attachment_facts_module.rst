@@ -20,7 +20,7 @@ oracle.oci.oci_compute_boot_volume_attachment_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -333,11 +333,11 @@ Examples
     - name: List boot_volume_attachments
       oci_compute_boot_volume_attachment_facts:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific boot_volume_attachment
       oci_compute_boot_volume_attachment_facts:
-        boot_volume_attachment_id: ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_attachment_id: "ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

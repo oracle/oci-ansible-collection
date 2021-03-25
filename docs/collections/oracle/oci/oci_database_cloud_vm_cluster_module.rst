@@ -20,7 +20,7 @@ oracle.oci.oci_database_cloud_vm_cluster -- Manage a CloudVmCluster resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -768,19 +768,19 @@ Examples
     
     - name: Create cloud_vm_cluster
       oci_database_cloud_vm_cluster:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-        backup_subnet_id: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         cpu_core_count: 56
         display_name: display_name_example
-        cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         hostname: hostname_example
         ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         gi_version: gi_version_example
 
     - name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_cloud_vm_cluster:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpu_core_count: 56
         display_name: display_name_example
         ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
@@ -793,16 +793,16 @@ Examples
       oci_database_cloud_vm_cluster:
         cpu_core_count: 56
         display_name: display_name_example
-        cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete cloud_vm_cluster
       oci_database_cloud_vm_cluster:
-        cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_cloud_vm_cluster:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

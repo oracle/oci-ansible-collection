@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_resource_discovery_service_facts -- Fetches deta
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -199,6 +199,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Use <em>name</em> along with the other options to return only resources that match the given name exactly.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -251,7 +266,7 @@ Examples
     
     - name: List resource_discovery_services
       oci_resource_manager_resource_discovery_service_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -270,12 +285,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="2">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_discovery_services"></div>
                     <b>resource_discovery_services</b>
                     <a class="ansibleOptionLink" href="#return-resource_discovery_services" title="Permalink to this return value"></a>
@@ -288,32 +303,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ResourceDiscoveryService resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;discovery_scope&#x27;: &#x27;TENANCY&#x27;, &#x27;name&#x27;: &#x27;core&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;discovery_scope&#x27;: &#x27;TENANCY&#x27;, &#x27;name&#x27;: &#x27;core&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-resource_discovery_services/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-resource_discovery_services/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Collection of supported services for Resource Discovery.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-resource_discovery_services/items/discovery_scope"></div>
+                    <div class="ansibleOptionAnchor" id="return-resource_discovery_services/discovery_scope"></div>
                     <b>discovery_scope</b>
-                    <a class="ansibleOptionLink" href="#return-resource_discovery_services/items/discovery_scope" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-resource_discovery_services/discovery_scope" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -328,11 +326,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-resource_discovery_services/items/name"></div>
+                    <div class="ansibleOptionAnchor" id="return-resource_discovery_services/name"></div>
                     <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-resource_discovery_services/items/name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-resource_discovery_services/name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -345,7 +342,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">core</div>
                                     </td>
             </tr>
-                    
                     
                         </table>
     <br/><br/>

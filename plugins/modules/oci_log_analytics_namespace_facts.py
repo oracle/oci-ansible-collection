@@ -45,7 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List namespaces
   oci_log_analytics_namespace_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific namespace
   oci_log_analytics_namespace_facts:
@@ -71,7 +71,7 @@ namespaces:
                 - The is the tenancy ID
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_onboarded:
             description:
                 - This indicates if the tenancy is onboarded to Logging Analytics

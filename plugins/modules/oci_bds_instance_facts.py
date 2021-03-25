@@ -47,7 +47,6 @@ options:
             - "CREATING"
             - "ACTIVE"
             - "UPDATING"
-            - "UPDATING_INFRA"
             - "SUSPENDING"
             - "SUSPENDED"
             - "RESUMING"
@@ -80,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List bds_instances
   oci_bds_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific bds_instance
   oci_bds_instance_facts:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -100,13 +99,13 @@ bds_instances:
                 - The OCID of the BDS resource
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Name of the BDS instance
@@ -251,7 +250,7 @@ bds_instances:
                         - The OCID of the underlying compute instance
                     returned: on success
                     type: string
-                    sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The name of the node
@@ -287,7 +286,7 @@ bds_instances:
                                 - The OCID of the volume attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
                         volume_size_in_gbs:
                             description:
                                 - The size of the volume in GBs.
@@ -299,7 +298,7 @@ bds_instances:
                         - The OCID of the subnet in which the node should be created
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_address:
                     description:
                         - IP address of the node
@@ -317,7 +316,7 @@ bds_instances:
                         - The OCID of the image from which the node was created
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 ssh_fingerprint:
                     description:
                         - The fingerprint of the SSH key used for node access
@@ -574,7 +573,6 @@ def main():
                     "CREATING",
                     "ACTIVE",
                     "UPDATING",
-                    "UPDATING_INFRA",
                     "SUSPENDING",
                     "SUSPENDED",
                     "RESUMING",

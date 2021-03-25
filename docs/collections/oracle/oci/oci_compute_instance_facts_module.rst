@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_facts -- Fetches details about one or multiple I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -367,11 +367,11 @@ Examples
     
     - name: List instances
       oci_compute_instance_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific instance
       oci_compute_instance_facts:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

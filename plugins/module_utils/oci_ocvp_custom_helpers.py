@@ -22,13 +22,13 @@ class SddcHelperCustom:
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)
 
-    # As per console, a SDDC creation could take up to 3 hours but from the tests I see that it takes around 4 hours.
-    # 4 hours is very long for the ansible module to wait but the other option would be to fallback to the default time
+    # As per console, a SDDC creation could take up to 3 hours but from the tests I see that it takes around 6 hours.
+    # 6 hours is very long for the ansible module to wait but the other option would be to fallback to the default time
     # which would result in error for a user every time. So they will have to use wait: False option and do the waiting
     # themselves every time. But this way users who do need to wait until completion need no changes and for someone
     # not bothered about completion can just use wait: False flag.
     def get_default_module_wait_timeout(self):
-        return int(4 * 3600)
+        return int(6 * 3600)
 
 
 class EsxiHostHelperCustom:

@@ -20,7 +20,7 @@ oracle.oci.oci_network_service_gateway -- Manage a ServiceGateway resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,7 +46,7 @@ Synopsis
 - For *state=present*, creates a new service gateway in the specified compartment.
 - For the purposes of access control, you must provide the OCID of the compartment where you want the service gateway to reside. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the service gateway, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
-- This resource has the following action operations in the :ref:`oci_service_gateway_actions <ansible_collections.oci_service_gateway_actions_module>` module: attach_service_id, detach_service_id.
+- This resource has the following action operations in the :ref:`oci_service_gateway_actions <ansible_collections.oci_service_gateway_actions_module>` module: attach_service_id, change_compartment, detach_service_id.
 
 
 .. Aliases
@@ -506,36 +506,36 @@ Examples
     
     - name: Create service_gateway
       oci_network_service_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         services:
-        - service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        - service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_service_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+        route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         services:
-        - service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+        - service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
         block_traffic: true
 
     - name: Update service_gateway
       oci_network_service_gateway:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
+        service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete service_gateway
       oci_network_service_gateway:
-        service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
+        service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_service_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

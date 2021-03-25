@@ -20,7 +20,7 @@ oracle.oci.oci_vault_secret -- Manage a Secret resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create and update a Secret resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new secret according to the details of the request.
 - This operation is not supported by the Oracle Cloud Infrastructure Terraform Provider.
-- This resource has the following action operations in the :ref:`oci_secret_actions <ansible_collections.oci_secret_actions_module>` module: cancel_secret_deletion, schedule_secret_deletion.
+- This resource has the following action operations in the :ref:`oci_secret_actions <ansible_collections.oci_secret_actions_module>` module: cancel_secret_deletion, change_compartment, schedule_secret_deletion.
 
 
 .. Aliases
@@ -687,21 +687,21 @@ Examples
     
     - name: Create secret
       oci_vault_secret:
-        vault_id: vault_OCID
-        secret_rules: '[]'
-        compartment_id:
-        secret_name: testSecret
-        description: my test secret
-        key_id: key_OCID
+        vault_id: "vault_OCID"
+        secret_rules: "[]"
+        compartment_id: ""
+        secret_name: "testSecret"
+        description: "my test secret"
+        key_id: "key_OCID"
         secret_content:
-          content: base64_encoded_secret_contents
-          content_type: BASE64
+          content: "base64_encoded_secret_contents"
+          content_type: "BASE64"
 
     - name: Update secret
       oci_vault_secret:
-        description: updated version of my test secret
+        description: "updated version of my test secret"
         current_version_number: 4
-        secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

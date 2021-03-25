@@ -20,7 +20,7 @@ oracle.oci.oci_identity_group -- Manage a Group resource in Oracle Cloud Infrast
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -432,13 +432,13 @@ Examples
     
     - name: Create group
       oci_identity_group:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
-        description: Group for network administrators
-        name: NetworkAdmins
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
+        description: "Group for network administrators"
+        name: "NetworkAdmins"
 
     - name: Update group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_group:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
         name: NetworkAdmins
         description: Group for network administrators
         freeform_tags: {'Department': 'Finance'}
@@ -448,16 +448,16 @@ Examples
       oci_identity_group:
         description: Group for network administrators
         freeform_tags: {'Department': 'Finance'}
-        group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+        group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete group
       oci_identity_group:
-        group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+        group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_group:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
         name: NetworkAdmins
         state: absent
 

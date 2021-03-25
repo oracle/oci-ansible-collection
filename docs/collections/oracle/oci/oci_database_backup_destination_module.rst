@@ -20,7 +20,7 @@ oracle.oci.oci_database_backup_destination -- Manage a BackupDestination resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -624,14 +624,14 @@ Examples
     - name: Create backup_destination
       oci_database_backup_destination:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type: RECOVERY_APPLIANCE
         connection_string: connection_string_example
 
     - name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup_destination:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         local_mount_point_path: local_mount_point_path_example
@@ -643,17 +643,17 @@ Examples
       oci_database_backup_destination:
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+        backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete backup_destination
       oci_database_backup_destination:
-        backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+        backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup_destination:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

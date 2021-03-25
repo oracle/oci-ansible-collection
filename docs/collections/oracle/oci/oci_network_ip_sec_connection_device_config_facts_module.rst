@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_device_config_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -253,7 +253,7 @@ Examples
     
     - name: Get a specific ip_sec_connection_device_config
       oci_network_ip_sec_connection_device_config_facts:
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

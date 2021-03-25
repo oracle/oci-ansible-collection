@@ -28,7 +28,7 @@ description:
     - When the request is received, the backup object is in a REQUEST_RECEIVED state.
       When the data is imaged, it goes into a CREATING state.
       After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
-    - "This resource has the following action operations in the M(oci_boot_volume_backup_actions) module: copy."
+    - "This resource has the following action operations in the M(oci_boot_volume_backup_actions) module: change_compartment, copy."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -96,31 +96,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create boot_volume_backup
   oci_blockstorage_boot_volume_backup:
-    boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update boot_volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume_backup:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update boot_volume_backup
   oci_blockstorage_boot_volume_backup:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete boot_volume_backup
   oci_blockstorage_boot_volume_backup:
-    boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete boot_volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume_backup:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -137,13 +137,13 @@ boot_volume_backup:
                 - The OCID of the boot volume.
             returned: on success
             type: string
-            sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the boot volume backup.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -190,13 +190,13 @@ boot_volume_backup:
                 - The OCID of the boot volume backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The image OCID used to create the boot volume the backup is taken from.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the Key Management master encryption assigned to the boot volume backup.
@@ -205,7 +205,7 @@ boot_volume_backup:
                   L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a boot volume backup.
@@ -223,7 +223,7 @@ boot_volume_backup:
                 - The OCID of the source boot volume backup.
             returned: on success
             type: string
-            sample: ocid1.sourcebootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcebootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         source_type:
             description:
                 - Specifies whether the backup was created manually, or via scheduled backup policy.

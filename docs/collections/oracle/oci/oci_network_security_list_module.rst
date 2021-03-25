@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_list -- Manage a SecurityList resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new security list for the specified VCN. For more information about security lists, see `Security Lists <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securitylists.htm>`_. For information on the number of rules you can have in a security list, see `Service Limits <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm>`_.
 - For the purposes of access control, you must provide the OCID of the compartment where you want the security list to reside. Notice that the security list doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the security list in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the security list, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_security_list_actions <ansible_collections.oci_security_list_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -1298,33 +1299,33 @@ Examples
     
     - name: Create security_list
       oci_network_security_list:
-        vcn_id: ocid1.vcn.oc1.phx.unique_ID
-        display_name: MyPrivateSubnetSecurityList
+        vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+        display_name: "MyPrivateSubnetSecurityList"
         ingress_security_rules:
-        - protocol: 6
-          source: 10.0.1.0/24
+        - protocol: "6"
+          source: "10.0.1.0/24"
           tcp_options:
             destination_port_range:
-              min: 1521
-              max: 1521
-        - protocol: 6
-          source: 10.0.2.0/24
+              min: "1521"
+              max: "1521"
+        - protocol: "6"
+          source: "10.0.2.0/24"
           tcp_options:
             destination_port_range:
-              min: 1521
-              max: 1521
+              min: "1521"
+              max: "1521"
         egress_security_rules:
-        - protocol: 6
-          destination: 10.0.2.0/24
+        - protocol: "6"
+          destination: "10.0.2.0/24"
           tcp_options:
             destination_port_range:
-              min: 1521
-              max: 1521
-        compartment_id: ocid1.compartment.oc1..unique_ID
+              min: "1521"
+              max: "1521"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_list:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyPrivateSubnetSecurityList
         egress_security_rules:
@@ -1341,16 +1342,16 @@ Examples
       oci_network_security_list:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyPrivateSubnetSecurityList
-        security_list_id: ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx
+        security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete security_list
       oci_network_security_list:
-        security_list_id: ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx
+        security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_list:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyPrivateSubnetSecurityList
         state: absent
 

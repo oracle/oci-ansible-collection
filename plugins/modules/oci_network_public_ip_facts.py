@@ -100,19 +100,19 @@ EXAMPLES = """
 - name: List public_ips
   oci_network_public_ip_facts:
     scope: REGION
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific public_ip
   oci_network_public_ip_facts:
-    public_ip_id: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx
+    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific public_ip
   oci_network_public_ip_facts:
-    private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific public_ip
   oci_network_public_ip_facts:
-    ip_address: 129.146.2.1
+    ip_address: "129.146.2.1"
 
 """
 
@@ -129,7 +129,7 @@ public_ips:
                   being assigned to.
             returned: on success
             type: string
-            sample: ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx"
         assigned_entity_type:
             description:
                 - The type of entity the public IP is assigned to, or in the process of being
@@ -154,7 +154,7 @@ public_ips:
                   its compartment can be different from the assigned private IP's.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -184,7 +184,7 @@ public_ips:
                 - The public IP's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The public IP address of the `publicIp` object.
@@ -223,7 +223,7 @@ public_ips:
                   in the process of being assigned to one."
             returned: on success
             type: string
-            sample: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
                 - Whether the public IP is regional or specific to a particular availability domain.
@@ -249,7 +249,7 @@ public_ips:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
             returned: on success
             type: string
-            sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "assigned_entity_id": "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx",
         "assigned_entity_type": "PRIVATE_IP",

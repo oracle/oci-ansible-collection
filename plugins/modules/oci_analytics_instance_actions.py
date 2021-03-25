@@ -23,6 +23,8 @@ module: oci_analytics_instance_actions
 short_description: Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), change the compartment of an Analytics instance. The operation is long-running
+      and creates a new WorkRequest.
     - For I(action=change_analytics_instance_network_endpoint), change an Analytics instance network endpoint. The operation is long-running
       and creates a new WorkRequest.
     - For I(action=scale), scale an Analytics instance up or down. The operation is long-running
@@ -40,6 +42,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The OCID of the new compartment.
+            - Required for I(action=change_compartment).
+        type: str
     network_endpoint_details:
         description:
             - ""
@@ -102,8 +109,8 @@ options:
                 required: true
             capacity_value:
                 description:
-                    - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                      number of CPUs, amount of memory or other resources allocated to the instance.
+                    - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                      number of CPUs, amount of memory or other resources allocated to the instance."
                 type: int
                 required: true
     action:
@@ -112,6 +119,7 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "change_analytics_instance_network_endpoint"
             - "scale"
             - "start"
@@ -120,16 +128,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on analytics_instance
+  oci_analytics_instance_actions:
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action change_analytics_instance_network_endpoint on analytics_instance
   oci_analytics_instance_actions:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     network_endpoint_details:
       network_endpoint_type: PRIVATE
     action: change_analytics_instance_network_endpoint
 
 - name: Perform action scale on analytics_instance
   oci_analytics_instance_actions:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     capacity:
       capacity_type: OLPU_COUNT
       capacity_value: 56
@@ -137,12 +151,12 @@ EXAMPLES = """
 
 - name: Perform action start on analytics_instance
   oci_analytics_instance_actions:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on analytics_instance
   oci_analytics_instance_actions:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -159,7 +173,7 @@ analytics_instance:
                 - The resource OCID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
@@ -177,7 +191,7 @@ analytics_instance:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of an instance.
@@ -204,8 +218,8 @@ analytics_instance:
                     sample: OLPU_COUNT
                 capacity_value:
                     description:
-                        - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                          number of CPUs, amount of memory or other resources allocated to the instance.
+                        - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                          number of CPUs, amount of memory or other resources allocated to the instance."
                     returned: on success
                     type: int
                     sample: 56
@@ -238,13 +252,13 @@ analytics_instance:
                         - The VCN OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The subnet OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 whitelisted_ips:
                     description:
                         - Source IP addresses or IP address ranges igress rules.
@@ -262,7 +276,7 @@ analytics_instance:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         whitelisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges igress rules.
@@ -350,6 +364,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.analytics import AnalyticsClient
+    from oci.analytics.models import ChangeCompartmentDetails
     from oci.analytics.models import ChangeAnalyticsInstanceNetworkEndpointDetails
     from oci.analytics.models import ScaleAnalyticsInstanceDetails
 
@@ -361,6 +376,7 @@ except ImportError:
 class AnalyticsInstanceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         change_analytics_instance_network_endpoint
         scale
         start
@@ -381,6 +397,27 @@ class AnalyticsInstanceActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_analytics_instance,
             analytics_instance_id=self.module.params.get("analytics_instance_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_analytics_instance_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                analytics_instance_id=self.module.params.get("analytics_instance_id"),
+                change_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change_analytics_instance_network_endpoint(self):
@@ -478,6 +515,7 @@ def main():
     module_args.update(
         dict(
             analytics_instance_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             network_endpoint_details=dict(
                 type="dict",
                 options=dict(
@@ -510,6 +548,7 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "change_compartment",
                     "change_analytics_instance_network_endpoint",
                     "scale",
                     "start",

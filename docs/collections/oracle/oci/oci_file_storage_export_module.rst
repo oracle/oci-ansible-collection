@@ -20,7 +20,7 @@ oracle.oci.oci_file_storage_export -- Manage an Export resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -194,7 +194,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the export.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the export.</div>
                                             <div>Required for update using <em>state=present</em>.</div>
                                             <div>Required for delete using <em>state=absent</em>.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -350,7 +350,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of this export&#x27;s export set.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of this export&#x27;s export set.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -366,7 +366,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of this export&#x27;s file system.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of this export&#x27;s file system.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -532,18 +532,18 @@ Examples
     - name: Create export
       oci_file_storage_export:
         export_set_id: ocid1.exportset.oc1.phx.exampleaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
-        file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+        file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         path: /mediafiles
 
     - name: Update export
       oci_file_storage_export:
         export_options:
         - source: source_example
-        export_id: ocid1.export.oc1..xxxxxxEXAMPLExxxxxx
+        export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete export
       oci_file_storage_export:
-        export_id: ocid1.export.oc1..xxxxxxEXAMPLExxxxxx
+        export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -732,7 +732,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of this export&#x27;s export set.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of this export&#x27;s export set.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -750,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of this export&#x27;s file system.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of this export&#x27;s file system.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -768,7 +768,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of this export.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of this export.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>

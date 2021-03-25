@@ -31,6 +31,7 @@ def get_custom_class_mapping(modules):
 # import the customisation files.
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_identity_custom_helpers,
+    oci_database_management_custom_helpers,
     oci_network_custom_helpers,
     oci_compute_custom_helpers,
     oci_blockstorage_custom_helpers,
@@ -82,6 +83,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 custom_helper_mapping = get_custom_class_mapping(
     [
         oci_identity_custom_helpers,
+        oci_database_management_custom_helpers,
         oci_network_custom_helpers,
         oci_compute_custom_helpers,
         oci_blockstorage_custom_helpers,

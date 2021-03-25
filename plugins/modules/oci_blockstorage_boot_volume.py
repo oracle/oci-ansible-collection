@@ -27,6 +27,7 @@ description:
       For general information about boot volumes, see L(Boot Volumes,https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm).
       You may optionally specify a *display name* for the volume, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_boot_volume_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -141,15 +142,15 @@ EXAMPLES = """
 - name: Create boot_volume
   oci_blockstorage_boot_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_details:
       type: bootVolumeBackup
-      id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -161,17 +162,17 @@ EXAMPLES = """
   oci_blockstorage_boot_volume:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete boot_volume
   oci_blockstorage_boot_volume:
-    boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -196,7 +197,7 @@ boot_volume:
                 - The OCID of the compartment that contains the boot volume.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -233,13 +234,13 @@ boot_volume:
                 - The boot volume's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The image OCID used to create the boot volume.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
                 - Specifies whether the boot volume's data has finished copying
@@ -295,7 +296,7 @@ boot_volume:
                         - The OCID of the boot volume backup.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the boot volume was created. Format defined
@@ -308,13 +309,13 @@ boot_volume:
                 - The OCID of the source volume group.
             returned: on success
             type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the Key Management master encryption key assigned to the boot volume.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
                 - Specifies whether the auto-tune performance is enabled for this boot volume.

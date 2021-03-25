@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_type_actions -- Perform actions on a Type resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -335,13 +335,13 @@ Examples
     
     - name: Perform action associate_custom_property on type
       oci_data_catalog_type_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         type_key: type_key_example
         action: associate_custom_property
 
     - name: Perform action disassociate_custom_property on type
       oci_data_catalog_type_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         type_key: type_key_example
         action: disassociate_custom_property
 

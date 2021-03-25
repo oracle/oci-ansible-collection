@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific announcement
   oci_announcements_service_announcement_facts:
-    announcement_id: ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx
+    announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -55,7 +55,7 @@ announcement:
                 - The OCID of the announcement.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - The entity type.
@@ -173,7 +173,7 @@ announcement:
                         - The OCID of the affected resource.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 resource_name:
                     description:
                         - The friendly name of the resource.

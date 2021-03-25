@@ -104,34 +104,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create dynamic_group
   oci_identity_dynamic_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
-    description: Instance group for dev compartment
-    name: DevCompartmentDynamicGroup
-    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
+    description: "Instance group for dev compartment"
+    name: "DevCompartmentDynamicGroup"
+    matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
 
 - name: Update dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_dynamic_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
     name: DevCompartmentDynamicGroup
-    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
+    matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
     description: Instance group for dev compartment
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update dynamic_group
   oci_identity_dynamic_group:
-    matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
+    matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
     description: Instance group for dev compartment
-    dynamic_group_id: ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx
+    dynamic_group_id: "ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete dynamic_group
   oci_identity_dynamic_group:
-    dynamic_group_id: ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx
+    dynamic_group_id: "ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_dynamic_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
     name: DevCompartmentDynamicGroup
     state: absent
 
@@ -149,13 +149,13 @@ dynamic_group:
                 - The OCID of the group.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the group during creation. The name must be unique across all groups in

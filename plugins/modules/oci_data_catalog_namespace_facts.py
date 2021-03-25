@@ -114,12 +114,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List namespaces
   oci_data_catalog_namespace_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific namespace
   oci_data_catalog_namespace_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-    namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -178,13 +178,13 @@ namespaces:
                 - OCID of the user who created the namespace.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the namespace.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "key": "key_example",
         "display_name": "display_name_example",

@@ -788,14 +788,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_configuration
   oci_compute_management_instance_configuration:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: example-instance-configuration
-    source: INSTANCE
-    instance_id: ocid1.instance.oc1.phx.unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "example-instance-configuration"
+    source: "INSTANCE"
+    instance_id: "ocid1.instance.oc1.phx.unique_ID"
 
 - name: Update instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_configuration:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: example-instance-configuration
     freeform_tags: {'Department': 'Finance'}
@@ -804,16 +804,16 @@ EXAMPLES = """
   oci_compute_management_instance_configuration:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: example-instance-configuration
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete instance_configuration
   oci_compute_management_instance_configuration:
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_instance_configuration:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example-instance-configuration
     state: absent
 
@@ -832,7 +832,7 @@ instance_configuration:
                   containing the instance configuration.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -861,7 +861,7 @@ instance_configuration:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_details:
             description:
                 - ""
@@ -950,13 +950,13 @@ instance_configuration:
                                           created volume. If omitted, no policy will be assigned.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
                                 compartment_id:
                                     description:
                                         - The OCID of the compartment that contains the volume.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                                 defined_tags:
                                     description:
                                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -988,7 +988,7 @@ instance_configuration:
                                           for the volume.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                                 vpus_per_gb:
                                     description:
                                         - The number of volume performance units (VPUs) that will be applied to this volume per GB,
@@ -1026,13 +1026,13 @@ instance_configuration:
                                                 - The OCID of the volume backup.
                                             returned: on success
                                             type: string
-                                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         volume_id:
                             description:
                                 - The OCID of the volume.
                             returned: on success
                             type: string
-                            sample: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
                 launch_details:
                     description:
                         - ""
@@ -1051,7 +1051,7 @@ instance_configuration:
                                 - The OCID of the compartment.
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         create_vnic_details:
                             description:
                                 - ""
@@ -1130,7 +1130,7 @@ instance_configuration:
                                           us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                         defined_tags:
                             description:
                                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -1303,13 +1303,13 @@ instance_configuration:
                                         - The OCID of the image used to boot the instance.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_id:
                                     description:
                                         - The OCID of the boot volume used to boot the instance.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                         fault_domain:
                             description:
                                 - A fault domain is a grouping of hardware and infrastructure within an availability domain.
@@ -1333,7 +1333,7 @@ instance_configuration:
                                   cannot be used to launch instance pools.
                             returned: on success
                             type: string
-                            sample: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
                         launch_mode:
                             description:
                                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
@@ -1613,7 +1613,7 @@ instance_configuration:
                                           us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.

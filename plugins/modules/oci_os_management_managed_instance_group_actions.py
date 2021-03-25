@@ -27,6 +27,8 @@ description:
       Instance has been added, then operations can be performed on the Managed
       Instance Group which will then apply to all Managed Instances in the
       group.
+    - For I(action=change_compartment), moves a resource into a different compartment. When provided, If-Match
+      is checked against ETag values of the resource.
     - For I(action=detach_managed_instance), removes a Managed Instance from a Managed Instance Group.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -40,8 +42,14 @@ options:
     managed_instance_id:
         description:
             - OCID for the managed instance
+            - Required for I(action=attach_managed_instance), I(action=detach_managed_instance).
         type: str
-        required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+              compartment into which the resource should be moved.
+            - Applicable only for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the ManagedInstanceGroup.
@@ -49,6 +57,7 @@ options:
         required: true
         choices:
             - "attach_managed_instance"
+            - "change_compartment"
             - "detach_managed_instance"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -56,14 +65,19 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action attach_managed_instance on managed_instance_group
   oci_os_management_managed_instance_group_actions:
-    managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_managed_instance
+
+- name: Perform action change_compartment on managed_instance_group
+  oci_os_management_managed_instance_group_actions:
+    managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_compartment
 
 - name: Perform action detach_managed_instance on managed_instance_group
   oci_os_management_managed_instance_group_actions:
-    managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_managed_instance
 
 """
@@ -86,7 +100,7 @@ managed_instance_group:
                 - OCID for the managed instance group
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Information specified by the user about the managed instance group
@@ -98,7 +112,7 @@ managed_instance_group:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instances:
             description:
                 - list of Managed Instances in the group
@@ -110,7 +124,7 @@ managed_instance_group:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -171,6 +185,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.os_management import OsManagementClient
+    from oci.os_management.models import ChangeManagedInstanceGroupCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -181,6 +196,7 @@ class ManagedInstanceGroupActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         attach_managed_instance
+        change_compartment
         detach_managed_instance
     """
 
@@ -211,6 +227,31 @@ class ManagedInstanceGroupActionsHelperGen(OCIActionsHelperBase):
                     "managed_instance_group_id"
                 ),
                 managed_instance_id=self.module.params.get("managed_instance_id"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeManagedInstanceGroupCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_managed_instance_group_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                managed_instance_group_id=self.module.params.get(
+                    "managed_instance_group_id"
+                ),
+                change_managed_instance_group_compartment_details=action_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -265,11 +306,16 @@ def main():
     module_args.update(
         dict(
             managed_instance_group_id=dict(aliases=["id"], type="str", required=True),
-            managed_instance_id=dict(type="str", required=True),
+            managed_instance_id=dict(type="str"),
+            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["attach_managed_instance", "detach_managed_instance"],
+                choices=[
+                    "attach_managed_instance",
+                    "change_compartment",
+                    "detach_managed_instance",
+                ],
             ),
         )
     )

@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_custom_property -- Manage a CustomProperty resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -581,14 +581,14 @@ Examples
     
     - name: Create custom_property
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
     - name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         is_sortable: true
@@ -600,21 +600,21 @@ Examples
 
     - name: Update custom_property
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_key: custom_property_key_example
 
     - name: Delete custom_property
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_key: custom_property_key_example
         state: absent
 
     - name: Delete custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

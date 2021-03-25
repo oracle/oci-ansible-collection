@@ -85,11 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List instance_pools
   oci_compute_management_instance_pool_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific instance_pool
   oci_compute_management_instance_pool_facts:
-    instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -105,14 +105,14 @@ instance_pools:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
                   pool.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -142,7 +142,7 @@ instance_pools:
                   with the instance pool.
             returned: on success
             type: string
-            sample: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the instance pool.
@@ -167,7 +167,7 @@ instance_pools:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
                     returned: on success
                     type: string
-                    sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                 fault_domains:
                     description:
                         - The fault domains to place instances.
@@ -201,7 +201,7 @@ instance_pools:
                                 - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                             returned: on success
                             type: string
-                            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         size:
             description:
                 - The number of instances that should be in the instance pool.
@@ -226,20 +226,20 @@ instance_pools:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 instance_pool_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer
                           attachment.
                     returned: on success
                     type: string
-                    sample: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
                 load_balancer_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.

@@ -62,10 +62,10 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update announcement_user_status_details
   oci_announcements_service_announcement_user_status_details:
-    time_acknowledged: 2019-01-28T23:21:57.342Z
-    user_id: ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq
-    user_status_announcement_id: ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q
-    announcement_id: ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx
+    time_acknowledged: "2019-01-28T23:21:57.342Z"
+    user_id: "ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq"
+    user_status_announcement_id: "ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q"
+    announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -81,13 +81,13 @@ announcement_user_status_details:
                 - The OCID of the announcement that this status is associated with.
             returned: on success
             type: string
-            sample: ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user that this status is associated with.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_acknowledged:
             description:
                 - "The date and time the announcement was acknowledged, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.

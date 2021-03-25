@@ -45,11 +45,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List key_stores
   oci_database_key_store_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific key_store
   oci_database_key_store_facts:
-    key_store_id: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -65,13 +65,13 @@ key_stores:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the key store. The name does not need to be unique.
@@ -126,14 +126,14 @@ key_stores:
                           L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
                     type: string
-                    sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
                 secret_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                           L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
                     type: string
-                    sample: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         associated_databases:
             description:
                 - List of databases associated with the key store.
@@ -145,7 +145,7 @@ key_stores:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The name of the database that is associated with the key store.

@@ -45,9 +45,10 @@ options:
                 * `CUSTOM_HTTPS`
                 * `EMAIL`
                 * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
+                * `ORACLE_FUNCTIONS`
                 * `PAGERDUTY`
                 * `SLACK`
-                * `ORACLE_FUNCTIONS`"
+                * `SMS`"
             - For information about subscription protocols, see
               L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
         type: str
@@ -58,7 +59,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific subscription_confirmation
   oci_ons_subscription_confirmation_facts:
-    id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     token: token_example
     protocol: protocol_example
 
@@ -83,7 +84,7 @@ subscription_confirmation:
                   subscription.
             returned: on success
             type: string
-            sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint:
             description:
                 - A locator that corresponds to the subscription protocol.
@@ -108,7 +109,7 @@ subscription_confirmation:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription specified in the request.
             returned: on success
             type: string
-            sample: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "topic_name": "topic_name_example",
         "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",

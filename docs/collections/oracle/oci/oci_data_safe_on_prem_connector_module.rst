@@ -20,7 +20,7 @@ oracle.oci.oci_data_safe_on_prem_connector -- Manage an OnPremConnector resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an OnPremConnector resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new on-premises connector.
-- This resource has the following action operations in the :ref:`oci_on_prem_connector_actions <ansible_collections.oci_on_prem_connector_actions_module>` module: generate_on_prem_connector_configuration.
+- This resource has the following action operations in the :ref:`oci_on_prem_connector_actions <ansible_collections.oci_on_prem_connector_actions_module>` module: change_compartment, generate_on_prem_connector_configuration.
 
 
 .. Aliases
@@ -430,12 +430,12 @@ Examples
     
     - name: Create on_prem_connector
       oci_data_safe_on_prem_connector:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_safe_on_prem_connector:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -444,17 +444,17 @@ Examples
       oci_data_safe_on_prem_connector:
         display_name: display_name_example
         description: description_example
-        on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
+        on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete on_prem_connector
       oci_data_safe_on_prem_connector:
-        on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
+        on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_safe_on_prem_connector:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

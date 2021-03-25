@@ -172,17 +172,17 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update object
   oci_object_storage_object:
-    namespace_name: namespace_example
-    bucket_name: bucket_example
-    object_name: object_example
-    src: /usr/local/myobject.txt
+    namespace_name: "namespace_example"
+    bucket_name: "bucket_example"
+    object_name: "object_example"
+    src: "/usr/local/myobject.txt"
 
 - name: Update object
   oci_object_storage_object:
-    namespace_name: namespace_example
-    bucket_name: bucket_example
-    object_name: object_example
-    dest: /usr/local/myobject.txt
+    namespace_name: "namespace_example"
+    bucket_name: "bucket_example"
+    object_name: "object_example"
+    dest: "/usr/local/myobject.txt"
 
 - name: Delete object
   oci_object_storage_object:

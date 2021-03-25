@@ -40,7 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific analytics_cluster_memory_estimate
   oci_mysql_analytics_cluster_memory_estimate_facts:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -56,7 +56,7 @@ analytics_cluster_memory_estimate:
                 - The OCID of the DB System the Analytics Cluster memory estimate is associated with.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - Current status of the Work Request generating the Analytics Cluster memory estimate.

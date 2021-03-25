@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_plan_insights_facts -- Fetches details about a SqlPlanIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -326,8 +326,8 @@ Examples
     
     - name: Get a specific sql_plan_insights
       oci_opsi_sql_plan_insights_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         sql_identifier: 6rgjh9bjmy2s7
 
 

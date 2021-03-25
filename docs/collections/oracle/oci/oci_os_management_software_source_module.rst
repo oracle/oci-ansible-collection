@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_software_source -- Manage a SoftwareSource resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a SoftwareSource resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new custom Software Source on the management system. This will not contain any packages after it is first created, and they must be added later.
-- This resource has the following action operations in the :ref:`oci_software_source_actions <ansible_collections.oci_software_source_actions_module>` module: add_packages, remove_packages.
+- This resource has the following action operations in the :ref:`oci_software_source_actions <ansible_collections.oci_software_source_actions_module>` module: add_packages, change_compartment, remove_packages.
 
 
 .. Aliases
@@ -537,13 +537,13 @@ Examples
     
     - name: Create software_source
       oci_os_management_software_source:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         arch_type: IA_32
 
     - name: Update software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_software_source:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         maintainer_name: maintainer_name_example
@@ -557,16 +557,16 @@ Examples
       oci_os_management_software_source:
         display_name: display_name_example
         description: description_example
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete software_source
       oci_os_management_software_source:
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_software_source:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_available_software_source_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -321,7 +321,7 @@ Examples
     
     - name: List available_software_sources
       oci_os_management_available_software_source_facts:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

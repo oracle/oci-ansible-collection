@@ -20,7 +20,7 @@ oracle.oci.oci_oce_instance -- Manage an OceInstance resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an OceInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new OceInstance.
+- This resource has the following action operations in the :ref:`oci_oce_instance_actions <ansible_collections.oci_oce_instance_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -403,6 +404,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Instance type based on its usage</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -643,9 +645,9 @@ Examples
     
     - name: Create oce_instance
       oci_oce_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
-        tenancy_id: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+        tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         idcs_access_token: idcs_access_token_example
         tenancy_name: tenancy_name_example
         object_storage_namespace: object_storage_namespace_example
@@ -654,8 +656,9 @@ Examples
     - name: Update oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_oce_instance:
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
+        instance_usage_type: PRIMARY
         waf_primary_domain: waf_primary_domain_example
         instance_license_type: NEW
         freeform_tags: {'Department': 'Finance'}
@@ -664,17 +667,17 @@ Examples
     - name: Update oce_instance
       oci_oce_instance:
         description: description_example
-        waf_primary_domain: waf_primary_domain_example
-        oce_instance_id: ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_usage_type: PRIMARY
+        oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete oce_instance
       oci_oce_instance:
-        oce_instance_id: ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx
+        oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_oce_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 

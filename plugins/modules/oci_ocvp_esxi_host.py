@@ -88,7 +88,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create esxi_host
   oci_ocvp_esxi_host:
-    sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_esxi_host:
@@ -100,11 +100,11 @@ EXAMPLES = """
   oci_ocvp_esxi_host:
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete esxi_host
   oci_ocvp_esxi_host:
-    esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -126,7 +126,7 @@ esxi_host:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A descriptive name for the ESXi host. Does not have to be unique, and it's changeable.
@@ -140,14 +140,14 @@ esxi_host:
                   ESXi host belongs to.
             returned: on success
             type: string
-            sample: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
                   contains the SDDC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compute_instance_id:
             description:
                 - In terms of implementation, an ESXi host is a Compute instance that
@@ -155,7 +155,7 @@ esxi_host:
                   is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of that Compute instance.
             returned: on success
             type: string
-            sample: ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the ESXi host was created, in the format defined by

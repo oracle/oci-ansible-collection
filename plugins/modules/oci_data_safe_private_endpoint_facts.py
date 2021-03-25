@@ -81,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List data_safe_private_endpoints
   oci_data_safe_private_endpoint_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific data_safe_private_endpoint
   oci_data_safe_private_endpoint_facts:
-    data_safe_private_endpoint_id: ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    data_safe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -101,7 +101,7 @@ data_safe_private_endpoints:
                 - The OCID of the Data Safe private endpoint.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the private endpoint.
@@ -113,25 +113,25 @@ data_safe_private_endpoints:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
                 - The OCID of the VCN.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_id:
             description:
                 - The OCID of the underlying private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_ip:
             description:
                 - The private IP address of the private endpoint.

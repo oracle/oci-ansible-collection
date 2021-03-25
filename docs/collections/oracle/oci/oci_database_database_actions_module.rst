@@ -20,7 +20,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -485,27 +485,27 @@ Examples
     
     - name: Perform action migrate_vault_key on database
       oci_database_database_actions:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-        kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         action: migrate_vault_key
 
     - name: Perform action restore on database
       oci_database_database_actions:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         action: restore
 
     - name: Perform action rotate_vault_key on database
       oci_database_database_actions:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         action: rotate_vault_key
 
     - name: Perform action precheck on database
       oci_database_database_actions:
         database_upgrade_source_details:
-          db_version: 19.7.0.0
-          source: DB_VERSION
-        action: PRECHECK
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+          db_version: "19.7.0.0"
+          source: "DB_VERSION"
+        action: "PRECHECK"
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

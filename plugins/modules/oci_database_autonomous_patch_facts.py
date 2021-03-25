@@ -50,12 +50,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_patches
   oci_database_autonomous_patch_facts:
-    autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific autonomous_patch
   oci_database_autonomous_patch_facts:
-    autonomous_patch_id: ocid1.autonomouspatch.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_patch_id: "ocid1.autonomouspatch.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -71,7 +71,7 @@ autonomous_patches:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The text describing this patch package.

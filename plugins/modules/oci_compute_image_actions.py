@@ -23,6 +23,9 @@ module: oci_compute_image_actions
 short_description: Perform actions on an Image resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Image resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves an image into a different compartment within the same tenancy. For information about moving
+      resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=export), exports the specified image to the Oracle Cloud Infrastructure Object Storage service. You can use the Object Storage URL,
       or the namespace, bucket name, and object name when specifying the location to export to.
       For more information about exporting images, see L(Image Import/Export,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm).
@@ -40,18 +43,24 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the image to.
+            - Required for I(action=change_compartment).
+        type: str
     destination_type:
         description:
             - The destination type. Use `objectStorageTuple` when specifying the namespace, bucket name, and object name.
               Use `objectStorageUri` when specifying the Object Storage URL.
+            - Required for I(action=export).
         type: str
         choices:
             - "objectStorageUri"
             - "objectStorageTuple"
-        required: true
     export_format:
         description:
             - "The format of the image to be exported. The default value is \\"OCI\\"."
+            - Applicable only for I(action=export).
         type: str
         choices:
             - "QCOW2"
@@ -65,21 +74,25 @@ options:
               Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs)
               and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
               for constructing URLs for image import/export.
+            - Applicable only for I(action=export).
             - Required when destination_type is 'objectStorageUri'
         type: str
     bucket_name:
         description:
             - The Object Storage bucket to export the image to.
+            - Applicable only for I(action=export).
             - Required when destination_type is 'objectStorageTuple'
         type: str
     namespace_name:
         description:
             - The Object Storage namespace to export the image to.
+            - Applicable only for I(action=export).
             - Required when destination_type is 'objectStorageTuple'
         type: str
     object_name:
         description:
             - The Object Storage object name for the exported image.
+            - Applicable only for I(action=export).
             - Required when destination_type is 'objectStorageTuple'
         type: str
     action:
@@ -88,29 +101,36 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "export"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Perform action export on image
+- name: Perform action change_compartment on image
   oci_compute_image_actions:
-    object_name: exported-image.oci
-    bucket_name: MyBucket
-    namespace_name: MyNamespace
-    destination_type: objectStorageTuple
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
-    action: export
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 - name: Perform action export on image
   oci_compute_image_actions:
-    object_name: exported-image.oci
-    bucket_name: MyBucket
-    namespace_name: MyNamespace
-    destination_type: objectStorageTuple
-    export_format: VMDK
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
-    action: export
+    object_name: "exported-image.oci"
+    bucket_name: "MyBucket"
+    namespace_name: "MyNamespace"
+    destination_type: "objectStorageTuple"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "export"
+
+- name: Perform action export on image
+  oci_compute_image_actions:
+    object_name: "exported-image.oci"
+    bucket_name: "MyBucket"
+    namespace_name: "MyNamespace"
+    destination_type: "objectStorageTuple"
+    export_format: "VMDK"
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "export"
 
 """
 
@@ -126,13 +146,13 @@ image:
                 - The OCID of the image originally used to launch the instance.
             returned: on success
             type: string
-            sample: ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the instance you want to use as the basis for the image.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         create_image_allowed:
             description:
                 - Whether instances launched with this image can be used to create new images.
@@ -172,7 +192,7 @@ image:
                 - The OCID of the image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
@@ -343,6 +363,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.core import ComputeClient
+    from oci.core.models import ChangeImageCompartmentDetails
     from oci.core.models import ExportImageDetails
 
     HAS_OCI_PY_SDK = True
@@ -353,6 +374,7 @@ except ImportError:
 class ImageActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         export
     """
 
@@ -375,6 +397,29 @@ class ImageActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_image, image_id=self.module.params.get("image_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeImageCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_image_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                image_id=self.module.params.get("image_id"),
+                change_image_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def export(self):
@@ -413,10 +458,9 @@ def main():
     module_args.update(
         dict(
             image_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             destination_type=dict(
-                type="str",
-                required=True,
-                choices=["objectStorageUri", "objectStorageTuple"],
+                type="str", choices=["objectStorageUri", "objectStorageTuple"]
             ),
             export_format=dict(
                 type="str", choices=["QCOW2", "VMDK", "OCI", "VHD", "VDI"]
@@ -425,7 +469,9 @@ def main():
             bucket_name=dict(type="str"),
             namespace_name=dict(type="str"),
             object_name=dict(type="str"),
-            action=dict(type="str", required=True, choices=["export"]),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "export"]
+            ),
         )
     )
 

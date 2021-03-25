@@ -40,7 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific drg_redundancy_status
   oci_network_drg_redundancy_status_facts:
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -56,7 +56,7 @@ drg_redundancy_status:
                 - The OCID of the DRG.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - The redundancy status of the DRG.

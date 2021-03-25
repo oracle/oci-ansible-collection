@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_data_asset_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -482,11 +482,11 @@ Examples
     
     - name: List data_assets
       oci_data_catalog_data_asset_facts:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific data_asset
       oci_data_catalog_data_asset_facts:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
 
 
@@ -524,7 +524,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DataAsset resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;count&#x27;: 56, &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_property_members&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace_key&#x27;: &#x27;namespace_key_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;data_selector_patterns&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;items&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}], &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_property_members&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace_key&#x27;: &#x27;namespace_key_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;data_selector_patterns&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -543,24 +543,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/count"></div>
-                    <b>count</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/count" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Total number of items returned.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1028,194 +1010,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">external_key_example</div>
                                     </td>
             </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Collection of data asset summaries.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/catalog_id"></div>
-                    <b>catalog_id</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/catalog_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The data catalog&#x27;s OCID.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/description" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Detailed description of the data asset.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A user-friendly display name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/external_key"></div>
-                    <b>external_key</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/external_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>External URI that can be used to reference the object. Format will differ based on the type of object.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">external_key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/key"></div>
-                    <b>key</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Unique data asset key that is immutable.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>State of the data asset.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time the data asset was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2019-03-25T21:10:29.600Z`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-25T21:10:29.600000+00:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/type_key"></div>
-                    <b>type_key</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/type_key" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The key of the object type. Type keys&#x27;s can be found via the &#x27;/types&#x27; endpoint.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_key_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-data_assets/items/uri"></div>
-                    <b>uri</b>
-                    <a class="ansibleOptionLink" href="#return-data_assets/items/uri" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>URI to the data asset instance in the API.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">uri_example</div>
-                                    </td>
-            </tr>
-                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

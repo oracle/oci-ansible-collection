@@ -70,20 +70,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create blockchain_platform_osn
   oci_blockchain_platform_osn:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     ad: ad_example
 
 - name: Update blockchain_platform_osn
   oci_blockchain_platform_osn:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     ocpu_allocation_param:
       ocpu_allocation_number: 3.4
-    osn_id: ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx
+    osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete blockchain_platform_osn
   oci_blockchain_platform_osn:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
-    osn_id: ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+    osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

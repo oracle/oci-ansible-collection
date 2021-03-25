@@ -44,7 +44,7 @@ description:
       It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/20160918/Image/UpdateImage).
       Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_image_actions) module: export."
+    - "This resource has the following action operations in the M(oci_image_actions) module: change_compartment, export."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -181,43 +181,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create image
   oci_compute_image:
-    instance_id: ocid1.instance.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: MyCustomImage
+    instance_id: "ocid1.instance.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "MyCustomImage"
 
 - name: Create image
   oci_compute_image:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     image_source_details:
-      object_name: image-to-import.oci
-      bucket_name: MyBucket
-      namespace_name: MyNamespace
-      source_type: objectStorageTuple
+      object_name: "image-to-import.oci"
+      bucket_name: "MyBucket"
+      namespace_name: "MyNamespace"
+      source_type: "objectStorageTuple"
 
 - name: Create image
   oci_compute_image:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: MyImportedImage
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "MyImportedImage"
     image_source_details:
-      source_uri: https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import.oci
-      source_type: objectStorageUri
+      source_uri: "https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import.oci"
+      source_type: "objectStorageUri"
 
 - name: Update image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image:
-    display_name: MyFavoriteImage
+    display_name: "MyFavoriteImage"
 
 - name: Update image
   oci_compute_image:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete image
   oci_compute_image:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyCustomImage
     state: absent
 
@@ -235,13 +235,13 @@ image:
                 - The OCID of the image originally used to launch the instance.
             returned: on success
             type: string
-            sample: ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the instance you want to use as the basis for the image.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         create_image_allowed:
             description:
                 - Whether instances launched with this image can be used to create new images.
@@ -281,7 +281,7 @@ image:
                 - The OCID of the image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:

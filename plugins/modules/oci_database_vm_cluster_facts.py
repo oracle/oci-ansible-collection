@@ -83,11 +83,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vm_clusters
   oci_database_vm_cluster_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vm_cluster
   oci_database_vm_cluster_facts:
-    vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -103,20 +103,20 @@ vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         last_patch_history_entry_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as
                   a patch operation starts.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the VM cluster.
@@ -160,7 +160,7 @@ vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         is_sparse_diskgroup_enabled:
             description:
                 - If true, sparse disk group is configured for the VM cluster. If false, sparse disk group is not created.
@@ -172,7 +172,7 @@ vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
             type: string
-            sample: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         cpus_enabled:
             description:
                 - The number of enabled CPU cores.

@@ -71,7 +71,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update user_capabilities
   oci_identity_user_capabilities:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     can_use_console_password: true
 
 """
@@ -88,13 +88,13 @@ user:
                 - The OCID of the user.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the user.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the user during creation. This is the user's login for the Console.
@@ -126,7 +126,7 @@ user:
                 - The OCID of the `IdentityProvider` this user belongs to.
             returned: on success
             type: string
-            sample: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         external_identifier:
             description:
                 - Identifier of the user in the identity provider

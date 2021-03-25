@@ -20,7 +20,7 @@ oracle.oci.oci_apigateway_deployment_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -364,11 +364,11 @@ Examples
     
     - name: List deployments
       oci_apigateway_deployment_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific deployment
       oci_apigateway_deployment_facts:
-        deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -405,7 +405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Deployment resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My new resource&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;items&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My new resource&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;path_prefix&#x27;: &#x27;path_prefix_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;path_prefix&#x27;: &#x27;path_prefix_example&#x27;, &#x27;specification&#x27;: {&#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;request_policies&#x27;: {&#x27;authentication&#x27;: {&#x27;audiences&#x27;: [], &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_anonymous_access_allowed&#x27;: True, &#x27;issuers&#x27;: [], &#x27;max_clock_skew_in_seconds&#x27;: 3.4, &#x27;public_keys&#x27;: {&#x27;is_ssl_verify_disabled&#x27;: True, &#x27;keys&#x27;: [{&#x27;alg&#x27;: &#x27;alg_example&#x27;, &#x27;e&#x27;: &#x27;e_example&#x27;, &#x27;format&#x27;: &#x27;JSON_WEB_KEY&#x27;, &#x27;key&#x27;: &#x27;-----BEGIN PUBLIC KEY-----&#x27;, &#x27;key_ops&#x27;: [], &#x27;kid&#x27;: &#x27;kid_example&#x27;, &#x27;kty&#x27;: &#x27;RSA&#x27;, &#x27;n&#x27;: &#x27;n_example&#x27;, &#x27;use&#x27;: &#x27;sig&#x27;}], &#x27;max_cache_duration_in_hours&#x27;: 56, &#x27;type&#x27;: &#x27;STATIC_KEYS&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}, &#x27;token_auth_scheme&#x27;: &#x27;Bearer&#x27;, &#x27;token_header&#x27;: &#x27;Authorization&#x27;, &#x27;token_query_param&#x27;: &#x27;tk&#x27;, &#x27;type&#x27;: &#x27;JWT_AUTHENTICATION&#x27;, &#x27;verify_claims&#x27;: [{&#x27;is_required&#x27;: True, &#x27;key&#x27;: &#x27;iss&#x27;, &#x27;values&#x27;: []}]}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: False, &#x27;max_age_in_seconds&#x27;: 600}, &#x27;rate_limiting&#x27;: {&#x27;rate_in_requests_per_second&#x27;: 56, &#x27;rate_key&#x27;: &#x27;CLIENT_IP&#x27;}}, &#x27;routes&#x27;: [{&#x27;backend&#x27;: {&#x27;body&#x27;: &#x27;Hello World!&#x27;, &#x27;connect_timeout_in_seconds&#x27;: 3.4, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;Content-Type&#x27;, &#x27;value&#x27;: &#x27;application/json&#x27;}], &#x27;is_ssl_verify_disabled&#x27;: True, &#x27;read_timeout_in_seconds&#x27;: 3.4, &#x27;send_timeout_in_seconds&#x27;: 3.4, &#x27;status&#x27;: 200, &#x27;type&#x27;: &#x27;HTTP_BACKEND&#x27;, &#x27;url&#x27;: &#x27;https://1.2.3.4:9999&#x27;}, &#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;methods&#x27;: [], &#x27;path&#x27;: &#x27;/todos&#x27;, &#x27;request_policies&#x27;: {&#x27;authorization&#x27;: {&#x27;allowed_scope&#x27;: [], &#x27;type&#x27;: &#x27;ANY_OF&#x27;}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: False, &#x27;max_age_in_seconds&#x27;: 600}, &#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;User-Agent&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;X-Username&#x27;, &#x27;to&#x27;: &#x27;X-User-ID&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;X-CorrelationID&#x27;, &#x27;values&#x27;: []}]}}, &#x27;query_parameter_transformations&#x27;: {&#x27;filter_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;bookIsbn&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;bookId&#x27;, &#x27;to&#x27;: &#x27;bookIsbn&#x27;}]}, &#x27;set_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;bookIsbn&#x27;, &#x27;values&#x27;: []}]}}}, &#x27;response_policies&#x27;: {&#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;User-Agent&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;X-Username&#x27;, &#x27;to&#x27;: &#x27;X-User-ID&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;X-CorrelationID&#x27;, &#x27;values&#x27;: []}]}}}}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My new resource&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;path_prefix&#x27;: &#x27;path_prefix_example&#x27;, &#x27;specification&#x27;: {&#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;request_policies&#x27;: {&#x27;authentication&#x27;: {&#x27;audiences&#x27;: [], &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_anonymous_access_allowed&#x27;: True, &#x27;issuers&#x27;: [], &#x27;max_clock_skew_in_seconds&#x27;: 3.4, &#x27;public_keys&#x27;: {&#x27;is_ssl_verify_disabled&#x27;: True, &#x27;keys&#x27;: [{&#x27;alg&#x27;: &#x27;alg_example&#x27;, &#x27;e&#x27;: &#x27;e_example&#x27;, &#x27;format&#x27;: &#x27;JSON_WEB_KEY&#x27;, &#x27;key&#x27;: &#x27;-----BEGIN PUBLIC KEY-----&#x27;, &#x27;key_ops&#x27;: [], &#x27;kid&#x27;: &#x27;kid_example&#x27;, &#x27;kty&#x27;: &#x27;RSA&#x27;, &#x27;n&#x27;: &#x27;n_example&#x27;, &#x27;use&#x27;: &#x27;sig&#x27;}], &#x27;max_cache_duration_in_hours&#x27;: 56, &#x27;type&#x27;: &#x27;STATIC_KEYS&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}, &#x27;token_auth_scheme&#x27;: &#x27;Bearer&#x27;, &#x27;token_header&#x27;: &#x27;Authorization&#x27;, &#x27;token_query_param&#x27;: &#x27;tk&#x27;, &#x27;type&#x27;: &#x27;JWT_AUTHENTICATION&#x27;, &#x27;verify_claims&#x27;: [{&#x27;is_required&#x27;: True, &#x27;key&#x27;: &#x27;iss&#x27;, &#x27;values&#x27;: []}]}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: False, &#x27;max_age_in_seconds&#x27;: 600}, &#x27;rate_limiting&#x27;: {&#x27;rate_in_requests_per_second&#x27;: 56, &#x27;rate_key&#x27;: &#x27;CLIENT_IP&#x27;}}, &#x27;routes&#x27;: [{&#x27;backend&#x27;: {&#x27;body&#x27;: &#x27;Hello World!&#x27;, &#x27;connect_timeout_in_seconds&#x27;: 3.4, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;Content-Type&#x27;, &#x27;value&#x27;: &#x27;application/json&#x27;}], &#x27;is_ssl_verify_disabled&#x27;: True, &#x27;read_timeout_in_seconds&#x27;: 3.4, &#x27;send_timeout_in_seconds&#x27;: 3.4, &#x27;status&#x27;: 200, &#x27;type&#x27;: &#x27;HTTP_BACKEND&#x27;, &#x27;url&#x27;: &#x27;https://1.2.3.4:9999&#x27;}, &#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;methods&#x27;: [], &#x27;path&#x27;: &#x27;/todos&#x27;, &#x27;request_policies&#x27;: {&#x27;authorization&#x27;: {&#x27;allowed_scope&#x27;: [], &#x27;type&#x27;: &#x27;ANY_OF&#x27;}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: False, &#x27;max_age_in_seconds&#x27;: 600}, &#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;User-Agent&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;X-Username&#x27;, &#x27;to&#x27;: &#x27;X-User-ID&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;X-CorrelationID&#x27;, &#x27;values&#x27;: []}]}}, &#x27;query_parameter_transformations&#x27;: {&#x27;filter_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;bookIsbn&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;bookId&#x27;, &#x27;to&#x27;: &#x27;bookIsbn&#x27;}]}, &#x27;set_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;bookIsbn&#x27;, &#x27;values&#x27;: []}]}}}, &#x27;response_policies&#x27;: {&#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;User-Agent&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;X-Username&#x27;, &#x27;to&#x27;: &#x27;X-User-ID&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;X-CorrelationID&#x27;, &#x27;values&#x27;: []}]}}}}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -537,254 +537,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Deployment summaries.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment in which the resource is created.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
-                                            <div>Example: `My new resource`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">My new resource</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/endpoint"></div>
-                    <b>endpoint</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/endpoint" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The endpoint to access this deployment on the gateway.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">endpoint_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/gateway_id"></div>
-                    <b>gateway_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/gateway_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the resource.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the resource.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/lifecycle_details"></div>
-                    <b>lifecycle_details</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/lifecycle_details" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in a Failed state.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The current state of the deployment.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/path_prefix"></div>
-                    <b>path_prefix</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/path_prefix" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The path on which all routes contained in the API deployment specification are deployed. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/APIGateway/Tasks/apigatewaycreatingdeployment.htm'>Deploying an API on an API Gateway by Creating an API Deployment</a>.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">path_prefix_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The time this resource was created. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
-                    <div class="ansibleOptionAnchor" id="return-deployments/items/time_updated"></div>
-                    <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-deployments/items/time_updated" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The time this resource was last updated. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="7">

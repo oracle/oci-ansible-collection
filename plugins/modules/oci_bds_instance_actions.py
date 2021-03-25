@@ -29,6 +29,7 @@ description:
       and create cell servers on all your worker nodes.
     - For I(action=add_worker_nodes), add worker nodes to an existing cluster. The worker nodes added will be based on an identical shape
       and have the same amount of attached block storage as other worker nodes in the cluster.
+    - For I(action=change_compartment), moves a BDS instance into a different compartment.
     - For I(action=change_shape), scale-up/down individial nodes (per role type) in the cluster. Customer can choose
       arbitrarty VM_STANDARD shape to scale-up/down the instance. Only VM_STANDARD nodes
       can be re-shaped.
@@ -64,6 +65,11 @@ options:
             - Number of additional worker nodes for the BDS instance
             - Required for I(action=add_worker_nodes).
         type: int
+    compartment_id:
+        description:
+            - The OCID of the compartment
+            - Required for I(action=change_compartment).
+        type: str
     nodes:
         description:
             - Inidividial worker nodes groups details
@@ -100,6 +106,7 @@ options:
             - "add_block_storage"
             - "add_cloud_sql"
             - "add_worker_nodes"
+            - "change_compartment"
             - "change_shape"
             - "remove_cloud_sql"
             - "restart_node"
@@ -109,41 +116,47 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add_block_storage on bds_instance
   oci_bds_instance_actions:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: cluster_admin_password_example
     block_volume_size_in_gbs: 56
     action: add_block_storage
 
 - name: Perform action add_cloud_sql on bds_instance
   oci_bds_instance_actions:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: cluster_admin_password_example
     shape: shape_example
     action: add_cloud_sql
 
 - name: Perform action add_worker_nodes on bds_instance
   oci_bds_instance_actions:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: cluster_admin_password_example
     number_of_worker_nodes: 56
     action: add_worker_nodes
 
+- name: Perform action change_compartment on bds_instance
+  oci_bds_instance_actions:
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action change_shape on bds_instance
   oci_bds_instance_actions:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: cluster_admin_password_example
     action: change_shape
 
 - name: Perform action remove_cloud_sql on bds_instance
   oci_bds_instance_actions:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_admin_password: cluster_admin_password_example
     action: remove_cloud_sql
 
 - name: Perform action restart_node on bds_instance
   oci_bds_instance_actions:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
-    node_id: ocid1.node.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart_node
 
 """
@@ -160,13 +173,13 @@ bds_instance:
                 - The OCID of the BDS resource
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Name of the BDS instance
@@ -311,7 +324,7 @@ bds_instance:
                         - The OCID of the underlying compute instance
                     returned: on success
                     type: string
-                    sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The name of the node
@@ -347,7 +360,7 @@ bds_instance:
                                 - The OCID of the volume attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
                         volume_size_in_gbs:
                             description:
                                 - The size of the volume in GBs.
@@ -359,7 +372,7 @@ bds_instance:
                         - The OCID of the subnet in which the node should be created
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_address:
                     description:
                         - IP address of the node
@@ -377,7 +390,7 @@ bds_instance:
                         - The OCID of the image from which the node was created
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 ssh_fingerprint:
                     description:
                         - The fingerprint of the SSH key used for node access
@@ -577,6 +590,7 @@ try:
     from oci.bds.models import AddBlockStorageDetails
     from oci.bds.models import AddCloudSqlDetails
     from oci.bds.models import AddWorkerNodesDetails
+    from oci.bds.models import ChangeBdsInstanceCompartmentDetails
     from oci.bds.models import ChangeShapeDetails
     from oci.bds.models import RemoveCloudSqlDetails
     from oci.bds.models import RestartNodeDetails
@@ -592,6 +606,7 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         add_block_storage
         add_cloud_sql
         add_worker_nodes
+        change_compartment
         change_shape
         remove_cloud_sql
         restart_node
@@ -665,6 +680,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 add_worker_nodes_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeBdsInstanceCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_bds_instance_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                change_bds_instance_compartment_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -758,6 +794,7 @@ def main():
             block_volume_size_in_gbs=dict(type="int"),
             shape=dict(type="str"),
             number_of_worker_nodes=dict(type="int"),
+            compartment_id=dict(type="str"),
             nodes=dict(
                 type="dict",
                 options=dict(
@@ -775,6 +812,7 @@ def main():
                     "add_block_storage",
                     "add_cloud_sql",
                     "add_worker_nodes",
+                    "change_compartment",
                     "change_shape",
                     "remove_cloud_sql",
                     "restart_node",

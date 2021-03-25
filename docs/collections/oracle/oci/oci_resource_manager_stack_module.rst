@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack -- Manage a Stack resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Stack resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration. The Terraform configuration can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
-- This resource has the following action operations in the :ref:`oci_stack_actions <ansible_collections.oci_stack_actions_module>` module: detect_stack_drift.
+- This resource has the following action operations in the :ref:`oci_stack_actions <ansible_collections.oci_stack_actions_module>` module: change_compartment, detect_stack_drift.
 
 
 .. Aliases
@@ -657,7 +657,7 @@ Examples
     
     - name: Create stack
       oci_resource_manager_stack:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         config_source:
           config_source_type: ZIP_UPLOAD
 
@@ -675,11 +675,11 @@ Examples
       oci_resource_manager_stack:
         display_name: display_name_example
         description: description_example
-        stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+        stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete stack
       oci_resource_manager_stack:
-        stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+        stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete stack using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

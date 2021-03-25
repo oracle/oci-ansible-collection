@@ -20,7 +20,7 @@ oracle.oci.oci_identity_mfa_totp_device_actions -- Perform actions on a MfaTotpD
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -337,14 +337,14 @@ Examples
     
     - name: Perform action activate on mfa_totp_device
       oci_identity_mfa_totp_device_actions:
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-        mfa_totp_device_id: ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
         action: activate
 
     - name: Perform action generate_totp_seed on mfa_totp_device
       oci_identity_mfa_totp_device_actions:
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-        mfa_totp_device_id: ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
         action: generate_totp_seed
 
 

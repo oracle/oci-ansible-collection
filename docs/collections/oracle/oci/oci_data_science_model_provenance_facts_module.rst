@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_provenance_facts -- Fetches details about a Mo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -194,7 +194,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the model.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the model.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific model_provenance
       oci_data_science_model_provenance_facts:
-        model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_actions -- Perform actions on an Image resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an Image resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves an image into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=export*, exports the specified image to the Oracle Cloud Infrastructure Object Storage service. You can use the Object Storage URL, or the namespace, bucket name, and object name when specifying the location to export to. For more information about exporting images, see `Image Import/Export <https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm>`_. To perform an image export, you need write access to the Object Storage bucket for the image, see `Let Users Write Objects to Object Storage Buckets <https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm#Let4>`_. See `Object Storage URLs <https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs>`_ and `Using Pre-Authenticated Requests <https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm>`_ for constructing URLs for image import/export.
 
 
@@ -83,7 +84,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>export</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>export</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -183,7 +185,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Object Storage bucket to export the image to.</div>
+                                            <div>Applicable only for <em>action=export</em>.</div>
                                             <div>Required when destination_type is &#x27;objectStorageTuple&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the image to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -223,7 +242,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-destination_type" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -233,6 +252,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The destination type. Use `objectStorageTuple` when specifying the namespace, bucket name, and object name. Use `objectStorageUri` when specifying the Object Storage URL.</div>
+                                            <div>Required for <em>action=export</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -248,6 +268,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Object Storage URL to export the image to. See <a href='https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs'>Object Storage URLs</a> and <a href='https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm'>Using Pre-Authenticated Requests</a> for constructing URLs for image import/export.</div>
+                                            <div>Applicable only for <em>action=export</em>.</div>
                                             <div>Required when destination_type is &#x27;objectStorageUri&#x27;</div>
                                                         </td>
             </tr>
@@ -271,6 +292,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The format of the image to be exported. The default value is &quot;OCI&quot;.</div>
+                                            <div>Applicable only for <em>action=export</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -302,6 +324,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Object Storage namespace to export the image to.</div>
+                                            <div>Applicable only for <em>action=export</em>.</div>
                                             <div>Required when destination_type is &#x27;objectStorageTuple&#x27;</div>
                                                         </td>
             </tr>
@@ -318,6 +341,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Object Storage object name for the exported image.</div>
+                                            <div>Applicable only for <em>action=export</em>.</div>
                                             <div>Required when destination_type is &#x27;objectStorageTuple&#x27;</div>
                                                         </td>
             </tr>
@@ -407,24 +431,30 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action export on image
+    - name: Perform action change_compartment on image
       oci_compute_image_actions:
-        object_name: exported-image.oci
-        bucket_name: MyBucket
-        namespace_name: MyNamespace
-        destination_type: objectStorageTuple
-        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
-        action: export
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
 
     - name: Perform action export on image
       oci_compute_image_actions:
-        object_name: exported-image.oci
-        bucket_name: MyBucket
-        namespace_name: MyNamespace
-        destination_type: objectStorageTuple
-        export_format: VMDK
-        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
-        action: export
+        object_name: "exported-image.oci"
+        bucket_name: "MyBucket"
+        namespace_name: "MyNamespace"
+        destination_type: "objectStorageTuple"
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "export"
+
+    - name: Perform action export on image
+      oci_compute_image_actions:
+        object_name: "exported-image.oci"
+        bucket_name: "MyBucket"
+        namespace_name: "MyNamespace"
+        destination_type: "objectStorageTuple"
+        export_format: "VMDK"
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "export"
 
 
 

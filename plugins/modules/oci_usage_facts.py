@@ -81,7 +81,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List usages
   oci_usage_facts:
-    tenant_id: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+    tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
     time_usage_started: 2013-10-20T19:20:30+01:00
     time_usage_ended: 2013-10-20T19:20:30+01:00
     granularity: HOURLY
@@ -100,7 +100,7 @@ usages:
                 - The tenancy OCID.
             returned: on success
             type: string
-            sample: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         tenant_name:
             description:
                 - The tenancy name.
@@ -112,7 +112,7 @@ usages:
                 - The compartment OCID.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_path:
             description:
                 - The compartment path, starting from root.
@@ -142,7 +142,7 @@ usages:
                 - The resource OCID that is incurring the cost.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region of the usage.
@@ -250,7 +250,7 @@ usages:
                 - The subscription ID.
             returned: on success
             type: string
-            sample: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
         overage:
             description:
                 - The overage usage.

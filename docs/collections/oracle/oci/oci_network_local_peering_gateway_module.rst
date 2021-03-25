@@ -20,7 +20,7 @@ oracle.oci.oci_network_local_peering_gateway -- Manage a LocalPeeringGateway res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a LocalPeeringGateway resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new local peering gateway (LPG) for the specified VCN.
-- This resource has the following action operations in the :ref:`oci_local_peering_gateway_actions <ansible_collections.oci_local_peering_gateway_actions_module>` module: connect.
+- This resource has the following action operations in the :ref:`oci_local_peering_gateway_actions <ansible_collections.oci_local_peering_gateway_actions_module>` module: change_compartment, connect.
 
 
 .. Aliases
@@ -448,31 +448,31 @@ Examples
     
     - name: Create local_peering_gateway
       oci_network_local_peering_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_local_peering_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+        route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update local_peering_gateway
       oci_network_local_peering_gateway:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
+        local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete local_peering_gateway
       oci_network_local_peering_gateway:
-        local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
+        local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete local_peering_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_local_peering_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

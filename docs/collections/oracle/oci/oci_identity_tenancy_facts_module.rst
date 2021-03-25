@@ -20,7 +20,7 @@ oracle.oci.oci_identity_tenancy_facts -- Fetches details about a Tenancy resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -267,7 +267,7 @@ Examples
     
     - name: Get a specific tenancy
       oci_identity_tenancy_facts:
-        tenancy_id: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+        tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

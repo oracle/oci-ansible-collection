@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_database_actions -- Perform actions on an Aut
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -486,71 +486,71 @@ Examples
     
     - name: Perform action autonomous_database_manual_refresh on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: autonomous_database_manual_refresh
 
     - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_admin_password: pdb_admin_password_example
         action: deregister_autonomous_database_data_safe
 
     - name: Perform action disable_autonomous_database_operations_insights on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: disable_autonomous_database_operations_insights
 
     - name: Perform action enable_autonomous_database_operations_insights on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: enable_autonomous_database_operations_insights
 
     - name: Perform action fail_over on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: fail_over
 
     - name: Perform action generate_autonomous_database_wallet on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         password: password_example
         action: generate_autonomous_database_wallet
 
     - name: Perform action register_autonomous_database_data_safe on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_admin_password: pdb_admin_password_example
         action: register_autonomous_database_data_safe
 
     - name: Perform action restart on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: restart
 
     - name: Perform action restore on autonomous_database
       oci_database_autonomous_database_actions:
-        timestamp: 2018-04-11T01:59:07.032Z
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
-        action: restore
+        timestamp: "2018-04-11T01:59:07.032Z"
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "restore"
 
     - name: Perform action rotate_autonomous_database_encryption_key on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: rotate_autonomous_database_encryption_key
 
     - name: Perform action start on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
     - name: Perform action switchover on autonomous_database
       oci_database_autonomous_database_actions:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: switchover
 
 

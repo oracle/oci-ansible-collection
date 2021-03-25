@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_backup -- Manage a VolumeBackup resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a VolumeBackup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new backup of the specified volume. For general information about volume backups, see `Overview of Block Volume Service Backups <https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumebackups.htm>`_
 - When the request is received, the backup object is in a REQUEST_RECEIVED state. When the data is imaged, it goes into a CREATING state. After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
-- This resource has the following action operations in the :ref:`oci_volume_backup_actions <ansible_collections.oci_volume_backup_actions_module>` module: copy.
+- This resource has the following action operations in the :ref:`oci_volume_backup_actions <ansible_collections.oci_volume_backup_actions_module>` module: change_compartment, copy.
 
 
 .. Aliases
@@ -450,31 +450,31 @@ Examples
     
     - name: Create volume_backup
       oci_blockstorage_volume_backup:
-        volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume_backup:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update volume_backup
       oci_blockstorage_volume_backup:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        volume_backup_id: ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx
+        volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete volume_backup
       oci_blockstorage_volume_backup:
-        volume_backup_id: ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx
+        volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume_backup:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -83,8 +83,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create encrypted_data
   oci_key_management_encrypted_data:
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-    plaintext: aGVsbG8sIHdvcmxk
+    key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
+    plaintext: "aGVsbG8sIHdvcmxk"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -107,13 +107,13 @@ encrypted_data:
                 - The OCID of the key used to sign the message
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id:
             description:
                 - The OCID of the keyVersion used to encrypt the ciphertext.
             returned: on success
             type: string
-            sample: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         encryption_algorithm:
             description:
                 - Encryption algorithm to be used while encrypting/decrypting data using a customer key

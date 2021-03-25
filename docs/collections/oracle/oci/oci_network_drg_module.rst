@@ -20,7 +20,7 @@ oracle.oci.oci_network_drg -- Manage a Drg resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new dynamic routing gateway (DRG) in the specified compartment. For more information, see L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDRGs.htm).
 - For the purposes of access control, you must provide the OCID of the compartment where you want the DRG to reside. Notice that the DRG doesn't have to be in the same compartment as the VCN, the DRG attachment, or other Networking Service components. If you're not sure which compartment to use, put the DRG in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the DRG, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_drg_actions <ansible_collections.oci_drg_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -415,12 +416,12 @@ Examples
     
     - name: Create drg
       oci_network_drg:
-        display_name: MyDrg
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        display_name: "MyDrg"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_drg:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyDrg
         freeform_tags: {'Department': 'Finance'}
@@ -429,16 +430,16 @@ Examples
       oci_network_drg:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyDrg
-        drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+        drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete drg
       oci_network_drg:
-        drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+        drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_drg:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyDrg
         state: absent
 

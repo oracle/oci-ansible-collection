@@ -20,7 +20,7 @@ oracle.oci.oci_logging_log_actions -- Perform actions on a Log resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -334,8 +334,8 @@ Examples
     
     - name: Perform action change_log_log_group on log
       oci_logging_log_actions:
-        log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
-        log_id: ocid1.log.oc1..xxxxxxEXAMPLExxxxxx
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+        log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_log_log_group
 
 

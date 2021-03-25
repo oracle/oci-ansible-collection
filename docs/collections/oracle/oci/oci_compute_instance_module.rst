@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1420,53 +1420,53 @@ Examples
     
     - name: Create instance
       oci_compute_instance:
-        display_name: myinstance1
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-        shape: VM.Standard2.1
+        display_name: "myinstance1"
+        availability_domain: "Uocm:PHX-AD-1"
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+        shape: "VM.Standard2.1"
         metadata:
-          foo: bar
-          baz: quux
+          foo: "bar"
+          baz: "quux"
         source_details:
-          source_type: image
-          image_id: ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx
+          source_type: "image"
+          image_id: "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
         create_vnic_details:
-          hostname_label: myinstance1
-          private_ip: 10.0.0.5
-          subnet_id: ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa
+          hostname_label: "myinstance1"
+          private_ip: "10.0.0.5"
+          subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
 
     - name: Create instance
       oci_compute_instance:
-        display_name: myinstance1
-        availability_domain: Uocm:PHX-AD-1
-        fault_domain: FAULT-DOMAIN-2
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-        shape: VM.Standard2.1
+        display_name: "myinstance1"
+        availability_domain: "Uocm:PHX-AD-1"
+        fault_domain: "FAULT-DOMAIN-2"
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+        shape: "VM.Standard2.1"
         source_details:
-          source_type: bootVolume
-          boot_volume_id: ocid1.bootvolume.oc1.iad.xxxxxEXAMPLExxxxx
+          source_type: "bootVolume"
+          boot_volume_id: "ocid1.bootvolume.oc1.iad.xxxxxEXAMPLExxxxx"
         create_vnic_details:
-          hostname_label: myinstance1
-          private_ip: 10.0.0.5
-          subnet_id: ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa
+          hostname_label: "myinstance1"
+          private_ip: "10.0.0.5"
+          subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
 
     - name: Create instance
       oci_compute_instance:
-        display_name: myinstance1
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-        shape: VM.Standard2.1
+        display_name: "myinstance1"
+        availability_domain: "Uocm:PHX-AD-1"
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+        shape: "VM.Standard2.1"
         source_details:
-          source_type: image
-          image_id: ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx
+          source_type: "image"
+          image_id: "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
           boot_volume_size_in_gbs: 100
         create_vnic_details:
-          hostname_label: myinstance1
-          subnet_id: ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa
+          hostname_label: "myinstance1"
+          subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
 
     - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: myinstance1
         fault_domain: FAULT-DOMAIN-2
@@ -1477,16 +1477,16 @@ Examples
       oci_compute_instance:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: myinstance1
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete instance
       oci_compute_instance:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
         display_name: myinstance1
         state: absent
 

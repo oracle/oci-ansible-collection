@@ -43,33 +43,25 @@ bulk_edit_tags_resource_type_collections:
     returned: on success
     type: complex
     contains:
-        items:
+        resource_type:
             description:
-                - The collection of resource types that support bulk editing of tags.
+                - The unique name of the resource type.
             returned: on success
-            type: complex
-            contains:
-                resource_type:
-                    description:
-                        - The unique name of the resource type.
-                    returned: on success
-                    type: string
-                    sample: resource_type_example
-                metadata_keys:
-                    description:
-                        - The metadata keys required to identify the resource.
-                        - "For example, for a bucket, the value of `metadataKeys` will be L(\\"namespaceName\\", \\"bucketName\\"].
-                          This information will match the API documentation.
-                          See [UpdateBucket,https://docs.cloud.oracle.com/api/#/en/objectstorage/latest/Bucket/UpdateBucket) and
-                          L(DeleteBucket,https://docs.cloud.oracle.com/api/#/en/objectstorage/latest/Bucket/DeleteBucket)."
-                    returned: on success
-                    type: list
-                    sample: []
+            type: string
+            sample: resource_type_example
+        metadata_keys:
+            description:
+                - The metadata keys required to identify the resource.
+                - "For example, for a bucket, the value of `metadataKeys` will be L(\\"namespaceName\\", \\"bucketName\\"].
+                  This information will match the API documentation.
+                  See [UpdateBucket,https://docs.cloud.oracle.com/api/#/en/objectstorage/latest/Bucket/UpdateBucket) and
+                  L(DeleteBucket,https://docs.cloud.oracle.com/api/#/en/objectstorage/latest/Bucket/DeleteBucket)."
+            returned: on success
+            type: list
+            sample: []
     sample: [{
-        "items": [{
-            "resource_type": "resource_type_example",
-            "metadata_keys": []
-        }]
+        "resource_type": "resource_type_example",
+        "metadata_keys": []
     }]
 """
 

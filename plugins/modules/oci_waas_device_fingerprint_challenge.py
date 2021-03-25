@@ -150,24 +150,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update device_fingerprint_challenge
   oci_waas_device_fingerprint_challenge:
-    action: DETECT
+    action: "DETECT"
     action_expiration_in_seconds: 600
     challenge_settings:
-      block_action: SHOW_ERROR_PAGE
-      block_error_page_code: DFC
-      block_error_page_description: Access blocked by website owner. Please contact support.
-      block_error_page_message: Access to the website is blocked.
+      block_action: "SHOW_ERROR_PAGE"
+      block_error_page_code: "DFC"
+      block_error_page_description: "Access blocked by website owner. Please contact support."
+      block_error_page_message: "Access to the website is blocked."
       block_response_code: 403
-      captcha_footer: Enter the letters and numbers as they are shown in image above.
-      captcha_header: please let us know that you are not a robot by entering the text from the image below.
-      captcha_submit_label: Yes, I am human.
-      captcha_title: Are you human?
+      captcha_footer: "Enter the letters and numbers as they are shown in image above."
+      captcha_header: "please let us know that you are not a robot by entering the text from the image below."
+      captcha_submit_label: "Yes, I am human."
+      captcha_title: "Are you human?"
     failure_threshold: 10
     failure_threshold_expiration_in_seconds: 600
     is_enabled: false
     max_address_count: 20
     max_address_count_expiration_in_seconds: 600
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

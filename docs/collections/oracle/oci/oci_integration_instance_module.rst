@@ -20,7 +20,7 @@ oracle.oci.oci_integration_instance -- Manage an IntegrationInstance resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an IntegrationInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Integration Instance.
-- This resource has the following action operations in the :ref:`oci_integration_instance_actions <ansible_collections.oci_integration_instance_actions_module>` module: change_integration_instance_network_endpoint, start, stop.
+- This resource has the following action operations in the :ref:`oci_integration_instance_actions <ansible_collections.oci_integration_instance_actions_module>` module: change_compartment, change_integration_instance_network_endpoint, start, stop.
 
 
 .. Aliases
@@ -772,7 +772,7 @@ Examples
     - name: Create integration_instance
       oci_integration_instance:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type: STANDARD
         is_byol: true
         message_packs: 56
@@ -780,7 +780,7 @@ Examples
     - name: Update integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_integration_instance:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type: STANDARD
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -797,17 +797,17 @@ Examples
       oci_integration_instance:
         display_name: display_name_example
         integration_instance_type: STANDARD
-        integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+        integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete integration_instance
       oci_integration_instance:
-        integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+        integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_integration_instance:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

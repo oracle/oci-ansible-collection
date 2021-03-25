@@ -24,6 +24,7 @@ short_description: Manage an UnifiedAgentConfiguration resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
     - For I(state=present), create unified agent configuration registration.
+    - "This resource has the following action operations in the M(oci_unified_agent_configuration_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -329,7 +330,7 @@ EXAMPLES = """
     is_enabled: true
     service_configuration:
       configuration_type: LOGGING
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_unified_agent_configuration:
@@ -339,7 +340,7 @@ EXAMPLES = """
       configuration_type: LOGGING
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
 
 - name: Update unified_agent_configuration
@@ -348,17 +349,17 @@ EXAMPLES = """
     is_enabled: true
     service_configuration:
       configuration_type: LOGGING
-    unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete unified_agent_configuration
   oci_logging_unified_agent_configuration:
-    unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_unified_agent_configuration:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -375,13 +376,13 @@ unified_agent_configuration:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
@@ -681,7 +682,7 @@ unified_agent_configuration:
                                 - The OCID of the resource.
                             returned: on success
                             type: string
-                            sample: ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
         group_association:
             description:
                 - ""

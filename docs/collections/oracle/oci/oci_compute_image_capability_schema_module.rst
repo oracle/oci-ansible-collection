@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ComputeImageCapabilitySchema resource in Oracle Cloud Infrastructure
 - For *state=present*, creates compute image capability schema.
+- This resource has the following action operations in the :ref:`oci_compute_image_capability_schema_actions <ansible_collections.oci_compute_image_capability_schema_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -557,34 +558,34 @@ Examples
     
     - name: Create compute_image_capability_schema
       oci_compute_image_capability_schema:
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-        compute_global_image_capability_schema_version_name: 2c0xx226-xxx-xxxx-xxxx-193cc17xx90b
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+        compute_global_image_capability_schema_version_name: "2c0xx226-xxx-xxxx-xxxx-193cc17xx90b"
         schema_data:
           Compute.LaunchMode:
-            descriptor_type: enumstring
-            source: IMAGE
+            descriptor_type: "enumstring"
+            source: "IMAGE"
             enum_string_values:
-            - EMULATED
-            - PARAVIRTUALIZED
-            - CUSTOM
-            enum_string_default_value: PARAVIRTUALIZED
+            - "EMULATED"
+            - "PARAVIRTUALIZED"
+            - "CUSTOM"
+            enum_string_default_value: "PARAVIRTUALIZED"
 
     - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_image_capability_schema:
-        compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         schema_data:
           Storage.ConsistentVolumeNaming:
-            descriptor_type: boolean
-            source: IMAGE
+            descriptor_type: "boolean"
+            source: "IMAGE"
             enum_string_default_value: true
 
     - name: Update compute_image_capability_schema
       oci_compute_image_capability_schema:
-        compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete compute_image_capability_schema
       oci_compute_image_capability_schema:
-        compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

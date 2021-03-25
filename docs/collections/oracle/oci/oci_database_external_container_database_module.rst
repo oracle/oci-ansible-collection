@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_container_database -- Manage an ExternalContain
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new external container database resource.
-- This resource has the following action operations in the :ref:`oci_external_container_database_actions <ansible_collections.oci_external_container_database_actions_module>` module: disable_external_container_database_database_management, enable_external_container_database_database_management, scan_external_container_database_pluggable_databases.
+- This resource has the following action operations in the :ref:`oci_external_container_database_actions <ansible_collections.oci_external_container_database_actions_module>` module: change_compartment, disable_external_container_database_database_management, enable_external_container_database_database_management, scan_external_container_database_pluggable_databases.
 
 
 .. Aliases
@@ -413,21 +413,21 @@ Examples
     
     - name: Create external_container_database
       oci_database_external_container_database:
-        compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-        display_name: myTestExternalCdb
+        compartment_id: "ocid1.[tenancy|compartment].oc1.unique_ID"
+        display_name: "myTestExternalCdb"
 
     - name: Update external_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_external_container_database:
-        display_name: myTestDb2
+        display_name: "myTestDb2"
 
     - name: Update external_container_database
       oci_database_external_container_database:
         display_name: myTestExternalCdb
-        external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete external_container_database
       oci_database_external_container_database:
-        external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete external_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

@@ -77,11 +77,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cloud_exadata_infrastructures
   oci_database_cloud_exadata_infrastructure_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure_facts:
-    cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -97,13 +97,13 @@ cloud_exadata_infrastructures:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the cloud Exadata infrastructure resource.
@@ -232,13 +232,13 @@ cloud_exadata_infrastructures:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

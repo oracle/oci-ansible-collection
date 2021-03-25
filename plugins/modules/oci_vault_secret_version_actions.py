@@ -60,16 +60,16 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel_secret_version_deletion on secret_version
   oci_vault_secret_version_actions:
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     secret_version_number: 789
     action: cancel_secret_version_deletion
 
 - name: Perform action schedule_secret_version_deletion on secret_version
   oci_vault_secret_version_actions:
-    time_of_deletion: 2018-04-03T21:10:29.600Z
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
-    secret_version_number: 789
-    action: schedule_secret_version_deletion
+    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_version_number: "789"
+    action: "schedule_secret_version_deletion"
 
 """
 
@@ -97,7 +97,7 @@ secret_version:
                 - The OCID of the secret.
             returned: on success
             type: string
-            sample: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         stages:
             description:
                 - A list of possible rotation states for the secret version. A secret version marked `CURRENT` is currently in use. A secret version

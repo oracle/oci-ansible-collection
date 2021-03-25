@@ -58,7 +58,7 @@ EXAMPLES = """
   oci_object_storage_replication_policy_facts:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    replication_id: ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx
+    replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -74,7 +74,7 @@ replication_policies:
                 - The id of the replication policy.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the policy.

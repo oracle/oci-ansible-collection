@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_available_update_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -335,7 +335,7 @@ Examples
     
     - name: List available_updates
       oci_os_management_available_update_facts:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

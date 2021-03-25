@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_database -- Manage an AutonomousDatabase reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -913,21 +913,21 @@ Examples
     
     - name: Create autonomous_database
       oci_database_autonomous_database:
-        compartment_id: ocid.compartment.oc1..<unique_ID>
-        display_name: example_autonomous_database
-        db_name: adatabasedb1
-        admin_password: <password>
+        compartment_id: "ocid.compartment.oc1..<unique_ID>"
+        display_name: "example_autonomous_database"
+        db_name: "adatabasedb1"
+        admin_password: "<password>"
         cpu_core_count: 8
         data_storage_size_in_tbs: 1
 
     - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_database:
         cpu_core_count: 20
-        display_name: example_autonomous_database
+        display_name: "example_autonomous_database"
 
     - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_database:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1.iad.Example
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1.iad.Example"
         cpu_core_count: 20
 
     - name: Update autonomous_database
@@ -941,7 +941,7 @@ Examples
 
     - name: Delete autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_database:
-        compartment_id: ocid.compartment.oc1..<unique_ID>
+        compartment_id: "ocid.compartment.oc1..<unique_ID>"
         display_name: example_autonomous_database
         state: absent
 

@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List groups
   oci_identity_group_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific group
   oci_identity_group_facts:
-    group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,13 +102,13 @@ groups:
                 - The OCID of the group.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the group during creation. The name must be unique across all groups in

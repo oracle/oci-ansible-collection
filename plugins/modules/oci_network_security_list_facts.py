@@ -86,11 +86,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List security_lists
   oci_network_security_list_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific security_list
   oci_network_security_list_facts:
-    security_list_id: ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx
+    security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -106,7 +106,7 @@ security_lists:
                 - The OCID of the compartment containing the security list.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -296,7 +296,7 @@ security_lists:
                 - The security list's Oracle Cloud ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_security_rules:
             description:
                 - Rules for allowing ingress IP packets.
@@ -474,7 +474,7 @@ security_lists:
                 - The OCID of the VCN the security list belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

@@ -20,7 +20,7 @@ oracle.oci.oci_bds_instance_facts -- Fetches details about one or multiple BdsIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -246,7 +246,6 @@ Parameters
                                                                                                                                                                 <li>CREATING</li>
                                                                                                                                                                                                 <li>ACTIVE</li>
                                                                                                                                                                                                 <li>UPDATING</li>
-                                                                                                                                                                                                <li>UPDATING_INFRA</li>
                                                                                                                                                                                                 <li>SUSPENDING</li>
                                                                                                                                                                                                 <li>SUSPENDED</li>
                                                                                                                                                                                                 <li>RESUMING</li>
@@ -351,11 +350,11 @@ Examples
     
     - name: List bds_instances
       oci_bds_instance_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific bds_instance
       oci_bds_instance_facts:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

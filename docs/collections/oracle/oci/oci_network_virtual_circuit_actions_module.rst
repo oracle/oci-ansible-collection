@@ -20,7 +20,7 @@ oracle.oci.oci_network_virtual_circuit_actions -- Perform actions on a VirtualCi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,6 +45,7 @@ Synopsis
 - Perform actions on a VirtualCircuit resource in Oracle Cloud Infrastructure
 - For *action=bulk_add_virtual_circuit_public_prefixes*, adds one or more customer public IP prefixes to the specified public virtual circuit. Use this operation (and not `UpdateVirtualCircuit <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VirtualCircuit/UpdateVirtualCircuit>`_) to add prefixes to the virtual circuit. Oracle must verify the customer's ownership of each prefix before traffic for that prefix will flow across the virtual circuit.
 - For *action=bulk_delete_virtual_circuit_public_prefixes*, removes one or more customer public IP prefixes from the specified public virtual circuit. Use this operation (and not `UpdateVirtualCircuit <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VirtualCircuit/UpdateVirtualCircuit>`_) to remove prefixes from the virtual circuit. When the virtual circuit's state switches back to PROVISIONED, Oracle stops advertising the specified prefixes across the connection.
+- For *action=change_compartment*, moves a virtual circuit into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 
 
 .. Aliases
@@ -86,6 +87,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>bulk_add_virtual_circuit_public_prefixes</li>
                                                                                                                                                                                                 <li>bulk_delete_virtual_circuit_public_prefixes</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -174,6 +176,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the virtual circuit to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -209,12 +227,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-public_prefixes" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The public IP prefixes (CIDRs) to add to the public virtual circuit.</div>
+                                            <div>Required for <em>action=bulk_add_virtual_circuit_public_prefixes</em>, <em>action=bulk_delete_virtual_circuit_public_prefixes</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -304,17 +323,23 @@ Examples
     
     - name: Perform action bulk_add_virtual_circuit_public_prefixes on virtual_circuit
       oci_network_virtual_circuit_actions:
-        virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         public_prefixes:
         - cidr_block: cidr_block_example
         action: bulk_add_virtual_circuit_public_prefixes
 
     - name: Perform action bulk_delete_virtual_circuit_public_prefixes on virtual_circuit
       oci_network_virtual_circuit_actions:
-        virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         public_prefixes:
         - cidr_block: cidr_block_example
         action: bulk_delete_virtual_circuit_public_prefixes
+
+    - name: Perform action change_compartment on virtual_circuit
+      oci_network_virtual_circuit_actions:
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
 
 
 

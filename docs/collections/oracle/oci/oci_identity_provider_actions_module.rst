@@ -20,7 +20,7 @@ oracle.oci.oci_identity_provider_actions -- Perform actions on an IdentityProvid
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -270,7 +270,7 @@ Examples
     
     - name: Perform action reset_idp_scim_client on identity_provider
       oci_identity_provider_actions:
-        identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+        identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         action: reset_idp_scim_client
 
 

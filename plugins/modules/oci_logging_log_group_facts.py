@@ -70,11 +70,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List log_groups
   oci_logging_log_group_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific log_group
   oci_logging_log_group_facts:
-    log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,13 +90,13 @@ log_groups:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,

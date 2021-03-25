@@ -85,12 +85,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List categories
   oci_optimizer_category_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
 
 - name: Get a specific category
   oci_optimizer_category_facts:
-    category_id: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+    category_id: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -106,13 +106,13 @@ categories:
                 - The unique OCID of the category.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the category. Avoid entering confidential information.

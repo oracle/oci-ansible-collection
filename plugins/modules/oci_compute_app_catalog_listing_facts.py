@@ -64,7 +64,7 @@ EXAMPLES = """
 
 - name: Get a specific app_catalog_listing
   oci_compute_app_catalog_listing_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -92,7 +92,7 @@ app_catalog_listings:
                 - The OCID of the listing.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Name of the listing.

@@ -24,6 +24,7 @@ short_description: Manage a ContainerRepository resource in Oracle Cloud Infrast
 description:
     - This module allows the user to create, update and delete a ContainerRepository resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new empty container repository. Avoid entering confidential information.
+    - "This resource has the following action operations in the M(oci_container_repository_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

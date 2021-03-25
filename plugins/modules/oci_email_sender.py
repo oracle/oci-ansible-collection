@@ -24,6 +24,7 @@ short_description: Manage a Sender resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Sender resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a sender for a tenancy in a given compartment.
+    - "This resource has the following action operations in the M(oci_sender_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -73,18 +74,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create sender
   oci_email_sender:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     email_address: email_address_example
 
 - name: Update sender
   oci_email_sender:
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    sender_id: ocid1.sender.oc1..xxxxxxEXAMPLExxxxxx
+    sender_id: "ocid1.sender.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete sender
   oci_email_sender:
-    sender_id: ocid1.sender.oc1..xxxxxxEXAMPLExxxxxx
+    sender_id: "ocid1.sender.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -101,7 +102,7 @@ sender:
                 - The OCID for the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email_address:
             description:
                 - Email address of the sender.
@@ -113,7 +114,7 @@ sender:
                 - The unique OCID of the sender.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_spf:
             description:
                 - Value of the SPF field. For more information about SPF, please see

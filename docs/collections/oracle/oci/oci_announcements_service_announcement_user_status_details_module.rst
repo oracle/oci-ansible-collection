@@ -20,7 +20,7 @@ oracle.oci.oci_announcements_service_announcement_user_status_details -- Manage 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -316,10 +316,10 @@ Examples
     
     - name: Update announcement_user_status_details
       oci_announcements_service_announcement_user_status_details:
-        time_acknowledged: 2019-01-28T23:21:57.342Z
-        user_id: ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq
-        user_status_announcement_id: ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q
-        announcement_id: ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx
+        time_acknowledged: "2019-01-28T23:21:57.342Z"
+        user_id: "ocid1.user.region1..exampleaorxz3psplonigcvbzy5oaiwiubh7k7ip6zgklfauxic67kksu4oq"
+        user_status_announcement_id: "ocid1.announcement.region1..examplear73oue4jdywjjvietoc6im3cvb6xae4falm3faux5us3iwra3t6q"
+        announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

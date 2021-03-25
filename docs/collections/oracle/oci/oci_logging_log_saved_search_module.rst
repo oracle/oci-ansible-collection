@@ -20,7 +20,7 @@ oracle.oci.oci_logging_log_saved_search -- Manage a LogSavedSearch resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a LogSavedSearch resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new LogSavedSearch.
+- This resource has the following action operations in the :ref:`oci_log_saved_search_actions <ansible_collections.oci_log_saved_search_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -445,13 +446,13 @@ Examples
     
     - name: Create log_saved_search
       oci_logging_log_saved_search:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         query: query_example
 
     - name: Update log_saved_search using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log_saved_search:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         query: query_example
@@ -462,16 +463,16 @@ Examples
       oci_logging_log_saved_search:
         name: name_example
         description: description_example
-        log_saved_search_id: ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx
+        log_saved_search_id: "ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete log_saved_search
       oci_logging_log_saved_search:
-        log_saved_search_id: ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx
+        log_saved_search_id: "ocid1.logsavedsearch.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete log_saved_search using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log_saved_search:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 

@@ -20,7 +20,7 @@ oracle.oci.oci_functions_function -- Manage a Function resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -498,28 +498,28 @@ Examples
     
     - name: Create function
       oci_functions_function:
-        application_id: application_OCID
-        display_name: Example Function
-        image: phx.ocir.io/example-namespace/example-repo/example-image:0.0.1
+        application_id: "application_OCID"
+        display_name: "Example Function"
+        image: "phx.ocir.io/example-namespace/example-repo/example-image:0.0.1"
         memory_in_mbs: 128
 
     - name: Update function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_functions_function:
-        image: phx.ocir.io/ten/functions/function:0.0.1
-        image_digest: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
+        image: "phx.ocir.io/ten/functions/function:0.0.1"
+        image_digest: "sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7"
         memory_in_mbs: 56
         timeout_in_seconds: 56
-        display_name: myfunction
+        display_name: "myfunction"
         config:
-          EXAMPLE_KEY: example-value
+          EXAMPLE_KEY: "example-value"
 
     - name: Update function
       oci_functions_function:
-        function_id: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete function
       oci_functions_function:
-        function_id: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

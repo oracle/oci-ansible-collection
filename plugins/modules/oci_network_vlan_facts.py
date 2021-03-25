@@ -87,12 +87,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vlans
   oci_network_vlan_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vlan
   oci_network_vlan_facts:
-    vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -123,7 +123,7 @@ vlans:
                 - The OCID of the compartment containing the VLAN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -153,7 +153,7 @@ vlans:
                 - The VLAN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The VLAN's current state.
@@ -181,7 +181,7 @@ vlans:
                 - The OCID of the route table that the VLAN uses.
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VLAN was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -194,7 +194,7 @@ vlans:
                 - The OCID of the VCN the VLAN is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "cidr_block": "192.168.1.0/24",

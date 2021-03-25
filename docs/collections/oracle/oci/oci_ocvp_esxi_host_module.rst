@@ -20,7 +20,7 @@ oracle.oci.oci_ocvp_esxi_host -- Manage an EsxiHost resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -414,7 +414,7 @@ Examples
     
     - name: Create esxi_host
       oci_ocvp_esxi_host:
-        sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ocvp_esxi_host:
@@ -426,11 +426,11 @@ Examples
       oci_ocvp_esxi_host:
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+        esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete esxi_host
       oci_ocvp_esxi_host:
-        esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+        esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_analytics_cluster_actions -- Perform actions on an Analytic
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -342,24 +342,24 @@ Examples
     
     - name: Perform action add on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name: shape_name_example
         cluster_size: 56
         action: add
 
     - name: Perform action restart on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: restart
 
     - name: Perform action start on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

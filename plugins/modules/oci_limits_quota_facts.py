@@ -70,11 +70,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List quotas
   oci_limits_quota_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific quota
   oci_limits_quota_facts:
-    quota_id: ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx
+    quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,13 +90,13 @@ quotas:
                 - The OCID of the quota.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the resource this quota applies to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the quota during creation. The name must be unique across all quotas

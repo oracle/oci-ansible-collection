@@ -73,31 +73,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create namespace
   oci_data_catalog_namespace:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
 - name: Update namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_namespace:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     is_service_defined: true
 
 - name: Update namespace
   oci_data_catalog_namespace:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+    namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete namespace
   oci_data_catalog_namespace:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-    namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_namespace:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -158,13 +158,13 @@ namespace:
                 - OCID of the user who created the namespace.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the namespace.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "key": "key_example",
         "display_name": "display_name_example",

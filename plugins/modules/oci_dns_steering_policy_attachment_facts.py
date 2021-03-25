@@ -117,11 +117,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List steering_policy_attachments
   oci_dns_steering_policy_attachment_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific steering_policy_attachment
   oci_dns_steering_policy_attachment_facts:
-    steering_policy_attachment_id: ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx
+    steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -137,13 +137,13 @@ steering_policy_attachments:
                 - The OCID of the attached steering policy.
             returned: on success
             type: string
-            sample: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         zone_id:
             description:
                 - The OCID of the attached zone.
             returned: on success
             type: string
-            sample: ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         domain_name:
             description:
                 - The attached domain within the attached zone.
@@ -171,7 +171,7 @@ steering_policy_attachments:
                 - The OCID of the compartment containing the steering policy attachment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         _self:
             description:
                 - The canonical absolute URL of the resource.
@@ -183,7 +183,7 @@ steering_policy_attachments:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.

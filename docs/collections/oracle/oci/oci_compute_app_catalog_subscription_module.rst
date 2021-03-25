@@ -20,7 +20,7 @@ oracle.oci.oci_compute_app_catalog_subscription -- Manage an AppCatalogSubscript
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -399,8 +399,8 @@ Examples
     
     - name: Create app_catalog_subscription
       oci_compute_app_catalog_subscription:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version: listing_resource_version_example
         oracle_terms_of_use_link: oracle_terms_of_use_link_example
         time_retrieved: 2018-03-20T12:32:53.532Z
@@ -408,8 +408,8 @@ Examples
 
     - name: Delete app_catalog_subscription
       oci_compute_app_catalog_subscription:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version: listing_resource_version_example
         state: absent
 

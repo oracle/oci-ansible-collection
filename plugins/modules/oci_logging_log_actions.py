@@ -56,8 +56,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_log_log_group on log
   oci_logging_log_actions:
-    log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
-    log_id: ocid1.log.oc1..xxxxxxEXAMPLExxxxxx
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_log_log_group
 
 """
@@ -74,19 +74,19 @@ log:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         tenancy_id:
             description:
                 - The OCID of the tenancy.
             returned: on success
             type: string
-            sample: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         log_group_id:
             description:
                 - Log group OCID.
             returned: on success
             type: string
-            sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
@@ -134,7 +134,7 @@ log:
                         - The OCID of the compartment that the resource belongs to.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 source:
                     description:
                         - ""
@@ -213,7 +213,7 @@ log:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",

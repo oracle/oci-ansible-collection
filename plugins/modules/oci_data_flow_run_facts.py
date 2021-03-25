@@ -97,11 +97,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List runs
   oci_data_flow_run_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific run
   oci_data_flow_run_facts:
-    run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -138,7 +138,7 @@ runs:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         class_name:
             description:
                 - The class for the application.
@@ -150,7 +150,7 @@ runs:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         configuration:
             description:
                 - "The Spark configuration passed to the running process.
@@ -219,7 +219,7 @@ runs:
                 - The ID of a run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -257,13 +257,13 @@ runs:
                   If you need to contact Oracle about a particular request, please provide the request ID.
             returned: on success
             type: string
-            sample: ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
         owner_principal_id:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -323,13 +323,13 @@ runs:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
             type: string
-            sample: ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         run_duration_in_milliseconds:
             description:
                 - The duration of the run in milliseconds.

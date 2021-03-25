@@ -25,6 +25,7 @@ description:
     - This module allows the user to create, update and delete a NatGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new NAT gateway for the specified VCN. You must also set up a route rule with the
       NAT gateway as the rule's target. See L(Route Table,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/).
+    - "This resource has the following action operations in the M(oci_nat_gateway_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -96,12 +97,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create nat_gateway
   oci_network_nat_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update nat_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_nat_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -111,16 +112,16 @@ EXAMPLES = """
   oci_network_nat_gateway:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    nat_gateway_id: ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx
+    nat_gateway_id: "ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete nat_gateway
   oci_network_nat_gateway:
-    nat_gateway_id: ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx
+    nat_gateway_id: "ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete nat_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_nat_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -139,7 +140,7 @@ nat_gateway:
                   the NAT gateway.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -170,7 +171,7 @@ nat_gateway:
                   NAT gateway.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         block_traffic:
             description:
                 - Whether the NAT gateway blocks traffic through it. The default is `false`.
@@ -203,14 +204,14 @@ nat_gateway:
                   belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         public_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP address associated with the NAT
                   gateway.
             returned: on success
             type: string
-            sample: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

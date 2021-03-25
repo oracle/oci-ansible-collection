@@ -49,11 +49,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List backup_destinations
   oci_database_backup_destination_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific backup_destination
   oci_database_backup_destination_facts:
-    backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+    backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -69,7 +69,7 @@ backup_destinations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name of the backup destination.
@@ -81,7 +81,7 @@ backup_destinations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - Type of the backup destination.
@@ -99,7 +99,7 @@ backup_destinations:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The display name of the database that is associated with the backup destination.

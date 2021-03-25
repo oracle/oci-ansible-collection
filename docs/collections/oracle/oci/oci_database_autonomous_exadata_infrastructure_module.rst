@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure -- Manage an Autonomou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -689,24 +689,24 @@ Examples
     
     - name: Create autonomous_exadata_infrastructure
       oci_database_autonomous_exadata_infrastructure:
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.tenancy.oc1.unique_ID
-        display_name: tst3dbsys
-        domain: my.company.com
-        shape: Exadata.Half1.168
-        subnet_id: ocid1.subnet.oc1.unique_ID
+        availability_domain: "Uocm:PHX-AD-1"
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
+        display_name: "tst3dbsys"
+        domain: "my.company.com"
+        shape: "Exadata.Half1.168"
+        subnet_id: "ocid1.subnet.oc1.unique_ID"
 
     - name: Update autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_exadata_infrastructure:
-        display_name: new displayname
+        display_name: "new displayname"
 
     - name: Update autonomous_exadata_infrastructure
       oci_database_autonomous_exadata_infrastructure:
-        autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete autonomous_exadata_infrastructure
       oci_database_autonomous_exadata_infrastructure:
-        autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

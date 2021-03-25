@@ -116,13 +116,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create user
   oci_identity_user:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
-    description: John Smith
-    name: JohnSmith@example.com
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
+    description: "John Smith"
+    name: "JohnSmith@example.com"
 
 - name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
     name: JohnSmith@example.com
     description: John Smith
     email: email_example
@@ -133,16 +133,16 @@ EXAMPLES = """
   oci_identity_user:
     description: John Smith
     email: email_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete user
   oci_identity_user:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_user:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
     name: JohnSmith@example.com
     state: absent
 
@@ -160,13 +160,13 @@ user:
                 - The OCID of the user.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the user.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the user during creation. This is the user's login for the Console.
@@ -198,7 +198,7 @@ user:
                 - The OCID of the `IdentityProvider` this user belongs to.
             returned: on success
             type: string
-            sample: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         external_identifier:
             description:
                 - Identifier of the user in the identity provider

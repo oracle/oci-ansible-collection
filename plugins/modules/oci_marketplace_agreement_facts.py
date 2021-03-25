@@ -54,14 +54,14 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List agreements
   oci_marketplace_agreement_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
 
 - name: Get a specific agreement
   oci_marketplace_agreement_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
-    agreement_id: ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx
+    agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -77,7 +77,7 @@ agreements:
                 - The unique identifier for the agreement.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         content_url:
             description:
                 - The content URL of the agreement.
@@ -96,7 +96,7 @@ agreements:
                 - The unique identifier for the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         author:
             description:
                 - Who authored the agreement.

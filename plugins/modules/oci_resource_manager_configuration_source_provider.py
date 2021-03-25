@@ -27,6 +27,7 @@ description:
       For more information, see
       L(To create a configuration source
       provider,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateConfigurationSourceProvider).
+    - "This resource has the following action operations in the M(oci_configuration_source_provider_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -115,18 +116,18 @@ EXAMPLES = """
 
 - name: Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_resource_manager_configuration_source_provider:
-    display_name: My Renamed Configuration Source Provider
+    display_name: "My Renamed Configuration Source Provider"
 
 - name: Update configuration_source_provider
   oci_resource_manager_configuration_source_provider:
     config_source_provider_type: GITHUB_ACCESS_TOKEN
     api_endpoint: https://gitlab.com
     access_token: access_token_example
-    configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete configuration_source_provider
   oci_resource_manager_configuration_source_provider:
-    configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -148,14 +149,14 @@ configuration_source_provider:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the configuration source provider.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where the configuration source
                   provider is located.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable display name for the configuration source provider.

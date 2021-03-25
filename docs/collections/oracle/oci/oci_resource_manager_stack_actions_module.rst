@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack_actions -- Perform actions on a Stack reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Stack resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves a Stack and it's associated Jobs into a different compartment.
 - For *action=detect_stack_drift*, checks drift status for the specified stack.
 
 
@@ -83,7 +84,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>detect_stack_drift</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>detect_stack_drift</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -172,6 +174,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment into which the Stack should be moved.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -228,6 +246,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address, which is a case-insensitive string derived from the resource type and name specified in the stack&#x27;s Terraform configuration plus an optional index. For example, the resource address for the fourth Compute instance with the name &quot;test_instance&quot; is oci_core_instance.test_instanceL(3]. For more details and examples of resource addresses, see the Terraform documentation at [Resource spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples).</div>
+                                            <div>Applicable only for <em>action=detect_stack_drift</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -317,9 +336,15 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action detect_stack_drift on stack
+    - name: Perform action change_compartment on stack
       oci_resource_manager_stack_actions:
         stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
+
+    - name: Perform action detect_stack_drift on stack
+      oci_resource_manager_stack_actions:
+        stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
         action: detect_stack_drift
 
 

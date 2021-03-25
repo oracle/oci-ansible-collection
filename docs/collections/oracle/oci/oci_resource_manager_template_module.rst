@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_template -- Manage a Template resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a custom template in the specified compartment.
+- This resource has the following action operations in the :ref:`oci_template_actions <ansible_collections.oci_template_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -530,7 +531,7 @@ Examples
     
     - name: Create template
       oci_resource_manager_template:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: compartment_OCID
         display_name: Template Display Name
         description: Brief description of the template
         template_config_source:
@@ -540,7 +541,7 @@ Examples
       oci_resource_manager_template:
         display_name: Template Display Name
         description: Brief description of the template
-        long_description: Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded..
+        long_description: "Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded"
         logo_file_base64_encoded: binary string
         template_config_source:
           template_config_source_type: ZIP_UPLOAD
@@ -549,11 +550,11 @@ Examples
 
     - name: Update template
       oci_resource_manager_template:
-        template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete template
       oci_resource_manager_template:
-        template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

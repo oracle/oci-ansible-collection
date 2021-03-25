@@ -99,14 +99,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backend
   oci_loadbalancer_backend:
-    ip_address: 10.0.0.3
+    ip_address: "10.0.0.3"
     port: 8080
     weight: 3
     backup: false
     drain: false
     offline: false
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
-    backend_set_name: example_backend_set
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    backend_set_name: "example_backend_set"
 
 - name: Update backend
   oci_loadbalancer_backend:
@@ -114,14 +114,14 @@ EXAMPLES = """
     backup: false
     drain: false
     offline: false
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
-    backend_set_name: example_backend_set
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    backend_set_name: "example_backend_set"
 
 - name: Delete backend
   oci_loadbalancer_backend:
     ip_address: 10.0.0.3
     port: 8080
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
     state: absent
 

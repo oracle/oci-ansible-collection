@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_container_database -- Manage an AutonomousCon
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -942,26 +942,26 @@ Examples
     - name: Create autonomous_container_database
       oci_database_autonomous_container_database:
         display_name: containerdatabases2
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         patch_model: RELEASE_UPDATES
 
     - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_container_database:
-        display_name: new Display name
+        display_name: "new Display name"
 
     - name: Update autonomous_container_database
       oci_database_autonomous_container_database:
-        autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete autonomous_container_database
       oci_database_autonomous_container_database:
-        autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_container_database:
         display_name: containerdatabases2
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

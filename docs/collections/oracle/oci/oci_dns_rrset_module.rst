@@ -20,7 +20,7 @@ oracle.oci.oci_dns_rrset -- Manage a Rrset resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -670,20 +670,20 @@ Examples
     - name: Update rrset
       oci_dns_rrset:
         update_items:
-        - domain: www.example.com
-          record_hash: e86155f805706f45b4820db76f0dd71f
+        - domain: "www.example.com"
+          record_hash: "e86155f805706f45b4820db76f0dd71f"
           is_protected: false
-          rdata: v=spf1 include:example.net -all
-          rrset_version: 10
-          rtype: TXT
+          rdata: "v=spf1 include:example.net -all"
+          rrset_version: "10"
+          rtype: "TXT"
           ttl: 60
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
-        domain: domain_example
-        rtype: rtype_example
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
+        domain: "domain_example"
+        rtype: "rtype_example"
 
     - name: Delete rrset
       oci_dns_rrset:
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         domain: domain_example
         rtype: rtype_example
         state: absent

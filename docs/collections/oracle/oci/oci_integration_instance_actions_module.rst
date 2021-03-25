@@ -20,7 +20,7 @@ oracle.oci.oci_integration_instance_actions -- Perform actions on an Integration
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an IntegrationInstance resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, change the compartment for an integration instance
 - For *action=change_integration_instance_network_endpoint*, change an Integration instance network endpoint. The operation is long-running and creates a new WorkRequest.
 - For *action=start*, start an integration instance that was previously in an INACTIVE state
 - For *action=stop*, stop an integration instance that was previously in an ACTIVE state
@@ -85,7 +86,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change_integration_instance_network_endpoint</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>change_integration_instance_network_endpoint</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                     </ul>
@@ -172,6 +174,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Compartment Identifier.</div>
+                                            <div>Applicable only for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -429,19 +447,24 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action change_integration_instance_network_endpoint on integration_instance
+    - name: Perform action change_compartment on integration_instance
       oci_integration_instance_actions:
         integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
+
+    - name: Perform action change_integration_instance_network_endpoint on integration_instance
+      oci_integration_instance_actions:
+        integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_integration_instance_network_endpoint
 
     - name: Perform action start on integration_instance
       oci_integration_instance_actions:
-        integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+        integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on integration_instance
       oci_integration_instance_actions:
-        integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+        integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

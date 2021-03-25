@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List suppressions
   oci_email_suppression_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific suppression
   oci_email_suppression_facts:
-    suppression_id: ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx
+    suppression_id: "ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -110,7 +110,7 @@ suppressions:
                   OCID.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email_address:
             description:
                 - Email address of the suppression.
@@ -122,7 +122,7 @@ suppressions:
                 - The unique ID of the suppression.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         reason:
             description:
                 - The reason that the email address was suppressed. For more information on the types of bounces, see L(Suppression List,https://docs.us-

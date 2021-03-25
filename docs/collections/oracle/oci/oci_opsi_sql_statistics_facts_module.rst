@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_statistics_facts -- Fetches details about a SqlStatistic
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -182,6 +182,7 @@ Parameters
                                                                                                                                                                                                 <li>VARIANT</li>
                                                                                                                                                                                                 <li>INEFFICIENT</li>
                                                                                                                                                                                                 <li>CHANGING_PLANS</li>
+                                                                                                                                                                                                <li>IMPROVING</li>
                                                                                                                                                                                                 <li>DEGRADING_VARIANT</li>
                                                                                                                                                                                                 <li>DEGRADING_INEFFICIENT</li>
                                                                                                                                                                                                 <li>DEGRADING_CHANGING_PLANS</li>
@@ -458,7 +459,7 @@ Examples
     
     - name: Get a specific sql_statistics
       oci_opsi_sql_statistics_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

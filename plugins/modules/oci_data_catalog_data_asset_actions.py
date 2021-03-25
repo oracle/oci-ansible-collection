@@ -232,31 +232,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add_data_selector_patterns on data_asset
   oci_data_catalog_data_asset_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: add_data_selector_patterns
 
 - name: Perform action import_connection on data_asset
   oci_data_catalog_data_asset_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: import_connection
 
 - name: Perform action parse_connection on data_asset
   oci_data_catalog_data_asset_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: parse_connection
 
 - name: Perform action remove_data_selector_patterns on data_asset
   oci_data_catalog_data_asset_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: remove_data_selector_patterns
 
 - name: Perform action validate_connection on data_asset
   oci_data_catalog_data_asset_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: validate_connection
 
@@ -293,7 +293,7 @@ data_asset:
                 - The data catalog's OCID.
             returned: on success
             type: string
-            sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         external_key:
             description:
                 - External URI that can be used to reference the object. Format will differ based on the type of object.
@@ -330,13 +330,13 @@ data_asset:
                 - OCID of the user who created the data asset.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the data asset.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         uri:
             description:
                 - URI to the data asset instance in the API.
@@ -451,7 +451,7 @@ data_asset:
                         - The data catalog's OCID.
                     returned: on success
                     type: string
-                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

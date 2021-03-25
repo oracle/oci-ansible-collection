@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new custom Software Source on the management system.
       This will not contain any packages after it is first created,
       and they must be added later.
-    - "This resource has the following action operations in the M(oci_software_source_actions) module: add_packages, remove_packages."
+    - "This resource has the following action operations in the M(oci_software_source_actions) module: add_packages, change_compartment, remove_packages."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -124,13 +124,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create software_source
   oci_os_management_software_source:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     arch_type: IA_32
 
 - name: Update software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_software_source:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     maintainer_name: maintainer_name_example
@@ -144,16 +144,16 @@ EXAMPLES = """
   oci_os_management_software_source:
     display_name: display_name_example
     description: description_example
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete software_source
   oci_os_management_software_source:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete software_source using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_software_source:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -171,13 +171,13 @@ software_source:
                 - OCID for the Software Source
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User friendly name for the software source
@@ -213,7 +213,7 @@ software_source:
                 - OCID for the parent software source, if there is one
             returned: on success
             type: string
-            sample: ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         parent_name:
             description:
                 - Display name the parent software source, if there is one
@@ -255,7 +255,7 @@ software_source:
                 - ID of the GPG key for this software source
             returned: on success
             type: string
-            sample: ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx"
         gpg_key_fingerprint:
             description:
                 - Fingerprint of the GPG key for this software source
@@ -291,7 +291,7 @@ software_source:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name

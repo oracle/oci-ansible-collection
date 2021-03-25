@@ -20,7 +20,7 @@ oracle.oci.oci_ocvp_sddc -- Manage a Sddc resource in Oracle Cloud Infrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a Sddc resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a software-defined data center (SDDC).
 - Use the `WorkRequest <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/WorkRequest/>`_ operations to track the creation of the SDDC.
+- This resource has the following action operations in the :ref:`oci_sddc_actions <ansible_collections.oci_sddc_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -684,32 +685,32 @@ Examples
       oci_ocvp_sddc:
         compute_availability_domain: compute_availability_domain_example
         vmware_software_version: vmware_software_version_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         esxi_hosts_count: 56
         ssh_authorized_keys: ssh_authorized_keys_example
-        provisioning_subnet_id: ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx
-        vsphere_vlan_id: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
-        vmotion_vlan_id: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
-        vsan_vlan_id: ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_v_tep_vlan_id: ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_edge_v_tep_vlan_id: ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_edge_uplink1_vlan_id: ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_edge_uplink2_vlan_id: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+        provisioning_subnet_id: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+        vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
+        vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_v_tep_vlan_id: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_edge_v_tep_vlan_id: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ocvp_sddc:
         display_name: display_name_example
         vmware_software_version: vmware_software_version_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        hcx_vlan_id: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         ssh_authorized_keys: ssh_authorized_keys_example
-        vsphere_vlan_id: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
-        vmotion_vlan_id: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
-        vsan_vlan_id: ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_v_tep_vlan_id: ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_edge_v_tep_vlan_id: ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_edge_uplink1_vlan_id: ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx
-        nsx_edge_uplink2_vlan_id: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+        vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
+        vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_v_tep_vlan_id: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_edge_v_tep_vlan_id: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
+        nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -717,17 +718,17 @@ Examples
       oci_ocvp_sddc:
         display_name: display_name_example
         vmware_software_version: vmware_software_version_example
-        sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete sddc
       oci_ocvp_sddc:
-        sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ocvp_sddc:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_identity_dynamic_group -- Manage a DynamicGroup resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -448,34 +448,34 @@ Examples
     
     - name: Create dynamic_group
       oci_identity_dynamic_group:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
-        description: Instance group for dev compartment
-        name: DevCompartmentDynamicGroup
-        matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
+        description: "Instance group for dev compartment"
+        name: "DevCompartmentDynamicGroup"
+        matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
 
     - name: Update dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_dynamic_group:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
         name: DevCompartmentDynamicGroup
-        matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
+        matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
         description: Instance group for dev compartment
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update dynamic_group
       oci_identity_dynamic_group:
-        matching_rule: instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID
+        matching_rule: "instance.compartment.id=ocid1.compartment.oc1..aaaaaaaayd6iexampleuniqueID"
         description: Instance group for dev compartment
-        dynamic_group_id: ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx
+        dynamic_group_id: "ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete dynamic_group
       oci_identity_dynamic_group:
-        dynamic_group_id: ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx
+        dynamic_group_id: "ocid1.dynamicgroup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete dynamic_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_dynamic_group:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
         name: DevCompartmentDynamicGroup
         state: absent
 

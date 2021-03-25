@@ -55,6 +55,7 @@ options:
         type: list
     path_route_set_name:
         description:
+            - Deprecated. Please use `routingPolicies` instead.
             - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/),
               applied to this listener's traffic.
@@ -165,6 +166,12 @@ options:
             - "Example: `example_listener`"
         type: str
         required: true
+    routing_policy_name:
+        description:
+            - The name of the routing policy applied to this listener's traffic.
+            - "Example: `example_routing_policy`"
+            - This parameter is updatable.
+        type: str
     rule_set_names:
         description:
             - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
@@ -195,7 +202,7 @@ EXAMPLES = """
     port: 80
     protocol: HTTP
     name: example_listener
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update listener
   oci_loadbalancer_listener:
@@ -203,12 +210,12 @@ EXAMPLES = """
     port: 80
     protocol: HTTP
     name: example_listener
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete listener
   oci_loadbalancer_listener:
     name: example_listener
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -259,6 +266,7 @@ listener:
             sample: []
         path_route_set_name:
             description:
+                - Deprecated. Please use `routingPolicies` instead.
                 - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/),
                   applied to this listener's traffic.
@@ -382,6 +390,13 @@ listener:
             returned: on success
             type: list
             sample: []
+        routing_policy_name:
+            description:
+                - The name of the routing policy applied to this listener's traffic.
+                - "Example: `example_routing_policy_name`"
+            returned: on success
+            type: string
+            sample: example_routing_policy_name
     sample: {
         "name": "example_listener",
         "default_backend_set_name": "example_backend_set",
@@ -401,7 +416,8 @@ listener:
             "idle_timeout": 1200,
             "backend_tcp_proxy_protocol_version": 1
         },
-        "rule_set_names": []
+        "rule_set_names": [],
+        "routing_policy_name": "example_routing_policy_name"
     }
 """
 
@@ -540,6 +556,7 @@ def main():
                 ),
             ),
             name=dict(type="str", required=True),
+            routing_policy_name=dict(type="str"),
             rule_set_names=dict(type="list"),
             load_balancer_id=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),

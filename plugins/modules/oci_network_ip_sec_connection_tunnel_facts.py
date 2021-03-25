@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List ip_sec_connection_tunnels
   oci_network_ip_sec_connection_tunnel_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-    tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,13 +66,13 @@ ip_sec_connection_tunnels:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the tunnel.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         vpn_ip:
             description:
                 - The IP address of Oracle's VPN headend.

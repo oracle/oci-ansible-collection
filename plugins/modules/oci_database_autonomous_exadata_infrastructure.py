@@ -196,24 +196,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tst3dbsys
-    domain: my.company.com
-    shape: Exadata.Half1.168
-    subnet_id: ocid1.subnet.oc1.unique_ID
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
+    display_name: "tst3dbsys"
+    domain: "my.company.com"
+    shape: "Exadata.Half1.168"
+    subnet_id: "ocid1.subnet.oc1.unique_ID"
 
 - name: Update autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_exadata_infrastructure:
-    display_name: new displayname
+    display_name: "new displayname"
 
 - name: Update autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure:
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -236,13 +236,13 @@ autonomous_exadata_infrastructure:
                 - The OCID of the Autonomous Exadata Infrastructure.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Autonomous Exadata Infrastructure.
@@ -265,7 +265,7 @@ autonomous_exadata_infrastructure:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -387,13 +387,13 @@ autonomous_exadata_infrastructure:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

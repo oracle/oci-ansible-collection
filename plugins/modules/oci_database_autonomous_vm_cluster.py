@@ -104,23 +104,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
-    display_name: autonomousVmCluster
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    exadata_infrastructure_id: ocid1.exadataInfrastructure.oc1.unique_ID
-    vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
-    license_model: LICENSE_INCLUDED
+    display_name: "autonomousVmCluster"
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
+    exadata_infrastructure_id: "ocid1.exadataInfrastructure.oc1.unique_ID"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
+    license_model: "LICENSE_INCLUDED"
 
 - name: Update autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_vm_cluster:
-    license_model: BRING_YOUR_OWN_LICENSE
+    license_model: "BRING_YOUR_OWN_LICENSE"
 
 - name: Update autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
-    autonomous_vm_cluster_id: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete autonomous_vm_cluster
   oci_database_autonomous_vm_cluster:
-    autonomous_vm_cluster_id: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -143,13 +143,13 @@ autonomous_vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous VM cluster.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Autonomous VM cluster. The name does not need to be unique.
@@ -186,13 +186,13 @@ autonomous_vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_network_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
             type: string
-            sample: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         is_local_backup_enabled:
             description:
                 - If true, database backup on local Exadata storage is configured for the Autonomous VM cluster. If false, database backup on local Exadata

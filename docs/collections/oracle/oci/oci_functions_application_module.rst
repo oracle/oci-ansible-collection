@@ -20,7 +20,7 @@ oracle.oci.oci_functions_application -- Manage an Application resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new application.
+- This resource has the following action operations in the :ref:`oci_application_actions <ansible_collections.oci_application_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -464,30 +465,30 @@ Examples
     
     - name: Create application
       oci_functions_application:
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        display_name: Example Application
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        display_name: "Example Application"
         subnet_ids:
-        - ocid1.subnet.oc1..unique_ID
+        - "ocid1.subnet.oc1..unique_ID"
 
     - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_functions_application:
-        syslog_url: tcp://logserver.myserver:1234
-        display_name: myapplication
+        syslog_url: "tcp://logserver.myserver:1234"
+        display_name: "myapplication"
         config:
-          EXAMPLE_KEY: example-value
+          EXAMPLE_KEY: "example-value"
 
     - name: Update application
       oci_functions_application:
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+        application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete application
       oci_functions_application:
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+        application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_functions_application:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: Example Application
         state: absent
 

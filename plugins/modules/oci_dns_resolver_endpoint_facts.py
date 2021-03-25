@@ -90,11 +90,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List resolver_endpoints
   oci_dns_resolver_endpoint_facts:
-    resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific resolver_endpoint
   oci_dns_resolver_endpoint_facts:
-    resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     resolver_endpoint_name: resolver_endpoint_name_example
 
 """
@@ -150,7 +150,7 @@ resolver_endpoints:
                   and will be updated if the resolver's compartment is changed.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
@@ -184,7 +184,7 @@ resolver_endpoints:
                 - The OCID of a subnet. Must be part of the VCN that the resolver is attached to.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - An array of NSG OCIDs for the resolver endpoint.

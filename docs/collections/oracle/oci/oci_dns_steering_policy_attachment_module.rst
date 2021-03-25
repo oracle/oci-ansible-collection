@@ -20,7 +20,7 @@ oracle.oci.oci_dns_steering_policy_attachment -- Manage a SteeringPolicyAttachme
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -464,28 +464,28 @@ Examples
     
     - name: Create steering_policy_attachment
       oci_dns_steering_policy_attachment:
-        steering_policy_id: ocid1.dnspolicy.oc1..
-        zone_id: ocid1.dns-zone.oc1..
-        domain_name: example.com
-        display_name: attached to example
+        steering_policy_id: "ocid1.dnspolicy.oc1.."
+        zone_id: "ocid1.dns-zone.oc1.."
+        domain_name: "example.com"
+        display_name: "attached to example"
 
     - name: Update steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy_attachment:
-        display_name: IP prefix steering
+        display_name: "IP prefix steering"
 
     - name: Update steering_policy_attachment
       oci_dns_steering_policy_attachment:
-        steering_policy_attachment_id: ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx
+        steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete steering_policy_attachment
       oci_dns_steering_policy_attachment:
-        steering_policy_attachment_id: ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx
+        steering_policy_attachment_id: "ocid1.steeringpolicyattachment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy_attachment:
         display_name: attached to example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

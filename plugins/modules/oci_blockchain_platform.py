@@ -24,7 +24,7 @@ short_description: Manage a BlockchainPlatform resource in Oracle Cloud Infrastr
 description:
     - This module allows the user to create, update and delete a BlockchainPlatform resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Blockchain Platform.
-    - "This resource has the following action operations in the M(oci_blockchain_platform_actions) module: start, stop."
+    - "This resource has the following action operations in the M(oci_blockchain_platform_actions) module: change_compartment, start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -151,7 +151,7 @@ EXAMPLES = """
 - name: Create blockchain_platform
   oci_blockchain_platform:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     platform_role: platform_role_example
     compute_shape: compute_shape_example
     idcs_access_token: idcs_access_token_example
@@ -159,7 +159,7 @@ EXAMPLES = """
 - name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockchain_platform:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -171,17 +171,17 @@ EXAMPLES = """
   oci_blockchain_platform:
     description: description_example
     freeform_tags: {'Department': 'Finance'}
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete blockchain_platform
   oci_blockchain_platform:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockchain_platform:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -198,7 +198,7 @@ blockchain_platform:
                 - unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Platform Instance Display name, can be renamed
@@ -210,7 +210,7 @@ blockchain_platform:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Platform Instance Description

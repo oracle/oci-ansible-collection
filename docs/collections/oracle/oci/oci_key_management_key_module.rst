@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key -- Manage a Key resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create and update a Key resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new master encryption key.
 - As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
-- This resource has the following action operations in the :ref:`oci_key_actions <ansible_collections.oci_key_actions_module>` module: cancel_key_deletion, disable, enable, schedule_key_deletion.
+- This resource has the following action operations in the :ref:`oci_key_actions <ansible_collections.oci_key_actions_module>` module: cancel_key_deletion, change_compartment, disable, enable, schedule_key_deletion.
 
 
 .. Aliases
@@ -519,21 +519,21 @@ Examples
     
     - name: Create key
       oci_key_management_key:
-        compartment_id: ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea
-        display_name: Key C
+        compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea"
+        display_name: "Key C"
         key_shape:
-          algorithm: AES
+          algorithm: "AES"
           length: 16
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Update key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_key_management_key:
-        display_name: Key CC
+        display_name: "Key CC"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Update key
       oci_key_management_key:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 

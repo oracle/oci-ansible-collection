@@ -57,8 +57,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update ip_sec_connection_tunnel_shared_secret
   oci_network_ip_sec_connection_tunnel_shared_secret:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-    tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -26,7 +26,7 @@ description:
     - For I(state=present), starts an asynchronous job to create a Digital Assistant instance.
     - To monitor the status of the job, take the `opc-work-request-id` response
       header value and use it to call `GET /workRequests/{workRequestID}`.
-    - "This resource has the following action operations in the M(oci_oda_instance_actions) module: start, stop."
+    - "This resource has the following action operations in the M(oci_oda_instance_actions) module: change_compartment, start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -92,14 +92,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create oda_instance
   oci_oda_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: DEVELOPMENT
 
 - name: Update oda_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oda_instance:
     display_name: display_name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -107,17 +107,17 @@ EXAMPLES = """
   oci_oda_instance:
     display_name: display_name_example
     description: description_example
-    oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete oda_instance
   oci_oda_instance:
-    oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete oda_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oda_instance:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -134,7 +134,7 @@ oda_instance:
                 - Unique immutable identifier that was assigned when the instance was created.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User-defined name for the Digital Assistant instance. Avoid entering confidential information.
@@ -153,7 +153,7 @@ oda_instance:
                 - Identifier of the compartment that the instance belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - Shape or size of the instance.

@@ -25,6 +25,7 @@ description:
     - This module allows the user to create, update and delete a TsigKey resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new TSIG key in the specified compartment. There is no
       `opc-retry-token` header since TSIG key names must be globally unique.
+    - "This resource has the following action operations in the M(oci_tsig_key_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -109,13 +110,13 @@ EXAMPLES = """
   oci_dns_tsig_key:
     algorithm: algorithm_example
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     secret: secret_example
 
 - name: Update tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_tsig_key:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     scope: GLOBAL
@@ -125,17 +126,17 @@ EXAMPLES = """
   oci_dns_tsig_key:
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    tsig_key_id: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+    tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete tsig_key
   oci_dns_tsig_key:
-    tsig_key_id: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+    tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_tsig_key:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -167,7 +168,7 @@ tsig_key:
                 - The OCID of the compartment containing the TSIG key.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret:
             description:
                 - A base64 string encoding the binary shared secret.
@@ -195,7 +196,7 @@ tsig_key:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         _self:
             description:
                 - The canonical absolute URL of the resource.

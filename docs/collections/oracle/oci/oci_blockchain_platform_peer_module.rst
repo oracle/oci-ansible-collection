@@ -20,7 +20,7 @@ oracle.oci.oci_blockchain_platform_peer -- Manage a BlockchainPlatformPeer resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -438,7 +438,7 @@ Examples
     
     - name: Create blockchain_platform_peer
       oci_blockchain_platform_peer:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         role: role_example
         ocpu_allocation_param:
           ocpu_allocation_number: 3.4
@@ -446,15 +446,15 @@ Examples
 
     - name: Update blockchain_platform_peer
       oci_blockchain_platform_peer:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         ocpu_allocation_param:
           ocpu_allocation_number: 3.4
-        peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+        peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete blockchain_platform_peer
       oci_blockchain_platform_peer:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
-        peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

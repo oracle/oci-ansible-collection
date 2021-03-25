@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_network_security_groups -- Manage a NetworkSecurityG
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -325,9 +325,9 @@ Examples
     - name: Update network_security_groups
       oci_loadbalancer_network_security_groups:
         network_security_group_ids:
-        - ocid1.networksecuritygroup.oc1.phx.unique_ID1
-        - ocid1.networksecuritygroup.oc1.phx.unique_ID2
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        - "ocid1.networksecuritygroup.oc1.phx.unique_ID1"
+        - "ocid1.networksecuritygroup.oc1.phx.unique_ID2"
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -364,7 +364,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the NetworkSecurityGroups resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backend_sets&#x27;: {&#x27;backends&#x27;: [{&#x27;backup&#x27;: False, &#x27;drain&#x27;: False, &#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;offline&#x27;: False, &#x27;port&#x27;: 8080, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;response_body_regex&#x27;: &#x27;^((?!false).|\\s)*$&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;lb_cookie_session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False, &#x27;domain&#x27;: &#x27;example.com&#x27;, &#x27;is_http_only&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;max_age_in_seconds&#x27;: 3600, &#x27;path&#x27;: &#x27;/example&#x27;}, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;LEAST_CONNECTIONS&#x27;, &#x27;session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False}, &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;certificates&#x27;: {&#x27;ca_certificate&#x27;: &#x27;ca_certificate_example&#x27;, &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;public_certificate&#x27;: &#x27;public_certificate_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;example_load_balancer&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostnames&#x27;: {&#x27;hostname&#x27;: &#x27;app.example.com&#x27;, &#x27;name&#x27;: &#x27;example_hostname_001&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;192.168.0.3&#x27;, &#x27;is_public&#x27;: True, &#x27;reserved_ip&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}], &#x27;is_private&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: {&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;network_security_group_ids&#x27;: [], &#x27;path_route_sets&#x27;: {&#x27;name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;path_routes&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;path&#x27;: &#x27;/example/video/123&#x27;, &#x27;path_match_type&#x27;: {&#x27;match_type&#x27;: &#x27;EXACT_MATCH&#x27;}}]}, &#x27;rule_sets&#x27;: {&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;ADD_HTTP_REQUEST_HEADER&#x27;, &#x27;allowed_methods&#x27;: [], &#x27;are_invalid_characters_allowed&#x27;: True, &#x27;conditions&#x27;: [{&#x27;attribute_name&#x27;: &#x27;SOURCE_IP_ADDRESS&#x27;, &#x27;attribute_value&#x27;: &#x27;ocid1.vcn.oc1.phx.unique_ID&#x27;, &#x27;operator&#x27;: &#x27;EXACT_MATCH&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;http_large_header_size_in_kb&#x27;: 56, &#x27;prefix&#x27;: &#x27;example_prefix_value&#x27;, &#x27;redirect_uri&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;port&#x27;: 8081, &#x27;protocol&#x27;: &#x27;HTTPS&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;}, &#x27;response_code&#x27;: 301, &#x27;status_code&#x27;: 56, &#x27;suffix&#x27;: &#x27;example_suffix_value&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}], &#x27;name&#x27;: &#x27;example_rule_set&#x27;}, &#x27;shape_details&#x27;: {&#x27;maximum_bandwidth_in_mbps&#x27;: 1500, &#x27;minimum_bandwidth_in_mbps&#x27;: 150}, &#x27;shape_name&#x27;: &#x27;100Mbps&#x27;, &#x27;ssl_cipher_suites&#x27;: {&#x27;ciphers&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;backend_sets&#x27;: {&#x27;backends&#x27;: [{&#x27;backup&#x27;: False, &#x27;drain&#x27;: False, &#x27;ip_address&#x27;: &#x27;10.0.0.3&#x27;, &#x27;name&#x27;: &#x27;10.0.0.3:8080&#x27;, &#x27;offline&#x27;: False, &#x27;port&#x27;: 8080, &#x27;weight&#x27;: 3}], &#x27;health_checker&#x27;: {&#x27;interval_in_millis&#x27;: 10000, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;response_body_regex&#x27;: &#x27;^((?!false).|\\s)*$&#x27;, &#x27;retries&#x27;: 3, &#x27;return_code&#x27;: 0, &#x27;timeout_in_millis&#x27;: 3000, &#x27;url_path&#x27;: &#x27;/healthcheck&#x27;}, &#x27;lb_cookie_session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False, &#x27;domain&#x27;: &#x27;example.com&#x27;, &#x27;is_http_only&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;max_age_in_seconds&#x27;: 3600, &#x27;path&#x27;: &#x27;/example&#x27;}, &#x27;name&#x27;: &#x27;example_backend_set&#x27;, &#x27;policy&#x27;: &#x27;LEAST_CONNECTIONS&#x27;, &#x27;session_persistence_configuration&#x27;: {&#x27;cookie_name&#x27;: &#x27;example_cookie&#x27;, &#x27;disable_fallback&#x27;: False}, &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;certificates&#x27;: {&#x27;ca_certificate&#x27;: &#x27;ca_certificate_example&#x27;, &#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;public_certificate&#x27;: &#x27;public_certificate_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;example_load_balancer&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostnames&#x27;: {&#x27;hostname&#x27;: &#x27;app.example.com&#x27;, &#x27;name&#x27;: &#x27;example_hostname_001&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;192.168.0.3&#x27;, &#x27;is_public&#x27;: True, &#x27;reserved_ip&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}], &#x27;is_private&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: {&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;routing_policy_name&#x27;: &#x27;example_routing_policy_name&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}, &#x27;network_security_group_ids&#x27;: [], &#x27;path_route_sets&#x27;: {&#x27;name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;path_routes&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;path&#x27;: &#x27;/example/video/123&#x27;, &#x27;path_match_type&#x27;: {&#x27;match_type&#x27;: &#x27;EXACT_MATCH&#x27;}}]}, &#x27;routing_policies&#x27;: {&#x27;condition_language_version&#x27;: &#x27;V1&#x27;, &#x27;name&#x27;: &#x27;example_routing_policy&#x27;, &#x27;rules&#x27;: [{&#x27;actions&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backendSetForImages&#x27;, &#x27;name&#x27;: &#x27;FORWARD_TO_BACKENDSET&#x27;}], &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;rule_sets&#x27;: {&#x27;items&#x27;: [{&#x27;action&#x27;: &#x27;ADD_HTTP_REQUEST_HEADER&#x27;, &#x27;allowed_methods&#x27;: [], &#x27;are_invalid_characters_allowed&#x27;: True, &#x27;conditions&#x27;: [{&#x27;attribute_name&#x27;: &#x27;SOURCE_IP_ADDRESS&#x27;, &#x27;attribute_value&#x27;: &#x27;ocid1.vcn.oc1.phx.unique_ID&#x27;, &#x27;operator&#x27;: &#x27;EXACT_MATCH&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;header&#x27;: &#x27;example_header_name&#x27;, &#x27;http_large_header_size_in_kb&#x27;: 56, &#x27;prefix&#x27;: &#x27;example_prefix_value&#x27;, &#x27;redirect_uri&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;port&#x27;: 8081, &#x27;protocol&#x27;: &#x27;HTTPS&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;}, &#x27;response_code&#x27;: 301, &#x27;status_code&#x27;: 56, &#x27;suffix&#x27;: &#x27;example_suffix_value&#x27;, &#x27;value&#x27;: &#x27;example_value&#x27;}], &#x27;name&#x27;: &#x27;example_rule_set&#x27;}, &#x27;shape_details&#x27;: {&#x27;maximum_bandwidth_in_mbps&#x27;: 1500, &#x27;minimum_bandwidth_in_mbps&#x27;: 150}, &#x27;shape_name&#x27;: &#x27;100Mbps&#x27;, &#x27;ssl_cipher_suites&#x27;: {&#x27;ciphers&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1664,6 +1664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
+                                            <div>Deprecated. Please use `routingPolicies` instead.</div>
                                             <div>The name of the set of path-based routing rules, <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/'>PathRouteSet</a>, applied to this listener&#x27;s traffic.</div>
                                             <div>Example: `example_path_route_set`</div>
                                         <br/>
@@ -1707,6 +1708,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/listeners/routing_policy_name"></div>
+                    <b>routing_policy_name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/listeners/routing_policy_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the routing policy applied to this listener&#x27;s traffic.</div>
+                                            <div>Example: `example_routing_policy_name`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_routing_policy_name</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2049,6 +2070,182 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies"></div>
+                    <b>routing_policies</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/condition_language_version"></div>
+                    <b>condition_language_version</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/condition_language_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The version of the language in which `condition` of `rules` are composed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">V1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unique name for this list of routing rules. Avoid entering confidential information.</div>
+                                            <div>Example: `example_routing_policy`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_routing_policy</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/rules"></div>
+                    <b>rules</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/rules" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The ordered list of routing rules.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/rules/actions"></div>
+                    <b>actions</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/rules/actions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of actions to be applied when conditions of the routing rule are met.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/rules/actions/backend_set_name"></div>
+                    <b>backend_set_name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/rules/actions/backend_set_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the backend set the listener will forward the traffic to.</div>
+                                            <div>Example: `backendSetForImages`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">backendSetForImages</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/rules/actions/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/rules/actions/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FORWARD_TO_BACKENDSET</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/rules/condition"></div>
+                    <b>condition</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/rules/condition" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A routing rule to evaluate defined conditions against the incoming HTTP request and perform an action.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-load_balancer/routing_policies/rules/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-load_balancer/routing_policies/rules/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A unique name for the routing policy rule. Avoid entering confidential information.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-load_balancer/rule_sets"></div>
                     <b>rule_sets</b>
                     <a class="ansibleOptionLink" href="#return-load_balancer/rule_sets" title="Permalink to this return value"></a>
@@ -2305,7 +2502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A string to prepend to the header value. The resulting header value must conform to RFC 7230.</div>
+                                            <div>A string to prepend to the header value. The resulting header value must conform to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_prefix_value`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -2530,7 +2727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A string to append to the header value. The resulting header value must conform to RFC 7230.</div>
+                                            <div>A string to append to the header value. The resulting header value must conform to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_suffix_value`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -2551,7 +2748,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A header value that conforms to RFC 7230.</div>
+                                            <div>A header value that conforms to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_value`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

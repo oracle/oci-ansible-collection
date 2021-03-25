@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_signed_data -- Manage a SignedData resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -397,7 +397,7 @@ Examples
     - name: Create signed_data
       oci_key_management_signed_data:
         message: message_example
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         signing_algorithm: SHA_224_RSA_PKCS_PSS
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

@@ -20,7 +20,7 @@ oracle.oci.oci_identity_user -- Manage an User resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -449,13 +449,13 @@ Examples
     
     - name: Create user
       oci_identity_user:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
-        description: John Smith
-        name: JohnSmith@example.com
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
+        description: "John Smith"
+        name: "JohnSmith@example.com"
 
     - name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_user:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
         name: JohnSmith@example.com
         description: John Smith
         email: email_example
@@ -466,16 +466,16 @@ Examples
       oci_identity_user:
         description: John Smith
         email: email_example
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete user
       oci_identity_user:
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_user:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6exampleuniqueID"
         name: JohnSmith@example.com
         state: absent
 

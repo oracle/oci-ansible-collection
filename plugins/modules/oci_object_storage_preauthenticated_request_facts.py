@@ -63,7 +63,7 @@ EXAMPLES = """
   oci_object_storage_preauthenticated_request_facts:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    par_id: ocid1.par.oc1..xxxxxxEXAMPLExxxxxx
+    par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -79,7 +79,7 @@ preauthenticated_requests:
                 - The unique identifier to use when directly addressing the pre-authenticated request.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The user-provided name of the pre-authenticated request.

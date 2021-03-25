@@ -95,7 +95,7 @@ EXAMPLES = """
 
 - name: Get a specific esxi_host
   oci_ocvp_esxi_host_facts:
-    esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -111,7 +111,7 @@ esxi_hosts:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A descriptive name for the ESXi host. Does not have to be unique, and it's changeable.
@@ -125,14 +125,14 @@ esxi_hosts:
                   ESXi host belongs to.
             returned: on success
             type: string
-            sample: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
                   contains the SDDC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compute_instance_id:
             description:
                 - In terms of implementation, an ESXi host is a Compute instance that
@@ -140,7 +140,7 @@ esxi_hosts:
                   is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of that Compute instance.
             returned: on success
             type: string
-            sample: ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the ESXi host was created, in the format defined by
@@ -179,85 +179,6 @@ esxi_hosts:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        items:
-            description:
-                - A list of ESXi hosts.
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - A descriptive name for the ESXi host. Does not have to be unique, and it's changeable.
-                          Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                sddc_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC that the
-                          ESXi host belongs to.
-                    returned: on success
-                    type: string
-                    sample: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
-                          contains the SDDC.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                compute_instance_id:
-                    description:
-                        - In terms of implementation, an ESXi host is a Compute instance that
-                          is configured with the chosen bundle of VMware software. The `computeInstanceId`
-                          is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of that Compute instance.
-                    returned: on success
-                    type: string
-                    sample: ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx
-                time_created:
-                    description:
-                        - The date and time the ESXi host was created, in the format defined by
-                          L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                        - "Example: `2016-08-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
-                time_updated:
-                    description:
-                        - The date and time the ESXi host was updated, in the format defined by
-                          L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                lifecycle_state:
-                    description:
-                        - The current state of the ESXi host.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                freeform_tags:
-                    description:
-                        - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                          predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -268,19 +189,7 @@ esxi_hosts:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "sddc_id": "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "compute_instance_id": "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx",
-            "time_created": "2016-08-25T21:10:29.600Z",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "CREATING",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }]
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

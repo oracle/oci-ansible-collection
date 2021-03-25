@@ -20,7 +20,7 @@ oracle.oci.oci_healthchecks_ping_monitor -- Manage a PingMonitor resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a PingMonitor resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a ping monitor. Vantage points will be automatically selected if not specified, and probes will be initiated from each vantage point to each of the targets at the frequency specified by `intervalInSeconds`.
+- This resource has the following action operations in the :ref:`oci_ping_monitor_actions <ansible_collections.oci_ping_monitor_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -501,30 +502,30 @@ Examples
     
     - name: Create ping_monitor
       oci_healthchecks_ping_monitor:
-        compartment_id: ocid1.tenancy.oc1...
+        compartment_id: "ocid1.tenancy.oc1..."
         targets:
-        - 192.0.2.0
-        protocol: TCP
-        display_name: testPing
+        - "192.0.2.0"
+        protocol: "TCP"
+        display_name: "testPing"
         interval_in_seconds: 300
 
     - name: Update ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_healthchecks_ping_monitor:
-        protocol: ICMP
+        protocol: "ICMP"
 
     - name: Update ping_monitor
       oci_healthchecks_ping_monitor:
-        protocol: ICMP
-        monitor_id: ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx
+        protocol: "ICMP"
+        monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete ping_monitor
       oci_healthchecks_ping_monitor:
-        monitor_id: ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx
+        monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete ping_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_healthchecks_ping_monitor:
-        compartment_id: ocid1.tenancy.oc1...
+        compartment_id: "ocid1.tenancy.oc1..."
         display_name: testPing
         state: absent
 

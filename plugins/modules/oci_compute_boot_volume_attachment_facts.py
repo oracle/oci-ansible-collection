@@ -61,11 +61,11 @@ EXAMPLES = """
 - name: List boot_volume_attachments
   oci_compute_boot_volume_attachment_facts:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific boot_volume_attachment
   oci_compute_boot_volume_attachment_facts:
-    boot_volume_attachment_id: ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_attachment_id: "ocid1.bootvolumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -88,13 +88,13 @@ boot_volume_attachments:
                 - The OCID of the boot volume.
             returned: on success
             type: string
-            sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it cannot be changed.
@@ -108,13 +108,13 @@ boot_volume_attachments:
                 - The OCID of the boot volume attachment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the boot volume is attached to.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the boot volume attachment.

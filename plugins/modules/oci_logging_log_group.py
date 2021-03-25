@@ -25,6 +25,7 @@ description:
     - This module allows the user to create, update and delete a LogGroup resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new log group with a unique display name. This call fails
       if the log group is already created with the same displayName in the compartment.
+    - "This resource has the following action operations in the M(oci_log_group_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -86,12 +87,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log_group
   oci_logging_log_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
 - name: Update log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -101,16 +102,16 @@ EXAMPLES = """
   oci_logging_log_group:
     display_name: display_name_example
     description: description_example
-    log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete log_group
   oci_logging_log_group:
-    log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+    log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -128,13 +129,13 @@ log_group:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,

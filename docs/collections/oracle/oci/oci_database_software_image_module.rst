@@ -20,7 +20,7 @@ oracle.oci.oci_database_software_image -- Manage a DatabaseSoftwareImage resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -513,27 +513,27 @@ Examples
     
     - name: Create database_software_image
       oci_database_software_image:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_version: database_version_example
         display_name: image2
         patch_set: patch_set_example
 
     - name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_software_image:
-        display_name: image2
+        display_name: "image2"
 
     - name: Update database_software_image
       oci_database_software_image:
-        database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete database_software_image
       oci_database_software_image:
-        database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_software_image:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: image2
         state: absent
 

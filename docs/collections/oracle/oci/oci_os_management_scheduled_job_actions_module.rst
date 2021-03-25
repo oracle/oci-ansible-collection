@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_scheduled_job_actions -- Perform actions on a Sched
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a ScheduledJob resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves a resource into a different compartment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=run_scheduled_job_now*, this will trigger an already created Scheduled Job to being executing immediately instead of waiting for its next regularly scheduled time.
 - For *action=skip_next_scheduled_job_execution*, this will force an already created Scheduled Job to skip its next regularly scheduled execution
 
@@ -84,7 +85,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>run_scheduled_job_now</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>run_scheduled_job_now</li>
                                                                                                                                                                                                 <li>skip_next_scheduled_job_execution</li>
                                                                                     </ul>
                                                                             </td>
@@ -170,6 +172,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment into which the resource should be moved.</div>
+                                            <div>Applicable only for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -270,14 +288,19 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action run_scheduled_job_now on scheduled_job
+    - name: Perform action change_compartment on scheduled_job
       oci_os_management_scheduled_job_actions:
         scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
+
+    - name: Perform action run_scheduled_job_now on scheduled_job
+      oci_os_management_scheduled_job_actions:
+        scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
         action: run_scheduled_job_now
 
     - name: Perform action skip_next_scheduled_job_execution on scheduled_job
       oci_os_management_scheduled_job_actions:
-        scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+        scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
         action: skip_next_scheduled_job_execution
 
 

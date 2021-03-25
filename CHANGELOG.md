@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.18.0] - 2021-03-25
+
+## Added
+
+- Support change compartment for all the supported services (except database)
+- Support for [Database groups](https://docs.oracle.com/en-us/iaas/database-management/doc/create-and-use-database-groups.html) in Database management service
+- Support for Routing Policies in Load Balancer Service
+- Support for Auto-Scale Configs in Big Data Service
+- Support for Log Analytics Log groups and entities
+- Support for File System Service Clones Feature
+- Support for enabling disabling message map flag on SCH Service
+- Support for SMS subscriptions through the Oracle Cloud Infrastructure Notifications service
+- Support for searching OCI resources in another tenancy
+- Support updating OCE instance usage type
+- Support for private clusters to the Container Engine for Kubernetes service
+- Modules `oci_opsi_database_insights_facts` and `oci_opsi_sql_searches_facts` in opsi service
+
+### Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+### Deprecated:
+- Module `oci_apigateway_waas_certificate_facts` is deprecated use `oci_apigateway_certificate_facts` instead
+- Module `oci_apigateway_waas_certificate` is deprecated use `oci_apigateway_certificate` instead
+
 ## [2.17.0] - 2021-03-11
 
 ### Added

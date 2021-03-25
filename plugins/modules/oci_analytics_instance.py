@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete an AnalyticsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new AnalyticsInstance in the specified compartment. The operation is long-running
       and creates a new WorkRequest.
-    - "This resource has the following action operations in the M(oci_analytics_instance_actions) module: change_analytics_instance_network_endpoint, scale,
-      start, stop."
+    - "This resource has the following action operations in the M(oci_analytics_instance_actions) module: change_compartment,
+      change_analytics_instance_network_endpoint, scale, start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -72,8 +72,8 @@ options:
                 required: true
             capacity_value:
                 description:
-                    - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                      number of CPUs, amount of memory or other resources allocated to the instance.
+                    - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                      number of CPUs, amount of memory or other resources allocated to the instance."
                 type: int
                 required: true
     license_type:
@@ -177,7 +177,7 @@ EXAMPLES = """
 - name: Create analytics_instance
   oci_analytics_instance:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     feature_set: SELF_SERVICE_ANALYTICS
     capacity:
       capacity_type: OLPU_COUNT
@@ -188,7 +188,7 @@ EXAMPLES = """
   oci_analytics_instance:
     name: name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     license_type: LICENSE_INCLUDED
     email_notification: email_notification_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -198,17 +198,17 @@ EXAMPLES = """
   oci_analytics_instance:
     description: description_example
     license_type: LICENSE_INCLUDED
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete analytics_instance
   oci_analytics_instance:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete analytics_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_analytics_instance:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -225,7 +225,7 @@ analytics_instance:
                 - The resource OCID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
@@ -243,7 +243,7 @@ analytics_instance:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of an instance.
@@ -270,8 +270,8 @@ analytics_instance:
                     sample: OLPU_COUNT
                 capacity_value:
                     description:
-                        - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                          number of CPUs, amount of memory or other resources allocated to the instance.
+                        - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                          number of CPUs, amount of memory or other resources allocated to the instance."
                     returned: on success
                     type: int
                     sample: 56
@@ -304,13 +304,13 @@ analytics_instance:
                         - The VCN OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The subnet OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 whitelisted_ips:
                     description:
                         - Source IP addresses or IP address ranges igress rules.
@@ -328,7 +328,7 @@ analytics_instance:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         whitelisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges igress rules.

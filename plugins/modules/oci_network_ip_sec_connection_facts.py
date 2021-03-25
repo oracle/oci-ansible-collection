@@ -54,11 +54,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List ip_sec_connections
   oci_network_ip_sec_connection_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific ip_sec_connection
   oci_network_ip_sec_connection_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -74,13 +74,13 @@ ip_sec_connections:
                 - The OCID of the compartment containing the IPSec connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
                 - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: string
-            sample: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -101,7 +101,7 @@ ip_sec_connections:
                 - The OCID of the DRG.
             returned: on success
             type: string
-            sample: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -116,7 +116,7 @@ ip_sec_connections:
                 - The IPSec connection's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The IPSec connection's current state.

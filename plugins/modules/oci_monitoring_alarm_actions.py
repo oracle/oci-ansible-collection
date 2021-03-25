@@ -23,6 +23,9 @@ module: oci_monitoring_alarm_actions
 short_description: Perform actions on an Alarm resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Alarm resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves an alarm into a different compartment within the same tenancy.
+      For information about moving resources between compartments, see L(Moving Resources Between
+      Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=remove_alarm_suppression), removes any existing suppression for the specified alarm.
       For important limits information, see L(Limits on
       Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
@@ -38,20 +41,32 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the alarm to.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the Alarm.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "remove_alarm_suppression"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on alarm
+  oci_monitoring_alarm_actions:
+    compartment_id: compartment_OCID
+    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_compartment
+
 - name: Perform action remove_alarm_suppression on alarm
   oci_monitoring_alarm_actions:
-    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+    alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove_alarm_suppression
 
 """
@@ -68,7 +83,7 @@ alarm:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the alarm. It does not have to be unique, and it's changeable.
@@ -83,14 +98,14 @@ alarm:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
                   being evaluated by the alarm.
             returned: on success
             type: string
-            sample: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id_in_subtree:
             description:
                 - When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can
@@ -315,6 +330,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.monitoring import MonitoringClient
+    from oci.monitoring.models import ChangeAlarmCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -324,6 +340,7 @@ except ImportError:
 class AlarmActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         remove_alarm_suppression
     """
 
@@ -340,6 +357,29 @@ class AlarmActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_alarm, alarm_id=self.module.params.get("alarm_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeAlarmCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_alarm_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                alarm_id=self.module.params.get("alarm_id"),
+                change_alarm_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def remove_alarm_suppression(self):
@@ -374,8 +414,11 @@ def main():
     module_args.update(
         dict(
             alarm_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             action=dict(
-                type="str", required=True, choices=["remove_alarm_suppression"]
+                type="str",
+                required=True,
+                choices=["change_compartment", "remove_alarm_suppression"],
             ),
         )
     )

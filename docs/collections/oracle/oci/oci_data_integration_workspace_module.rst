@@ -20,7 +20,7 @@ oracle.oci.oci_data_integration_workspace -- Manage a Workspace resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Workspace resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Data Integration workspace ready for performing data integration tasks.
-- This resource has the following action operations in the :ref:`oci_workspace_actions <ansible_collections.oci_workspace_actions_module>` module: start, stop.
+- This resource has the following action operations in the :ref:`oci_workspace_actions <ansible_collections.oci_workspace_actions_module>` module: change_compartment, start, stop.
 
 
 .. Aliases
@@ -543,7 +543,7 @@ Examples
     - name: Create workspace
       oci_data_integration_workspace:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_integration_workspace:
@@ -551,23 +551,23 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update workspace
       oci_data_integration_workspace:
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+        workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete workspace
       oci_data_integration_workspace:
-        workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+        workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete workspace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_integration_workspace:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

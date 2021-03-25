@@ -20,7 +20,7 @@ oracle.oci.oci_dns_domain_records -- Manage a DomainRecords resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -655,19 +655,19 @@ Examples
     - name: Update domain_records
       oci_dns_domain_records:
         update_items:
-        - domain: www.example.com
-          record_hash: 8f356bd7e9c2007c5c898f441fb663e9
+        - domain: "www.example.com"
+          record_hash: "8f356bd7e9c2007c5c898f441fb663e9"
           is_protected: false
-          rdata: v=spf1 include:example.net -all
-          rrset_version: 9
-          rtype: TXT
+          rdata: "v=spf1 include:example.net -all"
+          rrset_version: "9"
+          rtype: "TXT"
           ttl: 30
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
-        domain: domain_example
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
+        domain: "domain_example"
 
     - name: Delete domain_records
       oci_dns_domain_records:
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         domain: domain_example
         state: absent
 

@@ -47,10 +47,11 @@ description:
       Management Service API.
     - All Oracle Cloud Infrastructure Services resources, including
       mount targets, get an Oracle-assigned, unique ID called an
-      Oracle Cloud Identifier (OCID).  When you create a resource,
-      you can find its OCID in the response. You can also retrieve a
-      resource's OCID by using a List API operation on that resource
+      Oracle Cloud Identifier (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+      When you create a resource, you can find its OCID in the response.
+      You can also retrieve a resource's OCID by using a List API operation on that resource
       type, or by viewing the resource in the Console.
+    - "This resource has the following action operations in the M(oci_mount_target_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -64,7 +65,7 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment in which to create the mount target.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to create the mount target.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -100,7 +101,7 @@ options:
         type: str
     subnet_id:
         description:
-            - The OCID of the subnet in which to create the mount target.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet in which to create the mount target.
             - Required for create using I(state=present).
         type: str
     nsg_ids:
@@ -129,7 +130,7 @@ options:
         type: dict
     mount_target_id:
         description:
-            - The OCID of the mount target.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -149,28 +150,28 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create mount_target
   oci_file_storage_mount_target:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
-    display_name: mount-target-5
-    subnet_id: ocid1.subnet.oc1.phx.exampleale662rd2rcvbqi5dlerqvfcobnjs5h4h7ssosxwo4fu7mjvp2ia
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    display_name: "mount-target-5"
+    subnet_id: "ocid1.subnet.oc1.phx.exampleale662rd2rcvbqi5dlerqvfcobnjs5h4h7ssosxwo4fu7mjvp2ia"
 
 - name: Update mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_mount_target:
-    display_name: mount-target-1
+    display_name: "mount-target-1"
 
 - name: Update mount_target
   oci_file_storage_mount_target:
-    mount_target_id: ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete mount_target
   oci_file_storage_mount_target:
-    mount_target_id: ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_mount_target:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
+    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
     display_name: mount-target-5
     state: absent
 
@@ -193,10 +194,10 @@ mount_target:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment that contains the mount target.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the mount target.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -207,18 +208,18 @@ mount_target:
             sample: My mount target
         export_set_id:
             description:
-                - The OCID of the associated export set. Controls what file
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated export set. Controls what file
                   systems will be exported through Network File System (NFS) protocol on this
                   mount target.
             returned: on success
             type: string
-            sample: ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The OCID of the mount target.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current 'lifecycleState'.
@@ -239,10 +240,10 @@ mount_target:
             sample: []
         subnet_id:
             description:
-                - The OCID of the subnet the mount target is in.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the mount target is in.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount

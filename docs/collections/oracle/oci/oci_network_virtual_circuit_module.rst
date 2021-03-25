@@ -20,7 +20,7 @@ oracle.oci.oci_network_virtual_circuit -- Manage a VirtualCircuit resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,7 +47,7 @@ Synopsis
 - For the purposes of access control, you must provide the OCID of the compartment where you want the virtual circuit to reside. If you're not sure which compartment to use, put the virtual circuit in the same compartment with the DRG it's using. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the virtual circuit. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - **Important:** When creating a virtual circuit, you specify a DRG for the traffic to flow through. Make sure you attach the DRG to your VCN and confirm the VCN's routing sends traffic to the DRG. Otherwise traffic will not flow. For more information, see `Route Tables <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm>`_.
-- This resource has the following action operations in the :ref:`oci_virtual_circuit_actions <ansible_collections.oci_virtual_circuit_actions_module>` module: bulk_add_virtual_circuit_public_prefixes, bulk_delete_virtual_circuit_public_prefixes.
+- This resource has the following action operations in the :ref:`oci_virtual_circuit_actions <ansible_collections.oci_virtual_circuit_actions_module>` module: bulk_add_virtual_circuit_public_prefixes, bulk_delete_virtual_circuit_public_prefixes, change_compartment.
 
 
 .. Aliases
@@ -736,19 +736,19 @@ Examples
     
     - name: Create virtual_circuit
       oci_network_virtual_circuit:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type: PUBLIC
 
     - name: Update virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_virtual_circuit:
         bandwidth_shape_name: 10 Gbps
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         customer_bgp_asn: 56
         customer_asn: 12345
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+        gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name: provider_service_key_name_example
         provider_state: ACTIVE
         reference_comment: reference_comment_example
@@ -756,16 +756,16 @@ Examples
     - name: Update virtual_circuit
       oci_network_virtual_circuit:
         bandwidth_shape_name: 10 Gbps
-        virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete virtual_circuit
       oci_network_virtual_circuit:
-        virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_virtual_circuit:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

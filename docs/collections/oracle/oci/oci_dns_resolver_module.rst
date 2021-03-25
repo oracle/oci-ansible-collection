@@ -20,7 +20,7 @@ oracle.oci.oci_dns_resolver -- Manage a Resolver resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to update a Resolver resource in Oracle Cloud Infrastructure
+- This resource has the following action operations in the :ref:`oci_resolver_actions <ansible_collections.oci_resolver_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -552,17 +553,17 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         attached_views:
-        - view_id: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+        - view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         rules:
         - action: FORWARD
           source_endpoint_name: source_endpoint_name_example
         if_unmodified_since: if_unmodified_since_example
         scope: GLOBAL
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update resolver
       oci_dns_resolver:
-        resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+        resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
 

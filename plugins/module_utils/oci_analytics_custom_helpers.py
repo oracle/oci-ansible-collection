@@ -40,6 +40,10 @@ class AnalyticsInstanceHelperCustom:
             "idcs_access_token",
         ]
 
+    # creation of a analytics_instance is a long running process. So, increasing the timeout
+    def get_default_module_wait_timeout(self):
+        return 3600
+
 
 class AnalyticsInstanceActionsHelperCustom:
     ACTION_SCALE_ANALYTICS_INSTANCE = "scale"

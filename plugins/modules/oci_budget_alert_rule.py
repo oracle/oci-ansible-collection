@@ -117,14 +117,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create budget_alert_rule
   oci_budget_alert_rule:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     type: ACTUAL
     threshold: 10
     threshold_type: PERCENTAGE
 
 - name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     type: ACTUAL
@@ -137,19 +137,19 @@ EXAMPLES = """
 
 - name: Update budget_alert_rule
   oci_budget_alert_rule:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    alert_rule_id: ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx
+    alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete budget_alert_rule
   oci_budget_alert_rule:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
-    alert_rule_id: ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+    alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget_alert_rule:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -167,13 +167,13 @@ budget_alert_rule:
                 - The OCID of the alert rule
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         budget_id:
             description:
                 - The OCID of the budget
             returned: on success
             type: string
-            sample: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the alert rule.

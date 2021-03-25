@@ -20,7 +20,7 @@ oracle.oci.oci_optimizer_enrollment_status -- Manage an EnrollmentStatus resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -323,7 +323,7 @@ Examples
     
     - name: Update enrollment_status
       oci_optimizer_enrollment_status:
-        enrollment_status_id: ocid1.enrollmentstatus.oc1..xxxxxxEXAMPLExxxxxx
+        enrollment_status_id: "ocid1.enrollmentstatus.oc1..xxxxxxEXAMPLExxxxxx"
         status: ACTIVE
 
 

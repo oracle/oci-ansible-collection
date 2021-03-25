@@ -84,11 +84,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List indexes
   oci_nosql_index_facts:
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific index
   oci_nosql_index_facts:
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     index_name: index_name_example
 
 """
@@ -111,7 +111,7 @@ indexes:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         table_name:
             description:
                 - The name of the table to which this index belongs.
@@ -123,7 +123,7 @@ indexes:
                 - the OCID of the table to which this index belongs.
             returned: on success
             type: string
-            sample: ocid1.table.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx"
         keys:
             description:
                 - A set of keys for a secondary index.
@@ -163,57 +163,6 @@ indexes:
             returned: on success
             type: string
             sample: lifecycle_details_example
-        items:
-            description:
-                - A page of IndexSummary objects.
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - Index name.
-                    returned: on success
-                    type: string
-                    sample: name_example
-                keys:
-                    description:
-                        - A set of keys for a secondary index.
-                    returned: on success
-                    type: complex
-                    contains:
-                        column_name:
-                            description:
-                                - The name of a column to be included as an index key.
-                            returned: on success
-                            type: string
-                            sample: column_name_example
-                        json_path:
-                            description:
-                                - If the specified column is of type JSON, jsonPath contains
-                                  a dotted path indicating the field within the JSON object
-                                  that will be the index key.
-                            returned: on success
-                            type: string
-                            sample: json_path_example
-                        json_field_type:
-                            description:
-                                - If the specified column is of type JSON, jsonFieldType contains
-                                  the type of the field indicated by jsonPath.
-                            returned: on success
-                            type: string
-                            sample: json_field_type_example
-                lifecycle_state:
-                    description:
-                        - The state of an index.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                lifecycle_details:
-                    description:
-                        - A message describing the current state in more detail.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_details_example
     sample: [{
         "name": "name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -225,17 +174,7 @@ indexes:
             "json_field_type": "json_field_type_example"
         }],
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example",
-        "items": [{
-            "name": "name_example",
-            "keys": [{
-                "column_name": "column_name_example",
-                "json_path": "json_path_example",
-                "json_field_type": "json_field_type_example"
-            }],
-            "lifecycle_state": "lifecycle_state_example",
-            "lifecycle_details": "lifecycle_details_example"
-        }]
+        "lifecycle_details": "lifecycle_details_example"
     }]
 """
 

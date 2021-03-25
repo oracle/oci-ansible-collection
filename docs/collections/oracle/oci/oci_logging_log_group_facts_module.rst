@@ -20,7 +20,7 @@ oracle.oci.oci_logging_log_group_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -343,11 +343,11 @@ Examples
     
     - name: List log_groups
       oci_logging_log_group_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific log_group
       oci_logging_log_group_facts:
-        log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

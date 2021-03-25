@@ -78,11 +78,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List compute_image_capability_schemas
   oci_compute_image_capability_schema_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific compute_image_capability_schema
   oci_compute_image_capability_schema_facts:
-    compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -98,19 +98,19 @@ compute_image_capability_schemas:
                 - The id of the compute global image capability schema version
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the resource.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compute_global_image_capability_schema_id:
             description:
                 - The ocid of the compute global image capability schema
             returned: on success
             type: string
-            sample: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         compute_global_image_capability_schema_version_name:
             description:
                 - The name of the compute global image capability schema version
@@ -122,7 +122,7 @@ compute_image_capability_schemas:
                 - The OCID of the image associated with this compute image capability schema
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a

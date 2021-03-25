@@ -24,7 +24,7 @@ short_description: Manage a ByoipRange resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ByoipRange resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a subrange of the BYOIP CIDR block.
-    - "This resource has the following action operations in the M(oci_byoip_range_actions) module: advertise, validate, withdraw."
+    - "This resource has the following action operations in the M(oci_byoip_range_actions) module: advertise, change_compartment, validate, withdraw."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -88,11 +88,11 @@ EXAMPLES = """
 - name: Create byoip_range
   oci_network_byoip_range:
     cidr_block: 10.0.1.0/24
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_byoip_range:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -101,16 +101,16 @@ EXAMPLES = """
   oci_network_byoip_range:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete byoip_range
   oci_network_byoip_range:
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete byoip_range using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_byoip_range:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -134,7 +134,7 @@ byoip_range:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -164,7 +164,7 @@ byoip_range:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The `ByoipRange` resource's current status.

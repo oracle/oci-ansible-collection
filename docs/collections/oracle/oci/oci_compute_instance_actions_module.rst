@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_actions -- Perform actions on an Instance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on an Instance resource in Oracle Cloud Infrastructure
+- Moves an instance into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
+- When you move an instance to a different compartment, associated resources such as boot volumes and VNICs are not moved.
 - Performs one of the following power actions on the specified instance:
 - - **START** - Powers on the instance.
 - - **STOP** - Powers off the instance.
@@ -90,7 +92,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>stop</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>stop</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>softreset</li>
                                                                                                                                                                                                 <li>reset</li>
@@ -99,7 +102,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The action to perform on the instance.</div>
+                                            <div>The action to perform on the Instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -180,6 +183,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the instance to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -314,9 +333,15 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on instance
+      oci_compute_instance_actions:
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
+
     - name: Perform action stop on instance
       oci_compute_instance_actions:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

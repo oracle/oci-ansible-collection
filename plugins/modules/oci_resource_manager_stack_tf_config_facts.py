@@ -46,7 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific stack_tf_config
   oci_resource_manager_stack_tf_config_facts:
-    stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
     dest: /usr/local/myfile.zip
 
 """

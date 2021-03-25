@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1089,14 +1089,14 @@ Examples
     
     - name: Create db_home
       oci_database_db_home:
-        db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
-        display_name: createdDbHome
-        source: NONE
-        db_version: 12.1.0.2
+        db_system_id: "ocid1.dbsystem.oc1.phx.unique_ID"
+        display_name: "createdDbHome"
+        source: "NONE"
+        db_version: "12.1.0.2"
         database:
-          admin_password: password
-          db_name: myTestDb
-          db_unique_name: myTestDb_phx1cs
+          admin_password: "password"
+          db_name: "myTestDb"
+          db_unique_name: "myTestDb_phx1cs"
           db_backup_config:
             recovery_window_in_days: 30
             auto_backup_enabled: true
@@ -1104,21 +1104,21 @@ Examples
     - name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_home:
         display_name: createdDbHome
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update db_home
       oci_database_db_home:
-        db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+        db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete db_home
       oci_database_db_home:
-        db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+        db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_home:
         display_name: createdDbHome
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

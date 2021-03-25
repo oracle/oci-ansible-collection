@@ -53,7 +53,7 @@ EXAMPLES = """
 
 - name: Get a specific cpe_device_shape
   oci_network_cpe_device_shape_facts:
-    cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -70,7 +70,7 @@ cpe_device_shapes:
                   This value uniquely identifies the type of CPE device.
             returned: on success
             type: string
-            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_device_info:
             description:
                 - ""
@@ -138,7 +138,7 @@ cpe_device_shapes:
                   This value uniquely identifies the type of CPE device.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
         "cpe_device_info": {

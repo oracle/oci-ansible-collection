@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List dhcp_options
   oci_network_dhcp_options_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific dhcp_options
   oci_network_dhcp_options_facts:
-    dhcp_id: ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx
+    dhcp_id: "ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -108,7 +108,7 @@ dhcp_options:
                 - The OCID of the compartment containing the set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -138,7 +138,7 @@ dhcp_options:
                 - Oracle ID (OCID) for the set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the set of DHCP options.
@@ -212,7 +212,7 @@ dhcp_options:
                 - The OCID of the VCN the set of DHCP options belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

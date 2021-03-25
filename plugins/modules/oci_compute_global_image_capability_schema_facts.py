@@ -70,11 +70,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List compute_global_image_capability_schemas
   oci_compute_global_image_capability_schema_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific compute_global_image_capability_schema
   oci_compute_global_image_capability_schema_facts:
-    compute_global_image_capability_schema_id: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,13 +90,13 @@ compute_global_image_capability_schemas:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the resource.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_version_name:
             description:
                 - The name of the global capabilities version resource that is considered the current version.

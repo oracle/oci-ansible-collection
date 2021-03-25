@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List idp_group_mappings
   oci_identity_idp_group_mapping_facts:
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific idp_group_mapping
   oci_identity_idp_group_mapping_facts:
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
-    mapping_id: ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
+    mapping_id: "ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,13 +66,13 @@ idp_group_mappings:
                 - The OCID of the `IdpGroupMapping`.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         idp_id:
             description:
                 - The OCID of the `IdentityProvider` this mapping belongs to.
             returned: on success
             type: string
-            sample: ocid1.idp.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.idp.oc1..xxxxxxEXAMPLExxxxxx"
         idp_group_name:
             description:
                 - The name of the IdP group that is mapped to the IAM Service group.
@@ -84,13 +84,13 @@ idp_group_mappings:
                 - The OCID of the IAM Service group that is mapped to the IdP group.
             returned: on success
             type: string
-            sample: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the `IdentityProvider`.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the mapping was created, in the format defined by RFC3339.

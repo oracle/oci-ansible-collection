@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific policy_config
   oci_waas_policy_config_facts:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -55,7 +55,7 @@ policy_config:
                 - The OCID of the SSL certificate to use if HTTPS is supported.
             returned: on success
             type: string
-            sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         is_https_enabled:
             description:
                 - Enable or disable HTTPS support. If true, a `certificateId` is required. If unspecified, defaults to `false`.

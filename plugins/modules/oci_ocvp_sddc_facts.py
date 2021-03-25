@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List sddcs
   oci_ocvp_sddc_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific sddc
   oci_ocvp_sddc_facts:
-    sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -108,7 +108,7 @@ sddcs:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compute_availability_domain:
             description:
                 - The availability domain the ESXi hosts are running in.
@@ -157,7 +157,7 @@ sddcs:
                   contains the SDDC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         esxi_hosts_count:
             description:
                 - The number of ESXi hosts in the SDDC.
@@ -185,7 +185,7 @@ sddcs:
                   Core Services API.
             returned: on success
             type: string
-            sample: ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_manager_private_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
@@ -193,7 +193,7 @@ sddcs:
                   Core Services API.
             returned: on success
             type: string
-            sample: ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         vcenter_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. Make sure
@@ -260,14 +260,14 @@ sddcs:
                   For information about `PrivateIp` objects, see the Core Services API.
             returned: on success
             type: string
-            sample: ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the management subnet used
                   to provision the SDDC.
             returned: on success
             type: string
-            sample: ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         vsphere_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -283,7 +283,7 @@ sddcs:
                   `vsphereVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
         vmotion_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -299,7 +299,7 @@ sddcs:
                   `vmotionVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
         vsan_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -315,7 +315,7 @@ sddcs:
                   `vsanVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_v_tep_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -331,7 +331,7 @@ sddcs:
                   `nsxVTepVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_v_tep_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -347,7 +347,7 @@ sddcs:
                   `nsxEdgeVTepVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink1_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -363,7 +363,7 @@ sddcs:
                   `nsxEdgeUplink1VlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink2_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -379,13 +379,13 @@ sddcs:
                   `nsxEdgeUplink2VlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_private_ip_id:
             description:
                 - HCX Private IP
             returned: on success
             type: string
-            sample: ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_fqdn:
             description:
                 - HCX Fully Qualified Domain Name
@@ -403,7 +403,7 @@ sddcs:
                 - HCX vlan id
             returned: on success
             type: string
-            sample: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         is_hcx_enabled:
             description:
                 - HCX enabled or not
@@ -454,129 +454,6 @@ sddcs:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        items:
-            description:
-                - A list of SDDCs.
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
-                          contains the SDDC.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                compute_availability_domain:
-                    description:
-                        - The availability domain that the SDDC's ESXi hosts are running in.
-                    returned: on success
-                    type: string
-                    sample: compute_availability_domain_example
-                display_name:
-                    description:
-                        - A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
-                          whitespaces, dashes and underscores.
-                          Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                vmware_software_version:
-                    description:
-                        - In general, this is a specific version of bundled VMware software supported by
-                          Oracle Cloud VMware Solution (see
-                          L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-
-                          us/iaas/api/#/en/ocvs/20200501/SupportedVmwareSoftwareVersionSummary/
-                          ListSupportedVmwareSoftwareVersions)).
-                        - "This attribute is not guaranteed to reflect the version of
-                          software currently installed on the ESXi hosts in the SDDC. The purpose
-                          of this attribute is to show the version of software that the Oracle
-                          Cloud VMware Solution will install on any new ESXi hosts that you *add to this
-                          SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
-                        - Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer
-                          version of bundled VMware software supported by the Oracle Cloud VMware Solution, you
-                          should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
-                          `vmwareSoftwareVersion` with that new version.
-                    returned: on success
-                    type: string
-                    sample: vmware_software_version_example
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
-                          contains the SDDC.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                esxi_hosts_count:
-                    description:
-                        - The number of ESXi hosts in the SDDC.
-                    returned: on success
-                    type: int
-                    sample: 56
-                hcx_fqdn:
-                    description:
-                        - HCX Fully Qualified Domain Name
-                    returned: on success
-                    type: string
-                    sample: hcx_fqdn_example
-                is_hcx_enabled:
-                    description:
-                        - HCX enabled or not
-                    returned: on success
-                    type: bool
-                    sample: true
-                vcenter_fqdn:
-                    description:
-                        - FQDN for vCenter
-                        - "Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
-                    returned: on success
-                    type: string
-                    sample: vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com
-                nsx_manager_fqdn:
-                    description:
-                        - FQDN for NSX Manager
-                        - "Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
-                    returned: on success
-                    type: string
-                    sample: nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com
-                time_created:
-                    description:
-                        - The date and time the SDDC was created, in the format defined by
-                          L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                        - "Example: `2016-08-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
-                time_updated:
-                    description:
-                        - The date and time the SDDC was updated, in the format defined by
-                          L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                lifecycle_state:
-                    description:
-                        - The current state of the SDDC.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                freeform_tags:
-                    description:
-                        - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                          predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_availability_domain": "Uocm:PHX-AD-1",
@@ -615,24 +492,7 @@ sddcs:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "compute_availability_domain": "compute_availability_domain_example",
-            "display_name": "display_name_example",
-            "vmware_software_version": "vmware_software_version_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "esxi_hosts_count": 56,
-            "hcx_fqdn": "hcx_fqdn_example",
-            "is_hcx_enabled": true,
-            "vcenter_fqdn": "vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
-            "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
-            "time_created": "2016-08-25T21:10:29.600Z",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "CREATING",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }]
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List route_tables
   oci_network_route_table_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific route_table
   oci_network_route_table_facts:
-    rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -108,7 +108,7 @@ route_tables:
                 - The OCID of the compartment containing the route table.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -138,7 +138,7 @@ route_tables:
                 - The route table's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The route table's current state.
@@ -190,7 +190,7 @@ route_tables:
                           L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
                 description:
                     description:
                         - An optional description of your choice for the rule.
@@ -209,7 +209,7 @@ route_tables:
                 - The OCID of the VCN the route table list belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

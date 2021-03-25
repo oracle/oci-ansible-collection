@@ -67,7 +67,7 @@ EXAMPLES = """
 - name: Update maintenance_run
   oci_database_maintenance_run:
     is_enabled: false
-    maintenance_run_id: ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+    maintenance_run_id: "ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -83,13 +83,13 @@ maintenance_run:
                 - The OCID of the maintenance run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the maintenance run.
@@ -143,7 +143,7 @@ maintenance_run:
                 - The ID of the target resource on which the maintenance run occurs.
             returned: on success
             type: string
-            sample: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_type:
             description:
                 - Maintenance type.
@@ -157,7 +157,7 @@ maintenance_run:
                   was released October 30, 2020.
             returned: on success
             type: string
-            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_subtype:
             description:
                 - Maintenance sub-type.
@@ -170,7 +170,7 @@ maintenance_run:
                   association's peer container database.
             returned: on success
             type: string
-            sample: ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

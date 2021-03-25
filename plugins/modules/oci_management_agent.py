@@ -83,22 +83,22 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update management_agent
   oci_management_agent:
-    management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     is_agent_auto_upgradable: true
 
 - name: Delete management_agent
   oci_management_agent:
-    management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -115,13 +115,13 @@ management_agent:
                 - agent identifier
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         install_key_id:
             description:
                 - agent install key identifier
             returned: on success
             type: string
-            sample: ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Name
@@ -175,7 +175,7 @@ management_agent:
                         - Plugin Id
                     returned: on success
                     type: string
-                    sample: ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx"
                 plugin_name:
                     description:
                         - Management Agent Plugin Name
@@ -199,7 +199,7 @@ management_agent:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
                 - true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.

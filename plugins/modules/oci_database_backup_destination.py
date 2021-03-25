@@ -155,14 +155,14 @@ EXAMPLES = """
 - name: Create backup_destination
   oci_database_backup_destination:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: RECOVERY_APPLIANCE
     connection_string: connection_string_example
 
 - name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup_destination:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     local_mount_point_path: local_mount_point_path_example
@@ -174,17 +174,17 @@ EXAMPLES = """
   oci_database_backup_destination:
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+    backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete backup_destination
   oci_database_backup_destination:
-    backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+    backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup_destination:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -201,7 +201,7 @@ backup_destination:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name of the backup destination.
@@ -213,7 +213,7 @@ backup_destination:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - Type of the backup destination.
@@ -231,7 +231,7 @@ backup_destination:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The display name of the database that is associated with the backup destination.

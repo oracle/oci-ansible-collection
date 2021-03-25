@@ -33,6 +33,7 @@ description:
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the DRG, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_drg_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -88,12 +89,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg
   oci_network_drg:
-    display_name: MyDrg
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    display_name: "MyDrg"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDrg
     freeform_tags: {'Department': 'Finance'}
@@ -102,16 +103,16 @@ EXAMPLES = """
   oci_network_drg:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDrg
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete drg
   oci_network_drg:
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyDrg
     state: absent
 
@@ -129,7 +130,7 @@ drg:
                 - The OCID of the compartment containing the DRG.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -159,7 +160,7 @@ drg:
                 - The DRG's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The DRG's current state.

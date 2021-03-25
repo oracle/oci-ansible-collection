@@ -73,11 +73,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List applications
   oci_data_flow_application_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific application
   oci_data_flow_application_facts:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -130,7 +130,7 @@ applications:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -183,7 +183,7 @@ applications:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -214,7 +214,7 @@ applications:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -252,7 +252,7 @@ applications:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version:
             description:
                 - The Spark version utilized to run the application.

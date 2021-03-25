@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn_actions -- Perform actions on a Vcn resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
 - For *action=add_vcn_cidr*, adds a CIDR block to a VCN. The CIDR block you add: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
+- For *action=change_compartment*, moves a VCN into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=modify_vcn_cidr*, updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. - Must include IP addresses from the original CIDR block that are used in the VCN's existing route rules. - No IP address in an existing subnet should be outside of the new CIDR block range. **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update.
 - For *action=remove_vcn_cidr*, removes a specified CIDR block from a VCN. **Notes:** - You cannot remove a CIDR block if an IP address in its range is in use. - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 
@@ -86,6 +87,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>add_vcn_cidr</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>modify_vcn_cidr</li>
                                                                                                                                                                                                 <li>remove_vcn_cidr</li>
                                                                                     </ul>
@@ -188,6 +190,22 @@ Parameters
                                                                 <td>
                                             <div>The CIDR block to add.</div>
                                             <div>Required for <em>action=add_vcn_cidr</em>, <em>action=remove_vcn_cidr</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the VCN to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -356,20 +374,26 @@ Examples
     
     - name: Perform action add_vcn_cidr on vcn
       oci_network_vcn_actions:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: cidr_block_example
         action: add_vcn_cidr
 
+    - name: Perform action change_compartment on vcn
+      oci_network_vcn_actions:
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action modify_vcn_cidr on vcn
       oci_network_vcn_actions:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         original_cidr_block: original_cidr_block_example
         new_cidr_block: new_cidr_block_example
         action: modify_vcn_cidr
 
     - name: Perform action remove_vcn_cidr on vcn
       oci_network_vcn_actions:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: cidr_block_example
         action: remove_vcn_cidr
 
