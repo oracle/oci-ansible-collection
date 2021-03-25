@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool_load_balancer_attachment_facts -
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -267,8 +267,8 @@ Examples
     
     - name: Get a specific instance_pool_load_balancer_attachment
       oci_compute_management_instance_pool_load_balancer_attachment_facts:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
-        instance_pool_load_balancer_attachment_id: ocid1.instancepoolloadbalancerattachment.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_pool_load_balancer_attachment_id: "ocid1.instancepoolloadbalancerattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

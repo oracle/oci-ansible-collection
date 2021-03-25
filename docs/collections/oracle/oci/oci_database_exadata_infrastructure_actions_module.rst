@@ -20,7 +20,7 @@ oracle.oci.oci_database_exadata_infrastructure_actions -- Perform actions on an 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -337,12 +337,12 @@ Examples
     
     - name: Perform action activate on exadata_infrastructure
       oci_database_exadata_infrastructure_actions:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         action: activate
 
     - name: Perform action download_exadata_infrastructure_config_file on exadata_infrastructure
       oci_database_exadata_infrastructure_actions:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         action: download_exadata_infrastructure_config_file
 
 

@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List network_sources
   oci_identity_network_sources_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific network_sources
   oci_identity_network_sources_facts:
-    network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+    network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,13 +102,13 @@ network_sources:
                 - The OCID of the network source.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the network source. The tenancy is the root compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the network source during creation. The name must be unique across
@@ -140,7 +140,7 @@ network_sources:
                         - ""
                     returned: on success
                     type: string
-                    sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_ranges:
                     description:
                         - ""

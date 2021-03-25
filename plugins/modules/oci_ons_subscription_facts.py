@@ -51,11 +51,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List subscriptions
   oci_ons_subscription_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific subscription
   oci_ons_subscription_facts:
-    subscription_id: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+    subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -71,17 +71,25 @@ subscriptions:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         topic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
             returned: on success
             type: string
-            sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         protocol:
             description:
                 - The protocol used for the subscription.
-                  For information about subscription protocols, see
+                - "Allowed values:
+                    * `CUSTOM_HTTPS`
+                    * `EMAIL`
+                    * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
+                    * `ORACLE_FUNCTIONS`
+                    * `PAGERDUTY`
+                    * `SLACK`
+                    * `SMS`"
+                - For information about subscription protocols, see
                   L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             returned: on success
             type: string
@@ -105,7 +113,7 @@ subscriptions:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_time:
             description:
                 - The time when this suscription was created.

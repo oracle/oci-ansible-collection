@@ -54,11 +54,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List tag_defaults
   oci_identity_tag_default_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific tag_default
   oci_identity_tag_default_facts:
-    tag_default_id: ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx
+    tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -74,26 +74,26 @@ tag_defaults:
                 - The OCID of the tag default.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment. The tag default applies to all new resources that get created in the
                   compartment. Resources that existed before the tag default was created are not tagged.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the tag namespace that contains the tag definition.
             returned: on success
             type: string
-            sample: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_definition_id:
             description:
                 - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             returned: on success
             type: string
-            sample: ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx"
         tag_definition_name:
             description:
                 - The name used in the tag definition. This field is informational in the context of the tag default.

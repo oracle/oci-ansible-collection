@@ -70,11 +70,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List templates
   oci_resource_manager_template_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific template
   oci_resource_manager_template_facts:
-    template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+    template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,19 +90,19 @@ templates:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the template.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this template.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
             returned: on success
             type: string
-            sample: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the template.

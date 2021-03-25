@@ -40,7 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List cross_connect_port_speed_shapes
   oci_network_cross_connect_port_speed_shape_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

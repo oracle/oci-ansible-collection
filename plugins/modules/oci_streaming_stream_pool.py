@@ -26,6 +26,7 @@ description:
     - For I(state=present), starts the provisioning of a new stream pool.
       To track the progress of the provisioning, you can periodically call GetStreamPool.
       In the response, the `lifecycleState` parameter of the object tells you its current state.
+    - "This resource has the following action operations in the M(oci_stream_pool_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -139,8 +140,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create stream_pool
   oci_streaming_stream_pool:
-    compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
-    name: MyStreamPool
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: "MyStreamPool"
 
 - name: Update stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_stream_pool:
@@ -151,16 +152,16 @@ EXAMPLES = """
 
 - name: Update stream_pool
   oci_streaming_stream_pool:
-    stream_pool_id: ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete stream_pool
   oci_streaming_stream_pool:
-    stream_pool_id: ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_stream_pool:
-    compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
     name: MyStreamPool
     state: absent
 
@@ -184,7 +185,7 @@ stream_pool:
                 - Compartment OCID that the pool belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa
+            sample: "ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa"
         name:
             description:
                 - The name of the stream pool.
@@ -251,7 +252,7 @@ stream_pool:
                         - Custom Encryption Key (Master Key) ocid.
                     returned: on success
                     type: string
-                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 key_state:
                     description:
                         - Life cycle State of the custom key

@@ -20,7 +20,7 @@ oracle.oci.oci_compute_dedicated_vm_host_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -380,11 +380,11 @@ Examples
     
     - name: List dedicated_vm_hosts
       oci_compute_dedicated_vm_host_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific dedicated_vm_host
       oci_compute_dedicated_vm_host_facts:
-        dedicated_vm_host_id: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+        dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_logging_log_group -- Manage a LogGroup resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a LogGroup resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new log group with a unique display name. This call fails if the log group is already created with the same displayName in the compartment.
+- This resource has the following action operations in the :ref:`oci_log_group_actions <ansible_collections.oci_log_group_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -429,12 +430,12 @@ Examples
     
     - name: Create log_group
       oci_logging_log_group:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
     - name: Update log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log_group:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -444,16 +445,16 @@ Examples
       oci_logging_log_group:
         display_name: display_name_example
         description: description_example
-        log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete log_group
       oci_logging_log_group:
-        log_group_id: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log_group:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

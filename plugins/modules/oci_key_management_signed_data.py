@@ -93,7 +93,7 @@ EXAMPLES = """
 - name: Create signed_data
   oci_key_management_signed_data:
     message: message_example
-    key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     signing_algorithm: SHA_224_RSA_PKCS_PSS
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
@@ -111,13 +111,13 @@ signed_data:
                 - The OCID of the key used to sign the message
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id:
             description:
                 - The OCID of the keyVersion used to sign the message
             returned: on success
             type: string
-            sample: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         signature:
             description:
                 - The Base64-encoded binary data object denoting the cryptographic signature that was generated for the message or message digest.

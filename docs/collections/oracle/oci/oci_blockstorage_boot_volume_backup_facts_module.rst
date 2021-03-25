@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_boot_volume_backup_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -378,11 +378,11 @@ Examples
     
     - name: List boot_volume_backups
       oci_blockstorage_boot_volume_backup_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific boot_volume_backup
       oci_blockstorage_boot_volume_backup_facts:
-        boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

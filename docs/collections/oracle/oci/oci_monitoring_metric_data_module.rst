@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_metric_data -- Manage a MetricData resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -507,7 +507,7 @@ Examples
       oci_monitoring_metric_data:
         metric_data:
         - namespace: my_namespace
-          compartment_id: ocid1.compartment.oc1..exampleuniqueID
+          compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
           name: my_app.success_rate
           datapoints:
           - timestamp: 2019-02-01T01:02:29.600Z

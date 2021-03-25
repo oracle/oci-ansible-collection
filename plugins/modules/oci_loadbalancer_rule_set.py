@@ -71,7 +71,9 @@ options:
                 type: str
             value:
                 description:
-                    - A header value that conforms to RFC 7230.
+                    - "A header value that conforms to RFC 7230. With the following exceptions:
+                      *  value cannot contain `$`
+                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                     - "Example: `example_value`"
                     - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'ADD_HTTP_REQUEST_HEADER']
                 type: str
@@ -226,13 +228,19 @@ options:
                         type: str
             prefix:
                 description:
-                    - A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                    - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                      With the following exceptions:
+                      *  value cannot contain `$`
+                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                     - "Example: `example_prefix_value`"
                     - Applicable when action is one of ['EXTEND_HTTP_REQUEST_HEADER_VALUE', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
                 type: str
             suffix:
                 description:
-                    - A string to append to the header value. The resulting header value must conform to RFC 7230.
+                    - "A string to append to the header value. The resulting header value must conform to RFC 7230.
+                      With the following exceptions:
+                      *  value cannot contain `$`
+                      *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                     - "Example: `example_suffix_value`"
                     - Applicable when action is one of ['EXTEND_HTTP_REQUEST_HEADER_VALUE', 'EXTEND_HTTP_RESPONSE_HEADER_VALUE']
                 type: str
@@ -293,32 +301,32 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create rule_set
   oci_loadbalancer_rule_set:
-    name: example_rule_set
+    name: "example_rule_set"
     items:
-    - action: ADD_HTTP_REQUEST_HEADER
-      header: example_header_name
-      value: example_value
-    - action: EXTEND_HTTP_REQUEST_HEADER_VALUE
-      header: example_header_name2
-      prefix: example_prefix_value
-      suffix: example_suffix_value
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    - action: "ADD_HTTP_REQUEST_HEADER"
+      header: "example_header_name"
+      value: "example_value"
+    - action: "EXTEND_HTTP_REQUEST_HEADER_VALUE"
+      header: "example_header_name2"
+      prefix: "example_prefix_value"
+      suffix: "example_suffix_value"
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update rule_set
   oci_loadbalancer_rule_set:
     items:
-    - action: ADD_HTTP_REQUEST_HEADER
-      header: example_header_name
-      value: example_value
-    - action: EXTEND_HTTP_REQUEST_HEADER_VALUE
-      header: example_header_name2
-      prefix: example_prefix_value
-      suffix: example_suffix_value
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    - action: "ADD_HTTP_REQUEST_HEADER"
+      header: "example_header_name"
+      value: "example_value"
+    - action: "EXTEND_HTTP_REQUEST_HEADER_VALUE"
+      header: "example_header_name2"
+      prefix: "example_prefix_value"
+      suffix: "example_suffix_value"
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete rule_set
   oci_loadbalancer_rule_set:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: example_rule_set
     state: absent
 
@@ -360,7 +368,9 @@ rule_set:
                     sample: example_header_name
                 value:
                     description:
-                        - A header value that conforms to RFC 7230.
+                        - "A header value that conforms to RFC 7230. With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_value`"
                     returned: on success
                     type: string
@@ -516,14 +526,20 @@ rule_set:
                             sample: query_example
                 prefix:
                     description:
-                        - A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                        - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                          With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_prefix_value`"
                     returned: on success
                     type: string
                     sample: example_prefix_value
                 suffix:
                     description:
-                        - A string to append to the header value. The resulting header value must conform to RFC 7230.
+                        - "A string to append to the header value. The resulting header value must conform to RFC 7230.
+                          With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_suffix_value`"
                     returned: on success
                     type: string

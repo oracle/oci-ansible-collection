@@ -113,12 +113,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action summarize_metrics_data on metric_data
   oci_monitoring_metric_data_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    namespace: oci_computeagent
-    query: CpuUtilization[1m]{resourceId:<instance_OCID>}.max()
-    start_time: 2019-03-10T22:19:26.789Z
-    end_time: 2019-03-10T22:28:26.789Z
-    action: summarize_metrics_data
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: "oci_computeagent"
+    query: "CpuUtilization[1m]{resourceId:<instance_OCID>}.max()"
+    start_time: "2019-03-10T22:19:26.789Z"
+    end_time: "2019-03-10T22:28:26.789Z"
+    action: "summarize_metrics_data"
 
 """
 
@@ -154,7 +154,7 @@ metric_data:
                   resources from which the aggregated data was returned.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..exampleuniqueID
+            sample: "ocid1.compartment.oc1..exampleuniqueID"
         name:
             description:
                 - The name of the metric.

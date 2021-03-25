@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     model_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
         type: str
         aliases: ["id"]
         required: true
@@ -50,7 +50,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific model_artifact
   oci_data_science_model_artifact_facts:
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     dest: /usr/local/myfile.txt
 
 """

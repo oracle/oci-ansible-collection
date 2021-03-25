@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_project_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required to list multiple projects.</div>
                                                         </td>
             </tr>
@@ -211,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the user who created the resource.</div>
+                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the user who created the resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -262,7 +262,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project.</div>
                                             <div>Required to get a specific project.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -298,7 +298,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by `timeCreated`, results are shown in descending order. When you sort by `displayName`, results are shown in ascending order. Sort order for `displayName` field is case sensitive.</div>
+                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by `timeCreated`, the results are shown in descending order. When you sort by `displayName`, the results are shown in ascending order. Sort order for the `displayName` field is case sensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -359,11 +359,11 @@ Examples
     
     - name: List projects
       oci_data_science_project_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific project
       oci_data_science_project_facts:
-        project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -415,7 +415,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project&#x27;s compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project&#x27;s compartment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -433,7 +433,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the user who created this project.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the user who created this project.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -469,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short blurb describing the project.</div>
+                                            <div>A short description of the project.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -487,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.</div>
+                                            <div>A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -523,7 +523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -559,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the resource was created, in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
+                                            <div>The date and time the resource was created in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

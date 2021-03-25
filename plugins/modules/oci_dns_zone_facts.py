@@ -118,11 +118,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List zones
   oci_dns_zone_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific zone
   oci_dns_zone_facts:
-    zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -150,7 +150,7 @@ zones:
                 - The OCID of the compartment containing the zone.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         view_id:
             description:
                 - The OCID of the private view containing the zone. This value will
@@ -158,7 +158,7 @@ zones:
                   not part of a private view.
             returned: on success
             type: string
-            sample: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
                 - The scope of the zone.
@@ -233,7 +233,7 @@ zones:
                         - The OCID of the TSIG key.
                     returned: on success
                     type: string
-                    sample: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
@@ -245,7 +245,7 @@ zones:
                 - The OCID of the zone.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format

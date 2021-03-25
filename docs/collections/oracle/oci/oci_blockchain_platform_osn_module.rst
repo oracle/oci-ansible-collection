@@ -20,7 +20,7 @@ oracle.oci.oci_blockchain_platform_osn -- Manage a BlockchainPlatformOsn resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -407,20 +407,20 @@ Examples
     
     - name: Create blockchain_platform_osn
       oci_blockchain_platform_osn:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         ad: ad_example
 
     - name: Update blockchain_platform_osn
       oci_blockchain_platform_osn:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         ocpu_allocation_param:
           ocpu_allocation_number: 3.4
-        osn_id: ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx
+        osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete blockchain_platform_osn
       oci_blockchain_platform_osn:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
-        osn_id: ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+        osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

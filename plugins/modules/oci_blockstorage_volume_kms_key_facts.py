@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific volume_kms_key
   oci_blockstorage_volume_kms_key_facts:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -56,7 +56,7 @@ volume_kms_key:
                   string.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }

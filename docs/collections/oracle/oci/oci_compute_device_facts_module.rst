@@ -20,7 +20,7 @@ oracle.oci.oci_compute_device_facts -- Fetches details about one or multiple Dev
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -324,7 +324,7 @@ Examples
     
     - name: List devices
       oci_compute_device_facts:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

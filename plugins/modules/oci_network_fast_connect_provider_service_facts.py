@@ -49,11 +49,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List fast_connect_provider_services
   oci_network_fast_connect_provider_service_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific fast_connect_provider_service
   oci_network_fast_connect_provider_service_facts:
-    provider_service_id: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+    provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -78,7 +78,7 @@ fast_connect_provider_services:
                 - The OCID of the service offered by the provider.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         private_peering_bgp_management:
             description:
                 - Who is responsible for managing the private peering BGP information.

@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1771,34 +1771,34 @@ Examples
     
     - name: Create db_system
       oci_database_db_system:
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.tenancy.oc1..unique_ID
+        availability_domain: "Uocm:PHX-AD-1"
+        compartment_id: "ocid1.tenancy.oc1..unique_ID"
         cpu_core_count: 8
-        database_edition: ENTERPRISE_EDITION
+        database_edition: "ENTERPRISE_EDITION"
         db_home:
           database:
-            admin_password: password
-            db_name: myTestDb
+            admin_password: "password"
+            db_name: "myTestDb"
             db_backup_config:
               backup_destination_details:
-              - type: RECOVERY_APPLIANCE
-                id: ocid1.bkupdest.oc1.phx.unique_ID
-                vpc_user: vpcUser1
-                vpc_password: password
+              - type: "RECOVERY_APPLIANCE"
+                id: "ocid1.bkupdest.oc1.phx.unique_ID"
+                vpc_user: "vpcUser1"
+                vpc_password: "password"
               recovery_window_in_days: 30
               auto_backup_enabled: true
-          db_version: 12.1.0.2
+          db_version: "12.1.0.2"
           display_name: null
         db_system_options:
-          storage_management: LVM
+          storage_management: "LVM"
         disk_redundancy: null
-        display_name: tst3dbsys
-        domain: example.com
-        hostname: athena
-        shape: BM.DenseIO1.36
-        source: NONE
-        ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-        subnet_id: ocid1.subnet.oc1.phx.unique_ID
+        display_name: "tst3dbsys"
+        domain: "example.com"
+        hostname: "athena"
+        shape: "BM.DenseIO1.36"
+        source: "NONE"
+        ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        subnet_id: "ocid1.subnet.oc1.phx.unique_ID"
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
@@ -1807,33 +1807,33 @@ Examples
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
         version:
-          patch_id: ocid1.patch.oc1.phx.unique_ID
-          action: APPLY
+          patch_id: "ocid1.patch.oc1.phx.unique_ID"
+          action: "APPLY"
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
-        ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+        ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
         cpu_core_count: 10
         version:
-          patch_id: ocid1.patch.oc1.phx.unique_ID
-          action: APPLY
-        ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+          patch_id: "ocid1.patch.oc1.phx.unique_ID"
+          action: "APPLY"
+        ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
     - name: Update db_system
       oci_database_db_system:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete db_system
       oci_database_db_system:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
-        compartment_id: ocid1.tenancy.oc1..unique_ID
+        compartment_id: "ocid1.tenancy.oc1..unique_ID"
         display_name: tst3dbsys
         state: absent
 

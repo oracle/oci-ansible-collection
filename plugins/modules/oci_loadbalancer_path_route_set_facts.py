@@ -47,11 +47,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List path_route_sets
   oci_loadbalancer_path_route_set_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific path_route_set
   oci_loadbalancer_path_route_set_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     path_route_set_name: example_path_route_set
 
 """

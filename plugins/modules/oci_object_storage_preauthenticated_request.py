@@ -98,7 +98,7 @@ EXAMPLES = """
   oci_object_storage_preauthenticated_request:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    par_id: ocid1.par.oc1..xxxxxxEXAMPLExxxxxx
+    par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete preauthenticated_request using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -122,7 +122,7 @@ preauthenticated_request:
                 - The unique identifier to use when directly addressing the pre-authenticated request.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The user-provided name of the pre-authenticated request.

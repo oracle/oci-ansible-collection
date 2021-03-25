@@ -45,11 +45,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List cpes
   oci_network_cpe_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cpe
   oci_network_cpe_facts:
-    cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -65,7 +65,7 @@ cpes:
                 - The OCID of the compartment containing the CPE.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -95,7 +95,7 @@ cpes:
                 - The CPE's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The public IP address of the on-premises router.
@@ -120,7 +120,7 @@ cpes:
                     * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             returned: on success
             type: string
-            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the CPE was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

@@ -87,11 +87,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List channels
   oci_mysql_channel_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific channel
   oci_mysql_channel_facts:
-    channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -107,13 +107,13 @@ channels:
                 - The OCID of the Channel.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Channel. It does not have to be unique.
@@ -199,7 +199,7 @@ channels:
                         - The OCID of the source DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                 channel_name:
                     description:
                         - The case-insensitive name that identifies the replication channel. Channel names

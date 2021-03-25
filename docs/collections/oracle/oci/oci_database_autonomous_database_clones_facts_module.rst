@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_database_clones_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -376,8 +376,8 @@ Examples
     
     - name: List autonomous_database_clones
       oci_database_autonomous_database_clones_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

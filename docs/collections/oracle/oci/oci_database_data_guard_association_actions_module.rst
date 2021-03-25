@@ -20,7 +20,7 @@ oracle.oci.oci_database_data_guard_association_actions -- Perform actions on a D
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -338,22 +338,22 @@ Examples
     
     - name: Perform action failover on data_guard_association
       oci_database_data_guard_association_actions:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-        data_guard_association_id: ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
         database_admin_password: database_admin_password_example
         action: failover
 
     - name: Perform action reinstate on data_guard_association
       oci_database_data_guard_association_actions:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-        data_guard_association_id: ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
         database_admin_password: database_admin_password_example
         action: reinstate
 
     - name: Perform action switchover on data_guard_association
       oci_database_data_guard_association_actions:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-        data_guard_association_id: ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
         database_admin_password: database_admin_password_example
         action: switchover
 

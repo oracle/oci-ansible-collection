@@ -141,7 +141,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create identity_provider
   oci_identity_provider:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     product_type: IDCS
@@ -151,7 +151,7 @@ EXAMPLES = """
 
 - name: Update identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_provider:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     product_type: IDCS
@@ -163,23 +163,23 @@ EXAMPLES = """
 
 - name: Update identity_provider
   oci_identity_provider:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     product_type: IDCS
     protocol: SAML2
     metadata_url: metadata_url_example
     metadata: metadata_example
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete identity_provider
   oci_identity_provider:
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_provider:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     product_type: IDCS
@@ -202,13 +202,13 @@ identity_provider:
                 - The OCID of the `IdentityProvider`.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the `IdentityProvider`.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the `IdentityProvider` during creation. The name

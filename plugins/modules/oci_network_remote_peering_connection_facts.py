@@ -50,11 +50,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List remote_peering_connections
   oci_network_remote_peering_connection_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific remote_peering_connection
   oci_network_remote_peering_connection_facts:
-    remote_peering_connection_id: ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx
+    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -70,7 +70,7 @@ remote_peering_connections:
                 - The OCID of the compartment that contains the RPC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -91,7 +91,7 @@ remote_peering_connections:
                 - The OCID of the DRG that this RPC belongs to.
             returned: on success
             type: string
-            sample: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -106,7 +106,7 @@ remote_peering_connections:
                 - The OCID of the RPC.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy_peering:
             description:
                 - Whether the VCN at the other end of the peering is in a different tenancy.
@@ -125,7 +125,7 @@ remote_peering_connections:
                 - If this RPC is peered, this value is the OCID of the other RPC.
             returned: on success
             type: string
-            sample: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         peer_region_name:
             description:
                 - If this RPC is peered, this value is the region that contains the other RPC.
@@ -138,7 +138,7 @@ remote_peering_connections:
                 - If this RPC is peered, this value is the OCID of the other RPC's tenancy.
             returned: on success
             type: string
-            sample: ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx"
         peering_status:
             description:
                 - Whether the RPC is peered with another RPC. `NEW` means the RPC has not yet been

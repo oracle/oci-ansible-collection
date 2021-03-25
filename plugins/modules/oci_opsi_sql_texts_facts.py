@@ -48,7 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List sql_texts
   oci_opsi_sql_texts_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: [ "6rgjh9bjmy2s7" ]
 
 """
@@ -71,7 +71,7 @@ sql_texts:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         sql_text:
             description:
                 - SQL Text

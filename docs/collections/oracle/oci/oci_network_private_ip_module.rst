@@ -20,7 +20,7 @@ oracle.oci.oci_network_private_ip -- Manage a PrivateIp resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -434,17 +434,17 @@ Examples
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         hostname_label: bminstance-1
-        vnic_id: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+        vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update private_ip
       oci_network_private_ip:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+        private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete private_ip
       oci_network_private_ip:
-        private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+        private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete private_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

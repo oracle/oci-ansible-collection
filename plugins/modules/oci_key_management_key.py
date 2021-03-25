@@ -28,7 +28,8 @@ description:
       number of requests across all management write operations. Key Management might throttle this call
       to reject an otherwise valid request when the total rate of management write operations exceeds 10
       requests per second for a given tenancy.
-    - "This resource has the following action operations in the M(oci_key_actions) module: cancel_key_deletion, disable, enable, schedule_key_deletion."
+    - "This resource has the following action operations in the M(oci_key_actions) module: cancel_key_deletion, change_compartment, disable, enable,
+      schedule_key_deletion."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -128,21 +129,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create key
   oci_key_management_key:
-    compartment_id: ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea
-    display_name: Key C
+    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5lsdneskcfy7lr4a6wfauxuwrwed5b3xea"
+    display_name: "Key C"
     key_shape:
-      algorithm: AES
+      algorithm: "AES"
       length: 16
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Update key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_key_management_key:
-    display_name: Key CC
+    display_name: "Key CC"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Update key
   oci_key_management_key:
-    key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -159,7 +160,7 @@ key:
                 - The OCID of the compartment that contains this master encryption key.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_key_version:
             description:
                 - The OCID of the key version used in cryptographic operations. During key rotation, the service might be
@@ -196,7 +197,7 @@ key:
                 - The OCID of the key.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_shape:
             description:
                 - ""
@@ -223,7 +224,7 @@ key:
                         - Supported curve Ids for ECDSA keys
                     returned: on success
                     type: string
-                    sample: ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         protection_mode:
             description:
                 - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
@@ -261,7 +262,7 @@ key:
                 - The OCID of the vault that contains this key.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_key_version": "current_key_version_example",

@@ -20,7 +20,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -860,34 +860,34 @@ Examples
     
     - name: Create exadata_infrastructure
       oci_database_exadata_infrastructure:
-        compartment_id: ocid1.tenancy.oc1.unique_ID
-        display_name: tstExaInfra
-        shape: Exadata.Full2.336
-        time_zone: PST
-        cloud_control_plane_server1: 192.168.19.1
-        cloud_control_plane_server2: 192.168.19.2
-        netmask: 255.255.0.0
-        gateway: 192.168.20.1
-        admin_network_cidr: 192.168.19.2/16
-        infini_band_network_cidr: 10.172.19.1/24
-        corporate_proxy: 192.168.20.1
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
+        display_name: "tstExaInfra"
+        shape: "Exadata.Full2.336"
+        time_zone: "PST"
+        cloud_control_plane_server1: "192.168.19.1"
+        cloud_control_plane_server2: "192.168.19.2"
+        netmask: "255.255.0.0"
+        gateway: "192.168.20.1"
+        admin_network_cidr: "192.168.19.2/16"
+        infini_band_network_cidr: "10.172.19.1/24"
+        corporate_proxy: "192.168.20.1"
         dns_server:
-        - 192.168.10.10
+        - "192.168.10.10"
         ntp_server:
-        - 192.168.10.20
+        - "192.168.10.20"
 
     - name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_exadata_infrastructure:
-        admin_network_cidr: 192.168.19.1/16
-        infini_band_network_cidr: 10.172.19.2/24
+        admin_network_cidr: "192.168.19.1/16"
+        infini_band_network_cidr: "10.172.19.2/24"
 
     - name: Update exadata_infrastructure
       oci_database_exadata_infrastructure:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete exadata_infrastructure
       oci_database_exadata_infrastructure:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

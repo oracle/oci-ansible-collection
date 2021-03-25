@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -50,6 +50,7 @@ Synopsis
 - After creating the IPSec connection, you need to configure your on-premises router with tunnel-specific information. For tunnel status and the required configuration information, see:
 -  * `IPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/>`_ * `IPSecConnectionTunnelSharedSecret <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/>`_
 - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm>`_.
+- This resource has the following action operations in the :ref:`oci_ip_sec_connection_actions <ansible_collections.oci_ip_sec_connection_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -729,16 +730,16 @@ Examples
     
     - name: Create ip_sec_connection
       oci_network_ip_sec_connection:
-        display_name: MyIPSecConnection
-        cpe_id: ocid1.cpe.oc1.phx.unique_ID
+        display_name: "MyIPSecConnection"
+        cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
         static_routes:
-        - 192.0.2.0/24
-        drg_id: ocid1.drg.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        - "192.0.2.0/24"
+        drg_id: "ocid1.drg.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyIPSecConnection
         freeform_tags: {'Department': 'Finance'}
@@ -750,16 +751,16 @@ Examples
       oci_network_ip_sec_connection:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyIPSecConnection
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete ip_sec_connection
       oci_network_ip_sec_connection:
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyIPSecConnection
         state: absent
 

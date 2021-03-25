@@ -86,11 +86,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List internet_gateways
   oci_network_internet_gateway_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific internet_gateway
   oci_network_internet_gateway_facts:
-    ig_id: ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx
+    ig_id: "ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -106,7 +106,7 @@ internet_gateways:
                 - The OCID of the compartment containing the internet gateway.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -136,7 +136,7 @@ internet_gateways:
                 - The internet gateway's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_enabled:
             description:
                 - Whether the gateway is enabled. When the gateway is disabled, traffic is not
@@ -162,7 +162,7 @@ internet_gateways:
                 - The OCID of the VCN the internet gateway belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

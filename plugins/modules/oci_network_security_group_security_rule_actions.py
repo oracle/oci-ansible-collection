@@ -238,45 +238,45 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
-    network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
+    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
     security_rules:
-    - description: Example ingress security rule
-      source_type: CIDR_BLOCK
-      source: 10.0.0.0/16
-      direction: INGRESS
-      protocol: all
-    - description: Example egress security rule
-      destination_type: CIDR_BLOCK
-      destination: 10.0.0.0/16
-      direction: EGRESS
-      protocol: all
-    action: add
+    - description: "Example ingress security rule"
+      source_type: "CIDR_BLOCK"
+      source: "10.0.0.0/16"
+      direction: "INGRESS"
+      protocol: "all"
+    - description: "Example egress security rule"
+      destination_type: "CIDR_BLOCK"
+      destination: "10.0.0.0/16"
+      direction: "EGRESS"
+      protocol: "all"
+    action: "add"
 
 - name: Perform action remove on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
-    network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
+    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
     security_rule_ids:
-    - 880233
-    - 203597
-    action: remove
+    - "880233"
+    - "203597"
+    action: "remove"
 
 - name: Perform action update on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
-    network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
+    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
     security_rules:
-    - description: Example ingress security rule - updated
-      id: 203597
-      source_type: CIDR_BLOCK
-      source: 10.0.0.0/24
-      direction: INGRESS
-      protocol: all
-    - description: Example egress security rule - updated
-      destination_type: CIDR_BLOCK
-      destination: 10.0.0.0/24
-      direction: EGRESS
-      id: 880233
-      protocol: all
-    action: update
+    - description: "Example ingress security rule - updated"
+      id: "203597"
+      source_type: "CIDR_BLOCK"
+      source: "10.0.0.0/24"
+      direction: "INGRESS"
+      protocol: "all"
+    - description: "Example egress security rule - updated"
+      destination_type: "CIDR_BLOCK"
+      destination: "10.0.0.0/24"
+      direction: "EGRESS"
+      id: "880233"
+      protocol: "all"
+    action: "update"
 
 """
 

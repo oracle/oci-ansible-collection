@@ -54,7 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List table_usages
   oci_nosql_table_usage_facts:
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -65,67 +65,59 @@ table_usages:
     returned: on success
     type: complex
     contains:
-        items:
+        seconds_in_period:
             description:
-                - A page of TableUsageSummary objects.
+                - The length of the sampling period.
             returned: on success
-            type: complex
-            contains:
-                seconds_in_period:
-                    description:
-                        - The length of the sampling period.
-                    returned: on success
-                    type: int
-                    sample: 56
-                read_units:
-                    description:
-                        - Read throughput during the sampling period.
-                    returned: on success
-                    type: int
-                    sample: 56
-                write_units:
-                    description:
-                        - Write throughput during the sampling period.
-                    returned: on success
-                    type: int
-                    sample: 56
-                storage_in_g_bs:
-                    description:
-                        - The size of the table, in GB.
-                    returned: on success
-                    type: int
-                    sample: 56
-                read_throttle_count:
-                    description:
-                        - The number of times reads were throttled due to exceeding
-                          the read throughput limit.
-                    returned: on success
-                    type: int
-                    sample: 56
-                write_throttle_count:
-                    description:
-                        - The number of times writes were throttled due to exceeding
-                          the write throughput limit.
-                    returned: on success
-                    type: int
-                    sample: 56
-                storage_throttle_count:
-                    description:
-                        - The number of times writes were throttled because the table
-                          exceeded its size limit.
-                    returned: on success
-                    type: int
-                    sample: 56
+            type: int
+            sample: 56
+        read_units:
+            description:
+                - Read throughput during the sampling period.
+            returned: on success
+            type: int
+            sample: 56
+        write_units:
+            description:
+                - Write throughput during the sampling period.
+            returned: on success
+            type: int
+            sample: 56
+        storage_in_g_bs:
+            description:
+                - The size of the table, in GB.
+            returned: on success
+            type: int
+            sample: 56
+        read_throttle_count:
+            description:
+                - The number of times reads were throttled due to exceeding
+                  the read throughput limit.
+            returned: on success
+            type: int
+            sample: 56
+        write_throttle_count:
+            description:
+                - The number of times writes were throttled due to exceeding
+                  the write throughput limit.
+            returned: on success
+            type: int
+            sample: 56
+        storage_throttle_count:
+            description:
+                - The number of times writes were throttled because the table
+                  exceeded its size limit.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
-        "items": [{
-            "seconds_in_period": 56,
-            "read_units": 56,
-            "write_units": 56,
-            "storage_in_g_bs": 56,
-            "read_throttle_count": 56,
-            "write_throttle_count": 56,
-            "storage_throttle_count": 56
-        }]
+        "seconds_in_period": 56,
+        "read_units": 56,
+        "write_units": 56,
+        "storage_in_g_bs": 56,
+        "read_throttle_count": 56,
+        "write_throttle_count": 56,
+        "storage_throttle_count": 56
     }]
 """
 

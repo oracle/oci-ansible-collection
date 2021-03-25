@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_console_history -- Manage an InstanceConsoleHist
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -431,31 +431,31 @@ Examples
     
     - name: Create instance_console_history
       oci_compute_instance_console_history:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance_console_history:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update instance_console_history
       oci_compute_instance_console_history:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        instance_console_history_id: ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx
+        instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete instance_console_history
       oci_compute_instance_console_history:
-        instance_console_history_id: ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx
+        instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance_console_history:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

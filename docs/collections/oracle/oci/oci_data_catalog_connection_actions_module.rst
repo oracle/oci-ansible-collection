@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_connection_actions -- Perform actions on a Connectio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -299,7 +299,7 @@ Examples
     
     - name: Perform action test on connection
       oci_data_catalog_connection_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         connection_key: connection_key_example
         action: test

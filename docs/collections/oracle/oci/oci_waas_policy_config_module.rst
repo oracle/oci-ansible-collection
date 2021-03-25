@@ -20,7 +20,7 @@ oracle.oci.oci_waas_policy_config -- Manage a PolicyConfig resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -872,10 +872,10 @@ Examples
     
     - name: Update policy_config
       oci_waas_policy_config:
-        certificate_id: ocid1.waascertificate.oc1..
+        certificate_id: "ocid1.waascertificate.oc1.."
         is_https_enabled: true
         is_https_forced: true
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

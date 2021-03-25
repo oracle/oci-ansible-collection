@@ -23,6 +23,11 @@ module: oci_compute_instance_actions
 short_description: Perform actions on an Instance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Instance resource in Oracle Cloud Infrastructure
+    - Moves an instance into a different compartment within the same tenancy. For information about
+      moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - When you move an instance to a different compartment, associated resources such as boot volumes and VNICs
+      are not moved.
     - "Performs one of the following power actions on the specified instance:"
     - "- **START** - Powers on the instance."
     - "- **STOP** - Powers off the instance."
@@ -52,25 +57,37 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the instance to.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
-            - The action to perform on the instance.
+            - The action to perform on the Instance.
         type: str
+        required: true
         choices:
+            - "change_compartment"
             - "stop"
             - "start"
             - "softreset"
             - "reset"
             - "softstop"
             - "senddiagnosticinterrupt"
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on instance
+  oci_compute_instance_actions:
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action stop on instance
   oci_compute_instance_actions:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -94,13 +111,13 @@ instance:
                 - The OCID of the compartment that contains the instance.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
                 - The OCID of dedicated VM host.
             returned: on success
             type: string
-            sample: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -153,13 +170,13 @@ instance:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - Deprecated. Use `sourceDetails` instead.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         ipxe_script:
             description:
                 - When a bare metal or virtual machine
@@ -410,19 +427,19 @@ instance:
                         - The OCID of the image used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
                         - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: string
-                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -615,7 +632,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.work_requests import WorkRequestClient
     from oci.core import ComputeClient
+    from oci.core.models import ChangeInstanceCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -625,8 +644,15 @@ except ImportError:
 class InstanceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         instance_action
     """
+
+    def __init__(self, *args, **kwargs):
+        super(InstanceActionsHelperGen, self).__init__(*args, **kwargs)
+        self.work_request_client = WorkRequestClient(
+            self.client._config, **self.client._kwargs
+        )
 
     @staticmethod
     def get_module_resource_id_param():
@@ -643,108 +669,34 @@ class InstanceActionsHelperGen(OCIActionsHelperBase):
             self.client.get_instance, instance_id=self.module.params.get("instance_id"),
         )
 
-    def stop(self):
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeInstanceCompartmentDetails
+        )
         return oci_wait_utils.call_and_wait(
-            call_fn=self.client.instance_action,
+            call_fn=self.client.change_instance_compartment,
             call_fn_args=(),
             call_fn_kwargs=dict(
-                instance_id=self.module.params.get("instance_id"), action="STOP",
+                instance_id=self.module.params.get("instance_id"),
+                change_instance_compartment_details=action_details,
             ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
             ),
-            waiter_client=self.get_waiter_client(),
+            waiter_client=self.work_request_client,
             resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
-    def start(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.instance_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                instance_id=self.module.params.get("instance_id"), action="START",
-            ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
-        )
-
-    def softreset(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.instance_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                instance_id=self.module.params.get("instance_id"), action="SOFTRESET",
-            ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
-        )
-
-    def reset(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.instance_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                instance_id=self.module.params.get("instance_id"), action="RESET",
-            ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
-        )
-
-    def softstop(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.instance_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                instance_id=self.module.params.get("instance_id"), action="SOFTSTOP",
-            ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_action_desired_states(
-                self.module.params.get("action")
-            ),
-        )
-
-    def senddiagnosticinterrupt(self):
+    def instance_action(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.instance_action,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 instance_id=self.module.params.get("instance_id"),
-                action="SENDDIAGNOSTICINTERRUPT",
+                action=self.module.params.get("action"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -773,10 +725,12 @@ def main():
     module_args.update(
         dict(
             instance_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
                 choices=[
+                    "change_compartment",
                     "stop",
                     "start",
                     "softreset",

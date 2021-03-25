@@ -20,7 +20,7 @@ oracle.oci.oci_artifacts_container_image_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -467,7 +467,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ContainerImage resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;digest&#x27;: &#x27;digest_example&#x27;, &#x27;display_name&#x27;: &#x27;ubuntu:latest&#x27;, &#x27;id&#x27;: &#x27;ocid1.containerimage.oc1..exampleuniqueID&#x27;, &#x27;items&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;digest&#x27;: &#x27;digest_example&#x27;, &#x27;display_name&#x27;: &#x27;ubuntu:latest&#x27;, &#x27;id&#x27;: &#x27;ocid1.containerimage.oc1..exampleuniqueID&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_name&#x27;: &#x27;repository_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}], &#x27;layers&#x27;: [{&#x27;digest&#x27;: &#x27;digest_example&#x27;, &#x27;size_in_bytes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;layers_size_in_bytes&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;AVAILABLE&#x27;, &#x27;manifest_size_in_bytes&#x27;: 56, &#x27;pull_count&#x27;: 56, &#x27;remaining_items_count&#x27;: 56, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_name&#x27;: &#x27;repository_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_pulled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;versions&#x27;: [{&#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;digest&#x27;: &#x27;digest_example&#x27;, &#x27;display_name&#x27;: &#x27;ubuntu:latest&#x27;, &#x27;id&#x27;: &#x27;ocid1.containerimage.oc1..exampleuniqueID&#x27;, &#x27;layers&#x27;: [{&#x27;digest&#x27;: &#x27;digest_example&#x27;, &#x27;size_in_bytes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;layers_size_in_bytes&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;AVAILABLE&#x27;, &#x27;manifest_size_in_bytes&#x27;: 56, &#x27;pull_count&#x27;: 56, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_name&#x27;: &#x27;repository_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_pulled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;versions&#x27;: [{&#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -562,196 +562,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.containerimage.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Page of matching container images.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The compartment OCID to which the container image belongs. Inferred from the container repository.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/digest"></div>
-                    <b>digest</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/digest" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The container image digest.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">digest_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The repository name and the most recent version associated with the image. If there are no versions associated with the image, then last known version and digest are used instead. If the last known version is unavailable, then &#x27;unknown&#x27; is used instead of the version.</div>
-                                            <div>Example: `ubuntu:latest` or `ubuntu:latest@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ubuntu:latest</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the container image.</div>
-                                            <div>Example: `ocid1.containerimage.oc1..exampleuniqueID`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.containerimage.oc1..exampleuniqueID</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The current state of the container image.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/repository_id"></div>
-                    <b>repository_id</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/repository_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The OCID of the container repository.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/repository_name"></div>
-                    <b>repository_name</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/repository_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The container repository name.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">repository_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>An RFC 3339 timestamp indicating when the image was created.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-container_images/items/version"></div>
-                    <b>version</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/items/version" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The most recent version associated with this image.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
-                                    </td>
-            </tr>
-                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -893,24 +703,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Total number of pulls.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-container_images/remaining_items_count"></div>
-                    <b>remaining_items_count</b>
-                    <a class="ansibleOptionLink" href="#return-container_images/remaining_items_count" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Estimated number of remaining results.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

@@ -94,31 +94,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg_attachment
   oci_network_drg_attachment:
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_attachment:
     display_name: display_name_example
-    route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_attachment
   oci_network_drg_attachment:
     display_name: display_name_example
-    route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-    drg_attachment_id: ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete drg_attachment
   oci_network_drg_attachment:
-    drg_attachment_id: ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx
+    drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_attachment:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -135,7 +135,7 @@ drg_attachment:
                 - The OCID of the compartment containing the DRG attachment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -148,13 +148,13 @@ drg_attachment:
                 - The OCID of the DRG.
             returned: on success
             type: string
-            sample: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The DRG attachment's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The DRG attachment's current state.
@@ -177,13 +177,13 @@ drg_attachment:
                     Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
                 - The OCID of the VCN.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

@@ -61,11 +61,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List user_group_memberships
   oci_identity_user_group_membership_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific user_group_membership
   oci_identity_user_group_membership_facts:
-    user_group_membership_id: ocid1.usergroupmembership.oc1..xxxxxxEXAMPLExxxxxx
+    user_group_membership_id: "ocid1.usergroupmembership.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -81,25 +81,25 @@ user_group_memberships:
                 - The OCID of the membership.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the user, group, and membership object.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_id:
             description:
                 - The OCID of the group.
             returned: on success
             type: string
-            sample: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the membership was created, in the format defined by RFC3339.

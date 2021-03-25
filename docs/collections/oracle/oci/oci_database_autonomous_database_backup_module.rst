@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_database_backup -- Manage an AutonomousDataba
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -354,8 +354,8 @@ Examples
     
     - name: Create autonomous_database_backup
       oci_database_autonomous_database_backup:
-        autonomous_database_id: ocid1.autonomousdatabase.oc1.phx.unique_ID
-        display_name: Monthly Backup
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1.phx.unique_ID"
+        display_name: "Monthly Backup"
 
 
 

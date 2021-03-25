@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_db_system -- Manage a DbSystem resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -862,25 +862,25 @@ Examples
     
     - name: Create db_system
       oci_mysql_db_system:
-        admin_password: password
-        admin_username: adminUser
-        compartment_id: ocid1.compartment.oc1..UniqueID
-        configuration_id: ocid1.mysqlconfiguration.oc1..UniqueID
+        admin_password: "password"
+        admin_username: "adminUser"
+        compartment_id: "ocid1.compartment.oc1..UniqueID"
+        configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
         data_storage_size_in_gbs: 63
-        description: MySQL Database Service
-        display_name: DBSystem001
-        shape_name: VM.Standard.E2.1
-        subnet_id: ocid1.subnet.oc1.iad.UniqueID
-        mysql_version: 8.0.20
+        description: "MySQL Database Service"
+        display_name: "DBSystem001"
+        shape_name: "VM.Standard.E2.1"
+        subnet_id: "ocid1.subnet.oc1.iad.UniqueID"
+        mysql_version: "8.0.20"
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_mysql_db_system:
         display_name: DBSystem001
         description: MySQL Database Service
-        compartment_id: ocid1.compartment.oc1..UniqueID
+        compartment_id: "ocid1.compartment.oc1..UniqueID"
         availability_domain: Uocm:PHX-AD-1
         fault_domain: fault_domain_example
-        configuration_id: ocid1.mysqlconfiguration.oc1..UniqueID
+        configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
         shape_name: VM.Standard.E2.1
         mysql_version: 8.0.20
         subnet_id: ocid1.subnet.oc1.iad.UniqueID
@@ -898,17 +898,17 @@ Examples
       oci_mysql_db_system:
         display_name: DBSystem001
         description: MySQL Database Service
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete db_system
       oci_mysql_db_system:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_mysql_db_system:
         display_name: DBSystem001
-        compartment_id: ocid1.compartment.oc1..UniqueID
+        compartment_id: "ocid1.compartment.oc1..UniqueID"
         state: absent
 
 

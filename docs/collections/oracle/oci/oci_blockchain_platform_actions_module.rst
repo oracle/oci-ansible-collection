@@ -20,7 +20,7 @@ oracle.oci.oci_blockchain_platform_actions -- Perform actions on a BlockchainPla
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a BlockchainPlatform resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, change Blockchain Platform Compartment
 - For *action=start*, start a Blockchain Platform
 - For *action=stop*, stop a Blockchain Platform
 
@@ -84,7 +85,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>start</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                     </ul>
                                                                             </td>
@@ -187,6 +189,22 @@ Parameters
                                             <div>Unique service identifier.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the new compartment.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -304,14 +322,20 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action start on blockchain_platform
+    - name: Perform action change_compartment on blockchain_platform
       oci_blockchain_platform_actions:
         blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
+
+    - name: Perform action start on blockchain_platform
+      oci_blockchain_platform_actions:
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on blockchain_platform
       oci_blockchain_platform_actions:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

@@ -60,7 +60,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List audit_events
   oci_audit_event_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     start_time: 2013-10-20T19:20:30+01:00
     end_time: 2013-10-20T19:20:30+01:00
 
@@ -113,7 +113,7 @@ audit_events:
                 - The GUID of the event.
             returned: on success
             type: string
-            sample: ocid1.event.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
         event_time:
             description:
                 - The time the event occurred, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -141,7 +141,7 @@ audit_events:
                           would use the same value in this field for both events.
                     returned: on success
                     type: string
-                    sample: ocid1.eventgrouping.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.eventgrouping.oc1..xxxxxxEXAMPLExxxxxx"
                 event_name:
                     description:
                         - Name of the API operation that generated this event.
@@ -155,7 +155,7 @@ audit_events:
                           emitting the event.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_name:
                     description:
                         - The name of the compartment. This value is the friendly name associated with compartmentId.
@@ -177,7 +177,7 @@ audit_events:
                           emitting the event.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The availability domain where the resource resides.
@@ -219,7 +219,7 @@ audit_events:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the principal.
                             returned: on success
                             type: string
-                            sample: ocid1.principal.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.principal.oc1..xxxxxxEXAMPLExxxxxx"
                         auth_type:
                             description:
                                 - The type of authentication used.
@@ -239,13 +239,13 @@ audit_events:
                                   request on behalf of the prinicpal.
                             returned: on success
                             type: string
-                            sample: ocid1.caller.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.caller.oc1..xxxxxxEXAMPLExxxxxx"
                         tenant_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tenant.
                             returned: on success
                             type: string
-                            sample: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
                         ip_address:
                             description:
                                 - The IP address of the source of the request.
@@ -272,7 +272,7 @@ audit_events:
                                 - This value identifies any Console session associated with this request.
                             returned: on success
                             type: string
-                            sample: ocid1.consolesession.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.consolesession.oc1..xxxxxxEXAMPLExxxxxx"
                 request:
                     description:
                         - ""
@@ -284,7 +284,7 @@ audit_events:
                                 - The opc-request-id of the request.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         path:
                             description:
                                 - The full path of the API request.

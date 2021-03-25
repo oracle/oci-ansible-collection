@@ -311,20 +311,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action ingest_sql_bucket on database_insights
   oci_opsi_database_insights_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: ingest_sql_bucket
 
 - name: Perform action ingest_sql_plan_lines on database_insights
   oci_opsi_database_insights_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: ingest_sql_plan_lines
 
 - name: Perform action ingest_sql_text on database_insights
   oci_opsi_database_insights_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: ingest_sql_text
 
 """

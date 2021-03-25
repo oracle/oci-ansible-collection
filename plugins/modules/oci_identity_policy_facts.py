@@ -83,11 +83,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List policies
   oci_identity_policy_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific policy
   oci_identity_policy_facts:
-    policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -103,13 +103,13 @@ policies:
                 - The OCID of the policy.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the policy (either the tenancy or another compartment).
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the policy during creation. The name must be unique across all policies

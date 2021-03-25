@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_boot_volume -- Manage a BootVolume resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a BootVolume resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new boot volume in the specified compartment from an existing boot volume or a boot volume backup. For general information about boot volumes, see `Boot Volumes <https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm>`_. You may optionally specify a *display name* for the volume, which is simply a friendly name or description. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_boot_volume_actions <ansible_collections.oci_boot_volume_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -571,15 +572,15 @@ Examples
     - name: Create boot_volume
       oci_blockstorage_boot_volume:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_details:
           type: bootVolumeBackup
-          id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_boot_volume:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -591,17 +592,17 @@ Examples
       oci_blockstorage_boot_volume:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete boot_volume
       oci_blockstorage_boot_volume:
-        boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_boot_volume:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

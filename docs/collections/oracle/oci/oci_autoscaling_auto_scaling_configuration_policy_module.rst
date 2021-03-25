@@ -20,7 +20,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration_policy -- Manage an AutoSc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -691,36 +691,36 @@ Examples
     
     - name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_autoscaling_auto_scaling_configuration_policy:
-        display_name: example_autoscaling_policy
+        display_name: "example_autoscaling_policy"
         capacity:
           max: 50
           min: 10
           initial: 15
-        policy_type: threshold
+        policy_type: "threshold"
         rules:
         - action:
-            type: CHANGE_COUNT_BY
+            type: "CHANGE_COUNT_BY"
             value: 5
-          display_name: example_scale_out_condition
+          display_name: "example_scale_out_condition"
           metric:
-            metric_type: CPU_UTILIZATION
+            metric_type: "CPU_UTILIZATION"
             threshold:
-              operator: GTE
+              operator: "GTE"
               value: 90
         - action:
-            type: CHANGE_COUNT_BY
+            type: "CHANGE_COUNT_BY"
             value: -5
-          display_name: example_scale_in_condition
+          display_name: "example_scale_in_condition"
           metric:
-            metric_type: CPU_UTILIZATION
+            metric_type: "CPU_UTILIZATION"
             threshold:
-              operator: LTE
+              operator: "LTE"
               value: 25
 
     - name: Update auto_scaling_configuration_policy
       oci_autoscaling_auto_scaling_configuration_policy:
-        auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
-        auto_scaling_policy_id: ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx
+        auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         policy_type: scheduled
 
 

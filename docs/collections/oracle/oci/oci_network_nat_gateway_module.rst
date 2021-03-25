@@ -20,7 +20,7 @@ oracle.oci.oci_network_nat_gateway -- Manage a NatGateway resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a NatGateway resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new NAT gateway for the specified VCN. You must also set up a route rule with the NAT gateway as the rule's target. See `Route Table <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/RouteTable/>`_.
+- This resource has the following action operations in the :ref:`oci_nat_gateway_actions <ansible_collections.oci_nat_gateway_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -465,12 +466,12 @@ Examples
     
     - name: Create nat_gateway
       oci_network_nat_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update nat_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_nat_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -480,16 +481,16 @@ Examples
       oci_network_nat_gateway:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        nat_gateway_id: ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx
+        nat_gateway_id: "ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete nat_gateway
       oci_network_nat_gateway:
-        nat_gateway_id: ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx
+        nat_gateway_id: "ocid1.natgateway.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete nat_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_nat_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_credentials_facts -- Fetches details about a Ins
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific instance_credentials
       oci_compute_instance_credentials_facts:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -24,6 +24,7 @@ short_description: Manage a Deployment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new deployment.
+    - "This resource has the following action operations in the M(oci_deployment_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -845,31 +846,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deployment
   oci_apigateway_deployment:
-    gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     path_prefix: path_prefix_example
 
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     display_name: My new resource
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deployment
   oci_apigateway_deployment:
     display_name: My new resource
-    deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete deployment
   oci_apigateway_deployment:
-    deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     display_name: My new resource
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -886,13 +887,13 @@ deployment:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         gateway_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -907,7 +908,7 @@ deployment:
                   resource is created.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         path_prefix:
             description:
                 - A path on which to deploy all routes contained in the API
@@ -1121,7 +1122,7 @@ deployment:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                         rate_limiting:
                             description:
                                 - ""
@@ -1715,7 +1716,7 @@ deployment:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 body:
                                     description:
                                         - The body of the stock response from the mock backend.

@@ -20,7 +20,7 @@ oracle.oci.oci_marketplace_report_collection_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -283,7 +283,7 @@ Examples
       oci_marketplace_report_collection_facts:
         report_type: report_type_example
         date: 2013-10-20T19:20:30+01:00
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -302,12 +302,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="2">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-report_collections"></div>
                     <b>report_collections</b>
                     <a class="ansibleOptionLink" href="#return-report_collections" title="Permalink to this return value"></a>
@@ -320,32 +320,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ReportCollection resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;columns&#x27;: [], &#x27;content&#x27;: &#x27;content_example&#x27;, &#x27;date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;report_type&#x27;: &#x27;report_type_example&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;columns&#x27;: [], &#x27;content&#x27;: &#x27;content_example&#x27;, &#x27;date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;report_type&#x27;: &#x27;report_type_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-report_collections/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-report_collections/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>An array of reports.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-report_collections/items/columns"></div>
+                    <div class="ansibleOptionAnchor" id="return-report_collections/columns"></div>
                     <b>columns</b>
-                    <a class="ansibleOptionLink" href="#return-report_collections/items/columns" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-report_collections/columns" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                        / <span style="color: purple">elements=string</span>                    </div>
@@ -358,11 +341,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-report_collections/items/content"></div>
+                    <div class="ansibleOptionAnchor" id="return-report_collections/content"></div>
                     <b>content</b>
-                    <a class="ansibleOptionLink" href="#return-report_collections/items/content" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-report_collections/content" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -377,11 +359,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-report_collections/items/date"></div>
+                    <div class="ansibleOptionAnchor" id="return-report_collections/date"></div>
                     <b>date</b>
-                    <a class="ansibleOptionLink" href="#return-report_collections/items/date" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-report_collections/date" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -396,11 +377,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-report_collections/items/report_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-report_collections/report_type"></div>
                     <b>report_type</b>
-                    <a class="ansibleOptionLink" href="#return-report_collections/items/report_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-report_collections/report_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -413,7 +393,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">report_type_example</div>
                                     </td>
             </tr>
-                    
                     
                         </table>
     <br/><br/>

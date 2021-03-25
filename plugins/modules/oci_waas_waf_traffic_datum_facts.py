@@ -48,7 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List waf_traffic_datums
   oci_waas_waf_traffic_datum_facts:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -76,19 +76,19 @@ waf_traffic_datums:
                 - The tenancy OCID of the data.
             returned: on success
             type: string
-            sample: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The compartment OCID of the data.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         waas_policy_id:
             description:
                 - The policy OCID of the data.
             returned: on success
             type: string
-            sample: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         traffic_in_bytes:
             description:
                 - Traffic in bytes.

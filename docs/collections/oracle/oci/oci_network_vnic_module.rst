@@ -20,7 +20,7 @@ oracle.oci.oci_network_vnic -- Manage a Vnic resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -411,7 +411,7 @@ Examples
     
     - name: Update vnic
       oci_network_vnic:
-        vnic_id: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+        vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 

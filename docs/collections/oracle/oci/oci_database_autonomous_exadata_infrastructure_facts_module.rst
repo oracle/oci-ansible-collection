@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure_facts -- Fetches detai
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -364,11 +364,11 @@ Examples
     
     - name: List autonomous_exadata_infrastructures
       oci_database_autonomous_exadata_infrastructure_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific autonomous_exadata_infrastructure
       oci_database_autonomous_exadata_infrastructure_facts:
-        autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

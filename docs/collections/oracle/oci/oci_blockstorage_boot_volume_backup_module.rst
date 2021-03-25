@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_boot_volume_backup -- Manage a BootVolumeBackup reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a BootVolumeBackup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new boot volume backup of the specified boot volume. For general information about boot volume backups, see `Overview of Boot Volume Backups <https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumebackups.htm>`_
 - When the request is received, the backup object is in a REQUEST_RECEIVED state. When the data is imaged, it goes into a CREATING state. After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
-- This resource has the following action operations in the :ref:`oci_boot_volume_backup_actions <ansible_collections.oci_boot_volume_backup_actions_module>` module: copy.
+- This resource has the following action operations in the :ref:`oci_boot_volume_backup_actions <ansible_collections.oci_boot_volume_backup_actions_module>` module: change_compartment, copy.
 
 
 .. Aliases
@@ -450,31 +450,31 @@ Examples
     
     - name: Create boot_volume_backup
       oci_blockstorage_boot_volume_backup:
-        boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update boot_volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_boot_volume_backup:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update boot_volume_backup
       oci_blockstorage_boot_volume_backup:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete boot_volume_backup
       oci_blockstorage_boot_volume_backup:
-        boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+        boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete boot_volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_boot_volume_backup:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

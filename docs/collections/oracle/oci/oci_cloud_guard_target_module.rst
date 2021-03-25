@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_target -- Manage a Target resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1333,14 +1333,14 @@ Examples
     - name: Create target
       oci_cloud_guard_target:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_resource_type: COMPARTMENT
-        target_resource_id: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+        target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_target:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state: CREATING
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1348,17 +1348,17 @@ Examples
     - name: Update target
       oci_cloud_guard_target:
         display_name: display_name_example
-        target_id: ocid1.target.oc1..xxxxxxEXAMPLExxxxxx
+        target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete target
       oci_cloud_guard_target:
-        target_id: ocid1.target.oc1..xxxxxxEXAMPLExxxxxx
+        target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_target:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

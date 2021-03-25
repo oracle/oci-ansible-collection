@@ -20,7 +20,7 @@ oracle.oci.oci_apigateway_api_specification_facts -- Fetches details about a Api
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific api_specification
       oci_apigateway_api_specification_facts:
-        api_id: ocid1.api.oc1..xxxxxxEXAMPLExxxxxx
+        api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

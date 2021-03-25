@@ -151,7 +151,7 @@ EXAMPLES = """
   oci_monitoring_metric_data:
     metric_data:
     - namespace: my_namespace
-      compartment_id: ocid1.compartment.oc1..exampleuniqueID
+      compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
       name: my_app.success_rate
       datapoints:
       - timestamp: 2019-02-01T01:02:29.600Z
@@ -217,7 +217,7 @@ metric_data:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for metrics.
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..exampleuniqueID
+                            sample: "ocid1.compartment.oc1..exampleuniqueID"
                         name:
                             description:
                                 - The name of the metric.

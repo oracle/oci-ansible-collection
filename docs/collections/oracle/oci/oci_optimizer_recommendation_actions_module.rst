@@ -20,7 +20,7 @@ oracle.oci.oci_optimizer_recommendation_actions -- Perform actions on a Recommen
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -460,7 +460,7 @@ Examples
     
     - name: Perform action bulk_apply on recommendation
       oci_optimizer_recommendation_actions:
-        recommendation_id: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
+        recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
         status: PENDING
         action: bulk_apply
 
@@ -481,12 +481,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-recommendation"></div>
                     <b>recommendation</b>
                     <a class="ansibleOptionLink" href="#return-recommendation" title="Permalink to this return value"></a>
@@ -499,12 +499,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Recommendation resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category_id&#x27;: &#x27;ocid1.category.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;estimated_cost_saving&#x27;: 1.2, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;importance&#x27;: &#x27;CRITICAL&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;resource_counts&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}], &#x27;status&#x27;: &#x27;PENDING&#x27;, &#x27;supported_levels&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_status_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_status_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category_id&#x27;: &#x27;ocid1.category.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;estimated_cost_saving&#x27;: 1.2, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;importance&#x27;: &#x27;CRITICAL&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;resource_counts&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}], &#x27;status&#x27;: &#x27;PENDING&#x27;, &#x27;supported_levels&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;, &#x27;time_status_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_status_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/category_id"></div>
                     <b>category_id</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/category_id" title="Permalink to this return value"></a>
@@ -522,7 +522,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/compartment_id" title="Permalink to this return value"></a>
@@ -540,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/description" title="Permalink to this return value"></a>
@@ -558,7 +558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/estimated_cost_saving"></div>
                     <b>estimated_cost_saving</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/estimated_cost_saving" title="Permalink to this return value"></a>
@@ -576,7 +576,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/id" title="Permalink to this return value"></a>
@@ -594,7 +594,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/importance"></div>
                     <b>importance</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/importance" title="Permalink to this return value"></a>
@@ -612,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/lifecycle_state" title="Permalink to this return value"></a>
@@ -630,7 +630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/name" title="Permalink to this return value"></a>
@@ -648,7 +648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/resource_counts"></div>
                     <b>resource_counts</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/resource_counts" title="Permalink to this return value"></a>
@@ -665,7 +665,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-recommendation/resource_counts/count"></div>
                     <b>count</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/resource_counts/count" title="Permalink to this return value"></a>
@@ -684,7 +684,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-recommendation/resource_counts/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/resource_counts/status" title="Permalink to this return value"></a>
@@ -703,7 +703,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/status" title="Permalink to this return value"></a>
@@ -721,7 +721,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/supported_levels"></div>
                     <b>supported_levels</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/supported_levels" title="Permalink to this return value"></a>
@@ -738,10 +738,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-recommendation/supported_levels/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-recommendation/supported_levels/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of supported levels.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-recommendation/supported_levels/name"></div>
+                    <div class="ansibleOptionAnchor" id="return-recommendation/supported_levels/items/name"></div>
                     <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-recommendation/supported_levels/name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-recommendation/supported_levels/items/name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -755,9 +773,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/time_created" title="Permalink to this return value"></a>
@@ -775,7 +794,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/time_status_begin"></div>
                     <b>time_status_begin</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/time_status_begin" title="Permalink to this return value"></a>
@@ -794,7 +813,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/time_status_end"></div>
                     <b>time_status_end</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/time_status_end" title="Permalink to this return value"></a>
@@ -813,7 +832,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-recommendation/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-recommendation/time_updated" title="Permalink to this return value"></a>

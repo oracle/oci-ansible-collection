@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List backups
   oci_mysql_backup_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific backup
   oci_mysql_backup_facts:
-    backup_id: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -108,7 +108,7 @@ backups:
                 - OCID of the backup itself
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-supplied display name for the backup.
@@ -126,7 +126,7 @@ backups:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the backup record was created.
@@ -168,7 +168,7 @@ backups:
                 - The OCID of the DB System the backup is associated with.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_snapshot:
             description:
                 - ""
@@ -180,7 +180,7 @@ backups:
                         - The OCID of the DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The user-friendly name for the DB System. It does not have to be unique.
@@ -198,13 +198,13 @@ backups:
                         - The OCID of the compartment the DB System belongs in.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The OCID of the subnet the DB System is associated with.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The Availability Domain where the primary DB System should be located.
@@ -293,7 +293,7 @@ backups:
                         - The OCID of the Configuration to be used for Instances in this DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
                 data_storage_size_in_gbs:
                     description:
                         - Initial size of the data volume in GiBs that will be created and attached.

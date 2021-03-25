@@ -53,7 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cpe_config_content
   oci_network_cpe_config_content_facts:
-    cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_connection -- Manage a Connection resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -559,14 +559,14 @@ Examples
     
     - name: Create connection
       oci_data_catalog_connection:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         display_name: display_name_example
         type_key: type_key_example
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_connection:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         description: description_example
         display_name: display_name_example
@@ -574,20 +574,20 @@ Examples
 
     - name: Update connection
       oci_data_catalog_connection:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         connection_key: connection_key_example
 
     - name: Delete connection
       oci_data_catalog_connection:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         connection_key: connection_key_example
         state: absent
 
     - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_connection:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         display_name: display_name_example
         state: absent

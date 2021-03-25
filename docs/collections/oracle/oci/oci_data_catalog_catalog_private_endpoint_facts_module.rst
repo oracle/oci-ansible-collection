@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_catalog_private_endpoint_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -349,11 +349,11 @@ Examples
     
     - name: List catalog_private_endpoints
       oci_data_catalog_catalog_private_endpoint_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific catalog_private_endpoint
       oci_data_catalog_catalog_private_endpoint_facts:
-        catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

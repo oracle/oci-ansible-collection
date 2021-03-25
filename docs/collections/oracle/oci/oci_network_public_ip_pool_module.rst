@@ -20,7 +20,7 @@ oracle.oci.oci_network_public_ip_pool -- Manage a PublicIpPool resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a PublicIpPool resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a public IP pool.
-- This resource has the following action operations in the :ref:`oci_public_ip_pool_actions <ansible_collections.oci_public_ip_pool_actions_module>` module: add_public_ip_pool_capacity, remove_public_ip_pool_capacity.
+- This resource has the following action operations in the :ref:`oci_public_ip_pool_actions <ansible_collections.oci_public_ip_pool_actions_module>` module: add_public_ip_pool_capacity, change_compartment, remove_public_ip_pool_capacity.
 
 
 .. Aliases
@@ -414,11 +414,11 @@ Examples
     
     - name: Create public_ip_pool
       oci_network_public_ip_pool:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update public_ip_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_public_ip_pool:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -427,16 +427,16 @@ Examples
       oci_network_public_ip_pool:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        public_ip_pool_id: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete public_ip_pool
       oci_network_public_ip_pool:
-        public_ip_pool_id: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete public_ip_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_public_ip_pool:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

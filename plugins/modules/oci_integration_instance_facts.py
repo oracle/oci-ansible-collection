@@ -79,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List integration_instances
   oci_integration_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific integration_instance
   oci_integration_instance_facts:
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -99,7 +99,7 @@ integration_instances:
                 - Unique identifier that is immutable on creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Integration Instance Identifier, can be renamed.
@@ -111,7 +111,7 @@ integration_instances:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type:
             description:
                 - Standard or Enterprise type
@@ -206,7 +206,7 @@ integration_instances:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
                     type: string
-                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
                         - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
@@ -230,7 +230,7 @@ integration_instances:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
                     type: string
-                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
                         - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
@@ -272,7 +272,7 @@ integration_instances:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         allowlisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges ingress rules.

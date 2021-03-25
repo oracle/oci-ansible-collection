@@ -208,36 +208,36 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_autoscaling_auto_scaling_configuration_policy:
-    display_name: example_autoscaling_policy
+    display_name: "example_autoscaling_policy"
     capacity:
       max: 50
       min: 10
       initial: 15
-    policy_type: threshold
+    policy_type: "threshold"
     rules:
     - action:
-        type: CHANGE_COUNT_BY
+        type: "CHANGE_COUNT_BY"
         value: 5
-      display_name: example_scale_out_condition
+      display_name: "example_scale_out_condition"
       metric:
-        metric_type: CPU_UTILIZATION
+        metric_type: "CPU_UTILIZATION"
         threshold:
-          operator: GTE
+          operator: "GTE"
           value: 90
     - action:
-        type: CHANGE_COUNT_BY
+        type: "CHANGE_COUNT_BY"
         value: -5
-      display_name: example_scale_in_condition
+      display_name: "example_scale_in_condition"
       metric:
-        metric_type: CPU_UTILIZATION
+        metric_type: "CPU_UTILIZATION"
         threshold:
-          operator: LTE
+          operator: "LTE"
           value: 25
 
 - name: Update auto_scaling_configuration_policy
   oci_autoscaling_auto_scaling_configuration_policy:
-    auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
-    auto_scaling_policy_id: ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     policy_type: scheduled
 
 """
@@ -280,7 +280,7 @@ auto_scaling_configuration_policy:
                 - The ID of the autoscaling policy that is assigned after creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -366,7 +366,7 @@ auto_scaling_configuration_policy:
                         - ID of the condition that is assigned after creation.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 metric:
                     description:
                         - ""

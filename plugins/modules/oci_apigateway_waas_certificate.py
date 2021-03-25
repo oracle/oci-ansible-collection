@@ -4,7 +4,6 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
 # See LICENSE.TXT for details.
-# GENERATED FILE - DO NOT EDIT - MANUAL CHANGES WILL BE OVERWRITTEN
 
 
 from __future__ import absolute_import, division, print_function
@@ -96,14 +95,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create waas_certificate
   oci_apigateway_waas_certificate:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     private_key: private_key_example
     certificate: certificate_example
 
 - name: Update waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_waas_certificate:
     display_name: My new resource
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -111,17 +110,17 @@ EXAMPLES = """
   oci_apigateway_waas_certificate:
     display_name: My new resource
     freeform_tags: {'Department': 'Finance'}
-    certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete waas_certificate
   oci_apigateway_waas_certificate:
-    certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_waas_certificate:
     display_name: My new resource
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -138,7 +137,7 @@ waas_certificate:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -153,7 +152,7 @@ waas_certificate:
                   resource is created.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subject_names:
             description:
                 - The entity to be secured by the certificate and additional host names.

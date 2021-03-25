@@ -130,71 +130,71 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action autonomous_database_manual_refresh on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: autonomous_database_manual_refresh
 
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: pdb_admin_password_example
     action: deregister_autonomous_database_data_safe
 
 - name: Perform action disable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_autonomous_database_operations_insights
 
 - name: Perform action enable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_autonomous_database_operations_insights
 
 - name: Perform action fail_over on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: fail_over
 
 - name: Perform action generate_autonomous_database_wallet on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     password: password_example
     action: generate_autonomous_database_wallet
 
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: pdb_admin_password_example
     action: register_autonomous_database_data_safe
 
 - name: Perform action restart on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart
 
 - name: Perform action restore on autonomous_database
   oci_database_autonomous_database_actions:
-    timestamp: 2018-04-11T01:59:07.032Z
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
-    action: restore
+    timestamp: "2018-04-11T01:59:07.032Z"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "restore"
 
 - name: Perform action rotate_autonomous_database_encryption_key on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_autonomous_database_encryption_key
 
 - name: Perform action start on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 - name: Perform action switchover on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: switchover
 
 """
@@ -211,13 +211,13 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Database.
@@ -318,7 +318,7 @@ autonomous_database:
                 - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: string
-            sample: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Autonomous Database was created.
@@ -451,7 +451,7 @@ autonomous_database:
                   This restriction applies to both the client subnet and the backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -631,7 +631,7 @@ autonomous_database:
                   the current Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
                 - The Autonomous Database permission level. Restricted mode allows access only to admin users.
@@ -704,7 +704,7 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.

@@ -20,7 +20,7 @@ oracle.oci.oci_waas_protection_rules_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -318,11 +318,11 @@ Examples
     
     - name: List protection_rules
       oci_waas_protection_rules_facts:
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific protection_rules
       oci_waas_protection_rules_facts:
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         protection_rule_key: protection_rule_key_example
 
 

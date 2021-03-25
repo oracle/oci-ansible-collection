@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_encrypted_data -- Manage an EncryptedData resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -399,8 +399,8 @@ Examples
     
     - name: Create encrypted_data
       oci_key_management_encrypted_data:
-        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-        plaintext: aGVsbG8sIHdvcmxk
+        key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
+        plaintext: "aGVsbG8sIHdvcmxk"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 

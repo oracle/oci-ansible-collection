@@ -20,7 +20,7 @@ oracle.oci.oci_waas_address_rate_limiting -- Manage an AddressRateLimiting resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -375,7 +375,7 @@ Examples
         block_response_code: 503
         is_enabled: true
         max_delayed_count_per_address: 10
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

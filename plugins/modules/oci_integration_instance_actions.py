@@ -23,6 +23,7 @@ module: oci_integration_instance_actions
 short_description: Perform actions on an IntegrationInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an IntegrationInstance resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), change the compartment for an integration instance
     - For I(action=change_integration_instance_network_endpoint), change an Integration instance network endpoint. The operation is long-running
       and creates a new WorkRequest.
     - For I(action=start), start an integration instance that was previously in an INACTIVE state
@@ -36,6 +37,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - Compartment Identifier.
+            - Applicable only for I(action=change_compartment).
+        type: str
     network_endpoint_details:
         description:
             - ""
@@ -77,6 +83,7 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "change_integration_instance_network_endpoint"
             - "start"
             - "stop"
@@ -84,19 +91,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
-- name: Perform action change_integration_instance_network_endpoint on integration_instance
+- name: Perform action change_compartment on integration_instance
   oci_integration_instance_actions:
     integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_compartment
+
+- name: Perform action change_integration_instance_network_endpoint on integration_instance
+  oci_integration_instance_actions:
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_integration_instance_network_endpoint
 
 - name: Perform action start on integration_instance
   oci_integration_instance_actions:
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on integration_instance
   oci_integration_instance_actions:
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -113,7 +125,7 @@ integration_instance:
                 - Unique identifier that is immutable on creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Integration Instance Identifier, can be renamed.
@@ -125,7 +137,7 @@ integration_instance:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type:
             description:
                 - Standard or Enterprise type
@@ -220,7 +232,7 @@ integration_instance:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
                     type: string
-                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
                         - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
@@ -244,7 +256,7 @@ integration_instance:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
                     type: string
-                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
                         - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
@@ -286,7 +298,7 @@ integration_instance:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         allowlisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges ingress rules.
@@ -350,6 +362,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.integration import IntegrationInstanceClient
+    from oci.integration.models import ChangeIntegrationInstanceCompartmentDetails
     from oci.integration.models import ChangeIntegrationInstanceNetworkEndpointDetails
 
     HAS_OCI_PY_SDK = True
@@ -360,6 +373,7 @@ except ImportError:
 class IntegrationInstanceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         change_integration_instance_network_endpoint
         start
         stop
@@ -379,6 +393,29 @@ class IntegrationInstanceActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_integration_instance,
             integration_instance_id=self.module.params.get("integration_instance_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeIntegrationInstanceCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_integration_instance_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                integration_instance_id=self.module.params.get(
+                    "integration_instance_id"
+                ),
+                change_integration_instance_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change_integration_instance_network_endpoint(self):
@@ -461,6 +498,7 @@ def main():
     module_args.update(
         dict(
             integration_instance_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             network_endpoint_details=dict(
                 type="dict",
                 options=dict(
@@ -483,6 +521,7 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "change_compartment",
                     "change_integration_instance_network_endpoint",
                     "start",
                     "stop",

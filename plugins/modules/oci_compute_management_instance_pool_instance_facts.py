@@ -70,8 +70,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List instance_pool_instances
   oci_compute_management_instance_pool_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -87,7 +87,7 @@ instance_pool_instances:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the instance is running in.
@@ -99,7 +99,7 @@ instance_pool_instances:
                 - The OCID of the compartment that contains the instance.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name. Does not have to be unique.
@@ -117,7 +117,7 @@ instance_pool_instances:
                 - The OCID of the instance confgiuration used to create the instance.
             returned: on success
             type: string
-            sample: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region that contains the availability domain the instance is running in.
@@ -157,7 +157,7 @@ instance_pool_instances:
                         - The OCID of the load balancer attached to the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.

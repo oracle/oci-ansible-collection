@@ -30,18 +30,18 @@ author: Oracle (@oracle)
 options:
     model_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
             - Required to get a specific model.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment.
+            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple models.
         type: str
     project_id:
         description:
-            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.
+            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project.
         type: str
     display_name:
         description:
@@ -60,7 +60,8 @@ options:
             - "INACTIVE"
     created_by:
         description:
-            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the resource.
+            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the
+              resource.
         type: str
     sort_order:
         description:
@@ -72,8 +73,8 @@ options:
     sort_by:
         description:
             - Specifies the field to sort by. Accepts only one field.
-              By default, when you sort by `timeCreated`, results are shown
-              in descending order. All other fields default to ascending order. Sort order for `displayName` field is case sensitive.
+              By default, when you sort by `timeCreated`, the results are shown
+              in descending order. All other fields default to ascending order. Sort order for the `displayName` field is case sensitive.
         type: str
         choices:
             - "timeCreated"
@@ -85,11 +86,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List models
   oci_data_science_model_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific model
   oci_data_science_model_facts:
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,31 +103,31 @@ models:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model.
             returned: on success
             type: string
-            sample: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         description:
             description:
-                - A short blurb describing the model.
+                - A short description of the model.
             returned: on success
             type: string
             sample: description_example
@@ -138,14 +139,14 @@ models:
             sample: ACTIVE
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model.
             returned: on success
             type: string
             sample: created_by_example

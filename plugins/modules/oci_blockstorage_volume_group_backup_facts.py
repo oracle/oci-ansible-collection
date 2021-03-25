@@ -76,11 +76,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List volume_group_backups
   oci_blockstorage_volume_group_backup_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific volume_group_backup
   oci_blockstorage_volume_group_backup_facts:
-    volume_group_backup_id: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
+    volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -96,7 +96,7 @@ volume_group_backups:
                 - The OCID of the compartment that contains the volume group backup.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -136,7 +136,7 @@ volume_group_backups:
                 - The OCID of the volume group backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume group backup.
@@ -209,13 +209,13 @@ volume_group_backups:
                 - The OCID of the source volume group.
             returned: on success
             type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         source_volume_group_backup_id:
             description:
                 - The OCID of the source volume group backup.
             returned: on success
             type: string
-            sample: ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

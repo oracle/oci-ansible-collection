@@ -46,7 +46,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action reset_idp_scim_client on identity_provider
   oci_identity_provider_actions:
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     action: reset_idp_scim_client
 
 """
@@ -63,7 +63,7 @@ identity_provider:
                 - The client identifier.
             returned: on success
             type: string
-            sample: ocid1.client.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
         client_secret:
             description:
                 - The client secret.

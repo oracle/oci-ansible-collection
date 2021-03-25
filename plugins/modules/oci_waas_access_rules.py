@@ -294,7 +294,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update access_rules
   oci_waas_access_rules:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     access_rules:
     - name: name_example
       criteria:

@@ -20,7 +20,7 @@ oracle.oci.oci_nosql_table_facts -- Fetches details about one or multiple Table 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -348,11 +348,11 @@ Examples
     
     - name: List tables
       oci_nosql_table_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific table
       oci_nosql_table_facts:
-        table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+        table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -389,28 +389,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Table resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;auto_reclaimable_tables&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ddl_statement&#x27;: &#x27;ddl_statement_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_reclaimable&#x27;: True, &#x27;items&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_reclaimable&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;table_limits&#x27;: {&#x27;max_read_units&#x27;: 56, &#x27;max_storage_in_g_bs&#x27;: 56, &#x27;max_write_units&#x27;: 56}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;max_auto_reclaimable_tables&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;schema&#x27;: {&#x27;columns&#x27;: [{&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;is_nullable&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;primary_key&#x27;: [], &#x27;shard_key&#x27;: [], &#x27;ttl&#x27;: 56}, &#x27;system_tags&#x27;: {}, &#x27;table_limits&#x27;: {&#x27;max_read_units&#x27;: 56, &#x27;max_storage_in_g_bs&#x27;: 56, &#x27;max_write_units&#x27;: 56}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ddl_statement&#x27;: &#x27;ddl_statement_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_reclaimable&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;schema&#x27;: {&#x27;columns&#x27;: [{&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;is_nullable&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;primary_key&#x27;: [], &#x27;shard_key&#x27;: [], &#x27;ttl&#x27;: 56}, &#x27;system_tags&#x27;: {}, &#x27;table_limits&#x27;: {&#x27;max_read_units&#x27;: 56, &#x27;max_storage_in_g_bs&#x27;: 56, &#x27;max_write_units&#x27;: 56}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-tables/auto_reclaimable_tables"></div>
-                    <b>auto_reclaimable_tables</b>
-                    <a class="ansibleOptionLink" href="#return-tables/auto_reclaimable_tables" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The current number of reclaimable tables in the tenancy.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-tables/compartment_id"></div>
@@ -521,327 +503,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-tables/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A page of TableSummary objects.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Compartment Identifier.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace.  Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Unique identifier that is immutable on creation.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/is_auto_reclaimable"></div>
-                    <b>is_auto_reclaimable</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/is_auto_reclaimable" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">boolean</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>True if this table can be reclaimed after an idle period.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/lifecycle_details"></div>
-                    <b>lifecycle_details</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/lifecycle_details" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A message describing the current state in more detail.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The state of a table.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Human-friendly table name, also immutable.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/system_tags"></div>
-                    <b>system_tags</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/system_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Read-only system tag. These predefined keys are scoped to namespaces.  At present the only supported namespace is `&quot;orcl-cloud&quot;`; and the only key in that namespace is `&quot;free-tier-retained&quot;`. Example: `{&quot;orcl-cloud&quot;&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/table_limits"></div>
-                    <b>table_limits</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/table_limits" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div></div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/table_limits/max_read_units"></div>
-                    <b>max_read_units</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/table_limits/max_read_units" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Maximum sustained read throughput limit for the table.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/table_limits/max_storage_in_g_bs"></div>
-                    <b>max_storage_in_g_bs</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/table_limits/max_storage_in_g_bs" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Maximum size of storage used by the table.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/table_limits/max_write_units"></div>
-                    <b>max_write_units</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/table_limits/max_write_units" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Maximum sustained write throughput limit for the table.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The time the the table was created. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/time_of_expiration"></div>
-                    <b>time_of_expiration</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/time_of_expiration" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>If lifecycleState is INACTIVE, indicates when this table will be automatically removed. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-tables/items/time_updated"></div>
-                    <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-tables/items/time_updated" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The time the the table&#x27;s metadata was last updated. An RFC3339 formatted datetime string.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-tables/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-tables/lifecycle_details" title="Permalink to this return value"></a>
@@ -873,24 +534,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-tables/max_auto_reclaimable_tables"></div>
-                    <b>max_auto_reclaimable_tables</b>
-                    <a class="ansibleOptionLink" href="#return-tables/max_auto_reclaimable_tables" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">integer</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The maximum number of reclaimable tables allowed in the tenancy.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

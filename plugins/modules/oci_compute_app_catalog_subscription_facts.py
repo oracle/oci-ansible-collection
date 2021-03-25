@@ -63,7 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List app_catalog_subscriptions
   oci_compute_app_catalog_subscription_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -85,7 +85,7 @@ app_catalog_subscriptions:
                 - The ocid of the listing resource.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Listing resource version.
@@ -97,7 +97,7 @@ app_catalog_subscriptions:
                 - Listing resource id.
             returned: on success
             type: string
-            sample: ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the listing.
@@ -115,7 +115,7 @@ app_catalog_subscriptions:
                 - The compartmentID of the subscription.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "Date and time at which the subscription was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.

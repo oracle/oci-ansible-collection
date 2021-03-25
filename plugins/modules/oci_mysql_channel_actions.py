@@ -51,12 +51,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action reset on channel
   oci_mysql_channel_actions:
-    channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     action: reset
 
 - name: Perform action resume on channel
   oci_mysql_channel_actions:
-    channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     action: resume
 
 """
@@ -73,13 +73,13 @@ channel:
                 - The OCID of the Channel.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Channel. It does not have to be unique.
@@ -165,7 +165,7 @@ channel:
                         - The OCID of the source DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                 channel_name:
                     description:
                         - The case-insensitive name that identifies the replication channel. Channel names

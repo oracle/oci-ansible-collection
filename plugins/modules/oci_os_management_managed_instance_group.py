@@ -26,7 +26,8 @@ description:
     - For I(state=present), creates a new Managed Instance Group on the management system.
       This will not contain any managed instances after it is first created,
       and they must be added later.
-    - "This resource has the following action operations in the M(oci_managed_instance_group_actions) module: attach_managed_instance, detach_managed_instance."
+    - "This resource has the following action operations in the M(oci_managed_instance_group_actions) module: attach_managed_instance, change_compartment,
+      detach_managed_instance."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -94,13 +95,13 @@ EXAMPLES = """
 - name: Create managed_instance_group
   oci_os_management_managed_instance_group:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_managed_instance_group:
     display_name: display_name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -108,17 +109,17 @@ EXAMPLES = """
   oci_os_management_managed_instance_group:
     display_name: display_name_example
     description: description_example
-    managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete managed_instance_group
   oci_os_management_managed_instance_group:
-    managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete managed_instance_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_managed_instance_group:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -141,7 +142,7 @@ managed_instance_group:
                 - OCID for the managed instance group
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Information specified by the user about the managed instance group
@@ -153,7 +154,7 @@ managed_instance_group:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instances:
             description:
                 - list of Managed Instances in the group
@@ -165,7 +166,7 @@ managed_instance_group:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name

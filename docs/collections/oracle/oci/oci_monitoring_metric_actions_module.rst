@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_metric_actions -- Perform actions on a Metric resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -410,27 +410,27 @@ Examples
     
     - name: Perform action list on metric
       oci_monitoring_metric_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_by:
-        - namespace
-        action: list
+        - "namespace"
+        action: "list"
 
     - name: Perform action list on metric
       oci_monitoring_metric_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_by:
-        - resourceGroup
-        namespace: my_namespace
-        action: list
+        - "resourceGroup"
+        namespace: "my_namespace"
+        action: "list"
 
     - name: Perform action list on metric
       oci_monitoring_metric_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_by:
-        - name
-        namespace: my_namespace
-        resource_group: my_resourcegroup
-        action: list
+        - "name"
+        namespace: "my_namespace"
+        resource_group: "my_resourcegroup"
+        action: "list"
 
 
 

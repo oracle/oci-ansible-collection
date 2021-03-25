@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_data_asset -- Manage a DataAsset resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -508,31 +508,31 @@ Examples
     
     - name: Create data_asset
       oci_data_catalog_data_asset:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         type_key: type_key_example
 
     - name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_data_asset:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
 
     - name: Update data_asset
       oci_data_catalog_data_asset:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         data_asset_key: data_asset_key_example
 
     - name: Delete data_asset
       oci_data_catalog_data_asset:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         state: absent
 
     - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_data_asset:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

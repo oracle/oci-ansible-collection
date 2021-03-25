@@ -20,7 +20,7 @@ oracle.oci.oci_waas_policy -- Manage a WaasPolicy resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -50,7 +50,7 @@ Synopsis
 - You must specify a display name and domain for the WAAS policy. The display name does not have to be unique and can be changed. The domain name should be different from every origin specified in `WaasPolicy`.
 - All Oracle Cloud Infrastructure resources, including WAAS policies, receive a unique, Oracle-assigned ID called an Oracle Cloud Identifier (OCID). When a resource is created, you can find its OCID in the response. You can also retrieve a resource's OCID by using a list API operation for that resource type, or by viewing the resource in the Console. Fore more information, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - **Note:** After sending the POST request, the new object's state will temporarily be `CREATING`. Ensure that the resource's state has changed to `ACTIVE` before use.
-- This resource has the following action operations in the :ref:`oci_waas_policy_actions <ansible_collections.oci_waas_policy_actions_module>` module: accept_recommendations, purge_cache.
+- This resource has the following action operations in the :ref:`oci_waas_policy_actions <ansible_collections.oci_waas_policy_actions_module>` module: accept_recommendations, change_compartment, purge_cache.
 
 
 .. Aliases
@@ -4198,26 +4198,26 @@ Examples
     
     - name: Create waas_policy
       oci_waas_policy:
-        compartment_id: ocid1.compartment.oc1..
-        display_name: Policy
-        domain: example.com
+        compartment_id: "ocid1.compartment.oc1.."
+        display_name: "Policy"
+        domain: "example.com"
 
     - name: Update waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_policy:
-        display_name: change_policy
+        display_name: "change_policy"
 
     - name: Update waas_policy
       oci_waas_policy:
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete waas_policy
       oci_waas_policy:
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete waas_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_policy:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: Policy
         state: absent
 

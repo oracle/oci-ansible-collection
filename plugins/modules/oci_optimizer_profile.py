@@ -149,13 +149,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create profile
   oci_optimizer_profile:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
 
 - name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_optimizer_profile:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -170,16 +170,16 @@ EXAMPLES = """
   oci_optimizer_profile:
     name: name_example
     description: description_example
-    profile_id: ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx
+    profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete profile
   oci_optimizer_profile:
-    profile_id: ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx
+    profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_optimizer_profile:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -197,13 +197,13 @@ profile:
                 - The unique OCID of the profile.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the profile. Avoid entering confidential information.
@@ -239,18 +239,24 @@ profile:
             returned: on success
             type: complex
             contains:
-                recommendation_id:
+                items:
                     description:
-                        - The unique OCID of the recommendation.
+                        - The array of configuration levels.
                     returned: on success
-                    type: string
-                    sample: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
-                level:
-                    description:
-                        - The pre-defined profile level.
-                    returned: on success
-                    type: string
-                    sample: level_example
+                    type: complex
+                    contains:
+                        recommendation_id:
+                            description:
+                                - The unique OCID of the recommendation.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+                        level:
+                            description:
+                                - The pre-defined profile level.
+                            returned: on success
+                            type: string
+                            sample: level_example
         target_compartments:
             description:
                 - ""
@@ -325,8 +331,10 @@ profile:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},
         "levels_configuration": {
-            "recommendation_id": "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx",
-            "level": "level_example"
+            "items": [{
+                "recommendation_id": "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx",
+                "level": "level_example"
+            }]
         },
         "target_compartments": {
             "items": []

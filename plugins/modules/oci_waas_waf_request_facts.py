@@ -49,7 +49,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List waf_requests
   oci_waas_waf_request_facts:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

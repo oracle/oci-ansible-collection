@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific content
   oci_apigateway_content_facts:
-    api_id: ocid1.api.oc1..xxxxxxEXAMPLExxxxxx
+    api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

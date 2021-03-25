@@ -20,7 +20,7 @@ oracle.oci.oci_streaming_connect_harness -- Manage a ConnectHarness resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ConnectHarness resource in Oracle Cloud Infrastructure
 - For *state=present*, starts the provisioning of a new connect harness. To track the progress of the provisioning, you can periodically call `GetConnectHarness]. In the response, the `lifecycleState` parameter of the [ConnectHarness <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/streaming/20180418/ConnectHarness/>`_ object tells you its current state.
+- This resource has the following action operations in the :ref:`oci_connect_harness_actions <ansible_collections.oci_connect_harness_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -413,29 +414,29 @@ Examples
     
     - name: Create connect_harness
       oci_streaming_connect_harness:
-        compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
-        name: mynewconnectharness
+        compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+        name: "mynewconnectharness"
 
     - name: Update connect_harness using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_streaming_connect_harness:
         name: mynewconnectharness
-        compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
+        compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update connect_harness
       oci_streaming_connect_harness:
-        connect_harness_id: ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx
+        connect_harness_id: "ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete connect_harness
       oci_streaming_connect_harness:
-        connect_harness_id: ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx
+        connect_harness_id: "ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete connect_harness using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_streaming_connect_harness:
         name: mynewconnectharness
-        compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
+        compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
         state: absent
 
 

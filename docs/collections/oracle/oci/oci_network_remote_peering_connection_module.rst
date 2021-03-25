@@ -20,7 +20,7 @@ oracle.oci.oci_network_remote_peering_connection -- Manage a RemotePeeringConnec
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a RemotePeeringConnection resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new remote peering connection (RPC) for the specified DRG.
-- This resource has the following action operations in the :ref:`oci_remote_peering_connection_actions <ansible_collections.oci_remote_peering_connection_actions_module>` module: connect.
+- This resource has the following action operations in the :ref:`oci_remote_peering_connection_actions <ansible_collections.oci_remote_peering_connection_actions_module>` module: change_compartment, connect.
 
 
 .. Aliases
@@ -430,12 +430,12 @@ Examples
     
     - name: Create remote_peering_connection
       oci_network_remote_peering_connection:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update remote_peering_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_remote_peering_connection:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -444,16 +444,16 @@ Examples
       oci_network_remote_peering_connection:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        remote_peering_connection_id: ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx
+        remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete remote_peering_connection
       oci_network_remote_peering_connection:
-        remote_peering_connection_id: ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx
+        remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete remote_peering_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_remote_peering_connection:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

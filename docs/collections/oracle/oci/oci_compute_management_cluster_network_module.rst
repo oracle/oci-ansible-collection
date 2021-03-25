@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_cluster_network -- Manage a ClusterNetwork res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ClusterNetwork resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a cluster network. For more information about cluster networks, see `Managing Cluster Networks <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm>`_.
+- This resource has the following action operations in the :ref:`oci_cluster_network_actions <ansible_collections.oci_cluster_network_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -616,30 +617,30 @@ Examples
     
     - name: Create cluster_network
       oci_compute_management_cluster_network:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         instance_pools:
-        - instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        - instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
           size: 56
         placement_configuration:
           availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+          primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_cluster_network:
-        display_name: example_cluster_network
+        display_name: "example_cluster_network"
 
     - name: Update cluster_network
       oci_compute_management_cluster_network:
-        cluster_network_id: ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+        cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete cluster_network
       oci_compute_management_cluster_network:
-        cluster_network_id: ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+        cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_cluster_network:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: example_cluster_network
         state: absent
 

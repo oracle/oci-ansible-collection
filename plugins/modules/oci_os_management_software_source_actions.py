@@ -24,6 +24,8 @@ short_description: Perform actions on a SoftwareSource resource in Oracle Cloud 
 description:
     - Perform actions on a SoftwareSource resource in Oracle Cloud Infrastructure
     - For I(action=add_packages), adds a given list of Software Packages to a specific Software Source.
+    - For I(action=change_compartment), moves a resource into a different compartment. When provided, If-Match
+      is checked against ETag values of the resource.
     - For I(action=remove_packages), removes a given list of Software Packages from a specific Software Source.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -37,8 +39,14 @@ options:
     package_names:
         description:
             - the list of package names
+            - Required for I(action=add_packages), I(action=remove_packages).
         type: list
-        required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+              compartment into which the resource should be moved.
+            - Applicable only for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the SoftwareSource.
@@ -46,6 +54,7 @@ options:
         required: true
         choices:
             - "add_packages"
+            - "change_compartment"
             - "remove_packages"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -53,12 +62,17 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action add_packages on software_source
   oci_os_management_software_source_actions:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: add_packages
+
+- name: Perform action change_compartment on software_source
+  oci_os_management_software_source_actions:
+    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_compartment
 
 - name: Perform action remove_packages on software_source
   oci_os_management_software_source_actions:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove_packages
 
 """
@@ -75,13 +89,13 @@ software_source:
                 - OCID for the Software Source
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User friendly name for the software source
@@ -117,7 +131,7 @@ software_source:
                 - OCID for the parent software source, if there is one
             returned: on success
             type: string
-            sample: ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         parent_name:
             description:
                 - Display name the parent software source, if there is one
@@ -159,7 +173,7 @@ software_source:
                 - ID of the GPG key for this software source
             returned: on success
             type: string
-            sample: ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx"
         gpg_key_fingerprint:
             description:
                 - Fingerprint of the GPG key for this software source
@@ -195,7 +209,7 @@ software_source:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -258,6 +272,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.os_management import OsManagementClient
     from oci.os_management.models import AddPackagesToSoftwareSourceDetails
+    from oci.os_management.models import ChangeSoftwareSourceCompartmentDetails
     from oci.os_management.models import RemovePackagesFromSoftwareSourceDetails
 
     HAS_OCI_PY_SDK = True
@@ -269,6 +284,7 @@ class SoftwareSourceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         add_packages
+        change_compartment
         remove_packages
     """
 
@@ -298,6 +314,29 @@ class SoftwareSourceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 software_source_id=self.module.params.get("software_source_id"),
                 add_packages_to_software_source_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeSoftwareSourceCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_software_source_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                software_source_id=self.module.params.get("software_source_id"),
+                change_software_source_compartment_details=action_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -351,9 +390,12 @@ def main():
     module_args.update(
         dict(
             software_source_id=dict(aliases=["id"], type="str", required=True),
-            package_names=dict(type="list", required=True),
+            package_names=dict(type="list"),
+            compartment_id=dict(type="str"),
             action=dict(
-                type="str", required=True, choices=["add_packages", "remove_packages"]
+                type="str",
+                required=True,
+                choices=["add_packages", "change_compartment", "remove_packages"],
             ),
         )
     )

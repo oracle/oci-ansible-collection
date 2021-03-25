@@ -67,12 +67,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List auto_scaling_configuration_policies
   oci_autoscaling_auto_scaling_configuration_policy_facts:
-    auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific auto_scaling_configuration_policy
   oci_autoscaling_auto_scaling_configuration_policy_facts:
-    auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
-    auto_scaling_policy_id: ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -114,7 +114,7 @@ auto_scaling_configuration_policies:
                 - The ID of the autoscaling policy that is assigned after creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -200,7 +200,7 @@ auto_scaling_configuration_policies:
                         - ID of the condition that is assigned after creation.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 metric:
                     description:
                         - ""

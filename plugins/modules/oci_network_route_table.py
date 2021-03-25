@@ -36,6 +36,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the route table, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_route_table_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -143,16 +144,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create route_table
   oci_network_route_table:
-    display_name: MyRouteTable
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    display_name: "MyRouteTable"
+    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
     route_rules:
-    - cidr_block: 0.0.0.0/0
-      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    - cidr_block: "0.0.0.0/0"
+      network_entity_id: "ocid1.internetgateway.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyRouteTable
     freeform_tags: {'Department': 'Finance'}
@@ -163,16 +164,16 @@ EXAMPLES = """
   oci_network_route_table:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyRouteTable
-    rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete route_table
   oci_network_route_table:
-    rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyRouteTable
     state: absent
 
@@ -190,7 +191,7 @@ route_table:
                 - The OCID of the compartment containing the route table.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -220,7 +221,7 @@ route_table:
                 - The route table's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The route table's current state.
@@ -272,7 +273,7 @@ route_table:
                           L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
                 description:
                     description:
                         - An optional description of your choice for the rule.
@@ -291,7 +292,7 @@ route_table:
                 - The OCID of the VCN the route table list belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

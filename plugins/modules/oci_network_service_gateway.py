@@ -30,7 +30,8 @@ description:
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the service gateway, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_service_gateway_actions) module: attach_service_id, detach_service_id."
+    - "This resource has the following action operations in the M(oci_service_gateway_actions) module: attach_service_id, change_compartment,
+      detach_service_id."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -128,36 +129,36 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create service_gateway
   oci_network_service_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     services:
-    - service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    - service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_service_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     services:
-    - service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+    - service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     block_traffic: true
 
 - name: Update service_gateway
   oci_network_service_gateway:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete service_gateway
   oci_network_service_gateway:
-    service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_service_gateway:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -184,7 +185,7 @@ service_gateway:
                   service gateway.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -214,7 +215,7 @@ service_gateway:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service gateway.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The service gateway's current state.
@@ -229,7 +230,7 @@ service_gateway:
                   Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         services:
             description:
                 - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) objects enabled for this service gateway.
@@ -244,7 +245,7 @@ service_gateway:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service.
                     returned: on success
                     type: string
-                    sample: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
                 service_name:
                     description:
                         - The name of the service.
@@ -264,7 +265,7 @@ service_gateway:
                   belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "block_traffic": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

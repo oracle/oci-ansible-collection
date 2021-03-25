@@ -98,7 +98,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific zone_records
   oci_dns_zone_records_facts:
-    zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

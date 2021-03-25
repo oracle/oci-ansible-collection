@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific letter_of_authority
   oci_network_letter_of_authority_facts:
-    cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -67,7 +67,7 @@ letter_of_authority:
                 - The OCID of the cross-connect.
             returned: on success
             type: string
-            sample: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
         facility_location:
             description:
                 - The address of the FastConnect location.

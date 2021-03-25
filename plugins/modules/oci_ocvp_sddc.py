@@ -26,6 +26,7 @@ description:
     - For I(state=present), creates a software-defined data center (SDDC).
     - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/WorkRequest/) operations to track the
       creation of the SDDC.
+    - "This resource has the following action operations in the M(oci_sddc_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -193,32 +194,32 @@ EXAMPLES = """
   oci_ocvp_sddc:
     compute_availability_domain: compute_availability_domain_example
     vmware_software_version: vmware_software_version_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     esxi_hosts_count: 56
     ssh_authorized_keys: ssh_authorized_keys_example
-    provisioning_subnet_id: ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx
-    vsphere_vlan_id: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
-    vmotion_vlan_id: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
-    vsan_vlan_id: ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_v_tep_vlan_id: ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_edge_v_tep_vlan_id: ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_edge_uplink1_vlan_id: ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_edge_uplink2_vlan_id: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+    provisioning_subnet_id: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+    vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
+    vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_v_tep_vlan_id: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_v_tep_vlan_id: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_sddc:
     display_name: display_name_example
     vmware_software_version: vmware_software_version_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    hcx_vlan_id: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
     ssh_authorized_keys: ssh_authorized_keys_example
-    vsphere_vlan_id: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
-    vmotion_vlan_id: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
-    vsan_vlan_id: ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_v_tep_vlan_id: ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_edge_v_tep_vlan_id: ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_edge_uplink1_vlan_id: ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx
-    nsx_edge_uplink2_vlan_id: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+    vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
+    vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_v_tep_vlan_id: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_v_tep_vlan_id: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
+    nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -226,17 +227,17 @@ EXAMPLES = """
   oci_ocvp_sddc:
     display_name: display_name_example
     vmware_software_version: vmware_software_version_example
-    sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete sddc
   oci_ocvp_sddc:
-    sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_sddc:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -253,7 +254,7 @@ sddc:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compute_availability_domain:
             description:
                 - The availability domain the ESXi hosts are running in.
@@ -302,7 +303,7 @@ sddc:
                   contains the SDDC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         esxi_hosts_count:
             description:
                 - The number of ESXi hosts in the SDDC.
@@ -330,7 +331,7 @@ sddc:
                   Core Services API.
             returned: on success
             type: string
-            sample: ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_manager_private_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
@@ -338,7 +339,7 @@ sddc:
                   Core Services API.
             returned: on success
             type: string
-            sample: ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         vcenter_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. Make sure
@@ -405,14 +406,14 @@ sddc:
                   For information about `PrivateIp` objects, see the Core Services API.
             returned: on success
             type: string
-            sample: ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the management subnet used
                   to provision the SDDC.
             returned: on success
             type: string
-            sample: ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         vsphere_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -428,7 +429,7 @@ sddc:
                   `vsphereVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
         vmotion_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -444,7 +445,7 @@ sddc:
                   `vmotionVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
         vsan_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -460,7 +461,7 @@ sddc:
                   `vsanVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_v_tep_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -476,7 +477,7 @@ sddc:
                   `nsxVTepVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_v_tep_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -492,7 +493,7 @@ sddc:
                   `nsxEdgeVTepVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink1_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -508,7 +509,7 @@ sddc:
                   `nsxEdgeUplink1VlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink2_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
@@ -524,13 +525,13 @@ sddc:
                   `nsxEdgeUplink2VlanId` with that new VLAN's OCID.
             returned: on success
             type: string
-            sample: ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_private_ip_id:
             description:
                 - HCX Private IP
             returned: on success
             type: string
-            sample: ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_fqdn:
             description:
                 - HCX Fully Qualified Domain Name
@@ -548,7 +549,7 @@ sddc:
                 - HCX vlan id
             returned: on success
             type: string
-            sample: ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         is_hcx_enabled:
             description:
                 - HCX enabled or not

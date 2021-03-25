@@ -85,11 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List virtual_circuits
   oci_network_virtual_circuit_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific virtual_circuit
   oci_network_virtual_circuit_facts:
-    virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -128,7 +128,7 @@ virtual_circuits:
                 - The OCID of the compartment containing the virtual circuit.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_mappings:
             description:
                 - An array of mappings, each containing properties for a
@@ -153,7 +153,7 @@ virtual_circuits:
                           customer is connecting via provider).
                     returned: on success
                     type: string
-                    sample: ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
                 customer_bgp_peering_ip:
                     description:
                         - The BGP IPv4 address for the router on the other end of the BGP session from
@@ -235,13 +235,13 @@ virtual_circuits:
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The virtual circuit's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The virtual circuit's current state. For information about
@@ -267,7 +267,7 @@ virtual_circuits:
                 - The OCID of the service offered by the provider (if the customer is connecting via a provider).
             returned: on success
             type: string
-            sample: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name:
             description:
                 - The service key name offered by the provider (if the customer is connecting via a provider).

@@ -20,7 +20,7 @@ oracle.oci.oci_waas_custom_protection_rule -- Manage a CustomProtectionRule reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a CustomProtectionRule resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new custom protection rule in the specified compartment.
 - Custom protection rules allow you to create rules in addition to the rulesets provided by the Web Application Firewall service, including rules from `ModSecurity <https://modsecurity.org/>`_. The syntax for custom rules is based on the ModSecurity syntax. For more information about custom protection rules, see `Custom Protection Rules <https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/customprotectionrules.htm>`_.
+- This resource has the following action operations in the :ref:`oci_custom_protection_rule_actions <ansible_collections.oci_custom_protection_rule_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -456,13 +457,13 @@ Examples
     
     - name: Create custom_protection_rule
       oci_waas_custom_protection_rule:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         template: template_example
 
     - name: Update custom_protection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_custom_protection_rule:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         template: template_example
@@ -473,16 +474,16 @@ Examples
       oci_waas_custom_protection_rule:
         display_name: display_name_example
         description: description_example
-        custom_protection_rule_id: ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx
+        custom_protection_rule_id: "ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete custom_protection_rule
       oci_waas_custom_protection_rule:
-        custom_protection_rule_id: ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx
+        custom_protection_rule_id: "ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete custom_protection_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_custom_protection_rule:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

@@ -24,6 +24,7 @@ short_description: Manage a Vlan resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Vlan resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a VLAN in the specified VCN and the specified compartment.
+    - "This resource has the following action operations in the M(oci_vlan_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -123,35 +124,35 @@ EXAMPLES = """
   oci_network_vlan:
     availability_domain: Uocm:PHX-AD-1
     cidr_block: 192.0.2.0/24
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vlan:
     cidr_block: 192.0.2.0/24
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    route_table_id: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update vlan
   oci_network_vlan:
     cidr_block: 192.0.2.0/24
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vlan
   oci_network_vlan:
-    vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vlan using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vlan:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -183,7 +184,7 @@ vlan:
                 - The OCID of the compartment containing the VLAN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -213,7 +214,7 @@ vlan:
                 - The VLAN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The VLAN's current state.
@@ -241,7 +242,7 @@ vlan:
                 - The OCID of the route table that the VLAN uses.
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VLAN was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -254,7 +255,7 @@ vlan:
                 - The OCID of the VCN the VLAN is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "cidr_block": "192.168.1.0/24",

@@ -101,12 +101,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List keys
   oci_key_management_key_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Get a specific key
   oci_key_management_key_facts:
-    key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -123,7 +123,7 @@ keys:
                 - The OCID of the compartment that contains this master encryption key.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_key_version:
             description:
                 - The OCID of the key version used in cryptographic operations. During key rotation, the service might be
@@ -160,7 +160,7 @@ keys:
                 - The OCID of the key.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_shape:
             description:
                 - ""
@@ -187,7 +187,7 @@ keys:
                         - Supported curve Ids for ECDSA keys
                     returned: on success
                     type: string
-                    sample: ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         protection_mode:
             description:
                 - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
@@ -225,7 +225,7 @@ keys:
                 - The OCID of the vault that contains this key.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         algorithm:
             description:
                 - The algorithm used by a key's key versions to encrypt or decrypt.

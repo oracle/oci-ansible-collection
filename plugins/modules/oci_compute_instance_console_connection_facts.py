@@ -51,11 +51,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List instance_console_connections
   oci_compute_instance_console_connection_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific instance_console_connection
   oci_compute_instance_console_connection_facts:
-    instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+    instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -71,7 +71,7 @@ instance_console_connections:
                 - The OCID of the compartment to contain the console connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - The SSH connection string for the console connection.
@@ -106,13 +106,13 @@ instance_console_connections:
                 - The OCID of the console connection.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the console connection connects to.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the console connection.

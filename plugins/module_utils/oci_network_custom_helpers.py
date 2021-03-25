@@ -215,52 +215,56 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
 
 class ServiceGatewayActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        service_id = self.module.params.get("service_id")
-        if not service_id:
-            return False
         existing_service_ids = [service.service_id for service in resource.services]
         if action == "attach_service_id":
-            if service_id in existing_service_ids:
+            if self.module.params.get("service_id") in existing_service_ids:
                 return False
             return True
         elif action == "detach_service_id":
-            if service_id not in existing_service_ids:
+            if self.module.params.get("service_id") not in existing_service_ids:
                 return False
             return True
-        return True
+        return super(ServiceGatewayActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class LocalPeeringGatewayActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        this_lpg = resource
-        peer_lpg = self.client.get_local_peering_gateway(
-            local_peering_gateway_id=self.module.params.get("peer_id")
-        ).data
+        if action == "connect":
+            this_lpg = resource
+            peer_lpg = self.client.get_local_peering_gateway(
+                local_peering_gateway_id=self.module.params.get("peer_id")
+            ).data
 
-        this_vcn = self.client.get_vcn(vcn_id=this_lpg.vcn_id).data
-        peer_vcn = self.client.get_vcn(vcn_id=peer_lpg.vcn_id).data
+            this_vcn = self.client.get_vcn(vcn_id=this_lpg.vcn_id).data
+            peer_vcn = self.client.get_vcn(vcn_id=peer_lpg.vcn_id).data
 
-        if (
-            this_lpg.peering_status == "PEERED"
-            and this_lpg.peer_advertised_cidr == peer_vcn.cidr_block
-        ) and (
-            peer_lpg.peering_status == "PEERED"
-            and peer_lpg.peer_advertised_cidr == this_vcn.cidr_block
-        ):
-            return False
-
-        return True
+            if (
+                this_lpg.peering_status == "PEERED"
+                and this_lpg.peer_advertised_cidr == peer_vcn.cidr_block
+            ) and (
+                peer_lpg.peering_status == "PEERED"
+                and peer_lpg.peer_advertised_cidr == this_vcn.cidr_block
+            ):
+                return False
+        return super(LocalPeeringGatewayActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class RemotePeeringConnectionActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        this_rpc = resource
-        if (
-            this_rpc.peering_status == "PEERED"
-            and this_rpc.peer_id == self.module.params.get("peer_id")
-        ):
-            return False
-        return True
+        if action == "connect":
+            this_rpc = resource
+            if (
+                this_rpc.peering_status == "PEERED"
+                and this_rpc.peer_id == self.module.params.get("peer_id")
+            ):
+                return False
+        return super(
+            RemotePeeringConnectionActionsHelperCustom, self
+        ).is_action_necessary(action, resource)
 
 
 class CrossConnectGroupHelperCustom:
@@ -357,11 +361,7 @@ class VirtualCircuitActionsHelperCustom:
                 BulkDeleteVirtualCircuitPublicPrefixesDetails(public_prefixes=[])
             )
         else:
-            self.module.fail_json(
-                msg="Performing action failed for unrecognized action: {0}".format(
-                    action
-                )
-            )
+            return super(VirtualCircuitActionsHelperCustom, self).perform_action(action)
 
         result = action_idempotency_checks_fn()
         if result:
@@ -650,7 +650,9 @@ class ByoipRangeActionsHelperCustom:
             ):
                 return False
             return False
-        super(ByoipRangeActionsHelperCustom, self).is_action_necessary(action, resource)
+        return super(ByoipRangeActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class VcnActionsHelperCustom:

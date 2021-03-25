@@ -20,7 +20,7 @@ oracle.oci.oci_identity_network_sources -- Manage a NetworkSources resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -513,13 +513,13 @@ Examples
     
     - name: Create network_sources
       oci_identity_network_sources:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
 
     - name: Update network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_network_sources:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -528,16 +528,16 @@ Examples
     - name: Update network_sources
       oci_identity_network_sources:
         description: description_example
-        network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+        network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete network_sources
       oci_identity_network_sources:
-        network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+        network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_network_sources:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 

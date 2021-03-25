@@ -24,7 +24,8 @@ short_description: Manage an OnPremConnector resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete an OnPremConnector resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new on-premises connector.
-    - "This resource has the following action operations in the M(oci_on_prem_connector_actions) module: generate_on_prem_connector_configuration."
+    - "This resource has the following action operations in the M(oci_on_prem_connector_actions) module: change_compartment,
+      generate_on_prem_connector_configuration."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -83,12 +84,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create on_prem_connector
   oci_data_safe_on_prem_connector:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_on_prem_connector:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -97,17 +98,17 @@ EXAMPLES = """
   oci_data_safe_on_prem_connector:
     display_name: display_name_example
     description: description_example
-    on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete on_prem_connector
   oci_data_safe_on_prem_connector:
-    on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_on_prem_connector:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -124,7 +125,7 @@ on_prem_connector:
                 - The OCID of the on-premises connector.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the on-premises connector.
@@ -136,7 +137,7 @@ on_prem_connector:
                 - The OCID of the compartment that contains the on-premises connector.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The description of the on-premises connector.

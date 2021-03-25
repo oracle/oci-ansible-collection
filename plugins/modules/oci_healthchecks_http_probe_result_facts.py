@@ -59,7 +59,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List http_probe_results
   oci_healthchecks_http_probe_result_facts:
-    probe_configuration_id: ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    probe_configuration_id: "ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -82,7 +82,7 @@ http_probe_results:
                 - The OCID of the monitor or on-demand probe responsible for creating this result.
             returned: on success
             type: string
-            sample: ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         start_time:
             description:
                 - The date and time the probe was executed, expressed in milliseconds since the

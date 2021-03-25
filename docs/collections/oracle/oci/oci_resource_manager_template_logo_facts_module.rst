@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_template_logo_facts -- Fetches details about a T
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -267,7 +267,7 @@ Examples
     
     - name: Get a specific template_logo
       oci_resource_manager_template_logo_facts:
-        template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
         dest: /tmp/templateLogo.png
 
 

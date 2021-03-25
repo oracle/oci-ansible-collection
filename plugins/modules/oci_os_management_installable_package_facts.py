@@ -62,7 +62,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List installable_packages
   oci_os_management_installable_package_facts:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -120,7 +120,7 @@ installable_packages:
                         - software source identifier
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "display_name": "display_name_example",
         "name": "name_example",

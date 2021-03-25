@@ -28,7 +28,7 @@ description:
     - When the request is received, the backup object is in a REQUEST_RECEIVED state.
       When the data is imaged, it goes into a CREATING state.
       After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
-    - "This resource has the following action operations in the M(oci_volume_backup_actions) module: copy."
+    - "This resource has the following action operations in the M(oci_volume_backup_actions) module: change_compartment, copy."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -96,31 +96,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_backup
   oci_blockstorage_volume_backup:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_backup:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update volume_backup
   oci_blockstorage_volume_backup:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    volume_backup_id: ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx
+    volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume_backup
   oci_blockstorage_volume_backup:
-    volume_backup_id: ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx
+    volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_backup:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -137,7 +137,7 @@ volume_backup:
                 - The OCID of the compartment that contains the volume backup.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -184,7 +184,7 @@ volume_backup:
                 - The OCID of the volume backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the Key Management key which is the master encryption key for the volume backup.
@@ -193,7 +193,7 @@ volume_backup:
                   L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume backup.
@@ -224,7 +224,7 @@ volume_backup:
                 - The OCID of the source volume backup.
             returned: on success
             type: string
-            sample: ocid1.sourcevolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcevolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume backup was created. This is the time the actual point-in-time image
@@ -264,7 +264,7 @@ volume_backup:
                 - The OCID of the volume.
             returned: on success
             type: string
-            sample: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

@@ -92,11 +92,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List alarms
   oci_monitoring_alarm_facts:
-    compartment_id: ocid1.compartment.oc1..exampleuniqueID
+    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
 
 - name: Get a specific alarm
   oci_monitoring_alarm_facts:
-    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+    alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -112,7 +112,7 @@ alarms:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the alarm. It does not have to be unique, and it's changeable.
@@ -127,14 +127,14 @@ alarms:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
                   being evaluated by the alarm.
             returned: on success
             type: string
-            sample: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id_in_subtree:
             description:
                 - When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can

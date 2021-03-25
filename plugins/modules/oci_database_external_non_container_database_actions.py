@@ -23,6 +23,9 @@ module: oci_database_external_non_container_database_actions
 short_description: Perform actions on an ExternalNonContainerDatabase resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an ExternalNonContainerDatabase resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), move the external non-container database and its dependent resources to the specified compartment.
+      For more information about moving external non-container databases, see
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
     - For I(action=disable_external_non_container_database_database_management), disable Database Management Service for the external non-container database.
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
@@ -32,6 +35,11 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     external_non_container_database_id:
         description:
             - The external non-container database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -58,23 +66,30 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "disable_external_non_container_database_database_management"
             - "enable_external_non_container_database_database_management"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on external_non_container_database
+  oci_database_external_non_container_database_actions:
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action disable_external_non_container_database_database_management on external_non_container_database
   oci_database_external_non_container_database_actions:
-    external_non_container_database_id: ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_external_non_container_database_database_management
 
 - name: Perform action enable_external_non_container_database_database_management on external_non_container_database
   oci_database_external_non_container_database_actions:
-    external_database_connector_id: ocid1.externaldatabaseconnector..unique_ID
-    license_model: BRING_YOUR_OWN_LICENSE
-    external_non_container_database_id: ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
-    action: enable_external_non_container_database_database_management
+    external_database_connector_id: "ocid1.externaldatabaseconnector..unique_ID"
+    license_model: "BRING_YOUR_OWN_LICENSE"
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "enable_external_non_container_database_database_management"
 
 """
 
@@ -90,7 +105,7 @@ external_non_container_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -118,7 +133,7 @@ external_non_container_database:
                   resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
@@ -148,7 +163,7 @@ external_non_container_database:
                 - The Oracle Database ID, which identifies an Oracle Database located outside of Oracle Cloud.
             returned: on success
             type: string
-            sample: ocid1.db.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The Oracle Database version.
@@ -206,7 +221,7 @@ external_non_container_database:
                           us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                     returned: on success
                     type: string
-                    sample: ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 license_model:
                     description:
                         - The Oracle license model that applies to the external database.
@@ -251,6 +266,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import ChangeCompartmentDetails
     from oci.database.models import (
         EnableExternalNonContainerDatabaseDatabaseManagementDetails,
     )
@@ -263,6 +279,7 @@ except ImportError:
 class ExternalNonContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         disable_external_non_container_database_database_management
         enable_external_non_container_database_database_management
     """
@@ -291,6 +308,29 @@ class ExternalNonContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
             external_non_container_database_id=self.module.params.get(
                 "external_non_container_database_id"
             ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_external_non_container_database_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_compartment_details=action_details,
+                external_non_container_database_id=self.module.params.get(
+                    "external_non_container_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def disable_external_non_container_database_database_management(self):
@@ -355,6 +395,7 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             external_non_container_database_id=dict(
                 aliases=["id"], type="str", required=True
             ),
@@ -366,6 +407,7 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "change_compartment",
                     "disable_external_non_container_database_database_management",
                     "enable_external_non_container_database_database_management",
                 ],

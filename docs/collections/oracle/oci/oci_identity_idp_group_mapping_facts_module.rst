@@ -20,7 +20,7 @@ oracle.oci.oci_identity_idp_group_mapping_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -269,12 +269,12 @@ Examples
     
     - name: List idp_group_mappings
       oci_identity_idp_group_mapping_facts:
-        identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+        identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific idp_group_mapping
       oci_identity_idp_group_mapping_facts:
-        identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
-        mapping_id: ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx
+        identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
+        mapping_id: "ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

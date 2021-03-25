@@ -119,7 +119,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action bulk_delete_resources on compartment
   oci_identity_compartment_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
     - identifier: identifier_example
       entity_type: entity_type_example
@@ -127,22 +127,22 @@ EXAMPLES = """
 
 - name: Perform action bulk_move_resources on compartment
   oci_identity_compartment_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
     - identifier: identifier_example
       entity_type: entity_type_example
-    target_compartment_id: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
+    target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_move_resources
 
 - name: Perform action move on compartment
   oci_identity_compartment_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    target_compartment_id: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: move
 
 - name: Perform action recover on compartment
   oci_identity_compartment_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: recover
 
 """
@@ -159,13 +159,13 @@ compartment:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the parent compartment containing the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the compartment during creation. The name must be unique across all

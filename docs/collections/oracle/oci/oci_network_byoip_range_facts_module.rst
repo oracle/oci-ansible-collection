@@ -20,7 +20,7 @@ oracle.oci.oci_network_byoip_range_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -340,11 +340,11 @@ Examples
     
     - name: List byoip_ranges
       oci_network_byoip_range_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific byoip_range
       oci_network_byoip_range_facts:
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -363,12 +363,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="2">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges"></div>
                     <b>byoip_ranges</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges" title="Permalink to this return value"></a>
@@ -381,12 +381,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ByoipRange resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;items&#x27;: [{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_state&#x27;: &#x27;INACTIVE&#x27;, &#x27;time_advertised&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_validated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_withdrawn&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;validation_token&#x27;: &#x27;validation_token_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_state&#x27;: &#x27;INACTIVE&#x27;, &#x27;time_advertised&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_validated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_withdrawn&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;validation_token&#x27;: &#x27;validation_token_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/cidr_block"></div>
                     <b>cidr_block</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/cidr_block" title="Permalink to this return value"></a>
@@ -404,7 +404,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/compartment_id" title="Permalink to this return value"></a>
@@ -422,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/defined_tags" title="Permalink to this return value"></a>
@@ -441,7 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/display_name" title="Permalink to this return value"></a>
@@ -459,7 +459,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/freeform_tags" title="Permalink to this return value"></a>
@@ -478,7 +478,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/id" title="Permalink to this return value"></a>
@@ -496,198 +496,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A list of `ByoipRange` resource summaries.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/cidr_block"></div>
-                    <b>cidr_block</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/cidr_block" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The public IPv4 address range you are importing to the Oracle cloud.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cidr_block_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the `ByoipRange` resource.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/lifecycle_details"></div>
-                    <b>lifecycle_details</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/lifecycle_details" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The Byoip Range&#x27;s current lifeCycle substate.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The `ByoipRange` resource&#x27;s current state.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-byoip_ranges/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-byoip_ranges/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The date and time the `ByoipRange` resource was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
-                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/lifecycle_details" title="Permalink to this return value"></a>
@@ -705,7 +514,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/lifecycle_state" title="Permalink to this return value"></a>
@@ -723,7 +532,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/time_advertised"></div>
                     <b>time_advertised</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/time_advertised" title="Permalink to this return value"></a>
@@ -742,7 +551,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/time_created" title="Permalink to this return value"></a>
@@ -761,7 +570,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/time_validated"></div>
                     <b>time_validated</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/time_validated" title="Permalink to this return value"></a>
@@ -780,7 +589,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/time_withdrawn"></div>
                     <b>time_withdrawn</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/time_withdrawn" title="Permalink to this return value"></a>
@@ -799,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-byoip_ranges/validation_token"></div>
                     <b>validation_token</b>
                     <a class="ansibleOptionLink" href="#return-byoip_ranges/validation_token" title="Permalink to this return value"></a>

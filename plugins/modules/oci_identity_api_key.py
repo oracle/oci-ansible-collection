@@ -68,12 +68,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create api_key
   oci_identity_api_key:
-    key: '-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...'
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    key: "-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A..."
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete api_key
   oci_identity_api_key:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     fingerprint: fingerprint_example
     state: absent
 
@@ -92,7 +92,7 @@ api_key:
                   TENANCY_OCID/USER_OCID/KEY_FINGERPRINT."
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_value:
             description:
                 - The key's value.
@@ -110,7 +110,7 @@ api_key:
                 - The OCID of the user the key belongs to.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the `ApiKey` object was created, in the format defined by RFC3339.

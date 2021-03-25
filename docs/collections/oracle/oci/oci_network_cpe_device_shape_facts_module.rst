@@ -20,7 +20,7 @@ oracle.oci.oci_network_cpe_device_shape_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -260,7 +260,7 @@ Examples
 
     - name: Get a specific cpe_device_shape
       oci_network_cpe_device_shape_facts:
-        cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+        cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

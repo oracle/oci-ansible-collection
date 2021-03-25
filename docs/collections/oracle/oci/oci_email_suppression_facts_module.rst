@@ -20,7 +20,7 @@ oracle.oci.oci_email_suppression_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -355,11 +355,11 @@ Examples
     
     - name: List suppressions
       oci_email_suppression_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific suppression
       oci_email_suppression_facts:
-        suppression_id: ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx
+        suppression_id: "ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

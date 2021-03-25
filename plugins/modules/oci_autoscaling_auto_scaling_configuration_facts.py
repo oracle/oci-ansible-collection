@@ -69,11 +69,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List auto_scaling_configurations
   oci_autoscaling_auto_scaling_configuration_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration_facts:
-    auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,7 +90,7 @@ auto_scaling_configurations:
                   configuration.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -119,7 +119,7 @@ auto_scaling_configurations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         cool_down_in_seconds:
             description:
                 - The minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize
@@ -151,7 +151,7 @@ auto_scaling_configurations:
                           configuration.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         policies:
             description:
                 - Autoscaling policy definitions for the autoscaling configuration. An autoscaling policy defines the criteria that
@@ -191,7 +191,7 @@ auto_scaling_configurations:
                         - The ID of the autoscaling policy that is assigned after creation.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -277,7 +277,7 @@ auto_scaling_configurations:
                                 - ID of the condition that is assigned after creation.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         metric:
                             description:
                                 - ""

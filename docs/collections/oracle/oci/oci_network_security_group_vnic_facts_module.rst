@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_group_vnic_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -288,7 +288,7 @@ Examples
     
     - name: List network_security_group_vnics
       oci_network_security_group_vnic_facts:
-        network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
+        network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

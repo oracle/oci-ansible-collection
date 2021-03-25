@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_namespace_metadata -- Manage a NamespaceMetadata r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -301,9 +301,9 @@ Examples
     
     - name: Update namespace_metadata
       oci_object_storage_namespace_metadata:
-        default_s3_compartment_id: ocid.compartment.oc1..exampleuniquecompartmentS3ID
-        default_swift_compartment_id: ocid.compartment.oc1..exampleuniquecompartmentSwiftID
-        namespace_name: namespace_name_example
+        default_s3_compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentS3ID"
+        default_swift_compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentSwiftID"
+        namespace_name: "namespace_name_example"
 
 
 

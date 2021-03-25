@@ -709,7 +709,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action launch on instance_configuration
   oci_compute_management_instance_configuration_actions:
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     instance_type: compute
     action: launch
 
@@ -734,13 +734,13 @@ instance:
                 - The OCID of the compartment that contains the instance.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
                 - The OCID of dedicated VM host.
             returned: on success
             type: string
-            sample: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -793,13 +793,13 @@ instance:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - Deprecated. Use `sourceDetails` instead.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         ipxe_script:
             description:
                 - When a bare metal or virtual machine
@@ -1050,19 +1050,19 @@ instance:
                         - The OCID of the image used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
                         - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: string
-                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.

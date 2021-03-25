@@ -20,7 +20,7 @@ oracle.oci.oci_limits_resource_availability_facts -- Fetches details about a Res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -298,7 +298,7 @@ Examples
       oci_limits_resource_availability_facts:
         service_name: service_name_example
         limit_name: limit_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

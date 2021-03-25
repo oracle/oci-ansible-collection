@@ -20,7 +20,7 @@ oracle.oci.oci_identity_user_capabilities -- Manage an UserCapabilities resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -404,7 +404,7 @@ Examples
     
     - name: Update user_capabilities
       oci_identity_user_capabilities:
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         can_use_console_password: true
 
 

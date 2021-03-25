@@ -24,8 +24,8 @@ short_description: Manage an IntegrationInstance resource in Oracle Cloud Infras
 description:
     - This module allows the user to create, update and delete an IntegrationInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Integration Instance.
-    - "This resource has the following action operations in the M(oci_integration_instance_actions) module: change_integration_instance_network_endpoint, start,
-      stop."
+    - "This resource has the following action operations in the M(oci_integration_instance_actions) module: change_compartment,
+      change_integration_instance_network_endpoint, start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -197,7 +197,7 @@ EXAMPLES = """
 - name: Create integration_instance
   oci_integration_instance:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     integration_instance_type: STANDARD
     is_byol: true
     message_packs: 56
@@ -205,7 +205,7 @@ EXAMPLES = """
 - name: Update integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_integration_instance:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     integration_instance_type: STANDARD
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -222,17 +222,17 @@ EXAMPLES = """
   oci_integration_instance:
     display_name: display_name_example
     integration_instance_type: STANDARD
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete integration_instance
   oci_integration_instance:
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_integration_instance:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -249,7 +249,7 @@ integration_instance:
                 - Unique identifier that is immutable on creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Integration Instance Identifier, can be renamed.
@@ -261,7 +261,7 @@ integration_instance:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type:
             description:
                 - Standard or Enterprise type
@@ -356,7 +356,7 @@ integration_instance:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
                     type: string
-                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
                         - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
@@ -380,7 +380,7 @@ integration_instance:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
                     type: string
-                    sample: ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
                         - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
@@ -422,7 +422,7 @@ integration_instance:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         allowlisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges ingress rules.

@@ -20,7 +20,7 @@ oracle.oci.oci_usage_facts -- Fetches details about one or multiple Usage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -351,7 +351,7 @@ Examples
     
     - name: List usages
       oci_usage_facts:
-        tenant_id: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+        tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         time_usage_started: 2013-10-20T19:20:30+01:00
         time_usage_ended: 2013-10-20T19:20:30+01:00
         granularity: HOURLY

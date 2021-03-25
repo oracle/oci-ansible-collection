@@ -59,11 +59,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List tag_namespaces
   oci_identity_tag_namespace_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific tag_namespace
   oci_identity_tag_namespace_facts:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -79,13 +79,13 @@ tag_namespaces:
                 - The OCID of the tag namespace.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the tag namespace.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.

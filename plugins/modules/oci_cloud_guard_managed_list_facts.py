@@ -128,11 +128,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List managed_lists
   oci_cloud_guard_managed_list_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific managed_list
   oci_cloud_guard_managed_list_facts:
-    managed_list_id: ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx
+    managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -148,7 +148,7 @@ managed_lists:
                 - Unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - ManagedList display name
@@ -166,13 +166,13 @@ managed_lists:
                 - Compartment Identifier where the resource is created
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_managed_list_id:
             description:
                 - OCID of the Source ManagedList
             returned: on success
             type: string
-            sample: ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
         list_type:
             description:
                 - type of the list
@@ -245,114 +245,6 @@ managed_lists:
             returned: on success
             type: dict
             sample: {}
-        items:
-            description:
-                - List of ManagedListSummary
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - Unique identifier that is immutable on creation
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - ManagedList display name
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                description:
-                    description:
-                        - ManagedList description
-                    returned: on success
-                    type: string
-                    sample: description_example
-                compartment_id:
-                    description:
-                        - Compartment Identifier where the resource is created
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                source_managed_list_id:
-                    description:
-                        - OCID of the Source ManagedList
-                    returned: on success
-                    type: string
-                    sample: ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx
-                list_type:
-                    description:
-                        - type of the list
-                    returned: on success
-                    type: string
-                    sample: CIDR_BLOCK
-                feed_provider:
-                    description:
-                        - provider of the feed
-                    returned: on success
-                    type: string
-                    sample: CUSTOMER
-                is_editable:
-                    description:
-                        - If this list is editable or not
-                    returned: on success
-                    type: bool
-                    sample: true
-                list_items:
-                    description:
-                        - List of ManagedListItem
-                    returned: on success
-                    type: list
-                    sample: []
-                time_created:
-                    description:
-                        - The date and time the managed list was created. Format defined by RFC3339.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_updated:
-                    description:
-                        - The date and time the managed list was updated. Format defined by RFC3339.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                lifecycle_state:
-                    description:
-                        - The current state of the resource.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                lifecyle_details:
-                    description:
-                        - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
-                          Failed state.
-                    returned: on success
-                    type: string
-                    sample: lifecyle_details_example
-                freeform_tags:
-                    description:
-                        - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                          Example: `{\\"bar-key\\": \\"value\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                          Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                system_tags:
-                    description:
-                        - System tags for this resource. Each key is predefined and scoped to a namespace.
-                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                          System tags can be viewed by users, but can only be created by the system.
-                        - "Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -369,25 +261,7 @@ managed_lists:
         "lifecyle_details": "lifecyle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "description": "description_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "source_managed_list_id": "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx",
-            "list_type": "CIDR_BLOCK",
-            "feed_provider": "CUSTOMER",
-            "is_editable": true,
-            "list_items": [],
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "CREATING",
-            "lifecyle_details": "lifecyle_details_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "system_tags": {}
-        }]
+        "system_tags": {}
     }]
 """
 

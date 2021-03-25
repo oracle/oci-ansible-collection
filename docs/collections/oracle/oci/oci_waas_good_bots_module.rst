@@ -20,7 +20,7 @@ oracle.oci.oci_waas_good_bots -- Manage a GoodBots resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -392,7 +392,7 @@ Examples
     
     - name: Update good_bots
       oci_waas_good_bots:
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         good_bots:
         - key: key_example
           is_enabled: true

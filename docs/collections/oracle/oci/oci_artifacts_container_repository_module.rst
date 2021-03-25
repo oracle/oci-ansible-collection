@@ -20,7 +20,7 @@ oracle.oci.oci_artifacts_container_repository -- Manage a ContainerRepository re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ContainerRepository resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new empty container repository. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_container_repository_actions <ansible_collections.oci_container_repository_actions_module>` module: change_compartment.
 
 
 .. Aliases

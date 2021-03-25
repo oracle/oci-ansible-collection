@@ -216,19 +216,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cloud_vm_cluster
   oci_database_cloud_vm_cluster:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-    backup_subnet_id: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
     cpu_core_count: 56
     display_name: display_name_example
-    cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     hostname: hostname_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     gi_version: gi_version_example
 
 - name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_vm_cluster:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     cpu_core_count: 56
     display_name: display_name_example
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
@@ -241,16 +241,16 @@ EXAMPLES = """
   oci_database_cloud_vm_cluster:
     cpu_core_count: 56
     display_name: display_name_example
-    cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cloud_vm_cluster
   oci_database_cloud_vm_cluster:
-    cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_vm_cluster:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -319,13 +319,13 @@ cloud_vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud VM cluster.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The name of the availability domain that the cloud Exadata infrastructure resource is located in.
@@ -342,7 +342,7 @@ cloud_vm_cluster:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet associated with the cloud VM
@@ -350,7 +350,7 @@ cloud_vm_cluster:
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
             type: string
-            sample: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -376,7 +376,7 @@ cloud_vm_cluster:
                   updated when a maintenance update starts.
             returned: on success
             type: string
-            sample: ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The model name of the Exadata hardware running the cloud VM cluster.
@@ -479,7 +479,7 @@ cloud_vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         is_sparse_diskgroup_enabled:
             description:
                 - If true, sparse disk group is configured for the cloud VM cluster. If false, sparse disk group is not created.
@@ -544,7 +544,7 @@ cloud_vm_cluster:
                   associated with the cloud VM cluster.
             returned: on success
             type: string
-            sample: ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

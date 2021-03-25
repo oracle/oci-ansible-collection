@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -269,11 +269,11 @@ Examples
     
     - name: List ssl_cipher_suites
       oci_loadbalancer_ssl_cipher_suite_facts:
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific ssl_cipher_suite
       oci_loadbalancer_ssl_cipher_suite_facts:
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
 
 

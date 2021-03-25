@@ -242,25 +242,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_system
   oci_mysql_db_system:
-    admin_password: password
-    admin_username: adminUser
-    compartment_id: ocid1.compartment.oc1..UniqueID
-    configuration_id: ocid1.mysqlconfiguration.oc1..UniqueID
+    admin_password: "password"
+    admin_username: "adminUser"
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
+    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
     data_storage_size_in_gbs: 63
-    description: MySQL Database Service
-    display_name: DBSystem001
-    shape_name: VM.Standard.E2.1
-    subnet_id: ocid1.subnet.oc1.iad.UniqueID
-    mysql_version: 8.0.20
+    description: "MySQL Database Service"
+    display_name: "DBSystem001"
+    shape_name: "VM.Standard.E2.1"
+    subnet_id: "ocid1.subnet.oc1.iad.UniqueID"
+    mysql_version: "8.0.20"
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     display_name: DBSystem001
     description: MySQL Database Service
-    compartment_id: ocid1.compartment.oc1..UniqueID
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
     availability_domain: Uocm:PHX-AD-1
     fault_domain: fault_domain_example
-    configuration_id: ocid1.mysqlconfiguration.oc1..UniqueID
+    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
     shape_name: VM.Standard.E2.1
     mysql_version: 8.0.20
     subnet_id: ocid1.subnet.oc1.iad.UniqueID
@@ -278,17 +278,17 @@ EXAMPLES = """
   oci_mysql_db_system:
     display_name: DBSystem001
     description: MySQL Database Service
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete db_system
   oci_mysql_db_system:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     display_name: DBSystem001
-    compartment_id: ocid1.compartment.oc1..UniqueID
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
     state: absent
 
 """
@@ -305,7 +305,7 @@ db_system:
                 - The OCID of the DB System.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB System. It does not have to be unique.
@@ -323,13 +323,13 @@ db_system:
                 - The OCID of the compartment the DB System belongs in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the DB System is associated with.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_analytics_cluster_attached:
             description:
                 - If the DB System has an Analytics Cluster attached.
@@ -468,13 +468,13 @@ db_system:
                         - The OCID of the backup to be used as the source for the new DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
             returned: on success
             type: string
-            sample: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - Initial size of the data volume in GiBs that will be created and attached.
@@ -571,13 +571,13 @@ db_system:
                         - The OCID of the Channel.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The OCID of the compartment.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 is_enabled:
                     description:
                         - Whether the Channel has been enabled by the user.
@@ -657,7 +657,7 @@ db_system:
                                 - The OCID of the source DB System.
                             returned: on success
                             type: string
-                            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                         channel_name:
                             description:
                                 - The case-insensitive name that identifies the replication channel. Channel names

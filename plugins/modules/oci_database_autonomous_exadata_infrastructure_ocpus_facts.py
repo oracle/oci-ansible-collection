@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific autonomous_exadata_infrastructure_ocpus
   oci_database_autonomous_exadata_infrastructure_ocpus_facts:
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

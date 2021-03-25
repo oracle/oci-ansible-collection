@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific vault_usage
   oci_key_management_vault_usage_facts:
-    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

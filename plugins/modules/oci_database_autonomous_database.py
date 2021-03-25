@@ -296,21 +296,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_database
   oci_database_autonomous_database:
-    compartment_id: ocid.compartment.oc1..<unique_ID>
-    display_name: example_autonomous_database
-    db_name: adatabasedb1
-    admin_password: <password>
+    compartment_id: "ocid.compartment.oc1..<unique_ID>"
+    display_name: "example_autonomous_database"
+    db_name: "adatabasedb1"
+    admin_password: "<password>"
     cpu_core_count: 8
     data_storage_size_in_tbs: 1
 
 - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
     cpu_core_count: 20
-    display_name: example_autonomous_database
+    display_name: "example_autonomous_database"
 
 - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1.iad.Example
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1.iad.Example"
     cpu_core_count: 20
 
 - name: Update autonomous_database
@@ -324,7 +324,7 @@ EXAMPLES = """
 
 - name: Delete autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
-    compartment_id: ocid.compartment.oc1..<unique_ID>
+    compartment_id: "ocid.compartment.oc1..<unique_ID>"
     display_name: example_autonomous_database
     state: absent
 
@@ -342,13 +342,13 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Database.
@@ -449,7 +449,7 @@ autonomous_database:
                 - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: string
-            sample: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Autonomous Database was created.
@@ -582,7 +582,7 @@ autonomous_database:
                   This restriction applies to both the client subnet and the backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -762,7 +762,7 @@ autonomous_database:
                   the current Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
                 - The Autonomous Database permission level. Restricted mode allows access only to admin users.
@@ -835,7 +835,7 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.

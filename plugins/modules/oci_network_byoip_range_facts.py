@@ -77,11 +77,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List byoip_ranges
   oci_network_byoip_range_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific byoip_range
   oci_network_byoip_range_facts:
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -103,7 +103,7 @@ byoip_ranges:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -133,7 +133,7 @@ byoip_ranges:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The `ByoipRange` resource's current status.
@@ -183,74 +183,6 @@ byoip_ranges:
             returned: on success
             type: string
             sample: validation_token_example
-        items:
-            description:
-                - A list of `ByoipRange` resource summaries.
-            returned: on success
-            type: complex
-            contains:
-                cidr_block:
-                    description:
-                        - The public IPv4 address range you are importing to the Oracle cloud.
-                    returned: on success
-                    type: string
-                    sample: cidr_block_example
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the `ByoipRange`
-                          resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                display_name:
-                    description:
-                        - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-                          entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                freeform_tags:
-                    description:
-                        - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                          predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                lifecycle_state:
-                    description:
-                        - The `ByoipRange` resource's current state.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                lifecycle_details:
-                    description:
-                        - The Byoip Range's current lifeCycle substate.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_details_example
-                time_created:
-                    description:
-                        - The date and time the `ByoipRange` resource was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                        - "Example: `2016-08-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
     sample: [{
         "cidr_block": "cidr_block_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -264,18 +196,7 @@ byoip_ranges:
         "time_validated": "2016-08-25T21:10:29.600Z",
         "time_advertised": "2016-08-25T21:10:29.600Z",
         "time_withdrawn": "2016-08-25T21:10:29.600Z",
-        "validation_token": "validation_token_example",
-        "items": [{
-            "cidr_block": "cidr_block_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "display_name": "display_name_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "lifecycle_state": "lifecycle_state_example",
-            "lifecycle_details": "lifecycle_details_example",
-            "time_created": "2016-08-25T21:10:29.600Z"
-        }]
+        "validation_token": "validation_token_example"
     }]
 """
 

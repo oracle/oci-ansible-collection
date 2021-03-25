@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_node_actions -- Perform actions on a DbNode resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -308,7 +308,7 @@ Examples
     
     - name: Perform action stop on db_node
       oci_database_db_node_actions:
-        db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

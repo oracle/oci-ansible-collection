@@ -20,7 +20,7 @@ oracle.oci.oci_identity_region_subscription_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -251,7 +251,7 @@ Examples
     
     - name: List region_subscriptions
       oci_identity_region_subscription_facts:
-        tenancy_id: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+        tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume -- Manage a Volume resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new volume in the specified compartment. Volumes can be created in sizes ranging from 50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB). For general information about block volumes, see `Overview of Block Volume Service <https://docs.cloud.oracle.com/Content/Block/Concepts/overview.htm>`_.
 - A volume and instance can be in separate compartments but must be in the same availability domain. For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about availability domains, see `Regions and Availability Domains <https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm>`_. To get a list of availability domains, use the `ListAvailabilityDomains` operation in the Identity and Access Management Service API.
 - You may optionally specify a *display name* for the volume, which is simply a friendly name or description. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_volume_actions <ansible_collections.oci_volume_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -601,11 +602,11 @@ Examples
     - name: Create volume
       oci_blockstorage_volume:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -617,16 +618,16 @@ Examples
       oci_blockstorage_volume:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete volume
       oci_blockstorage_volume:
-        volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

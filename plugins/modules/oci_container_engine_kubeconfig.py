@@ -40,6 +40,14 @@ options:
         description:
             - Deprecated. This field is no longer used.
         type: int
+    endpoint:
+        description:
+            - The endpoint to target. A cluster may have multiple endpoints exposed but the kubeconfig can only target one at a time.
+        type: str
+        choices:
+            - "LEGACY_KUBERNETES"
+            - "PUBLIC_ENDPOINT"
+            - "PRIVATE_ENDPOINT"
     state:
         description:
             - The state of the Kubeconfig.
@@ -54,7 +62,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create kubeconfig
   oci_container_engine_kubeconfig:
-    cluster_id: ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -134,6 +142,10 @@ def main():
             cluster_id=dict(type="str", required=True),
             token_version=dict(type="str"),
             expiration=dict(type="int"),
+            endpoint=dict(
+                type="str",
+                choices=["LEGACY_KUBERNETES", "PUBLIC_ENDPOINT", "PRIVATE_ENDPOINT"],
+            ),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

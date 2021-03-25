@@ -20,7 +20,7 @@ oracle.oci.oci_network_local_peering_gateway_actions -- Perform actions on a Loc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a LocalPeeringGateway resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves a local peering gateway into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=connect*, connects this local peering gateway (LPG) to another one in the same region. This operation must be called by the VCN administrator who is designated as the *requestor* in the peering relationship. The *acceptor* must implement an Identity and Access Management (IAM) policy that gives the requestor permission to connect to LPGs in the acceptor's compartment. Without that permission, this operation will fail. For more information, see `VCN Peering <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm>`_.
 
 
@@ -83,7 +84,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>connect</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>connect</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -172,6 +174,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the local peering gateway to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -223,12 +241,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-peer_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the LPG you want to peer with.</div>
+                                            <div>Required for <em>action=connect</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -283,10 +302,16 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on local_peering_gateway
+      oci_network_local_peering_gateway_actions:
+        local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action connect on local_peering_gateway
       oci_network_local_peering_gateway_actions:
-        local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
-        peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+        local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         action: connect
 
 

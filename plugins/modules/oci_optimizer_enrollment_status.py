@@ -54,7 +54,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update enrollment_status
   oci_optimizer_enrollment_status:
-    enrollment_status_id: ocid1.enrollmentstatus.oc1..xxxxxxEXAMPLExxxxxx
+    enrollment_status_id: "ocid1.enrollmentstatus.oc1..xxxxxxEXAMPLExxxxxx"
     status: ACTIVE
 
 """
@@ -71,13 +71,13 @@ enrollment_status:
                 - The OCID of the enrollment status.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The enrollment status' current state.

@@ -20,7 +20,7 @@ oracle.oci.oci_logging_unified_agent_configuration -- Manage an UnifiedAgentConf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
 - For *state=present*, create unified agent configuration registration.
+- This resource has the following action operations in the :ref:`oci_unified_agent_configuration_actions <ansible_collections.oci_unified_agent_configuration_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -1281,7 +1282,7 @@ Examples
         is_enabled: true
         service_configuration:
           configuration_type: LOGGING
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_unified_agent_configuration:
@@ -1291,7 +1292,7 @@ Examples
           configuration_type: LOGGING
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
 
     - name: Update unified_agent_configuration
@@ -1300,17 +1301,17 @@ Examples
         is_enabled: true
         service_configuration:
           configuration_type: LOGGING
-        unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete unified_agent_configuration
       oci_logging_unified_agent_configuration:
-        unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete unified_agent_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_unified_agent_configuration:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

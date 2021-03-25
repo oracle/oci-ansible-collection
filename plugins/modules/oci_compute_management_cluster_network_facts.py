@@ -85,11 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cluster_networks
   oci_compute_management_cluster_network_facts:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Get a specific cluster_network
   oci_compute_management_cluster_network_facts:
-    cluster_network_id: ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+    cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -105,13 +105,13 @@ cluster_networks:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cluster network.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster netowrk.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -147,14 +147,14 @@ cluster_networks:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
                           pool.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 defined_tags:
                     description:
                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -184,7 +184,7 @@ cluster_networks:
                           with the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
                 lifecycle_state:
                     description:
                         - The current state of the instance pool.
@@ -209,7 +209,7 @@ cluster_networks:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
                             returned: on success
                             type: string
-                            sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                         fault_domains:
                             description:
                                 - The fault domains to place instances.
@@ -243,7 +243,7 @@ cluster_networks:
                                         - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 size:
                     description:
                         - The number of instances that should be in the instance pool.
@@ -268,21 +268,21 @@ cluster_networks:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         instance_pool_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer
                                   attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
                         load_balancer_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attached to the
                                   instance pool.
                             returned: on success
                             type: string
-                            sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                         backend_set_name:
                             description:
                                 - The name of the backend set on the load balancer.
@@ -328,7 +328,7 @@ cluster_networks:
                           instances.
                     returned: on success
                     type: string
-                    sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                 secondary_vnic_subnets:
                     description:
                         - The set of secondary VNIC data for instances in the pool.
@@ -347,7 +347,7 @@ cluster_networks:
                                 - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                             returned: on success
                             type: string
-                            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the cluster network.

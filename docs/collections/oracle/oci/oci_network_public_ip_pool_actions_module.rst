@@ -20,7 +20,7 @@ oracle.oci.oci_network_public_ip_pool_actions -- Perform actions on a PublicIpPo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a PublicIpPool resource in Oracle Cloud Infrastructure
 - For *action=add_public_ip_pool_capacity*, adds some or all of a CIDR block to a public IP pool. The CIDR block (or subrange) must not overlap with any other CIDR block already added to this or any other public IP pool.
+- For *action=change_compartment*, moves a public IP pool to a different compartment. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=remove_public_ip_pool_capacity*, removes a CIDR block from the referenced public IP pool.
 
 
@@ -85,6 +86,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>add_public_ip_pool_capacity</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>remove_public_ip_pool_capacity</li>
                                                                                     </ul>
                                                                             </td>
@@ -195,12 +197,29 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-cidr_block" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The CIDR block to add to the public IP pool. It could be all of the CIDR block identified in `byoipRangeId`, or a subrange. Example: `10.0.1.0/24`</div>
+                                            <div>Required for <em>action=add_public_ip_pool_capacity</em>, <em>action=remove_public_ip_pool_capacity</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the destination compartment for the public IP pool move.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -337,14 +356,20 @@ Examples
     
     - name: Perform action add_public_ip_pool_capacity on public_ip_pool
       oci_network_public_ip_pool_actions:
-        public_ip_pool_id: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: 10.0.1.0/24
         action: add_public_ip_pool_capacity
 
+    - name: Perform action change_compartment on public_ip_pool
+      oci_network_public_ip_pool_actions:
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action remove_public_ip_pool_capacity on public_ip_pool
       oci_network_public_ip_pool_actions:
-        public_ip_pool_id: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: 10.0.1.0/24
         action: remove_public_ip_pool_capacity
 

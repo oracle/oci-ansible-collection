@@ -20,7 +20,7 @@ oracle.oci.oci_apigateway_gateway -- Manage a Gateway resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Gateway resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new gateway.
+- This resource has the following action operations in the :ref:`oci_gateway_actions <ansible_collections.oci_gateway_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -463,33 +464,33 @@ Examples
     
     - name: Create gateway
       oci_apigateway_gateway:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint_type: PUBLIC
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_gateway:
         display_name: My new resource
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update gateway
       oci_apigateway_gateway:
         display_name: My new resource
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
-        gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete gateway
       oci_apigateway_gateway:
-        gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+        gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_gateway:
         display_name: My new resource
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

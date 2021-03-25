@@ -20,7 +20,7 @@ oracle.oci.oci_identity_smtp_credential -- Manage a SmtpCredential resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -376,18 +376,18 @@ Examples
     - name: Create smtp_credential
       oci_identity_smtp_credential:
         description: description_example
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update smtp_credential
       oci_identity_smtp_credential:
         description: description_example
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-        smtp_credential_id: ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        smtp_credential_id: "ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete smtp_credential
       oci_identity_smtp_credential:
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-        smtp_credential_id: ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        smtp_credential_id: "ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

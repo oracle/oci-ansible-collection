@@ -63,7 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List windows_updates
   oci_os_management_windows_update_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific windows_update
   oci_os_management_windows_update_facts:

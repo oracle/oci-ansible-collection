@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_namespace_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -449,12 +449,12 @@ Examples
     
     - name: List namespaces
       oci_data_catalog_namespace_facts:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific namespace
       oci_data_catalog_namespace_facts:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

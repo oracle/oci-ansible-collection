@@ -20,7 +20,7 @@ oracle.oci.oci_container_engine_node_pool_options_facts -- Fetches details about
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -267,11 +267,11 @@ Examples
     
     - name: Get a specific node_pool_options
       oci_container_engine_node_pool_options_facts:
-        node_pool_option_id: all
+        node_pool_option_id: "all"
 
     - name: Get a specific node_pool_options
       oci_container_engine_node_pool_options_facts:
-        node_pool_option_id: ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx
+        node_pool_option_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

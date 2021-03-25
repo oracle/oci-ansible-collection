@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_channel_actions -- Perform actions on a Channel resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -306,12 +306,12 @@ Examples
     
     - name: Perform action reset on channel
       oci_mysql_channel_actions:
-        channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+        channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
         action: reset
 
     - name: Perform action resume on channel
       oci_mysql_channel_actions:
-        channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+        channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
         action: resume
 
 

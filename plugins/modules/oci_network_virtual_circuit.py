@@ -42,7 +42,7 @@ description:
       traffic will not flow. For more information, see
       L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm)."
     - "This resource has the following action operations in the M(oci_virtual_circuit_actions) module: bulk_add_virtual_circuit_public_prefixes,
-      bulk_delete_virtual_circuit_public_prefixes."
+      bulk_delete_virtual_circuit_public_prefixes, change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -249,19 +249,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create virtual_circuit
   oci_network_virtual_circuit:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: PUBLIC
 
 - name: Update virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_virtual_circuit:
     bandwidth_shape_name: 10 Gbps
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     customer_bgp_asn: 56
     customer_asn: 12345
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+    gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
     provider_service_key_name: provider_service_key_name_example
     provider_state: ACTIVE
     reference_comment: reference_comment_example
@@ -269,16 +269,16 @@ EXAMPLES = """
 - name: Update virtual_circuit
   oci_network_virtual_circuit:
     bandwidth_shape_name: 10 Gbps
-    virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete virtual_circuit
   oci_network_virtual_circuit:
-    virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_virtual_circuit:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -319,7 +319,7 @@ virtual_circuit:
                 - The OCID of the compartment containing the virtual circuit.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_mappings:
             description:
                 - An array of mappings, each containing properties for a
@@ -344,7 +344,7 @@ virtual_circuit:
                           customer is connecting via provider).
                     returned: on success
                     type: string
-                    sample: ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
                 customer_bgp_peering_ip:
                     description:
                         - The BGP IPv4 address for the router on the other end of the BGP session from
@@ -426,13 +426,13 @@ virtual_circuit:
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The virtual circuit's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The virtual circuit's current state. For information about
@@ -458,7 +458,7 @@ virtual_circuit:
                 - The OCID of the service offered by the provider (if the customer is connecting via a provider).
             returned: on success
             type: string
-            sample: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name:
             description:
                 - The service key name offered by the provider (if the customer is connecting via a provider).

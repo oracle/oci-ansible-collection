@@ -20,7 +20,7 @@ oracle.oci.oci_compute_volume_attachment -- Manage a VolumeAttachment resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -523,20 +523,20 @@ Examples
     
     - name: Create volume_attachment
       oci_compute_volume_attachment:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         type: paravirtualized
-        volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete volume_attachment
       oci_compute_volume_attachment:
-        volume_attachment_id: ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+        volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_volume_attachment:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

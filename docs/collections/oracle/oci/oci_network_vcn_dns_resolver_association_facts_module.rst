@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn_dns_resolver_association_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific vcn_dns_resolver_association
       oci_network_vcn_dns_resolver_association_facts:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

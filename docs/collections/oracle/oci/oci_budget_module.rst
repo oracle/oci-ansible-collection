@@ -20,7 +20,7 @@ oracle.oci.oci_budget -- Manage a Budget resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -531,16 +531,16 @@ Examples
     
     - name: Create budget
       oci_budget:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
-        target_type: COMPARTMENT
+        compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+        target_type: "COMPARTMENT"
         targets:
-        - ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
-        amount: 100.00
-        reset_period: Monthly
+        - "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+        amount: "100.00"
+        reset_period: "Monthly"
 
     - name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
         display_name: display_name_example
         description: description_example
         amount: 100.00
@@ -553,16 +553,16 @@ Examples
       oci_budget:
         display_name: display_name_example
         description: description_example
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete budget
       oci_budget:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+        compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
         display_name: display_name_example
         state: absent
 

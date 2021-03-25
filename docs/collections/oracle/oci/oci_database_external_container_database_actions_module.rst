@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_container_database_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, move the `external container database <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalContainerDatabaseDetails>`_ and its dependent resources to the specified compartment. For more information about moving external container databases, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
 - For *action=disable_external_container_database_database_management*, disable Database Management service for the external container database.
 - For *action=enable_external_container_database_database_management*, enables Database Management Service for the external container database. For more information about the Database Management Service, see `Database Management Service <https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm>`_.
 - For *action=scan_external_container_database_pluggable_databases*, scans for pluggable databases in the specified external container database. This operation will return un-registered pluggable databases in the `GetWorkRequest` operation.
@@ -85,7 +86,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>disable_external_container_database_database_management</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>disable_external_container_database_database_management</li>
                                                                                                                                                                                                 <li>enable_external_container_database_database_management</li>
                                                                                                                                                                                                 <li>scan_external_container_database_pluggable_databases</li>
                                                                                     </ul>
@@ -172,6 +174,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the resource to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -342,22 +360,28 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on external_container_database
+      oci_database_external_container_database_actions:
+        compartment_id: "ocid.compartment.oc1..unique_ID"
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
+
     - name: Perform action disable_external_container_database_database_management on external_container_database
       oci_database_external_container_database_actions:
-        external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: disable_external_container_database_database_management
 
     - name: Perform action enable_external_container_database_database_management on external_container_database
       oci_database_external_container_database_actions:
-        external_database_connector_id: ocid1.externaldatabaseconnector..unique_ID
-        license_model: BRING_YOUR_OWN_LICENSE
-        external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
-        action: enable_external_container_database_database_management
+        external_database_connector_id: "ocid1.externaldatabaseconnector..unique_ID"
+        license_model: "BRING_YOUR_OWN_LICENSE"
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "enable_external_container_database_database_management"
 
     - name: Perform action scan_external_container_database_pluggable_databases on external_container_database
       oci_database_external_container_database_actions:
-        external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
-        external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
         action: scan_external_container_database_pluggable_databases
 
 

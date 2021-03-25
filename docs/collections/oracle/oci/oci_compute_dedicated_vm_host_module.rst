@@ -20,7 +20,7 @@ oracle.oci.oci_compute_dedicated_vm_host -- Manage a DedicatedVmHost resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DedicatedVmHost resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new dedicated virtual machine host in the specified compartment and the specified availability domain. Dedicated virtual machine hosts enable you to run your Compute virtual machine (VM) instances on dedicated servers that are a single tenant and not shared with other customers. For more information, see `Dedicated Virtual Machine Hosts <https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/dedicatedvmhosts.htm>`_.
+- This resource has the following action operations in the :ref:`oci_dedicated_vm_host_actions <ansible_collections.oci_dedicated_vm_host_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -465,12 +466,12 @@ Examples
     - name: Create dedicated_vm_host
       oci_compute_dedicated_vm_host:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_shape: dedicated_vm_host_shape_example
 
     - name: Update dedicated_vm_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_dedicated_vm_host:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: My dedicated VM host
         freeform_tags: {'Department': 'Finance'}
@@ -479,16 +480,16 @@ Examples
       oci_compute_dedicated_vm_host:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: My dedicated VM host
-        dedicated_vm_host_id: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+        dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete dedicated_vm_host
       oci_compute_dedicated_vm_host:
-        dedicated_vm_host_id: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+        dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete dedicated_vm_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_dedicated_vm_host:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: My dedicated VM host
         state: absent
 

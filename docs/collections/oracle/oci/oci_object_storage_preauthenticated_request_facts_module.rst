@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_preauthenticated_request_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -321,7 +321,7 @@ Examples
       oci_object_storage_preauthenticated_request_facts:
         namespace_name: namespace_name_example
         bucket_name: my-new-bucket1
-        par_id: ocid1.par.oc1..xxxxxxEXAMPLExxxxxx
+        par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

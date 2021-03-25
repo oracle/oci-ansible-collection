@@ -25,6 +25,8 @@ description:
     - Perform actions on a Catalog resource in Oracle Cloud Infrastructure
     - For I(action=attach_catalog_private_endpoint), attaches a private reverse connection endpoint resource to a data catalog resource. When provided, 'If-
       Match' is checked against 'ETag' values of the resource.
+    - For I(action=change_compartment), moves a resource into a different compartment. When provided, 'If-Match' is checked against 'ETag' values of the
+      resource.
     - For I(action=detach_catalog_private_endpoint), detaches a private reverse connection endpoint resource to a data catalog resource. When provided, 'If-
       Match' is checked against 'ETag' values of the resource.
     - For I(action=object_stats), returns stats on objects by type in the repository.
@@ -43,6 +45,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The identifier of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is
@@ -67,6 +74,7 @@ options:
         required: true
         choices:
             - "attach_catalog_private_endpoint"
+            - "change_compartment"
             - "detach_catalog_private_endpoint"
             - "object_stats"
             - "users"
@@ -76,24 +84,30 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_catalog_private_endpoint on catalog
   oci_data_catalog_catalog_actions:
-    catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_catalog_private_endpoint
+
+- name: Perform action change_compartment on catalog
+  oci_data_catalog_catalog_actions:
+    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    action: change_compartment
 
 - name: Perform action detach_catalog_private_endpoint on catalog
   oci_data_catalog_catalog_actions:
-    catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_catalog_private_endpoint
 
 - name: Perform action object_stats on catalog
   oci_data_catalog_catalog_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: object_stats
 
 - name: Perform action users on catalog
   oci_data_catalog_catalog_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: users
 
 """
@@ -110,7 +124,7 @@ catalog:
                 - OCID of the data catalog instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Data catalog identifier, which can be renamed.
@@ -122,7 +136,7 @@ catalog:
                 - Compartment identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the data catalog was created. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
@@ -217,6 +231,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.data_catalog import DataCatalogClient
     from oci.data_catalog.models import AttachCatalogPrivateEndpointDetails
+    from oci.data_catalog.models import ChangeCatalogCompartmentDetails
     from oci.data_catalog.models import DetachCatalogPrivateEndpointDetails
 
     HAS_OCI_PY_SDK = True
@@ -228,6 +243,7 @@ class DataCatalogCatalogActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         attach_catalog_private_endpoint
+        change_compartment
         detach_catalog_private_endpoint
         object_stats
         users
@@ -257,6 +273,27 @@ class DataCatalogCatalogActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 attach_catalog_private_endpoint_details=action_details,
+                catalog_id=self.module.params.get("catalog_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCatalogCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_catalog_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_catalog_compartment_details=action_details,
                 catalog_id=self.module.params.get("catalog_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
@@ -352,6 +389,7 @@ def main():
         dict(
             catalog_private_endpoint_id=dict(type="str"),
             catalog_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             action=dict(
@@ -359,6 +397,7 @@ def main():
                 required=True,
                 choices=[
                     "attach_catalog_private_endpoint",
+                    "change_compartment",
                     "detach_catalog_private_endpoint",
                     "object_stats",
                     "users",

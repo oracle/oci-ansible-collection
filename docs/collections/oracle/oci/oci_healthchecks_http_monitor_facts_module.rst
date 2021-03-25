@@ -20,7 +20,7 @@ oracle.oci.oci_healthchecks_http_monitor_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -340,11 +340,11 @@ Examples
     
     - name: List http_monitors
       oci_healthchecks_http_monitor_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific http_monitor
       oci_healthchecks_http_monitor_facts:
-        monitor_id: ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx
+        monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

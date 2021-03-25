@@ -20,7 +20,7 @@ oracle.oci.oci_identity_user_group_membership -- Manage an UserGroupMembership r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -391,13 +391,13 @@ Examples
     
     - name: Create user_group_membership
       oci_identity_user_group_membership:
-        user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-        group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+        group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete user_group_membership
       oci_identity_user_group_membership:
-        user_group_membership_id: ocid1.usergroupmembership.oc1..xxxxxxEXAMPLExxxxxx
+        user_group_membership_id: "ocid1.usergroupmembership.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_notebook_session -- Manage a NotebookSession resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a NotebookSession resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new notebook session.
-- This resource has the following action operations in the :ref:`oci_notebook_session_actions <ansible_collections.oci_notebook_session_actions_module>` module: activate, deactivate.
+- This resource has the following action operations in the :ref:`oci_notebook_session_actions <ansible_collections.oci_notebook_session_actions_module>` module: activate, change_compartment, deactivate.
 
 
 .. Aliases
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the compartment where you want to create the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where you want to create the notebook session.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -229,7 +229,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: `My NotebookSession`</div>
+                                            <div>A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information. Example: `My NotebookSession`</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
@@ -331,7 +331,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved from the `ListNotebookSessionShapes` endpoint.</div>
+                                            <div>The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved using the `ListNotebookSessionShapes` endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -347,7 +347,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A notebook session instance is provided with a VNIC for network access.  This specifies the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the subnet to create a VNIC in.  The subnet should be in a VCN with a NAT gateway for egress to the internet.</div>
+                                            <div>A notebook session instance is provided with a VNIC for network access.  This specifies the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet to create a VNIC in.  The subnet should be in a VCN with a NAT gateway for egress to the internet.</div>
                                                         </td>
             </tr>
                     
@@ -363,7 +363,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -381,7 +381,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project to associate with the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project to associate with the notebook session.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -494,19 +494,19 @@ Examples
     
     - name: Create notebook_session
       oci_data_science_notebook_session:
-        project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         notebook_session_configuration_details:
           shape: VM.Standard2.1
-          subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_science_notebook_session:
         display_name: My NotebookSession
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         notebook_session_configuration_details:
           shape: VM.Standard2.1
-          subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -515,18 +515,18 @@ Examples
         display_name: My NotebookSession
         notebook_session_configuration_details:
           shape: VM.Standard2.1
-          subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-        notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete notebook_session
       oci_data_science_notebook_session:
-        notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+        notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_science_notebook_session:
         display_name: My NotebookSession
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -579,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the notebook session&#x27;s compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the notebook session&#x27;s compartment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -597,7 +597,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the user who created the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the user who created the notebook session.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -633,7 +633,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: `My NotebookSession`</div>
+                                            <div>A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information. Example: `My NotebookSession`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">My NotebookSession</div>
@@ -669,7 +669,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the notebook session.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -759,7 +759,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved from the `ListNotebookSessionShapes` endpoint.</div>
+                                            <div>The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved using the `ListNotebookSessionShapes` endpoint.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VM.Standard2.1</div>
@@ -778,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A notebook session instance is provided with a VNIC for network access.  This specifies the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the subnet to create a VNIC in.  The subnet should be in a VCN with a NAT gateway for egress to the internet.</div>
+                                            <div>A notebook session instance is provided with a VNIC for network access.  This specifies the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet to create a VNIC in.  The subnet should be in a VCN with a NAT gateway for egress to the internet.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -815,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the project associated with the notebook session.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the project associated with the notebook session.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.project.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -833,7 +833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the resource was created, in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
+                                            <div>The date and time the resource was created in the timestamp format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: 2019-08-25T21:10:29.41Z</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

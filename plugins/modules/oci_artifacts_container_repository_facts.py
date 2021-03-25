@@ -194,79 +194,6 @@ container_repositories:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
-        items:
-            description:
-                - Collection of container repositories.
-            returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - The OCID of the compartment in which the container repository exists.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - The container repository name.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container repository.
-                        - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
-                    returned: on success
-                    type: string
-                    sample: ocid1.containerrepo.oc1..exampleuniqueID
-                image_count:
-                    description:
-                        - Total number of images.
-                    returned: on success
-                    type: int
-                    sample: 56
-                is_public:
-                    description:
-                        - Whether the repository is public. A public repository allows unauthenticated access.
-                    returned: on success
-                    type: bool
-                    sample: true
-                layer_count:
-                    description:
-                        - Total number of layers.
-                    returned: on success
-                    type: int
-                    sample: 56
-                layers_size_in_bytes:
-                    description:
-                        - Total storage in bytes consumed by layers.
-                    returned: on success
-                    type: int
-                    sample: 56
-                lifecycle_state:
-                    description:
-                        - The current state of the container repository.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                time_created:
-                    description:
-                        - An RFC 3339 timestamp indicating when the repository was created.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-        remaining_items_count:
-            description:
-                - Estimated number of remaining results.
-            returned: on success
-            type: int
-            sample: 56
-        repository_count:
-            description:
-                - Total number of repositories.
-            returned: on success
-            type: int
-            sample: 56
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -283,20 +210,7 @@ container_repositories:
             "format": "TEXT_MARKDOWN"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_last_pushed": "2013-10-20T19:20:30+01:00",
-        "items": [{
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "id": "ocid1.containerrepo.oc1..exampleuniqueID",
-            "image_count": 56,
-            "is_public": true,
-            "layer_count": 56,
-            "layers_size_in_bytes": 56,
-            "lifecycle_state": "lifecycle_state_example",
-            "time_created": "2013-10-20T19:20:30+01:00"
-        }],
-        "remaining_items_count": 56,
-        "repository_count": 56
+        "time_last_pushed": "2013-10-20T19:20:30+01:00"
     }]
 """
 

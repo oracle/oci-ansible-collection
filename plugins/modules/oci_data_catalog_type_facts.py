@@ -113,11 +113,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List types
   oci_data_catalog_type_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific type
   oci_data_catalog_type_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
 
 """
@@ -152,7 +152,7 @@ types:
                 - The data catalog's OCID.
             returned: on success
             type: string
-            sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         properties:
             description:
                 - |
@@ -328,7 +328,7 @@ types:
                                 - Unique type key identifier
                             returned: on success
                             type: string
-                            sample: ocid1.type.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx"
                         type_name:
                             description:
                                 - Name of the type associated with
@@ -347,60 +347,6 @@ types:
                     returned: on success
                     type: list
                     sample: []
-        count:
-            description:
-                - Total number of items returned.
-            returned: on success
-            type: int
-            sample: 56
-        items:
-            description:
-                - Collection of types.
-            returned: on success
-            type: complex
-            contains:
-                key:
-                    description:
-                        - Unique type key that is immutable.
-                    returned: on success
-                    type: string
-                    sample: key_example
-                name:
-                    description:
-                        - The immutable name of the type.
-                    returned: on success
-                    type: string
-                    sample: name_example
-                description:
-                    description:
-                        - Detailed description of the type.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                catalog_id:
-                    description:
-                        - The data catalog's OCID.
-                    returned: on success
-                    type: string
-                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-                type_category:
-                    description:
-                        - Indicates the category this type belongs to. For instance, data assets, connections.
-                    returned: on success
-                    type: string
-                    sample: type_category_example
-                uri:
-                    description:
-                        - URI to the type instance in the API.
-                    returned: on success
-                    type: string
-                    sample: uri_example
-                lifecycle_state:
-                    description:
-                        - State of the folder.
-                    returned: on success
-                    type: string
-                    sample: CREATING
     sample: [{
         "key": "key_example",
         "name": "name_example",
@@ -436,16 +382,6 @@ types:
                 "count": 56
             }],
             "allowed_values": []
-        }],
-        "count": 56,
-        "items": [{
-            "key": "key_example",
-            "name": "name_example",
-            "description": "description_example",
-            "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
-            "type_category": "type_category_example",
-            "uri": "uri_example",
-            "lifecycle_state": "CREATING"
         }]
     }]
 """

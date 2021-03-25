@@ -90,11 +90,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List users
   oci_identity_user_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific user
   oci_identity_user_facts:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -110,13 +110,13 @@ users:
                 - The OCID of the user.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the user.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the user during creation. This is the user's login for the Console.
@@ -148,7 +148,7 @@ users:
                 - The OCID of the `IdentityProvider` this user belongs to.
             returned: on success
             type: string
-            sample: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         external_identifier:
             description:
                 - Identifier of the user in the identity provider

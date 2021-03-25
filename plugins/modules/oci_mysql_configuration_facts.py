@@ -90,11 +90,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List configurations
   oci_mysql_configuration_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific configuration
   oci_mysql_configuration_facts:
-    configuration_id: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -110,13 +110,13 @@ configurations:
                 - The OCID of the Configuration.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID of the Compartment the Configuration exists in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - User-provided data about the Configuration.
@@ -472,7 +472,7 @@ configurations:
                   relation between the values in this Configuration and its parent."
             returned: on success
             type: string
-            sample: ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

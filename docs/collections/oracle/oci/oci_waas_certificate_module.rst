@@ -20,7 +20,7 @@ oracle.oci.oci_waas_certificate -- Manage a WaasCertificate resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a WaasCertificate resource in Oracle Cloud Infrastructure
 - For *state=present*, allows an SSL certificate to be added to a WAAS policy. The Web Application Firewall terminates SSL connections to inspect requests in runtime, and then re-encrypts requests before sending them to the origin for fulfillment.
 - For more information, see `WAF Settings <https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafsettings.htm>`_.
+- This resource has the following action operations in the :ref:`oci_waas_certificate_actions <ansible_collections.oci_waas_certificate_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -467,31 +468,29 @@ Examples
     
     - name: Create waas_certificate
       oci_waas_certificate:
-        compartment_id: ocid1.compartment.oc1..
-        certificate_data: '-----BEGIN CERTIFICATE-----Base64_encoded_certificate-----END
-          CERTIFICATE-----'
-        private_key_data: '-----BEGIN PRIVATE KEY-----Base64_encoded_certificate-----END
-          PRIVATE KEY-----'
+        compartment_id: "ocid1.compartment.oc1.."
+        certificate_data: "-----BEGIN CERTIFICATE-----Base64_encoded_certificate-----END CERTIFICATE-----"
+        private_key_data: "-----BEGIN PRIVATE KEY-----Base64_encoded_certificate-----END PRIVATE KEY-----"
 
     - name: Update waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_certificate:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: example.com Certificate
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update waas_certificate
       oci_waas_certificate:
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete waas_certificate
       oci_waas_certificate:
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_certificate:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: example.com Certificate
         state: absent
 

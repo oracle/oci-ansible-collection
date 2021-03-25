@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster_network -- Manage a VmClusterNetwork resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -713,7 +713,7 @@ Examples
     
     - name: Create vm_cluster_network
       oci_database_vm_cluster_network:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: ocid1.tenancy.oc1.example_unique_ID
         display_name: testVmClusterNw
         scans:
@@ -732,7 +732,7 @@ Examples
 
     - name: Update vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_vm_cluster_network:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: ocid1.tenancy.oc1.example_unique_ID
         display_name: testVmClusterNw
         scans:
@@ -753,18 +753,18 @@ Examples
 
     - name: Update vm_cluster_network
       oci_database_vm_cluster_network:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-        vm_cluster_network_id: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+        vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete vm_cluster_network
       oci_database_vm_cluster_network:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-        vm_cluster_network_id: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+        vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_vm_cluster_network:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: ocid1.tenancy.oc1.example_unique_ID
         display_name: testVmClusterNw
         state: absent

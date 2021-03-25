@@ -20,7 +20,7 @@ oracle.oci.oci_analytics_instance_actions -- Perform actions on an AnalyticsInst
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, change the compartment of an Analytics instance. The operation is long-running and creates a new WorkRequest.
 - For *action=change_analytics_instance_network_endpoint*, change an Analytics instance network endpoint. The operation is long-running and creates a new WorkRequest.
 - For *action=scale*, scale an Analytics instance up or down. The operation is long-running and creates a new WorkRequest.
 - For *action=start*, starts the specified Analytics instance. The operation is long-running and creates a new WorkRequest.
@@ -86,7 +87,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change_analytics_instance_network_endpoint</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>change_analytics_instance_network_endpoint</li>
                                                                                                                                                                                                 <li>scale</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
@@ -245,6 +247,22 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the new compartment.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
@@ -503,16 +521,22 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on analytics_instance
+      oci_analytics_instance_actions:
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action change_analytics_instance_network_endpoint on analytics_instance
       oci_analytics_instance_actions:
-        analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         network_endpoint_details:
           network_endpoint_type: PRIVATE
         action: change_analytics_instance_network_endpoint
 
     - name: Perform action scale on analytics_instance
       oci_analytics_instance_actions:
-        analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         capacity:
           capacity_type: OLPU_COUNT
           capacity_value: 56
@@ -520,12 +544,12 @@ Examples
 
     - name: Perform action start on analytics_instance
       oci_analytics_instance_actions:
-        analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on analytics_instance
       oci_analytics_instance_actions:
-        analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_optimizer_resource_action -- Manage a ResourceAction resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -342,7 +342,7 @@ Examples
     
     - name: Update resource_action
       oci_optimizer_resource_action:
-        resource_action_id: ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx
+        resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
         status: PENDING
 
 

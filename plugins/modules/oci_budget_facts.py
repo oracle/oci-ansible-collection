@@ -91,11 +91,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List budgets
   oci_budget_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific budget
   oci_budget_facts:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -111,13 +111,13 @@ budgets:
                 - The OCID of the budget
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id:
             description:
                 - "This is DEPRECATED. For backwards compatability, the property will be populated when
@@ -125,7 +125,7 @@ budgets:
                   For all other scenarios, this property will be left empty."
             returned: on success
             type: string
-            sample: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the budget.

@@ -20,7 +20,7 @@ oracle.oci.oci_container_engine_kubeconfig -- Manage a Kubeconfig resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -199,6 +199,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-endpoint"></div>
+                    <b>endpoint</b>
+                    <a class="ansibleOptionLink" href="#parameter-endpoint" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>LEGACY_KUBERNETES</li>
+                                                                                                                                                                                                <li>PUBLIC_ENDPOINT</li>
+                                                                                                                                                                                                <li>PRIVATE_ENDPOINT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The endpoint to target. A cluster may have multiple endpoints exposed but the kubeconfig can only target one at a time.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-expiration"></div>
                     <b>expiration</b>
                     <a class="ansibleOptionLink" href="#parameter-expiration" title="Permalink to this option"></a>
@@ -334,7 +354,7 @@ Examples
     
     - name: Create kubeconfig
       oci_container_engine_kubeconfig:
-        cluster_id: ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx
+        cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

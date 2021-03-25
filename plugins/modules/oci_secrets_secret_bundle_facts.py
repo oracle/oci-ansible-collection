@@ -58,7 +58,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific secret_bundle
   oci_secrets_secret_bundle_facts:
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -74,7 +74,7 @@ secret_bundle:
                 - The OCID of the secret.
             returned: on success
             type: string
-            sample: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time when the secret bundle was created.

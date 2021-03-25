@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool_actions -- Perform actions on an
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on an InstancePool resource in Oracle Cloud Infrastructure
 - For *action=attach_load_balancer*, attach a load balancer to the instance pool.
+- For *action=change_compartment*, moves an instance pool into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When you move an instance pool to a different compartment, associated resources such as the instances in the pool, boot volumes, VNICs, and autoscaling configurations are not moved.
 - For *action=detach_load_balancer*, detach a load balancer from the instance pool.
 - For *action=reset*, performs the reset (immediate power off and power on) action on the specified instance pool, which performs the action on all the instances in the pool.
 - For *action=softreset*, performs the softreset (ACPI shutdown and power on) action on the specified instance pool, which performs the action on all the instances in the pool. Softreset gracefully reboots the instances by sending a shutdown command to the operating systems. After waiting 15 minutes for the OS to shut down, the instances are powered off and then powered back on.
@@ -89,6 +90,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>attach_load_balancer</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>detach_load_balancer</li>
                                                                                                                                                                                                 <li>reset</li>
                                                                                                                                                                                                 <li>softreset</li>
@@ -194,6 +196,22 @@ Parameters
                                                                 <td>
                                             <div>The name of the backend set on the load balancer to add instances to.</div>
                                             <div>Required for <em>action=attach_load_balancer</em>, <em>action=detach_load_balancer</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the instance pool to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -378,38 +396,44 @@ Examples
     
     - name: Perform action attach_load_balancer on instance_pool
       oci_compute_management_instance_pool_actions:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: backend_set_name_example
         port: 56
         vnic_selection: vnic_selection_example
         action: attach_load_balancer
 
+    - name: Perform action change_compartment on instance_pool
+      oci_compute_management_instance_pool_actions:
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
+
     - name: Perform action detach_load_balancer on instance_pool
       oci_compute_management_instance_pool_actions:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: backend_set_name_example
         action: detach_load_balancer
 
     - name: Perform action reset on instance_pool
       oci_compute_management_instance_pool_actions:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: reset
 
     - name: Perform action softreset on instance_pool
       oci_compute_management_instance_pool_actions:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: softreset
 
     - name: Perform action start on instance_pool
       oci_compute_management_instance_pool_actions:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on instance_pool
       oci_compute_management_instance_pool_actions:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

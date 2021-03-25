@@ -20,7 +20,7 @@ oracle.oci.oci_waas_human_interaction_challenge -- Manage a HumanInteractionChal
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -669,24 +669,24 @@ Examples
     
     - name: Update human_interaction_challenge
       oci_waas_human_interaction_challenge:
-        action: BLOCK
+        action: "BLOCK"
         action_expiration_in_seconds: 600
         challenge_settings:
-          block_action: SHOW_ERROR_PAGE
-          block_error_page_code: HIC
-          block_error_page_description: Access blocked by website owner. Please contact support.
-          block_error_page_message: Access to the website is blocked.
+          block_action: "SHOW_ERROR_PAGE"
+          block_error_page_code: "HIC"
+          block_error_page_description: "Access blocked by website owner. Please contact support."
+          block_error_page_message: "Access to the website is blocked."
           block_response_code: 403
-          captcha_footer: Enter the letters and numbers as they are shown in image above.
-          captcha_header: please let us know that you are not a robot by entering the text from the image below.
-          captcha_submit_label: Yes, I am human.
-          captcha_title: Are you human?
+          captcha_footer: "Enter the letters and numbers as they are shown in image above."
+          captcha_header: "please let us know that you are not a robot by entering the text from the image below."
+          captcha_submit_label: "Yes, I am human."
+          captcha_title: "Are you human?"
         failure_threshold: 100
         failure_threshold_expiration_in_seconds: 600
         interaction_threshold: 3
         is_enabled: false
         recording_period_in_seconds: 15
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

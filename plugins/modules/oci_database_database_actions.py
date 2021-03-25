@@ -118,27 +118,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action migrate_vault_key on database
   oci_database_database_actions:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-    kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_vault_key
 
 - name: Perform action restore on database
   oci_database_database_actions:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: restore
 
 - name: Perform action rotate_vault_key on database
   oci_database_database_actions:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_vault_key
 
 - name: Perform action precheck on database
   oci_database_database_actions:
     database_upgrade_source_details:
-      db_version: 19.7.0.0
-      source: DB_VERSION
-    action: PRECHECK
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+      db_version: "19.7.0.0"
+      source: "DB_VERSION"
+    action: "PRECHECK"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -154,13 +154,13 @@ database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         character_set:
             description:
                 - The character set for the database.
@@ -178,19 +178,19 @@ database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
             type: string
-            sample: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         db_name:
             description:
                 - The database name.
@@ -291,7 +291,7 @@ database:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         vpc_user:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
@@ -355,7 +355,7 @@ database:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -368,7 +368,7 @@ database:
                 - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             returned: on success
             type: string
-            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

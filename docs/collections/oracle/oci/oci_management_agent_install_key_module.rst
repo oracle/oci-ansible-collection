@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent_install_key -- Manage a ManagementAgentInstallKe
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -431,28 +431,28 @@ Examples
     - name: Create management_agent_install_key
       oci_management_agent_install_key:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_management_agent_install_key:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_key_active: true
 
     - name: Update management_agent_install_key
       oci_management_agent_install_key:
         display_name: display_name_example
-        management_agent_install_key_id: ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx
+        management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete management_agent_install_key
       oci_management_agent_install_key:
-        management_agent_install_key_id: ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx
+        management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_management_agent_install_key:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_replication_policy_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -306,7 +306,7 @@ Examples
       oci_object_storage_replication_policy_facts:
         namespace_name: namespace_name_example
         bucket_name: my-new-bucket1
-        replication_id: ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx
+        replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

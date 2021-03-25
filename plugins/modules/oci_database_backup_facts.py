@@ -48,11 +48,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List backups
   oci_database_backup_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific backup
   oci_database_backup_facts:
-    backup_id: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -68,19 +68,19 @@ backups:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the backup. The name does not have to be unique.
@@ -152,7 +152,7 @@ backups:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

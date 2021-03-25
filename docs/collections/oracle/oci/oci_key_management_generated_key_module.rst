@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_generated_key -- Manage a GeneratedKey resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -443,9 +443,9 @@ Examples
     - name: Create generated_key
       oci_key_management_generated_key:
         include_plaintext_key: true
-        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+        key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
         key_shape:
-          algorithm: AES
+          algorithm: "AES"
           length: 16
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

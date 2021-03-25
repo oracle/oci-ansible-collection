@@ -70,7 +70,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List available_windows_updates
   oci_os_management_available_windows_update_facts:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

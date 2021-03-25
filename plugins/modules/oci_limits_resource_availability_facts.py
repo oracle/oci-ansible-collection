@@ -59,7 +59,7 @@ EXAMPLES = """
   oci_limits_resource_availability_facts:
     service_name: service_name_example
     limit_name: limit_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -253,76 +253,6 @@ container_images:
                     returned: on success
                     type: string
                     sample: version_example
-        items:
-            description:
-                - Page of matching container images.
-            returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - The compartment OCID to which the container image belongs. Inferred from the container repository.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                digest:
-                    description:
-                        - The container image digest.
-                    returned: on success
-                    type: string
-                    sample: digest_example
-                display_name:
-                    description:
-                        - The repository name and the most recent version associated with the image.
-                          If there are no versions associated with the image, then last known version and digest are used instead.
-                          If the last known version is unavailable, then 'unknown' is used instead of the version.
-                        - "Example: `ubuntu:latest` or `ubuntu:latest@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`"
-                    returned: on success
-                    type: string
-                    sample: ubuntu:latest
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
-                        - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
-                    returned: on success
-                    type: string
-                    sample: ocid1.containerimage.oc1..exampleuniqueID
-                lifecycle_state:
-                    description:
-                        - The current state of the container image.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                repository_id:
-                    description:
-                        - The OCID of the container repository.
-                    returned: on success
-                    type: string
-                    sample: ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx
-                repository_name:
-                    description:
-                        - The container repository name.
-                    returned: on success
-                    type: string
-                    sample: repository_name_example
-                time_created:
-                    description:
-                        - An RFC 3339 timestamp indicating when the image was created.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                version:
-                    description:
-                        - The most recent version associated with this image.
-                    returned: on success
-                    type: string
-                    sample: version_example
-        remaining_items_count:
-            description:
-                - Estimated number of remaining results.
-            returned: on success
-            type: int
-            sample: 56
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -347,19 +277,7 @@ container_images:
             "created_by": "created_by_example",
             "time_created": "2013-10-20T19:20:30+01:00",
             "version": "version_example"
-        }],
-        "items": [{
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "digest": "digest_example",
-            "display_name": "ubuntu:latest",
-            "id": "ocid1.containerimage.oc1..exampleuniqueID",
-            "lifecycle_state": "lifecycle_state_example",
-            "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-            "repository_name": "repository_name_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "version": "version_example"
-        }],
-        "remaining_items_count": 56
+        }]
     }]
 """
 

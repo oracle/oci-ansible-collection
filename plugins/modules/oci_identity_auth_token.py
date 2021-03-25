@@ -68,18 +68,18 @@ EXAMPLES = """
 - name: Create auth_token
   oci_identity_auth_token:
     description: description_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update auth_token
   oci_identity_auth_token:
     description: description_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    auth_token_id: ocid1.authtoken.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    auth_token_id: "ocid1.authtoken.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete auth_token
   oci_identity_auth_token:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    auth_token_id: ocid1.authtoken.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    auth_token_id: "ocid1.authtoken.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -103,13 +103,13 @@ auth_token:
                 - The OCID of the auth token.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the auth token belongs to.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The description you assign to the auth token. Does not have to be unique, and it's changeable.

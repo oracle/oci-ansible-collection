@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_detector_recipe -- Manage a DetectorRecipe resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DetectorRecipe resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a DetectorRecipe
+- This resource has the following action operations in the :ref:`oci_detector_recipe_actions <ansible_collections.oci_detector_recipe_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -962,16 +963,16 @@ Examples
     - name: Create detector_recipe
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
-        source_detector_recipe_id: ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         detector_rules:
-        - detector_rule_id: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+        - detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
           details:
             is_enabled: true
             risk_level: CRITICAL
@@ -982,17 +983,17 @@ Examples
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
         description: description_example
-        detector_recipe_id: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+        detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete detector_recipe
       oci_cloud_guard_detector_recipe:
-        detector_recipe_id: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+        detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

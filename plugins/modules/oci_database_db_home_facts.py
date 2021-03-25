@@ -94,11 +94,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List db_homes
   oci_database_db_home_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific db_home
   oci_database_db_home_facts:
-    db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -114,13 +114,13 @@ db_homes:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name for the Database Home. The name does not need to be unique.
@@ -133,7 +133,7 @@ db_homes:
                   a patch operation is started.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Database Home.
@@ -145,13 +145,13 @@ db_homes:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         db_version:
             description:
                 - The Oracle Database version.
@@ -181,7 +181,7 @@ db_homes:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         one_off_patches:
             description:
                 - List of one-off patches for Database Homes.
@@ -193,7 +193,7 @@ db_homes:
                 - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             returned: on success
             type: string
-            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

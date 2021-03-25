@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_job -- Manage a Job resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -586,7 +586,7 @@ Examples
     
     - name: Create job
       oci_resource_manager_job:
-        stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+        stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_resource_manager_job:
@@ -598,11 +598,11 @@ Examples
       oci_resource_manager_job:
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete job
       oci_resource_manager_job:
-        job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

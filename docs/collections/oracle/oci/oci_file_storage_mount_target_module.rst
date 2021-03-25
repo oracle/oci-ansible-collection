@@ -20,7 +20,7 @@ oracle.oci.oci_file_storage_mount_target -- Manage a MountTarget resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,7 +47,8 @@ Synopsis
 - Mount targets have one or more private IP addresses that you can provide as the host portion of remote target parameters in client mount commands. These private IP addresses are listed in the privateIpIds property of the mount target and are highly available. Mount targets also consume additional IP addresses in their subnet. Do not use /30 or smaller subnets for mount target creation because they do not have sufficient available IP addresses. Allow at least three IP addresses for each mount target.
 - For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_.
 - For information about availability domains, see `Regions and Availability Domains <https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm>`_. To get a list of availability domains, use the `ListAvailabilityDomains` operation in the Identity and Access Management Service API.
-- All Oracle Cloud Infrastructure Services resources, including mount targets, get an Oracle-assigned, unique ID called an Oracle Cloud Identifier (OCID).  When you create a resource, you can find its OCID in the response. You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the Console.
+- All Oracle Cloud Infrastructure Services resources, including mount targets, get an Oracle-assigned, unique ID called an Oracle Cloud Identifier (`OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_). When you create a resource, you can find its OCID in the response. You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the Console.
+- This resource has the following action operations in the :ref:`oci_mount_target_actions <ansible_collections.oci_mount_target_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -187,7 +188,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment in which to create the mount target.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment in which to create the mount target.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -353,7 +354,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the mount target.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the mount target.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -423,7 +424,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the subnet in which to create the mount target.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet in which to create the mount target.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -500,28 +501,28 @@ Examples
     
     - name: Create mount_target
       oci_file_storage_mount_target:
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
-        display_name: mount-target-5
-        subnet_id: ocid1.subnet.oc1.phx.exampleale662rd2rcvbqi5dlerqvfcobnjs5h4h7ssosxwo4fu7mjvp2ia
+        availability_domain: "Uocm:PHX-AD-1"
+        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+        display_name: "mount-target-5"
+        subnet_id: "ocid1.subnet.oc1.phx.exampleale662rd2rcvbqi5dlerqvfcobnjs5h4h7ssosxwo4fu7mjvp2ia"
 
     - name: Update mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_mount_target:
-        display_name: mount-target-1
+        display_name: "mount-target-1"
 
     - name: Update mount_target
       oci_file_storage_mount_target:
-        mount_target_id: ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx
+        mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete mount_target
       oci_file_storage_mount_target:
-        mount_target_id: ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx
+        mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_mount_target:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
+        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
         display_name: mount-target-5
         state: absent
 
@@ -594,7 +595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment that contains the mount target.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that contains the mount target.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -649,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the associated export set. Controls what file systems will be exported through Network File System (NFS) protocol on this mount target.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated export set. Controls what file systems will be exported through Network File System (NFS) protocol on this mount target.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -685,7 +686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the mount target.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the mount target.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -771,7 +772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the subnet the mount target is in.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet the mount target is in.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>

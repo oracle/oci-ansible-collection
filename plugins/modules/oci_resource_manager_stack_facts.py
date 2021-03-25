@@ -87,11 +87,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List stacks
   oci_resource_manager_stack_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific stack
   oci_resource_manager_stack_facts:
-    stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -107,14 +107,14 @@ stacks:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the stack.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the compartment where the stack is
                   located.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the stack.
@@ -168,7 +168,7 @@ stacks:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
                     returned: on success
                     type: string
-                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
                         - The URL of the Git repository for the configuration source.
@@ -188,7 +188,7 @@ stacks:
                           resource types in this compartment.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 region:
                     description:
                         - The region to use for creating the stack. The new stack will include definitions for

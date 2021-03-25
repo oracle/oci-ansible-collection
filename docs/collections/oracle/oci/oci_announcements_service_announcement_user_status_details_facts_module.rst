@@ -20,7 +20,7 @@ oracle.oci.oci_announcements_service_announcement_user_status_details_facts -- F
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific announcement_user_status_details
       oci_announcements_service_announcement_user_status_details_facts:
-        announcement_id: ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx
+        announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

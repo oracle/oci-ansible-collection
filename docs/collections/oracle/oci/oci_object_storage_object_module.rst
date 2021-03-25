@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object -- Manage an Object resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -582,17 +582,17 @@ Examples
     
     - name: Update object
       oci_object_storage_object:
-        namespace_name: namespace_example
-        bucket_name: bucket_example
-        object_name: object_example
-        src: /usr/local/myobject.txt
+        namespace_name: "namespace_example"
+        bucket_name: "bucket_example"
+        object_name: "object_example"
+        src: "/usr/local/myobject.txt"
 
     - name: Update object
       oci_object_storage_object:
-        namespace_name: namespace_example
-        bucket_name: bucket_example
-        object_name: object_example
-        dest: /usr/local/myobject.txt
+        namespace_name: "namespace_example"
+        bucket_name: "bucket_example"
+        object_name: "object_example"
+        dest: "/usr/local/myobject.txt"
 
     - name: Delete object
       oci_object_storage_object:

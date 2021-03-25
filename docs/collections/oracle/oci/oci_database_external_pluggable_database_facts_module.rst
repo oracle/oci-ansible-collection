@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_pluggable_database_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -363,11 +363,11 @@ Examples
     
     - name: List external_pluggable_databases
       oci_database_external_pluggable_database_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific external_pluggable_database
       oci_database_external_pluggable_database_facts:
-        external_pluggable_database_id: ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx
+        external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

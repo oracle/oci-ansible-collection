@@ -51,7 +51,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update configuration
   oci_audit_configuration:
-    compartment_id: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
     retention_period_days: 90
 
 """

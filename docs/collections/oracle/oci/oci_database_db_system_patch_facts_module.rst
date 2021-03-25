@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system_patch_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -269,12 +269,12 @@ Examples
     
     - name: List db_system_patches
       oci_database_db_system_patch_facts:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific db_system_patch
       oci_database_db_system_patch_facts:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
-        patch_id: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

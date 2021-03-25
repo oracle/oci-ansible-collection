@@ -20,7 +20,7 @@ oracle.oci.oci_container_engine_node_pool -- Manage a NodePool resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -762,7 +762,7 @@ Examples
     
     - name: Create node_pool
       oci_container_engine_node_pool:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+        compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         cluster_id: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
         name: My Node Pool
         kubernetes_version: v1.9.4
@@ -770,30 +770,30 @@ Examples
 
     - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_node_pool:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+        compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         name: My Node Pool
         kubernetes_version: v1.9.4
         node_source_details:
           source_type: IMAGE
-          image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         node_shape: VM.Standard2.4
-        ssh_public_key: ssh-rsa AAAAB3NzaC1yc2abc123...
+        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2abc123..."
         quantity_per_subnet: 1
 
     - name: Update node_pool
       oci_container_engine_node_pool:
         name: My Node Pool
         kubernetes_version: v1.9.4
-        node_pool_id: ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx
+        node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete node_pool
       oci_container_engine_node_pool:
-        node_pool_id: ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx
+        node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_node_pool:
-        compartment_id: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+        compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         name: My Node Pool
         state: absent
 

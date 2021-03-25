@@ -97,11 +97,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List analytics_instances
   oci_analytics_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific analytics_instance
   oci_analytics_instance_facts:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -117,7 +117,7 @@ analytics_instances:
                 - The resource OCID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
@@ -135,7 +135,7 @@ analytics_instances:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of an instance.
@@ -162,8 +162,8 @@ analytics_instances:
                     sample: OLPU_COUNT
                 capacity_value:
                     description:
-                        - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                          number of CPUs, amount of memory or other resources allocated to the instance.
+                        - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                          number of CPUs, amount of memory or other resources allocated to the instance."
                     returned: on success
                     type: int
                     sample: 56
@@ -196,13 +196,13 @@ analytics_instances:
                         - The VCN OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The subnet OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 whitelisted_ips:
                     description:
                         - Source IP addresses or IP address ranges igress rules.
@@ -220,7 +220,7 @@ analytics_instances:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         whitelisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges igress rules.

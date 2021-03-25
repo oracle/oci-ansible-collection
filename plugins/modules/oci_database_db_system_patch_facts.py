@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List db_system_patches
   oci_database_db_system_patch_facts:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific db_system_patch
   oci_database_db_system_patch_facts:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
-    patch_id: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,7 +66,7 @@ db_system_patches:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The text describing this patch package.

@@ -52,7 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific backend_health
   oci_loadbalancer_backend_health_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
     backend_name: 10.0.0.3:8080
 
@@ -87,7 +87,7 @@ backend_health:
                           reported this health check status.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 source_ip_address:
                     description:
                         - The IP address of the health check status report provider. This identifier helps you differentiate same-subnet

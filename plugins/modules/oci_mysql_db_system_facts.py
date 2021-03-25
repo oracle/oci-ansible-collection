@@ -93,11 +93,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List db_systems
   oci_mysql_db_system_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific db_system
   oci_mysql_db_system_facts:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -113,7 +113,7 @@ db_systems:
                 - The OCID of the DB System.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB System. It does not have to be unique.
@@ -131,13 +131,13 @@ db_systems:
                 - The OCID of the compartment the DB System belongs in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the DB System is associated with.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_analytics_cluster_attached:
             description:
                 - If the DB System has an Analytics Cluster attached.
@@ -276,13 +276,13 @@ db_systems:
                         - The OCID of the backup to be used as the source for the new DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
             returned: on success
             type: string
-            sample: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - Initial size of the data volume in GiBs that will be created and attached.
@@ -379,13 +379,13 @@ db_systems:
                         - The OCID of the Channel.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The OCID of the compartment.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 is_enabled:
                     description:
                         - Whether the Channel has been enabled by the user.
@@ -465,7 +465,7 @@ db_systems:
                                 - The OCID of the source DB System.
                             returned: on success
                             type: string
-                            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                         channel_name:
                             description:
                                 - The case-insensitive name that identifies the replication channel. Channel names

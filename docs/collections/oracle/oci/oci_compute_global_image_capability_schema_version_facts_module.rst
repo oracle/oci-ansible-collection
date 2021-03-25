@@ -20,7 +20,7 @@ oracle.oci.oci_compute_global_image_capability_schema_version_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -322,11 +322,11 @@ Examples
     
     - name: List compute_global_image_capability_schema_versions
       oci_compute_global_image_capability_schema_version_facts:
-        compute_global_image_capability_schema_id: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific compute_global_image_capability_schema_version
       oci_compute_global_image_capability_schema_version_facts:
-        compute_global_image_capability_schema_id: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         compute_global_image_capability_schema_version_name: compute_global_image_capability_schema_version_name_example
 
 

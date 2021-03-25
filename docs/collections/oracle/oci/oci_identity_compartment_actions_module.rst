@@ -20,7 +20,7 @@ oracle.oci.oci_identity_compartment_actions -- Perform actions on a Compartment 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -404,7 +404,7 @@ Examples
     
     - name: Perform action bulk_delete_resources on compartment
       oci_identity_compartment_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resources:
         - identifier: identifier_example
           entity_type: entity_type_example
@@ -412,22 +412,22 @@ Examples
 
     - name: Perform action bulk_move_resources on compartment
       oci_identity_compartment_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resources:
         - identifier: identifier_example
           entity_type: entity_type_example
-        target_compartment_id: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
+        target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: bulk_move_resources
 
     - name: Perform action move on compartment
       oci_identity_compartment_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        target_compartment_id: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: move
 
     - name: Perform action recover on compartment
       oci_identity_compartment_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: recover
 
 

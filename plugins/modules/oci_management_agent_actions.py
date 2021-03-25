@@ -55,7 +55,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action deploy_plugins on management_agent
   oci_management_agent_actions:
-    agent_compartment_id: ocid1.agentcompartment.oc1..xxxxxxEXAMPLExxxxxx
+    agent_compartment_id: "ocid1.agentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: deploy_plugins
 
 """

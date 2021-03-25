@@ -721,6 +721,11 @@ _WAITER_OVERRIDE_MAP = {
     ): WorkRequestWaiter,
     (
         "load_balancer",
+        "routing_policy",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
         "certificate",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): WorkRequestWaiter,

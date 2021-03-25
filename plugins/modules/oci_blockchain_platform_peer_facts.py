@@ -66,12 +66,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List blockchain_platform_peers
   oci_blockchain_platform_peer_facts:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific blockchain_platform_peer
   oci_blockchain_platform_peer_facts:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
-    peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -130,24 +130,6 @@ blockchain_platform_peers:
             returned: on success
             type: string
             sample: ACTIVE
-        items:
-            description:
-                - Collection of PeerSummary
-            returned: on success
-            type: complex
-            contains:
-                peer_key:
-                    description:
-                        - Peer identifier
-                    returned: on success
-                    type: string
-                    sample: peer_key_example
-                lifecycle_state:
-                    description:
-                        - The current state of the peer.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
     sample: [{
         "peer_key": "peer_key_example",
         "role": "role_example",
@@ -157,11 +139,7 @@ blockchain_platform_peers:
         },
         "host": "host_example",
         "ad": "ad_example",
-        "lifecycle_state": "ACTIVE",
-        "items": [{
-            "peer_key": "peer_key_example",
-            "lifecycle_state": "lifecycle_state_example"
-        }]
+        "lifecycle_state": "ACTIVE"
     }]
 """
 

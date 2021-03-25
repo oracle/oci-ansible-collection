@@ -65,7 +65,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List managed_list_types
   oci_cloud_guard_managed_list_type_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -76,36 +76,28 @@ managed_list_types:
     returned: on success
     type: complex
     contains:
-        items:
+        id:
             description:
-                - List of ManagedListTypeSummary
+                - ManagedListType Identifier
             returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - ManagedListType Identifier
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                description:
-                    description:
-                        - ManagedListType description
-                    returned: on success
-                    type: string
-                    sample: description_example
-                lifecycle_state:
-                    description:
-                        - The current state of the resource.
-                    returned: on success
-                    type: string
-                    sample: CREATING
+            type: string
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - ManagedListType description
+            returned: on success
+            type: string
+            sample: description_example
+        lifecycle_state:
+            description:
+                - The current state of the resource.
+            returned: on success
+            type: string
+            sample: CREATING
     sample: [{
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "description": "description_example",
-            "lifecycle_state": "CREATING"
-        }]
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "lifecycle_state": "CREATING"
     }]
 """
 

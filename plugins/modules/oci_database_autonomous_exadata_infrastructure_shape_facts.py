@@ -45,7 +45,7 @@ EXAMPLES = """
 - name: List autonomous_exadata_infrastructure_shapes
   oci_database_autonomous_exadata_infrastructure_shape_facts:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

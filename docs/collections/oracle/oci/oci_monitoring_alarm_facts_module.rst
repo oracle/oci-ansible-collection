@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_alarm_facts -- Fetches details about one or multiple A
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -367,11 +367,11 @@ Examples
     
     - name: List alarms
       oci_monitoring_alarm_facts:
-        compartment_id: ocid1.compartment.oc1..exampleuniqueID
+        compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
 
     - name: Get a specific alarm
       oci_monitoring_alarm_facts:
-        alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+        alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -78,11 +78,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List catalog_private_endpoints
   oci_data_catalog_catalog_private_endpoint_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific catalog_private_endpoint
   oci_data_catalog_catalog_private_endpoint_facts:
-    catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -98,19 +98,19 @@ catalog_private_endpoints:
                 - Unique identifier that is immutable
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - Subnet Identifier
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Private Reverse Connection Endpoint display name

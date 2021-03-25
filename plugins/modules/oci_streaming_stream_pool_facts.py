@@ -75,11 +75,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List stream_pools
   oci_streaming_stream_pool_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific stream_pool
   oci_streaming_stream_pool_facts:
-    stream_pool_id: ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx
+    stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -101,7 +101,7 @@ stream_pools:
                 - Compartment OCID that the pool belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa
+            sample: "ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa"
         name:
             description:
                 - The name of the stream pool.
@@ -168,7 +168,7 @@ stream_pools:
                         - Custom Encryption Key (Master Key) ocid.
                     returned: on success
                     type: string
-                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 key_state:
                     description:
                         - Life cycle State of the custom key

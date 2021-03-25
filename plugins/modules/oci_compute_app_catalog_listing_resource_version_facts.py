@@ -53,11 +53,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List app_catalog_listing_resource_versions
   oci_compute_app_catalog_listing_resource_version_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific app_catalog_listing_resource_version
   oci_compute_app_catalog_listing_resource_version_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     resource_version: resource_version_example
 
 """
@@ -74,7 +74,7 @@ app_catalog_listing_resource_versions:
                 - The OCID of the listing this resource version belongs to.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         time_published:
             description:
                 - "Date and time the listing resource version was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
@@ -87,7 +87,7 @@ app_catalog_listing_resource_versions:
                 - OCID of the listing resource.
             returned: on success
             type: string
-            sample: ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Resource Version.

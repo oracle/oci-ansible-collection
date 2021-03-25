@@ -23,6 +23,9 @@ module: oci_network_local_peering_gateway_actions
 short_description: Perform actions on a LocalPeeringGateway resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a LocalPeeringGateway resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a local peering gateway into a different compartment within the same tenancy. For information
+      about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - "For I(action=connect), connects this local peering gateway (LPG) to another one in the same region.
       This operation must be called by the VCN administrator who is designated as
       the *requestor* in the peering relationship. The *acceptor* must implement
@@ -39,26 +42,39 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
+              local peering gateway to.
+            - Required for I(action=change_compartment).
+        type: str
     peer_id:
         description:
             - The OCID of the LPG you want to peer with.
+            - Required for I(action=connect).
         type: str
-        required: true
     action:
         description:
             - The action to perform on the LocalPeeringGateway.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "connect"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on local_peering_gateway
+  oci_network_local_peering_gateway_actions:
+    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action connect on local_peering_gateway
   oci_network_local_peering_gateway_actions:
-    local_peering_gateway_id: ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx
-    peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
     action: connect
 
 """
@@ -75,7 +91,7 @@ local_peering_gateway:
                 - The OCID of the compartment containing the LPG.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -105,7 +121,7 @@ local_peering_gateway:
                 - The LPG's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy_peering:
             description:
                 - Whether the VCN at the other end of the peering is in a different tenancy.
@@ -159,7 +175,7 @@ local_peering_gateway:
                   L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)."
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the LPG was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -172,7 +188,7 @@ local_peering_gateway:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN that uses the LPG.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -203,6 +219,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.core import VirtualNetworkClient
+    from oci.core.models import ChangeLocalPeeringGatewayCompartmentDetails
     from oci.core.models import ConnectLocalPeeringGatewaysDetails
 
     HAS_OCI_PY_SDK = True
@@ -213,6 +230,7 @@ except ImportError:
 class LocalPeeringGatewayActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         connect
     """
 
@@ -230,6 +248,31 @@ class LocalPeeringGatewayActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_local_peering_gateway,
             local_peering_gateway_id=self.module.params.get("local_peering_gateway_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeLocalPeeringGatewayCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_local_peering_gateway_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                local_peering_gateway_id=self.module.params.get(
+                    "local_peering_gateway_id"
+                ),
+                change_local_peering_gateway_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def connect(self):
@@ -276,8 +319,11 @@ def main():
     module_args.update(
         dict(
             local_peering_gateway_id=dict(aliases=["id"], type="str", required=True),
-            peer_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["connect"]),
+            compartment_id=dict(type="str"),
+            peer_id=dict(type="str"),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "connect"]
+            ),
         )
     )
 

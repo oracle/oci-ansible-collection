@@ -45,11 +45,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List ssl_cipher_suites
   oci_loadbalancer_ssl_cipher_suite_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
 
 """

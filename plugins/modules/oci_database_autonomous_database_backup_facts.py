@@ -79,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_database_backups
   oci_database_autonomous_database_backup_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific autonomous_database_backup
   oci_database_autonomous_database_backup_facts:
-    autonomous_database_backup_id: ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -99,19 +99,19 @@ autonomous_database_backups:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the backup. The name does not have to be unique.
@@ -171,7 +171,7 @@ autonomous_database_backups:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.

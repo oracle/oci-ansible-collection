@@ -98,31 +98,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_console_history
   oci_compute_instance_console_history:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance_console_history:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update instance_console_history
   oci_compute_instance_console_history:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    instance_console_history_id: ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx
+    instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete instance_console_history
   oci_compute_instance_console_history:
-    instance_console_history_id: ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx
+    instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_console_history using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance_console_history:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -146,7 +146,7 @@ instance_console_history:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -177,13 +177,13 @@ instance_console_history:
                 - The OCID of the console history metadata object.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance this console history was fetched from.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the console history.

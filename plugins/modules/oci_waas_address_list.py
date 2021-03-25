@@ -25,6 +25,7 @@ description:
     - This module allows the user to create, update and delete an AddressList resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an address list in a set compartment and allows it to be used in a WAAS policy and referenced by access rules. Addresses can
       be IP addresses and CIDR notations.
+    - "This resource has the following action operations in the M(oci_address_list_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -86,27 +87,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create address_list
   oci_waas_address_list:
-    compartment_id: ocid1.compartment.oc1..
-    display_name: addresslist
+    compartment_id: "ocid1.compartment.oc1.."
+    display_name: "addresslist"
     addresses:
-    - 192.0.2.0
+    - "192.0.2.0"
 
 - name: Update address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_address_list:
-    display_name: Updated details
+    display_name: "Updated details"
 
 - name: Update address_list
   oci_waas_address_list:
-    address_list_id: ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx
+    address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete address_list
   oci_waas_address_list:
-    address_list_id: ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx
+    address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_address_list:
-    compartment_id: ocid1.compartment.oc1..
+    compartment_id: "ocid1.compartment.oc1.."
     display_name: addresslist
     state: absent
 
@@ -124,13 +125,13 @@ address_list:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the address list.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the address list's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the address list.

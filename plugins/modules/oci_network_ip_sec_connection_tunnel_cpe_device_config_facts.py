@@ -48,8 +48,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific ip_sec_connection_tunnel_cpe_device_config
   oci_network_ip_sec_connection_tunnel_cpe_device_config_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-    tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

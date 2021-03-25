@@ -20,7 +20,7 @@ oracle.oci.oci_streaming_connect_harness_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -346,11 +346,11 @@ Examples
     
     - name: List connect_harness
       oci_streaming_connect_harness_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific connect_harness
       oci_streaming_connect_harness_facts:
-        connect_harness_id: ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx
+        connect_harness_id: "ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

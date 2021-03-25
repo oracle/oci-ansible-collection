@@ -63,7 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List availability_histories
   oci_management_agent_availability_history_facts:
-    management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -79,7 +79,7 @@ availability_histories:
                 - agent identifier
             returned: on success
             type: string
-            sample: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         availability_status:
             description:
                 - The availability status of managementAgent

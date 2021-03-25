@@ -81,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_vm_clusters
   oci_database_autonomous_vm_cluster_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific autonomous_vm_cluster
   oci_database_autonomous_vm_cluster_facts:
-    autonomous_vm_cluster_id: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -101,13 +101,13 @@ autonomous_vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous VM cluster.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Autonomous VM cluster. The name does not need to be unique.
@@ -144,13 +144,13 @@ autonomous_vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_network_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
             type: string
-            sample: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         is_local_backup_enabled:
             description:
                 - If true, database backup on local Exadata storage is configured for the Autonomous VM cluster. If false, database backup on local Exadata

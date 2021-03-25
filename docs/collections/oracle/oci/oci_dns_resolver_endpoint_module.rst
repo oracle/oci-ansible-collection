@@ -20,7 +20,7 @@ oracle.oci.oci_dns_resolver_endpoint -- Manage a ResolverEndpoint resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -512,20 +512,20 @@ Examples
     
     - name: Create resolver_endpoint
       oci_dns_resolver_endpoint:
-        resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+        resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         is_forwarding: true
         is_listening: true
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update resolver_endpoint
       oci_dns_resolver_endpoint:
-        resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+        resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
 
     - name: Delete resolver_endpoint
       oci_dns_resolver_endpoint:
-        resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+        resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 

@@ -77,11 +77,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List on_prem_connectors
   oci_data_safe_on_prem_connector_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific on_prem_connector
   oci_data_safe_on_prem_connector_facts:
-    on_prem_connector_id: ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -97,7 +97,7 @@ on_prem_connectors:
                 - The OCID of the on-premises connector.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the on-premises connector.
@@ -109,7 +109,7 @@ on_prem_connectors:
                 - The OCID of the compartment that contains the on-premises connector.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The description of the on-premises connector.

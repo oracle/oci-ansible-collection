@@ -20,7 +20,7 @@ oracle.oci.oci_waas_protection_settings -- Manage a ProtectionSettings resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -538,14 +538,14 @@ Examples
     - name: Update protection_settings
       oci_waas_protection_settings:
         allowed_http_methods:
-        - GET
-        - POST
-        - HEAD
-        - OPTIONS
-        block_action: SHOW_ERROR_PAGE
-        block_error_page_code: 403
-        block_error_page_description: Access blocked by website owner. Please contact support.
-        block_error_page_message: Access to the website is blocked.
+        - "GET"
+        - "POST"
+        - "HEAD"
+        - "OPTIONS"
+        block_action: "SHOW_ERROR_PAGE"
+        block_error_page_code: "403"
+        block_error_page_description: "Access blocked by website owner. Please contact support."
+        block_error_page_message: "Access to the website is blocked."
         block_response_code: 403
         is_response_inspected: false
         max_argument_count: 255
@@ -553,10 +553,10 @@ Examples
         max_response_size_in_ki_b: 1024
         max_total_name_length_of_arguments: 64000
         media_types:
-        - text/html
-        - text/plain
+        - "text/html"
+        - "text/plain"
         recommendations_period_in_days: 10
-        waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

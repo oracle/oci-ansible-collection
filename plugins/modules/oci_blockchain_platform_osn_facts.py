@@ -66,12 +66,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List blockchain_platform_osns
   oci_blockchain_platform_osn_facts:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific blockchain_platform_osn
   oci_blockchain_platform_osn_facts:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
-    osn_id: ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+    osn_id: "ocid1.osn.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -112,35 +112,13 @@ blockchain_platform_osns:
             returned: on success
             type: string
             sample: ACTIVE
-        items:
-            description:
-                - Collection of OsnSummary
-            returned: on success
-            type: complex
-            contains:
-                osn_key:
-                    description:
-                        - OSN identifier
-                    returned: on success
-                    type: string
-                    sample: osn_key_example
-                lifecycle_state:
-                    description:
-                        - The current state of the OSN.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
     sample: [{
         "osn_key": "osn_key_example",
         "ad": "ad_example",
         "ocpu_allocation_param": {
             "ocpu_allocation_number": 3.4
         },
-        "lifecycle_state": "ACTIVE",
-        "items": [{
-            "osn_key": "osn_key_example",
-            "lifecycle_state": "lifecycle_state_example"
-        }]
+        "lifecycle_state": "ACTIVE"
     }]
 """
 

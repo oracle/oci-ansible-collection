@@ -20,7 +20,7 @@ oracle.oci.oci_network_route_table -- Manage a RouteTable resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new route table for the specified VCN. In the request you must also include at least one route rule for the new route table. For information on the number of rules you can have in a route table, see `Service Limits <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm>`_. For general information about route tables in your VCN and the types of targets you can use in route rules, see `Route Tables <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm>`_.
 - For the purposes of access control, you must provide the OCID of the compartment where you want the route table to reside. Notice that the route table doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the route table in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the route table, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_route_table_actions <ansible_collections.oci_route_table_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -540,16 +541,16 @@ Examples
     
     - name: Create route_table
       oci_network_route_table:
-        display_name: MyRouteTable
-        vcn_id: ocid1.vcn.oc1.phx.unique_ID
+        display_name: "MyRouteTable"
+        vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
         route_rules:
-        - cidr_block: 0.0.0.0/0
-          network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        - cidr_block: "0.0.0.0/0"
+          network_entity_id: "ocid1.internetgateway.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyRouteTable
         freeform_tags: {'Department': 'Finance'}
@@ -560,16 +561,16 @@ Examples
       oci_network_route_table:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyRouteTable
-        rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+        rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete route_table
       oci_network_route_table:
-        rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+        rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyRouteTable
         state: absent
 

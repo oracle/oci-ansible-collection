@@ -20,7 +20,7 @@ oracle.oci.oci_email_suppression -- Manage a Suppression resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -340,12 +340,12 @@ Examples
     
     - name: Create suppression
       oci_email_suppression:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email_address: email_address_example
 
     - name: Delete suppression
       oci_email_suppression:
-        suppression_id: ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx
+        suppression_id: "ocid1.suppression.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

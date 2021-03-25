@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_rule_set -- Manage a RuleSet resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -441,7 +441,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A string to prepend to the header value. The resulting header value must conform to RFC 7230.</div>
+                                            <div>A string to prepend to the header value. The resulting header value must conform to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_prefix_value`</div>
                                             <div>Applicable when action is one of [&#x27;EXTEND_HTTP_REQUEST_HEADER_VALUE&#x27;, &#x27;EXTEND_HTTP_RESPONSE_HEADER_VALUE&#x27;]</div>
                                                         </td>
@@ -641,7 +641,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A string to append to the header value. The resulting header value must conform to RFC 7230.</div>
+                                            <div>A string to append to the header value. The resulting header value must conform to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_suffix_value`</div>
                                             <div>Applicable when action is one of [&#x27;EXTEND_HTTP_REQUEST_HEADER_VALUE&#x27;, &#x27;EXTEND_HTTP_RESPONSE_HEADER_VALUE&#x27;]</div>
                                                         </td>
@@ -659,7 +659,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A header value that conforms to RFC 7230.</div>
+                                            <div>A header value that conforms to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_value`</div>
                                             <div>Required when action is one of [&#x27;ADD_HTTP_RESPONSE_HEADER&#x27;, &#x27;ADD_HTTP_REQUEST_HEADER&#x27;]</div>
                                                         </td>
@@ -820,32 +820,32 @@ Examples
     
     - name: Create rule_set
       oci_loadbalancer_rule_set:
-        name: example_rule_set
+        name: "example_rule_set"
         items:
-        - action: ADD_HTTP_REQUEST_HEADER
-          header: example_header_name
-          value: example_value
-        - action: EXTEND_HTTP_REQUEST_HEADER_VALUE
-          header: example_header_name2
-          prefix: example_prefix_value
-          suffix: example_suffix_value
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        - action: "ADD_HTTP_REQUEST_HEADER"
+          header: "example_header_name"
+          value: "example_value"
+        - action: "EXTEND_HTTP_REQUEST_HEADER_VALUE"
+          header: "example_header_name2"
+          prefix: "example_prefix_value"
+          suffix: "example_suffix_value"
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update rule_set
       oci_loadbalancer_rule_set:
         items:
-        - action: ADD_HTTP_REQUEST_HEADER
-          header: example_header_name
-          value: example_value
-        - action: EXTEND_HTTP_REQUEST_HEADER_VALUE
-          header: example_header_name2
-          prefix: example_prefix_value
-          suffix: example_suffix_value
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        - action: "ADD_HTTP_REQUEST_HEADER"
+          header: "example_header_name"
+          value: "example_value"
+        - action: "EXTEND_HTTP_REQUEST_HEADER_VALUE"
+          header: "example_header_name2"
+          prefix: "example_prefix_value"
+          suffix: "example_suffix_value"
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete rule_set
       oci_loadbalancer_rule_set:
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         name: example_rule_set
         state: absent
 
@@ -1118,7 +1118,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A string to prepend to the header value. The resulting header value must conform to RFC 7230.</div>
+                                            <div>A string to prepend to the header value. The resulting header value must conform to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_prefix_value`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1334,7 +1334,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A string to append to the header value. The resulting header value must conform to RFC 7230.</div>
+                                            <div>A string to append to the header value. The resulting header value must conform to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_suffix_value`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1354,7 +1354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A header value that conforms to RFC 7230.</div>
+                                            <div>A header value that conforms to RFC 7230. With the following exceptions: *  value cannot contain `$` *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid.</div>
                                             <div>Example: `example_value`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

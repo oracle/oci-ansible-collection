@@ -20,7 +20,7 @@ oracle.oci.oci_network_public_ip_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -392,19 +392,19 @@ Examples
     - name: List public_ips
       oci_network_public_ip_facts:
         scope: REGION
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific public_ip
       oci_network_public_ip_facts:
-        public_ip_id: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx
+        public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific public_ip
       oci_network_public_ip_facts:
-        private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+        private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific public_ip
       oci_network_public_ip_facts:
-        ip_address: 129.146.2.1
+        ip_address: "129.146.2.1"
 
 
 

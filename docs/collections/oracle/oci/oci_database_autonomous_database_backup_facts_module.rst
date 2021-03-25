@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_database_backup_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -361,11 +361,11 @@ Examples
     
     - name: List autonomous_database_backups
       oci_database_autonomous_database_backup_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific autonomous_database_backup
       oci_database_autonomous_database_backup_facts:
-        autonomous_database_backup_id: ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

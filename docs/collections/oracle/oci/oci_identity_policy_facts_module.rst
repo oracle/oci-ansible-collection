@@ -20,7 +20,7 @@ oracle.oci.oci_identity_policy_facts -- Fetches details about one or multiple Po
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -347,11 +347,11 @@ Examples
     
     - name: List policies
       oci_identity_policy_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific policy
       oci_identity_policy_facts:
-        policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+        policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

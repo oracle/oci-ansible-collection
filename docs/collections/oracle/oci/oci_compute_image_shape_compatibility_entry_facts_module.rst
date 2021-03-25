@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_shape_compatibility_entry_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -268,11 +268,11 @@ Examples
     
     - name: List image_shape_compatibility_entries
       oci_compute_image_shape_compatibility_entry_facts:
-        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific image_shape_compatibility_entry
       oci_compute_image_shape_compatibility_entry_facts:
-        image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name: shape_name_example
 
 

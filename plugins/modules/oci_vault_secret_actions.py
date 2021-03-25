@@ -26,6 +26,10 @@ description:
     - For I(action=cancel_secret_deletion), cancels the pending deletion of the specified secret. Canceling
       a scheduled deletion restores the secret's lifecycle state to what
       it was before you scheduled the secret for deletion.
+    - For I(action=change_compartment), moves a secret into a different compartment within the same tenancy. For information about
+      moving resources between compartments, see L(Moving Resources to a Different
+      Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      When provided, if-match is checked against the ETag values of the secret.
     - For I(action=schedule_secret_deletion), schedules the deletion of the specified secret. This sets the lifecycle state of the secret
       to `PENDING_DELETION` and then deletes it after the specified retention period ends.
 version_added: "2.9"
@@ -37,6 +41,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+              into which the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     time_of_deletion:
         description:
             - An optional property indicating when to delete the secret version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -49,6 +59,7 @@ options:
         required: true
         choices:
             - "cancel_secret_deletion"
+            - "change_compartment"
             - "schedule_secret_deletion"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -56,14 +67,20 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action cancel_secret_deletion on secret
   oci_vault_secret_actions:
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel_secret_deletion
+
+- name: Perform action change_compartment on secret
+  oci_vault_secret_actions:
+    compartment_id: "compartment_OCID"
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 - name: Perform action schedule_secret_deletion on secret
   oci_vault_secret_actions:
-    time_of_deletion: 2018-04-03T21:10:29.600Z
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
-    action: schedule_secret_deletion
+    time_of_deletion: "2018-04-03T21:10:29.600Z"
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "schedule_secret_deletion"
 
 """
 
@@ -79,7 +96,7 @@ secret:
                 - The OCID of the compartment where you want to create the secret.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_version_number:
             description:
                 - The version number of the secret version that's currently in use.
@@ -113,13 +130,13 @@ secret:
                 - The OCID of the secret.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the master encryption key that is used to encrypt the secret.
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state of the secret.
@@ -221,7 +238,7 @@ secret:
                 - The OCID of the vault where the secret exists.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_version_number": 56,
@@ -260,6 +277,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.vault import VaultsClient
+    from oci.vault.models import ChangeSecretCompartmentDetails
     from oci.vault.models import ScheduleSecretDeletionDetails
 
     HAS_OCI_PY_SDK = True
@@ -271,6 +289,7 @@ class SecretActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         cancel_secret_deletion
+        change_compartment
         schedule_secret_deletion
     """
 
@@ -294,6 +313,29 @@ class SecretActionsHelperGen(OCIActionsHelperBase):
             call_fn=self.client.cancel_secret_deletion,
             call_fn_args=(),
             call_fn_kwargs=dict(secret_id=self.module.params.get("secret_id"),),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeSecretCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_secret_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                secret_id=self.module.params.get("secret_id"),
+                change_secret_compartment_details=action_details,
+            ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -344,11 +386,16 @@ def main():
     module_args.update(
         dict(
             secret_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["cancel_secret_deletion", "schedule_secret_deletion"],
+                choices=[
+                    "cancel_secret_deletion",
+                    "change_compartment",
+                    "schedule_secret_deletion",
+                ],
             ),
         )
     )

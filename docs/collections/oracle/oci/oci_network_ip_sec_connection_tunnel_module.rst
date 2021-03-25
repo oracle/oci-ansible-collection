@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection_tunnel -- Manage an IpSecConnectionTunn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -510,15 +510,15 @@ Examples
     
     - name: Update ip_sec_connection_tunnel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection_tunnel:
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         routing: BGP
         ike_version: V1
 
     - name: Update ip_sec_connection_tunnel
       oci_network_ip_sec_connection_tunnel:
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-        tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+        tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

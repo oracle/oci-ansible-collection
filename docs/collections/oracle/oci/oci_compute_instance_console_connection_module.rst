@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_console_connection -- Manage an InstanceConsoleC
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -426,19 +426,19 @@ Examples
     
     - name: Create instance_console_connection
       oci_compute_instance_console_connection:
-        instance_id: ocid1.instance.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1.phx.unique_ID
-        public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+        instance_id: "ocid1.instance.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1.phx.unique_ID"
+        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
     - name: Update instance_console_connection
       oci_compute_instance_console_connection:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
-        instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+        instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete instance_console_connection
       oci_compute_instance_console_connection:
-        instance_console_connection_id: ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+        instance_console_connection_id: "ocid1.instanceconsoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

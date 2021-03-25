@@ -85,11 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List instance_console_histories
   oci_compute_instance_console_history_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific instance_console_history
   oci_compute_instance_console_history_facts:
-    instance_console_history_id: ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx
+    instance_console_history_id: "ocid1.instanceconsolehistory.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -112,7 +112,7 @@ instance_console_histories:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -143,13 +143,13 @@ instance_console_histories:
                 - The OCID of the console history metadata object.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance this console history was fetched from.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the console history.

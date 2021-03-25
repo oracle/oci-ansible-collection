@@ -20,7 +20,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration -- Manage an AutoScalingCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an AutoScalingConfiguration resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an autoscaling configuration.
+- This resource has the following action operations in the :ref:`oci_auto_scaling_configuration_actions <ansible_collections.oci_auto_scaling_configuration_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -892,8 +893,8 @@ Examples
     
     - name: Create auto_scaling_configuration
       oci_autoscaling_auto_scaling_configuration:
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        display_name: example_autoscaling_configuration
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        display_name: "example_autoscaling_configuration"
         cool_down_in_seconds: 300
         is_enabled: true
         policies:
@@ -901,49 +902,49 @@ Examples
             max: 50
             min: 10
             initial: 15
-          display_name: example_autoscaling_policy
-          policy_type: threshold
+          display_name: "example_autoscaling_policy"
+          policy_type: "threshold"
           rules:
           - action:
-              type: CHANGE_COUNT_BY
+              type: "CHANGE_COUNT_BY"
               value: 5
-            display_name: example_scale_out_condition
+            display_name: "example_scale_out_condition"
             metric:
-              metric_type: CPU_UTILIZATION
+              metric_type: "CPU_UTILIZATION"
               threshold:
-                operator: GTE
+                operator: "GTE"
                 value: 90
           - action:
-              type: CHANGE_COUNT_BY
+              type: "CHANGE_COUNT_BY"
               value: -5
-            display_name: example_scale_in_condition
+            display_name: "example_scale_in_condition"
             metric:
-              metric_type: CPU_UTILIZATION
+              metric_type: "CPU_UTILIZATION"
               threshold:
-                operator: LTE
+                operator: "LTE"
                 value: 25
         resource:
-          type: instancePool
-          id: ocid1.instancepool.oc1..unique_ID
+          type: "instancePool"
+          id: "ocid1.instancepool.oc1..unique_ID"
 
     - name: Update auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_autoscaling_auto_scaling_configuration:
-        display_name: example_autoscaling_configuration
+        display_name: "example_autoscaling_configuration"
         is_enabled: false
         cool_down_in_seconds: 600
 
     - name: Update auto_scaling_configuration
       oci_autoscaling_auto_scaling_configuration:
-        auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete auto_scaling_configuration
       oci_autoscaling_auto_scaling_configuration:
-        auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_autoscaling_auto_scaling_configuration:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: example_autoscaling_configuration
         state: absent
 

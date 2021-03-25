@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_backup_policy -- Manage a VolumeBackupPolicy 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -622,11 +622,11 @@ Examples
     
     - name: Create volume_backup_policy
       oci_blockstorage_volume_backup_policy:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update volume_backup_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume_backup_policy:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         destination_region: us-ashburn-1
         schedules:
@@ -640,16 +640,16 @@ Examples
       oci_blockstorage_volume_backup_policy:
         display_name: display_name_example
         destination_region: us-ashburn-1
-        policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+        policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete volume_backup_policy
       oci_blockstorage_volume_backup_policy:
-        policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+        policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete volume_backup_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_volume_backup_policy:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

@@ -30,6 +30,7 @@ description:
       us/iaas/api/#/en/streaming/20180418/Stream/GetStream).
       In the response, the `lifecycleState` parameter of the L(Stream,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/streaming/20180418/Stream/) object tells
       you its current state.
+    - "This resource has the following action operations in the M(oci_stream_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -96,9 +97,9 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create stream
   oci_streaming_stream:
-    compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
-    name: mynewstream
-    partitions: 4
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: "mynewstream"
+    partitions: "4"
 
 - name: Update stream using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_stream:
@@ -109,11 +110,11 @@ EXAMPLES = """
 
 - name: Update stream
   oci_streaming_stream:
-    stream_id: ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx
+    stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete stream
   oci_streaming_stream:
-    stream_id: ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx
+    stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete stream using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

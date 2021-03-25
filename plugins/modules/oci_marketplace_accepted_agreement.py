@@ -100,16 +100,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create accepted_agreement
   oci_marketplace_accepted_agreement:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
-    agreement_id: ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx
+    agreement_id: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
     signature: signature_example
 
 - name: Update accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_marketplace_accepted_agreement:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -117,17 +117,17 @@ EXAMPLES = """
   oci_marketplace_accepted_agreement:
     display_name: display_name_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    accepted_agreement_id: ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx
+    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete accepted_agreement
   oci_marketplace_accepted_agreement:
-    accepted_agreement_id: ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx
+    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete accepted_agreement using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_marketplace_accepted_agreement:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -144,7 +144,7 @@ accepted_agreement:
                 - The unique identifier for the acceptance of the agreement within a specific compartment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A display name for the accepted agreement.
@@ -156,13 +156,13 @@ accepted_agreement:
                 - The unique identifier for the compartment where the agreement was accepted.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         listing_id:
             description:
                 - The unique identifier for the listing associated with the agreement.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The package version associated with the agreement.
@@ -174,7 +174,7 @@ accepted_agreement:
                 - The unique identifier for the terms of use agreement itself.
             returned: on success
             type: string
-            sample: ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
         time_accepted:
             description:
                 - The time the agreement was accepted.

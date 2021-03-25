@@ -20,7 +20,7 @@ oracle.oci.oci_database_database -- Manage a Database resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1197,27 +1197,27 @@ Examples
     
     - name: Create database
       oci_database_database:
-        db_home_id: ocid1.dbhome.oc1.phx.unique_ID
-        source: NONE
+        db_home_id: "ocid1.dbhome.oc1.phx.unique_ID"
+        source: "NONE"
         database:
-          admin_password: password
-          db_name: myTestDb
+          admin_password: "password"
+          db_name: "myTestDb"
           db_backup_config:
             recovery_window_in_days: 30
             auto_backup_enabled: true
-        kms_key_id: ocid1.key.oc1..unique_ID
-        kms_key_version_id: ocid1.keyversion.oc1..unique_ID
+        kms_key_id: "ocid1.key.oc1..unique_ID"
+        kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
 
     - name: Update database
       oci_database_database:
         db_backup_config:
           recovery_window_in_days: 30
           auto_backup_enabled: true
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete database
       oci_database_database:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -77,11 +77,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List software_sources
   oci_os_management_software_source_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific software_source
   oci_os_management_software_source_facts:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -97,13 +97,13 @@ software_sources:
                 - OCID for the Software Source
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User friendly name for the software source
@@ -139,7 +139,7 @@ software_sources:
                 - OCID for the parent software source, if there is one
             returned: on success
             type: string
-            sample: ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         parent_name:
             description:
                 - Display name the parent software source, if there is one
@@ -181,7 +181,7 @@ software_sources:
                 - ID of the GPG key for this software source
             returned: on success
             type: string
-            sample: ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx"
         gpg_key_fingerprint:
             description:
                 - Fingerprint of the GPG key for this software source
@@ -217,7 +217,7 @@ software_sources:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name

@@ -20,7 +20,7 @@ oracle.oci.oci_nosql_table_usage_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -296,7 +296,7 @@ Examples
     
     - name: List table_usages
       oci_nosql_table_usage_facts:
-        table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+        table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -315,12 +315,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="2">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-table_usages"></div>
                     <b>table_usages</b>
                     <a class="ansibleOptionLink" href="#return-table_usages" title="Permalink to this return value"></a>
@@ -333,32 +333,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of TableUsage resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;read_throttle_count&#x27;: 56, &#x27;read_units&#x27;: 56, &#x27;seconds_in_period&#x27;: 56, &#x27;storage_in_g_bs&#x27;: 56, &#x27;storage_throttle_count&#x27;: 56, &#x27;write_throttle_count&#x27;: 56, &#x27;write_units&#x27;: 56}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;read_throttle_count&#x27;: 56, &#x27;read_units&#x27;: 56, &#x27;seconds_in_period&#x27;: 56, &#x27;storage_in_g_bs&#x27;: 56, &#x27;storage_throttle_count&#x27;: 56, &#x27;write_throttle_count&#x27;: 56, &#x27;write_units&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A page of TableUsageSummary objects.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/read_throttle_count"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/read_throttle_count"></div>
                     <b>read_throttle_count</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/read_throttle_count" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/read_throttle_count" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -373,11 +356,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/read_units"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/read_units"></div>
                     <b>read_units</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/read_units" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/read_units" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -392,11 +374,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/seconds_in_period"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/seconds_in_period"></div>
                     <b>seconds_in_period</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/seconds_in_period" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/seconds_in_period" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -411,11 +392,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/storage_in_g_bs"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/storage_in_g_bs"></div>
                     <b>storage_in_g_bs</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/storage_in_g_bs" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/storage_in_g_bs" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -430,11 +410,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/storage_throttle_count"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/storage_throttle_count"></div>
                     <b>storage_throttle_count</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/storage_throttle_count" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/storage_throttle_count" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -449,11 +428,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/write_throttle_count"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/write_throttle_count"></div>
                     <b>write_throttle_count</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/write_throttle_count" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/write_throttle_count" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -468,11 +446,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-table_usages/items/write_units"></div>
+                    <div class="ansibleOptionAnchor" id="return-table_usages/write_units"></div>
                     <b>write_units</b>
-                    <a class="ansibleOptionLink" href="#return-table_usages/items/write_units" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-table_usages/write_units" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">integer</span>
                                           </div>
@@ -485,7 +462,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
-                    
                     
                         </table>
     <br/><br/>

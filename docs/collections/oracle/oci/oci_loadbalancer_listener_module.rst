@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_listener -- Manage a Listener resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -344,6 +344,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
+                                            <div>Deprecated. Please use `routingPolicies` instead.</div>
                                             <div>The name of the set of path-based routing rules, <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/'>PathRouteSet</a>, applied to this listener&#x27;s traffic.</div>
                                             <div>Example: `example_path_route_set`</div>
                                             <div>This parameter is updatable.</div>
@@ -396,6 +397,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-routing_policy_name"></div>
+                    <b>routing_policy_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-routing_policy_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the routing policy applied to this listener&#x27;s traffic.</div>
+                                            <div>Example: `example_routing_policy`</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -650,7 +668,7 @@ Examples
         port: 80
         protocol: HTTP
         name: example_listener
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update listener
       oci_loadbalancer_listener:
@@ -658,12 +676,12 @@ Examples
         port: 80
         protocol: HTTP
         name: example_listener
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete listener
       oci_loadbalancer_listener:
         name: example_listener
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -701,7 +719,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Listener resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;connection_configuration&#x27;: {&#x27;backend_tcp_proxy_protocol_version&#x27;: 1, &#x27;idle_timeout&#x27;: 1200}, &#x27;default_backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;hostname_names&#x27;: [], &#x27;name&#x27;: &#x27;example_listener&#x27;, &#x27;path_route_set_name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;port&#x27;: 0, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;routing_policy_name&#x27;: &#x27;example_routing_policy_name&#x27;, &#x27;rule_set_names&#x27;: [], &#x27;ssl_configuration&#x27;: {&#x27;certificate_name&#x27;: &#x27;example_certificate_bundle&#x27;, &#x27;cipher_suite_name&#x27;: &#x27;cipher_suite_name_example&#x27;, &#x27;protocols&#x27;: [], &#x27;server_order_preference&#x27;: &#x27;ENABLED&#x27;, &#x27;verify_depth&#x27;: 3, &#x27;verify_peer_certificate&#x27;: True}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -828,6 +846,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
+                                            <div>Deprecated. Please use `routingPolicies` instead.</div>
                                             <div>The name of the set of path-based routing rules, <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/'>PathRouteSet</a>, applied to this listener&#x27;s traffic.</div>
                                             <div>Example: `example_path_route_set`</div>
                                         <br/>
@@ -869,6 +888,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-listener/routing_policy_name"></div>
+                    <b>routing_policy_name</b>
+                    <a class="ansibleOptionLink" href="#return-listener/routing_policy_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the routing policy applied to this listener&#x27;s traffic.</div>
+                                            <div>Example: `example_routing_policy_name`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_routing_policy_name</div>
                                     </td>
             </tr>
                                 <tr>

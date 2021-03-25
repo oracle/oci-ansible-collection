@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_metric_data_actions -- Perform actions on a MetricData
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -387,12 +387,12 @@ Examples
     
     - name: Perform action summarize_metrics_data on metric_data
       oci_monitoring_metric_data_actions:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        namespace: oci_computeagent
-        query: CpuUtilization[1m]{resourceId:<instance_OCID>}.max()
-        start_time: 2019-03-10T22:19:26.789Z
-        end_time: 2019-03-10T22:28:26.789Z
-        action: summarize_metrics_data
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace: "oci_computeagent"
+        query: "CpuUtilization[1m]{resourceId:<instance_OCID>}.max()"
+        start_time: "2019-03-10T22:19:26.789Z"
+        end_time: "2019-03-10T22:28:26.789Z"
+        action: "summarize_metrics_data"
 
 
 

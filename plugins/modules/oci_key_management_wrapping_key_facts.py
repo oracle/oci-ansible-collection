@@ -55,13 +55,13 @@ wrapping_key:
                 - The OCID of the compartment that contains this key.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the key.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The key's current lifecycle state.
@@ -74,7 +74,7 @@ wrapping_key:
                 - The public key, in PEM format, to use to wrap the key material before importing it.
             returned: on success
             type: string
-            sample: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         time_created:
             description:
                 - The date and time the key was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -87,7 +87,7 @@ wrapping_key:
                 - The OCID of the vault that contains this key.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

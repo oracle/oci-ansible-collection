@@ -33,13 +33,13 @@ options:
             - A filter to return only resources that exist in the compartment, identified by
               L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: str
-extends_documentation_fragment: [ oracle.oci.oracle ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
 EXAMPLES = """
 - name: List resource_discovery_services
   oci_resource_manager_resource_discovery_service_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -50,33 +50,25 @@ resource_discovery_services:
     returned: on success
     type: complex
     contains:
-        items:
+        name:
             description:
-                - Collection of supported services for Resource Discovery.
+                - "A supported service. Example: `core`
+                  For reference on service names, see the L(Terraform provider
+                  documentation,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services)."
             returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - "A supported service. Example: `core`
-                          For reference on service names, see the L(Terraform provider
-                          documentation,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services)."
-                    returned: on success
-                    type: string
-                    sample: core
-                discovery_scope:
-                    description:
-                        - "The scope of the service as used with Resource Discovery.
-                          This property determines the type of compartment OCID required: root compartment (`TENANCY`) or not (`COMPARTMENT`).
-                          For example, `identity` is at the root compartment scope while `database` is at the compartment scope."
-                    returned: on success
-                    type: string
-                    sample: TENANCY
+            type: string
+            sample: core
+        discovery_scope:
+            description:
+                - "The scope of the service as used with Resource Discovery.
+                  This property determines the type of compartment OCID required: root compartment (`TENANCY`) or not (`COMPARTMENT`).
+                  For example, `identity` is at the root compartment scope while `database` is at the compartment scope."
+            returned: on success
+            type: string
+            sample: TENANCY
     sample: [{
-        "items": [{
-            "name": "core",
-            "discovery_scope": "TENANCY"
-        }]
+        "name": "core",
+        "discovery_scope": "TENANCY"
     }]
 """
 
@@ -104,6 +96,7 @@ class ResourceDiscoveryServiceFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "compartment_id",
+            "name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -128,7 +121,7 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(compartment_id=dict(type="str"),))
+    module_args.update(dict(compartment_id=dict(type="str"), name=dict(type="str"),))
 
     module = AnsibleModule(argument_spec=module_args)
 

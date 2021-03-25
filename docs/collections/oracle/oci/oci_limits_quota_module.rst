@@ -20,7 +20,7 @@ oracle.oci.oci_limits_quota -- Manage a Quota resource in Oracle Cloud Infrastru
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -444,16 +444,16 @@ Examples
     
     - name: Create quota
       oci_limits_quota:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
-        description: Quotas for Compute VM.DenseIO1.16 resources
-        name: ComputeQuotas
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
+        description: "Quotas for Compute VM.DenseIO1.16 resources"
+        name: "ComputeQuotas"
         statements:
-        - Zero instance-family quotas in compartment DeveloperCompartment
-        - Set {INSTANCE_VM.STANDARD2.2} quota to 3 in compartment DeveloperCompartment where all {request.region = 'iad', request.ad = 'ad1'}
+        - "Zero instance-family quotas in compartment DeveloperCompartment"
+        - "Set {INSTANCE_VM.STANDARD2.2} quota to 3 in compartment DeveloperCompartment where all {request.region = 'iad', request.ad = 'ad1'}"
 
     - name: Update quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_limits_quota:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
         description: Quotas for Compute VM.DenseIO1.16 resources
         name: ComputeQuotas
         statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
@@ -464,16 +464,16 @@ Examples
       oci_limits_quota:
         description: Quotas for Compute VM.DenseIO1.16 resources
         statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
-        quota_id: ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx
+        quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete quota
       oci_limits_quota:
-        quota_id: ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx
+        quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_limits_quota:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
         name: ComputeQuotas
         state: absent
 

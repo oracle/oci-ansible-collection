@@ -24,7 +24,7 @@ short_description: Manage an ExternalContainerDatabase resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new external container database resource.
-    - "This resource has the following action operations in the M(oci_external_container_database_actions) module:
+    - "This resource has the following action operations in the M(oci_external_container_database_actions) module: change_compartment,
       disable_external_container_database_database_management, enable_external_container_database_database_management,
       scan_external_container_database_pluggable_databases."
 version_added: "2.9"
@@ -79,21 +79,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create external_container_database
   oci_database_external_container_database:
-    compartment_id: ocid1.[tenancy|compartment].oc1.unique_ID
-    display_name: myTestExternalCdb
+    compartment_id: "ocid1.[tenancy|compartment].oc1.unique_ID"
+    display_name: "myTestExternalCdb"
 
 - name: Update external_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_container_database:
-    display_name: myTestDb2
+    display_name: "myTestDb2"
 
 - name: Update external_container_database
   oci_database_external_container_database:
     display_name: myTestExternalCdb
-    external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete external_container_database
   oci_database_external_container_database:
-    external_container_database_id: ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete external_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -116,7 +116,7 @@ external_container_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -144,7 +144,7 @@ external_container_database:
                   resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
@@ -174,7 +174,7 @@ external_container_database:
                 - The Oracle Database ID, which identifies an Oracle Database located outside of Oracle Cloud.
             returned: on success
             type: string
-            sample: ocid1.db.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The Oracle Database version.
@@ -232,7 +232,7 @@ external_container_database:
                           us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                     returned: on success
                     type: string
-                    sample: ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 license_model:
                     description:
                         - The Oracle license model that applies to the external database.

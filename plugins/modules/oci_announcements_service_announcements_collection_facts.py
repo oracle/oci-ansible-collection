@@ -80,7 +80,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List announcements_collection
   oci_announcements_service_announcements_collection_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,7 +102,7 @@ announcements_collection:
                         - The OCID of the announcement.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 type:
                     description:
                         - The entity type.
@@ -205,13 +205,13 @@ announcements_collection:
                         - The OCID of the announcement that this status is associated with.
                     returned: on success
                     type: string
-                    sample: ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx"
                 user_id:
                     description:
                         - The OCID of the user that this status is associated with.
                     returned: on success
                     type: string
-                    sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
                 time_acknowledged:
                     description:
                         - "The date and time the announcement was acknowledged, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.

@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key_actions -- Perform actions on a Key resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a Key resource in Oracle Cloud Infrastructure
 - For *action=cancel_key_deletion*, cancels the scheduled deletion of the specified key. Canceling a scheduled deletion restores the key's lifecycle state to what it was before its scheduled deletion. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
+- For *action=change_compartment*, moves a key into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When provided, if-match is checked against the ETag values of the key. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 - For *action=disable*, disables a master encryption key so it can no longer be used for encryption, decryption, or generating new data encryption keys. As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
 - For *action=enable*, enables a master encryption key so it can be used for encryption, decryption, or generating new data encryption keys. As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
 - For *action=schedule_key_deletion*, schedules the deletion of the specified key. This sets the lifecycle state of the key to `PENDING_DELETION` and then deletes it after the specified retention period ends. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
@@ -87,6 +88,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>cancel_key_deletion</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>disable</li>
                                                                                                                                                                                                 <li>enable</li>
                                                                                                                                                                                                 <li>schedule_key_deletion</li>
@@ -174,6 +176,22 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that you want to move the key to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -341,27 +359,34 @@ Examples
     
     - name: Perform action cancel_key_deletion on key
       oci_key_management_key_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: cancel_key_deletion
+        service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
+
+    - name: Perform action change_compartment on key
+      oci_key_management_key_actions:
+        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action disable on key
       oci_key_management_key_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: disable
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action enable on key
       oci_key_management_key_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: enable
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action schedule_key_deletion on key
       oci_key_management_key_actions:
-        time_of_deletion: 2018-04-03T21:10:29.600Z
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
-        action: schedule_key_deletion
+        time_of_deletion: "2018-04-03T21:10:29.600Z"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "schedule_key_deletion"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 

@@ -121,18 +121,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create tag
   oci_identity_tag:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: CostCenter
     description: This tag will show the cost center that will be used for billing of associated resources.
 
 - name: Update tag
   oci_identity_tag:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: CostCenter
 
 - name: Delete tag
   oci_identity_tag:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: CostCenter
     state: absent
 
@@ -150,13 +150,13 @@ tag:
                 - The OCID of the compartment that contains the tag definition.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the namespace that contains the tag definition.
             returned: on success
             type: string
-            sample: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_name:
             description:
                 - The name of the tag namespace that contains the tag definition.
@@ -168,7 +168,7 @@ tag:
                 - The OCID of the tag definition.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the tag during creation. This is the tag key definition.

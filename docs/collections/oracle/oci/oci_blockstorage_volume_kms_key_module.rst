@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_kms_key -- Manage a VolumeKmsKey resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -288,12 +288,12 @@ Examples
     
     - name: Update volume_kms_key
       oci_blockstorage_volume_kms_key:
-        volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
-        kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete volume_kms_key
       oci_blockstorage_volume_kms_key:
-        volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+        volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

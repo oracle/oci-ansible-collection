@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -904,38 +904,38 @@ Examples
     
     - name: Perform action copy on object
       oci_object_storage_object_actions:
-        source_object_name: backup.tar.gz
-        source_object_if_match_e_tag: '*'
-        destination_region: uk-london-1
-        destination_namespace: ansh8lvru1zp
-        destination_bucket: backup
-        destination_object_name: backup2.tar.gz
-        destination_object_if_match_e_tag: '*'
-        destination_object_if_none_match_e_tag: '*'
+        source_object_name: "backup.tar.gz"
+        source_object_if_match_e_tag: "*"
+        destination_region: "uk-london-1"
+        destination_namespace: "ansh8lvru1zp"
+        destination_bucket: "backup"
+        destination_object_name: "backup2.tar.gz"
+        destination_object_if_match_e_tag: "*"
+        destination_object_if_none_match_e_tag: "*"
         destination_object_metadata:
-          opc-meta-a: b
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
-        action: copy
+          opc-meta-a: "b"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
+        action: "copy"
 
     - name: Perform action reencrypt on object
       oci_object_storage_object_actions:
-        kms_key_id: ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
-        object_name: test/object1.log
-        action: reencrypt
+        kms_key_id: "ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
+        object_name: "test/object1.log"
+        action: "reencrypt"
 
     - name: Perform action rename on object
       oci_object_storage_object_actions:
-        source_name: SourceObjectName
-        new_name: TargetObjectName
-        src_obj_if_match_e_tag: '*'
-        new_obj_if_match_e_tag: '*'
-        new_obj_if_none_match_e_tag: '*'
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
-        action: rename
+        source_name: "SourceObjectName"
+        new_name: "TargetObjectName"
+        src_obj_if_match_e_tag: "*"
+        new_obj_if_match_e_tag: "*"
+        new_obj_if_none_match_e_tag: "*"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
+        action: "rename"
 
     - name: Perform action restore on object
       oci_object_storage_object_actions:

@@ -78,13 +78,13 @@ class ApigatewayApiHelperCustom:
 
 
 # The waiter client for this service uses apigateway WorkRequestsClient
-class ApigatewayWaasCertificateHelperCustom:
+class ApigatewayApiActionsHelperCustom:
     def __init__(self, module, resource_type, service_client_class, namespace):
         self.work_request_client = oci_config_utils.create_service_client(
             module, WorkRequestsClient
         )
 
-        super(ApigatewayWaasCertificateHelperCustom, self).__init__(
+        super(ApigatewayApiActionsHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
         )
 
@@ -92,15 +92,85 @@ class ApigatewayWaasCertificateHelperCustom:
     def get_waiter_client(self):
         return self.work_request_client
 
+
+class ApigatewayCertificateActionsHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayCertificateActionsHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client
+
+
+class ApigatewayDeploymentActionsHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayDeploymentActionsHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client
+
+
+class ApigatewayGatewayActionsHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayGatewayActionsHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client
+
+
+# override the waiting client with the WorkRequestsClient
+class ApigatewayCertificateHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayCertificateHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
     def get_exclude_attributes(self):
         excluded_attributes = super(
-            ApigatewayWaasCertificateHelperCustom, self
+            ApigatewayCertificateHelperCustom, self
         ).get_exclude_attributes()
-        if self.namespace == "apigateway":
-            return excluded_attributes + [
-                "private_key",
-            ]
-        return excluded_attributes
+        return excluded_attributes + [
+            "private_key",
+        ]
 
-    def get_entity_type(self):
-        return "certificate"
+    def get_waiter_client(self):
+        return self.work_request_client
+
+
+class ApigatewayCertificateFactsHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewayCertificateFactsHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client

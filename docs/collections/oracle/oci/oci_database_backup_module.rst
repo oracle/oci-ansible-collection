@@ -20,7 +20,7 @@ oracle.oci.oci_database_backup -- Manage a Backup resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -392,18 +392,18 @@ Examples
     
     - name: Create backup
       oci_database_backup:
-        database_id: ocid1.database.oc1.phx.unique_ID
-        display_name: Monthly Backup
+        database_id: "ocid1.database.oc1.phx.unique_ID"
+        display_name: "Monthly Backup"
 
     - name: Delete backup
       oci_database_backup:
-        backup_id: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+        backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup:
         display_name: Monthly Backup
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

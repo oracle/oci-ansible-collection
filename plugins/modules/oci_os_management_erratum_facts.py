@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: Get a specific erratum
   oci_os_management_erratum_facts:
-    erratum_id: ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx
+    erratum_id: "ocid1.erratum.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -61,13 +61,13 @@ erratum:
                 - OCID for the Erratum.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         synopsis:
             description:
                 - Summary description of the erratum.
@@ -127,7 +127,7 @@ erratum:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -151,7 +151,7 @@ erratum:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name

@@ -68,7 +68,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List recommendation_strategies
   oci_optimizer_recommendation_strategy_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
 
 """
@@ -80,92 +80,84 @@ recommendation_strategies:
     returned: on success
     type: complex
     contains:
-        items:
+        name:
             description:
-                - A collection of recommendation strategy summaries.
+                - The display name of the recommendation.
+            returned: on success
+            type: string
+            sample: name_example
+        strategies:
+            description:
+                - The list of strategies used.
             returned: on success
             type: complex
             contains:
-                name:
+                strategy_name:
                     description:
-                        - The display name of the recommendation.
+                        - The name of the strategy.
                     returned: on success
                     type: string
-                    sample: name_example
-                strategies:
+                    sample: strategy_name_example
+                is_default:
                     description:
-                        - The list of strategies used.
+                        - Whether this is the default recommendation strategy.
+                    returned: on success
+                    type: bool
+                    sample: true
+                parameters_definition:
+                    description:
+                        - The list of strategies for the parameters.
                     returned: on success
                     type: complex
                     contains:
-                        strategy_name:
+                        name:
                             description:
-                                - The name of the strategy.
+                                - The name of the strategy parameter.
                             returned: on success
                             type: string
-                            sample: strategy_name_example
-                        is_default:
+                            sample: name_example
+                        type:
                             description:
-                                - Whether this is the default recommendation strategy.
+                                - The type of strategy parameter.
+                            returned: on success
+                            type: string
+                            sample: STRING
+                        description:
+                            description:
+                                - Text describing the strategy parameter.
+                            returned: on success
+                            type: string
+                            sample: description_example
+                        is_required:
+                            description:
+                                - Whether this parameter is required.
                             returned: on success
                             type: bool
                             sample: true
-                        parameters_definition:
+                        default_value:
                             description:
-                                - The list of strategies for the parameters.
+                                - A default value used for the strategy parameter.
                             returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - The name of the strategy parameter.
-                                    returned: on success
-                                    type: string
-                                    sample: name_example
-                                type:
-                                    description:
-                                        - The type of strategy parameter.
-                                    returned: on success
-                                    type: string
-                                    sample: STRING
-                                description:
-                                    description:
-                                        - Text describing the strategy parameter.
-                                    returned: on success
-                                    type: string
-                                    sample: description_example
-                                is_required:
-                                    description:
-                                        - Whether this parameter is required.
-                                    returned: on success
-                                    type: bool
-                                    sample: true
-                                default_value:
-                                    description:
-                                        - A default value used for the strategy parameter.
-                                    returned: on success
-                                    type: dict
-                                    sample: {}
-                                possible_values:
-                                    description:
-                                        - The list of possible values used for these strategy parameters.
-                                    returned: on success
-                                    type: list
-                                    sample: []
+                            type: dict
+                            sample: {}
+                        possible_values:
+                            description:
+                                - The list of possible values used for these strategy parameters.
+                            returned: on success
+                            type: list
+                            sample: []
     sample: [{
-        "items": [{
-            "name": "name_example",
-            "strategies": [{
-                "strategy_name": "strategy_name_example",
-                "is_default": true,
-                "parameters_definition": [{
-                    "name": "name_example",
-                    "type": "STRING",
-                    "description": "description_example",
-                    "is_required": true,
-                    "default_value": {},
-                    "possible_values": []
-                }]
+        "name": "name_example",
+        "strategies": [{
+            "strategy_name": "strategy_name_example",
+            "is_default": true,
+            "parameters_definition": [{
+                "name": "name_example",
+                "type": "STRING",
+                "description": "description_example",
+                "is_required": true,
+                "default_value": {},
+                "possible_values": []
             }]
         }]
     }]

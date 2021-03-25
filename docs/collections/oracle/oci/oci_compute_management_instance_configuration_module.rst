@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_configuration -- Manage an InstanceCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -2244,14 +2244,14 @@ Examples
     
     - name: Create instance_configuration
       oci_compute_management_instance_configuration:
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        display_name: example-instance-configuration
-        source: INSTANCE
-        instance_id: ocid1.instance.oc1.phx.unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        display_name: "example-instance-configuration"
+        source: "INSTANCE"
+        instance_id: "ocid1.instance.oc1.phx.unique_ID"
 
     - name: Update instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_configuration:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: example-instance-configuration
         freeform_tags: {'Department': 'Finance'}
@@ -2260,16 +2260,16 @@ Examples
       oci_compute_management_instance_configuration:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: example-instance-configuration
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete instance_configuration
       oci_compute_management_instance_configuration:
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete instance_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_configuration:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: example-instance-configuration
         state: absent
 

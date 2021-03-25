@@ -58,11 +58,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List secret_versions
   oci_vault_secret_version_facts:
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific secret_version
   oci_vault_secret_version_facts:
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     secret_version_number: 789
 
 """
@@ -91,7 +91,7 @@ secret_versions:
                 - The OCID of the secret.
             returned: on success
             type: string
-            sample: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         stages:
             description:
                 - A list of possible rotation states for the secret version. A secret version marked `CURRENT` is currently in use. A secret version

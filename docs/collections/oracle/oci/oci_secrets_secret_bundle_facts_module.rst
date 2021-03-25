@@ -20,7 +20,7 @@ oracle.oci.oci_secrets_secret_bundle_facts -- Fetches details about a SecretBund
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -304,7 +304,7 @@ Examples
     
     - name: Get a specific secret_bundle
       oci_secrets_secret_bundle_facts:
-        secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

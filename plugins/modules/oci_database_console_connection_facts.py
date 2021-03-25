@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List console_connections
   oci_database_console_connection_facts:
-    db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific console_connection
   oci_database_console_connection_facts:
-    db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
-    console_connection_id: ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
+    console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,19 +66,19 @@ console_connections:
                 - The OCID of the console connection.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment to contain the console connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         db_node_id:
             description:
                 - The OCID of the database node.
             returned: on success
             type: string
-            sample: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - The SSH connection string for the console connection.

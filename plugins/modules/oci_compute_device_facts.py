@@ -67,7 +67,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List devices
   oci_compute_device_facts:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

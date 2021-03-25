@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_agent_instance_agent_command -- Manage an Instan
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -673,17 +673,17 @@ Examples
     
     - name: Create instance_agent_command
       oci_compute_instance_agent_instance_agent_command:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         execution_time_out_in_seconds: 56
 
     - name: Delete instance_agent_command
       oci_compute_instance_agent_instance_agent_command:
-        instance_agent_command_id: ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx
+        instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete instance_agent_command using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance_agent_instance_agent_command:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: Database Backup Script
         state: absent
 

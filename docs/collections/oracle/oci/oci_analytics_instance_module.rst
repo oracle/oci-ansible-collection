@@ -20,7 +20,7 @@ oracle.oci.oci_analytics_instance -- Manage an AnalyticsInstance resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an AnalyticsInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new AnalyticsInstance in the specified compartment. The operation is long-running and creates a new WorkRequest.
-- This resource has the following action operations in the :ref:`oci_analytics_instance_actions <ansible_collections.oci_analytics_instance_actions_module>` module: change_analytics_instance_network_endpoint, scale, start, stop.
+- This resource has the following action operations in the :ref:`oci_analytics_instance_actions <ansible_collections.oci_analytics_instance_actions_module>` module: change_compartment, change_analytics_instance_network_endpoint, scale, start, stop.
 
 
 .. Aliases
@@ -696,7 +696,7 @@ Examples
     - name: Create analytics_instance
       oci_analytics_instance:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         feature_set: SELF_SERVICE_ANALYTICS
         capacity:
           capacity_type: OLPU_COUNT
@@ -707,7 +707,7 @@ Examples
       oci_analytics_instance:
         name: name_example
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         license_type: LICENSE_INCLUDED
         email_notification: email_notification_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -717,17 +717,17 @@ Examples
       oci_analytics_instance:
         description: description_example
         license_type: LICENSE_INCLUDED
-        analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete analytics_instance
       oci_analytics_instance:
-        analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete analytics_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_analytics_instance:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

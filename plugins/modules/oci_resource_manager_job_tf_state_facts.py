@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific job_tf_state
   oci_resource_manager_job_tf_state_facts:
-    job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+    job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

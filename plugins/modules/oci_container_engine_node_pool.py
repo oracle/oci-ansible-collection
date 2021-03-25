@@ -196,7 +196,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create node_pool
   oci_container_engine_node_pool:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     cluster_id: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
     name: My Node Pool
     kubernetes_version: v1.9.4
@@ -204,30 +204,30 @@ EXAMPLES = """
 
 - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_node_pool:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     name: My Node Pool
     kubernetes_version: v1.9.4
     node_source_details:
       source_type: IMAGE
-      image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     node_shape: VM.Standard2.4
-    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2abc123...
+    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2abc123..."
     quantity_per_subnet: 1
 
 - name: Update node_pool
   oci_container_engine_node_pool:
     name: My Node Pool
     kubernetes_version: v1.9.4
-    node_pool_id: ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx
+    node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete node_pool
   oci_container_engine_node_pool:
-    node_pool_id: ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx
+    node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_node_pool:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
     name: My Node Pool
     state: absent
 
@@ -251,7 +251,7 @@ node_pool:
                 - The OCID of the compartment in which the node pool exists.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+            sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         cluster_id:
             description:
                 - The OCID of the cluster to which this node pool is attached.
@@ -331,7 +331,7 @@ node_pool:
                         - The OCID of the image.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         node_source_details:
             description:
                 - Source running on the nodes in the node pool.
@@ -350,7 +350,7 @@ node_pool:
                         - The OCID of the image used to boot the node.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
                         - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
@@ -387,7 +387,7 @@ node_pool:
                 - The SSH public key on each node in the node pool on launch.
             returned: on success
             type: string
-            sample: ssh-rsa AAAAB3NzaC1yc2abc123...
+            sample: "ssh-rsa AAAAB3NzaC1yc2abc123..."
         quantity_per_subnet:
             description:
                 - The number of nodes in each subnet.
@@ -538,7 +538,7 @@ node_pool:
                                 - The OCID of the subnet in which to place nodes.
                             returned: on success
                             type: string
-                            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
         "compartment_id": "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq",

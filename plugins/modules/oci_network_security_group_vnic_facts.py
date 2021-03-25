@@ -52,7 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List network_security_group_vnics
   oci_network_security_group_vnic_facts:
-    network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
+    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -69,7 +69,7 @@ network_security_group_vnics:
                   is attached to (for example, a Compute instance).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_associated:
             description:
                 - The date and time the VNIC was added to the network security group, in the format
@@ -83,7 +83,7 @@ network_security_group_vnics:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_associated": "2016-08-25T21:10:29.600Z",

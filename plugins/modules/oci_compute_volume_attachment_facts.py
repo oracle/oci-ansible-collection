@@ -62,11 +62,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List volume_attachments
   oci_compute_volume_attachment_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific volume_attachment
   oci_compute_volume_attachment_facts:
-    volume_attachment_id: ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+    volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -95,7 +95,7 @@ volume_attachments:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         device:
             description:
                 - The device name.
@@ -115,13 +115,13 @@ volume_attachments:
                 - The OCID of the volume attachment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the volume is attached to.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         is_read_only:
             description:
                 - Whether the attachment was created in read-only mode.
@@ -155,7 +155,7 @@ volume_attachments:
                 - The OCID of the volume.
             returned: on success
             type: string
-            sample: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
         is_pv_encryption_in_transit_enabled:
             description:
                 - Whether in-transit encryption for the data volume's paravirtualized attachment is enabled or not.

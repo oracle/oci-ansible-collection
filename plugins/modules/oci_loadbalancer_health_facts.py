@@ -47,11 +47,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List load_balancer_healths
   oci_loadbalancer_health_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific load_balancer_health
   oci_loadbalancer_health_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -114,7 +114,7 @@ load_balancer_healths:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer the health status is associated with.
             returned: on success
             type: string
-            sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "status": "OK",
         "warning_state_backend_set_names": [],

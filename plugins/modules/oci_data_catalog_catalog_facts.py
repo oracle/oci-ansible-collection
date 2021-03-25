@@ -78,11 +78,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List catalogs
   oci_data_catalog_catalog_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific catalog
   oci_data_catalog_catalog_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -98,7 +98,7 @@ catalogs:
                 - OCID of the data catalog instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Data catalog identifier, which can be renamed.
@@ -110,7 +110,7 @@ catalogs:
                 - Compartment identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the data catalog was created. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.

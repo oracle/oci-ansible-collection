@@ -20,7 +20,7 @@ oracle.oci.oci_network_subnet -- Manage a Subnet resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -50,6 +50,7 @@ Synopsis
 - You may optionally associate a set of DHCP options with the subnet. If you don't, the subnet will use the VCN's default set. For more information about DHCP options, see `DHCP Options <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDHCP.htm>`_.
 - You may optionally specify a *display name* for the subnet, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - You can also add a DNS label for the subnet, which is required if you want the Internet and VCN Resolver to resolve hostnames for instances in the subnet. For more information, see `DNS in Your Virtual Cloud Network <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm>`_.
+- This resource has the following action operations in the :ref:`oci_subnet_actions <ansible_collections.oci_subnet_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -558,20 +559,20 @@ Examples
     
     - name: Create subnet
       oci_network_subnet:
-        display_name: MySubnet
-        cidr_block: 10.0.2.0/24
-        availability_domain: Uocm:PHX-AD-1
-        route_table_id: ocid1.routetable.oc1.phx.unique_ID
+        display_name: "MySubnet"
+        cidr_block: "10.0.2.0/24"
+        availability_domain: "Uocm:PHX-AD-1"
+        route_table_id: "ocid1.routetable.oc1.phx.unique_ID"
         security_list_ids:
-        - ocid1.securitylist.oc1.phx.unique_ID
-        dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
-        vcn_id: ocid1.vcn.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        - "ocid1.securitylist.oc1.phx.unique_ID"
+        dhcp_options_id: "ocid1.dhcpoptions.oc1.phx.unique_ID"
+        vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_subnet:
         cidr_block: 10.0.2.0/24
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
         display_name: MySubnet
@@ -583,16 +584,16 @@ Examples
       oci_network_subnet:
         cidr_block: 10.0.2.0/24
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete subnet
       oci_network_subnet:
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_subnet:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MySubnet
         state: absent
 

@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster -- Manage a VmCluster resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -687,20 +687,20 @@ Examples
     
     - name: Create vm_cluster
       oci_database_vm_cluster:
-        display_name: vmCluster
-        compartment_id: ocid1.tenancy.oc1.unique_ID
-        exadata_infrastructure_id: ocid1.tenancy.oc1.oc1.unique_ID
-        vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
-        cpu_core_count: 4
-        memory_size_in_gbs: 30
-        db_node_storage_size_in_gbs: 60
-        data_storage_size_in_tbs: 84
-        ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-        license_model: LICENSE_INCLUDED
-        is_sparse_diskgroup_enabled: false
-        is_local_backup_enabled: true
-        time_zone: PST
-        gi_version: 19.1.0.0
+        display_name: "vmCluster"
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
+        exadata_infrastructure_id: "ocid1.tenancy.oc1.oc1.unique_ID"
+        vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
+        cpu_core_count: "4"
+        memory_size_in_gbs: "30"
+        db_node_storage_size_in_gbs: "60"
+        data_storage_size_in_tbs: "84"
+        ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        license_model: "LICENSE_INCLUDED"
+        is_sparse_diskgroup_enabled: "false"
+        is_local_backup_enabled: "true"
+        time_zone: "PST"
+        gi_version: "19.1.0.0"
 
     - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_vm_cluster:
@@ -708,11 +708,11 @@ Examples
 
     - name: Update vm_cluster
       oci_database_vm_cluster:
-        vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete vm_cluster
       oci_database_vm_cluster:
-        vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

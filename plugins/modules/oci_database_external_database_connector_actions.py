@@ -48,7 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action check_external_database_connector_connection_status on external_database_connector
   oci_database_external_database_connector_actions:
-    external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: check_external_database_connector_connection_status
 
 """
@@ -65,7 +65,7 @@ external_database_connector:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -97,7 +97,7 @@ external_database_connector:
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the external database connector resource.
@@ -127,7 +127,7 @@ external_database_connector:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external database resource.
             returned: on success
             type: string
-            sample: ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
         connection_status:
             description:
                 - The status of connectivity to the external database.
@@ -213,7 +213,7 @@ external_database_connector:
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
             returned: on success
             type: string
-            sample: ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},

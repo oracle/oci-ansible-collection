@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_private_endpoint -- Manage a PrivateEndpoint resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a PrivateEndpoint resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a private endpoint to be used by an application.
+- This resource has the following action operations in the :ref:`oci_private_endpoint_actions <ansible_collections.oci_private_endpoint_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -492,33 +493,33 @@ Examples
     
     - name: Create private_endpoint
       oci_data_flow_private_endpoint:
-        compartment_id: compartmentId
-        display_name: pe_1234
+        compartment_id: "compartmentId"
+        display_name: "pe_1234"
         dns_zones:
-        - app.examplecorp.com
-        - oracle.com
-        max_host_count: 256
+        - "app.examplecorp.com"
+        - "oracle.com"
+        max_host_count: "256"
         nsg_ids:
-        - nsgId
-        subnet_id: subnetId
+        - "nsgId"
+        subnet_id: "subnetId"
 
     - name: Update private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_flow_private_endpoint:
-        display_name: PE to DB32002
+        display_name: "PE to DB32002"
         dns_zones:
-        - app.examplecorp.com
-        - oracle.com
+        - "app.examplecorp.com"
+        - "oracle.com"
         nsg_ids:
-        - nsgId
-        subnet_id: subnetId
+        - "nsgId"
+        subnet_id: "subnetId"
 
     - name: Update private_endpoint
       oci_data_flow_private_endpoint:
-        private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete private_endpoint
       oci_data_flow_private_endpoint:
-        private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

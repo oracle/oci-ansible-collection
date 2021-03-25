@@ -20,7 +20,7 @@ oracle.oci.oci_dns_zone -- Manage a Zone resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Zone resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new zone in the specified compartment. If the `Content-Type` header for the request is `text/dns`, the `compartmentId` query parameter is required. Additionally, for `text/dns`, the `scope` and `viewId` query parameters are required to create a private zone.
+- This resource has the following action operations in the :ref:`oci_zone_actions <ansible_collections.oci_zone_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -733,27 +734,27 @@ Examples
     
     - name: Create zone
       oci_dns_zone:
-        compartment_id: ocid1.compartment.oc1..
-        name: example.com
-        zone_type: PRIMARY
+        compartment_id: "ocid1.compartment.oc1.."
+        name: "example.com"
+        zone_type: "PRIMARY"
 
     - name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_zone:
-        freeform_tags: '{''Department'': ''Finance''}'
+        freeform_tags: "{'Department': 'Finance'}"
 
     - name: Update zone
       oci_dns_zone:
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete zone
       oci_dns_zone:
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_zone:
         name: example.com
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         state: absent
 
 

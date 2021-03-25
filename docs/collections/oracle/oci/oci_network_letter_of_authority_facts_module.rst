@@ -20,7 +20,7 @@ oracle.oci.oci_network_letter_of_authority_facts -- Fetches details about a Lett
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -252,7 +252,7 @@ Examples
     
     - name: Get a specific letter_of_authority
       oci_network_letter_of_authority_facts:
-        cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+        cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

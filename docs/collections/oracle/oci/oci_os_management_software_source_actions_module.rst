@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_software_source_actions -- Perform actions on a Sof
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a SoftwareSource resource in Oracle Cloud Infrastructure
 - For *action=add_packages*, adds a given list of Software Packages to a specific Software Source.
+- For *action=change_compartment*, moves a resource into a different compartment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=remove_packages*, removes a given list of Software Packages from a specific Software Source.
 
 
@@ -85,6 +86,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>add_packages</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>remove_packages</li>
                                                                                     </ul>
                                                                             </td>
@@ -174,6 +176,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment into which the resource should be moved.</div>
+                                            <div>Applicable only for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -209,12 +227,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-package_names" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>the list of package names</div>
+                                            <div>Required for <em>action=add_packages</em>, <em>action=remove_packages</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -287,12 +306,17 @@ Examples
     
     - name: Perform action add_packages on software_source
       oci_os_management_software_source_actions:
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: add_packages
+
+    - name: Perform action change_compartment on software_source
+      oci_os_management_software_source_actions:
+        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
 
     - name: Perform action remove_packages on software_source
       oci_os_management_software_source_actions:
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: remove_packages
 
 

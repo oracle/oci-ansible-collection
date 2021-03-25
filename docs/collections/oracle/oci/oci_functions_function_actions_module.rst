@@ -20,7 +20,7 @@ oracle.oci.oci_functions_function_actions -- Perform actions on a Function resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -338,7 +338,7 @@ Examples
     
     - name: Perform action invoke on function
       oci_functions_function_actions:
-        function_id: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+        function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
         action: invoke
 
 

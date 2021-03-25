@@ -87,11 +87,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List subnets
   oci_network_subnet_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific subnet
   oci_network_subnet_facts:
-    subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -122,7 +122,7 @@ subnets:
                 - The OCID of the compartment containing the subnet.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -136,7 +136,7 @@ subnets:
                 - The OCID of the set of DHCP options that the subnet uses.
             returned: on success
             type: string
-            sample: ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -173,7 +173,7 @@ subnets:
                 - The subnet's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The subnet's current state.
@@ -200,7 +200,7 @@ subnets:
                 - The OCID of the route table that the subnet uses.
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids:
             description:
                 - "The OCIDs of the security list or lists that the subnet uses. Remember
@@ -231,7 +231,7 @@ subnets:
                 - The OCID of the VCN the subnet is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         virtual_router_ip:
             description:
                 - The IP address of the virtual router.

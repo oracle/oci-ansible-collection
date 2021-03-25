@@ -20,7 +20,7 @@ oracle.oci.oci_dns_domain_records_facts -- Fetches details about a DomainRecords
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -399,7 +399,7 @@ Examples
     
     - name: Get a specific domain_records
       oci_dns_domain_records_facts:
-        zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         domain: domain_example
 
 

@@ -84,11 +84,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List deployments
   oci_apigateway_deployment_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific deployment
   oci_apigateway_deployment_facts:
-    deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -104,13 +104,13 @@ deployments:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         gateway_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -125,7 +125,7 @@ deployments:
                   resource is created.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         path_prefix:
             description:
                 - A path on which to deploy all routes contained in the API
@@ -339,7 +339,7 @@ deployments:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                         rate_limiting:
                             description:
                                 - ""
@@ -933,7 +933,7 @@ deployments:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 body:
                                     description:
                                         - The body of the stock response from the mock backend.
@@ -1008,98 +1008,6 @@ deployments:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        items:
-            description:
-                - Deployment summaries.
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                gateway_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - A user-friendly name. Does not have to be unique, and it's changeable.
-                          Avoid entering confidential information.
-                        - "Example: `My new resource`"
-                    returned: on success
-                    type: string
-                    sample: My new resource
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
-                          resource is created.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                path_prefix:
-                    description:
-                        - The path on which all routes contained in the API
-                          deployment specification are deployed. For more information, see
-                          L(Deploying an API on an API Gateway by Creating an API
-                          Deployment,https://docs.cloud.oracle.com/iaas/Content/APIGateway/Tasks/apigatewaycreatingdeployment.htm).
-                    returned: on success
-                    type: string
-                    sample: path_prefix_example
-                endpoint:
-                    description:
-                        - The endpoint to access this deployment on the gateway.
-                    returned: on success
-                    type: string
-                    sample: endpoint_example
-                time_created:
-                    description:
-                        - The time this resource was created. An RFC3339 formatted datetime string.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_updated:
-                    description:
-                        - The time this resource was last updated. An RFC3339 formatted datetime string.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                lifecycle_state:
-                    description:
-                        - The current state of the deployment.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                lifecycle_details:
-                    description:
-                        - A message describing the current state in more detail.
-                          For example, can be used to provide actionable information for a
-                          resource in a Failed state.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_details_example
-                freeform_tags:
-                    description:
-                        - Free-form tags for this resource. Each tag is a simple key-value pair
-                          with no predefined name, type, or namespace. For more information, see
-                          L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see
-                          L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "gateway_id": "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1277,21 +1185,7 @@ deployments:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "gateway_id": "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "My new resource",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "path_prefix": "path_prefix_example",
-            "endpoint": "endpoint_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "lifecycle_state_example",
-            "lifecycle_details": "lifecycle_details_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }]
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

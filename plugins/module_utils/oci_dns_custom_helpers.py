@@ -177,3 +177,123 @@ class ResolverEndpointHelperCustom:
             resolver_endpoint_name=summary_model.name,
             scope=self.module.params.get("scope"),
         ).data
+
+
+class ZoneActionsHelperCustom:
+    """
+    Customizes any generated behavior in the ZoneActionsHelperGen.
+    """
+
+    def get_resource(self):
+        """
+        Override the generated method to include the optional params
+        while performing get_resource, before applying any action.
+        """
+
+        optional_get_method_params = ["scope"]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
+        return oci_common_utils.call_with_backoff(
+            self.client.get_zone,
+            zone_name_or_id=self.module.params.get("zone_id"),
+            **optional_kwargs
+        )
+
+
+class ViewActionsHelperCustom:
+    """
+    Customizes any generated behavior in the ViewActionsHelperGen.
+    """
+
+    def get_resource(self):
+        """
+        Override the generated method to include the optional params
+        while performing get_resource, before applying any action.
+        """
+
+        optional_get_method_params = ["scope"]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
+        return oci_common_utils.call_with_backoff(
+            self.client.get_view,
+            view_id=self.module.params.get("view_id"),
+            **optional_kwargs
+        )
+
+
+class TsigKeyActionsHelperCustom:
+    """
+    Customizes any generated behavior in the TsigKeyActionsHelperGen.
+    """
+
+    def get_resource(self):
+        """
+        Override the generated method to include the optional params
+        while performing get_resource, before applying any action.
+        """
+
+        optional_get_method_params = ["scope"]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
+        return oci_common_utils.call_with_backoff(
+            self.client.get_tsig_key,
+            tsig_key_id=self.module.params.get("tsig_key_id"),
+            **optional_kwargs
+        )
+
+
+class SteeringPolicyActionsHelperCustom:
+    """
+    Customizes any generated behavior in the SteeringPolicyActionsHelperGen.
+    """
+
+    def get_resource(self):
+        """
+        Override the generated method to include the optional params
+        while performing get_resource, before applying any action.
+        """
+
+        optional_get_method_params = ["scope"]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
+        return oci_common_utils.call_with_backoff(
+            self.client.get_steering_policy,
+            steering_policy_id=self.module.params.get("steering_policy_id"),
+            **optional_kwargs
+        )
+
+
+class ResolverActionsHelperCustom:
+    """
+    Customizes any generated behavior in the ResolverActionsHelperGen.
+    """
+
+    def get_resource(self):
+        """
+        Override the generated method to include the optional params
+        while performing get_resource, before applying any action.
+        """
+
+        optional_get_method_params = ["scope"]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
+        return oci_common_utils.call_with_backoff(
+            self.client.get_resolver,
+            resolver_id=self.module.params.get("resolver_id"),
+            **optional_kwargs
+        )

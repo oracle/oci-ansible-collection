@@ -79,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List service_connectors
   oci_sch_service_connector_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific service_connector
   oci_sch_service_connector_facts:
-    service_connector_id: ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx
+    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -99,7 +99,7 @@ service_connectors:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -118,7 +118,7 @@ service_connectors:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the service connector.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time when the service connector was created.
@@ -173,19 +173,19 @@ service_connectors:
                                   source.
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         log_group_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log group.
                             returned: on success
                             type: string
-                            sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                         log_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log.
                             returned: on success
                             type: string
-                            sample: ocid1.log.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         tasks:
             description:
                 - The list of tasks.
@@ -222,6 +222,14 @@ service_connectors:
                     returned: on success
                     type: string
                     sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+                enable_formatted_messaging:
+                    description:
+                        - Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service
+                          connector source and the subscription protocol.
+                        - "Example: `true`"
+                    returned: on success
+                    type: bool
+                    sample: true
                 namespace:
                     description:
                         - The namespace.
@@ -257,7 +265,7 @@ service_connectors:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 metric_namespace:
                     description:
                         - The namespace of the metric.
@@ -277,19 +285,19 @@ service_connectors:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
                     returned: on success
                     type: string
-                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                 log_group_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
                     returned: on success
                     type: string
-                    sample: ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
                     returned: on success
                     type: string
-                    sample: ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -313,91 +321,14 @@ service_connectors:
             returned: on success
             type: dict
             sample: {}
-        items:
+        lifecycle_details:
             description:
-                - The list of items.
+                - A message describing the current state in more detail.
+                  For example, the message might provide actionable
+                  information for a resource in a `FAILED` state.
             returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - A user-friendly name. It does not have to be unique, and it is changeable.
-                          Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                description:
-                    description:
-                        - The description of the resource. Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the service
-                          connector.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                time_created:
-                    description:
-                        - "The date and time when the service connector was created.
-                          Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                          Example: `2020-01-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2020-01-25T21:10:29.600Z
-                time_updated:
-                    description:
-                        - "The date and time when the service connector was updated.
-                          Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                          Example: `2020-01-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2020-01-25T21:10:29.600Z
-                lifecycle_state:
-                    description:
-                        - The current state of the service connector.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                lifecycle_details:
-                    description:
-                        - A message describing the current state in more detail.
-                          For example, the message might provide actionable
-                          information for a resource in a `FAILED` state.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_details_example
-                freeform_tags:
-                    description:
-                        - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                          Example: `{\\"bar-key\\": \\"value\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                          Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                system_tags:
-                    description:
-                        - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
-                          predefined and scoped to namespaces.
-                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                          Example: `{orcl-cloud: {free-tier-retain: true}}`"
-                    returned: on success
-                    type: dict
-                    sample: {}
+            type: string
+            sample: lifecycle_details_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -422,6 +353,7 @@ service_connectors:
         "target": {
             "kind": "notifications",
             "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
+            "enable_formatted_messaging": true,
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
             "object_name_prefix": "object_name_prefix_example",
@@ -437,19 +369,7 @@ service_connectors:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "description": "description_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "time_created": "2020-01-25T21:10:29.600Z",
-            "time_updated": "2020-01-25T21:10:29.600Z",
-            "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "system_tags": {}
-        }]
+        "lifecycle_details": "lifecycle_details_example"
     }]
 """
 

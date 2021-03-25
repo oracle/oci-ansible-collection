@@ -27,7 +27,8 @@ description:
       a set of managed instances or managed instance groups.  Can be created
       as a one-time execution in the future, or as a recurring execution
       that repeats on a defined interval.
-    - "This resource has the following action operations in the M(oci_scheduled_job_actions) module: run_scheduled_job_now, skip_next_scheduled_job_execution."
+    - "This resource has the following action operations in the M(oci_scheduled_job_actions) module: change_compartment, run_scheduled_job_now,
+      skip_next_scheduled_job_execution."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -198,7 +199,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create scheduled_job
   oci_os_management_scheduled_job:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     schedule_type: ONETIME
     time_next_execution: 2013-10-20T19:20:30+01:00
@@ -206,7 +207,7 @@ EXAMPLES = """
 
 - name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_scheduled_job:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
     schedule_type: ONETIME
@@ -224,16 +225,16 @@ EXAMPLES = """
   oci_os_management_scheduled_job:
     display_name: display_name_example
     description: description_example
-    scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete scheduled_job
   oci_os_management_scheduled_job:
-    scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_scheduled_job:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -251,13 +252,13 @@ scheduled_job:
                 - OCID for the Scheduled Job
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Scheduled Job name
@@ -311,7 +312,7 @@ scheduled_job:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -329,7 +330,7 @@ scheduled_job:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -371,7 +372,7 @@ scheduled_job:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name

@@ -92,11 +92,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List volumes
   oci_blockstorage_volume_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific volume
   oci_blockstorage_volume_facts:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -119,7 +119,7 @@ volumes:
                 - The OCID of the compartment that contains the volume.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -156,7 +156,7 @@ volumes:
                 - The OCID of the volume.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
                 - Specifies whether the cloned volume's data has finished copying from the source volume or backup.
@@ -168,7 +168,7 @@ volumes:
                 - The OCID of the Key Management key which is the master encryption key for the volume.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume.
@@ -218,7 +218,7 @@ volumes:
                         - The OCID of the volume.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -230,7 +230,7 @@ volumes:
                 - The OCID of the source volume group.
             returned: on success
             type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
                 - Specifies whether the auto-tune performance is enabled for this volume.

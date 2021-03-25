@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_responder_recipe -- Manage a ResponderRecipe resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ResponderRecipe resource in Oracle Cloud Infrastructure
 - For *state=present*, create a ResponderRecipe.
+- This resource has the following action operations in the :ref:`oci_responder_recipe_actions <ansible_collections.oci_responder_recipe_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -515,16 +516,16 @@ Examples
     - name: Create responder_recipe
       oci_cloud_guard_responder_recipe:
         display_name: display_name_example
-        source_responder_recipe_id: ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        source_responder_recipe_id: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_responder_recipe:
         display_name: display_name_example
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         responder_rules:
-        - responder_rule_id: ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx
+        - responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
           details:
             is_enabled: true
         freeform_tags: {'Department': 'Finance'}
@@ -534,17 +535,17 @@ Examples
       oci_cloud_guard_responder_recipe:
         display_name: display_name_example
         description: description_example
-        responder_recipe_id: ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx
+        responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete responder_recipe
       oci_cloud_guard_responder_recipe:
-        responder_recipe_id: ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx
+        responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_responder_recipe:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

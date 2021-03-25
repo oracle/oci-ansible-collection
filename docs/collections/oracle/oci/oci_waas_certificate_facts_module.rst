@@ -20,7 +20,7 @@ oracle.oci.oci_waas_certificate_facts -- Fetches details about one or multiple W
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -380,11 +380,11 @@ Examples
     
     - name: List waas_certificates
       oci_waas_certificate_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific waas_certificate
       oci_waas_certificate_facts:
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

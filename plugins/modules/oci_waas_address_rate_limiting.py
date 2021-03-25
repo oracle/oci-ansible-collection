@@ -72,7 +72,7 @@ EXAMPLES = """
     block_response_code: 503
     is_enabled: true
     max_delayed_count_per_address: 10
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

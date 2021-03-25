@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool -- Manage an InstancePool resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
 - For *state=present*, create an instance pool.
-- This resource has the following action operations in the :ref:`oci_instance_pool_actions <ansible_collections.oci_instance_pool_actions_module>` module: attach_load_balancer, detach_load_balancer, reset, softreset, start, stop.
+- This resource has the following action operations in the :ref:`oci_instance_pool_actions <ansible_collections.oci_instance_pool_actions_module>` module: attach_load_balancer, change_compartment, detach_load_balancer, reset, softreset, start, stop.
 
 
 .. Aliases
@@ -655,61 +655,61 @@ Examples
     
     - name: Create instance_pool
       oci_compute_management_instance_pool:
-        display_name: autoscaling-instance-pool
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
+        display_name: "autoscaling-instance-pool"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
         size: 15
         placement_configurations:
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
         load_balancers:
-        - load_balancer_id: ocid1.loadbalancer.oc1.phx..unique_ID
-          backend_set_name: lb-20190410-1147-backend-set
+        - load_balancer_id: "ocid1.loadbalancer.oc1.phx..unique_ID"
+          backend_set_name: "lb-20190410-1147-backend-set"
           port: 80
-          vnic_selection: PrimaryVnic
+          vnic_selection: "PrimaryVnic"
 
     - name: Create instance_pool
       oci_compute_management_instance_pool:
-        display_name: backend-servers-pool
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
+        display_name: "backend-servers-pool"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
         size: 10
         placement_configurations:
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..unique_ID_1
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..unique_ID_2
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..unique_ID_1"
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..unique_ID_2"
 
     - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: autoscaling-instance-pool
         freeform_tags: {'Department': 'Finance'}
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
         placement_configurations:
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
         size: 15
 
     - name: Update instance_pool
       oci_compute_management_instance_pool:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: autoscaling-instance-pool
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete instance_pool
       oci_compute_management_instance_pool:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: autoscaling-instance-pool
         state: absent
 

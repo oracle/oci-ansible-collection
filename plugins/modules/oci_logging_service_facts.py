@@ -48,7 +48,7 @@ services:
                 - Tenant OCID.
             returned: on success
             type: string
-            sample: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
                 - Apollo project namespace, if any.
@@ -78,7 +78,7 @@ services:
                 - Service ID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         resource_types:
             description:
                 - Type of resource that a service provides.

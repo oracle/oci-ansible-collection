@@ -29,7 +29,7 @@ description:
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
-    - "This resource has the following action operations in the M(oci_alarm_actions) module: remove_alarm_suppression."
+    - "This resource has the following action operations in the M(oci_alarm_actions) module: change_compartment, remove_alarm_suppression."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -232,7 +232,7 @@ EXAMPLES = """
 - name: Create alarm
   oci_monitoring_alarm:
     display_name: System Down
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: compartment_OCID
     metric_compartment_id: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
     namespace: oci_computeagent
     query: query_example
@@ -241,21 +241,21 @@ EXAMPLES = """
 
 - name: Update alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_monitoring_alarm:
-    display_name: System Down
+    display_name: "System Down"
 
 - name: Update alarm
   oci_monitoring_alarm:
-    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+    alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete alarm
   oci_monitoring_alarm:
-    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+    alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_monitoring_alarm:
     display_name: System Down
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: compartment_OCID
     state: absent
 
 """
@@ -272,7 +272,7 @@ alarm:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the alarm. It does not have to be unique, and it's changeable.
@@ -287,14 +287,14 @@ alarm:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
                   being evaluated by the alarm.
             returned: on success
             type: string
-            sample: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id_in_subtree:
             description:
                 - When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can

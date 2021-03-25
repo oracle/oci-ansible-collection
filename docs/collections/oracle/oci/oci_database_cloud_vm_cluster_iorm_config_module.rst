@@ -20,7 +20,7 @@ oracle.oci.oci_database_cloud_vm_cluster_iorm_config -- Manage a CloudVmClusterI
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -344,7 +344,7 @@ Examples
     
     - name: Update cloud_vm_cluster_iorm_config
       oci_database_cloud_vm_cluster_iorm_config:
-        cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+        cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         objective: LOW_LATENCY
 
 

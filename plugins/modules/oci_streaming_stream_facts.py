@@ -81,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List streams
   oci_streaming_stream_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific stream
   oci_streaming_stream_facts:
-    stream_id: ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx
+    stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

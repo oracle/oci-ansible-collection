@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_backup_policy_assignment_facts -- Fetches det
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -270,11 +270,11 @@ Examples
     
     - name: List volume_backup_policy_assignments
       oci_blockstorage_volume_backup_policy_assignment_facts:
-        asset_id: ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx
+        asset_id: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific volume_backup_policy_assignment
       oci_blockstorage_volume_backup_policy_assignment_facts:
-        policy_assignment_id: ocid1.policyassignment.oc1..xxxxxxEXAMPLExxxxxx
+        policy_assignment_id: "ocid1.policyassignment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

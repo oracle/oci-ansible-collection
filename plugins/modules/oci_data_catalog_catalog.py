@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete a Catalog resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new data catalog instance that includes a console and an API URL for managing metadata operations.
       For more information, please see the documentation.
-    - "This resource has the following action operations in the M(oci_catalog_actions) module: attach_catalog_private_endpoint, detach_catalog_private_endpoint,
-      object_stats, users."
+    - "This resource has the following action operations in the M(oci_catalog_actions) module: attach_catalog_private_endpoint, change_compartment,
+      detach_catalog_private_endpoint, object_stats, users."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -78,12 +78,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create catalog
   oci_data_catalog_catalog:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_catalog:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -91,17 +91,17 @@ EXAMPLES = """
   oci_data_catalog_catalog:
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete catalog
   oci_data_catalog_catalog:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_catalog:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -118,7 +118,7 @@ catalog:
                 - OCID of the data catalog instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Data catalog identifier, which can be renamed.
@@ -130,7 +130,7 @@ catalog:
                 - Compartment identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the data catalog was created. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.

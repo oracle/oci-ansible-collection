@@ -49,7 +49,7 @@ description:
     - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN
       or FastConnect. For more information, see
       L(Overview of the Networking Service,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm).
-    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_vcn_cidr, modify_vcn_cidr, remove_vcn_cidr."
+    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_vcn_cidr, change_compartment, modify_vcn_cidr, remove_vcn_cidr."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -133,13 +133,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vcn
   oci_network_vcn:
-    cidr_block: 10.0.0.0/16
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: MyVcn
+    cidr_block: "10.0.0.0/16"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "MyVcn"
 
 - name: Update vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyVcn
     freeform_tags: {'Department': 'Finance'}
@@ -148,16 +148,16 @@ EXAMPLES = """
   oci_network_vcn:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyVcn
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vcn
   oci_network_vcn:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyVcn
     state: absent
 
@@ -188,25 +188,25 @@ vcn:
                 - The OCID of the compartment containing the VCN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
                 - The OCID for the VCN's default set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
                 - The OCID for the VCN's default route table.
             returned: on success
             type: string
-            sample: ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
                 - The OCID for the VCN's default security list.
             returned: on success
             type: string
-            sample: ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -251,7 +251,7 @@ vcn:
                 - The VCN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The VCN's current state.

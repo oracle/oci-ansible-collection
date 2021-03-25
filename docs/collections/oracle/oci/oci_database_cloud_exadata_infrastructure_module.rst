@@ -20,7 +20,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure -- Manage a CloudExadataInf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -672,25 +672,25 @@ Examples
     
     - name: Create cloud_exadata_infrastructure
       oci_database_cloud_exadata_infrastructure:
-        compartment_id: ocid1.tenancy.oc1.unique_ID
-        display_name: tstExaInfra
-        shape: Exadata.X8M
-        compute_count: 2
-        storage_count: 3
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
+        display_name: "tstExaInfra"
+        shape: "Exadata.X8M"
+        compute_count: "2"
+        storage_count: "3"
 
     - name: Update cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_cloud_exadata_infrastructure:
-        compute_count: 3
-        storage_count: 4
-        display_name: displayName
+        compute_count: "3"
+        storage_count: "4"
+        display_name: "displayName"
 
     - name: Update cloud_exadata_infrastructure
       oci_database_cloud_exadata_infrastructure:
-        cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete cloud_exadata_infrastructure
       oci_database_cloud_exadata_infrastructure:
-        cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

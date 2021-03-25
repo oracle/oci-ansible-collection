@@ -75,7 +75,7 @@ namespace:
                 - The is the tenancy ID
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_onboarded:
             description:
                 - This indicates if the tenancy is onboarded to Logging Analytics

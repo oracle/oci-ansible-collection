@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific analytics_cluster
   oci_mysql_analytics_cluster_facts:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -55,7 +55,7 @@ analytics_cluster:
                 - The OCID of the parent DB System this Analytics Cluster is attached to.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - "The shape determines resources to allocate to the Analytics
@@ -81,7 +81,7 @@ analytics_cluster:
                         - The ID of the node within MySQL Analytics Cluster.
                     returned: on success
                     type: string
-                    sample: ocid1.node.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
                 lifecycle_state:
                     description:
                         - The current state of the MySQL Analytics Cluster node.

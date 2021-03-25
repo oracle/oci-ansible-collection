@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_software_package_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -337,11 +337,11 @@ Examples
     
     - name: List software_packages
       oci_os_management_software_package_facts:
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific software_package
       oci_os_management_software_package_facts:
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         software_package_name: software_package_name_example
 
 

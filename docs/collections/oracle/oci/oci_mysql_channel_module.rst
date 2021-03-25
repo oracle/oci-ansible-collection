@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_channel -- Manage a Channel resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -717,7 +717,7 @@ Examples
     
     - name: Create channel
       oci_mysql_channel:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source:
           source_type: MYSQL
         target:
@@ -725,7 +725,7 @@ Examples
 
     - name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_mysql_channel:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         is_enabled: true
         source:
@@ -740,16 +740,16 @@ Examples
       oci_mysql_channel:
         display_name: display_name_example
         is_enabled: true
-        channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+        channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete channel
       oci_mysql_channel:
-        channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+        channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_mysql_channel:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

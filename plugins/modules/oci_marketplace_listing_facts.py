@@ -105,11 +105,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List listings
   oci_marketplace_listing_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific listing
   oci_marketplace_listing_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -125,7 +125,7 @@ listings:
                 - The unique identifier for the listing in Marketplace.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the listing.
@@ -209,7 +209,7 @@ listings:
                         - Unique identifier for the publisher.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 name:
                     description:
                         - The name of the publisher.

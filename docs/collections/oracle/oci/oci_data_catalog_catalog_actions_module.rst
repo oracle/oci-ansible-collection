@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_catalog_actions -- Perform actions on a Catalog reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a Catalog resource in Oracle Cloud Infrastructure
 - For *action=attach_catalog_private_endpoint*, attaches a private reverse connection endpoint resource to a data catalog resource. When provided, 'If- Match' is checked against 'ETag' values of the resource.
+- For *action=change_compartment*, moves a resource into a different compartment. When provided, 'If-Match' is checked against 'ETag' values of the resource.
 - For *action=detach_catalog_private_endpoint*, detaches a private reverse connection endpoint resource to a data catalog resource. When provided, 'If- Match' is checked against 'ETag' values of the resource.
 - For *action=object_stats*, returns stats on objects by type in the repository.
 - For *action=users*, returns active users in the system.
@@ -87,6 +88,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>attach_catalog_private_endpoint</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>detach_catalog_private_endpoint</li>
                                                                                                                                                                                                 <li>object_stats</li>
                                                                                                                                                                                                 <li>users</li>
@@ -206,6 +208,22 @@ Parameters
                                                                 <td>
                                             <div>The identifier of the private endpoint to be attached to the catalog resource.</div>
                                             <div>Required for <em>action=attach_catalog_private_endpoint</em>, <em>action=detach_catalog_private_endpoint</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The identifier of the compartment where the resource should be moved.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -366,24 +384,30 @@ Examples
     
     - name: Perform action attach_catalog_private_endpoint on catalog
       oci_data_catalog_catalog_actions:
-        catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_catalog_private_endpoint
+
+    - name: Perform action change_compartment on catalog
+      oci_data_catalog_catalog_actions:
+        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        action: change_compartment
 
     - name: Perform action detach_catalog_private_endpoint on catalog
       oci_data_catalog_catalog_actions:
-        catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_catalog_private_endpoint
 
     - name: Perform action object_stats on catalog
       oci_data_catalog_catalog_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         action: object_stats
 
     - name: Perform action users on catalog
       oci_data_catalog_catalog_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         action: users
 
 

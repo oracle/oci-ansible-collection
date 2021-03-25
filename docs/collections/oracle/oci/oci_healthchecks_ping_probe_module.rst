@@ -20,7 +20,7 @@ oracle.oci.oci_healthchecks_ping_probe -- Manage a PingProbe resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -384,10 +384,10 @@ Examples
     
     - name: Create ping_probe
       oci_healthchecks_ping_probe:
-        compartment_id: ocid1.tenancy.oc1...
+        compartment_id: "ocid1.tenancy.oc1..."
         targets:
-        - 192.0.2.0
-        protocol: ICMP
+        - "192.0.2.0"
+        protocol: "ICMP"
 
 
 

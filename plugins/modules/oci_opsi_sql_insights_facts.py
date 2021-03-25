@@ -80,7 +80,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific sql_insights
   oci_opsi_sql_insights_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -137,7 +137,7 @@ sql_insights:
                     description:
                         - Insight text.
                           For example `Degrading SQLs`, `Variant SQLs`,
-                            `Inefficient SQLs`, `SQLs with Plan Changes`,
+                            `Inefficient SQLs`, `Improving SQLs`, `SQLs with Plan Changes`,
                             `Degrading SQLs have increasing IO Time above 50%`,
                             `Degrading SQLs are variant`,
                             `2 of the 2 variant SQLs have plan changes`,
@@ -158,6 +158,7 @@ sql_insights:
                           VARIANT,
                           INEFFICIENT,
                           CHANGING_PLANS,
+                          IMPROVING,
                           DEGRADING_VARIANT,
                           DEGRADING_INEFFICIENT,
                           DEGRADING_CHANGING_PLANS,
@@ -228,6 +229,12 @@ sql_insights:
                     returned: on success
                     type: int
                     sample: 56
+                improved_in_pct:
+                    description:
+                        - Improved Percent Threshold is used to derive improving SQLs.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: {
         "time_interval_start": "2020-12-06T00:00:00.000Z",
         "time_interval_end": "2020-12-06T00:00:00.000Z",
@@ -247,7 +254,8 @@ sql_insights:
             "inefficiency_in_pct": 56,
             "increase_in_io_in_pct": 56,
             "increase_in_cpu_in_pct": 56,
-            "increase_in_inefficient_wait_in_pct": 56
+            "increase_in_inefficient_wait_in_pct": 56,
+            "improved_in_pct": 56
         }
     }
 """

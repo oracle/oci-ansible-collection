@@ -121,7 +121,7 @@ EXAMPLES = """
 - name: Create table
   oci_nosql_table:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
     table_limits:
       max_read_units: 56
@@ -131,7 +131,7 @@ EXAMPLES = """
 - name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_nosql_table:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
     table_limits:
       max_read_units: 56
@@ -142,19 +142,19 @@ EXAMPLES = """
 
 - name: Update table
   oci_nosql_table:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     ddl_statement: ddl_statement_example
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete table
   oci_nosql_table:
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_nosql_table:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -171,7 +171,7 @@ table:
                 - Unique identifier that is immutable.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Human-friendly table name, immutable.
@@ -183,7 +183,7 @@ table:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the the table was created. An RFC3339 formatted

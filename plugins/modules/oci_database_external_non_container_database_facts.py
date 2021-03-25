@@ -79,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List external_non_container_databases
   oci_database_external_non_container_database_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific external_non_container_database
   oci_database_external_non_container_database_facts:
-    external_non_container_database_id: ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -99,7 +99,7 @@ external_non_container_databases:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -127,7 +127,7 @@ external_non_container_databases:
                   resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
@@ -157,7 +157,7 @@ external_non_container_databases:
                 - The Oracle Database ID, which identifies an Oracle Database located outside of Oracle Cloud.
             returned: on success
             type: string
-            sample: ocid1.db.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The Oracle Database version.
@@ -215,7 +215,7 @@ external_non_container_databases:
                           us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                     returned: on success
                     type: string
-                    sample: ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 license_model:
                     description:
                         - The Oracle license model that applies to the external database.

@@ -89,11 +89,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List unified_agent_configurations
   oci_logging_unified_agent_configuration_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific unified_agent_configuration
   oci_logging_unified_agent_configuration_facts:
-    unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -109,13 +109,13 @@ unified_agent_configurations:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
@@ -415,7 +415,7 @@ unified_agent_configurations:
                                 - The OCID of the resource.
                             returned: on success
                             type: string
-                            sample: ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
         group_association:
             description:
                 - ""
@@ -428,90 +428,12 @@ unified_agent_configurations:
                     returned: on success
                     type: list
                     sample: []
-        items:
+        configuration_type:
             description:
-                - List of UnifiedAgentConfigurationSummary.
+                - Type of Unified Agent service configuration.
             returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The OCID of the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                compartment_id:
-                    description:
-                        - The OCID of the compartment that the resource belongs to.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - The user-friendly display name. This must be unique within the enclosing resource,
-                          and it's changeable. Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                description:
-                    description:
-                        - Description for this resource.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                freeform_tags:
-                    description:
-                        - "Free-form tags for this resource. Each tag is a simple key-value pair with no
-                          predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                          Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                time_created:
-                    description:
-                        - Time the resource was created.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_last_modified:
-                    description:
-                        - Time the resource was last modified.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                lifecycle_state:
-                    description:
-                        - The pipeline state.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                is_enabled:
-                    description:
-                        - Whether or not this resource is currently enabled.
-                    returned: on success
-                    type: bool
-                    sample: true
-                configuration_type:
-                    description:
-                        - Type of Unified Agent service configuration.
-                    returned: on success
-                    type: string
-                    sample: LOGGING
-                configuration_state:
-                    description:
-                        - State of unified agent service configuration.
-                    returned: on success
-                    type: string
-                    sample: VALID
+            type: string
+            sample: LOGGING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -572,20 +494,7 @@ unified_agent_configurations:
         "group_association": {
             "group_list": []
         },
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "description": "description_example",
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "freeform_tags": {'Department': 'Finance'},
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_last_modified": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "CREATING",
-            "is_enabled": true,
-            "configuration_type": "LOGGING",
-            "configuration_state": "VALID"
-        }]
+        "configuration_type": "LOGGING"
     }]
 """
 

@@ -30,13 +30,13 @@ author: Oracle (@oracle)
 options:
     export_set_id:
         description:
-            - The OCID of the export set.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export set.
             - Required to get a specific export_set.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The OCID of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple export_sets.
         type: str
     availability_domain:
@@ -87,12 +87,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List export_sets
   oci_file_storage_export_set_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
 - name: Get a specific export_set
   oci_file_storage_export_set_facts:
-    export_set_id: ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx
+    export_set_id: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -113,10 +113,10 @@ export_sets:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment that contains the export set.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the export set.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -127,10 +127,10 @@ export_sets:
             sample: My export set
         id:
             description:
-                - The OCID of the export set.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export set.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the export set.
@@ -175,10 +175,10 @@ export_sets:
             sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
-                - The OCID of the virtual cloud network (VCN) the export set is in.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the virtual cloud network (VCN) the export set is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

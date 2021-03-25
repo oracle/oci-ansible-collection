@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List smtp_credentials
   oci_identity_smtp_credential_facts:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -61,13 +61,13 @@ smtp_credentials:
                 - The OCID of the SMTP credential.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the SMTP credential belongs to.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The description you assign to the SMTP credential. Does not have to be unique, and it's changeable.

@@ -24,6 +24,7 @@ short_description: Manage a DetectorRecipe resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a DetectorRecipe resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a DetectorRecipe
+    - "This resource has the following action operations in the M(oci_detector_recipe_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -247,16 +248,16 @@ EXAMPLES = """
 - name: Create detector_recipe
   oci_cloud_guard_detector_recipe:
     display_name: display_name_example
-    source_detector_recipe_id: ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_detector_recipe:
     display_name: display_name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     detector_rules:
-    - detector_rule_id: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+    - detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
       details:
         is_enabled: true
         risk_level: CRITICAL
@@ -267,17 +268,17 @@ EXAMPLES = """
   oci_cloud_guard_detector_recipe:
     display_name: display_name_example
     description: description_example
-    detector_recipe_id: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+    detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete detector_recipe
   oci_cloud_guard_detector_recipe:
-    detector_recipe_id: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+    detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_detector_recipe:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -294,7 +295,7 @@ detector_recipe:
                 - Ocid for detector recipe
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - DisplayName of detector recipe
@@ -312,13 +313,13 @@ detector_recipe:
                 - compartmentId of detector recipe
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_detector_recipe_id:
             description:
                 - Recipe Ocid of the Source Recipe to be cloned
             returned: on success
             type: string
-            sample: ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         owner:
             description:
                 - Owner of detector recipe
@@ -342,7 +343,7 @@ detector_recipe:
                         - The unique identifier of the detector rule
                     returned: on success
                     type: string
-                    sample: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - displayName
@@ -546,7 +547,7 @@ detector_recipe:
                                 - The unique identifier of the Responder rule
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - The display name of the Responder rule
@@ -595,7 +596,7 @@ detector_recipe:
                         - The unique identifier of the detector rule
                     returned: on success
                     type: string
-                    sample: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - displayName
@@ -799,7 +800,7 @@ detector_recipe:
                                 - The unique identifier of the Responder rule
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - The display name of the Responder rule

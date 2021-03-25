@@ -65,11 +65,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List vaults
   oci_key_management_vault_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vault
   oci_key_management_vault_facts:
-    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -85,7 +85,7 @@ vaults:
                 - The OCID of the compartment that contains this vault.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         crypto_endpoint:
             description:
                 - The service endpoint to perform cryptographic operations against. Cryptographic operations include
@@ -123,7 +123,7 @@ vaults:
                 - The OCID of the vault.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The vault's current lifecycle state.
@@ -164,7 +164,7 @@ vaults:
                 - The OCID of the vault's wrapping key.
             returned: on success
             type: string
-            sample: ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "crypto_endpoint": "crypto_endpoint_example",

@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_data_asset_actions -- Perform actions on a DataAsset
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -907,31 +907,31 @@ Examples
     
     - name: Perform action add_data_selector_patterns on data_asset
       oci_data_catalog_data_asset_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         action: add_data_selector_patterns
 
     - name: Perform action import_connection on data_asset
       oci_data_catalog_data_asset_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         action: import_connection
 
     - name: Perform action parse_connection on data_asset
       oci_data_catalog_data_asset_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         action: parse_connection
 
     - name: Perform action remove_data_selector_patterns on data_asset
       oci_data_catalog_data_asset_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         action: remove_data_selector_patterns
 
     - name: Perform action validate_connection on data_asset
       oci_data_catalog_data_asset_actions:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         action: validate_connection
 

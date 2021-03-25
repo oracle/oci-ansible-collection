@@ -112,16 +112,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create key_store
   oci_database_key_store:
-    display_name: Key Store1
-    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: "Key Store1"
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
     type_details:
-      type: ORACLE_KEY_VAULT
+      type: "ORACLE_KEY_VAULT"
       connection_ips:
-      - 198.12.34.56
-      - 198.12.34.57
-      admin_username: username1
-      vault_id: ocid1.vault.oc1.unique_ID
-      secret_id: ocid1.key.oc1.unique_ID
+      - "198.12.34.56"
+      - "198.12.34.57"
+      admin_username: "username1"
+      vault_id: "ocid1.vault.oc1.unique_ID"
+      secret_id: "ocid1.key.oc1.unique_ID"
 
 - name: Update key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_key_store:
@@ -145,11 +145,11 @@ EXAMPLES = """
       vault_id: ocid1.vault.oc1.unique_ID
       secret_id: ocid1.key.oc1.unique_ID
     freeform_tags: {'Department': 'Finance'}
-    key_store_id: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete key_store
   oci_database_key_store:
-    key_store_id: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+    key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -172,13 +172,13 @@ key_store:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the key store. The name does not need to be unique.
@@ -233,14 +233,14 @@ key_store:
                           L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
                     type: string
-                    sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
                 secret_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                           L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
                     type: string
-                    sample: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         associated_databases:
             description:
                 - List of databases associated with the key store.
@@ -252,7 +252,7 @@ key_store:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The name of the database that is associated with the key store.

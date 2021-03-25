@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_container_database_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -306,12 +306,12 @@ Examples
     
     - name: Perform action restart on autonomous_container_database
       oci_database_autonomous_container_database_actions:
-        autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: restart
 
     - name: Perform action rotate_autonomous_container_database_encryption_key on autonomous_container_database
       oci_database_autonomous_container_database_actions:
-        autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+        autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: rotate_autonomous_container_database_encryption_key
 
 

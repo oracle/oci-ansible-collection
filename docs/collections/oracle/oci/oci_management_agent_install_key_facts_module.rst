@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent_install_key_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -383,11 +383,11 @@ Examples
     
     - name: List management_agent_install_keys
       oci_management_agent_install_key_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific management_agent_install_key
       oci_management_agent_install_key_facts:
-        management_agent_install_key_id: ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx
+        management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

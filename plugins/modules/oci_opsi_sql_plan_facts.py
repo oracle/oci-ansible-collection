@@ -56,8 +56,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List sql_plans
   oci_opsi_sql_plan_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
     plan_hash: [ "9820154385" ]
 

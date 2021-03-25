@@ -20,7 +20,7 @@ oracle.oci.oci_resource_search_resource_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.17.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -264,6 +264,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tenant_id"></div>
+                    <b>tenant_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-tenant_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tenancy ID, which can be used to specify a different tenancy (for cross-tenancy authorization) when searching for resources in a different tenancy.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-text"></div>
                     <b>text</b>
                     <a class="ansibleOptionLink" href="#parameter-text" title="Permalink to this option"></a>
@@ -321,9 +336,9 @@ Examples
     
     - name: List resources
       oci_resource_search_resource_facts:
-        type: FreeText
-        text: jane
-        matching_context_type: HIGHLIGHTS
+        type: "FreeText"
+        text: "jane"
+        matching_context_type: "HIGHLIGHTS"
 
 
 

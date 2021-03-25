@@ -74,11 +74,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List accepted_agreements
   oci_marketplace_accepted_agreement_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific accepted_agreement
   oci_marketplace_accepted_agreement_facts:
-    accepted_agreement_id: ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx
+    accepted_agreement_id: "ocid1.acceptedagreement.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -94,7 +94,7 @@ accepted_agreements:
                 - The unique identifier for the acceptance of the agreement within a specific compartment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A display name for the accepted agreement.
@@ -106,13 +106,13 @@ accepted_agreements:
                 - The unique identifier for the compartment where the agreement was accepted.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         listing_id:
             description:
                 - The unique identifier for the listing associated with the agreement.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The package version associated with the agreement.
@@ -124,7 +124,7 @@ accepted_agreements:
                 - The unique identifier for the terms of use agreement itself.
             returned: on success
             type: string
-            sample: ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
         time_accepted:
             description:
                 - The time the agreement was accepted.

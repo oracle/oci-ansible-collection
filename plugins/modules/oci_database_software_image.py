@@ -110,27 +110,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database_software_image
   oci_database_software_image:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     database_version: database_version_example
     display_name: image2
     patch_set: patch_set_example
 
 - name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
-    display_name: image2
+    display_name: "image2"
 
 - name: Update database_software_image
   oci_database_software_image:
-    database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete database_software_image
   oci_database_software_image:
-    database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: image2
     state: absent
 
@@ -148,13 +148,13 @@ database_software_image:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The database version with which the database software image is to be built.

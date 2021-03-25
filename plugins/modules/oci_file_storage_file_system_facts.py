@@ -30,13 +30,13 @@ author: Oracle (@oracle)
 options:
     file_system_id:
         description:
-            - The OCID of the file system.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
             - Required to get a specific file_system.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The OCID of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple file_systems.
         type: str
     availability_domain:
@@ -62,6 +62,16 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    source_snapshot_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot used to create a cloned file system. See
+              L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+        type: str
+    parent_file_system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source snapshot of a
+              cloned file system. See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+        type: str
     sort_by:
         description:
             - The field to sort by. You can provide either value, but not both.
@@ -87,12 +97,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List file_systems
   oci_file_storage_file_system_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
 - name: Get a specific file_system
   oci_file_storage_file_system_facts:
-    file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -117,15 +127,16 @@ file_systems:
                   any snapshots. This number reflects the metered size of the file
                   system and is updated asynchronously with respect to
                   updates to the file system.
+                  For more information, see L(File System Usage and Metering,https://docs.cloud.oracle.com/Content/File/Concepts/FSutilization.htm).
             returned: on success
             type: int
             sample: 56
         compartment_id:
             description:
-                - The OCID of the compartment that contains the file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the file system.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -136,10 +147,10 @@ file_systems:
             sample: My file system
         id:
             description:
-                - The OCID of the file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the file system.
@@ -173,10 +184,55 @@ file_systems:
             sample: {'Operations': {'CostCenter': 'US'}}
         kms_key_id:
             description:
-                - The OCID of the KMS key which is the master encryption key for the file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the KMS key which is the master encryption key for the
+                  file system.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        source_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                parent_file_system_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source
+                          snapshot of a cloned file system.
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                    returned: on success
+                    type: string
+                    sample: ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx
+                source_snapshot_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
+                          system.
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                    returned: on success
+                    type: string
+                    sample: ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx
+        is_clone_parent:
+            description:
+                - Specifies whether the file system has been cloned.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+            returned: on success
+            type: bool
+            sample: true
+        is_hydrated:
+            description:
+                - Specifies whether the data has finished copying from the source to the clone.
+                  Hydration can take up to several hours to complete depending on the size of the source.
+                  The source and clone remain available during hydration, but there may be some performance impact.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm#hydration).
+            returned: on success
+            type: bool
+            sample: true
+        lifecycle_details:
+            description:
+                - Additional information about the current 'lifecycleState'.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -187,7 +243,14 @@ file_systems:
         "time_created": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "source_details": {
+            "parent_file_system_id": "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx",
+            "source_snapshot_id": "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_clone_parent": true,
+        "is_hydrated": true,
+        "lifecycle_details": "lifecycle_details_example"
     }]
 """
 
@@ -230,6 +293,8 @@ class FileSystemFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "display_name",
             "lifecycle_state",
+            "source_snapshot_id",
+            "parent_file_system_id",
             "sort_by",
             "sort_order",
         ]
@@ -265,6 +330,8 @@ def main():
                 type="str",
                 choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],
             ),
+            source_snapshot_id=dict(type="str"),
+            parent_file_system_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

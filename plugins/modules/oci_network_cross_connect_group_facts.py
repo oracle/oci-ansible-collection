@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cross_connect_groups
   oci_network_cross_connect_group_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cross_connect_group
   oci_network_cross_connect_group_facts:
-    cross_connect_group_id: ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,7 +102,7 @@ cross_connect_groups:
                 - The OCID of the compartment containing the cross-connect group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -132,7 +132,7 @@ cross_connect_groups:
                 - The cross-connect group's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The cross-connect group's current state.

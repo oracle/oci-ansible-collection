@@ -100,11 +100,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List maintenance_runs
   oci_database_maintenance_run_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific maintenance_run
   oci_database_maintenance_run_facts:
-    maintenance_run_id: ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+    maintenance_run_id: "ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -120,13 +120,13 @@ maintenance_runs:
                 - The OCID of the maintenance run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the maintenance run.
@@ -180,7 +180,7 @@ maintenance_runs:
                 - The ID of the target resource on which the maintenance run occurs.
             returned: on success
             type: string
-            sample: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_type:
             description:
                 - Maintenance type.
@@ -194,7 +194,7 @@ maintenance_runs:
                   was released October 30, 2020.
             returned: on success
             type: string
-            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_subtype:
             description:
                 - Maintenance sub-type.
@@ -207,7 +207,7 @@ maintenance_runs:
                   association's peer container database.
             returned: on success
             type: string
-            sample: ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

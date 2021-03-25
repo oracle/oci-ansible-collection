@@ -110,17 +110,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create policy
   oci_identity_policy:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID
-    description: Policy for users who need to launch instances, attach volumes, manage images
-    name: LaunchInstances
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
+    description: "Policy for users who need to launch instances, attach volumes, manage images"
+    name: "LaunchInstances"
     statements:
-    - Allow group InstanceLaunchers to manage instance-family in compartment ABC
-    - Allow group InstanceLaunchers to use volume-family in compartment ABC
-    - Allow group InstanceLaunchers to use virtual-network-family in compartment Network
+    - "Allow group InstanceLaunchers to manage instance-family in compartment ABC"
+    - "Allow group InstanceLaunchers to use volume-family in compartment ABC"
+    - "Allow group InstanceLaunchers to use virtual-network-family in compartment Network"
 
 - name: Update policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
     name: LaunchInstances
     statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
     description: Policy for users who need to launch instances, attach volumes, manage images
@@ -132,16 +132,16 @@ EXAMPLES = """
   oci_identity_policy:
     statements: [ "Allow group InstanceLaunchers to manage instance-family in compartment ABC" ]
     description: Policy for users who need to launch instances, attach volumes, manage images
-    policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete policy
   oci_identity_policy:
-    policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_policy:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pexampleuniqueID"
     name: LaunchInstances
     state: absent
 
@@ -159,13 +159,13 @@ policy:
                 - The OCID of the policy.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the policy (either the tenancy or another compartment).
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the policy during creation. The name must be unique across all policies

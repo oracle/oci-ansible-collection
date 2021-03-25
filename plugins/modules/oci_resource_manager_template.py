@@ -24,6 +24,7 @@ short_description: Manage a Template resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a custom template in the specified compartment.
+    - "This resource has the following action operations in the M(oci_template_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -118,7 +119,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create template
   oci_resource_manager_template:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: compartment_OCID
     display_name: Template Display Name
     description: Brief description of the template
     template_config_source:
@@ -128,7 +129,7 @@ EXAMPLES = """
   oci_resource_manager_template:
     display_name: Template Display Name
     description: Brief description of the template
-    long_description: Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded..
+    long_description: "Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded"
     logo_file_base64_encoded: binary string
     template_config_source:
       template_config_source_type: ZIP_UPLOAD
@@ -137,11 +138,11 @@ EXAMPLES = """
 
 - name: Update template
   oci_resource_manager_template:
-    template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+    template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete template
   oci_resource_manager_template:
-    template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+    template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -163,19 +164,19 @@ template:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the template.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this template.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
             returned: on success
             type: string
-            sample: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the template.
