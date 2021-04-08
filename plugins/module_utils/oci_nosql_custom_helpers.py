@@ -29,3 +29,14 @@ class IndexHelperCustom:
             return None
 
         return super(IndexHelperCustom, self).get_matching_resource()
+
+
+class TableActionsHelperCustom:
+    # the super method assumes that the parameter name of the target compartment OCID is compartment_id.
+    # But in this case it is to_compartment_id.
+    def is_change_compartment_necessary(self, resource):
+        if not hasattr(resource, "compartment_id"):
+            return False
+        if self.module.params.get("to_compartment_id") == resource.compartment_id:
+            return False
+        return True

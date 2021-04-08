@@ -137,16 +137,16 @@ sddcs:
             description:
                 - In general, this is a specific version of bundled VMware software supported by
                   Oracle Cloud VMware Solution (see
-                  L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/SupportedVmwareSoftwareVersionSummary/
-                  ListSupportedVmwareSoftwareVersions)).
+                  L(ListSupportedVmwareSoftwareVersions,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions)).
                 - "This attribute is not guaranteed to reflect the version of
                   software currently installed on the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the version of software that the Oracle
                   Cloud VMware Solution will install on any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer
                   version of bundled VMware software supported by the Oracle Cloud VMware Solution, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vmwareSoftwareVersion` with that new version.
             returned: on success
             type: string
@@ -166,14 +166,14 @@ sddcs:
             sample: 56
         vcenter_fqdn:
             description:
-                - FQDN for vCenter
+                - The FQDN for vCenter.
                 - "Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
             type: string
             sample: vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com
         nsx_manager_fqdn:
             description:
-                - FQDN for NSX Manager
+                - The FQDN for NSX Manager.
                 - "Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
             type: string
@@ -231,9 +231,9 @@ sddcs:
                   currently installed on the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the public SSH keys that Oracle
                   Cloud VMware Solution will install on any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you upgrade the existing ESXi hosts in the SDDC to use different
-                  SSH keys, you should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update
+                  SSH keys, you should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update
                   the SDDC's `sshAuthorizedKeys` with the new public keys.
             returned: on success
             type: string
@@ -276,10 +276,10 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the vSphere VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the vSphere component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vsphereVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
@@ -292,10 +292,10 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the vMotion VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the vMotion component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vmotionVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
@@ -308,10 +308,10 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the vSAN VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the vSAN component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vsanVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
@@ -324,10 +324,10 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the NSX VTEP VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the NSX VTEP component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxVTepVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
@@ -340,10 +340,10 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the NSX Edge VTEP VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the NSX Edge VTEP component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeVTepVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
@@ -356,10 +356,10 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the NSX Edge Uplink 1 VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the NSX Edge Uplink 1 component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeUplink1VlanId` with that new VLAN's OCID.
             returned: on success
             type: string
@@ -372,47 +372,76 @@ sddcs:
                   currently used by the ESXi hosts in the SDDC. The purpose
                   of this attribute is to show the NSX Edge Uplink 2 VLAN that the Oracle
                   Cloud VMware Solution will use for any new ESXi hosts that you *add to this
-                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost)."
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
                 - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
                   for the NSX Edge Uplink 2 component of the VMware environment, you
-                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeUplink2VlanId` with that new VLAN's OCID.
             returned: on success
             type: string
             sample: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
+        replication_vlan_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
+                  for the vSphere Replication component of the VMware environment.
+            returned: on success
+            type: string
+            sample: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        provisioning_vlan_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
+                  for the Provisioning component of the VMware environment.
+            returned: on success
+            type: string
+            sample: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_private_ip_id:
             description:
-                - HCX Private IP
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `PrivateIp` object that is
+                  the virtual IP (VIP) for HCX Manager. For information about `PrivateIp` objects, see the
+                  Core Services API.
             returned: on success
             type: string
             sample: "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_fqdn:
             description:
-                - HCX Fully Qualified Domain Name
+                - The FQDN for HCX Manager.
+                - "Example: `hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
             type: string
-            sample: hcx_fqdn_example
+            sample: hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com
         hcx_initial_password:
             description:
-                - HCX initial password
+                - The SDDC includes an administrator username and initial password for HCX Manager. Make sure
+                  to change this initial HCX Manager password to a different value.
             returned: on success
             type: string
             sample: hcx_initial_password_example
         hcx_vlan_id:
             description:
-                - HCX vlan id
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
+                  for the HCX component of the VMware environment.
+                - "This attribute is not guaranteed to reflect the HCX VLAN
+                  currently used by the ESXi hosts in the SDDC. The purpose
+                  of this attribute is to show the HCX VLAN that the Oracle
+                  Cloud VMware Solution will use for any new ESXi hosts that you *add to this
+                  SDDC in the future* with L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)."
+                - Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN
+                  for the HCX component of the VMware environment, you
+                  should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
+                  `hcxVlanId` with that new VLAN's OCID.
             returned: on success
             type: string
             sample: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         is_hcx_enabled:
             description:
-                - HCX enabled or not
+                - Indicates whether HCX is enabled for this SDDC.
             returned: on success
             type: bool
             sample: true
         hcx_on_prem_key:
             description:
-                - HCX on-premise license key
+                - The activation key to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
+                  Your implementation might need more than one activation key. To obtain additional keys, contact Oracle Support.
             returned: on success
             type: string
             sample: hcx_on_prem_key_example
@@ -482,8 +511,10 @@ sddcs:
         "nsx_edge_v_tep_vlan_id": "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_edge_uplink1_vlan_id": "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx",
         "nsx_edge_uplink2_vlan_id": "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx",
+        "replication_vlan_id": "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx",
+        "provisioning_vlan_id": "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "hcx_private_ip_id": "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx",
-        "hcx_fqdn": "hcx_fqdn_example",
+        "hcx_fqdn": "hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "hcx_initial_password": "hcx_initial_password_example",
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,

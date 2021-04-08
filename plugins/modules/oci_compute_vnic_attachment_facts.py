@@ -38,7 +38,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple vnic_attachments.
         type: str
     availability_domain:
@@ -120,7 +120,7 @@ vnic_attachments:
                   Certain bare metal instance shapes have two active physical NICs (0 and 1). If
                   you add a secondary VNIC to one of these instances, you can specify which NIC
                   the VNIC will use. For more information, see
-                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
             returned: on success
             type: int
             sample: 56
@@ -134,7 +134,7 @@ vnic_attachments:
             description:
                 - The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead
                   of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - An error is returned if the instance already has a VNIC attached to it from this VLAN.
             returned: on success
             type: string
@@ -152,7 +152,7 @@ vnic_attachments:
                   attachment process is complete.
                 - However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
                   the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - "Example: `0`"
             returned: on success
             type: int

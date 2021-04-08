@@ -90,8 +90,8 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on catalog
   oci_data_catalog_catalog_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_catalog_private_endpoint on catalog

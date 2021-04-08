@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_alarm_actions -- Perform actions on an Alarm resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -182,6 +182,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -288,9 +289,9 @@ Examples
     
     - name: Perform action change_compartment on alarm
       oci_monitoring_alarm_actions:
-        compartment_id: compartment_OCID
-        alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
-        action: change_compartment
+        compartment_id: "compartment_OCID"
+        alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
 
     - name: Perform action remove_alarm_suppression on alarm
       oci_monitoring_alarm_actions:

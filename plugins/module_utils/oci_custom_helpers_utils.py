@@ -78,6 +78,8 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_optimizer_custom_helpers,
     oci_management_dashboards_custom_helpers,
     oci_artifacts_custom_helpers,
+    oci_compute_capacity_reservation_helper,
+    oci_network_load_balancer_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -130,5 +132,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_optimizer_custom_helpers,
         oci_management_dashboards_custom_helpers,
         oci_artifacts_custom_helpers,
+        oci_compute_capacity_reservation_helper,
+        oci_network_load_balancer_custom_helpers,
     ]
 )

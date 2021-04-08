@@ -1207,12 +1207,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                                     host_inventory["vars"]["display_name"],
                                     host_inventory["vars"],
                                 )
-                                for host_variable in host_inventory["vars"]:
-                                    self.inventory.set_variable(
-                                        host_name,
-                                        host_variable,
-                                        host_inventory["vars"][host_variable],
-                                    )
+                            for host_variable in host_inventory["vars"]:
+                                self.inventory.set_variable(
+                                    host_name,
+                                    host_variable,
+                                    host_inventory["vars"][host_variable],
+                                )
                             self.inventory.add_child("all", host_name)
                             self._set_composite_vars(
                                 self.get_option("compose"),

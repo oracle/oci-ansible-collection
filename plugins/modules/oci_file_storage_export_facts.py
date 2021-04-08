@@ -84,7 +84,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List exports
   oci_file_storage_export_facts:
-    export_set_id: "ocid1.exportset.oc1.phx.exampleaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa"
+    export_set_id: "ocid1.exportset.oc1..unique_ID"
 
 - name: Get a specific export
   oci_file_storage_export_facts:

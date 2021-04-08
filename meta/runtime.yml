@@ -14,3 +14,23 @@ plugin_routing:
       deprecation:
         removal_version: '3.0.0'
         warning_text: oci_apigateway_waas_certificate will be removed in a future release of this collection. Use oci_apigateway_certificate instead.
+    oci_mysql_analytics_cluster_actions:
+      deprecation:
+        removal_version: '3.0.0'
+        warning_text: oci_mysql_analytics_cluster_actions will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_actions instead.
+    oci_mysql_analytics_cluster_facts:
+      deprecation:
+        removal_version: '3.0.0'
+        warning_text: oci_mysql_analytics_cluster_facts will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_facts instead.
+    oci_mysql_analytics_cluster_memory_estimate_actions:
+      deprecation:
+        removal_version: '3.0.0'
+        warning_text: oci_mysql_analytics_cluster_memory_estimate_actions will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_memory_estimate_actions instead.
+    oci_mysql_analytics_cluster_memory_estimate_facts:
+      deprecation:
+        removal_version: '3.0.0'
+        warning_text: oci_mysql_analytics_cluster_memory_estimate_facts will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_memory_estimate_facts instead.
+    oci_mysql_analytics_cluster:
+      deprecation:
+        removal_version: '3.0.0'
+        warning_text: oci_mysql_analytics_cluster will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster instead.

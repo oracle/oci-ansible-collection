@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     compute_global_image_capability_schema_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
         type: str
         required: true
     compute_global_image_capability_schema_version_name:

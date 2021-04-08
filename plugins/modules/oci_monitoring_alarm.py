@@ -233,7 +233,7 @@ EXAMPLES = """
   oci_monitoring_alarm:
     display_name: System Down
     compartment_id: compartment_OCID
-    metric_compartment_id: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
+    metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
     namespace: oci_computeagent
     query: query_example
     severity: CRITICAL

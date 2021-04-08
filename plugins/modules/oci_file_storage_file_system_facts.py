@@ -202,7 +202,7 @@ file_systems:
                           See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
                 source_snapshot_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
@@ -210,7 +210,7 @@ file_systems:
                           See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_parent:
             description:
                 - Specifies whether the file system has been cloned.

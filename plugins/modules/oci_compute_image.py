@@ -27,7 +27,7 @@ description:
       Storage service.
     - When creating a new image, you must provide the OCID of the instance you want to use as the basis for the image, and
       the OCID of the compartment containing that instance. For more information about images,
-      see L(Managing Custom Images,https://docs.cloud.oracle.com/Content/Compute/Tasks/managingcustomimages.htm).
+      see L(Managing Custom Images,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm).
     - When importing an exported image from Object Storage, you specify the source information
       in L(ImageSourceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceDetails).
     - When importing an image based on the namespace, bucket name, and object name,
@@ -35,14 +35,13 @@ description:
       us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageTupleDetails).
     - When importing an image based on the Object Storage URL, use
       L(ImageSourceViaObjectStorageUriDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageUriDetails).
-      See L(Object Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
-      Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+      See L(Object Storage URLs,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
+      Requests,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
       for constructing URLs for image import/export.
     - For more information about importing exported images, see
-      L(Image Import/Export,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm).
+      L(Image Import/Export,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm).
     - "You may optionally specify a *display name* for the image, which is simply a friendly name or description.
-      It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/Image/UpdateImage).
+      It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Image/UpdateImage).
       Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_image_actions) module: change_compartment, export."
 version_added: "2.9"
@@ -58,7 +57,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -76,7 +75,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -253,7 +252,7 @@ image:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -271,7 +270,7 @@ image:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -347,7 +346,7 @@ image:
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -395,9 +394,15 @@ image:
                     returned: on success
                     type: bool
                     sample: true
+        listing_type:
+            description:
+                - "The listing type of the image. The default value is \\"NONE\\"."
+            returned: on success
+            type: string
+            sample: COMMUNITY
         size_in_mbs:
             description:
-                - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
+                - The boot volume size for an instance launched from this image (1 MB = 1,048,576 bytes).
                   Note this is not the same as the size of the image when it was exported or the actual size of the image.
                 - "Example: `47694`"
             returned: on success
@@ -434,6 +439,7 @@ image:
             "is_monitoring_supported": true,
             "is_management_supported": true
         },
+        "listing_type": "COMMUNITY",
         "size_in_mbs": 47694,
         "time_created": "2016-08-25T21:10:29.600Z"
     }

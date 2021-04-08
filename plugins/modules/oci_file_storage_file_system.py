@@ -124,13 +124,13 @@ EXAMPLES = """
 - name: Create file_system
   oci_file_storage_file_system:
     availability_domain: "Uocm:PHX-AD-1"
-    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: "media-files-1"
 
 - name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: media-files-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -150,7 +150,7 @@ EXAMPLES = """
 - name: Delete file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: media-files-1
     state: absent
 
@@ -252,7 +252,7 @@ file_system:
                           See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
                 source_snapshot_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
@@ -260,7 +260,7 @@ file_system:
                           See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_parent:
             description:
                 - Specifies whether the file system has been cloned.

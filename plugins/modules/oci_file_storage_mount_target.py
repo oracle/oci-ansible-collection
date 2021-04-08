@@ -151,9 +151,9 @@ EXAMPLES = """
 - name: Create mount_target
   oci_file_storage_mount_target:
     availability_domain: "Uocm:PHX-AD-1"
-    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: "mount-target-5"
-    subnet_id: "ocid1.subnet.oc1.phx.exampleale662rd2rcvbqi5dlerqvfcobnjs5h4h7ssosxwo4fu7mjvp2ia"
+    subnet_id: "ocid1.subnet.oc1..unique_ID"
 
 - name: Update mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_mount_target:
@@ -171,7 +171,7 @@ EXAMPLES = """
 - name: Delete mount_target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_mount_target:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: mount-target-5
     state: absent
 

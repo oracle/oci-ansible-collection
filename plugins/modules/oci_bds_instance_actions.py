@@ -72,25 +72,25 @@ options:
         type: str
     nodes:
         description:
-            - Inidividial worker nodes groups details
+            - ""
             - Required for I(action=change_shape).
         type: dict
         suboptions:
             worker:
                 description:
-                    - worker nodes shape
+                    - Change shape of worker nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.
                 type: str
             master:
                 description:
-                    - master nodes shape
+                    - Change shape of master nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.
                 type: str
             utility:
                 description:
-                    - utility nodes shape
+                    - Change shape of utility nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.
                 type: str
             cloudsql:
                 description:
-                    - cloudsql node shape
+                    - Change shape of cloudsql node to the desired target shape. Only VM_STANDARD shapes are allowed here.
                 type: str
     node_id:
         description:
@@ -218,7 +218,7 @@ bds_instance:
             sample: true
         network_config:
             description:
-                - Additional configuration of customer's network.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -236,7 +236,7 @@ bds_instance:
                     sample: 172.16.0.0/16
         cluster_details:
             description:
-                - Specific info about a Hadoop cluster
+                - ""
             returned: on success
             type: complex
             contains:
@@ -423,7 +423,7 @@ bds_instance:
                     sample: 2019-03-29T09:36:42.000+0000
         cloud_sql_details:
             description:
-                - The information about added Cloud SQL capability
+                - ""
             returned: on success
             type: complex
             contains:

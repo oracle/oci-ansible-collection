@@ -102,11 +102,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List container_images
   oci_artifacts_container_image_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific container_image
   oci_artifacts_container_image_facts:
-    image_id: ocid1.containerimage.oc1..exampleuniqueID
+    image_id: "ocid1.containerimage.oc1..exampleuniqueID"
 
 """
 
@@ -122,7 +122,7 @@ container_images:
                 - The compartment OCID to which the container image belongs. Inferred from the container repository.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user or principal that created the resource.
@@ -150,7 +150,7 @@ container_images:
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
             type: string
-            sample: ocid1.containerimage.oc1..exampleuniqueID
+            sample: "ocid1.containerimage.oc1..exampleuniqueID"
         layers:
             description:
                 - Layers of which the image is composed, ordered by the layer digest.
@@ -204,7 +204,7 @@ container_images:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container repository.
             returned: on success
             type: string
-            sample: ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         repository_name:
             description:
                 - The container repository name.

@@ -39,6 +39,7 @@
     first_instance_name: 'first_instance'
     second_instance_name: 'second_instance'
     nfs_utils_script: './files/nfs-utils'
+
     #########################################
     # Tenancy specific configuration
     # *Note* - Override the following variables based on your tenancy

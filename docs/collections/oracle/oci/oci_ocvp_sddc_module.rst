@@ -20,7 +20,7 @@ oracle.oci.oci_ocvp_sddc -- Manage a Sddc resource in Oracle Cloud Infrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,9 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Sddc resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a software-defined data center (SDDC).
-- Use the `WorkRequest <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/WorkRequest/>`_ operations to track the creation of the SDDC.
+- For *state=present*, creates an Oracle Cloud VMware Solution software-defined data center (SDDC).
+- Use the `WorkRequest <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/WorkRequest/>`_ operations to track the creation of the SDDC.
+- **Important:** You must configure the SDDC's networking resources with the security rules detailed in `Security Rules for Oracle Cloud VMware Solution SDDCs <https://docs.cloud.oracle.com/iaas/Content/VMware/Reference/ocvssecurityrules.htm>`_. Otherwise, provisioning the SDDC will fail. The rules are based on the requirements set by VMware.
 - This resource has the following action operations in the :ref:`oci_sddc_actions <ansible_collections.oci_sddc_actions_module>` module: change_compartment.
 
 
@@ -148,6 +149,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -265,7 +267,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The number of ESXi hosts to create in the SDDC. You can add more hosts later (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>).</div>
+                                            <div>The number of ESXi hosts to create in the SDDC. You can add more hosts later (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>).</div>
                                             <div>**Note:** If you later delete EXSi hosts from the SDDC to total less than 3, you are still billed for the 3 minimum recommended EXSi hosts. Also, you cannot add more VMware workloads to the SDDC until it again has at least 3 ESXi hosts.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
@@ -318,7 +320,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This id is required only when hcxEnabled is true</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN to use for the HCX component of the VMware environment. This value is required only when `isHcxEnabled` is true.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -354,7 +356,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This flag tells us if HCX is enabled or not.</div>
+                                            <div>Indicates whether to enable HCX for this SDDC.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -402,6 +404,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN to use for the NSX Edge Uplink 2 component of the VMware environment.</div>
+                                            <div>**Note:** This VLAN is reserved for future use to deploy public-facing applications on the VMware SDDC.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -458,6 +461,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-provisioning_vlan_id"></div>
+                    <b>provisioning_vlan_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-provisioning_vlan_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the Provisioning component of the VMware environment.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -469,6 +488,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-replication_vlan_id"></div>
+                    <b>replication_vlan_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-replication_vlan_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the vSphere Replication component of the VMware environment.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -571,7 +606,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The VMware software bundle to install on the ESXi hosts in the SDDC. To get a list of the available versions, use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/SupportedVmwareSoftwareVersionSummary/ ListSupportedVmwareSoftwareVersions'>ListSupportedVmwareSoftwareVersions</a>.</div>
+                                            <div>The VMware software bundle to install on the ESXi hosts in the SDDC. To get a list of the available versions, use <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions'>ListSupportedVmwareSoftwareVersions</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -711,6 +746,8 @@ Examples
         nsx_edge_v_tep_vlan_id: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink1_vlan_id: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
+        replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -766,7 +803,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Sddc resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx_fqdn_example&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;hcx_initial_password_example&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;nsx_manager_initial_password_example&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;vcenter_initial_password_example&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;hcx_initial_password_example&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;nsx_manager_initial_password_example&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_vlan_id&#x27;: &#x27;ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replication_vlan_id&#x27;: &#x27;ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;vcenter_initial_password_example&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -892,10 +929,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX Fully Qualified Domain Name</div>
+                                            <div>The FQDN for HCX Manager.</div>
+                                            <div>Example: `hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hcx_fqdn_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com</div>
                                     </td>
             </tr>
                                 <tr>
@@ -910,7 +948,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX initial password</div>
+                                            <div>The SDDC includes an administrator username and initial password for HCX Manager. Make sure to change this initial HCX Manager password to a different value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hcx_initial_password_example</div>
@@ -928,7 +966,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX on-premise license key</div>
+                                            <div>The activation key to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution. Your implementation might need more than one activation key. To obtain additional keys, contact Oracle Support.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hcx_on_prem_key_example</div>
@@ -946,7 +984,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX Private IP</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the `PrivateIp` object that is the virtual IP (VIP) for HCX Manager. For information about `PrivateIp` objects, see the Core Services API.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -964,7 +1002,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX vlan id</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the HCX component of the VMware environment.</div>
+                                            <div>This attribute is not guaranteed to reflect the HCX VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the HCX VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the HCX component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `hcxVlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1019,7 +1059,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX enabled or not</div>
+                                            <div>Indicates whether HCX is enabled for this SDDC.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1056,8 +1096,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the NSX Edge Uplink 1 component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the NSX Edge Uplink 1 VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX Edge Uplink 1 VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX Edge Uplink 1 component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxEdgeUplink1VlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the NSX Edge Uplink 1 VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX Edge Uplink 1 VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX Edge Uplink 1 component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxEdgeUplink1VlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1076,8 +1116,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the NSX Edge Uplink 2 component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the NSX Edge Uplink 2 VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX Edge Uplink 2 VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX Edge Uplink 2 component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxEdgeUplink2VlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the NSX Edge Uplink 2 VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX Edge Uplink 2 VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX Edge Uplink 2 component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxEdgeUplink2VlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1114,8 +1154,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the NSX Edge VTEP component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the NSX Edge VTEP VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX Edge VTEP VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX Edge VTEP component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxEdgeVTepVlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the NSX Edge VTEP VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX Edge VTEP VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX Edge VTEP component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxEdgeVTepVlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1133,7 +1173,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>FQDN for NSX Manager</div>
+                                            <div>The FQDN for NSX Manager.</div>
                                             <div>Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1225,8 +1265,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the NSX VTEP component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the NSX VTEP VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX VTEP VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX VTEP component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxVTepVlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the NSX VTEP VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the NSX VTEP VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the NSX VTEP component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `nsxVTepVlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1253,6 +1293,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sddc/provisioning_vlan_id"></div>
+                    <b>provisioning_vlan_id</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/provisioning_vlan_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the Provisioning component of the VMware environment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sddc/replication_vlan_id"></div>
+                    <b>replication_vlan_id</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/replication_vlan_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the vSphere Replication component of the VMware environment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-sddc/ssh_authorized_keys"></div>
                     <b>ssh_authorized_keys</b>
                     <a class="ansibleOptionLink" href="#return-sddc/ssh_authorized_keys" title="Permalink to this return value"></a>
@@ -1263,8 +1339,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>One or more public SSH keys to be included in the `~/.ssh/authorized_keys` file for the default user on each ESXi host. Use a newline character to separate multiple keys. The SSH keys must be in the format required for the `authorized_keys` file.</div>
-                                            <div>This attribute is not guaranteed to reflect the public SSH keys currently installed on the ESXi hosts in the SDDC. The purpose of this attribute is to show the public SSH keys that Oracle Cloud VMware Solution will install on any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you upgrade the existing ESXi hosts in the SDDC to use different SSH keys, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `sshAuthorizedKeys` with the new public keys.</div>
+                                            <div>This attribute is not guaranteed to reflect the public SSH keys currently installed on the ESXi hosts in the SDDC. The purpose of this attribute is to show the public SSH keys that Oracle Cloud VMware Solution will install on any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you upgrade the existing ESXi hosts in the SDDC to use different SSH keys, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `sshAuthorizedKeys` with the new public keys.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ssh_authorized_keys_example</div>
@@ -1319,7 +1395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>FQDN for vCenter</div>
+                                            <div>The FQDN for vCenter.</div>
                                             <div>Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1393,8 +1469,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the vMotion component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the vMotion VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the vMotion VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the vMotion component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vmotionVlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the vMotion VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the vMotion VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the vMotion component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vmotionVlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1412,9 +1488,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>In general, this is a specific version of bundled VMware software supported by Oracle Cloud VMware Solution (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/SupportedVmwareSoftwareVersionSummary/ ListSupportedVmwareSoftwareVersions'>ListSupportedVmwareSoftwareVersions</a>).</div>
-                                            <div>This attribute is not guaranteed to reflect the version of software currently installed on the ESXi hosts in the SDDC. The purpose of this attribute is to show the version of software that the Oracle Cloud VMware Solution will install on any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer version of bundled VMware software supported by the Oracle Cloud VMware Solution, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vmwareSoftwareVersion` with that new version.</div>
+                                            <div>In general, this is a specific version of bundled VMware software supported by Oracle Cloud VMware Solution (see <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/vmware/20200501/SupportedVmwareSoftwareVersionSummary/ListSupportedVmwareSoftwareVersions'>ListSupportedVmwareSoftwareVersions</a>).</div>
+                                            <div>This attribute is not guaranteed to reflect the version of software currently installed on the ESXi hosts in the SDDC. The purpose of this attribute is to show the version of software that the Oracle Cloud VMware Solution will install on any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you upgrade the existing ESXi hosts in the SDDC to use a newer version of bundled VMware software supported by the Oracle Cloud VMware Solution, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vmwareSoftwareVersion` with that new version.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vmware_software_version_example</div>
@@ -1433,8 +1509,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the vSAN component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the vSAN VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the vSAN VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the vSAN component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vsanVlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the vSAN VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the vSAN VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the vSAN component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vsanVlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1453,8 +1529,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN used by the SDDC for the vSphere component of the VMware environment.</div>
-                                            <div>This attribute is not guaranteed to reflect the vSphere VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the vSphere VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
-                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the vSphere component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vsphereVlanId` with that new VLAN&#x27;s OCID.</div>
+                                            <div>This attribute is not guaranteed to reflect the vSphere VLAN currently used by the ESXi hosts in the SDDC. The purpose of this attribute is to show the vSphere VLAN that the Oracle Cloud VMware Solution will use for any new ESXi hosts that you *add to this SDDC in the future* with <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost'>CreateEsxiHost</a>.</div>
+                                            <div>Therefore, if you change the existing ESXi hosts in the SDDC to use a different VLAN for the vSphere component of the VMware environment, you should use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc'>UpdateSddc</a> to update the SDDC&#x27;s `vsphereVlanId` with that new VLAN&#x27;s OCID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx</div>

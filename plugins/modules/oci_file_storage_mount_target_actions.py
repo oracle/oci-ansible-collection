@@ -53,9 +53,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on mount_target
   oci_file_storage_mount_target_actions:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    mount_target_id: ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -79,7 +79,7 @@ mount_target:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the mount target.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -95,13 +95,13 @@ mount_target:
                   mount target.
             returned: on success
             type: string
-            sample: ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current 'lifecycleState'.
@@ -125,7 +125,7 @@ mount_target:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the mount target is in.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount

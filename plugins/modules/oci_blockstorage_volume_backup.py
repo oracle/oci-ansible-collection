@@ -24,7 +24,7 @@ short_description: Manage a VolumeBackup resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VolumeBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new backup of the specified volume. For general information about volume backups,
-      see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumebackups.htm)
+      see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumebackups.htm)
     - When the request is received, the backup object is in a REQUEST_RECEIVED state.
       When the data is imaged, it goes into a CREATING state.
       After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
@@ -35,7 +35,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -51,7 +51,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -76,7 +76,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -141,7 +141,7 @@ volume_backup:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -174,7 +174,7 @@ volume_backup:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -189,8 +189,8 @@ volume_backup:
             description:
                 - The OCID of the Key Management key which is the master encryption key for the volume backup.
                   For more information about the Key Management service and encryption keys, see
-                  L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-                  L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+                  L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+                  L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: string
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_alarm -- Manage an Alarm resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -714,7 +715,7 @@ Examples
       oci_monitoring_alarm:
         display_name: System Down
         compartment_id: compartment_OCID
-        metric_compartment_id: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
+        metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
         namespace: oci_computeagent
         query: query_example
         severity: CRITICAL

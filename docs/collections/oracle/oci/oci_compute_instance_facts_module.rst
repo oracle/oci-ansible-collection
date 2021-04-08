@@ -20,7 +20,7 @@ oracle.oci.oci_compute_instance_facts -- Fetches details about one or multiple I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -171,6 +172,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-capacity_reservation_id"></div>
+                    <b>capacity_reservation_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-capacity_reservation_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compute capacity reservation.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -181,7 +197,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required to list multiple instances.</div>
                                                         </td>
             </tr>
@@ -243,7 +259,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the instance.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance.</div>
                                             <div>Required to get a specific instance.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -408,7 +424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Instance resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My bare metal instance&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;source_type_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2018-05-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My bare metal instance&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;source_type_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2018-05-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -609,6 +625,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-instances/capacity_reservation_id"></div>
+                    <b>capacity_reservation_id</b>
+                    <a class="ansibleOptionLink" href="#return-instances/capacity_reservation_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the compute capacity reservation this instance is launched under. When this field contains an empty string or is null, the instance is not currently in a capacity reservation. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default'>Capacity Reservations</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-instances/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-instances/compartment_id" title="Permalink to this return value"></a>
@@ -654,7 +688,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -730,7 +764,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -824,7 +858,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>When a bare metal or virtual machine instance boots, the iPXE firmware that runs on the instance is configured to run an iPXE script to continue the boot process.</div>
                                             <div>If you want more control over the boot process, you can provide your own custom iPXE script that will run when the instance boots; however, you should be aware that the same iPXE script will run every time an instance boots; not only after the initial LaunchInstance call.</div>
                                             <div>The default iPXE script connects to the instance&#x27;s local boot volume over iSCSI and performs a network boot. If you use a custom iPXE script and want to network-boot from the instance&#x27;s local boot volume over iSCSI the same way as the default iPXE script, you should use the following iSCSI IP address: 169.254.0.2, and boot volume IQN: iqn.2015-02.oracle.boot.</div>
-                                            <div>For more information about the Bring Your Own Image feature of Oracle Cloud Infrastructure, see <a href='https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm'>Bring Your Own Image</a>.</div>
+                                            <div>For more information about the Bring Your Own Image feature of Oracle Cloud Infrastructure, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm'>Bring Your Own Image</a>.</div>
                                             <div>For more information about iPXE, see http://ipxe.org.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -935,7 +969,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Deprecated. Instead use `isPvEncryptionInTransitEnabled` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails'>LaunchInstanceDetails</a>.</div>
+                                            <div>Deprecated. Instead use `isPvEncryptionInTransitEnabled` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails'>LaunchInstanceDetails</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1043,7 +1077,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of NUMA nodes per socket.</div>
+                                            <div>The number of NUMA nodes per socket (NPS).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NPS0</div>
@@ -1062,7 +1096,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of platform being configured. The only supported `type` is `AMD_MILAN_BM`</div>
+                                            <div>The type of platform being configured. The only supported `type` is `AMD_MILAN_BM`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMD_MILAN_BM</div>
@@ -1137,7 +1171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The shape of the instance. The shape determines the number of CPUs and the amount of memory allocated to the instance. You can enumerate all available shapes by calling <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes'>ListShapes</a>.</div>
+                                            <div>The shape of the instance. The shape determines the number of CPUs and the amount of memory allocated to the instance. You can enumerate all available shapes by calling <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes'>ListShapes</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>

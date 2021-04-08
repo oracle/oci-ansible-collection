@@ -54,6 +54,7 @@
     # *Note* - Override the following variables based on your tenancy
     # or set a valid value for the corresponding environment variable
     #########################################
+
     ad1: "{{ lookup('env', 'SAMPLE_AD1_NAME') }}"
     ad2: "{{ lookup('env', 'SAMPLE_AD2_NAME') }}"
     sample_compartment: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"

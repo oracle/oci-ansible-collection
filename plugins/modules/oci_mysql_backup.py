@@ -362,6 +362,13 @@ backup:
                     returned: on success
                     type: int
                     sample: 56
+                is_highly_available:
+                    description:
+                        - If the policy is to enable high availability of the instance, by
+                          maintaining secondary/failover capacity as necessary.
+                    returned: on success
+                    type: bool
+                    sample: true
                 endpoints:
                     description:
                         - The network endpoints available for this DB System.
@@ -521,6 +528,7 @@ backup:
             "ip_address": "ip_address_example",
             "port": 56,
             "port_x": 56,
+            "is_highly_available": true,
             "endpoints": [{
                 "hostname": "hostname_example",
                 "ip_address": "ip_address_example",

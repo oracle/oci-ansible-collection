@@ -24,8 +24,8 @@ short_description: Fetches details about one or multiple Image resources in Orac
 description:
     - Fetches details about one or multiple Image resources in Oracle Cloud Infrastructure
     - Lists the available images in the specified compartment, including both
-      L(Oracle-provided images,https://docs.cloud.oracle.com/Content/Compute/References/images.htm) and
-      L(custom images,https://docs.cloud.oracle.com/Content/Compute/Tasks/managingcustomimages.htm) that have
+      L(Oracle-provided images,https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm) and
+      L(custom images,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm) that have
       been created. The list of images returned is ordered to first show all
       Oracle-provided images, then all custom images.
     - The order of images returned may change when new images are released.
@@ -41,7 +41,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple images.
         type: str
     display_name:
@@ -140,7 +140,7 @@ images:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -158,7 +158,7 @@ images:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -234,7 +234,7 @@ images:
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -282,9 +282,15 @@ images:
                     returned: on success
                     type: bool
                     sample: true
+        listing_type:
+            description:
+                - "The listing type of the image. The default value is \\"NONE\\"."
+            returned: on success
+            type: string
+            sample: COMMUNITY
         size_in_mbs:
             description:
-                - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
+                - The boot volume size for an instance launched from this image (1 MB = 1,048,576 bytes).
                   Note this is not the same as the size of the image when it was exported or the actual size of the image.
                 - "Example: `47694`"
             returned: on success
@@ -321,6 +327,7 @@ images:
             "is_monitoring_supported": true,
             "is_management_supported": true
         },
+        "listing_type": "COMMUNITY",
         "size_in_mbs": 47694,
         "time_created": "2016-08-25T21:10:29.600Z"
     }]

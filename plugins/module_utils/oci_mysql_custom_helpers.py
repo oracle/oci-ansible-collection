@@ -352,3 +352,114 @@ class MysqlChannelActionsHelperCustom:
             resource_helper=self,
             wait_for_states=["INACTIVE"],
         )
+
+
+class MysqlHeatWaveClusterActionsHelperCustom:
+    ADD_ACTION_KEY = "add"
+    STOP_ACTION_KEY = "stop"
+
+    def perform_action(self, action):
+        if action != self.ADD_ACTION_KEY:
+            return super(MysqlHeatWaveClusterActionsHelperCustom, self).perform_action(
+                action
+            )
+
+        try:
+            db_system_get_response = oci_common_utils.call_with_backoff(
+                self.client.get_db_system,
+                db_system_id=self.module.params.get("db_system_id"),
+            )
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Getting db system failed with exception: {0}".format(se.message)
+            )
+        else:
+            db_system = to_dict(db_system_get_response.data)
+
+        if db_system.get("is_analytics_cluster_attached") or self.check_mode:
+            resource = self.get_resource().data
+            return self.prepare_result(
+                changed=False,
+                resource_type=self.resource_type,
+                resource=to_dict(resource),
+            )
+
+        try:
+            actioned_resource = self.add()
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(actioned_resource),
+            )
+
+    def get_action_desired_states(self, action):
+        action_desired_states = super(
+            MysqlHeatWaveClusterActionsHelperCustom, self
+        ).get_action_desired_states(action)
+
+        if action.lower() == self.STOP_ACTION_KEY:
+            return action_desired_states + [
+                "INACTIVE",
+            ]
+        return action_desired_states
+
+    def get_action_idempotent_states(self, action):
+        action_idempotent_states = super(
+            MysqlHeatWaveClusterActionsHelperCustom, self
+        ).get_action_idempotent_states(action)
+
+        if action.lower() == self.STOP_ACTION_KEY:
+            return action_idempotent_states + [
+                "INACTIVE",
+            ]
+        return action_idempotent_states
+
+
+class MysqlHeatWaveClusterMemoryEstimateActionsHelperCustom:
+    GENERATE_ACTION_KEY = "generate"
+
+    def perform_action(self, action):
+        if action != self.GENERATE_ACTION_KEY:
+            return super(
+                MysqlHeatWaveClusterMemoryEstimateActionsHelperCustom, self
+            ).perform_action(action)
+
+        try:
+            oci_common_utils.call_with_backoff(
+                self.client.generate_heat_wave_cluster_memory_estimate,
+                db_system_id=self.module.params.get("db_system_id"),
+            )
+            initial_response = self.get_resource()
+            wait_response = oci.wait_until(
+                self.client,
+                initial_response,
+                evaluate_response=lambda response: response.data.status
+                in oci_common_utils.WORK_REQUEST_COMPLETED_STATES,
+                max_wait_seconds=self.get_wait_timeout(),
+            )
+            if wait_response.data and hasattr(wait_response.data, "status"):
+                if (
+                    wait_response.data.status
+                    in oci_common_utils.WORK_REQUEST_FAILED_STATES
+                ):
+                    self.module.fail_json(msg="Generating memory estimate failed.")
+            actioned_resource = wait_response.data
+        except MaximumWaitTimeExceeded as mwtex:
+            self.module.fail_json(msg=str(mwtex))
+        except ServiceError as se:
+            self.module.fail_json(
+                msg="Performing action failed with exception: {0}".format(se.message)
+            )
+        else:
+            return self.prepare_result(
+                changed=True,
+                resource_type=self.resource_type,
+                resource=to_dict(actioned_resource),
+            )

@@ -25,7 +25,7 @@ description:
     - Perform actions on a VolumeGroup resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a volume group into a different compartment within the same tenancy.
       For information about moving resources between compartments,
-      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -37,7 +37,7 @@ options:
         required: true
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the volume group to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the volume group to.
         type: str
         required: true
     action:
@@ -81,7 +81,7 @@ volume_group:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -97,7 +97,7 @@ volume_group:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict

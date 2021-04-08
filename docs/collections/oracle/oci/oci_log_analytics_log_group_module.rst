@@ -20,7 +20,7 @@ oracle.oci.oci_log_analytics_log_group -- Manage a LogAnalyticsLogGroup resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Log-Analytics group.
+- For *state=present*, creates a new log group in the specified compartment with the input display name. You may also specify optional information such as description, defined tags, and free-form tags.
 - This resource has the following action operations in the :ref:`oci_log_analytics_log_group_actions <ansible_collections.oci_log_analytics_log_group_actions_module>` module: change_compartment.
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

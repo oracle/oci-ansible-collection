@@ -42,6 +42,7 @@ options:
         choices:
             - "DBSYSTEM"
             - "ANALYTICSCLUSTER"
+            - "HEATWAVECLUSTER"
     availability_domain:
         description:
             - The name of the Availability Domain.
@@ -153,7 +154,7 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             is_supported_for=dict(
-                type="list", choices=["DBSYSTEM", "ANALYTICSCLUSTER"]
+                type="list", choices=["DBSYSTEM", "ANALYTICSCLUSTER", "HEATWAVECLUSTER"]
             ),
             availability_domain=dict(type="str"),
             name=dict(type="str"),

@@ -52,8 +52,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on sender
   oci_email_sender_actions:
-    sender_id: ocid1.sender.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    sender_id: "ocid1.sender.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 """
@@ -70,7 +70,7 @@ sender:
                 - The OCID for the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email_address:
             description:
                 - Email address of the sender.
@@ -82,7 +82,7 @@ sender:
                 - The unique OCID of the sender.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_spf:
             description:
                 - Value of the SPF field. For more information about SPF, please see

@@ -23,7 +23,8 @@ module: oci_mysql_analytics_cluster_memory_estimate_actions
 short_description: Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
-    - For I(action=generate), sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory.
+    - "For I(action=generate), dEPRECATED -- please use HeatWave API instead.
+      Sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

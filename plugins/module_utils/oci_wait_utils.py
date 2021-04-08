@@ -613,6 +613,14 @@ class UpdateAutonomousDatabaseWorkRequestWaiter(WorkRequestWaiter):
         ]
 
 
+class NosqlChangeCompartmentCustomWaiter(WorkRequestWaiter):
+    # Getting the resource immediately after the work request succeeds gives a 404 error.
+    def get_resource_from_wait_response(self, wait_response):
+        time.sleep(30)
+        get_response = self.resource_helper.get_resource()
+        return get_response.data
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -872,6 +880,11 @@ _WAITER_OVERRIDE_MAP = {
         "external_container_database",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): NoneWaiter,
+    # For Marketplace Publications, resource creation and
+    # resource updation takes way too long and involves manual
+    # approval from the service team that can take a lot of time.
+    ("marketplace", "publication", oci_common_utils.CREATE_OPERATION_KEY,): NoneWaiter,
+    ("marketplace", "publication", oci_common_utils.UPDATE_OPERATION_KEY,): NoneWaiter,
     # work-request generated for operation `bulk_edit` can not be fetched using the generic Identity work-request api.
     # all tagging operations, use tagging work request api.
     (
@@ -884,6 +897,44 @@ _WAITER_OVERRIDE_MAP = {
         "autonomous_database",
         oci_common_utils.UPDATE_OPERATION_KEY,
     ): UpdateAutonomousDatabaseWorkRequestWaiter,
+    (
+        "core",
+        "instance_pool_instance",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "nosql",
+        "table",
+        "{0}_{1}".format("CHANGE_COMPARTMENT", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NosqlChangeCompartmentCustomWaiter,
+    # the backend_set,backend,listener work requests doesn't contain the OCID of the resource being created
+    # so we want to fallback to the default WorkRequestWaiter which calls the generated
+    # get_resource() method to retrieve the resource
+    (
+        "network_load_balancer",
+        "backend_set",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "network_load_balancer",
+        "backend",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "network_load_balancer",
+        "listener",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "analytics",
+        "vanity_url",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "analytics",
+        "private_access_channel",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
 }
 
 

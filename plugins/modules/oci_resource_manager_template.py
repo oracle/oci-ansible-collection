@@ -129,7 +129,7 @@ EXAMPLES = """
   oci_resource_manager_template:
     display_name: Template Display Name
     description: Brief description of the template
-    long_description: "Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded"
+    long_description: Detailed description of the template.
     logo_file_base64_encoded: binary string
     template_config_source:
       template_config_source_type: ZIP_UPLOAD

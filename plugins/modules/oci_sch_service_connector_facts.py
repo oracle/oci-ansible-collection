@@ -221,7 +221,7 @@ service_connectors:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
                     returned: on success
                     type: string
-                    sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
                 enable_formatted_messaging:
                     description:
                         - Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service

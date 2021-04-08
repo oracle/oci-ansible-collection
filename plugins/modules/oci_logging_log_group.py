@@ -87,12 +87,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create log_group
   oci_logging_log_group:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
     display_name: display_name_example
 
 - name: Update log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log_group:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
     display_name: display_name_example
     description: description_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -111,7 +111,7 @@ EXAMPLES = """
 
 - name: Delete log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_logging_log_group:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
     display_name: display_name_example
     state: absent
 

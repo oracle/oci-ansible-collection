@@ -60,9 +60,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on alarm
   oci_monitoring_alarm_actions:
-    compartment_id: compartment_OCID
-    alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "compartment_OCID"
+    alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 - name: Perform action remove_alarm_suppression on alarm
   oci_monitoring_alarm_actions:

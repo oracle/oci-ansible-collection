@@ -25,7 +25,7 @@ description:
     - Perform actions on a BootVolume resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a boot volume into a different compartment within the same tenancy.
       For information about moving resources between compartments,
-      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -37,7 +37,7 @@ options:
         required: true
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the boot volume to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the boot volume to.
         type: str
         required: true
     action:
@@ -82,7 +82,7 @@ boot_volume:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -105,7 +105,7 @@ boot_volume:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -133,7 +133,7 @@ boot_volume:
             description:
                 - The number of volume performance units (VPUs) that will be applied to this boot volume per GB,
                   representing the Block Volume service's elastic performance options.
-                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
                   information.
                 - "Allowed values:"
                 - " * `10`: Represents Balanced option."

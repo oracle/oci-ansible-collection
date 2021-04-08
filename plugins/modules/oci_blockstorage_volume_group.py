@@ -28,7 +28,7 @@ description:
       volume group, or by restoring a volume group backup. A volume group can contain up to 64 volumes.
       You may optionally specify a *display name* for the volume group, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+    - For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
     - "This resource has the following action operations in the M(oci_volume_group_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -53,7 +53,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -69,7 +69,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -185,7 +185,7 @@ volume_group:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -201,7 +201,7 @@ volume_group:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict

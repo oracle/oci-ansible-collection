@@ -20,7 +20,7 @@ oracle.oci.oci_file_storage_snapshot -- Manage a Snapshot resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -413,7 +414,7 @@ Examples
     - name: Create snapshot
       oci_file_storage_snapshot:
         name: "snapshot-1"
-        file_system_id: "ocid1.filesystem.oc1.phx.exampleaaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa"
+        file_system_id: "ocid1.filesystem.oc1..unique_ID"
 
     - name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_snapshot:
@@ -431,7 +432,7 @@ Examples
 
     - name: Delete snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_snapshot:
-        file_system_id: ocid1.filesystem.oc1..unique_ID
+        file_system_id: "ocid1.filesystem.oc1..unique_ID"
         name: snapshot-1
         state: absent
 

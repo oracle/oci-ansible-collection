@@ -123,7 +123,7 @@ snapshots:
                   See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
             returned: on success
             type: string
-            sample: ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_source:
             description:
                 - Specifies whether the snapshot has been cloned.

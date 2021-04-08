@@ -24,7 +24,7 @@ short_description: Manage a BootVolume resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BootVolume resource in Oracle Cloud Infrastructure
     - "For I(state=present), creates a new boot volume in the specified compartment from an existing boot volume or a boot volume backup.
-      For general information about boot volumes, see L(Boot Volumes,https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm).
+      For general information about boot volumes, see L(Boot Volumes,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/bootvolumes.htm).
       You may optionally specify a *display name* for the volume, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_boot_volume_actions) module: change_compartment."
@@ -54,7 +54,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -70,7 +70,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -88,7 +88,7 @@ options:
         description:
             - The number of volume performance units (VPUs) that will be applied to this volume per GB,
               representing the Block Volume service's elastic performance options.
-              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
               information.
             - "Allowed values:"
             - " * `10`: Represents Balanced option."
@@ -201,7 +201,7 @@ boot_volume:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -224,7 +224,7 @@ boot_volume:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -252,7 +252,7 @@ boot_volume:
             description:
                 - The number of volume performance units (VPUs) that will be applied to this boot volume per GB,
                   representing the Block Volume service's elastic performance options.
-                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
                   information.
                 - "Allowed values:"
                 - " * `10`: Represents Balanced option."

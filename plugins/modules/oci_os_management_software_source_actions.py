@@ -67,7 +67,7 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on software_source
   oci_os_management_software_source_actions:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action remove_packages on software_source

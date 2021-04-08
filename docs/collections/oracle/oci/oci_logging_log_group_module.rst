@@ -20,7 +20,7 @@ oracle.oci.oci_logging_log_group -- Manage a LogGroup resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -430,12 +431,12 @@ Examples
     
     - name: Create log_group
       oci_logging_log_group:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
         display_name: display_name_example
 
     - name: Update log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log_group:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
         display_name: display_name_example
         description: description_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -454,7 +455,7 @@ Examples
 
     - name: Delete log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_logging_log_group:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
         display_name: display_name_example
         state: absent
 

@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple InstanceConsoleConnection resources in Oracle Cloud Infrastructure
     - Lists the console connections for the specified compartment or instance.
     - For more information about instance console connections, see L(Troubleshooting Instances Using Instance Console
-      Connections,https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
+      Connections,https://docs.cloud.oracle.com/iaas/Content/Compute/References/serialconsole.htm).
     - If I(instance_console_connection_id) is specified, the details of a single InstanceConsoleConnection will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -38,7 +38,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple instance_console_connections.
         type: str
     instance_id:
@@ -81,7 +81,7 @@ instance_console_connections:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -96,7 +96,7 @@ instance_console_connections:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict

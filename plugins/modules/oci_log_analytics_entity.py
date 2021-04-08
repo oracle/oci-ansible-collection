@@ -235,6 +235,26 @@ log_analytics_entity:
             returned: on success
             type: dict
             sample: {}
+        creation_source:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Source that auto-created the entity.
+                    returned: on success
+                    type: string
+                    sample: EM_BRIDGE
+                details:
+                    description:
+                        - This will provide additional details for source of auto-creation. For example, if entity is auto-created
+                          by enterprise manager bridge, this field provides additional detail on enterprise manager that contributed
+                          to the entity auto-creation.
+                    returned: on success
+                    type: string
+                    sample: details_example
         time_created:
             description:
                 - The date and time the resource was created, in the format defined by RFC3339.
@@ -301,6 +321,10 @@ log_analytics_entity:
         "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "timezone_region": "timezone_region_example",
         "properties": {},
+        "creation_source": {
+            "type": "EM_BRIDGE",
+            "details": "details_example"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "are_logs_collected": true,

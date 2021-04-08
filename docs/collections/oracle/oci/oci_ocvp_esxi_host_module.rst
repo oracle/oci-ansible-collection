@@ -20,7 +20,7 @@ oracle.oci.oci_ocvp_esxi_host -- Manage an EsxiHost resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an EsxiHost resource in Oracle Cloud Infrastructure
 - For *state=present*, adds another ESXi host to an existing SDDC. The attributes of the specified `Sddc` determine the VMware software and other configuration settings used by the ESXi host.
-- Use the `WorkRequest <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/WorkRequest/>`_ operations to track the creation of the ESXi host.
+- Use the `WorkRequest <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/WorkRequest/>`_ operations to track the creation of the ESXi host.
 
 
 .. Aliases
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

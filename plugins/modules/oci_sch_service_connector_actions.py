@@ -73,8 +73,8 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on service_connector
   oci_sch_service_connector_actions:
-    service_connector_id: ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on service_connector
@@ -218,7 +218,7 @@ service_connector:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
                     returned: on success
                     type: string
-                    sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
                 enable_formatted_messaging:
                     description:
                         - Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service

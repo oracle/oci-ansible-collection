@@ -26,11 +26,11 @@ description:
     - For I(state=present), creates a new volume in the specified compartment. Volumes can be created in sizes ranging from
       50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB).
       For general information about block volumes, see
-      L(Overview of Block Volume Service,https://docs.cloud.oracle.com/Content/Block/Concepts/overview.htm).
+      L(Overview of Block Volume Service,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm).
     - A volume and instance can be in separate compartments but must be in the same availability domain.
       For information about access control and compartments, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm). For information about
-      availability domains, see L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm). For information about
+      availability domains, see L(Regions and Availability Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
       To get a list of availability domains, use the `ListAvailabilityDomains` operation
       in the Identity and Access Management Service API.
     - "You may optionally specify a *display name* for the volume, which is simply a friendly name or
@@ -60,7 +60,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -76,7 +76,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -89,7 +89,7 @@ options:
         description:
             - The number of volume performance units (VPUs) that will be applied to this volume per GB,
               representing the Block Volume service's elastic performance options.
-              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
               information.
             - "Allowed values:"
             - " * `0`: Represents Lower Cost option."
@@ -213,7 +213,7 @@ volume:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -229,7 +229,7 @@ volume:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -269,7 +269,7 @@ volume:
             description:
                 - The number of volume performance units (VPUs) that will be applied to this volume per GB,
                   representing the Block Volume service's elastic performance options.
-                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
                   information.
                 - "Allowed values:"
                 - " * `0`: Represents Lower Cost option."

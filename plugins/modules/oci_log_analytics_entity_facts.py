@@ -95,6 +95,18 @@ options:
         description:
             - A filter to return only log analytics entities whose sourceId matches the sourceId given.
         type: str
+    creation_source_type:
+        description:
+            - A filter to return only those log analytics entities with the specified auto-creation source.
+        type: list
+        choices:
+            - "EM_BRIDGE"
+            - "SERVICE_CONNECTOR_HUB"
+            - "NONE"
+    creation_source_details:
+        description:
+            - A filter to return only log analytics entities whose auto-creation source details contains the specified string.
+        type: str
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -207,6 +219,26 @@ log_analytics_entities:
             returned: on success
             type: dict
             sample: {}
+        creation_source:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Source that auto-created the entity.
+                    returned: on success
+                    type: string
+                    sample: EM_BRIDGE
+                details:
+                    description:
+                        - This will provide additional details for source of auto-creation. For example, if entity is auto-created
+                          by enterprise manager bridge, this field provides additional detail on enterprise manager that contributed
+                          to the entity auto-creation.
+                    returned: on success
+                    type: string
+                    sample: details_example
         time_created:
             description:
                 - The date and time the resource was created, in the format defined by RFC3339.
@@ -273,6 +305,10 @@ log_analytics_entities:
         "management_agent_compartment_id": "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "timezone_region": "timezone_region_example",
         "properties": {},
+        "creation_source": {
+            "type": "EM_BRIDGE",
+            "details": "details_example"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "are_logs_collected": true,
@@ -333,6 +369,8 @@ class LogAnalyticsEntityFactsHelperGen(OCIResourceFactsHelperBase):
             "hostname",
             "hostname_contains",
             "source_id",
+            "creation_source_type",
+            "creation_source_details",
             "sort_order",
             "sort_by",
         ]
@@ -377,6 +415,10 @@ def main():
             hostname=dict(type="str"),
             hostname_contains=dict(type="str"),
             source_id=dict(type="str"),
+            creation_source_type=dict(
+                type="list", choices=["EM_BRIDGE", "SERVICE_CONNECTOR_HUB", "NONE"]
+            ),
+            creation_source_details=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "timeUpdated", "name"]),
         )

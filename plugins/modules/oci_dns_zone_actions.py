@@ -60,9 +60,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on zone
   oci_dns_zone_actions:
-    compartment_id: ocid1.compartment.oc1..
-    zone_id: ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "ocid1.compartment.oc1.."
+    zone_id: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -90,7 +90,7 @@ zone:
                 - The OCID of the compartment containing the zone.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         view_id:
             description:
                 - The OCID of the private view containing the zone. This value will
@@ -98,7 +98,7 @@ zone:
                   not part of a private view.
             returned: on success
             type: string
-            sample: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
                 - The scope of the zone.
@@ -173,7 +173,7 @@ zone:
                         - The OCID of the TSIG key.
                     returned: on success
                     type: string
-                    sample: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
@@ -185,7 +185,7 @@ zone:
                 - The OCID of the zone.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format

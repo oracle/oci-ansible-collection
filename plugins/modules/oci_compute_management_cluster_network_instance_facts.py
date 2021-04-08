@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
     cluster_network_id:
@@ -128,7 +128,7 @@ cluster_network_instances:
                 - The shape of an instance. The shape determines the number of CPUs, amount of memory,
                   and other resources allocated to the instance.
                 - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

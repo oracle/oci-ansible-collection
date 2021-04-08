@@ -26,8 +26,8 @@ description:
     - Lists the volume attachments in the specified compartment. You can filter the
       list by specifying an instance OCID, volume OCID, or both.
     - Currently, the only supported volume attachment type are L(IScsiVolumeAttachment,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/IScsiVolumeAttachment/) and
-      L(ParavirtualizedVolumeAttachment,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/ParavirtualizedVolumeAttachment/).
+      us/iaas/api/#/en/iaas/latest/IScsiVolumeAttachment/) and
+      L(ParavirtualizedVolumeAttachment,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ParavirtualizedVolumeAttachment/).
     - If I(volume_attachment_id) is specified, the details of a single VolumeAttachment will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -40,7 +40,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple volume_attachments.
         type: str
     availability_domain:

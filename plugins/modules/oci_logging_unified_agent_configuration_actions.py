@@ -53,7 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on unified_agent_configuration
   oci_logging_unified_agent_configuration_actions:
-    unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 """
@@ -70,13 +70,13 @@ unified_agent_configuration:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
@@ -376,7 +376,7 @@ unified_agent_configuration:
                                 - The OCID of the resource.
                             returned: on success
                             type: string
-                            sample: ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
         group_association:
             description:
                 - ""

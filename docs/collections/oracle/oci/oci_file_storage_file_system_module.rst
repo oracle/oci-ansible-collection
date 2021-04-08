@@ -20,7 +20,7 @@ oracle.oci.oci_file_storage_file_system -- Manage a FileSystem resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -152,6 +152,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -469,13 +470,13 @@ Examples
     - name: Create file_system
       oci_file_storage_file_system:
         availability_domain: "Uocm:PHX-AD-1"
-        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: "media-files-1"
 
     - name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_file_system:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: media-files-1
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -495,7 +496,7 @@ Examples
     - name: Delete file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_file_storage_file_system:
         availability_domain: Uocm:PHX-AD-1
-        compartment_id: "ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: media-files-1
         state: absent
 

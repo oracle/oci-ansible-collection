@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_run_actions -- Perform actions on a Run resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -322,9 +323,9 @@ Examples
     
     - name: Perform action change_compartment on run
       oci_data_flow_run_actions:
-        compartment_id: compartmentId
-        run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
-        action: change_compartment
+        compartment_id: "compartmentId"
+        run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
 
     - name: Perform action cancel on run
       oci_data_flow_run_actions:
